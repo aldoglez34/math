@@ -1,0 +1,35 @@
+#root {
+  height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: white;
+  color: #484a4b;
+  font-family: "Noto Sans", sans-serif;
+  // font-size: 14px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Noto Serif", serif;
+  color: #21242c;
+}
+
+// body {
+//   margin: 0;
+//   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+//     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+//     sans-serif;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+// }
+
+// code {
+//   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+//     monospace;
+// }
