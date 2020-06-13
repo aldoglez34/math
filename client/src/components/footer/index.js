@@ -11,7 +11,7 @@ const MyFooter = React.memo(() => {
             <h3 id="footerLogo" className="mb-0">
               MeXmáticas
             </h3>
-            <p className="lead mb-2 text-light">
+            <p className="lead mb-2 text-white">
               <em>Matemáticas Simplificadas</em>
             </p>
             <p className="mb-1">
@@ -40,14 +40,14 @@ const MyFooter = React.memo(() => {
                 <i className="fab fa-youtube socials" title="Youtube" />
               </a>
             </p>
-            <small>Mexmáticas 2018 ©</small>
+            <small>MeXmáticas 2018 ©</small>
           </Col>
           <Col md={3} className="mt-1">
             <h5 className="footerTitle">
               <i className="far fa-id-card mr-2" />
               Contacto
             </h5>
-            <p className="mb-0">Lorem ipsum dolor sit amet</p>
+            <p className="mb-0">Ing. Luis Rodrigo López Utrera</p>
             <p className="mb-0">229 909 1675</p>
             <p className="mb-0">mexmaticas23@gmail.com</p>
           </Col>

@@ -5,19 +5,19 @@ import Fade from "react-reveal/Fade";
 const FAQJumbotron = React.memo(() => {
   const question = ({ key, question, answer }) => {
     return (
-      <Card className="fj_accordionItem border rounded lead">
+      <Card className="fj_accordionItem border rounded">
         <Accordion.Toggle
           as={Card.Header}
           eventKey={key}
           className="fj_cardHeader"
         >
-          <div className="d-flex">
+          <div className="d-flex fj_question">
             {question}
             <i className="fas fa-plus ml-auto plusSymbol" />
           </div>
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={key}>
-          <Card.Body>{answer}</Card.Body>
+          <Card.Body className="fj_answer">{answer}</Card.Body>
         </Accordion.Collapse>
       </Card>
     );
@@ -27,8 +27,8 @@ const FAQJumbotron = React.memo(() => {
     <Jumbotron className="fj_jumbo" fluid>
       <Container className="fj_paddingsides">
         <Fade>
-          <h1>Preguntas Frecuentes</h1>
-          <Accordion className="pt-4">
+          <h2 className="mb-4">Preguntas Frecuentes</h2>
+          <Accordion>
             {question({
               key: 0,
               question: "Lorem ipsum dolor sit amet?",

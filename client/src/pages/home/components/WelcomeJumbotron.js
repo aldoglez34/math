@@ -4,7 +4,7 @@ import Fade from "react-reveal/Fade";
 
 const MyJumbotron = React.memo(() => {
   return (
-    <Jumbotron fluid className="wj_jumboStyle">
+    <Jumbotron fluid className="wj_jumboStyle shadow">
       <Container>
         <Row>
           <Col md={5} className="text-right px-4">
@@ -44,12 +44,12 @@ const MyJumbotron = React.memo(() => {
               </p>
               <p className="mt-4 mb-1">
                 <Button
-                  variant="primary"
+                  variant="warning"
                   size="lg"
                   className="shadow"
                   href="/signup"
                 >
-                  Regístrate
+                  REGÍSTRATE
                 </Button>
               </p>
             </Fade>

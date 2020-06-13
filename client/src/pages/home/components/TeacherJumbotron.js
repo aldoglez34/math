@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Jumbotron, Button, Container, Row, Col, Image } from "react-bootstrap";
+import { Jumbotron, Container, Row, Col } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
 import YouTubePlayer from "youtube-player";
 
@@ -19,7 +19,7 @@ const TeacherJumbotron = React.memo(() => {
       //   .playVideo()
       .stopVideo()
       .then(() => {
-        console.log("Iniciando video 2");
+        // console.log("Iniciando video 2");
       });
   }, []);
 
@@ -27,16 +27,20 @@ const TeacherJumbotron = React.memo(() => {
     <Jumbotron className="teacherJumbo" fluid>
       <Container>
         <Row>
-          <Col>
+          <Col className="d-flex align-items-center">
             <div id="player-2"></div>
           </Col>
-          <Col className="text-right">
+          <Col className="d-flex align-items-center">
             <Fade right cascade>
-              <p className="lead text-muted">INSTRUCTOR</p>
-              <h2 className="qj_quote text-dark">
-                Conoce más sobre el instructor y fundador de MeXmáticas
-              </h2>
-              <Button variant="link">Leer más</Button>
+              <blockquote className="blockquote mb-0 text-right">
+                <p className="lead mb-1 text-muted">FUNDADOR</p>
+                <h2 className="qj_quote text-dark">
+                  "Nuestro compromiso con cada uno de los cursos, con cada una
+                  de las necesidades, se refleja en los resultados obtenidos en
+                  evaluaciones de nivel medio y superior."
+                </h2>
+                <footer className="blockquote-footer">Ing. Luis Rodrigo López Utrera</footer>
+              </blockquote>
             </Fade>
           </Col>
         </Row>

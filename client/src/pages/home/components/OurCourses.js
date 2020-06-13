@@ -5,7 +5,7 @@ import Fade from "react-reveal/Fade";
 const OurCourses = React.memo(() => {
   const CourseCard = ({ title, description, link }) => {
     return (
-      <Card>
+      <Card className="m-3 border-0 rounded shadow">
         <Card.Body>
           <Card.Title>{title}</Card.Title>
           <Card.Text>{description}</Card.Text>

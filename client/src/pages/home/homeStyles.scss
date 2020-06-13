@@ -10,17 +10,15 @@
 // THREE COLUMNS
 // ============================================================
 .tc_container {
-  margin-top: 80px;
-  // margin-bottom: 80px;
+  margin-top: 180px;
 }
 
 // ============================================================
 // QUOTE JUMBOTRON
 // ============================================================
 .qj_jumboStyle {
-  padding: 80px 0px !important;
-  margin-top: 120px;
-  margin-bottom: 80px !important;
+  margin-top: 170px;
+  padding: 120px 0px !important;
   background-color: #f4fbf8 !important;
 }
 
@@ -34,7 +32,9 @@
 // OUR COURSES JUMBOTRON
 // ============================================================
 .oc_jumbo {
-  margin-top: 60px;
+  margin-top: 170px;
+  background-image: url("/images/cardsbackground.png");
+  background-size: cover;
 }
 
 .oc_subtitle {
@@ -46,26 +46,59 @@
 // TEACHER JUMBOTRON
 // ============================================================
 .teacherJumbo {
-  margin-top: 120px !important;
+  margin-top: 180px !important;
+  padding: 120px 0px !important;
   background-color: #f4fbf8 !important;
+}
+
+// ============================================================
+// FACILITIES JUMBOTRON
+// ============================================================
+.facj_jumbo {
+  margin-top: 180px !important;
+}
+
+.facj_subtitle {
+  padding-left: 150px !important;
+  padding-right: 150px !important;
+}
+
+.facj_list {
+  padding-left: 150px !important;
+  padding-right: 150px !important;
+}
+
+.facj_item {
+  font-size: 25px;
 }
 
 // ============================================================
 // FAQ JUMBOTRON
 // ============================================================
 .fj_jumbo {
-  // background-color: #f4fbf8 !important;
-  background-image: url("/images/dot-grid.jpg");
+  margin-top: 180px !important;
+  margin-bottom: 180px !important;
+  background-color: #f4fbf8 !important;
 }
 
-.fj_title {
-  font-size: 35px;
-  //   font-size: 35px;
+.fj_question {
+  font-size: 17px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-weight: 500 !important;
+  &:hover {
+    color: #5cc792;
+    transition: 0.3s;
+  }
+}
+
+.fj_answer {
+  font-size: 17px;
 }
 
 .plusSymbol {
   padding-top: 4px;
-  color: #baf73c;
+  color: #5cc792;
 }
 
 .fj_paddingsides {
@@ -75,15 +108,7 @@
 
 .fj_accordionItem {
   cursor: pointer;
-  font-size: 16px !important;
-  font-weight: 500 !important;
-  // padding-top: 25px;
-  // padding-bottom: 25px;
   margin-bottom: 10px;
-  // &:hover {
-  //   color: #baf73c;
-  //   transition: 0.3s;
-  // }
 }
 
 .fj_cardHeader {

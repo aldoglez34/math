@@ -19,7 +19,7 @@ const QuoteJumbotron = React.memo(() => {
       //   .playVideo()
       .stopVideo()
       .then(() => {
-        console.log("Iniciando video 1");
+        // console.log("Iniciando video 1");
       });
   }, []);
 

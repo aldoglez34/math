@@ -5,8 +5,10 @@ import ThreeColumns from "./components/ThreeColumns";
 import QuoteJumbotron from "./components/QuoteJumbotron";
 import OurCourses from "./components/OurCourses";
 import TeacherJumbotron from "./components/TeacherJumbotron";
+import FacilitiesJumbotron from "./components/FacilitiesJumbotron";
 import FAQJumbotron from "./components/FAQJumbotron";
 import "./homeStyles.scss";
+import ScrollButton from "../../components/scrollbutton";
 
 const Home = React.memo(() => {
   return (
@@ -16,7 +18,9 @@ const Home = React.memo(() => {
       <QuoteJumbotron />
       <OurCourses />
       <TeacherJumbotron />
+      <FacilitiesJumbotron />
       <FAQJumbotron />
+      <ScrollButton />
     </Layout>
   );
 });
