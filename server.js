@@ -4,7 +4,7 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-// const routes = require("./routes");
+const routes = require("./routes");
 const bodyParser = require("body-parser");
 
 // middleware
@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // API routes
-// app.use(routes);
+app.use(routes);
 
 // send every other request to the React app
 // define any API routes before this runs
@@ -31,8 +31,7 @@ app.get("*", (req, res) => {
 });
 
 // connect to the Mongo DB
-let MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost/mathDB";
+let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mathDB";
 mongoose
   .connect(MONGODB_URI, {
     useNewUrlParser: true,

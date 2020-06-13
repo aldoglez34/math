@@ -4,13 +4,13 @@ import Fade from "react-reveal/Fade";
 
 const ThreeColumns = React.memo(() => {
   const pics = {
-    width: "94px",
-    height: "94px",
+    width: "104px",
+    height: "104px",
   };
 
   return (
-    <Container>
-      <Row className="mb-4 pb-4">
+    <Container className="tc_container">
+      <Row>
         <Col>
           <Fade>
             <Row>

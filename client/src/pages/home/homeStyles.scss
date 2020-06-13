@@ -1,0 +1,91 @@
+// ============================================================
+// WELCOME JUMBOTRON
+// ============================================================
+.wj_jumboStyle {
+  padding: 90px 0px !important;
+  background-color: #0d2129 !important;
+}
+
+// ============================================================
+// THREE COLUMNS
+// ============================================================
+.tc_container {
+  margin-top: 80px;
+  // margin-bottom: 80px;
+}
+
+// ============================================================
+// QUOTE JUMBOTRON
+// ============================================================
+.qj_jumboStyle {
+  padding: 80px 0px !important;
+  margin-top: 120px;
+  margin-bottom: 80px !important;
+  background-color: #f4fbf8 !important;
+}
+
+.qj_quote {
+  font-family: "Noto Serif", serif;
+  font-weight: 400 !important;
+  font-style: italic;
+}
+
+// ============================================================
+// OUR COURSES JUMBOTRON
+// ============================================================
+.oc_jumbo {
+  margin-top: 60px;
+}
+
+.oc_subtitle {
+  padding-left: 150px !important;
+  padding-right: 150px !important;
+}
+
+// ============================================================
+// TEACHER JUMBOTRON
+// ============================================================
+.teacherJumbo {
+  margin-top: 120px !important;
+  background-color: #f4fbf8 !important;
+}
+
+// ============================================================
+// FAQ JUMBOTRON
+// ============================================================
+.fj_jumbo {
+  // background-color: #f4fbf8 !important;
+  background-image: url("/images/dot-grid.jpg");
+}
+
+.fj_title {
+  font-size: 35px;
+  //   font-size: 35px;
+}
+
+.plusSymbol {
+  padding-top: 4px;
+  color: #baf73c;
+}
+
+.fj_paddingsides {
+  padding-left: 250px !important;
+  padding-right: 250px !important;
+}
+
+.fj_accordionItem {
+  cursor: pointer;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  // padding-top: 25px;
+  // padding-bottom: 25px;
+  margin-bottom: 10px;
+  // &:hover {
+  //   color: #baf73c;
+  //   transition: 0.3s;
+  // }
+}
+
+.fj_cardHeader {
+  background-color: white !important;
+}

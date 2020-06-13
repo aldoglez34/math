@@ -1,16 +1,24 @@
 #mynavbar {
-  background-color: #1c2a48;
+  background-color: #0d2129;
   color: #e0ffff;
+  border-bottom: 0.1px;
+  border-color: gainsboro;
 }
 
 #myLogo {
   cursor: pointer;
-  color: #baf73c;
+  color: white;
   text-decoration: none;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .navbarItem {
+  font-weight: bold !important;
   background-color: transparent !important;
   border-color: transparent !important;
-  color: #e0ffff !important;
+  color: #7b8887 !important;
+  &:hover {
+    color: gainsboro !important;
+    transition: 0.2s !important;
+  }
 }

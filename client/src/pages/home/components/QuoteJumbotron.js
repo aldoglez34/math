@@ -1,28 +1,57 @@
-import React from "react";
-import { Jumbotron, Container } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Jumbotron, Container, Row, Col } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
+import YouTubePlayer from "youtube-player";
 
 const QuoteJumbotron = React.memo(() => {
-  const jumboStyle = {
-    backgroundImage: "url('/images/dot-grid.png')",
-  };
+  useEffect(() => {
+    var player1, firstStateChange;
 
-  const quoteStyle = {
-    fontWeight: "lighter",
-  };
+    player1 = YouTubePlayer("player-1", {
+      videoId: "vgTYW14y85o",
+      width: 450,
+      height: 250,
+    });
+
+    player1
+      // Play video is a Promise.
+      // 'playVideo' is queued and will execute as soon as player is ready.
+      //   .playVideo()
+      .stopVideo()
+      .then(() => {
+        console.log("Iniciando video 1");
+      });
+  }, []);
 
   return (
-    <Jumbotron style={jumboStyle} fluid>
+    <Jumbotron className="qj_jumboStyle" fluid>
       <Container>
-        <Fade>
-          <blockquote className="blockquote mb-0">
-            <h1 style={quoteStyle}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              posuere erat a ante.
-            </h1>
-            <footer className="blockquote-footer">Someone famous</footer>
-          </blockquote>
-        </Fade>
+        <Row>
+          <Col className="d-flex align-items-center">
+            <Fade left cascade>
+              <blockquote className="blockquote mb-0">
+                <p className="lead mb-1 text-muted">TESTIMONIO</p>
+                <div className="mb-2">
+                  <i className="fas fa-star text-warning mr-1" />
+                  <i className="fas fa-star text-warning mr-1" />
+                  <i className="fas fa-star text-warning mr-1" />
+                  <i className="fas fa-star text-warning mr-1" />
+                  <i className="fas fa-star text-warning" />
+                </div>
+
+                <h2 className="qj_quote text-dark">
+                  "Buscamos diferentes escuelas, nos preocupaba que mi nieto no
+                  entendiera las reglas básicas, Luis tiene mucha paciencia y
+                  hemos visto una mejora significativa."
+                </h2>
+                <footer className="blockquote-footer">Abuela de alumno</footer>
+              </blockquote>
+            </Fade>
+          </Col>
+          <Col className="d-flex align-items-center">
+            <div id="player-1"></div>
+          </Col>
+        </Row>
       </Container>
     </Jumbotron>
   );

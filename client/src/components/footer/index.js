@@ -4,31 +4,70 @@ import "./footer.scss";
 
 const MyFooter = React.memo(() => {
   return (
-    <footer id="myfooter" className="mt-auto py-3">
+    <footer id="myfooter" className="mt-auto">
       <Container>
         <Row>
-          <Col md={4} className="mt-3 text-center">
-            <h5 className="footerTitle">Dirección</h5>
+          <Col md={3}>
+            <h3 id="footerLogo" className="mb-0">
+              MeXmáticas
+            </h3>
+            <p className="lead mb-2 text-light">
+              <em>Matemáticas Simplificadas</em>
+            </p>
+            <p className="mb-1">
+              <a
+                href="https://twitter.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-twitter mr-3 socials" title="Twitter" />
+              </a>
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i
+                  className="fab fa-facebook-f mr-3 socials"
+                  title="Facebook"
+                />
+              </a>
+              <a
+                href="https://www.youtube.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-youtube socials" title="Youtube" />
+              </a>
+            </p>
+            <small>Mexmáticas 2018 ©</small>
+          </Col>
+          <Col md={3} className="mt-1">
+            <h5 className="footerTitle">
+              <i className="far fa-id-card mr-2" />
+              Contacto
+            </h5>
+            <p className="mb-0">Lorem ipsum dolor sit amet</p>
+            <p className="mb-0">229 909 1675</p>
+            <p className="mb-0">mexmaticas23@gmail.com</p>
+          </Col>
+          <Col md={3} className="mt-1">
+            <h5 className="footerTitle">
+              <i className="fas fa-home mr-2" />
+              Dirección
+            </h5>
             <p className="mb-0">Avenida Graciano Sánchez #5</p>
             <p className="mb-0">Col. Ejido Primero de Mayo Sur</p>
             <p className="mb-0">Boca del Río, Veracruz</p>
           </Col>
-          <Col md={4} className="mt-3 text-center">
-            <h5 className="footerTitle">Teléfono</h5>
-            <p className="mb-0">22 99 09 16 75</p>
-          </Col>
-          <Col md={4} className="mt-3 text-center">
-            <h5 className="footerTitle">Sociales</h5>
-            <p className="mb-0">
-              <i className="fab fa-twitter mr-3 socials" title="Twitter" />
-              <i className="fab fa-facebook-f mr-3 socials" title="Facebook" />
-              <i className="fab fa-youtube socials" title="Youtube" />
-            </p>
-          </Col>
-        </Row>
-        <Row className="mt-2">
-          <Col className="text-center" id="footerCopyright">
-            <small>Mexmáticas 2018 ©</small>
+          <Col md={3} className="mt-1">
+            <h5 className="footerTitle">
+              <i className="far fa-clock mr-2" />
+              Horarios
+            </h5>
+            <p className="mb-0">Lunes a Viernes: 16:00 a 19:00</p>
+            <p className="mb-0">Sábados: 10:00 a 14:00</p>
+            <p className="mb-0">Domingos: 10:00 a 14:00</p>
           </Col>
         </Row>
       </Container>
