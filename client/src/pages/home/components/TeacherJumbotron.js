@@ -5,7 +5,8 @@ import YouTubePlayer from "youtube-player";
 
 const TeacherJumbotron = React.memo(() => {
   useEffect(() => {
-    var player1, firstStateChange;
+    // var player1, firstStateChange;
+    var player1;
 
     player1 = YouTubePlayer("player-2", {
       videoId: "LssEXs7noKQ",
@@ -39,7 +40,9 @@ const TeacherJumbotron = React.memo(() => {
                   de las necesidades, se refleja en los resultados obtenidos en
                   evaluaciones de nivel medio y superior."
                 </h2>
-                <footer className="blockquote-footer">Ing. Luis Rodrigo López Utrera</footer>
+                <footer className="blockquote-footer">
+                  Ing. Luis Rodrigo López Utrera
+                </footer>
               </blockquote>
             </Fade>
           </Col>

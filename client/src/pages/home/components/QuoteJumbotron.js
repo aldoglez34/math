@@ -5,7 +5,8 @@ import YouTubePlayer from "youtube-player";
 
 const QuoteJumbotron = React.memo(() => {
   useEffect(() => {
-    var player1, firstStateChange;
+    // var player1, firstStateChange;
+    var player1;
 
     player1 = YouTubePlayer("player-1", {
       videoId: "vgTYW14y85o",

@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, ErrorMessage } from "formik";
 import { Form, Col, Button } from "react-bootstrap";
-import firebase from "../../../firebase";
+// import firebase from "../../../firebase";
 import * as yup from "yup";
 
 const SignUpForm = React.memo(() => {
