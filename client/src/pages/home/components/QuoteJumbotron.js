@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Jumbotron, Container, Row, Col } from "react-bootstrap";
+import { Jumbotron, Container, Row, Col, Image } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
 import YouTubePlayer from "youtube-player";
 
@@ -25,36 +25,42 @@ const QuoteJumbotron = React.memo(() => {
   }, []);
 
   return (
-    <Jumbotron className="qj_jumboStyle" fluid>
-      <Container>
-        <Row>
-          <Col className="d-flex align-items-center">
-            <Fade left cascade>
-              <blockquote className="blockquote mb-0">
-                <p className="lead mb-1 text-muted">TESTIMONIO</p>
-                <div className="mb-2">
-                  <i className="fas fa-star text-warning mr-1" />
-                  <i className="fas fa-star text-warning mr-1" />
-                  <i className="fas fa-star text-warning mr-1" />
-                  <i className="fas fa-star text-warning mr-1" />
-                  <i className="fas fa-star text-warning" />
-                </div>
+    <>
+      <div style={{ marginTop: "180px" }} />
+      <Image src="/images/top.png" />
+      <Jumbotron className="qj_jumboStyle" fluid>
+        <Container>
+          <Row>
+            <Col className="d-flex align-items-center">
+              <Fade left cascade>
+                <blockquote className="blockquote mb-0">
+                  <p className="lead mb-1 text-muted">TESTIMONIO</p>
+                  <div className="mb-2">
+                    <i className="fas fa-star text-warning mr-1" />
+                    <i className="fas fa-star text-warning mr-1" />
+                    <i className="fas fa-star text-warning mr-1" />
+                    <i className="fas fa-star text-warning mr-1" />
+                    <i className="fas fa-star text-warning" />
+                  </div>
 
-                <h2 className="qj_quote text-dark">
-                  "Buscamos diferentes escuelas, nos preocupaba que mi nieto no
-                  entendiera las reglas básicas, Luis tiene mucha paciencia y
-                  hemos visto una mejora significativa."
-                </h2>
-                <footer className="blockquote-footer">Abuela de alumno</footer>
-              </blockquote>
-            </Fade>
-          </Col>
-          <Col className="d-flex align-items-center">
-            <div id="player-1"></div>
-          </Col>
-        </Row>
-      </Container>
-    </Jumbotron>
+                  <h2 className="qj_quote text-dark">
+                    "Buscamos diferentes escuelas, nos preocupaba que mi nieto
+                    no entendiera las reglas básicas, Luis tiene mucha paciencia
+                    y hemos visto una mejora significativa."
+                  </h2>
+                  <footer className="blockquote-footer">
+                    Abuela de alumno
+                  </footer>
+                </blockquote>
+              </Fade>
+            </Col>
+            <Col className="d-flex align-items-center">
+              <div id="player-1"></div>
+            </Col>
+          </Row>
+        </Container>
+      </Jumbotron>
+    </>
   );
 });
 

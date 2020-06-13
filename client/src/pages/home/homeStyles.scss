@@ -17,8 +17,9 @@
 // QUOTE JUMBOTRON
 // ============================================================
 .qj_jumboStyle {
-  margin-top: 170px;
-  padding: 120px 0px !important;
+  // margin-top: 60px;
+  // padding: 120px 0px !important;
+  padding-bottom: 110px !important;
   background-color: #f4fbf8 !important;
 }
 
@@ -46,8 +47,8 @@
 // TEACHER JUMBOTRON
 // ============================================================
 .teacherJumbo {
-  margin-top: 180px !important;
-  padding: 120px 0px !important;
+  padding-top: 60px !important;
+  padding-bottom: 180px !important;
   background-color: #f4fbf8 !important;
 }
 
@@ -58,25 +59,30 @@
   margin-top: 180px !important;
 }
 
-.facj_subtitle {
-  padding-left: 150px !important;
-  padding-right: 150px !important;
+.facj_list {
+  background-color: #f4fbf8;
+  color: #48bf84;
+  font-weight: 600;
+  margin-left: 150px !important;
+  margin-right: 150px !important;
+  padding: 50px;
 }
 
-.facj_list {
-  padding-left: 150px !important;
-  padding-right: 150px !important;
+.facj_image {
+  margin-right: 15px;
 }
 
 .facj_item {
   font-size: 25px;
+  margin-bottom: 15px;
 }
 
 // ============================================================
 // FAQ JUMBOTRON
 // ============================================================
 .fj_jumbo {
-  margin-top: 180px !important;
+  padding-top: 70px !important;
+  padding-bottom: 100px !important;
   margin-bottom: 180px !important;
   background-color: #f4fbf8 !important;
 }

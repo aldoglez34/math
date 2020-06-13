@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Jumbotron, Container, Row, Col } from "react-bootstrap";
+import { Jumbotron, Container, Row, Col, Image } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
 import YouTubePlayer from "youtube-player";
 
@@ -25,30 +25,41 @@ const TeacherJumbotron = React.memo(() => {
   }, []);
 
   return (
-    <Jumbotron className="teacherJumbo" fluid>
-      <Container>
-        <Row>
-          <Col className="d-flex align-items-center">
-            <div id="player-2"></div>
-          </Col>
-          <Col className="d-flex align-items-center">
-            <Fade right cascade>
-              <blockquote className="blockquote mb-0 text-right">
-                <p className="lead mb-1 text-muted">FUNDADOR</p>
-                <h2 className="qj_quote text-dark">
-                  "Nuestro compromiso con cada uno de los cursos, con cada una
-                  de las necesidades, se refleja en los resultados obtenidos en
-                  evaluaciones de nivel medio y superior."
-                </h2>
-                <footer className="blockquote-footer">
-                  Ing. Luis Rodrigo López Utrera
-                </footer>
-              </blockquote>
-            </Fade>
-          </Col>
-        </Row>
-      </Container>
-    </Jumbotron>
+    <>
+      <div style={{ marginTop: "180px" }} />
+      <Image src="/images/top.png" />
+      <Jumbotron className="teacherJumbo" fluid>
+        <Container>
+          <Fade>
+            <h2
+              className="display-4 text-center"
+              style={{ marginBottom: "70px" }}
+            >
+              Nosotros
+            </h2>
+          </Fade>
+          <Row>
+            <Col className="d-flex align-items-center">
+              <div id="player-2"></div>
+            </Col>
+            <Col className="d-flex align-items-center">
+              <Fade right cascade>
+                <blockquote className="blockquote mb-0 text-right">
+                  <p className="lead mb-1 text-muted">FUNDADOR</p>
+                  <h2 className="qj_quote text-dark">
+                    "Nuestro compromiso con cada uno de los cursos se refleja en
+                    los resultados obtenidos."
+                  </h2>
+                  <footer className="blockquote-footer">
+                    Ing. Luis Rodrigo López Utrera
+                  </footer>
+                </blockquote>
+              </Fade>
+            </Col>
+          </Row>
+        </Container>
+      </Jumbotron>
+    </>
   );
 });
 
