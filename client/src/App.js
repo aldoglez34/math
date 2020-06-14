@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import firebase from "./firebase";
 import GuestNavigation from "./navigation/GuestNavigation";
 import StudentNavigation from "./navigation/StudentNavigation";
+import API from "./utils/API";
 
 const App = () => {
   const [navigation, setNavigation] = useState("Guest");
@@ -12,6 +13,11 @@ const App = () => {
 
       if (fbUser) {
         setNavigation("Student");
+        API.fetchStudentByUID(fbUser.user.uid)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => console.log(err));
       }
     });
   }, []);

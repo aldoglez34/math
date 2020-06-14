@@ -1,8 +1,9 @@
 import React from "react";
 import { Formik, ErrorMessage } from "formik";
 import { Form, Col, Button } from "react-bootstrap";
-// import firebase from "../../../firebase";
+import firebase from "../../../firebase";
 import * as yup from "yup";
+import API from "../../../utils/API";
 
 const SignUpForm = React.memo(() => {
   const yupSchema = yup.object({
@@ -52,14 +53,21 @@ const SignUpForm = React.memo(() => {
         setSubmitting(true);
         console.log("values", values);
         //////// signup ////////
-        // firebase
-        //   .auth()
-        //   .createUserWithEmailAndPassword(values.email, values.password)
-        //   .then((fbRes) => {})
-        //   .catch((err) => {
-        //     console.log(err.code);
-        //     console.log(err.message);
-        //   });
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(values.email, values.password)
+          .then((fbRes) => {
+            API.registerNewStudent(fbUser.user.uid)
+              .then((res) => {
+                console.log(res.data);
+                alert("Gracias por registrarte");
+              })
+              .catch((err) => console.log(err));
+          })
+          .catch((err) => {
+            console.log(err.code);
+            console.log(err.message);
+          });
       }}
     >
       {({
