@@ -12,10 +12,10 @@ const App = () => {
       console.log("fbUser", fbUser);
 
       if (fbUser) {
-        setNavigation("Student");
         API.fetchStudentByUID(fbUser.user.uid)
           .then((res) => {
-            console.log(res);
+            setNavigation("Student");
+            console.log("@app.js", res.data);
           })
           .catch((err) => console.log(err));
       }

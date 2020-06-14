@@ -51,23 +51,22 @@ const SignUpForm = React.memo(() => {
       validationSchema={yupSchema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
-        console.log("values", values);
         //////// signup ////////
-        firebase
-          .auth()
-          .createUserWithEmailAndPassword(values.email, values.password)
-          .then((fbRes) => {
-            API.registerNewStudent(fbUser.user.uid)
-              .then((res) => {
-                console.log(res.data);
-                alert("Gracias por registrarte");
+        API.registerNewStudent(values)
+          .then((res) => {
+            firebase
+              .auth()
+              .createUserWithEmailAndPassword(values.email, values.password)
+              .then((fbRes) => {
+                console.log(fbRes);
+                alert("Bienvenido a Mexmáticas");
               })
-              .catch((err) => console.log(err));
+              .catch((err) => {
+                console.log(err.code);
+                console.log(err.message);
+              });
           })
-          .catch((err) => {
-            console.log(err.code);
-            console.log(err.message);
-          });
+          .catch((err) => console.log(err));
       }}
     >
       {({
@@ -209,7 +208,7 @@ const SignUpForm = React.memo(() => {
           </Form.Row>
           <Button
             className="shadow-sm mt-3"
-            variant="warning"
+            variant="primary"
             type="submit"
             disabled={isSubmitting}
           >
