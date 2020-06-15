@@ -29,7 +29,9 @@ const FAQJumbotron = React.memo(() => {
       <Jumbotron className="fj_jumbo" fluid>
         <Container className="fj_paddingsides">
           <Fade>
-            <h1 className="mb-4 pb-2 text-center">Preguntas Frecuentes</h1>
+            <h1 className="mb-4 pb-2 text-center" style={{ fontWeight: 600 }}>
+              Preguntas Frecuentes
+            </h1>
             <Accordion className="px-2 px-lg-0">
               {question({
                 key: 0,

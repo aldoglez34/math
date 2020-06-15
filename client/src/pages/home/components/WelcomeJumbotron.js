@@ -48,7 +48,7 @@ const MyJumbotron = React.memo(() => {
               <p className="mt-4 mb-1">
                 <Button
                   variant="primary"
-                  // size="lg"
+                  size="lg"
                   className="shadow"
                   href="/signup"
                 >

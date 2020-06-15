@@ -1,37 +1,27 @@
-#su_container {
+#log_container {
   margin-top: 48px;
   margin-bottom: 48px;
 }
 
-#su_leftCol {
+#log_leftCol {
   background-color: #0f5257;
   padding: 45px;
 }
 
-.su_title {
-  font-weight: 700;
-}
-
-#su_rightCol {
+#log_rightCol {
   padding: 45px;
   background-color: #f8f9fa;
 }
 
 @media only screen and (max-width: 991px) {
-  #su_container {
+  #log_container {
     margin-top: 0px;
   }
-  #su_leftCol {
+  #log_leftCol {
     padding: 15px;
   }
-  #su_rightCol {
+  #log_rightCol {
     padding: 15px;
     padding-top: 30px;
   }
-}
-
-.su_greaterThanSymbol {
-  font-size: 15px;
-  margin-right: 6px;
-  color: #48bf84;
 }

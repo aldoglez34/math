@@ -11,7 +11,7 @@ const MyFooter = React.memo(() => {
             <h3 id="footerLogo" className="mb-0">
               MeXmáticas
             </h3>
-            <p className="lead mb-2 text-light">
+            <p className="mb-2 text-light">
               <em>Matemáticas Simplificadas</em>
             </p>
             <p className="mb-1">

@@ -32,16 +32,16 @@ const TeacherJumbotron = React.memo(() => {
           <Fade>
             <h2
               className="display-4 text-center"
-              style={{ marginBottom: "70px" }}
+              style={{ marginBottom: "70px", fontWeight: 600 }}
             >
               Nosotros
             </h2>
           </Fade>
           <Row>
-            <Col lg={6} className="d-flex align-items-center">
+            <Col lg={5} className="d-flex align-items-center">
               <div id="player-2"></div>
             </Col>
-            <Col lg={6} className="d-flex align-items-center">
+            <Col lg={7} className="d-flex align-items-center mt-3 mt-lg-0">
               <Fade right cascade>
                 <blockquote className="blockquote mb-0 text-right">
                   <p className="lead mb-1 text-muted">FUNDADOR</p>

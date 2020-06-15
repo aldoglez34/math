@@ -2,31 +2,34 @@ import React from "react";
 import Layout from "../../components/Layout";
 import { Container, Row, Col } from "react-bootstrap";
 import LoginForm from "./components/LoginForm";
+import "./login.scss";
 
 const Login = React.memo(() => {
   return (
     <Layout>
-      <Container
-        className="bg-light"
-        style={{ marginTop: "48px", marginBottom: "48px" }}
-      >
-        <div className="border rounded" style={{ padding: "90px" }}>
-          <Row>
-            <Col md={6}>
-              <h2 className="display-3 mb-0">Hola,</h2>
-              <h2 className="display-4">¡Qué bueno verte de vuelta!</h2>
-              <p>
-                ¿No tienes cuenta? Crea una{" "}
-                <a href="/signup" className="text-warning">
-                  aquí
-                </a>
-              </p>
-            </Col>
-            <Col md={6}>
-              <LoginForm />
-            </Col>
-          </Row>
-        </div>
+      <Container id="log_container">
+        <Row>
+          <Col lg={6} id="log_leftCol">
+            <h2
+              className="display-3 mb-0 text-light"
+              style={{ fontWeight: 700 }}
+            >
+              Hola,
+            </h2>
+            <h2 className="display-4 text-light">
+              ¡Qué bueno verte de vuelta!
+            </h2>
+            <p className="text-light">
+              ¿No tienes cuenta? Crea una
+              <a href="/signup" className="text-warning ml-1">
+                aquí
+              </a>
+            </p>
+          </Col>
+          <Col lg={6} id="log_rightCol">
+            <LoginForm />
+          </Col>
+        </Row>
       </Container>
     </Layout>
   );

@@ -148,8 +148,8 @@ const SignUpForm = React.memo(() => {
             </label>
           </div>
           <Button
-            className="shadow-sm mt-3"
-            variant="warning"
+            className="shadow-sm mt-4"
+            variant="primary"
             type="submit"
             disabled={isSubmitting}
           >
