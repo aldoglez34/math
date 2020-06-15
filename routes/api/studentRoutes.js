@@ -5,8 +5,8 @@ const model = require("../../models");
 // matches with /api/student/new
 router.post("/new", function (req, res) {
   model.Student.create({
-    // firebaseUID: req.body.firebaseUID,
-    name: req.body.name,  
+    firebaseUID: req.body.firebaseUID,
+    name: req.body.name,
     firstSurname: req.body.firstSurname,
     secondSurname: req.body.secondSurname,
     email: req.body.email,
@@ -19,8 +19,8 @@ router.post("/new", function (req, res) {
 });
 
 // fetchStudentByUID()
-// matches with /api/student/:uid
-router.get("/:uid", function (req, res) {
+// matches with /api/student/fetchByUID/:uid
+router.get("/fetchByUID/:uid", function (req, res) {
   model.Student.find({ firebaseUID: req.params.uid })
     .then((data) => res.json(data[0]))
     .catch((err) => {

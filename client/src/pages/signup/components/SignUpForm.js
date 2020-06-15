@@ -69,6 +69,7 @@ const SignUpForm = React.memo(() => {
                 console.log("2 - then del updateProfile");
                 // add new client to db
                 API.registerNewStudent({
+                  firebaseUID: fbRes.user.uid,
                   name: values.name,
                   firstSurname: values.firstSurname,
                   secondSurname: values.secondSurname,
