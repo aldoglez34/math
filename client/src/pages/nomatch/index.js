@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../../components/Layout";
-import { Button, Image } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 
 const NoMatch = React.memo(() => {
   return (

@@ -2,11 +2,11 @@ const router = require("express").Router();
 const model = require("../../models");
 
 // registerNewStudent()
-// matches with /api/students/new
+// matches with /api/student/new
 router.post("/new", function (req, res) {
   model.Student.create({
-    firebaseUID: req.body.firebaseUID,
-    name: req.body.name,
+    // firebaseUID: req.body.firebaseUID,
+    name: req.body.name,  
     firstSurname: req.body.firstSurname,
     secondSurname: req.body.secondSurname,
     email: req.body.email,
@@ -19,7 +19,7 @@ router.post("/new", function (req, res) {
 });
 
 // fetchStudentByUID()
-// matches with /api/students/:uid
+// matches with /api/student/:uid
 router.get("/:uid", function (req, res) {
   model.Student.find({ firebaseUID: req.params.uid })
     .then((data) => res.json(data[0]))

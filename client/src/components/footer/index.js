@@ -11,7 +11,7 @@ const MyFooter = React.memo(() => {
             <h3 id="footerLogo" className="mb-0">
               MeXmáticas
             </h3>
-            <p className="lead mb-2 text-white">
+            <p className="lead mb-2 text-light">
               <em>Matemáticas Simplificadas</em>
             </p>
             <p className="mb-1">
@@ -42,7 +42,7 @@ const MyFooter = React.memo(() => {
             </p>
             <small>MeXmáticas 2018 ©</small>
           </Col>
-          <Col md={3} className="mt-1">
+          <Col md={3} className="mt-3 mt-lg-1">
             <h5 className="footerTitle">
               <i className="far fa-id-card mr-2" />
               Contacto
@@ -51,7 +51,7 @@ const MyFooter = React.memo(() => {
             <p className="mb-0">229 909 1675</p>
             <p className="mb-0">mexmaticas23@gmail.com</p>
           </Col>
-          <Col md={3} className="mt-1">
+          <Col md={3} className="mt-3 mt-lg-1">
             <h5 className="footerTitle">
               <i className="fas fa-home mr-2" />
               Dirección
@@ -60,7 +60,7 @@ const MyFooter = React.memo(() => {
             <p className="mb-0">Col. Ejido Primero de Mayo Sur</p>
             <p className="mb-0">Boca del Río, Veracruz</p>
           </Col>
-          <Col md={3} className="mt-1">
+          <Col md={3} className="mt-3 mt-lg-1">
             <h5 className="footerTitle">
               <i className="far fa-clock mr-2" />
               Horarios

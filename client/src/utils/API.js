@@ -5,7 +5,7 @@ export default {
   // STUDENTS
   // ==============================================
 
-  registerNewStudent: (data) => axios.post("/api/students/new", data),
+  registerNewStudent: (data) => axios.post("/api/student/new", data),
 
-  fetchStudentByUID: (uid) => axios.get("/api/students/fetchByUID/" + uid),
+  fetchStudentByUID: (uid) => axios.get("/api/student/fetchByUID/" + uid),
 };

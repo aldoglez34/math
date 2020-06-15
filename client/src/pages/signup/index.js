@@ -17,15 +17,15 @@ const SignUp = React.memo(() => {
               <h2 className="mb-4">
                 Cursos de matemáticas para estudiantes de cualquier edad
               </h2>
-              <p className="su_text">
+              <p className="lead mb-1">
                 <i className="fas fa-greater-than su_greaterThan" />
                 Más de 4,000 ejercicios con explicaciones y videos tutoriales
               </p>
-              <p className="su_text">
+              <p className="lead mb-1">
                 <i className="fas fa-greater-than su_greaterThan" />
                 Clases personalizadas, respondemos cada una de tus dudas
               </p>
-              <p className="su_text">
+              <p className="lead mb-1">
                 <i className="fas fa-greater-than su_greaterThan" />
                 Aprendiendo matemáticas con un método único en el mercado
               </p>

@@ -26,12 +26,11 @@ const QuoteJumbotron = React.memo(() => {
 
   return (
     <>
-      <div style={{ marginTop: "180px" }} />
-      <Image src="/images/top.png" />
+      <Image src="/images/top.png" id="qj_img" />
       <Jumbotron className="qj_jumboStyle" fluid>
         <Container>
           <Row>
-            <Col className="d-flex align-items-center">
+            <Col lg={6} className="d-flex align-items-center">
               <Fade left cascade>
                 <blockquote className="blockquote mb-0">
                   <p className="lead mb-1 text-muted">TESTIMONIO</p>
@@ -54,7 +53,7 @@ const QuoteJumbotron = React.memo(() => {
                 </blockquote>
               </Fade>
             </Col>
-            <Col className="d-flex align-items-center">
+            <Col lg={6} className="d-flex align-items-center mt-4 mt-lg-0">
               <div id="player-1"></div>
             </Col>
           </Row>

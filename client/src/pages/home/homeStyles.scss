@@ -6,6 +6,28 @@
   background-color: #0d2129 !important;
 }
 
+#wj_homeImage {
+  width: 330px !important;
+  height: 330px !important;
+}
+
+.wj_mainText {
+  font-weight: 600 !important;
+}
+
+@media only screen and (max-width: 991px) {
+  .wj_mainText {
+    font-size: 47px !important;
+  }
+  .wj_jumboStyle {
+    padding: 30px 0px !important;
+  }
+  #wj_homeImage {
+    width: 180px !important;
+    height: 180px !important;
+  }
+}
+
 // ============================================================
 // THREE COLUMNS
 // ============================================================
@@ -13,12 +35,25 @@
   margin-top: 180px;
 }
 
+.tc_pic {
+  width: 120px !important;
+  height: 120px !important;
+}
+
+@media only screen and (max-width: 991px) {
+  .tc_container {
+    margin-top: 100px;
+  }
+}
+
 // ============================================================
 // QUOTE JUMBOTRON
 // ============================================================
+#qj_img {
+  margin-top: 180px;
+}
+
 .qj_jumboStyle {
-  // margin-top: 60px;
-  // padding: 120px 0px !important;
   padding-bottom: 110px !important;
   background-color: #f4fbf8 !important;
 }
@@ -27,6 +62,12 @@
   font-family: "Noto Serif", serif;
   font-weight: 400 !important;
   font-style: italic;
+}
+
+@media only screen and (max-width: 991px) {
+  #qj_img {
+    margin-top: 100px;
+  }
 }
 
 // ============================================================
@@ -43,13 +84,37 @@
   padding-right: 150px !important;
 }
 
+@media only screen and (max-width: 991px) {
+  .oc_jumbo {
+    margin-top: 100px;
+  }
+  .oc_subtitle {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}
+
 // ============================================================
 // TEACHER JUMBOTRON
 // ============================================================
+#teacher_img {
+  margin-top: 180px !important;
+}
+
 .teacherJumbo {
-  padding-top: 60px !important;
-  padding-bottom: 180px !important;
+  padding-top: 10px !important;
+  padding-bottom: 120px !important;
   background-color: #f4fbf8 !important;
+}
+
+@media only screen and (max-width: 991px) {
+  #teacher_img {
+    margin-top: 100px !important;
+  }
+  .oc_subtitle {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
 }
 
 // ============================================================
@@ -59,29 +124,32 @@
   margin-top: 180px !important;
 }
 
-.facj_list {
-  background-color: #f4fbf8;
-  color: #48bf84;
-  font-weight: 600;
-  margin-left: 150px !important;
-  margin-right: 150px !important;
-  padding: 50px;
-}
-
 .facj_image {
-  margin-right: 15px;
+  width: 120px !important;
+  height: 120px !important;
 }
 
-.facj_item {
-  font-size: 25px;
-  margin-bottom: 15px;
+@media only screen and (max-width: 991px) {
+  .facj_jumbo {
+    margin-top: 100px !important;
+  }
+
+  .facj_image {
+    margin-right: 15px;
+    width: 100px !important;
+    height: 100px !important;
+  }
 }
 
 // ============================================================
 // FAQ JUMBOTRON
 // ============================================================
+#fj_image {
+  margin-top: 180px !important;
+}
+
 .fj_jumbo {
-  padding-top: 70px !important;
+  padding-top: 50px !important;
   padding-bottom: 100px !important;
   margin-bottom: 180px !important;
   background-color: #f4fbf8 !important;
@@ -119,4 +187,21 @@
 
 .fj_cardHeader {
   background-color: white !important;
+}
+
+@media only screen and (max-width: 991px) {
+  .fj_image {
+    margin-top: 100px !important;
+  }
+
+  .fj_paddingsides {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .fj_jumbo {
+    padding-top: 40px !important;
+    padding-bottom: 80px !important;
+    margin-bottom: 100px !important;
+  }
 }

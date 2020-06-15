@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const StudentSchema = new Schema({
-  firebaseUID: {
-    type: String,
-    trim: true,
-    unique: true,
-  },
+  // firebaseUID: {
+  //   type: String,
+  //   trim: true,
+  //   unique: true,
+  // },
   name: {
     type: String,
     trim: true,

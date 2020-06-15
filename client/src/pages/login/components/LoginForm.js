@@ -1,10 +1,16 @@
 import React from "react";
 import { Formik, ErrorMessage } from "formik";
 import { Form, Col, Button } from "react-bootstrap";
-// import firebase from "../../../firebase";
+import firebase from "../../../firebase/firebase";
+import fbApp from "firebase/app";
 import * as yup from "yup";
+import { useDispatch } from "react-redux";
+import * as studentActions from "../../../redux/actions/student";
+import API from "../../../utils/API";
 
 const SignUpForm = React.memo(() => {
+  const dispatch = useDispatch();
+
   const yupSchema = yup.object({
     email: yup
       .string()
@@ -23,8 +29,44 @@ const SignUpForm = React.memo(() => {
       validationSchema={yupSchema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
-        console.log("values", values);
         //////// login ////////
+        firebase
+          .auth()
+          .setPersistence(
+            values.rememberme
+              ? fbApp.auth.Auth.Persistence.LOCAL
+              : fbApp.auth.Auth.Persistence.SESSION
+          )
+          .then(() => {
+            return firebase
+              .auth()
+              .signInWithEmailAndPassword(values.email, values.password)
+              .then((res) => {
+                // if anything goes wrong from here, logout the user in firebase
+                API.fetchStudentByUID(res.user.uid)
+                  .then((res) => {
+                    if (res.data) {
+                      dispatch(studentActions.loginStudent(res.data));
+                      alert(`Iniciaste sesión con éxito, ${res.data.name}`);
+                      window.location.href = "/dashboard";
+                    }
+                  })
+                  .catch((error) => {
+                    alert(
+                      "Ocurrió un error al iniciar sesión, vuelve a intentarlo."
+                    );
+                    console.log(error);
+                    setSubmitting(false);
+                  });
+              });
+          })
+          .catch((error) => {
+            alert("Ocurrió un error al iniciar sesión, vuelve a intentarlo.");
+            console.log(error.code);
+            console.log(error.message);
+            setSubmitting(false);
+          });
+        setSubmitting(false);
         // firebase
         //   .auth()
         //   .createUserWithEmailAndPassword(values.email, values.password)

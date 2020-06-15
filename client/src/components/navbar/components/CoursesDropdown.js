@@ -1,21 +1,20 @@
 import React from "react";
-import { Dropdown } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 import "./coursesdropdown.scss";
 
 const CoursesDropdown = React.memo(() => {
   return (
-    <Dropdown>
-      <Dropdown.Toggle id="coursesDropdown">Cursos</Dropdown.Toggle>
-
-      <Dropdown.Menu>
-        <Dropdown.Item href="#">Álgebra</Dropdown.Item>
-        <Dropdown.Item href="#">Aritmética</Dropdown.Item>
-        <Dropdown.Item href="#">Cálculo</Dropdown.Item>
-        <Dropdown.Item href="#">Ecucaciones</Dropdown.Item>
-        <Dropdown.Item href="#">Geometría</Dropdown.Item>
-        <Dropdown.Item href="#">Trigonometría</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
+    <NavDropdown
+      title={<span id="coursesDropdown">Cursos</span>}
+      id="collasible-nav-dropdown"
+    >
+      <NavDropdown.Item href="/">Álgebra</NavDropdown.Item>
+      <NavDropdown.Item href="/">Aritmética</NavDropdown.Item>
+      <NavDropdown.Item href="/">Cálculo</NavDropdown.Item>
+      <NavDropdown.Item href="/">Ecucaciones</NavDropdown.Item>
+      <NavDropdown.Item href="/">Geometría</NavDropdown.Item>
+      <NavDropdown.Item href="/">Trigonometría</NavDropdown.Item>
+    </NavDropdown>
   );
 });
 

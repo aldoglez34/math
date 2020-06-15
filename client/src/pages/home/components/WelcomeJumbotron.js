@@ -4,26 +4,29 @@ import Fade from "react-reveal/Fade";
 
 const MyJumbotron = React.memo(() => {
   return (
-    <Jumbotron fluid className="wj_jumboStyle shadow">
+    <Jumbotron fluid className="wj_jumboStyle">
       <Container>
         <Row>
-          <Col md={5} className="text-right px-4">
+          <Col lg={5} className="text-center text-lg-right px-4">
             <Fade>
               <Image
                 className="mt-4"
                 src="https://image.flaticon.com/icons/svg/897/897406.svg"
-                width="330"
-                height="330"
+                id="wj_homeImage"
               />
             </Fade>
           </Col>
-          <Col md={7} className="px-4">
+          <Col lg={7} className="px-4 py-3 py-lg-0">
             <Fade bottom cascade>
-              <h1 className="display-4 text-light">Matemáticas</h1>
-              <h1 className="display-4 text-light">Simplificadas</h1>
+              <h2 className="display-4 text-light text-center text-lg-left wj_mainText">
+                Matemáticas
+              </h2>
+              <h2 className="display-4 text-light text-center text-lg-left wj_mainText">
+                Simplificadas
+              </h2>
             </Fade>
             <Fade>
-              <p className="lead mb-1 text-light">
+              <p className="lead mb-1 mt-3 mt-lg-0 text-light">
                 <i className="fas fa-plus mr-2" style={{ color: "#e8686a" }} />
                 Cursos de matemáticas para estudiantes de cualquier edad
               </p>
@@ -44,7 +47,7 @@ const MyJumbotron = React.memo(() => {
               </p>
               <p className="mt-4 mb-1">
                 <Button
-                  variant="warning"
+                  variant="primary"
                   // size="lg"
                   className="shadow"
                   href="/signup"

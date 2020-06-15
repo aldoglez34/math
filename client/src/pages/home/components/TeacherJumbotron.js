@@ -26,8 +26,7 @@ const TeacherJumbotron = React.memo(() => {
 
   return (
     <>
-      <div style={{ marginTop: "180px" }} />
-      <Image src="/images/top.png" />
+      <Image src="/images/top.png" id="teacher_img" />
       <Jumbotron className="teacherJumbo" fluid>
         <Container>
           <Fade>
@@ -39,10 +38,10 @@ const TeacherJumbotron = React.memo(() => {
             </h2>
           </Fade>
           <Row>
-            <Col className="d-flex align-items-center">
+            <Col lg={6} className="d-flex align-items-center">
               <div id="player-2"></div>
             </Col>
-            <Col className="d-flex align-items-center">
+            <Col lg={6} className="d-flex align-items-center">
               <Fade right cascade>
                 <blockquote className="blockquote mb-0 text-right">
                   <p className="lead mb-1 text-muted">FUNDADOR</p>

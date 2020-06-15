@@ -1,4 +1,4 @@
-const clientReducers = (state = null, action) => {
+const studentReducers = (state = null, action) => {
   switch (action.type) {
     case "student/login":
       return {
@@ -14,4 +14,4 @@ const clientReducers = (state = null, action) => {
   }
 };
 
-export default clientReducers;
+export default studentReducers;

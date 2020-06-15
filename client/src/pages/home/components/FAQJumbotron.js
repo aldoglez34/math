@@ -25,13 +25,12 @@ const FAQJumbotron = React.memo(() => {
 
   return (
     <>
-      <div style={{ marginTop: "180px" }} />
-      <Image src="/images/top.png" />
+      <Image src="/images/top.png" id="fj_image" />
       <Jumbotron className="fj_jumbo" fluid>
         <Container className="fj_paddingsides">
           <Fade>
-            <h1 className="mb-4">Preguntas Frecuentes</h1>
-            <Accordion>
+            <h1 className="mb-4 pb-2 text-center">Preguntas Frecuentes</h1>
+            <Accordion className="px-2 px-lg-0">
               {question({
                 key: 0,
                 question: "Lorem ipsum dolor sit amet?",

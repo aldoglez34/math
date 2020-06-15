@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, CardGroup, Card } from "react-bootstrap";
+import { Button, Container, CardGroup, Card } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
 
 const OurCourses = React.memo(() => {
@@ -9,7 +9,9 @@ const OurCourses = React.memo(() => {
         <Card.Body>
           <Card.Title>{title}</Card.Title>
           <Card.Text>{description}</Card.Text>
-          <Card.Link href={link}>Leer más</Card.Link>
+          <Button size="sm" variant="primary">
+            Leer más
+          </Button>
         </Card.Body>
       </Card>
     );
@@ -19,27 +21,28 @@ const OurCourses = React.memo(() => {
     <Container className="oc_jumbo">
       <Fade>
         <h2 className="display-4 text-center mb-4">Nuestros Cursos</h2>
-        <p className="lead text-center oc_subtitle pb-4">
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.
+        <p className="lead text-center oc_subtitle pb-3">
+          Enfocados para diferentes niveles educativos, en cada uno el alumno
+          podrá reforzar los temas que más se le compliquen las veces que él
+          crea necesarias hasta que logre comprender el tema.
         </p>
         <CardGroup>
           {CourseCard({
             title: "Álgebra",
             description:
-              "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
+              "Aplica el lenguaje algebraico para solucionar problemas cotidianos.",
             link: "#",
           })}
           {CourseCard({
             title: "Aritmética",
             description:
-              "This card has supporting text below as a natural lead-in to additional content.",
+              "Aprende a realizar las 4 operaciones básicas con número enteros, decimales y con fracciones.",
             link: "#",
           })}
           {CourseCard({
             title: "Cálculo",
             description:
-              "This is a wider card with supporting text below as a natural lead-in to additional content. This card as even longer content than the first to show that equal height action.",
+              "Aprende a derivar e integrar funciones algebraicas, trigonométricas, exponenciales y logarítmicas.",
             link: "#",
           })}
         </CardGroup>
@@ -47,19 +50,19 @@ const OurCourses = React.memo(() => {
           {CourseCard({
             title: "Ecuaciones",
             description:
-              "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.",
+              "Resuelve e identifica los diferentes tipos de ecuaciones.",
             link: "#",
           })}
           {CourseCard({
             title: "Geometría",
             description:
-              "This card has supporting text below as a natural lead-in to additional content.",
+              "Identifica los elementos y ecuaciones de la recta, circunferencia, parábola, elipse e hipérbola.",
             link: "#",
           })}
           {CourseCard({
             title: "Trigonometría",
             description:
-              "This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.",
+              "Resuelve problemas cotidianos aplicando las funciones trigonométricas.",
             link: "#",
           })}
         </CardGroup>

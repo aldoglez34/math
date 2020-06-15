@@ -1,11 +1,15 @@
 import React from "react";
 import { Formik, ErrorMessage } from "formik";
 import { Form, Col, Button } from "react-bootstrap";
-import firebase from "../../../firebase";
+import firebase from "../../../firebase/firebase";
 import * as yup from "yup";
 import API from "../../../utils/API";
+import { useDispatch } from "react-redux";
+import * as studentActions from "../../../redux/actions/student";
 
 const SignUpForm = React.memo(() => {
+  const dispatch = useDispatch();
+
   const yupSchema = yup.object({
     email: yup
       .string()
@@ -52,21 +56,53 @@ const SignUpForm = React.memo(() => {
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
         //////// signup ////////
-        API.registerNewStudent(values)
-          .then((res) => {
-            firebase
-              .auth()
-              .createUserWithEmailAndPassword(values.email, values.password)
-              .then((fbRes) => {
-                console.log(fbRes);
-                alert("Bienvenido a Mexmáticas");
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(values.email, values.password)
+          .then((fbRes) => {
+            console.log("1 - then del createUserWithEmailAndPassword");
+            fbRes.user
+              .updateProfile({
+                displayName: "Student",
               })
-              .catch((err) => {
-                console.log(err.code);
-                console.log(err.message);
+              .then(() => {
+                console.log("2 - then del updateProfile");
+                // add new client to db
+                API.registerNewStudent({
+                  name: values.name,
+                  firstSurname: values.firstSurname,
+                  secondSurname: values.secondSurname,
+                  email: values.email,
+                })
+                  .then((res) => {
+                    console.log("3 - then del registerNewStudent");
+                    API.fetchStudentByUID(fbRes.user.uid)
+                      .then((res) => {
+                        console.log("4 - then del fetchClientByUID");
+                        dispatch(studentActions.loginStudent(res.data));
+                        alert(`Iniciaste sesión con éxito, ${res.data.name}`);
+                        window.location.href = "/dashboard";
+                      })
+                      .catch((error) => {
+                        alert(
+                          "Ocurrió un error al iniciar sesión, vuelve a intentarlo."
+                        );
+                        console.log(error);
+                        setSubmitting(false);
+                      });
+                  })
+                  .catch((err) => {
+                    alert(
+                      "Ocurrió un error al editar usuario nuevo, por favor vuelve a intentarlo."
+                    );
+                    console.log(err);
+                  });
               });
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            console.log(err.code);
+            console.log(err.message);
+          });
       }}
     >
       {({
