@@ -6,13 +6,10 @@ import "./coursecard.scss";
 const CourseCard = React.memo(
   ({ course, lessons, description, lastVisited, link }) => {
     return (
-      <Card
-        style={{ width: "20rem" }}
-        className="shadow-sm mr-lg-4 mb-4 mb-lg-0 border-0"
-      >
-        <Card.Body id="ccardBody" className="rounded">
+      <Card className="shadow-sm mr-lg-4 mb-4 border-0 ccardSize">
+        <Card.Body className="rounded ccardBody">
           <Card.Title>
-            <h3 id="ccardTitle">{course}</h3>
+            <h3 className="ccardTitle">{course}</h3>
           </Card.Title>
           <Card.Text>{description}</Card.Text>
           <Button size="sm" variant="primary" href={link}>
@@ -23,8 +20,7 @@ const CourseCard = React.memo(
           {lessons.map((l) => {
             return (
               <ListGroupItem key={l}>
-                {/* <a href="/dashboard">{l}</a> */}
-                {l}
+                <a href="/dashboard">{l}</a>
               </ListGroupItem>
             );
           })}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Home from "../pages/home";
 import NoMatch from "../pages/nomatch";
 import SignUp from "../pages/signup";
@@ -12,6 +12,7 @@ export default () => {
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/login" component={Login} />
 
+      <Redirect from="/dashboard" to="/" />
       {/* 404 not found */}
       <Route component={NoMatch} />
     </Switch>

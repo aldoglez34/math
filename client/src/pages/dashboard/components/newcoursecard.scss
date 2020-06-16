@@ -1,0 +1,10 @@
+#newcoursecard {
+  width: 20rem;
+  background-image: url("/images/newcoursecardback.png");
+}
+
+@media only screen and (max-width: 991px) {
+  #newcoursecard {
+    width: 100%;
+  }
+}

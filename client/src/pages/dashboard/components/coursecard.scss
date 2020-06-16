@@ -1,8 +1,18 @@
-#ccardBody {
+.ccardSize {
+  width: 20rem;
+}
+
+@media only screen and (max-width: 991px) {
+  .ccardSize {
+    width: 100%;
+  }
+}
+
+.ccardBody {
   background-image: url("/images/coursecardback.png");
   background-size: cover;
 }
 
-#ccardTitle {
+.ccardTitle {
   font-weight: 600;
 }
