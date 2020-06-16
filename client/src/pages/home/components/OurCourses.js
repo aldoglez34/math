@@ -5,11 +5,13 @@ import Fade from "react-reveal/Fade";
 const OurCourses = React.memo(() => {
   const CourseCard = ({ title, description, link }) => {
     return (
-      <Card className="m-3 border-0 rounded shadow">
+      <Card className="m-lg-3 border-0 rounded shadow oc_coursecard">
         <Card.Body>
-          <Card.Title>{title}</Card.Title>
+          <Card.Title>
+            <h4 style={{ fontWeight: 600 }}>{title}</h4>
+          </Card.Title>
           <Card.Text>{description}</Card.Text>
-          <Button size="sm" variant="primary">
+          <Button size="sm" variant="primary" className="shadow-sm" href={link}>
             Leer más
           </Button>
         </Card.Body>
@@ -33,19 +35,19 @@ const OurCourses = React.memo(() => {
             title: "Álgebra",
             description:
               "Aplica el lenguaje algebraico para solucionar problemas cotidianos.",
-            link: "#",
+            link: "/",
           })}
           {CourseCard({
             title: "Aritmética",
             description:
               "Aprende a realizar las 4 operaciones básicas con número enteros, decimales y con fracciones.",
-            link: "#",
+            link: "/",
           })}
           {CourseCard({
             title: "Cálculo",
             description:
               "Aprende a derivar e integrar funciones algebraicas, trigonométricas, exponenciales y logarítmicas.",
-            link: "#",
+            link: "/",
           })}
         </CardGroup>
         <CardGroup>
@@ -53,19 +55,19 @@ const OurCourses = React.memo(() => {
             title: "Ecuaciones",
             description:
               "Resuelve e identifica los diferentes tipos de ecuaciones.",
-            link: "#",
+            link: "/",
           })}
           {CourseCard({
             title: "Geometría",
             description:
               "Identifica los elementos y ecuaciones de la recta, circunferencia, parábola, elipse e hipérbola.",
-            link: "#",
+            link: "/",
           })}
           {CourseCard({
             title: "Trigonometría",
             description:
               "Resuelve problemas cotidianos aplicando las funciones trigonométricas.",
-            link: "#",
+            link: "/",
           })}
         </CardGroup>
       </Fade>

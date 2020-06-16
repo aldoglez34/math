@@ -12,6 +12,11 @@
   font-weight: 700;
 }
 
+.su_text {
+  font-size: 21px;
+  color: gainsboro !important;
+}
+
 #su_rightCol {
   padding: 45px;
   background-color: #f8f9fa;
@@ -22,11 +27,14 @@
     margin-top: 0px;
   }
   #su_leftCol {
-    padding: 15px;
+    padding: 35px 15px !important;
   }
   #su_rightCol {
     padding: 15px;
     padding-top: 30px;
+  }
+  .su_text {
+    font-size: 17px;
   }
 }
 

@@ -1,5 +1,23 @@
-.newCrouseBttn {
-  background-color: #48bf84 !important;
-  border-color: #48bf84 !important;
-  font-size: 18px !important;
+#studentNav {
+  // background-color: #0f5257 !important;
+  background-image: url("/images/studentnavback.png");
+  // background-size: cover;
+  background-color: gray;
+  background-blend-mode: multiply;
+}
+
+#studentNavTitle {
+  font-weight: 500;
+  font-family: "Noto Sans", sans-serif;
+}
+
+@media only screen and (max-width: 991px) {
+  #studentNavTitle {
+    font-size: 18px;
+  }
+}
+
+#exitDoor {
+  font-size: 13px;
+  margin-right: 5px;
 }

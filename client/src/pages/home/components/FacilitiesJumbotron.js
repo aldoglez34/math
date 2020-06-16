@@ -5,16 +5,18 @@ import Fade from "react-reveal/Fade";
 const FacilitiesJumbotron = React.memo(() => {
   return (
     <Container className="facj_jumbo">
-      <Fade>
-        <Row>
-          <Col lg={5}>
+      <Row>
+        <Col lg={5}>
+          <Fade>
             <h1 style={{ fontWeight: 600 }}>Instalaciones</h1>
             <p className="lead pb-2 pb-lg-4 mt-3 mt-lg-0">
               En MeXmáticas nos preocupamos en el más mínimo detalle para que
               nuestros alumnos tengan el mejor desempeño.
             </p>
-          </Col>
-          <Col lg={7}>
+          </Fade>
+        </Col>
+        <Col lg={7}>
+          <Fade>
             <div className="d-flex flex-wrap justify-content-center">
               <Image
                 src="https://image.flaticon.com/icons/svg/3068/3068530.svg"
@@ -37,9 +39,9 @@ const FacilitiesJumbotron = React.memo(() => {
                 alt="internet"
               />
             </div>
-          </Col>
-        </Row>
-      </Fade>
+          </Fade>
+        </Col>
+      </Row>
     </Container>
   );
 });

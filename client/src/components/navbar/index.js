@@ -2,8 +2,12 @@ import React from "react";
 import "./navbar.scss";
 import { Navbar, Nav, Col, Container } from "react-bootstrap";
 import CoursesDropdown from "./components/CoursesDropdown";
+import { useSelector } from "react-redux";
+import StudentDropdown from "./components/StudentDropdown";
 
 const MyNavBar = React.memo(() => {
+  const student = useSelector((state) => state.student);
+
   return (
     <Navbar
       fixed="top"
@@ -11,7 +15,7 @@ const MyNavBar = React.memo(() => {
       expand="lg"
       id="mynavbar"
       variant="dark"
-      className="py-3"
+      className="py-2"
     >
       <Navbar.Brand href="/" className="d-block d-lg-none">
         <h3 className="mb-0" id="myLogo">
@@ -21,12 +25,9 @@ const MyNavBar = React.memo(() => {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Container className="mx-0 px-0 mx-lg-4 px-lg-4">
+        <Container className="px-0">
           {/* left */}
-          <Nav
-            as={Col}
-            className="justify-content-start d-none d-lg-block pr-0"
-          >
+          <Nav as={Col} className=" d-none d-lg-block pr-0">
             <CoursesDropdown />
           </Nav>
           {/* middle */}
@@ -42,15 +43,23 @@ const MyNavBar = React.memo(() => {
             as={Col}
             className="justify-content-end align-items-lg-end mt-2 mt-lg-0 pr-0"
           >
-            <Nav.Link className="navbarItem mr-lg-3" href="/login">
-              Inicia Sesión
-            </Nav.Link>
-            <Nav.Link className="navbarItem" href="/signup">
-              Regístrate
-            </Nav.Link>
-            <Nav className="d-block d-lg-none">
-              <CoursesDropdown />
-            </Nav>
+            {student ? (
+              <>
+                <StudentDropdown />
+              </>
+            ) : (
+              <>
+                <Nav.Link className="navbarItem mr-lg-3" href="/login">
+                  Inicia Sesión
+                </Nav.Link>
+                <Nav.Link className="navbarItem" href="/signup">
+                  Regístrate
+                </Nav.Link>
+                <Nav className="d-block d-lg-none">
+                  <CoursesDropdown />
+                </Nav>
+              </>
+            )}
           </Nav>
         </Container>
       </Navbar.Collapse>

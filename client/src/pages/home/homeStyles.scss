@@ -17,7 +17,7 @@
 
 @media only screen and (max-width: 991px) {
   .wj_mainText {
-    font-size: 47px !important;
+    font-size: 40px !important;
   }
   .wj_jumboStyle {
     padding: 30px 0px !important;
@@ -75,13 +75,16 @@
 // ============================================================
 .oc_jumbo {
   margin-top: 170px;
-  background-image: url("/images/cardsbackground.png");
-  background-size: cover;
 }
 
 .oc_subtitle {
   padding-left: 150px !important;
   padding-right: 150px !important;
+}
+
+.oc_coursecard {
+  background-image: url("/images/coursecardback.png");
+  background-size: cover;
 }
 
 @media only screen and (max-width: 991px) {

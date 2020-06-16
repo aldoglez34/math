@@ -76,10 +76,10 @@ const SignUpForm = React.memo(() => {
                   email: values.email,
                 })
                   .then((res) => {
-                    console.log("3 - then del registerNewStudent");
+                    console.log("3 - then del registerNewStudent", res.data);
                     API.fetchStudentByUID(fbRes.user.uid)
                       .then((res) => {
-                        console.log("4 - then del fetchClientByUID");
+                        console.log("4 - then del fetchStudentByUID", res.data);
                         dispatch(studentActions.loginStudent(res.data));
                         alert(`Iniciaste sesión con éxito, ${res.data.name}`);
                         window.location.href = "/dashboard";

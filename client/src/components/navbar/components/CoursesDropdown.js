@@ -5,8 +5,16 @@ import "./coursesdropdown.scss";
 const CoursesDropdown = React.memo(() => {
   return (
     <NavDropdown
-      title={<span id="coursesDropdown">Cursos</span>}
-      id="collasible-nav-dropdown"
+      title={
+        <span id="coursesDropdownText">
+          Cursos
+          <i
+            className="fas fa-chevron-down ml-1"
+            style={{ fontSize: "13px" }}
+          />
+        </span>
+      }
+      id="coursesDropdownTextToggle"
     >
       <NavDropdown.Item href="/">Álgebra</NavDropdown.Item>
       <NavDropdown.Item href="/">Aritmética</NavDropdown.Item>

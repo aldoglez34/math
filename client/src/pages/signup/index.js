@@ -13,20 +13,20 @@ const SignUp = React.memo(() => {
             <h1 className="mb-4 text-light su_title">
               Aprende matemáticas con nosotros
             </h1>
-            <p className="lead text-light mb-1">
-              <i className="fas fa-greater-than su_greaterThanSymbol" />
+            <p className="mb-1 su_text">
+              <i className="fas fa-plus su_greaterThanSymbol" />
               Clases personalizadas, respondemos cada una de tus dudas
             </p>
-            <p className="lead text-light mb-1">
-              <i className="fas fa-greater-than su_greaterThanSymbol" />
+            <p className="mb-1 su_text">
+              <i className="fas fa-plus su_greaterThanSymbol" />
               Más de 4,000 ejercicios con explicaciones y videos tutoriales
             </p>
-            <p className="lead text-light mb-1">
-              <i className="fas fa-greater-than su_greaterThanSymbol" />
+            <p className="mb-1 su_text">
+              <i className="fas fa-plus su_greaterThanSymbol" />
               Cursos de matemáticas para estudiantes de cualquier edad
             </p>
-            <p className="lead text-light mb-1">
-              <i className="fas fa-greater-than su_greaterThanSymbol" />
+            <p className="mb-1 su_text">
+              <i className="fas fa-plus su_greaterThanSymbol" />
               Aprendiendo matemáticas con un método único en el mercado
             </p>
           </Col>

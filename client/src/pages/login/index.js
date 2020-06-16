@@ -16,9 +16,7 @@ const Login = React.memo(() => {
             >
               Hola,
             </h2>
-            <h2 className="display-4 text-light">
-              ¡Qué bueno verte de vuelta!
-            </h2>
+            <h2 className="text-light">¡Qué bueno verte de vuelta!</h2>
             <p className="text-light">
               ¿No tienes cuenta? Crea una
               <a href="/signup" className="text-warning ml-1">

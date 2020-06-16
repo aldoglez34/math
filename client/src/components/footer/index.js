@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Image, Container, Row, Col } from "react-bootstrap";
 import "./footer.scss";
 
 const MyFooter = React.memo(() => {
@@ -71,6 +71,7 @@ const MyFooter = React.memo(() => {
           </Col>
         </Row>
       </Container>
+      <Image src="/images/footerback.png" className="w-100" />
     </footer>
   );
 });

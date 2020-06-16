@@ -1,4 +1,4 @@
-#coursesDropdownText {
+#studentDropdownText {
   font-weight: bold !important;
   background-color: transparent;
   border-color: transparent;
@@ -9,6 +9,6 @@
   }
 }
 
-#coursesDropdownTextToggle::after {
+#studentDropdownToggle::after {
   display: none !important;
 }
