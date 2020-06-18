@@ -20,9 +20,14 @@ const CourseCard = React.memo(
         <ListGroup className="list-group-flush">
           {lessons.map((l) => {
             return (
-              <ListGroupItem action key={l}>
-                <Link to={`${link}#${l}`}>{l}</Link>
-              </ListGroupItem>
+              <Link to={`${link}#${l}`} key={l}>
+                <ListGroupItem
+                  action
+                  // style={{ backgroundColor: "#f4fbf8" }}
+                >
+                  {l}
+                </ListGroupItem>
+              </Link>
             );
           })}
         </ListGroup>
