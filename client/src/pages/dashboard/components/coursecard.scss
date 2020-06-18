@@ -1,18 +1,30 @@
-.ccardSize {
+.courseCard {
   width: 20rem;
+  box-shadow: 3px 3px #1f848d !important;
+  // border: 0px !important;
+  &:hover {
+    box-shadow: 6px 6px #0f4b51 !important;
+    border: 1px solid gray !important;
+    transition: 0.5s;
+  }
+}
+
+.ccardHeader {
+  background-color: #48bf84;
+  // background-image: url("/images/coursecardback.png");
+  // background-size: cover;
+}
+
+.ccardTitle {
+  font-weight: 700 !important;
+}
+
+.ccardTitle {
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 991px) {
   .ccardSize {
     width: 100%;
   }
-}
-
-.ccardBody {
-  background-image: url("/images/coursecardback.png");
-  background-size: cover;
-}
-
-.ccardTitle {
-  font-weight: 600;
 }

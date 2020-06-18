@@ -2,25 +2,26 @@ import React from "react";
 import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import PropTypes from "prop-types";
 import "./coursecard.scss";
+import { HashLink as Link } from "react-router-hash-link";
 
 const CourseCard = React.memo(
   ({ course, lessons, description, lastVisited, link }) => {
     return (
-      <Card className="shadow-sm mr-lg-4 mb-4 border-0 ccardSize">
+      <Card className="courseCard mr-lg-4 mb-4">
         <Card.Body className="ccardBody">
           <Card.Title>
             <h3 className="ccardTitle">{course}</h3>
           </Card.Title>
           <Card.Text>{description}</Card.Text>
           <Button size="sm" variant="primary" href={link}>
-            Entrar
+            Leer más
           </Button>
         </Card.Body>
         <ListGroup className="list-group-flush">
           {lessons.map((l) => {
             return (
-              <ListGroupItem href={`${link}/${l}`} action key={l}>
-                {l}
+              <ListGroupItem action key={l}>
+                <Link to={`${link}#${l}`}>{l}</Link>
               </ListGroupItem>
             );
           })}

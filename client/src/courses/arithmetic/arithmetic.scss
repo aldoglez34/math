@@ -1,0 +1,11 @@
+.accordionItem {
+  cursor: pointer !important;
+  background-color: transparent !important;
+}
+
+@media only screen and (max-width: 991px) {
+  #sumvideo {
+    width: 85% !important;
+    height: 85% !important;
+  }
+}

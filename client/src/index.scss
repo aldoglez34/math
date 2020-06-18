@@ -27,6 +27,12 @@ h5 {
   border: none;
   min-height: 0.3rem !important;
   width: 2.5rem;
-  background-color: #ffc107;
+  background-color: #48bf84;
   margin-left: 0;
+}
+
+hr.dashedDivider {
+  background-color: transparent;
+  border-top: 2px dashed #8c8b8b;
+  margin: 9 0px 0px !important;
 }
