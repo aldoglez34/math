@@ -3,8 +3,9 @@ import MyNavbar from "./navbar";
 import MyFooter from "./footer";
 import PropTypes from "prop-types";
 import "./layout.scss";
+import { Container } from "react-bootstrap";
 
-const Layout = React.memo(({ children }) => {
+export const Layout = React.memo(({ children }) => {
   return (
     <React.Fragment>
       <MyNavbar />
@@ -20,4 +21,26 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default Layout;
+export const StudentLayout = React.memo(({ children }) => {
+  return (
+    <div
+      style={{
+        backgroundImage: "url('/images/newcoursecardback.png')",
+      }}
+    >
+      <Container
+        className="px-3 px-lg-0"
+        style={{
+          paddingTop: "34px",
+          paddingBottom: "34px",
+        }}
+      >
+        {children}
+      </Container>
+    </div>
+  );
+});
+
+StudentLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};

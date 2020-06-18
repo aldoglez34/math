@@ -1,0 +1,12 @@
+.breadcrumbItem {
+  font-family: "Noto Sans", sans-serif;
+  cursor: pointer;
+
+  margin-bottom: 0px !important;
+  color: ghostwhite !important;
+  &:hover {
+    text-decoration: none;
+    color: gainsboro !important;
+    transition: 0.3s;
+  }
+}

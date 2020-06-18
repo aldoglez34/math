@@ -4,6 +4,7 @@
 .wj_jumboStyle {
   padding: 90px 0px !important;
   background-color: #0d2129 !important;
+  margin-bottom: 0px !important;
 }
 
 #wj_homeImage {
@@ -32,7 +33,7 @@
 // THREE COLUMNS
 // ============================================================
 .tc_container {
-  margin-top: 180px;
+  margin-top: 100px !important;
 }
 
 .tc_pic {
@@ -42,7 +43,7 @@
 
 @media only screen and (max-width: 991px) {
   .tc_container {
-    margin-top: 100px;
+    margin-top: 80px !important;
   }
 }
 
@@ -50,12 +51,13 @@
 // QUOTE JUMBOTRON
 // ============================================================
 #qj_img {
-  margin-top: 180px;
+  margin-top: 100px !important;
 }
 
 .qj_jumboStyle {
   padding-bottom: 110px !important;
   background-color: #f4fbf8 !important;
+  margin-bottom: 0px !important;
 }
 
 .qj_quote {
@@ -66,7 +68,7 @@
 
 @media only screen and (max-width: 991px) {
   #qj_img {
-    margin-top: 100px;
+    margin-top: 80px !important;
   }
 }
 
@@ -74,7 +76,7 @@
 // OUR COURSES JUMBOTRON
 // ============================================================
 .oc_jumbo {
-  margin-top: 170px;
+  margin-top: 100px !important;
 }
 
 .oc_subtitle {
@@ -89,7 +91,7 @@
 
 @media only screen and (max-width: 991px) {
   .oc_jumbo {
-    margin-top: 100px;
+    margin-top: 80px !important;
   }
   .oc_subtitle {
     padding-left: 0px !important;
@@ -101,18 +103,19 @@
 // TEACHER JUMBOTRON
 // ============================================================
 #teacher_img {
-  margin-top: 180px !important;
+  margin-top: 100px !important;
 }
 
 .teacherJumbo {
   padding-top: 10px !important;
-  padding-bottom: 120px !important;
+  padding-bottom: 110px !important;
+  margin-bottom: 0px !important;
   background-color: #f4fbf8 !important;
 }
 
 @media only screen and (max-width: 991px) {
   #teacher_img {
-    margin-top: 100px !important;
+    margin-top: 80px !important;
   }
   .oc_subtitle {
     padding-left: 0px !important;
@@ -124,7 +127,7 @@
 // FACILITIES JUMBOTRON
 // ============================================================
 .facj_jumbo {
-  margin-top: 180px !important;
+  margin-top: 100px !important;
 }
 
 .facj_image {
@@ -134,7 +137,7 @@
 
 @media only screen and (max-width: 991px) {
   .facj_jumbo {
-    margin-top: 100px !important;
+    margin-top: 180px !important;
   }
 
   .facj_image {
@@ -148,13 +151,13 @@
 // FAQ JUMBOTRON
 // ============================================================
 #fj_image {
-  margin-top: 180px !important;
+  margin-top: 100px !important;
 }
 
 .fj_jumbo {
   padding-top: 50px !important;
   padding-bottom: 100px !important;
-  margin-bottom: 180px !important;
+  margin-bottom: 0px !important;
   background-color: #f4fbf8 !important;
 }
 
@@ -194,7 +197,7 @@
 
 @media only screen and (max-width: 991px) {
   .fj_image {
-    margin-top: 100px !important;
+    margin-top: 80px !important;
   }
 
   .fj_paddingsides {
@@ -205,6 +208,5 @@
   .fj_jumbo {
     padding-top: 40px !important;
     padding-bottom: 80px !important;
-    margin-bottom: 100px !important;
   }
 }
