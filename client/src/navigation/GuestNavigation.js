@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import Home from "../pages/home";
-import NoMatch from "../pages/nomatch";
-import SignUp from "../pages/signup";
-import Login from "../pages/login";
+import Home from "../pages/home/Home";
+import NoMatch from "../pages/nomatch/NoMatch";
+import SignUp from "../pages/signup/SignUp";
+import Login from "../pages/login/Login";
 
 export default () => {
   return (

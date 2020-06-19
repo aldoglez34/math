@@ -34,5 +34,11 @@ h5 {
 hr.dashedDivider {
   background-color: transparent;
   border-top: 2px dashed #8c8b8b;
-  margin: 9 0px 0px !important;
+  margin: 90px 0px !important;
+}
+
+@media only screen and (max-width: 991px) {
+  hr.dashedDivider {
+    margin: 45px 0px !important;
+  }
 }

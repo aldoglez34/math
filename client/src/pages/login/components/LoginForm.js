@@ -49,32 +49,27 @@ const SignUpForm = React.memo(() => {
                       dispatch(studentActions.loginStudent(res.data));
                       alert(`Iniciaste sesión con éxito, ${res.data.name}`);
                       window.location.href = "/dashboard";
+                    } else {
+                      alert("Ocurrió un error al iniciar sesión.");
+                      firebase.auth().signOut();
                     }
                   })
                   .catch((error) => {
-                    alert(
-                      "Ocurrió un error al iniciar sesión, vuelve a intentarlo."
-                    );
+                    alert("Ocurrió un error al iniciar sesión.");
                     console.log(error);
                     setSubmitting(false);
                   });
               });
           })
           .catch((error) => {
-            alert("Ocurrió un error al iniciar sesión, vuelve a intentarlo.");
+            alert(
+              "El usuario no existe. Verifica tu correo o contraseña y vuelve a intentarlo."
+            );
             console.log(error.code);
             console.log(error.message);
             setSubmitting(false);
           });
         setSubmitting(false);
-        // firebase
-        //   .auth()
-        //   .createUserWithEmailAndPassword(values.email, values.password)
-        //   .then((fbRes) => {})
-        //   .catch((err) => {
-        //     console.log(err.code);
-        //     console.log(err.message);
-        //   });
       }}
     >
       {({

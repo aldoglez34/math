@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import "./mybreadcrumb.scss";
 
 const MyBreadcrumb = React.memo(({ breadcrumb = [] }) => {
   return (
-    <div className="d-flex flex-row">
-      {/* dashboard button */}
+    <Container className="bg-info">
+      {/* home button */}
       <Button
-        variant="outline-light"
+        variant="light"
         size="sm"
         href="/dashboard"
         className="mr-2 d-flex align-items-center"
@@ -21,7 +21,7 @@ const MyBreadcrumb = React.memo(({ breadcrumb = [] }) => {
         ? breadcrumb.map((bc, idx) => (
             <Button
               key={bc.text}
-              variant="outline-light"
+              variant="light"
               size="sm"
               href={bc.link}
               className="mr-2 d-flex align-items-center"
@@ -31,7 +31,7 @@ const MyBreadcrumb = React.memo(({ breadcrumb = [] }) => {
             </Button>
           ))
         : null}
-    </div>
+    </Container>
   );
 });
 

@@ -1,11 +1,9 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import "./studentnav.scss";
-import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-import MyBreadcrumb from "../breadcrumb";
 
-const StudentNav = React.memo(({ breadcrumb }) => {
+const StudentNav = React.memo(() => {
   const student = useSelector((state) => state.student);
 
   return (
@@ -15,15 +13,8 @@ const StudentNav = React.memo(({ breadcrumb }) => {
           {student ? student.email.split("@", 1)[0] : null}
         </h2>
       </Container>
-      <Container className="d-flex flex-row mt-2 px-3 px-lg-0">
-        <MyBreadcrumb breadcrumb={breadcrumb} />
-      </Container>
     </Container>
   );
 });
-
-StudentNav.propTypes = {
-  breadcrumb: PropTypes.array,
-};
 
 export default StudentNav;
