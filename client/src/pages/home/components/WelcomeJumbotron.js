@@ -10,7 +10,7 @@ const MyJumbotron = React.memo(() => {
           <Col lg={5} className="text-center text-lg-right px-4">
             <Fade>
               <Image
-                className="mt-4"
+                className="mt-3"
                 src="https://image.flaticon.com/icons/svg/897/897406.svg"
                 id="wj_homeImage"
               />
@@ -18,32 +18,40 @@ const MyJumbotron = React.memo(() => {
           </Col>
           <Col lg={7} className="px-4 py-3 py-lg-0">
             <Fade bottom cascade>
-              <h2 className="display-4 text-light text-center text-lg-left wj_mainText">
-                Matemáticas
+              <h2 className="display-4 mb-0 text-light text-center text-lg-left wj_mainText">
+                MATEMÁTICAS
               </h2>
               <h2 className="display-4 text-light text-center text-lg-left wj_mainText">
-                Simplificadas
+                SIMPLIFICADAS
               </h2>
             </Fade>
             <Fade>
-              <p className="lead mb-1 mt-3 mt-lg-0 text-light">
-                <i className="fas fa-plus mr-2" style={{ color: "#e8686a" }} />
-                Cursos de matemáticas para estudiantes de cualquier edad
+              <p className="mb-1 mt-3 mt-lg-0">
+                {/* <i className="fas fa-plus mr-2" style={{ color: "#e8686a" }} /> */}
+                <span className="wj_secondaryText">
+                  Cursos de matemáticas para estudiantes de cualquier edad
+                </span>
               </p>
-              <p className="lead mb-1 text-light">
-                <i className="fas fa-minus mr-2" style={{ color: "#32b0cb" }} />
-                Más de 4,000 ejercicios con explicaciones y videos tutoriales
+              <p className="mb-1">
+                {/* <i className="fas fa-minus mr-2" style={{ color: "#32b0cb" }} /> */}
+                <span className="wj_secondaryText">
+                  Más de 4,000 ejercicios con explicaciones y videos tutoriales
+                </span>
               </p>
-              <p className="lead mb-1 text-light">
-                <i className="fas fa-times mr-2" style={{ color: "#f39e21" }} />
-                Clases personalizadas, respondemos cada una de tus dudas
+              <p className="mb-1">
+                {/* <i className="fas fa-times mr-2" style={{ color: "#f39e21" }} /> */}
+                <span className="wj_secondaryText">
+                  Clases personalizadas, respondemos cada una de tus dudas
+                </span>
               </p>
-              <p className="lead mb-1 text-light">
-                <i
+              <p className="mb-1">
+                {/* <i
                   className="fas fa-divide mr-2"
                   style={{ color: "#55b46a" }}
-                />
-                Aprendiendo matemáticas con un método único en el mercado
+                /> */}
+                <span className="wj_secondaryText">
+                  Aprendiendo matemáticas con un método único en el mercado
+                </span>
               </p>
               <p className="mt-4 mb-1">
                 <Button

@@ -8,12 +8,13 @@
 }
 
 #wj_homeImage {
-  width: 330px !important;
-  height: 330px !important;
+  width: 280px !important;
+  height: 280px !important;
 }
 
-.wj_mainText {
-  font-weight: 600 !important;
+.wj_secondaryText {
+  color: rgba(245, 245, 245, 0.74);
+  font-size: 16px;
 }
 
 @media only screen and (max-width: 991px) {
@@ -24,6 +25,8 @@
     padding: 30px 0px !important;
   }
   #wj_homeImage {
+    margin-top: 0px !important;
+    margin-bottom: 20px;
     width: 180px !important;
     height: 180px !important;
   }
@@ -50,12 +53,10 @@
 // ============================================================
 // QUOTE JUMBOTRON
 // ============================================================
-#qj_img {
-  margin-top: 100px !important;
-}
-
 .qj_jumboStyle {
+  margin-top: 100px !important;
   padding-bottom: 110px !important;
+  padding-top: 110px !important;
   background-color: #f4fbf8 !important;
   margin-bottom: 0px !important;
 }
@@ -85,8 +86,15 @@
 }
 
 .oc_coursecard {
-  background-image: url("/images/coursecardback.png");
-  background-size: cover;
+  // background-image: url("/images/coursecardback.png");
+  // background-size: cover;
+
+  background-color: #f4fbf8 !important;
+}
+
+.oc_cardBadge {
+  background-color: #48bf84 !important;
+  color: white;
 }
 
 @media only screen and (max-width: 991px) {
@@ -102,12 +110,9 @@
 // ============================================================
 // TEACHER JUMBOTRON
 // ============================================================
-#teacher_img {
-  margin-top: 100px !important;
-}
-
 .teacherJumbo {
-  padding-top: 10px !important;
+  margin-top: 100px !important;
+  padding-top: 110px !important;
   padding-bottom: 110px !important;
   margin-bottom: 0px !important;
   background-color: #f4fbf8 !important;
@@ -137,7 +142,7 @@
 
 @media only screen and (max-width: 991px) {
   .facj_jumbo {
-    margin-top: 180px !important;
+    margin-top: 80px !important;
   }
 
   .facj_image {

@@ -17,7 +17,7 @@ const ThreeColumns = React.memo(() => {
                     className="tc_pic"
                   />
                 </div>
-                <h4>Clases de Regularización</h4>
+                <h4>Clases de regularización</h4>
                 <span>
                   Asesoramiento en temas de matemáticas y física a alumnos de
                   cualquier nivel educativo
@@ -31,7 +31,7 @@ const ThreeColumns = React.memo(() => {
                     className="tc_pic"
                   />
                 </div>
-                <h4>Cursos en Línea</h4>
+                <h4>Cursos en línea</h4>
                 <span>
                   Ejercicios, teoría, explicaciones y tips basados en temas de
                   la Secretaría de Educación Pública
@@ -45,7 +45,7 @@ const ThreeColumns = React.memo(() => {
                     className="tc_pic"
                   />
                 </div>
-                <h4>Examen de Ubicación</h4>
+                <h4>Examen de ubicación</h4>
                 <span>
                   Clases personalizadas, se realiza un examen de ubicación para
                   conocer el nivel del estudiante.

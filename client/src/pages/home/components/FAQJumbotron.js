@@ -12,7 +12,7 @@ const FAQJumbotron = React.memo(() => {
           className="fj_cardHeader"
         >
           <div className="d-flex fj_question">
-            {question}
+            <strong>{question}</strong>
             <i className="fas fa-plus ml-auto plusSymbol" />
           </div>
         </Accordion.Toggle>
