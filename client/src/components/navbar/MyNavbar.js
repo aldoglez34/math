@@ -5,7 +5,7 @@ import CoursesDropdown from "./components/CoursesDropdown";
 import { useSelector } from "react-redux";
 import StudentDropdown from "./components/StudentDropdown";
 
-const MyNavBar = React.memo(() => {
+const MyNavbar = React.memo(() => {
   const student = useSelector((state) => state.student);
 
   return (
@@ -25,7 +25,7 @@ const MyNavBar = React.memo(() => {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Container className="px-0">
+        <Container className="px-0 px-lg-3">
           {/* left */}
           <Nav as={Col} className=" d-none d-lg-block pr-0">
             <CoursesDropdown />
@@ -49,7 +49,7 @@ const MyNavBar = React.memo(() => {
               </>
             ) : (
               <>
-                <Nav.Link className="navbarItem mr-lg-3" href="/login">
+                <Nav.Link className="navbarItem mr-lg-4" href="/login">
                   Inicia sesión
                 </Nav.Link>
                 <Nav.Link className="navbarItem" href="/signup">
@@ -67,4 +67,4 @@ const MyNavBar = React.memo(() => {
   );
 });
 
-export default MyNavBar;
+export default MyNavbar;

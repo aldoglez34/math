@@ -1,19 +1,29 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const AirthmeticExamSchema = new Schema({
-  code: {
+const ArithmeticExamSchema = new Schema({
+  examCode: {
     type: String,
-    trim: true,
-    unique: true,
+    required: true,
   },
-  instruction: {
+  qNumber: {
+    type: Number,
+    required: true,
+  },
+  questionText: {
     type: String,
-    trim: true,
+    required: true,
+  },
+  questionProb: {
+    type: String,
+    required: true,
+  },
+  answer: {
+    type: String,
     required: true,
   },
 });
 
-const AirthmeticExam = mongoose.model("AirthmeticExam", AirthmeticExamSchema);
+const ArithmeticExam = mongoose.model("ArithmeticExam", ArithmeticExamSchema);
 
-module.exports = AirthmeticExam;
+module.exports = ArithmeticExam;

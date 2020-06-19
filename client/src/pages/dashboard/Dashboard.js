@@ -3,8 +3,10 @@ import { StudentLayout } from "../../components/Layout";
 import CourseCard from "./components/CourseCard";
 
 const Dashboard = React.memo(() => {
+  const breadcrumb = [{ text: "Mis cursos" }];
+
   return (
-    <StudentLayout>
+    <StudentLayout breadcrumb={breadcrumb}>
       <div className="d-flex flex-row flex-wrap justify-content-centeR">
         <CourseCard
           course="Aritmética"

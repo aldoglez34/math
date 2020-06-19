@@ -8,7 +8,7 @@ const SignUp = React.memo(() => {
   return (
     <Layout>
       <Container id="su_container">
-        <Row>
+        <Row className="px-0 px-lg-3">
           <Col lg={6} id="su_leftCol">
             <h1 className="mb-4 text-light su_title">
               Aprende matemáticas con nosotros

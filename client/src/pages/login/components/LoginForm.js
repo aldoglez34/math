@@ -48,7 +48,7 @@ const SignUpForm = React.memo(() => {
                     if (res.data) {
                       dispatch(studentActions.loginStudent(res.data));
                       alert(`Iniciaste sesión con éxito, ${res.data.name}`);
-                      window.location.href = "/dashboard";
+                      // window.location.href = "/dashboard";
                     } else {
                       alert("Ocurrió un error al iniciar sesión.");
                       firebase.auth().signOut();

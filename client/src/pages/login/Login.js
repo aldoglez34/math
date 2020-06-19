@@ -8,7 +8,7 @@ const Login = React.memo(() => {
   return (
     <Layout>
       <Container id="log_container">
-        <Row>
+        <Row className="px-0 px-lg-3">
           <Col lg={6} id="log_leftCol">
             <h2
               className="display-3 mb-0 text-light"

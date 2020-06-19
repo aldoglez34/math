@@ -5,8 +5,9 @@ import "./coursesdropdown.scss";
 const CoursesDropdown = React.memo(() => {
   return (
     <NavDropdown
+      id="coursesDropdownTextToggle"
       title={
-        <span id="coursesDropdownText">
+        <span id="coursesDropdownText" className="px-0">
           Cursos
           <i
             className="fas fa-chevron-down ml-1"
@@ -14,7 +15,6 @@ const CoursesDropdown = React.memo(() => {
           />
         </span>
       }
-      id="coursesDropdownTextToggle"
     >
       <NavDropdown.Item href="/">Álgebra</NavDropdown.Item>
       <NavDropdown.Item href="/">Aritmética</NavDropdown.Item>

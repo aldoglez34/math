@@ -9,6 +9,11 @@
   }
 }
 
+#coursesDropdownTextToggle {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 #coursesDropdownTextToggle::after {
   display: none !important;
 }

@@ -7,13 +7,13 @@ const StudentNav = React.memo(() => {
   const student = useSelector((state) => state.student);
 
   return (
-    <Container fluid id="studentNav">
-      <Container className="px-3 px-lg-0">
-        <h2 className=" mb-0 text-white" style={{ fontWeight: 600 }}>
+    <div id="studentNav">
+      <Container>
+        <h2 className="mb-0 text-white">
           {student ? student.email.split("@", 1)[0] : null}
         </h2>
       </Container>
-    </Container>
+    </div>
   );
 });
 

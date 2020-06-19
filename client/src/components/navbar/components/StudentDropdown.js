@@ -17,13 +17,15 @@ const StudentDropdown = React.memo(() => {
       .then(() => {
         dispatch(studentActions.logoutStudent());
         alert("¡Adiós, vuelve pronto!");
-        window.location.href = "/";
+        // window.location.href = "/";
       })
       .catch((error) => console.log(error));
   };
 
   return (
     <NavDropdown
+      id="studentDropdownToggle"
+      alignRight
       title={
         <span id="studentDropdownText">
           {username ? username.email : null}
@@ -33,7 +35,6 @@ const StudentDropdown = React.memo(() => {
           />
         </span>
       }
-      id="studentDropdownToggle"
     >
       <NavDropdown.Item href="/">Usuario</NavDropdown.Item>
       <NavDropdown.Divider />

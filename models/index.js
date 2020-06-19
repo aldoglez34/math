@@ -1,4 +1,4 @@
 module.exports = {
   Student: require("./Student"),
-  AirthmeticExam: require("./AirthmeticExam"),
+  ArithmeticExam: require("./ArithmeticExam"),
 };

@@ -1,17 +1,18 @@
 import React from "react";
-import MyNavbar from "./navbar";
+import MyNavbar from "./navbar/MyNavbar";
 import MyFooter from "./footer";
 import PropTypes from "prop-types";
 import "./layout.scss";
-import MyBreadCrumb from "../components/breadcrumb";
-import StudentNav from "./studentnav";
+import MyBreadCrumb from "../components/breadcrumb/MyBreadcrumb";
+import StudentNav from "./studentnav/StudentNav";
 import ScrollButton from "./scrollbutton";
+import { Container } from "react-bootstrap";
 
 export const Layout = React.memo(({ children }) => {
   return (
     <>
       <MyNavbar />
-      <div className="d-flex flex-column mainDiv h-100">
+      <div className="d-flex flex-column marginTop h-100">
         {children}
         <MyFooter />
       </div>
@@ -27,28 +28,24 @@ export const StudentLayout = React.memo(({ breadcrumb, children }) => {
   return (
     <>
       <MyNavbar />
-      <div className="d-flex flex-column h-100 mainDiv">
-        <StudentNav breadcrumb={breadcrumb} />
-        <MyBreadCrumb breadcrumb={breadcrumb} />
-        {/* <div
+      <div className="marginTop" />
+      {/* begins content */}
+      <StudentNav />
+      {/* <div
           style={{
             backgroundImage: "url('/images/newcoursecardback.png')",
           }}
           className="h-100"
-        >
-          <Container
-            className="px-3 px-lg-0 h-100"
-            style={{
-              paddingTop: "34px",
-              paddingBottom: "34px",
-            }}
-          >
-            {children}
-          </Container>
-        </div> */}
-        <ScrollButton scrollStepInPx={150} delayInMs={16.66} />
-        <MyFooter />
-      </div>
+        > */}
+      <MyBreadCrumb breadcrumb={breadcrumb} />
+      <Container style={{ paddingTop: "20px", paddingBottom: "80px" }}>
+        {children}
+      </Container>
+      {/* </div> */}
+      <ScrollButton scrollStepInPx={150} delayInMs={16.66} />
+      {/* ends content */}
+      {/* </div> */}
+      {/* <MyFooter /> */}
     </>
   );
 });
