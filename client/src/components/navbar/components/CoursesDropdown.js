@@ -16,12 +16,10 @@ const CoursesDropdown = React.memo(() => {
         </span>
       }
     >
-      <NavDropdown.Item href="/">Álgebra</NavDropdown.Item>
-      <NavDropdown.Item href="/">Aritmética</NavDropdown.Item>
-      <NavDropdown.Item href="/">Cálculo</NavDropdown.Item>
-      <NavDropdown.Item href="/">Ecucaciones</NavDropdown.Item>
-      <NavDropdown.Item href="/">Geometría</NavDropdown.Item>
-      <NavDropdown.Item href="/">Trigonometría</NavDropdown.Item>
+      {/* <h6 class="dropdown-header">Primaria</h6> */}
+      <NavDropdown.Item href="/">Primaria</NavDropdown.Item>
+      <NavDropdown.Item href="/">Secundaria</NavDropdown.Item>
+      <NavDropdown.Item href="/">Preparatoria</NavDropdown.Item>
     </NavDropdown>
   );
 });
