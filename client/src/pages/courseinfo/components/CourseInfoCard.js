@@ -1,8 +1,11 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 const CourseInfoCard = React.memo(({ title, description, price, lessons }) => {
+  const student = useSelector((state) => state.student);
+
   return (
     <Card
       className="border rounded mr-0 mr-lg-4"
@@ -29,9 +32,24 @@ const CourseInfoCard = React.memo(({ title, description, price, lessons }) => {
             </div>
           );
         })}
-        <Button size="lg" className="mt-3 buybttn">
+        <Button
+          size="lg"
+          className="mt-3 buybttn"
+          disabled={student ? false : true}
+        >
           Comprar
         </Button>
+        {student ? null : (
+          <p className="text-muted mb-0 mt-2">
+            <small>
+              Es necesario{" "}
+              <a href="/login" className="text-warning">
+                iniciar sesión
+              </a>{" "}
+              para comprar un cusro
+            </small>
+          </p>
+        )}
       </Card.Body>
     </Card>
   );

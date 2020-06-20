@@ -26,6 +26,15 @@ const StudentSchema = new Schema({
     unique: true,
     required: true,
   },
+  courses: [
+    {
+      course: {
+        type: Schema.Types.ObjectId,
+        ref: "Course",
+      },
+      lastGrade: { type: String },
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now(),

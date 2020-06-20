@@ -29,23 +29,12 @@ export const StudentLayout = React.memo(({ breadcrumb, children }) => {
     <>
       <MyNavbar />
       <div className="marginTop" />
-      {/* begins content */}
       <StudentNav />
-      {/* <div
-          style={{
-            backgroundImage: "url('/images/newcoursecardback.png')",
-          }}
-          className="h-100"
-        > */}
       <MyBreadCrumb breadcrumb={breadcrumb} />
       <Container style={{ paddingTop: "20px", paddingBottom: "80px" }}>
         {children}
       </Container>
-      {/* </div> */}
       <ScrollButton scrollStepInPx={150} delayInMs={16.66} />
-      {/* ends content */}
-      {/* </div> */}
-      {/* <MyFooter /> */}
     </>
   );
 });

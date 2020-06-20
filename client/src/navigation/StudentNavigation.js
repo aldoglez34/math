@@ -17,6 +17,7 @@ export default () => {
   return (
     <Switch>
       <Route exact path="/dashboard" component={Dashboard} />
+
       {/* courses info */}
       <Route exact path="/courses/primaria" component={CourseInfoPrimaria} />
       <Route
@@ -25,6 +26,7 @@ export default () => {
         component={CourseInfoSecundaria}
       />
       <Route exact path="/courses/preparatoria" component={CourseInfoPrepa} />
+
       {/* arithmetic */}
       <Route exact path="/dashboard/arithmetic" component={Arithmetic} />
       <Route
@@ -32,12 +34,15 @@ export default () => {
         path="/dashboard/arithmetic/exam/:code"
         render={(props) => <ArithmeticExam routeProps={props} />}
       />
+
       {/* algebra */}
       <Route exact path="/dashboard/algebra" component={Algebra} />
+
       {/* trigonometry */}
       <Route exact path="/dashboard/trigonometry" component={Trigonometry} />
 
       <Redirect from="/" to="/dashboard" />
+
       {/* 404 not found */}
       <Route component={NoMatch} />
     </Switch>

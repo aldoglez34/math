@@ -47,7 +47,7 @@ const CourseInfoPrepa = React.memo(() => {
           <CourseInfoCard
             title="3ro"
             price="$500"
-            description="Nulla posuere velit eu lorem sollicitudin dictum. Ut non nulla euismod, ullamcorper tortor eu, molestie nisi. Phasellus fermentum facilisis tellus."
+            description="Etiam tempor, lorem vel tempor aliquam, sapien est pulvinar enim, a viverra velit ligula eget arcu. Sed imperdiet erat ligula, sed facilisis lorem rutrum vitae."
             lessons={["Geometría analítica", "Parábola", "Elipse", "Hipérbola"]}
           />
           <CourseInfoCard

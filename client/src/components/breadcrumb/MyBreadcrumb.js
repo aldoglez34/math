@@ -5,8 +5,8 @@ import "./mybreadcrumb.scss";
 
 const MyBreadcrumb = React.memo(({ breadcrumb }) => {
   return (
-    <Container className="py-3">
-      <i className="fas fa-chalkboard-teacher mr-2 text-muted" />
+    <Container className="py-4 lead">
+      <i className="fas fa-chalkboard-teacher mr-2 text-dark" />
       {breadcrumb.map((b) =>
         b.link ? (
           <span key={b.text}>

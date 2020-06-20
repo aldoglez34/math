@@ -6,6 +6,7 @@ const studentReducers = (state = null, action) => {
         firstSurname: action.data.firstSurname,
         secondSurname: action.data.secondSurname,
         email: action.data.email,
+        courses: action.data.courses,
       };
     case "student/logout":
       return null;
