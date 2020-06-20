@@ -12,7 +12,7 @@ const ThreeColumns = React.memo(() => {
               <Col md={4} className="d-flex flex-column text-center p-3">
                 <div className="mb-3 text-center">
                   <Image
-                    src="https://image.flaticon.com/icons/svg/3048/3048471.svg"
+                    src="/images/board.png"
                     alt="clases"
                     className="tc_pic"
                   />
@@ -26,7 +26,7 @@ const ThreeColumns = React.memo(() => {
               <Col md={4} className="d-flex flex-column text-center p-3">
                 <div className="mb-3 text-center">
                   <Image
-                    src="https://image.flaticon.com/icons/svg/3048/3048461.svg"
+                    src="/images/video.png"
                     alt="cursos"
                     className="tc_pic"
                   />
@@ -40,7 +40,7 @@ const ThreeColumns = React.memo(() => {
               <Col md={4} className="d-flex flex-column text-center p-3">
                 <div className="mb-3 text-center">
                   <Image
-                    src="https://image.flaticon.com/icons/svg/2949/2949787.svg"
+                    src="/images/exam.png"
                     alt="matemáticas"
                     className="tc_pic"
                   />

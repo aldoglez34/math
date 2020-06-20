@@ -1,6 +1,7 @@
 import React from "react";
-import { Badge, Button, Container, CardGroup, Card } from "react-bootstrap";
+import { Container, CardGroup } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
+import HomeCard from "../../../components/homecard/HomeCard";
 
 const OurCourses = React.memo(() => {
   return (
@@ -15,219 +16,96 @@ const OurCourses = React.memo(() => {
           crea necesarias hasta que logre comprender el tema.
         </p>
         <CardGroup>
-          {/* primaria */}
-          <Card className="m-lg-3 border rounded shadow-sm oc_coursecard">
-            <Card.Body>
-              <Card.Title>
-                <div className="d-flex">
-                  <h3 className="mb-0">Primaria</h3>
-                  <Badge
-                    variant="success"
-                    className="ml-auto d-flex align-items-center oc_cardBadge"
-                  >
-                    7 lecciones
-                  </Badge>
-                </div>
-              </Card.Title>
-              <Card.Text style={{ color: "#50575e", fontSize: "16px" }}>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque
-                ipsa.
-              </Card.Text>
-              <Card.Text className="pt-2">
-                {/* 3ro y 4to de primaria */}
-                <div>
-                  <div className="lead">
-                    <i
-                      class="fas fa-check-circle mr-2"
-                      style={{ color: "#48bf84" }}
-                    />
-                    <span style={{ fontWeight: 700 }}>
-                      3ro y 4to de primaria
-                    </span>
-                  </div>
-                  <ul>
-                    <li>Operaciones con números</li>
-                    <li>Ubicación en la recta numérica</li>
-                    <li>Fracciones</li>
-                  </ul>
-                </div>
-                {/* <5to y 6to */}
-                <div>
-                  <div className="lead">
-                    <i
-                      class="fas fa-check-circle mr-2"
-                      style={{ color: "#48bf84" }}
-                    />
-                    <span style={{ fontWeight: 700 }}>
-                      5to y 6to de primaria
-                    </span>
-                  </div>
-                  <ul className="mb-0">
-                    <li>Fracciones</li>
-                    <li>Porcentajes</li>
-                    <li>Relaciones</li>
-                    <li>Áreas y perímetros</li>
-                  </ul>
-                </div>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          {/* secundaria */}
-          <Card className="m-lg-3 border rounded shadow-sm oc_coursecard">
-            <Card.Body>
-              <Card.Title>
-                <div className="d-flex">
-                  <h3 className="mb-0">Secundaria</h3>
-                  <Badge
-                    variant="success"
-                    className="ml-auto d-flex align-items-center oc_cardBadge"
-                  >
-                    9 lecciones
-                  </Badge>
-                </div>
-              </Card.Title>
-              <Card.Text style={{ color: "#50575e", fontSize: "16px" }}>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque
-                ipsa.
-              </Card.Text>
-              <Card.Text className="pt-2">
-                {/* 1ro de secundaria */}
-                <div>
-                  <div className="lead">
-                    <i
-                      class="fas fa-check-circle mr-2"
-                      style={{ color: "#48bf84" }}
-                    />
-                    <span style={{ fontWeight: 700 }}>1ro de secundaria</span>
-                  </div>
-                  <ul>
-                    <li>Operaciones con números</li>
-                    <li>Pre-álgebra</li>
-                    <li>Expresiones algebraicas</li>
-                    <li>Números negativos</li>
-                  </ul>
-                </div>
-                {/* 2do de secundaria */}
-                <div>
-                  <div className="lead">
-                    <i
-                      class="fas fa-check-circle mr-2"
-                      style={{ color: "#48bf84" }}
-                    />
-                    <span style={{ fontWeight: 700 }}>2do de secundaria</span>
-                  </div>
-                  <ul>
-                    <li>Ecuaciones lineales</li>
-                    <li>Sistemas de ecuaciones</li>
-                  </ul>
-                </div>
-                {/* 3ro de secundaria */}
-                <div>
-                  <div className="lead">
-                    <i
-                      class="fas fa-check-circle mr-2"
-                      style={{ color: "#48bf84" }}
-                    />
-                    <span style={{ fontWeight: 700 }}>3ro de secundaria</span>
-                  </div>
-                  <ul className="mb-0">
-                    <li>Probabilidad</li>
-                    <li>Estadística</li>
-                    <li>Ecucaciones cuadráticas</li>
-                  </ul>
-                </div>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          {/* tercero */}
-          <Card className="m-lg-3 border rounded shadow-sm oc_coursecard">
-            <Card.Body>
-              <Card.Title>
-                <div className="d-flex">
-                  <h3 className="mb-0">Preparatoria</h3>
-                  <Badge
-                    variant="success"
-                    className="ml-auto d-flex align-items-center oc_cardBadge"
-                  >
-                    17 lecciones
-                  </Badge>
-                </div>
-              </Card.Title>
-              <Card.Text style={{ color: "#50575e", fontSize: "16px" }}>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque
-                ipsa.
-              </Card.Text>
-              <Card.Text className="pt-2">
-                {/* 1ro de prepa */}
-                <div>
-                  <div className="lead">
-                    <i
-                      class="fas fa-check-circle mr-2"
-                      style={{ color: "#48bf84" }}
-                    />
-                    <span style={{ fontWeight: 700 }}>1ro de preparatoria</span>
-                  </div>
-                  <ul>
-                    <li>Álgebra</li>
-                    <li>Ecuaciones lineales</li>
-                    <li>Ecucaciones cuadráticas</li>
-                    <li>Series aritméticas</li>
-                  </ul>
-                </div>
-                {/* 2do de prepa */}
-                <div>
-                  <div className="lead">
-                    <i
-                      class="fas fa-check-circle mr-2"
-                      style={{ color: "#48bf84" }}
-                    />
-                    <span style={{ fontWeight: 700 }}>2do de preparatoria</span>
-                  </div>
-                  <ul>
-                    <li>Trigonometría</li>
-                    <li>Funciones trigonométricas</li>
-                    <li>Ley de senos</li>
-                    <li>Ley de cosenos</li>
-                  </ul>
-                </div>
-                {/* 3ro de prepa */}
-                <div>
-                  <div className="lead">
-                    <i
-                      class="fas fa-check-circle mr-2"
-                      style={{ color: "#48bf84" }}
-                    />
-                    <span style={{ fontWeight: 700 }}>3ro de preparatoria</span>
-                  </div>
-                  <ul>
-                    <li>Geometría analítica</li>
-                    <li>Parábola</li>
-                    <li>Elipse</li>
-                    <li>Hipérbola</li>
-                  </ul>
-                </div>
-                {/* 4to de prepa */}
-                <div>
-                  <div className="lead">
-                    <i
-                      class="fas fa-check-circle mr-2"
-                      style={{ color: "#48bf84" }}
-                    />
-                    <span style={{ fontWeight: 700 }}>4to de preparatoria</span>
-                  </div>
-                  <ul className="mb-0">
-                    <li>Pre-cálculo</li>
-                    <li>Ecuaciones polinomiales</li>
-                    <li>Ecuaciones exponenciales</li>
-                    <li>Ecuaciones logarítmicas</li>
-                  </ul>
-                </div>
-              </Card.Text>
-            </Card.Body>
-          </Card>
+          <HomeCard
+            title="Primaria"
+            lessons={7}
+            description="Nulla eros mauris, mollis et vestibulum ut, egestas vel ex. Sed sodales vehicula nisi ac semper. Nulla at malesuada nibh."
+            courses={[
+              {
+                title: "3ro y 4to de primaria",
+                list: [
+                  "Operaciones con números",
+                  "Ubicación en la recta numérica",
+                  "Fracciones",
+                ],
+              },
+              {
+                title: "5to y 6to de primaria",
+                list: [
+                  "Fracciones",
+                  "Porcentajes",
+                  "Relaciones",
+                  "Áreas y perímetros",
+                ],
+              },
+            ]}
+            link="/courses/primaria"
+          />
+          <HomeCard
+            title="Secundaria"
+            lessons={9}
+            description="Ut rutrum vulputate arcu, non vehicula lacus ornare sed. Duis efficitur sollicitudin tristique. Ut in ultrices dui, vel porta tortor. Nam aliquet luctus diam, id porta ligula interdum a."
+            courses={[
+              {
+                title: "1ro de secundaria",
+                list: [
+                  "Operaciones con números",
+                  "Pre-álgebra",
+                  "Expresiones algebraicas",
+                  "Números negativos",
+                ],
+              },
+              {
+                title: "2do de secundaria",
+                list: ["Ecuaciones lineales", "Sistemas de ecuaciones"],
+              },
+            ]}
+            link="/courses/secundaria"
+          />
+          <HomeCard
+            title="Preparatoria"
+            lessons={17}
+            description="Etiam risus ipsum, gravida sit amet eros a, placerat dapibus massa. Duis tincidunt venenatis risus in tincidunt. Nullam a turpis turpis. Mauris pulvinar rutrum ultricies."
+            courses={[
+              {
+                title: "1ro de preparatoria",
+                list: [
+                  "Álgebra",
+                  "Ecuaciones lineales",
+                  "Ecucaciones cuadráticas",
+                  "Series aritméticas",
+                ],
+              },
+              {
+                title: "2do de preparatoria",
+                list: [
+                  "Trigonometría",
+                  "Funciones trigonométricas",
+                  "Ley de senos",
+                  "Ley de cosenos",
+                ],
+              },
+              {
+                title: "3ro de preparatoria",
+                list: [
+                  "Geometría analítica",
+                  "Parábola",
+                  "Elipse",
+                  "Hipérbola",
+                ],
+              },
+              {
+                title: "4to de preparatoria",
+                list: [
+                  "Pre-cálculo",
+                  "Ecuaciones polinomiales",
+                  "Ecuaciones exponenciales",
+                  "Ecuaciones logarítmicas",
+                ],
+              },
+            ]}
+            link="/courses/preparatoria"
+          />
         </CardGroup>
       </Fade>
     </Container>

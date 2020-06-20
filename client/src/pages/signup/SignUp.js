@@ -9,25 +9,16 @@ const SignUp = React.memo(() => {
     <Layout>
       <Container id="su_container">
         <Row className="px-0 px-lg-3">
-          <Col lg={6} id="su_leftCol">
-            <h1 className="mb-4 text-light su_title">
+          <Col lg={6} id="su_leftCol" className="d-flex flex-column">
+            <h1 className="mb-1 display-3 text-light su_title">Registro</h1>
+            <h1 className="mb-3 text-light su_title">
               Aprende matemáticas con nosotros
             </h1>
-            <p className="mb-1 su_text">
-              <i className="fas fa-plus su_greaterThanSymbol" />
-              Clases personalizadas, respondemos cada una de tus dudas
-            </p>
-            <p className="mb-1 su_text">
-              <i className="fas fa-plus su_greaterThanSymbol" />
-              Más de 4,000 ejercicios con explicaciones y videos tutoriales
-            </p>
-            <p className="mb-1 su_text">
-              <i className="fas fa-plus su_greaterThanSymbol" />
-              Cursos de matemáticas para estudiantes de cualquier edad
-            </p>
-            <p className="mb-1 su_text">
-              <i className="fas fa-plus su_greaterThanSymbol" />
-              Aprendiendo matemáticas con un método único en el mercado
+            <p className="text-light mt-auto">
+              ¿Ya tienes cuenta? Accede
+              <a href="/login" className="text-warning ml-1">
+                aquí
+              </a>
             </p>
           </Col>
           <Col lg={6} id="su_rightCol">

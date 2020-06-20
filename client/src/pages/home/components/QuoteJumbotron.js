@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Jumbotron, Container, Row, Col, Image } from "react-bootstrap";
+import { Jumbotron, Container, Row, Col } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
 import YouTubePlayer from "youtube-player";
 
@@ -29,7 +29,7 @@ const QuoteJumbotron = React.memo(() => {
       <Container>
         <Row>
           <Col lg={7} className="d-flex align-items-center">
-            <Fade left cascade>
+            <Fade cascade>
               <blockquote className="blockquote mb-0">
                 <p className="lead mb-1 text-muted">TESTIMONIO</p>
                 <div className="mb-2">

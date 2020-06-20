@@ -11,7 +11,7 @@ const MyJumbotron = React.memo(() => {
             <Fade>
               <Image
                 className="mt-3"
-                src="https://image.flaticon.com/icons/svg/897/897406.svg"
+                src="/images/calculator.png"
                 id="wj_homeImage"
               />
             </Fade>

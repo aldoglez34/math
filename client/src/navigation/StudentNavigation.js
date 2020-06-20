@@ -1,5 +1,8 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+import CourseInfoPrimaria from "../pages/courseinfo/CourseInfoPrimaria";
+import CourseInfoSecundaria from "../pages/courseinfo/CourseInfoSecundaria";
+import CourseInfoPrepa from "../pages/courseinfo/CourseInfoPrepa";
 import NoMatch from "../pages/nomatch/NoMatch";
 import Dashboard from "../pages/dashboard/Dashboard";
 // arithmetic
@@ -14,6 +17,14 @@ export default () => {
   return (
     <Switch>
       <Route exact path="/dashboard" component={Dashboard} />
+      {/* courses info */}
+      <Route exact path="/courses/primaria" component={CourseInfoPrimaria} />
+      <Route
+        exact
+        path="/courses/secundaria"
+        component={CourseInfoSecundaria}
+      />
+      <Route exact path="/courses/preparatoria" component={CourseInfoPrepa} />
       {/* arithmetic */}
       <Route exact path="/dashboard/arithmetic" component={Arithmetic} />
       <Route

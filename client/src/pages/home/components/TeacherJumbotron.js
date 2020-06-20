@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Jumbotron, Container, Row, Col, Image } from "react-bootstrap";
+import { Jumbotron, Container, Row, Col } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
 import YouTubePlayer from "youtube-player";
 
@@ -46,7 +46,7 @@ const TeacherJumbotron = React.memo(() => {
             <div id="player-2"></div>
           </Col>
           <Col lg={7} className="d-flex align-items-center mt-3 mt-lg-0">
-            <Fade right cascade>
+            <Fade cascade>
               <blockquote className="blockquote mb-0 text-left text-lg-right">
                 <p className="lead mb-1 text-muted">FUNDADOR</p>
                 <h2 className="qj_quote text-dark">

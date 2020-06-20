@@ -16,10 +16,11 @@ const CoursesDropdown = React.memo(() => {
         </span>
       }
     >
-      {/* <h6 class="dropdown-header">Primaria</h6> */}
-      <NavDropdown.Item href="/">Primaria</NavDropdown.Item>
-      <NavDropdown.Item href="/">Secundaria</NavDropdown.Item>
-      <NavDropdown.Item href="/">Preparatoria</NavDropdown.Item>
+      <NavDropdown.Item href="/courses/primaria">Primaria</NavDropdown.Item>
+      <NavDropdown.Item href="/courses/secundaria">Secundaria</NavDropdown.Item>
+      <NavDropdown.Item href="/courses/preparatoria">
+        Preparatoria
+      </NavDropdown.Item>
     </NavDropdown>
   );
 });
