@@ -8,7 +8,7 @@ module.exports = (coursesIds) => {
       firstSurname: "López",
       secondSurname: "Utrera",
       email: "lrlu.very@gmail.com",
-      courses: [coursesIds[0]],
+      courses: [{ course: coursesIds[0] }],
     },
     {
       firebaseUID: "G4mcLYFVuVPfgBlDP5zYbm54anm1",
@@ -16,7 +16,7 @@ module.exports = (coursesIds) => {
       firstSurname: "Solano",
       secondSurname: "González",
       email: "aldoglez34@gmail.com",
-      courses: [coursesIds[1]],
+      courses: [{ course: coursesIds[1] }],
     },
   ];
 

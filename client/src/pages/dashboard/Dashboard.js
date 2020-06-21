@@ -20,7 +20,7 @@ const Dashboard = React.memo(() => {
           <em>No has comprado cursos aún</em>
         )
       ) : (
-        <Spinner animation="border" variant="primary" />
+        <Spinner className="text-center" animation="border" variant="primary" />
       )}
     </StudentLayout>
   );
