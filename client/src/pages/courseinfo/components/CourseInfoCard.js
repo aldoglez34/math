@@ -41,13 +41,11 @@ const CourseInfoCard = React.memo(({ title, description, price, lessons }) => {
         </Button>
         {student ? null : (
           <p className="text-muted mb-0 mt-2">
-            <small>
-              Es necesario{" "}
-              <a href="/login" className="text-warning">
-                iniciar sesión
-              </a>{" "}
-              para comprar un cusro
-            </small>
+            Es necesario{" "}
+            <a href="/login" className="text-warning">
+              iniciar sesión
+            </a>{" "}
+            para comprar un cusro
           </p>
         )}
       </Card.Body>

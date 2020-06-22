@@ -27,28 +27,28 @@ const MyJumbotron = React.memo(() => {
             </Fade>
             <Fade>
               <p className="mb-1 mt-3 mt-lg-0">
-                {/* <i className="fas fa-plus mr-2" style={{ color: "#e8686a" }} /> */}
+                <i className="fas fa-plus mr-2" style={{ color: "#e8686a" }} />
                 <span className="wj_secondaryText">
                   Cursos de matemáticas para estudiantes de cualquier edad
                 </span>
               </p>
               <p className="mb-1">
-                {/* <i className="fas fa-minus mr-2" style={{ color: "#32b0cb" }} /> */}
+                <i className="fas fa-minus mr-2" style={{ color: "#32b0cb" }} />
                 <span className="wj_secondaryText">
                   Más de 4,000 ejercicios con explicaciones y videos tutoriales
                 </span>
               </p>
               <p className="mb-1">
-                {/* <i className="fas fa-times mr-2" style={{ color: "#f39e21" }} /> */}
+                <i className="fas fa-times mr-2" style={{ color: "#f39e21" }} />
                 <span className="wj_secondaryText">
                   Clases personalizadas, respondemos cada una de tus dudas
                 </span>
               </p>
               <p className="mb-1">
-                {/* <i
+                <i
                   className="fas fa-divide mr-2"
                   style={{ color: "#55b46a" }}
-                /> */}
+                />
                 <span className="wj_secondaryText">
                   Aprendiendo matemáticas con un método único en el mercado
                 </span>

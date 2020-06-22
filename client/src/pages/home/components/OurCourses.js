@@ -8,7 +8,7 @@ const OurCourses = React.memo(() => {
     <Container className="oc_jumbo">
       <Fade>
         <h2 className="display-4 text-center mb-4" style={{ fontWeight: 600 }}>
-          Nuestros Cursos
+          Nuestros cursos
         </h2>
         <p className="lead text-left text-lg-center oc_subtitle pb-3">
           Enfocados para diferentes niveles educativos, en cada uno el alumno

@@ -27,11 +27,18 @@ const QuoteJumbotron = React.memo(() => {
   return (
     <Jumbotron className="qj_jumboStyle" fluid>
       <Container>
+        <Fade>
+          <h2
+            className="display-4 text-center mb-4 pb-4"
+            style={{ fontWeight: 600 }}
+          >
+            Testimonio
+          </h2>
+        </Fade>
         <Row>
-          <Col lg={7} className="d-flex align-items-center">
-            <Fade cascade>
+          <Fade cascade>
+            <Col lg={7} className="d-flex align-items-center">
               <blockquote className="blockquote mb-0">
-                <p className="lead mb-1 text-muted">TESTIMONIO</p>
                 <div className="mb-2">
                   <i className="fas fa-star text-warning mr-1" />
                   <i className="fas fa-star text-warning mr-1" />
@@ -47,8 +54,8 @@ const QuoteJumbotron = React.memo(() => {
                 </h2>
                 <footer className="blockquote-footer">Abuela de alumno</footer>
               </blockquote>
-            </Fade>
-          </Col>
+            </Col>
+          </Fade>
           <Col lg={5} className="d-flex align-items-center mt-4 mt-lg-0">
             <div id="player-1"></div>
           </Col>

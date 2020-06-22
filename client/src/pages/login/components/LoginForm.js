@@ -24,7 +24,6 @@ const SignUpForm = React.memo(() => {
       initialValues={{
         email: "",
         password: "",
-        rememberme: false,
       }}
       validationSchema={yupSchema}
       onSubmit={(values, { setSubmitting }) => {
@@ -32,11 +31,7 @@ const SignUpForm = React.memo(() => {
         //////// login ////////
         firebase
           .auth()
-          .setPersistence(
-            values.rememberme
-              ? fbApp.auth.Auth.Persistence.LOCAL
-              : fbApp.auth.Auth.Persistence.SESSION
-          )
+          .setPersistence(fbApp.auth.Auth.Persistence.LOCAL)
           .then(() => {
             return firebase
               .auth()
@@ -124,24 +119,6 @@ const SignUpForm = React.memo(() => {
               />
             </Form.Group>
           </Form.Row>
-          <div className="custom-control custom-switch">
-            <input
-              type="checkbox"
-              name="rememberme"
-              onChange={handleChange}
-              className="custom-control-input checkboxStyle"
-              id="rememberme"
-              onBlur={handleBlur}
-              defaultChecked={values.rememberme}
-            />
-            <label
-              className="custom-control-label"
-              htmlFor="rememberme"
-              style={{ cursor: "pointer" }}
-            >
-              <strong>Recuérdame</strong>
-            </label>
-          </div>
           <Button
             className="shadow-sm mt-4"
             variant="primary"
