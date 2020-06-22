@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const insertCourses = require("./devdata/insertCourses");
+const insertPrimaria3roy4to = require("./devdata/insertPrimaria3roy4to");
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mathDB";
 mongoose
@@ -10,4 +10,4 @@ mongoose
   })
   .catch((error) => console.log(error));
 
-insertCourses();
+insertPrimaria3roy4to();

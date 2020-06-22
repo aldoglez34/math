@@ -22,7 +22,8 @@ router.post("/new", function (req, res) {
 // matches with /api/student/fetchByUID/:uid
 router.get("/fetchByUID/:uid", function (req, res) {
   model.Student.find({ firebaseUID: req.params.uid })
-    .populate("courses.course")
+    .lean()
+    .populate("courses.course", "courseCode") // this will return the course Code only
     .then((data) => res.json(data[0]))
     .catch((err) => {
       console.log("@error", err);

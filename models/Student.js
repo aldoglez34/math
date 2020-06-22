@@ -32,6 +32,7 @@ const StudentSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Course",
       },
+      courseName: { type: String },
       lastGrade: { type: String },
     },
   ],
