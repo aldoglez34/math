@@ -45,7 +45,16 @@ const MyNavbar = React.memo(() => {
           >
             {student ? (
               <>
-                <StudentDropdown />
+                {/* small */}
+                <div className="d-block d-lg-none">
+                  <h6 className="dropdown-header px-0 pb-0">USUARIO</h6>
+                  <StudentDropdown />
+                  <h6 className="dropdown-header px-0 pb-0">CURSOS</h6>
+                  <CoursesDropdown />
+                </div>
+                <div className="d-none d-lg-block">
+                  <StudentDropdown />
+                </div>
               </>
             ) : (
               <>

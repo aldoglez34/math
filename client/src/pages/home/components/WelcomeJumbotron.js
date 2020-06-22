@@ -19,10 +19,10 @@ const MyJumbotron = React.memo(() => {
           <Col lg={7} className="px-4 py-3 py-lg-0">
             <Fade bottom cascade>
               <h2 className="display-4 mb-0 text-light text-center text-lg-left wj_mainText">
-                MATEMÁTICAS
+                <span style={{ fontWeight: 900 }}>MATEMÁTICAS</span>
               </h2>
               <h2 className="display-4 text-light text-center text-lg-left wj_mainText">
-                SIMPLIFICADAS
+                <span style={{ fontWeight: 900 }}>SIMPLIFICADAS</span>
               </h2>
             </Fade>
             <Fade>
