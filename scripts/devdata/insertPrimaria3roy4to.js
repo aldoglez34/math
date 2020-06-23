@@ -321,6 +321,27 @@ module.exports = () => {
           qTechnicalInstruction: "939 + 57",
           qCorrectAnswer: "996",
         },
+        {
+          testName: "Sumas 3",
+          qNumber: 2,
+          qInstruction: "Resolver la siguiente suma",
+          qTechnicalInstruction: "925 + 465",
+          qCorrectAnswer: "1390",
+        },
+        {
+          testName: "Sumas 3",
+          qNumber: 3,
+          qInstruction: "Resolver la siguiente suma",
+          qTechnicalInstruction: "901 + 456",
+          qCorrectAnswer: "1357",
+        },
+        {
+          testName: "Sumas 3",
+          qNumber: 4,
+          qInstruction: "Resolver la siguiente suma",
+          qTechnicalInstruction: "",
+          qCorrectAnswer: "1357",
+        },
       ],
     },
   ];
