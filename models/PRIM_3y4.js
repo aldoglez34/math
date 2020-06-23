@@ -14,13 +14,13 @@ const schema = new Schema(
     ],
     tests: [
       {
-        testName: { type: String, required: true },
-        qNumber: { type: Number, required: true },
-        qInstruction: { type: String, required: true },
-        qTechnicalInstruction: { type: String },
-        qComment: { type: String },
-        qCorrectAnswer: { type: String, required: true },
-        qCorrectAnswerComplement: { type: String },
+        testName: { type: String, required: true }, // nombre del test, ejemplo: Sumas 1
+        qNumber: { type: Number, required: true }, // número de la pregunta, ejemplo: 1
+        qInstruction: { type: String, required: true }, // instrucción de la pregunta, ejemplo: Resuelve lael siguiente problema
+        qTechnicalInstruction: { type: String }, // instrucción técnica de la pregunta, ejemplo: 10 + 15
+        qComment: { type: String }, // comentario de la pregunta, ejemplo: da tu resultado con dos decimales
+        qCorrectAnswer: { type: String, required: true }, // resultado correcto de la pregunta, ejemplo: 15
+        qCorrectAnswerComplement: { type: String }, // texto complemento de la respuesta, ejemplo: animales/plátanos/pesos
       },
     ],
   },
