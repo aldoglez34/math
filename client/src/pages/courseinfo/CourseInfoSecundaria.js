@@ -29,18 +29,21 @@ const CourseInfoSecundaria = React.memo(() => {
               "Expresiones algebraicas",
               "Números negativos",
             ]}
+            courseName="Secundaria1ro"
           />
           <CourseInfoCard
             title="2do"
             price="$500"
             description=" Pellentesque vestibulum arcu neque, vel placerat enim consequat ut. In mattis augue ipsum, ut molestie justo semper at."
             lessons={["Ecuaciones lineales", "Sistemas de ecuaciones"]}
+            courseName="Secundaria2do"
           />
           <CourseInfoCard
             title="3ro"
             price="$500"
             description="Nulla molestie semper ligula, ut euismod arcu viverra et. Ut et eleifend ante. Sed egestas aliquet dui. Donec tincidunt, leo vitae tristique ultrices."
             lessons={["Probabilidad", "Estadística", "Ecucaciones cuadráticas"]}
+            courseName="Secundaria3ro"
           />
         </CardGroup>
       </Container>

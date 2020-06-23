@@ -10,3 +10,10 @@ export const logoutStudent = () => {
     type: "student/logout",
   };
 };
+
+export const buyCourse = (data) => {
+  return {
+    type: "student/buyCourse",
+    data,
+  };
+};

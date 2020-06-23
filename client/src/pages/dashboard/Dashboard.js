@@ -18,7 +18,8 @@ const Dashboard = React.memo(() => {
           </div>
         ) : (
           <>
-            <em>No has comprado cursos aún</em>
+            <em className="d-block lead">No tienes cursos en tu cuenta</em>
+            <span className="d-block pt-4">Compra aquí:</span>
             <div className="d-flex mt-3">
               <Button
                 variant="primary"

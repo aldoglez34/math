@@ -28,12 +28,11 @@ const StudentSchema = new Schema({
   },
   courses: [
     {
-      course: {
-        type: Schema.Types.ObjectId,
-        ref: "Course",
+      courseName: {
+        type: String,
+        unique: true,
       },
-      courseName: { type: String },
-      lastGrade: { type: String },
+      lastGrade: { type: String, default: "nunca" },
     },
   ],
   createdAt: {

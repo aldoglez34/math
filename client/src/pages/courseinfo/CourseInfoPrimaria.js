@@ -31,6 +31,7 @@ const CourseInfoPrimaria = React.memo(() => {
               "Ubicación en la recta numérica",
               "Fracciones",
             ]}
+            courseName="Primaria3roy4to"
           />
           <CourseInfoCard
             title="5to y 6to"
@@ -42,6 +43,7 @@ const CourseInfoPrimaria = React.memo(() => {
               "Relaciones",
               "Áreas y perímetros",
             ]}
+            courseName="Primaria5toy6to"
           />
         </CardGroup>
       </Container>

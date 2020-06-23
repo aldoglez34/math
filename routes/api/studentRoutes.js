@@ -22,8 +22,20 @@ router.post("/new", function (req, res) {
 // matches with /api/student/fetchByUID/:uid
 router.get("/fetchByUID/:uid", function (req, res) {
   model.Student.find({ firebaseUID: req.params.uid })
-    // .lean()
-    // .populate("courses.course", "courseCode") // this will return the course Code only
+    .then((data) => res.json(data[0]))
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send({ msg: "Ocurrió un error" });
+    });
+});
+
+// buyCourse()
+// matches with /api/student/buyCourse
+router.put("/buyCourse", function (req, res) {
+  const { _id, courseName } = req.body;
+  model.Student.findByIdAndUpdate(_id, {
+    $push: { courseName: courseName, lastGrade: "",  },
+  })
     .then((data) => res.json(data[0]))
     .catch((err) => {
       console.log("@error", err);

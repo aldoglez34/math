@@ -15,7 +15,7 @@ const NoMatch = React.memo(() => {
         <h1 className="display-1 mb-0">404</h1>
         <h2>Error, la página que estás buscando no existe</h2>
         <p>
-          Regresa a nuestra <a href="">página principal</a>
+          Regresa a nuestra <a href="/">página principal</a>
         </p>
       </div>
     </Layout>
