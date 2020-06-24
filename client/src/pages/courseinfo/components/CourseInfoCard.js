@@ -12,10 +12,11 @@ const CourseInfoCard = React.memo(
     const student = useSelector((state) => state.student);
 
     const buyCourse = () => {
-      API.buyCourse({ _id: student._id, courseName })
+      API.buyCourse({ studentId: student._id, course: courseName })
         .then((res) => {
           console.log(res.data);
           dispatch(studentActions.buyCourse(courseName));
+          window.location.href = "/dashboard";
           // the alert message is called in the reducer
         })
         .catch((err) => {
@@ -52,7 +53,7 @@ const CourseInfoCard = React.memo(
           })}
           <Button
             size="lg"
-            className="mt-3 buybttn"
+            className="mt-3 shadow-sm buybttn"
             disabled={student ? false : true}
             onClick={buyCourse}
           >

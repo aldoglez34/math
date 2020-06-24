@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const schema = new Schema(
   {
     subject: { type: String, required: true },
-    topic: { type: String, required: true },
+    topics: [{ type: String, required: true }],
     material: [
       {
         type: { type: String, required: true },

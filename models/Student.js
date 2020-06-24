@@ -28,11 +28,8 @@ const StudentSchema = new Schema({
   },
   courses: [
     {
-      courseName: {
-        type: String,
-        unique: true,
-      },
-      lastGrade: { type: String, default: "nunca" },
+      type: String,
+      unique: true,
     },
   ],
   createdAt: {

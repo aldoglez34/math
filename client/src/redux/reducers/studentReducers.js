@@ -17,7 +17,7 @@ const studentReducers = (state = null, action) => {
         alert("Ya has comprado este curso.");
         return state;
       } else {
-        alert("Felicidades, has comprado este curso.");
+        alert("Felicidades, has comprado este curso de manera satisfactoria.");
         return {
           ...state,
           courses: state.courses.concat(action.data),

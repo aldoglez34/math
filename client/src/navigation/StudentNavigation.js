@@ -4,7 +4,7 @@ import CourseInfoPrimaria from "../pages/courseinfo/CourseInfoPrimaria";
 import CourseInfoSecundaria from "../pages/courseinfo/CourseInfoSecundaria";
 import CourseInfoPrepa from "../pages/courseinfo/CourseInfoPrepa";
 import NoMatch from "../pages/nomatch/NoMatch";
-import Dashboard from "../pages/dashboard/Dashboard";
+import Dashboard from "../pages/dashboard";
 // arithmetic
 import Arithmetic from "../courses/arithmetic/Arithmetic";
 import ArithmeticExam from "../courses/arithmetic/exams/ArithmeticExam";

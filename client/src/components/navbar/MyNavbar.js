@@ -18,9 +18,9 @@ const MyNavbar = React.memo(() => {
       className="py-2"
     >
       <Navbar.Brand href="/" className="d-block d-lg-none">
-        <h3 className="mb-0" id="myLogo">
+        <h2 className="mb-0" id="myLogo">
           MeXmáticas
-        </h3>
+        </h2>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
@@ -33,9 +33,9 @@ const MyNavbar = React.memo(() => {
           {/* middle */}
           <Nav as={Col} className="d-none d-lg-block text-center pr-0">
             <Navbar.Brand href="/">
-              <h2 className="mb-0" id="myLogo">
+              <h1 className="mb-0" id="myLogo">
                 MeXmáticas
-              </h2>
+              </h1>
             </Navbar.Brand>
           </Nav>
           {/* right */}
@@ -47,9 +47,19 @@ const MyNavbar = React.memo(() => {
               <>
                 {/* small */}
                 <div className="d-block d-lg-none">
-                  <h6 className="dropdown-header px-0 pb-0">CURSOS</h6>
+                  <h6
+                    className="dropdown-header px-0 pb-0"
+                    style={{ color: "#3d4d53" }}
+                  >
+                    CURSOS
+                  </h6>
                   <CoursesDropdown />
-                  <h6 className="dropdown-header px-0 pb-0">MI USUARIO</h6>
+                  <h6
+                    className="dropdown-header px-0 pb-0"
+                    style={{ color: "#3d4d53" }}
+                  >
+                    MI USUARIO
+                  </h6>
                   <StudentDropdown />
                 </div>
                 <div className="d-none d-lg-block">
