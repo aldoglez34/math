@@ -57,16 +57,12 @@ router.get("/getCourses/:coursesStr", function (req, res) {
   const coursesStr = req.params.coursesStr;
   console.log("coursesStr", coursesStr);
 
-  
-
-
-
-  // model.Student.find({ firebaseUID: req.params.uid })
-  //   .then((data) => res.json(data[0]))
-  //   .catch((err) => {
-  //     console.log("@error", err);
-  //     res.status(422).send({ msg: "Ocurrió un error" });
-  //   });
+  model.Student.find({ firebaseUID: req.params.uid })
+    .then((data) => res.json(data[0]))
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send({ msg: "Ocurrió un error" });
+    });
 });
 
 module.exports = router;
