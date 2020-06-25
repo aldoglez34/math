@@ -71,7 +71,6 @@ module.exports = [
     ],
     exams: [
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 1,
         qInstruction: "Resuelve la siguiente suma",
@@ -79,7 +78,6 @@ module.exports = [
         qCorrectAnswer: "17",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 2,
         qInstruction: "Resuelve la siguiente suma",
@@ -87,7 +85,6 @@ module.exports = [
         qCorrectAnswer: "22",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 3,
         qInstruction: "Resuelve la siguiente suma",
@@ -95,7 +92,6 @@ module.exports = [
         qCorrectAnswer: "22",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 4,
         qInstruction: "Resuelve la siguiente suma",
@@ -103,7 +99,6 @@ module.exports = [
         qCorrectAnswer: "30",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 5,
         qInstruction: "Resuelve la siguiente suma",
@@ -111,7 +106,6 @@ module.exports = [
         qCorrectAnswer: "27",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 6,
         qInstruction: "Resuelve la siguiente suma",
@@ -119,7 +113,6 @@ module.exports = [
         qCorrectAnswer: "20",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 7,
         qInstruction: "Resuelve la siguiente suma",
@@ -127,7 +120,6 @@ module.exports = [
         qCorrectAnswer: "19",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 8,
         qInstruction: "Resuelve la siguiente suma",
@@ -135,7 +127,6 @@ module.exports = [
         qCorrectAnswer: "30",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 9,
         qInstruction: "Resuelve la siguiente suma",
@@ -143,7 +134,6 @@ module.exports = [
         qCorrectAnswer: "28",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 10,
         qInstruction: "Resuelve la siguiente suma",
@@ -151,7 +141,6 @@ module.exports = [
         qCorrectAnswer: "8",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 11,
         qInstruction: "Resuelve la siguiente suma",
@@ -159,7 +148,6 @@ module.exports = [
         qCorrectAnswer: "20",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 12,
         qInstruction: "Resuelve la siguiente suma",
@@ -167,7 +155,6 @@ module.exports = [
         qCorrectAnswer: "19",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 13,
         qInstruction: "Resuelve la siguiente suma",
@@ -175,7 +162,6 @@ module.exports = [
         qCorrectAnswer: "33",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 14,
         qInstruction: "Resuelve la siguiente suma",
@@ -183,7 +169,6 @@ module.exports = [
         qCorrectAnswer: "14",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 15,
         qInstruction: "Resuelve la siguiente suma",
@@ -191,7 +176,6 @@ module.exports = [
         qCorrectAnswer: "28",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 16,
         qInstruction:
@@ -200,7 +184,6 @@ module.exports = [
         qCorrectAnswerComplement: "años",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 17,
         qInstruction:
@@ -209,7 +192,6 @@ module.exports = [
         qCorrectAnswerComplement: "pesos",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 18,
         qInstruction:
@@ -218,7 +200,6 @@ module.exports = [
         qCorrectAnswerComplement: "animales",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 19,
         qInstruction:
@@ -227,7 +208,6 @@ module.exports = [
         qCorrectAnswerComplement: "pelotas",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 1",
         qNumber: 20,
         qInstruction:
@@ -236,7 +216,6 @@ module.exports = [
         qCorrectAnswerComplement: "plátanos",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 1,
         qInstruction: "Resolver la siguiente suma",
@@ -244,7 +223,6 @@ module.exports = [
         qCorrectAnswer: "143",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 2,
         qInstruction: "Resolver la siguiente suma",
@@ -252,7 +230,6 @@ module.exports = [
         qCorrectAnswer: "43",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 3,
         qInstruction: "Resolver la siguiente suma",
@@ -260,7 +237,6 @@ module.exports = [
         qCorrectAnswer: "49",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 4,
         qInstruction: "Resolver la siguiente suma",
@@ -268,7 +244,6 @@ module.exports = [
         qCorrectAnswer: "134",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 5,
         qInstruction: "Resolver la siguiente suma",
@@ -276,7 +251,6 @@ module.exports = [
         qCorrectAnswer: "138",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 6,
         qInstruction: "Resolver la siguiente suma",
@@ -284,7 +258,6 @@ module.exports = [
         qCorrectAnswer: "111",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 7,
         qInstruction: "Resolver la siguiente suma",
@@ -292,7 +265,6 @@ module.exports = [
         qCorrectAnswer: "148",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 8,
         qInstruction: "Resolver la siguiente suma",
@@ -300,7 +272,6 @@ module.exports = [
         qCorrectAnswer: "85",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 9,
         qInstruction: "Resolver la siguiente suma",
@@ -308,7 +279,6 @@ module.exports = [
         qCorrectAnswer: "55",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 10,
         qInstruction: "Resolver la siguiente suma",
@@ -316,7 +286,6 @@ module.exports = [
         qCorrectAnswer: "68",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 11,
         qInstruction: "Resolver la siguiente suma",
@@ -324,7 +293,6 @@ module.exports = [
         qCorrectAnswer: "61",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 12,
         qInstruction: "Resolver la siguiente suma",
@@ -332,7 +300,6 @@ module.exports = [
         qCorrectAnswer: "73",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 13,
         qInstruction: "Resolver la siguiente suma",
@@ -340,7 +307,6 @@ module.exports = [
         qCorrectAnswer: "173",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 14,
         qInstruction: "Resolver la siguiente suma",
@@ -348,7 +314,6 @@ module.exports = [
         qCorrectAnswer: "94",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 15,
         qInstruction: "Resolver la siguiente suma",
@@ -356,7 +321,6 @@ module.exports = [
         qCorrectAnswer: "193",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 16,
         qInstruction:
@@ -365,7 +329,6 @@ module.exports = [
         qCorrectAnswerComplement: "pesos",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 17,
         qInstruction:
@@ -374,7 +337,6 @@ module.exports = [
         qCorrectAnswerComplement: "alumnos",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 18,
         qInstruction:
@@ -383,7 +345,6 @@ module.exports = [
         qCorrectAnswerComplement: "pesos",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 19,
         qInstruction:
@@ -392,7 +353,6 @@ module.exports = [
         qCorrectAnswerComplement: "años",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 2",
         qNumber: 20,
         qInstruction:
@@ -401,7 +361,6 @@ module.exports = [
         qCorrectAnswerComplement: "pelotas",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 1,
         qInstruction: "Resolver la siguiente suma",
@@ -409,7 +368,6 @@ module.exports = [
         qCorrectAnswer: "996",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 2,
         qInstruction: "Resolver la siguiente suma",
@@ -417,7 +375,6 @@ module.exports = [
         qCorrectAnswer: "1390",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 3,
         qInstruction: "Resolver la siguiente suma",
@@ -425,7 +382,6 @@ module.exports = [
         qCorrectAnswer: "1357",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 4,
         qInstruction: "Resolver la siguiente suma",
@@ -433,7 +389,6 @@ module.exports = [
         qCorrectAnswer: "1128",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 5,
         qInstruction: "Resolver la siguiente suma",
@@ -441,7 +396,6 @@ module.exports = [
         qCorrectAnswer: "1677",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 6,
         qInstruction: "Resolver la siguiente suma",
@@ -449,7 +403,6 @@ module.exports = [
         qCorrectAnswer: "331",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 7,
         qInstruction: "Resolver la siguiente suma",
@@ -457,7 +410,6 @@ module.exports = [
         qCorrectAnswer: "220",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 8,
         qInstruction: "Resolver la siguiente suma",
@@ -465,7 +417,6 @@ module.exports = [
         qCorrectAnswer: "1690",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 9,
         qInstruction: "Resolver la siguiente suma",
@@ -473,7 +424,6 @@ module.exports = [
         qCorrectAnswer: "1102",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 10,
         qInstruction: "Resolver la siguiente suma",
@@ -481,7 +431,6 @@ module.exports = [
         qCorrectAnswer: "1642",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 11,
         qInstruction: "Resolver la siguiente suma",
@@ -489,7 +438,6 @@ module.exports = [
         qCorrectAnswer: "1124",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 12,
         qInstruction: "Resolver la siguiente suma",
@@ -497,7 +445,6 @@ module.exports = [
         qCorrectAnswer: "1915",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 13,
         qInstruction: "Resolver la siguiente suma",
@@ -505,7 +452,6 @@ module.exports = [
         qCorrectAnswer: "1075",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 14,
         qInstruction: "Resolver la siguiente suma",
@@ -513,7 +459,6 @@ module.exports = [
         qCorrectAnswer: "1790",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 15,
         qInstruction: "Resolver la siguiente suma",
@@ -521,7 +466,6 @@ module.exports = [
         qCorrectAnswer: "826",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 16,
         qInstruction:
@@ -530,7 +474,6 @@ module.exports = [
         qCorrectAnswerComplement: "alumnos",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 17,
         qInstruction:
@@ -539,7 +482,6 @@ module.exports = [
         qCorrectAnswerComplement: "animales",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 18,
         qInstruction:
@@ -548,7 +490,6 @@ module.exports = [
         qCorrectAnswerComplement: "pesos",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 19,
         qInstruction:
@@ -557,7 +498,6 @@ module.exports = [
         qCorrectAnswerComplement: "kilómetros",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 3",
         qNumber: 20,
         qInstruction:
@@ -566,7 +506,6 @@ module.exports = [
         qCorrectAnswerComplement: "megas",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 1,
         qInstruction: "Resolver la siguiente suma",
@@ -574,7 +513,6 @@ module.exports = [
         qCorrectAnswer: "7663",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 2,
         qInstruction: "Resolver la siguiente suma",
@@ -582,7 +520,6 @@ module.exports = [
         qCorrectAnswer: "6453",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 3,
         qInstruction: "Resolver la siguiente suma",
@@ -590,7 +527,6 @@ module.exports = [
         qCorrectAnswer: "6449",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 4,
         qInstruction: "Resolver la siguiente suma",
@@ -598,7 +534,6 @@ module.exports = [
         qCorrectAnswer: "4076",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 5,
         qInstruction: "Resolver la siguiente suma",
@@ -606,7 +541,6 @@ module.exports = [
         qCorrectAnswer: "3967",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 6,
         qInstruction: "Resolver la siguiente suma",
@@ -614,7 +548,6 @@ module.exports = [
         qCorrectAnswer: "5896",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 7,
         qInstruction: "Resolver la siguiente suma",
@@ -622,7 +555,6 @@ module.exports = [
         qCorrectAnswer: "3891",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 8,
         qInstruction: "Resolver la siguiente suma",
@@ -630,7 +562,6 @@ module.exports = [
         qCorrectAnswer: "6491",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 9,
         qInstruction: "Resolver la siguiente suma",
@@ -638,7 +569,6 @@ module.exports = [
         qCorrectAnswer: "8010",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 10,
         qInstruction: "Resolver la siguiente suma",
@@ -646,7 +576,6 @@ module.exports = [
         qCorrectAnswer: "5188",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 11,
         qInstruction: "Resolver la siguiente suma",
@@ -654,7 +583,6 @@ module.exports = [
         qCorrectAnswer: "6425",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 12,
         qInstruction: "Resolver la siguiente suma",
@@ -662,7 +590,6 @@ module.exports = [
         qCorrectAnswer: "6395",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 13,
         qInstruction: "Resolver la siguiente suma",
@@ -670,7 +597,6 @@ module.exports = [
         qCorrectAnswer: "2653",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 14,
         qInstruction: "Resolver la siguiente suma",
@@ -678,7 +604,6 @@ module.exports = [
         qCorrectAnswer: "7643",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 15,
         qInstruction: "Resolver la siguiente suma",
@@ -686,7 +611,6 @@ module.exports = [
         qCorrectAnswer: "3715",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 16,
         qInstruction:
@@ -695,7 +619,6 @@ module.exports = [
         qCorrectAnswerComplement: "pesos",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 17,
         qInstruction:
@@ -704,7 +627,6 @@ module.exports = [
         qCorrectAnswerComplement: "gramos",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 18,
         qInstruction:
@@ -713,7 +635,6 @@ module.exports = [
         qCorrectAnswerComplement: "pesos",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 19,
         qInstruction:
@@ -722,7 +643,6 @@ module.exports = [
         qCorrectAnswerComplement: "metros",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 4",
         qNumber: 20,
         qInstruction:
@@ -731,7 +651,6 @@ module.exports = [
         qCorrectAnswerComplement: "mililitros",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 5",
         qNumber: 1,
         qInstruction: "Resolver la siguiente suma",
@@ -739,7 +658,6 @@ module.exports = [
         qCorrectAnswer: "6661",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 5",
         qNumber: 2,
         qInstruction: "Resolver la siguiente suma",
@@ -747,7 +665,6 @@ module.exports = [
         qCorrectAnswer: "8631",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 5",
         qNumber: 3,
         qInstruction: "Resolver la siguiente suma",
@@ -755,7 +672,6 @@ module.exports = [
         qCorrectAnswer: "7716",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 5",
         qNumber: 4,
         qInstruction: "Resolver la siguiente suma",
@@ -763,7 +679,6 @@ module.exports = [
         qCorrectAnswer: "3290",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 5",
         qNumber: 5,
         qInstruction: "Resolver la siguiente suma",
@@ -771,7 +686,6 @@ module.exports = [
         qCorrectAnswer: "5472",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 5",
         qNumber: 6,
         qInstruction: "Resolver la siguiente suma",
@@ -779,7 +693,6 @@ module.exports = [
         qCorrectAnswer: "6208",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 5",
         qNumber: 7,
         qInstruction: "Resolver la siguiente suma",
@@ -787,7 +700,6 @@ module.exports = [
         qCorrectAnswer: "5064",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 5",
         qNumber: 8,
         qInstruction: "Resolver la siguiente suma",
@@ -795,7 +707,6 @@ module.exports = [
         qCorrectAnswer: "9047",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 5",
         qNumber: 9,
         qInstruction: "Resolver la siguiente suma",
@@ -803,7 +714,6 @@ module.exports = [
         qCorrectAnswer: "3904",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 5",
         qNumber: 10,
         qInstruction: "Resolver la siguiente suma",
@@ -811,7 +721,6 @@ module.exports = [
         qCorrectAnswer: "7500",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 5",
         qNumber: 11,
         qInstruction: "Resolver la siguiente suma",
@@ -819,7 +728,6 @@ module.exports = [
         qCorrectAnswer: "6239",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 5",
         qNumber: 12,
         qInstruction: "Resolver la siguiente suma",
@@ -827,7 +735,6 @@ module.exports = [
         qCorrectAnswer: "9676",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 5",
         qNumber: 13,
         qInstruction: "Resolver la siguiente suma",
@@ -835,7 +742,6 @@ module.exports = [
         qCorrectAnswer: "5519",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 5",
         qNumber: 14,
         qInstruction: "Resolver la siguiente suma",
@@ -843,7 +749,6 @@ module.exports = [
         qCorrectAnswer: "9225",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 5",
         qNumber: 15,
         qInstruction: "Resolver la siguiente suma",
@@ -851,7 +756,6 @@ module.exports = [
         qCorrectAnswer: "9968",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 6",
         qNumber: 1,
         qInstruction: "¿Cuál es el número que falta?",
@@ -859,7 +763,6 @@ module.exports = [
         qCorrectAnswer: "13",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 6",
         qNumber: 3,
         qInstruction: "¿Cuál es el número que falta?",
@@ -867,7 +770,6 @@ module.exports = [
         qCorrectAnswer: "3",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 6",
         qNumber: 4,
         qInstruction: "¿Cuál es el número que falta?",
@@ -875,7 +777,6 @@ module.exports = [
         qCorrectAnswer: "3",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 6",
         qNumber: 5,
         qInstruction: "¿Cuál es el número que falta?",
@@ -883,7 +784,6 @@ module.exports = [
         qCorrectAnswer: "3",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 6",
         qNumber: 6,
         qInstruction: "¿Cuál es el número que falta?",
@@ -891,7 +791,6 @@ module.exports = [
         qCorrectAnswer: "1",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 6",
         qNumber: 7,
         qInstruction: "¿Cuál es el número que falta?",
@@ -899,7 +798,6 @@ module.exports = [
         qCorrectAnswer: "11",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 6",
         qNumber: 8,
         qInstruction: "¿Cuál es el número que falta?",
@@ -907,7 +805,6 @@ module.exports = [
         qCorrectAnswer: "2",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 6",
         qNumber: 9,
         qInstruction: "¿Cuál es el número que falta?",
@@ -915,7 +812,6 @@ module.exports = [
         qCorrectAnswer: "38",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 6",
         qNumber: 10,
         qInstruction: "¿Cuál es el número que falta?",
@@ -923,7 +819,6 @@ module.exports = [
         qCorrectAnswer: "16",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 6",
         qNumber: 11,
         qInstruction: "¿Cuál es el número que falta?",
@@ -931,7 +826,6 @@ module.exports = [
         qCorrectAnswer: "21",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 6",
         qNumber: 12,
         qInstruction: "¿Cuál es el número que falta?",
@@ -939,7 +833,6 @@ module.exports = [
         qCorrectAnswer: "8",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 6",
         qNumber: 13,
         qInstruction: "¿Cuál es el número que falta?",
@@ -947,7 +840,6 @@ module.exports = [
         qCorrectAnswer: "10",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 6",
         qNumber: 14,
         qInstruction: "¿Cuál es el número que falta?",
@@ -955,7 +847,6 @@ module.exports = [
         qCorrectAnswer: "5",
       },
       {
-        subject: "Aritmética",
         name: "Sumas 6",
         qNumber: 15,
         qInstruction: "¿Cuál es el número que falta?",

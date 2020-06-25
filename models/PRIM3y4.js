@@ -26,7 +26,6 @@ const schema = new Schema(
     ],
     exams: [
       {
-        subject: { type: String, required: true }, // nombre de la materia, ejemplo: Aritmética
         name: { type: String, required: true }, // nombre del examen, ejemplo: Sumas 1
         qNumber: { type: Number, required: true }, // número de la pregunta, ejemplo: 1
         qInstruction: { type: String, required: true }, // instrucción de la pregunta, ejemplo: Resuelve el siguiente problema
