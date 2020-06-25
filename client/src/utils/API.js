@@ -12,7 +12,9 @@ export default {
   buyCourse: (data) => axios.put("/api/student/buyCourse", data),
 
   // dashboard
+  fetchMyCourses: (studentId) =>
+    axios.get("/api/student/fetchCourses/" + studentId),
 
-  getMyCourses: (coursesStr) =>
-    axios.get("/api/student/getCourses/" + coursesStr),
+  // course
+  fetchCourseInfo: (code) => axios.get("/api/student/fetchCourseInfo/" + code),
 };

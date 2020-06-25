@@ -1,36 +1,20 @@
-// import React, { useState, useEffect } from "react";
-// import { useSelector } from "react-redux";
-// import DashboardCourseCard from "./components/DashboardCourseCard";
-// import API from "../../utils/API";
+import React from "react";
+import PropTypes from "prop-types";
+import DashboardCourseCard from "./components/DashboardCourseCard";
+import { CardColumns } from "react-bootstrap";
 
-// const MyCourses = React.memo(() => {
-//   const coursesArr = useSelector((state) => state.student.courses);
+const MyCourses = React.memo(({ courses }) => {
+  return (
+    <CardColumns className="mt-4">
+      {courses.map((c) => (
+        <DashboardCourseCard key={c.name} course={c} />
+      ))}
+    </CardColumns>
+  );
+});
 
-//   useEffect(() => {
-//     // build string from array of courses before making the api call
-//     const coursesStr = coursesArr.reduce((acc, cv, idx) => {
-//       if (idx === coursesArr.length - 1) {
-//         acc += cv;
-//       } else {
-//         acc += cv + ",";
-//       }
-//       return acc;
-//     }, "");
-//     API.getMyCourses(coursesStr)
-//       .then((res) => console.log(res.data))
-//       .catch((err) => {
-//         console.log(err);
-//         alert("Ocurrió un error inesperado");
-//       });
-//   });
+MyCourses.propTypes = {
+  courses: PropTypes.array.isRequired,
+};
 
-//   return (
-//     <div className="d-flex mt-4">
-//       {/* {student.courses.map((c) => (
-//         <DashboardCourseCard key={c} course={c} />
-//       ))} */}
-//     </div>
-//   );
-// });
-
-// export default MyCourses;
+export default MyCourses;

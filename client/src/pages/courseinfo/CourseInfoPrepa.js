@@ -32,7 +32,7 @@ const CourseInfoPrepa = React.memo(() => {
               "Ecucaciones cuadráticas",
               "Series aritméticas",
             ]}
-            courseName="Preparatoria1ro"
+            courseName="PREPA1"
           />
           <CourseInfoCard
             title="2do"
@@ -44,14 +44,14 @@ const CourseInfoPrepa = React.memo(() => {
               "Ley de senos",
               "Ley de cosenos",
             ]}
-            courseName="Preparatoria2do"
+            courseName="PREPA2"
           />
           <CourseInfoCard
             title="3ro"
             price="$500"
             description="Etiam tempor, lorem vel tempor aliquam, sapien est pulvinar enim, a viverra velit ligula eget arcu. Sed imperdiet erat ligula, sed facilisis lorem rutrum vitae."
             lessons={["Geometría analítica", "Parábola", "Elipse", "Hipérbola"]}
-            courseName="Preparatoria3ro"
+            courseName="PREPA3"
           />
           <CourseInfoCard
             title="4to"
@@ -63,7 +63,7 @@ const CourseInfoPrepa = React.memo(() => {
               "Ecuaciones exponenciales",
               "Ecuaciones logarítmicas",
             ]}
-            courseName="Preparatoria4to"
+            courseName="PREPA4"
           />
         </CardGroup>
       </Container>

@@ -8,27 +8,24 @@ const NoCourses = React.memo(() => {
       <em className="d-block lead" style={{ color: "#b3b3b3" }}>
         No tienes cursos en tu cuenta :(
       </em>
-      <h4 className="d-block" style={{ marginTop: "60px" }}>
-        Cursos aquí
-      </h4>
-      <div className="d-flex mt-2 justify-content-center">
+      <div className="d-flex mt-4 justify-content-center">
         <Button
           variant="primary"
           href="/courses/primaria"
-          className="shadow-sm mr-2"
+          className="shadow mr-2"
         >
           Primaria
         </Button>
         <Button
           variant="primary"
           href="/courses/secundaria"
-          className="shadow-sm mr-2"
+          className="shadow mr-2"
         >
           Secundaria
         </Button>
         <Button
           variant="primary"
-          className="shadow-sm"
+          className="shadow"
           href="/courses/preparatoria"
         >
           Preparatoria

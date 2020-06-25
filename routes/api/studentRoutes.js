@@ -50,18 +50,75 @@ router.put("/buyCourse", function (req, res) {
     });
 });
 
-// getMyCourses()
-// matches with /api/student/getCourses/:coursesArr
-router.get("/getCourses/:coursesStr", function (req, res) {
-  // getting all the courses on a string
-  const coursesStr = req.params.coursesStr;
-  console.log("coursesStr", coursesStr);
+// fetchMyCourses()
+// matches with /api/student/fetchCourses/:studentId
+router.get("/fetchCourses/:studentId", function (req, res) {
+  const studentId = req.params.studentId;
 
-  model.Student.find({ firebaseUID: req.params.uid })
-    .then((data) => res.json(data[0]))
+  const mongoose = require("mongoose");
+
+  // first, get all the courses the student has
+  model.Student.findById(studentId)
+    .select("courses")
+    .then((data) => {
+      let myCourses = [];
+      // if the student has courses, retrieve the info,
+      // if not, retrieve an empty array
+      if (data.courses.length) {
+        let fetchAllCourses = new Promise((resolve, reject) => {
+          data.courses.forEach((value, index, array) => {
+            // get the info from the course dinamically
+            mongoose
+              .model(value)
+              .find()
+              .select("code name shortDescription topics")
+              .then((data) => {
+                myCourses.push(data[0]);
+                if (index === array.length - 1) resolve(); // this is when the promise "ends" and calls the "then"
+              })
+              .catch((err) => {
+                console.log("@error", err);
+                res
+                  .status(422)
+                  .send("Ocurrió un error inesperado en el servidor");
+              });
+          });
+        });
+        fetchAllCourses
+          .then(() => {
+            // this is gonna be executed when I calll "resolve"
+            console.log("all done!");
+            res.json(myCourses);
+          })
+          .catch((err) => {
+            console.log("@error", err);
+            res.status(422).send("Ocurrió un error inesperado en el servidor");
+          });
+      } else {
+        res.json(data.courses);
+      }
+    })
     .catch((err) => {
       console.log("@error", err);
       res.status(422).send({ msg: "Ocurrió un error" });
+    });
+});
+
+// fetchCourseInfo()
+// matches with /api/student/fetchCourseInfo/:code
+router.get("/fetchCourseInfo/:code", function (req, res) {
+  const code = req.params.code;
+
+  // search in the collection dinamically
+  const mongoose = require("mongoose");
+  mongoose
+    .model(code)
+    .find()
+    .select("code name longDescription topics material")
+    .then((data) => res.json(data[0]))
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error");
     });
 });
 

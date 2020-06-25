@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const models = require("../models");
 
+// database conection
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mathDB";
 mongoose
   .connect(MONGODB_URI, {
@@ -10,22 +11,23 @@ mongoose
   })
   .catch((error) => console.log(error));
 
-models.Course.remove({})
-  .then(() => {
-    const coursesData = require("./devdata/coursesData");
-    return models.Course.insertMany(coursesData);
-  })
-  .then((data) => {
-    console.log("===================================================");
-    console.log("> " + data.length + " courses added");
-    return models.Student.remove({});
-  })
+// inserting data
+models.Student.remove({})
   .then(() => {
     const studentsData = require("./devdata/studentsData");
     return models.Student.insertMany(studentsData);
   })
   .then((data) => {
+    console.log("===================================================");
     console.log("> " + data.length + " students added");
+    return models.PRIM3y4.remove({});
+  })
+  .then(() => {
+    const PRIM3y4Data = require("./devdata/PRIM3y4Data");
+    return models.PRIM3y4.insertMany(PRIM3y4Data);
+  })
+  .then((data) => {
+    console.log("> " + data.length + " rows added for PRIM3y4");
     process.exit(0);
   })
   .catch((err) => {

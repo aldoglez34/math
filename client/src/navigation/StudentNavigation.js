@@ -5,13 +5,7 @@ import CourseInfoSecundaria from "../pages/courseinfo/CourseInfoSecundaria";
 import CourseInfoPrepa from "../pages/courseinfo/CourseInfoPrepa";
 import NoMatch from "../pages/nomatch/NoMatch";
 import Dashboard from "../pages/dashboard";
-// arithmetic
-import Arithmetic from "../courses/arithmetic/Arithmetic";
-import ArithmeticExam from "../courses/arithmetic/exams/ArithmeticExam";
-// algebra
-import Algebra from "../courses/algebra/Algebra";
-// trigonometry
-import Trigonometry from "../courses/trigonometry/Trigonometry";
+import CourseMain from "../course";
 
 export default () => {
   return (
@@ -27,19 +21,12 @@ export default () => {
       />
       <Route exact path="/courses/preparatoria" component={CourseInfoPrepa} />
 
-      {/* arithmetic */}
-      <Route exact path="/dashboard/arithmetic" component={Arithmetic} />
+      {/* courses main */}
       <Route
         exact
-        path="/dashboard/arithmetic/exam/:code"
-        render={(props) => <ArithmeticExam routeProps={props} />}
+        path="/course/:code"
+        render={(props) => <CourseMain routeProps={props} />}
       />
-
-      {/* algebra */}
-      <Route exact path="/dashboard/algebra" component={Algebra} />
-
-      {/* trigonometry */}
-      <Route exact path="/dashboard/trigonometry" component={Trigonometry} />
 
       <Redirect from="/" to="/dashboard" />
 

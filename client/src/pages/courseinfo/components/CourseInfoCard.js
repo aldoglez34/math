@@ -1,21 +1,18 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
-import { useSelector, useDispatch } from "react-redux";
-import * as studentActions from "../../../redux/actions/student";
+import { useSelector } from "react-redux";
 import API from "../../../utils/API";
 
 const CourseInfoCard = React.memo(
   ({ title, description, price, lessons, courseName }) => {
-    const dispatch = useDispatch();
-
     const student = useSelector((state) => state.student);
 
     const buyCourse = () => {
       API.buyCourse({ studentId: student._id, course: courseName })
         .then((res) => {
           console.log(res.data);
-          dispatch(studentActions.buyCourse(courseName));
+          alert("Compraste este curso satisfactoriamente");
           window.location.href = "/dashboard";
           // the alert message is called in the reducer
         })
@@ -35,7 +32,9 @@ const CourseInfoCard = React.memo(
             <h1 className="pr-2 mb-0" style={{ color: "#51585f" }}>
               {title}
             </h1>
-            <h1 className="ml-auto text-danger mb-0">{price}</h1>
+            <h1 className="ml-auto mb-0" style={{ color: "#dc2a2a" }}>
+              {price}
+            </h1>
           </div>
           <p className="lead mt-4">{description}</p>
           {lessons.map((l) => {
@@ -53,7 +52,8 @@ const CourseInfoCard = React.memo(
           })}
           <Button
             size="lg"
-            className="mt-3 shadow-sm buybttn"
+            variant="danger"
+            className="mt-3 shadow-sm"
             disabled={student ? false : true}
             onClick={buyCourse}
           >

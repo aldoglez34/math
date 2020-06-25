@@ -10,48 +10,33 @@ import API from "../../utils/API";
 const Dashboard = React.memo(() => {
   const student = useSelector((state) => state.student);
 
-  const breadcrumb = [{ text: "Mis cursos" }];
-
   const [myCourses, setMyCourses] = useState();
 
   useEffect(() => {
     if (student) {
-      const coursesArr = student.courses;
-      const coursesStr = coursesArr.reduce((acc, cv, idx) => {
-        if (idx === coursesArr.length - 1) {
-          acc += cv;
-        } else {
-          acc += cv + ",";
-        }
-        return acc;
-      }, "");
-      API.getMyCourses(coursesStr)
-        .then((res) => {
-          console.log(res.data);
-          // setMyCourses(res.data);
-        })
+      API.fetchMyCourses(student._id)
+        .then((res) => setMyCourses(res.data))
         .catch((err) => {
           console.log(err);
           alert("Ocurrió un error inesperado");
         });
     }
-  }, []);
+  }, [student]);
 
   return (
-    <StudentLayout breadcrumb={breadcrumb}>
-      <h2 className="display-4">Mis cursos</h2>
-      {/* {student ? (
-        student.courses.length ? (
-          <>
-            <MyCourses />
-            <span>mycourses</span>
-          </>
+    <StudentLayout>
+      <h2 className="display-4 mt-4">Mis cursos</h2>
+      {myCourses ? (
+        myCourses.length ? (
+          <MyCourses courses={myCourses} />
         ) : (
           <NoCourses />
         )
       ) : (
-        <Spinner className="text-center" animation="border" variant="primary" />
-      )} */}
+        <div className="text-center mt-4 pt-4">
+          <Spinner animation="border" variant="primary" />
+        </div>
+      )}
     </StudentLayout>
   );
 });

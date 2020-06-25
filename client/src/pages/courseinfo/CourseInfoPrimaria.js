@@ -3,7 +3,6 @@ import { Layout } from "../../components/Layout";
 import ScrollButton from "../../components/scrollbutton";
 import { Container, CardGroup } from "react-bootstrap";
 import CourseInfoCard from "./components/CourseInfoCard";
-import "./courseinfo.scss";
 
 const CourseInfoPrimaria = React.memo(() => {
   return (
@@ -31,7 +30,7 @@ const CourseInfoPrimaria = React.memo(() => {
               "Ubicación en la recta numérica",
               "Fracciones",
             ]}
-            courseName="PRIM_3y4"
+            courseName="PRIM3y4"
           />
           <CourseInfoCard
             title="5to y 6to"
@@ -43,7 +42,7 @@ const CourseInfoPrimaria = React.memo(() => {
               "Relaciones",
               "Áreas y perímetros",
             ]}
-            courseName="PRIM_5y6"
+            courseName="PRIM5y6"
           />
         </CardGroup>
       </Container>
