@@ -122,4 +122,31 @@ router.get("/fetchCourseInfo/:code", function (req, res) {
     });
 });
 
+// fetchCoursfetchExameInfo()
+// matches with /api/student/exam/:code/:exam
+router.get("/exam/:code/:exam", function (req, res) {
+  const code = req.params.code;
+  const exam = req.params.exam;
+
+  const mongoose = require("mongoose");
+  mongoose
+    .model(code)
+    .find({ "exams.name": exam })
+    .select("exams")
+    .then((data) => {
+      // res.json(data[0]);
+      res.json(
+        data[0].exams
+          .filter((e) => e.name === exam)
+          .sort((a, b) =>
+            a.qNumber > b.qNumber ? 1 : b.qNumber > a.qNumber ? -1 : 0
+          )
+      ); // workaround
+    })
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error");
+    });
+});
+
 module.exports = router;

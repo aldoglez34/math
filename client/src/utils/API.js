@@ -17,4 +17,8 @@ export default {
 
   // course
   fetchCourseInfo: (code) => axios.get("/api/student/fetchCourseInfo/" + code),
+
+  // exam
+  fetchExam: (code, name) =>
+    axios.get("/api/student/exam/" + code + "/" + name),
 };

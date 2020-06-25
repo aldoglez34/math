@@ -12,7 +12,14 @@ module.exports = [
         name: "Suma",
         description:
           "Quisque eget posuere lacus, in posuere risus. Curabitur semper fermentum dolor. Integer imperdiet, lectus eu suscipit rutrum, felis nisi vestibulum turpis, vel dictum magna odio sit amet orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris aliquam justo vel lacus ultricies iaculis.",
-        exams: ["Suma 1", "Suma 2", "Suma 3", "Suma 4", "Suma 5", "Suma 6"],
+        exams: [
+          "Sumas 1",
+          "Sumas 2",
+          "Sumas 3",
+          "Sumas 4",
+          "Sumas 5",
+          "Sumas 6",
+        ],
         toLearn: [
           "Identificar los elementos y propiedades de la suma",
           "Resolver problemas usando la suma",
@@ -41,21 +48,25 @@ module.exports = [
         name: "Resta",
         description:
           "Quisque eget posuere lacus, in posuere risus. Curabitur semper fermentum dolor. Integer imperdiet, lectus eu suscipit rutrum, felis nisi vestibulum turpis, vel dictum magna odio sit amet orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris aliquam justo vel lacus ultricies iaculis.",
-        exams: ["Resta 1", "Resta 2", "Resta 3"],
+        exams: ["Restas 1", "Restas 2", "Restas 3"],
       },
       {
         subject: "Aritmética",
         name: "Multiplicación",
         description:
           "Quisque eget posuere lacus, in posuere risus. Curabitur semper fermentum dolor. Integer imperdiet, lectus eu suscipit rutrum, felis nisi vestibulum turpis, vel dictum magna odio sit amet orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris aliquam justo vel lacus ultricies iaculis.",
-        exams: ["Multiplicación 1", "Multiplicación 2", "Multiplicación 3"],
+        exams: [
+          "Multiplicaciones 1",
+          "Multiplicaciones 2",
+          "Multiplicaciones 3",
+        ],
       },
       {
         subject: "Aritmética",
         name: "División",
         description:
           "Quisque eget posuere lacus, in posuere risus. Curabitur semper fermentum dolor. Integer imperdiet, lectus eu suscipit rutrum, felis nisi vestibulum turpis, vel dictum magna odio sit amet orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris aliquam justo vel lacus ultricies iaculis.",
-        exams: ["División 1", "División 2", "División 3"],
+        exams: ["Divisiones 1", "Divisiones 2", "Divisiones 3"],
       },
     ],
     exams: [

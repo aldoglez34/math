@@ -3,8 +3,8 @@ import { Spinner } from "react-bootstrap";
 import API from "../utils/API";
 import "./course.scss";
 import { StudentLayout } from "../components/Layout";
-import CourseIntro from "./_components/CourseIntro";
-import Topic from "./_components/Topic";
+import CourseIntro from "./components/CourseIntro";
+import Topic from "./components/Topic";
 
 export default React.memo((props) => {
   const [course, setCourse] = useState();
@@ -40,7 +40,7 @@ export default React.memo((props) => {
           {course.topics.map((ct) => (
             <Topic
               key={ct.name}
-              subject={ct.subject}
+              code={course.code}
               name={ct.name}
               toLearn={ct.toLearn}
               description={ct.description}
