@@ -33,9 +33,9 @@ const MyNavbar = React.memo(() => {
           {/* middle */}
           <Nav as={Col} className="d-none d-lg-block text-center pr-0">
             <Navbar.Brand href="/">
-              <h1 className="mb-0" id="myLogo">
+              <h2 className="mb-0" id="myLogo">
                 MeXmáticas
-              </h1>
+              </h2>
             </Navbar.Brand>
           </Nav>
           {/* right */}

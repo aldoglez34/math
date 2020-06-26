@@ -6,10 +6,10 @@ import { HashLink as Link } from "react-router-hash-link";
 
 const DashboardCourseCard = React.memo(({ course }) => {
   return (
-    <Card className="dashboardCourseCard">
+    <Card className="dashboardCourseCard shadow-sm">
       <Card.Body>
         <Card.Title className="d-flex flex-row">
-          <h2 style={{ color: "#51585f" }}>{course.name}</h2>
+          <h2 style={{ color: "#3b424b" }}>{course.name}</h2>
         </Card.Title>
         <Card.Text>{course.shortDescription}</Card.Text>
       </Card.Body>
