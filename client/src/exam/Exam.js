@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { StudentLayout } from "../components/Layout";
-import { Spinner, Container, Row, Col } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 import API from "../utils/API";
-import Question from "./components/Question";
+import QuestionsForm from "./components/QuestionsForm";
 
 const Exam = React.memo((props) => {
   const { code, subject, exam } = props.routeProps.match.params;
@@ -27,14 +27,7 @@ const Exam = React.memo((props) => {
   return (
     <StudentLayout breadcrumb={breadcrumb}>
       {questions ? (
-        <>
-          <h1>{exam}</h1>
-          <Container>
-            {questions.map((q) => (
-              <Question key={q._id} question={q} />
-            ))}
-          </Container>
-        </>
+        <QuestionsForm examName={exam} questions={questions} />
       ) : (
         <div className="text-center mt-4 pt-4">
           <Spinner animation="border" variant="primary" />
