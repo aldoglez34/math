@@ -36,8 +36,8 @@ const QuoteJumbotron = React.memo(() => {
           </h2>
         </Fade>
         <Row>
-          <Fade cascade>
-            <Col lg={7} className="d-flex align-items-center">
+          <Col lg={7} className="d-flex align-items-center">
+            <Fade cascade>
               <blockquote className="blockquote mb-0">
                 <div className="mb-2">
                   <i className="fas fa-star text-warning mr-1" />
@@ -54,8 +54,8 @@ const QuoteJumbotron = React.memo(() => {
                 </h2>
                 <footer className="blockquote-footer">Abuela de alumno</footer>
               </blockquote>
-            </Col>
-          </Fade>
+            </Fade>
+          </Col>
           <Col lg={5} className="d-flex align-items-center mt-4 mt-lg-0">
             <div id="player-1"></div>
           </Col>

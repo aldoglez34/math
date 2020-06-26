@@ -49,6 +49,10 @@ module.exports = [
         description:
           "Quisque eget posuere lacus, in posuere risus. Curabitur semper fermentum dolor. Integer imperdiet, lectus eu suscipit rutrum, felis nisi vestibulum turpis, vel dictum magna odio sit amet orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris aliquam justo vel lacus ultricies iaculis.",
         exams: ["Restas 1", "Restas 2", "Restas 3"],
+        toLearn: [
+          "Identificar los elementos y propiedades de la resta",
+          "Resolver problemas usando la resta",
+        ],
       },
       {
         subject: "Aritmética",
@@ -60,6 +64,10 @@ module.exports = [
           "Multiplicaciones 2",
           "Multiplicaciones 3",
         ],
+        toLearn: [
+          "Identificar los elementos y propiedades de la multiplicación",
+          "Resolver problemas usando la multiplicación",
+        ],
       },
       {
         subject: "Aritmética",
@@ -67,6 +75,10 @@ module.exports = [
         description:
           "Quisque eget posuere lacus, in posuere risus. Curabitur semper fermentum dolor. Integer imperdiet, lectus eu suscipit rutrum, felis nisi vestibulum turpis, vel dictum magna odio sit amet orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris aliquam justo vel lacus ultricies iaculis.",
         exams: ["Divisiones 1", "Divisiones 2", "Divisiones 3"],
+        toLearn: [
+          "Identificar los elementos y propiedades de la división",
+          "Resolver problemas usando la división",
+        ],
       },
     ],
     exams: [

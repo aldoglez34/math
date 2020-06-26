@@ -51,7 +51,6 @@ const CourseInfoCard = React.memo(
             );
           })}
           <Button
-            size="lg"
             variant="danger"
             className="mt-3 shadow-sm"
             disabled={student ? false : true}
