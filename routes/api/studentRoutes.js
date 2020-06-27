@@ -36,7 +36,7 @@ router.put("/buyCourse", function (req, res) {
 
   model.Student.findByIdAndUpdate(studentId, { $push: { courses: course } })
     .then((data) => {
-      console.log(data);
+      // console.log(data);
 
       res.send("OK");
     })
@@ -112,6 +112,27 @@ router.get("/fetchCourseInfo/:code", function (req, res) {
     .find()
     .select("code name longDescription topics material")
     .then((data) => res.json(data[0]))
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error");
+    });
+});
+
+// registerTry()
+// matches with /api/student/post/exam
+router.put("/post/exam", function (req, res) {
+  const { studentId, exam } = req.body;
+
+  const obj = { exam, date: Date.now() };
+
+  model.Student.findByIdAndUpdate(studentId, {
+    $push: { history: obj },
+  })
+    .then((data) => {
+      // console.log(data);
+
+      res.send("OK");
+    })
     .catch((err) => {
       console.log("@error", err);
       res.status(422).send("Ocurrió un error");

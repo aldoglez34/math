@@ -33,6 +33,12 @@ const schema = new Schema({
       unique: true,
     },
   ],
+  history: [
+    {
+      exam: { type: String, required: true },
+      date: { type: String, default: Date.now() },
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now(),

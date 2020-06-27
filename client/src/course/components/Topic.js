@@ -1,17 +1,32 @@
 import React from "react";
 import { Row, Col, Accordion, Card, Button, Badge } from "react-bootstrap";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import API from "../../utils/API";
 
 const Topic = React.memo(
   ({ code, name, description, toLearn, material, exams }) => {
+    const student = useSelector((state) => state.student);
+
+    const registerExam = (exam) => {
+      API.registerExam({ studentId: student._id, exam })
+        .then((res) => console.log(res.data))
+        .catch((err) => {
+          console.log(err);
+          alert("Ocurrió un error al registrar el examen");
+        });
+    };
+
     return (
       <>
         <Row id={name} style={{ marginTop: "35px" }}>
+          {/* title */}
           <Col>
             <h1 style={{ fontSize: "39px" }}>{name}</h1>
           </Col>
         </Row>
         <Row>
+          {/* description and material */}
           <Col lg={6}>
             <hr className="myDivider" />
             <p className="mb-3">{description}</p>
@@ -60,7 +75,7 @@ const Topic = React.memo(
                       <i className="fas fa-chevron-down mr-2" />
                       {ex.name}
                       <Badge
-                        variant="primary"
+                        variant="info"
                         pill
                         className="ml-2"
                         style={{ fontSize: "11px" }}
@@ -77,7 +92,7 @@ const Topic = React.memo(
                       </p>
                       <Row className="mb-3">
                         <Col>
-                          <h3 className="mb-0">{ex.qCounter}m</h3>
+                          <h3 className="mb-0">{ex.duration} m</h3>
                           <h4>
                             <small className="text-muted">duración</small>
                           </h4>
@@ -96,6 +111,7 @@ const Topic = React.memo(
                         </Col>
                       </Row>
                       <Button
+                        onClick={() => registerExam(ex.name)}
                         href={`/course/${code}/${name}/${ex.name}`}
                         variant="primary"
                       >

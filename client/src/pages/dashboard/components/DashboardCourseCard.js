@@ -16,7 +16,7 @@ const DashboardCourseCard = React.memo(({ course }) => {
       <ListGroup className="list-group-flush">
         {course.topics.map((ct) => (
           <ListGroupItem key={ct._id}>
-            <Badge variant="light" className="mr-2">
+            <Badge variant="dark" className="mr-2">
               {ct.subject}
             </Badge>
             <Link to={"/course/" + course.code + "#" + ct.name}>{ct.name}</Link>
@@ -25,7 +25,7 @@ const DashboardCourseCard = React.memo(({ course }) => {
       </ListGroup>
       <Card.Body>
         <Button className="openBttn shadow-sm" href={"/course/" + course.code}>
-          Entrar
+          Abrir
         </Button>
       </Card.Body>
     </Card>
