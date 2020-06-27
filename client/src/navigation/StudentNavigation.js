@@ -5,7 +5,7 @@ import CourseInfoSecundaria from "../pages/courseinfo/CourseInfoSecundaria";
 import CourseInfoPrepa from "../pages/courseinfo/CourseInfoPrepa";
 import NoMatch from "../pages/nomatch/NoMatch";
 import Dashboard from "../pages/dashboard";
-import Course from "../course/Course";
+import Course from "../course";
 import Exam from "../exam/Exam";
 
 export default () => {
@@ -25,14 +25,14 @@ export default () => {
       {/* courses main */}
       <Route
         exact
-        path="/course/:code"
+        path="/course/:courseId"
         render={(props) => <Course routeProps={props} />}
       />
 
       {/* exam */}
       <Route
         exact
-        path="/course/:code/:subject/:exam"
+        path="/exam/:examId"
         render={(props) => <Exam routeProps={props} />}
       />
 

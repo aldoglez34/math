@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
-import { Button, Form, Row, Col, Modal, Card } from "react-bootstrap";
+import { Button, Form, Row, Col, Modal } from "react-bootstrap";
 
 const QuestionsContainer = React.memo(({ examName, questions }) => {
   const [number, setNumber] = useState(1);
@@ -8,7 +8,7 @@ const QuestionsContainer = React.memo(({ examName, questions }) => {
   const [answers, setAnswers] = useState([]);
 
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  // const handleClose = () => setShow(false);
 
   const inputRef = useRef();
 
@@ -24,12 +24,11 @@ const QuestionsContainer = React.memo(({ examName, questions }) => {
       setShow(true);
     } else {
       setNumber(number + 1);
-      //   setAnswer();
     }
   };
 
   return (
-    <div>
+    <div style={{ marginTop: "50px" }}>
       <h1>{examName}</h1>
       <Row className="mt-4">
         <Col lg={{ span: 6, offset: 3 }} className="p-4">
@@ -62,13 +61,13 @@ const QuestionsContainer = React.memo(({ examName, questions }) => {
         </Col>
       </Row>
       {/* results */}
-      <Modal show={show} onHide={() => (window.location.href = "/")} centered>
+      <Modal show={show} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Resultado del examen</Modal.Title>
         </Modal.Header>
         <Modal.Body>{answers.toString()}</Modal.Body>
         <Modal.Footer>
-          <Button onClick={() => (window.location.href = "/")}>Cerrar</Button>
+          <Button>Ir al curso</Button>
         </Modal.Footer>
       </Modal>
     </div>

@@ -15,16 +15,16 @@ const DashboardCourseCard = React.memo(({ course }) => {
       </Card.Body>
       <ListGroup className="list-group-flush">
         {course.topics.map((ct) => (
-          <ListGroupItem key={ct._id}>
+          <ListGroupItem key={ct.name}>
             <Badge variant="dark" className="mr-2">
               {ct.subject}
             </Badge>
-            <Link to={"/course/" + course.code + "#" + ct.name}>{ct.name}</Link>
+            <Link to={"/course/" + course._id + "#" + ct.name}>{ct.name}</Link>
           </ListGroupItem>
         ))}
       </ListGroup>
       <Card.Body>
-        <Button className="openBttn shadow-sm" href={"/course/" + course.code}>
+        <Button className="openBttn shadow-sm" href={"/course/" + course._id}>
           Abrir
         </Button>
       </Card.Body>

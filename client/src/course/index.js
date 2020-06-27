@@ -3,8 +3,8 @@ import { Spinner } from "react-bootstrap";
 import API from "../utils/API";
 import "./course.scss";
 import { StudentLayout } from "../components/Layout";
-import CourseIntro from "./components/CourseIntro";
-import Topic from "./components/Topic";
+import CourseIntro from "./CourseIntro";
+import Topic from "./Topic";
 
 export default React.memo((props) => {
   const [course, setCourse] = useState();
@@ -12,7 +12,7 @@ export default React.memo((props) => {
   const [breadcrumb, setBreadcrumb] = useState();
 
   useEffect(() => {
-    API.fetchCourseInfo(props.routeProps.match.params.code)
+    API.fetchCourseInfo(props.routeProps.match.params.courseId)
       .then((res) => {
         setCourse(res.data);
         setBreadcrumb([
@@ -24,23 +24,25 @@ export default React.memo((props) => {
         console.log(err);
         alert("Ocurrió un error al cargar la información del curso.");
       });
-  }, [props.routeProps.match.params.code]);
+  }, [props.routeProps.match.params.courseId]);
 
   return (
     <StudentLayout breadcrumb={breadcrumb}>
       {course ? (
         <>
           <CourseIntro
-            code={course.code}
+            courseId={course._id}
             name={course.name}
             description={course.longDescription}
-            topics={course.topics}
+            topics={course.topics.reduce((acc, cv) => {
+              acc.push({ topicId: cv._id, subject: cv.subject, name: cv.name });
+              return acc;
+            }, [])}
           />
           {/* topics */}
           {course.topics.map((ct) => (
             <Topic
-              key={ct.name}
-              code={course.code}
+              key={ct._id}
               name={ct.name}
               toLearn={ct.toLearn}
               description={ct.description}

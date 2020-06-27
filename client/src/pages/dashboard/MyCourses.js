@@ -7,7 +7,7 @@ const MyCourses = React.memo(({ courses }) => {
   return (
     <CardColumns className="mt-4">
       {courses.map((c) => (
-        <DashboardCourseCard key={c.name} course={c} />
+        <DashboardCourseCard key={c._id} course={c} />
       ))}
     </CardColumns>
   );
