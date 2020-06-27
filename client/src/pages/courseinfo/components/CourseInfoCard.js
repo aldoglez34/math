@@ -12,7 +12,7 @@ const CourseInfoCard = React.memo(
       API.buyCourse({ studentId: student._id, course: courseName })
         .then((res) => {
           console.log(res.data);
-          alert("Compraste este curso satisfactoriamente");
+          alert("¡Felicidades! Compraste este curso satisfactoriamente");
           window.location.href = "/dashboard";
           // the alert message is called in the reducer
         })

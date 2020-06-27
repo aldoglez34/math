@@ -3,6 +3,7 @@ import { StudentLayout } from "../components/Layout";
 import { Spinner } from "react-bootstrap";
 import API from "../utils/API";
 import QuestionsForm from "./components/QuestionsForm";
+import QuestionsContainer from "./components/QuestionsContainer";
 
 const Exam = React.memo((props) => {
   const { code, subject, exam } = props.routeProps.match.params;
@@ -27,7 +28,10 @@ const Exam = React.memo((props) => {
   return (
     <StudentLayout breadcrumb={breadcrumb}>
       {questions ? (
-        <QuestionsForm examName={exam} questions={questions} />
+        <>
+          {/* <QuestionsForm examName={exam} questions={questions} /> */}
+          <QuestionsContainer examName={exam} questions={questions} />
+        </>
       ) : (
         <div className="text-center mt-4 pt-4">
           <Spinner animation="border" variant="primary" />

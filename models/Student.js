@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const StudentSchema = new Schema({
+const schema = new Schema({
   firebaseUID: {
     type: String,
-    trim: true,
+    required: true,
     unique: true,
   },
   name: {
@@ -23,6 +23,7 @@ const StudentSchema = new Schema({
   },
   email: {
     type: String,
+    trim: true,
     unique: true,
     required: true,
   },
@@ -38,6 +39,6 @@ const StudentSchema = new Schema({
   },
 });
 
-const Student = mongoose.model("Student", StudentSchema);
+const Student = mongoose.model("Student", schema);
 
 module.exports = Student;

@@ -12,5 +12,6 @@ module.exports = [
     firstSurname: "Solano",
     secondSurname: "González",
     email: "aldoglez34@gmail.com",
+    courses: ["PRIM3y4"],
   },
 ];

@@ -34,19 +34,15 @@ router.get("/fetchByUID/:uid", function (req, res) {
 router.put("/buyCourse", function (req, res) {
   const { studentId, course } = req.body;
 
-  model.Student.findByIdAndUpdate(
-    studentId,
-    { $push: { courses: course } },
-    { new: true } // returns the new document
-  )
+  model.Student.findByIdAndUpdate(studentId, { $push: { courses: course } })
     .then((data) => {
-      // console.log(data);
+      console.log(data);
 
       res.send("OK");
     })
     .catch((err) => {
       console.log("@error", err);
-      res.status(422).send({ msg: "Ocurrió un error" });
+      res.status(422).send("Ocurrió un error");
     });
 });
 

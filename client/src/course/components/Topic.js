@@ -1,21 +1,21 @@
 import React from "react";
-import { Row, Col, ListGroup } from "react-bootstrap";
+import { Row, Col, Accordion, Card, Button, Badge } from "react-bootstrap";
 import PropTypes from "prop-types";
 
 const Topic = React.memo(
   ({ code, name, description, toLearn, material, exams }) => {
     return (
       <>
-        <Row id={name} style={{ marginTop: "70px" }}>
+        <Row id={name} style={{ marginTop: "35px" }}>
           <Col>
-            <h1 className="display-4">{name}</h1>
+            <h1 style={{ fontSize: "39px" }}>{name}</h1>
           </Col>
         </Row>
         <Row>
-          <Col lg={5}>
+          <Col lg={6}>
             <hr className="myDivider" />
             <p className="mb-3">{description}</p>
-            <p className="mb-1" style={{ fontSize: "13px" }}>
+            <p className="mb-1">
               <i className="far fa-lightbulb mr-2" />
               En esta sección aprenderás a:
             </p>
@@ -45,22 +45,67 @@ const Topic = React.memo(
               })}
             </div>
           </Col>
-          <Col lg={7} className="mt-2 mt-lg-0">
-            <h3 className="mb-3 mt-0 mt-lg-2">Ejercicios</h3>
-            <ListGroup>
-              {exams.map((ex) => {
-                return (
-                  <ListGroup.Item
-                    key={ex}
-                    action
-                    variant="light"
-                    href={`/course/${code}/${name}/${ex}`}
-                  >
-                    <strong className="text-primary">{ex}</strong>
-                  </ListGroup.Item>
-                );
-              })}
-            </ListGroup>
+          {/* exercises */}
+          <Col lg={6} className="mt-2 mt-lg-0">
+            <h4 className="mb-3 mt-0 mt-lg-3">Ejercicios</h4>
+            <Accordion>
+              {exams.map((ex) => (
+                <Card key={ex._id}>
+                  <Card.Header>
+                    <Accordion.Toggle
+                      as={Button}
+                      variant="link"
+                      eventKey={ex._id}
+                    >
+                      <i className="fas fa-chevron-down mr-2" />
+                      {ex.name}
+                      <Badge
+                        variant="primary"
+                        pill
+                        className="ml-2"
+                        style={{ fontSize: "11px" }}
+                      >
+                        {ex.level}
+                      </Badge>
+                    </Accordion.Toggle>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey={ex._id}>
+                    <Card.Body>
+                      <h3 className="text-primary">{ex.name}</h3>
+                      <p style={{ fontSize: "14px" }} className="mb-3">
+                        {ex.description}
+                      </p>
+                      <Row className="mb-3">
+                        <Col>
+                          <h3 className="mb-0">{ex.qCounter}m</h3>
+                          <h4>
+                            <small className="text-muted">duración</small>
+                          </h4>
+                        </Col>
+                        <Col>
+                          <h3 className="mb-0">{ex.qCounter}</h3>
+                          <h4>
+                            <small className="text-muted">preguntas</small>
+                          </h4>
+                        </Col>
+                        <Col>
+                          <h3 className="mb-0">0</h3>
+                          <h4>
+                            <small className="text-muted">intentos</small>
+                          </h4>
+                        </Col>
+                      </Row>
+                      <Button
+                        href={`/course/${code}/${name}/${ex.name}`}
+                        variant="primary"
+                      >
+                        Iniciar examen
+                      </Button>
+                    </Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              ))}
+            </Accordion>
           </Col>
         </Row>
       </>

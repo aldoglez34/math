@@ -31,7 +31,9 @@ export const StudentLayout = React.memo(({ breadcrumb, children }) => {
       <div className="marginTop" />
       <StudentNav />
       <MyBreadCrumb breadcrumb={breadcrumb} />
-      <Container style={{ paddingTop: "0px", paddingBottom: "20px" }}>
+      <Container
+        style={{ paddingTop: "0px", paddingBottom: "55px", fontSize: "16px" }}
+      >
         {children}
       </Container>
       <ScrollButton scrollStepInPx={150} delayInMs={16.66} />

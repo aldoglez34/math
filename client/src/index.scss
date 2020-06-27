@@ -24,16 +24,11 @@ h5 {
 .myDivider {
   margin-top: 0;
   border: none;
-  min-height: 0.3rem !important;
+  // min-height: 0.5rem !important;
+  height: 0.4rem !important;
   width: 2.5rem;
   background-color: #48bf84;
   margin-left: 0;
-}
-
-hr.dashedDivider {
-  background-color: transparent;
-  border-top: 2px dashed #8c8b8b;
-  margin: 90px 0px !important;
 }
 
 @media only screen and (max-width: 991px) {

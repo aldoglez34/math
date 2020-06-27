@@ -12,7 +12,16 @@ const schema = new Schema(
         subject: { type: String, required: true }, // ej. Aritmética
         name: { type: String, required: true, unique: true }, // ej. Suma/Resta/Multiplicación
         description: { type: String, required: true }, // ej. La suma es una de las cuatro operaciones básicas...
-        exams: [{ type: String, unique: true }], // sólo los nombres
+        exams: [
+          // nombres de los exámenes, junto con su duración y nivel, ej. Básico, Intermedio o Avanzad
+          {
+            name: { type: String, required: true },
+            description: { type: String, required: true },
+            level: { type: String, required: true },
+            duration: { type: Number, required: true },
+            qCounter: { type: Number, required: true },
+          },
+        ],
         toLearn: [{ type: String, unique: true }],
         material: [
           // todo lo que tenga links: pdfs/videos/etc

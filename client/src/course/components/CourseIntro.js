@@ -5,26 +5,27 @@ import { HashLink as Link } from "react-router-hash-link";
 
 const CourseIntro = React.memo(({ code, name, description, topics }) => {
   return (
-    <Container className="px-0 px-lg-3">
-      <Row>
-        <Col lg={5} style={{ backgroundColor: "#e6e8e9" }}>
-          <h1 className="mb-3 display-4">
-            <span className="bg-dark text-light">{name}</span>
-          </h1>
-          <p style={{ fontSize: "16px" }}>
+    <Container className="px-0">
+      <h1 className="mb-0 display-3" style={{ color: "#48bf84" }}>
+        {name}
+      </h1>
+      <Row className="mt-4">
+        <Col lg={6}>
+          <h4>¿De qué trata el curso?</h4>
+          <p style={{ fontSize: "16px" }} className="mb-0">
             <i className="fas fa-bullhorn mr-2 text-dark" />
             {description}
           </p>
         </Col>
-        <Col lg={7} className="mt-3 mt-lg-0">
-          <h3>Temario del curso</h3>
+        <Col lg={6} className="mt-2 mt-lg-0">
+          <h4>Temario</h4>
           {topics.map((t) => (
             <span
               key={t._id}
               className="d-block"
               style={{ fontSize: "15.5px" }}
             >
-              <Badge variant="light" className="mr-2">
+              <Badge variant="dark" className="mr-2">
                 {t.subject}
               </Badge>
               <Link to={"/course/" + code + "#" + t.name}>{t.name}</Link>

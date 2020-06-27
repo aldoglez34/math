@@ -7,10 +7,7 @@ import PropTypes from "prop-types";
 const QuestionsForm = React.memo(({ examName, questions }) => {
   const validationSchema = yup.object(
     questions.reduce((acc, cv) => {
-      acc[cv._id] = yup
-        .string()
-        // .matches(/^[0-9]*$/, "Formato inválido")
-        .required("Requerido");
+      acc[cv._id] = yup.string().required("Requerido");
       return acc;
     }, {})
   );
