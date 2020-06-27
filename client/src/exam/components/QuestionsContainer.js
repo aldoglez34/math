@@ -55,6 +55,11 @@ const QuestionsContainer = React.memo(({ examName, questions }) => {
               ) : null}
             </div>
           </Form>
+          {questions.filter((q) => q.qNumber === number)[0].qComment ? (
+            <span className="text-muted mt-2 mb-2">
+              questions.filter((q) => q.qNumber === number)[0].qComment
+            </span>
+          ) : null}
           <Button variant="success" className="mt-4" onClick={increment}>
             Siguiente
           </Button>
