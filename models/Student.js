@@ -29,17 +29,21 @@ const schema = new Schema({
   },
   courses: [
     {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: "Course",
       unique: true,
     },
   ],
   history: [
     {
-      exam: { type: String, required: true },
+      exam: {
+        type: Schema.Types.ObjectId,
+        ref: "Exam",
+      },
       date: { type: String, default: Date.now() },
     },
   ],
-  createdAt: {
+  registeredAt: {
     type: Date,
     default: Date.now(),
   },

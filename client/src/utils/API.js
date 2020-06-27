@@ -5,22 +5,28 @@ export default {
   // STUDENTS
   // ==============================================
 
-  registerNewStudent: (data) => axios.post("/api/student/new", data),
-
   fetchStudentByUID: (uid) => axios.get("/api/student/fetchByUID/" + uid),
+
+  registerNewStudent: (data) => axios.post("/api/student/new", data),
 
   buyCourse: (data) => axios.put("/api/student/buyCourse", data),
 
-  // dashboard
+  // student panel
+
   fetchMyCourses: (studentId) =>
     axios.get("/api/student/fetchCourses/" + studentId),
 
-  // course
-  fetchCourseInfo: (code) => axios.get("/api/student/fetchCourseInfo/" + code),
+  registerTry: (data) => axios.put("/api/student/registerTry", data),
 
-  // exam
-  registerExam: (data) => axios.put("/api/student/post/exam", data),
+  // ==============================================
+  // COURSES
+  // =============================================
 
-  fetchExam: (code, name) =>
-    axios.get("/api/student/exam/" + code + "/" + name),
+  fetchCourseInfo: (courseId) => axios.get("/api/course/info/" + courseId),
+
+  // ==============================================
+  // EXAMS
+  // =============================================
+
+  fetchExamInfo: (examId) => axios.get("/api/exam/info/" + examId),
 };

@@ -53,12 +53,14 @@ const CourseInfoCard = React.memo(
           <Button
             variant="danger"
             className="mt-3 shadow-sm"
-            disabled={student ? false : true}
+            // disabled={student ? false : true}
+            disabled={true}
             onClick={buyCourse}
           >
             Comprar
           </Button>
-          {student ? null : (
+          <p className="text-muted mb-0 mt-2">Próximamente</p>
+          {/* {student ? null : (
             <p className="text-muted mb-0 mt-2">
               Es necesario{" "}
               <a href="/login" className="text-warning">
@@ -66,7 +68,7 @@ const CourseInfoCard = React.memo(
               </a>{" "}
               para comprar un cusro
             </p>
-          )}
+          )} */}
         </Card.Body>
       </Card>
     );

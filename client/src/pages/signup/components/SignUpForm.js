@@ -81,7 +81,7 @@ const SignUpForm = React.memo(() => {
                       .then((res) => {
                         console.log("4 - then del fetchStudentByUID", res.data);
                         dispatch(studentActions.loginStudent(res.data));
-                        alert(`Iniciaste sesión con éxito, ${res.data.name}`);
+                        alert(`Bienvenido, ${res.data.name}`);
                         window.location.href = "/dashboard";
                       })
                       .catch((error) => {

@@ -3,7 +3,7 @@ import { Container, Row, Col, Badge } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { HashLink as Link } from "react-router-hash-link";
 
-const CourseIntro = React.memo(({ code, name, description, topics }) => {
+const CourseIntro = React.memo(({ courseId, name, description, topics }) => {
   return (
     <Container className="px-0">
       <h1 className="mb-0 display-3" style={{ color: "#48bf84" }}>
@@ -21,14 +21,14 @@ const CourseIntro = React.memo(({ code, name, description, topics }) => {
           <h4>Temario</h4>
           {topics.map((t) => (
             <span
-              key={t._id}
+              key={t.topicId}
               className="d-block"
               style={{ fontSize: "15.5px" }}
             >
               <Badge variant="dark" className="mr-2">
                 {t.subject}
               </Badge>
-              <Link to={"/course/" + code + "#" + t.name}>{t.name}</Link>
+              <Link to={"/course/" + courseId + "#" + t.name}>{t.name}</Link>
             </span>
           ))}
         </Col>
@@ -38,7 +38,7 @@ const CourseIntro = React.memo(({ code, name, description, topics }) => {
 });
 
 CourseIntro.propTypes = {
-  code: PropTypes.string.isRequired,
+  courseId: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   topics: PropTypes.array.isRequired,
