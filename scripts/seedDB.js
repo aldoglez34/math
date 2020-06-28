@@ -21,7 +21,7 @@ models.Exam.remove({})
     console.log("\n> " + data.length + " exams added");
     // separating ids only
     let examsIds = data.reduce((acc, cv) => {
-      acc.push({ courseCode: cv.courseCode, examId: cv._id });
+      acc.push({ topicCode: cv.topicCode, examId: cv._id });
       return acc;
     }, []);
     // remove courses

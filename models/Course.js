@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-  code: { type: String, required: true }, // ej. PRIM3y4
   name: { type: String, required: true }, // ej. Primaria 3ro y 4to
   shortDescription: { type: String, required: true },
   longDescription: { type: String, required: true },
   topics: [
     {
+      topicCode: { type: String, required: true }, // ej. PRIM3y4_Suma o PRIM3y4_Resta
       subject: { type: String, required: true }, // ej. Aritmética
       name: { type: String, required: true, unique: true }, // ej. Suma/Resta/Multiplicación
       description: { type: String, required: true }, // ej. La suma es una de las cuatro operaciones básicas...

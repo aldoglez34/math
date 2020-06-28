@@ -1,6 +1,6 @@
-const insertExams = (courseCode, examsIds) => {
+const insertExams = (topicCode, examsIds) => {
   return examsIds.reduce((acc, cv) => {
-    if (cv.courseCode == courseCode) {
+    if (cv.topicCode == topicCode) {
       acc.push(cv.examId);
     }
     return acc;
@@ -9,7 +9,6 @@ const insertExams = (courseCode, examsIds) => {
 
 module.exports = (examsIds) => [
   {
-    code: "PRIM3y4",
     name: "Primaria 3ro y 4to",
     shortDescription:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius risus massa, et sollicitudin est fringilla hendrerit. Etiam luctus blandit dolor, vitae tristique elit convallis in. Quisque eleifend consectetur velit id ultrices.",
@@ -17,6 +16,7 @@ module.exports = (examsIds) => [
       "Quisque eget posuere lacus, in posuere risus. Curabitur semper fermentum dolor. Integer imperdiet, lectus eu suscipit rutrum, felis nisi vestibulum turpis, vel dictum magna odio sit amet orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris aliquam justo vel lacus ultricies iaculis.",
     topics: [
       {
+        topicCode: "PRIM3y4_Suma",
         subject: "Aritmética",
         name: "Suma",
         description:
@@ -29,13 +29,12 @@ module.exports = (examsIds) => [
           {
             type: "pdf",
             name: "Introducción sumas",
-            link: "/pdf/sum/SumasIntro.pdf",
+            link: "/pdf/suma/SumasIntro.pdf",
           },
           {
             type: "pdf",
-            subject: "Aritmética",
             name: "Sumas (Ejemplos)",
-            link: "/pdf/sum/Sumas.pdf",
+            link: "/pdf/suma/Sumas.pdf",
           },
           {
             type: "video",
@@ -43,7 +42,70 @@ module.exports = (examsIds) => [
             link: "https://youtu.be/UFclruOiQRg",
           },
         ],
-        exams: insertExams("PRIM3y4", examsIds), // dont forget to give the course code here (manually)
+        exams: insertExams("PRIM3y4_Suma", examsIds), // dont forget to give the course code here (manually)
+      },
+      {
+        topicCode: "PRIM3y4_Resta",
+        subject: "Aritmética",
+        name: "Resta",
+        description:
+          "Sed lacinia lacus non laoreet pulvinar. Maecenas tincidunt suscipit tortor non vehicula. Ut dolor felis, rutrum non tempus nec, pulvinar in neque. Donec facilisis nunc lacinia libero laoreet, et volutpat felis convallis. Nunc sollicitudin, leo at laoreet faucibus.",
+        toLearn: [
+          "Identificar los elementos y propiedades de la resta",
+          "Resolver problemas usando la resta",
+        ],
+        material: [
+          {
+            type: "pdf",
+            name: "Introducción a la resta",
+            link: "/pdf/resta/restasIntro.pdf",
+          },
+          {
+            type: "pdf",
+            name: "Restas (Ejemplos)",
+            link: "/pdf/resta/Restas.pdf",
+          },
+          {
+            type: "video",
+            name: "Restas con números enteros",
+            link: "https://youtu.be/a49HIq6I4PU",
+          },
+          {
+            type: "video",
+            name: "Comprobación de la resta",
+            link: "https://youtu.be/FiTOOjrBZTc",
+          },
+        ],
+        exams: insertExams("PRIM3y4_Resta", examsIds), // dont forget to give the course code here (manually)
+      },
+      {
+        topicCode: "PRIM3y4_Multi",
+        subject: "Aritmética",
+        name: "Multiplicación",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tellus urna, interdum sit amet libero eu, viverra dignissim lacus. Donec malesuada iaculis nunc sollicitudin ornare.",
+        toLearn: [
+          "Identificar los elementos y propiedades de la multiplicación",
+          "Resolver problemas usando la multiplicación",
+        ],
+        material: [
+          {
+            type: "pdf",
+            name: "Introducción a la multiplicación",
+            link: "/pdf/multi/MultiIntro.pdf",
+          },
+          {
+            type: "pdf",
+            name: "Multiplicaciones (Ejemplos)",
+            link: "/pdf/multi/Multiplicaciones.pdf",
+          },
+          {
+            type: "video",
+            name: "Multiplicaciones con números enteros",
+            link: "https://youtu.be/suU4_TB6S_Q",
+          },
+        ],
+        exams: insertExams("PRIM3y4_Multi", examsIds), // dont forget to give the course code here (manually)
       },
     ],
   },

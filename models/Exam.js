@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-  courseCode: { type: String, required: true }, // ej. PRIM3y4, SECU2, etc (curso al que pertenece)
+  topicCode: { type: String, required: true }, // ej. PRIM3y4_Suma o PRIM3y4_Resta
   subject: { type: String, required: true }, // ej. Aritmética
   name: { type: String, required: true, unique: true }, // ej. Sumas 1
   description: { type: String, required: true }, // ej. "Este es un examen blah blah..."

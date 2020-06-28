@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import { Button, Form, Row, Col, Modal } from "react-bootstrap";
+import "./questioncontainer.scss";
 
 const QuestionsContainer = React.memo(({ examName, questions }) => {
   const [number, setNumber] = useState(1);
@@ -64,7 +65,7 @@ const QuestionsContainer = React.memo(({ examName, questions }) => {
   };
 
   return (
-    <div style={{ marginTop: "50px" }}>
+    <div id="qContainer">
       <h1>{examName}</h1>
       <Row className="mt-4">
         <Col lg={{ span: 6, offset: 3 }} className="p-4">

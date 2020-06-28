@@ -34,15 +34,6 @@ const schema = new Schema({
       unique: true,
     },
   ],
-  history: [
-    {
-      exam: {
-        type: Schema.Types.ObjectId,
-        ref: "Exam",
-      },
-      date: { type: String, default: Date.now() },
-    },
-  ],
   registeredAt: {
     type: Date,
     default: Date.now(),
