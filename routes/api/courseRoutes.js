@@ -8,8 +8,13 @@ router.get("/info/:courseId", function (req, res) {
 
   model.Course.findById(courseId)
     .lean()
-    .populate("topics.exams", "subject name description difficulty qCounter duration")
-    .then((data) => res.json(data))
+    .populate(
+      "topics.exams",
+      "subject name description difficulty qCounter duration highestScores"
+    )
+    .then((data) => {
+      res.json(data);
+    })
     .catch((err) => {
       console.log("@error", err);
       res.status(422).send({ msg: "Ocurrió un error" });

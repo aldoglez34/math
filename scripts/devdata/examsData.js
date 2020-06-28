@@ -279,7 +279,7 @@ module.exports = [
     name: "Sumas 3",
     description:
       "Integer eleifend nibh non sem tincidunt, at ultricies purus vestibulum. Vivamus sed lobortis ligula, ut lacinia elit.",
-    difficulty: "Intermedio",
+    difficulty: "Avanzado",
     duration: 23,
     qCounter: 20,
     questions: [

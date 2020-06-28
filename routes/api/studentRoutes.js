@@ -63,23 +63,4 @@ router.get("/fetchCourses/:studentId", function (req, res) {
     });
 });
 
-// registerTry()
-// matches with /api/student/registerTry
-router.put("/registerTry", function (req, res) {
-  const { studentId, examId } = req.body;
-
-  const obj = { exam: examId, date: Date.now() };
-
-  model.Student.findByIdAndUpdate(studentId, {
-    $push: { history: obj },
-  })
-    .then(() => {
-      res.send("Se registro el intento correctamente");
-    })
-    .catch((err) => {
-      console.log("@error", err);
-      res.status(422).send("Ocurrió un error");
-    });
-});
-
 module.exports = router;

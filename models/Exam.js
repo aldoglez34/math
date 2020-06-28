@@ -9,6 +9,17 @@ const schema = new Schema({
   difficulty: { type: String, required: true }, // Básico/Intermedio/Avanzado
   duration: { type: Number, required: true }, // 20 (minutes)
   qCounter: { type: Number, required: true }, // 20 (question counter)
+  highestScores: [
+    {
+      student: {
+        type: Schema.Types.ObjectId,
+        ref: "Student",
+        required: true,
+      },
+      date: { type: Date, default: Date.now() },
+      score: { type: Number, required: true },
+    },
+  ],
   questions: [
     {
       qNumber: { type: Number, required: true }, // número de la pregunta, ejemplo: 1

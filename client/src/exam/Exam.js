@@ -5,14 +5,6 @@ import API from "../utils/API";
 import QuestionsContainer from "./components/QuestionsContainer";
 
 const Exam = React.memo((props) => {
-  // const { code, subject, exam } = props.routeProps.match.params;
-  // const breadcrumb = [
-  //   { text: "Mis cursos", link: "/dashboard" },
-  //   { text: code, link: "/course/" + code },
-  //   { text: subject, link: "/course/" + code + "#" + subject },
-  //   { text: exam },
-  // ];
-
   const [exam, setExam] = useState();
 
   useEffect(() => {
