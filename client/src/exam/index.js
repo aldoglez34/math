@@ -38,11 +38,12 @@ const Exam = React.memo((props) => {
           <h4 className="mb-0 mt-2" style={{ color: "dimgray" }}>
             {exam.subject}
           </h4>
-          <h1 style={{ fontWeight: 800 }}>{exam.name}</h1>
+          <h1 style={{ fontWeight: 800 }} className="mb-0">
+            {exam.name}
+          </h1>
           {/* questions */}
           <QuestionsContainer
-            subject={exam.subject}
-            name={exam.name}
+            duration={exam.duration}
             questions={exam.questions}
           />
         </>

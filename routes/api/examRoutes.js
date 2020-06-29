@@ -7,7 +7,7 @@ router.get("/info/:examId", function (req, res) {
   const examId = req.params.examId;
 
   model.Exam.findById(examId)
-    .select("subject name questions")
+    .select("subject name questions duration")
     .then((data) => res.json(data))
     .catch((err) => {
       console.log("@error", err);

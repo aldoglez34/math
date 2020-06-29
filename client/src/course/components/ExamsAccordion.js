@@ -77,7 +77,7 @@ const ExamsAccordion = React.memo(({ exams, courseId }) => {
           </Card.Header>
           <Accordion.Collapse eventKey={ex._id}>
             <Card.Body>
-              <h2 className="text-primary mb-3">{ex.name}</h2>
+              <h2 className="mb-3">{ex.name}</h2>
               <div className="d-flex flex-row align-items-center mb-2">
                 <strong className="mr-1" style={{ fontSize: "15px" }}>
                   Dificultad:

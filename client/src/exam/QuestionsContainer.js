@@ -4,7 +4,7 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import CorrectModal from "./components/CorrectModal";
 import WrongModal from "./components/WrongModal";
 
-const QuestionsContainer = React.memo(({ questions }) => {
+const QuestionsContainer = React.memo(({ duration, questions }) => {
   const inputRef = useRef();
 
   // number of the question AND the question shown in screen
@@ -39,9 +39,7 @@ const QuestionsContainer = React.memo(({ questions }) => {
 
     if (number === questions.length) {
       // prepare results
-      // calculateResults();
-      // show results modal
-      // setShow(true);
+      alert("HAS FINALIZADO");
     } else {
       // go to next question
       setNumber(number + 1);
@@ -59,7 +57,24 @@ const QuestionsContainer = React.memo(({ questions }) => {
 
   return question ? (
     <>
-      <Row className="mt-4 bg-light mx-lg-1">
+      <Row className="mt-4 mx-lg-1 py-3" style={{ backgroundColor: "white" }}>
+        <Col lg={{ span: 7, offset: 2 }}>
+          <div className="d-flex flex-row">
+            <h1 className="mb-0" style={{ color: "#48bf84" }}>
+              <i
+                className="fas fa-stopwatch mr-2"
+                style={{ color: "#48bf84" }}
+              />
+              <span>{duration}</span>
+            </h1>
+            <h1 className="mb-0 ml-4" style={{ color: "#48bf84" }}>
+              <i className="fas fa-trophy mr-2" />
+              <span>{score}</span>
+            </h1>
+          </div>
+        </Col>
+      </Row>
+      <Row className="mx-lg-1" style={{ backgroundColor: "#f4fbf8" }}>
         <Col lg={{ span: 7, offset: 2 }} className="p-4">
           {/* INSTRUCTION */}
           <h4>{question.qInstruction}</h4>
@@ -106,6 +121,7 @@ const QuestionsContainer = React.memo(({ questions }) => {
 });
 
 QuestionsContainer.propTypes = {
+  duration: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
 };
 
