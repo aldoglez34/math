@@ -14,7 +14,7 @@ const ExamsAccordion = React.memo(({ exams, courseId }) => {
       .then((res) => console.log(res.data))
       .catch((err) => {
         console.log(err);
-        alert("Ocurrió un error al registrar el examen");
+        // alert("Ocurrió un error al registrar el examen");
       });
   };
 

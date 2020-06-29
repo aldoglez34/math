@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import CorrectModal from "./components/CorrectModal";
 import WrongModal from "./components/WrongModal";
+import ResultsModal from "./components/ResultsModal";
 
-const QuestionsContainer = React.memo(({ duration, questions }) => {
+const QuestionsContainer = React.memo(({ courseId, duration, questions }) => {
   const inputRef = useRef();
 
   // number of the question AND the question shown in screen
@@ -17,6 +18,7 @@ const QuestionsContainer = React.memo(({ duration, questions }) => {
   // modals
   const [showCorrectModal, setShowCorrectModal] = useState(false);
   const [showWrongModal, setShowWrongModal] = useState(false);
+  const [showResultsModal, setShowResultsModal] = useState(false);
 
   useEffect(() => {
     setQuestion(questions.filter((q) => q.qNumber === number)[0]);
@@ -38,8 +40,8 @@ const QuestionsContainer = React.memo(({ duration, questions }) => {
     inputRef.current.value = "";
 
     if (number === questions.length) {
-      // prepare results
-      alert("HAS FINALIZADO");
+      // show results modal
+      setShowResultsModal(true);
     } else {
       // go to next question
       setNumber(number + 1);
@@ -50,7 +52,7 @@ const QuestionsContainer = React.memo(({ duration, questions }) => {
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      // increment();
+      increment();
       console.log("enter key pressed!");
     }
   };
@@ -60,17 +62,17 @@ const QuestionsContainer = React.memo(({ duration, questions }) => {
       <Row className="mt-4 mx-lg-1 py-3" style={{ backgroundColor: "white" }}>
         <Col lg={{ span: 7, offset: 2 }}>
           <div className="d-flex flex-row">
-            <h1 className="mb-0" style={{ color: "#48bf84" }}>
+            <h2 className="mb-0" style={{ color: "#48bf84" }}>
               <i
                 className="fas fa-stopwatch mr-2"
                 style={{ color: "#48bf84" }}
               />
               <span>{duration}</span>
-            </h1>
-            <h1 className="mb-0 ml-4" style={{ color: "#48bf84" }}>
+            </h2>
+            <h2 className="mb-0 ml-4" style={{ color: "#48bf84" }}>
               <i className="fas fa-trophy mr-2" />
               <span>{score}</span>
-            </h1>
+            </h2>
           </div>
         </Col>
       </Row>
@@ -116,11 +118,17 @@ const QuestionsContainer = React.memo(({ duration, questions }) => {
         showWrongModal={showWrongModal}
         setShowWrongModal={setShowWrongModal}
       />
+      <ResultsModal
+        showResultsModal={showResultsModal}
+        courseId={courseId}
+        score={score}
+      />
     </>
   ) : null;
 });
 
 QuestionsContainer.propTypes = {
+  courseId: PropTypes.string.isRequired,
   duration: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
 };

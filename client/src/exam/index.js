@@ -43,6 +43,7 @@ const Exam = React.memo((props) => {
           </h1>
           {/* questions */}
           <QuestionsContainer
+            courseId={courseId}
             duration={exam.duration}
             questions={exam.questions}
           />
