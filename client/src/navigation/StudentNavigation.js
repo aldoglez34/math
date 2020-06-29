@@ -6,7 +6,7 @@ import CourseInfoPrepa from "../pages/courseinfo/CourseInfoPrepa";
 import NoMatch from "../pages/nomatch/NoMatch";
 import Dashboard from "../pages/dashboard";
 import Course from "../course";
-import Exam from "../exam/Exam";
+import Exam from "../exam";
 
 export default () => {
   return (
@@ -32,7 +32,7 @@ export default () => {
       {/* exam */}
       <Route
         exact
-        path="/exam/:examId"
+        path="/course/:courseId/exam/:examId"
         render={(props) => <Exam routeProps={props} />}
       />
 

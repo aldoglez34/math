@@ -11,8 +11,10 @@ export default React.memo((props) => {
 
   const [breadcrumb, setBreadcrumb] = useState();
 
+  const courseId = props.routeProps.match.params.courseId;
+
   useEffect(() => {
-    API.fetchCourseInfo(props.routeProps.match.params.courseId)
+    API.fetchCourseInfo(courseId)
       .then((res) => {
         setCourse(res.data);
         setBreadcrumb([
@@ -48,6 +50,7 @@ export default React.memo((props) => {
               description={ct.description}
               material={ct.material}
               exams={ct.exams}
+              courseId={courseId} // for the exit button ahead
             />
           ))}
         </>

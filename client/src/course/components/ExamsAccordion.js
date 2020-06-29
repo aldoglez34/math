@@ -6,7 +6,7 @@ import API from "../../utils/API";
 import moment from "moment";
 import "moment/locale/es";
 
-const ExamsAccordion = React.memo(({ exams }) => {
+const ExamsAccordion = React.memo(({ exams, courseId }) => {
   const student = useSelector((state) => state.student);
 
   const registerScore = (examId) => {
@@ -115,7 +115,7 @@ const ExamsAccordion = React.memo(({ exams }) => {
               </Row>
               <Button
                 onClick={() => registerScore(ex._id)}
-                href={"/exam/" + ex._id}
+                href={"/course/" + courseId + "/exam/" + ex._id}
                 variant="primary"
               >
                 Iniciar examen
@@ -130,6 +130,7 @@ const ExamsAccordion = React.memo(({ exams }) => {
 
 ExamsAccordion.propTypes = {
   exams: PropTypes.array.isRequired,
+  courseId: PropTypes.string.isRequired,
 };
 
 export default ExamsAccordion;
