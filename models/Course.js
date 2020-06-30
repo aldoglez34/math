@@ -12,6 +12,19 @@ const schema = new Schema({
       name: { type: String, required: true, unique: true }, // ej. Suma/Resta/Multiplicación
       description: { type: String, required: true }, // ej. La suma es una de las cuatro operaciones básicas...
       toLearn: [{ type: String, unique: true }], // el. Aprenderás a sumar números, Aprenderás a blah blah (es un array)
+      freestyle: {
+        timer: { type: Number, required: true },
+        visits: [
+          {
+            student: {
+              type: Schema.Types.ObjectId,
+              ref: "Student",
+            },
+            score: { type: Number },
+            date: { type: Date, default: Date.now() },
+          },
+        ],
+      },
       material: [
         // todo lo que tenga links: pdfs/videos/etc
         {

@@ -14,7 +14,7 @@ mongoose
 // inserting data
 models.Exam.remove({})
   .then(() => {
-    const examsData = require("./devdata/examsData");
+    const examsData = require("./examsData");
     return models.Exam.insertMany(examsData);
   })
   .then((data) => {

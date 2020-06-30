@@ -25,6 +25,9 @@ module.exports = (examsIds) => [
           "Identificar los elementos y propiedades de la suma",
           "Resolver problemas usando la suma",
         ],
+        freestyle: {
+          timer: 10,
+        },
         material: [
           {
             type: "pdf",
@@ -54,6 +57,9 @@ module.exports = (examsIds) => [
           "Identificar los elementos y propiedades de la resta",
           "Resolver problemas usando la resta",
         ],
+        freestyle: {
+          timer: 10,
+        },
         material: [
           {
             type: "pdf",
@@ -88,6 +94,9 @@ module.exports = (examsIds) => [
           "Identificar los elementos y propiedades de la multiplicación",
           "Resolver problemas usando la multiplicación",
         ],
+        freestyle: {
+          timer: 10,
+        },
         material: [
           {
             type: "pdf",

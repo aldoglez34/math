@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image, Spinner } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 import { StudentLayout } from "../../components/Layout";
 import { useSelector } from "react-redux";
 import "./dashboard.scss";
@@ -25,15 +25,7 @@ const Dashboard = React.memo(() => {
 
   return (
     <StudentLayout>
-      <div className="d-flex flex-row align-items-end mt-4">
-        <Image
-          src="/images/books.png"
-          width="50"
-          height="50"
-          style={{ paddingBottom: "4px" }}
-        />
-        <h2 className="display-4 ml-2 mb-0">Mis cursos</h2>
-      </div>
+      <h2 className="display-4 mb-0 mt-4">Mis cursos</h2>
       {myCourses ? (
         myCourses.length ? (
           <MyCourses courses={myCourses} />

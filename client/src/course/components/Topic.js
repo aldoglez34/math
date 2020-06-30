@@ -1,22 +1,34 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
-import ExamsAccordion from "./components/ExamsAccordion";
+import ExamsAccordion from "./ExamsAccordion";
 
 const Topic = React.memo(
-  ({ name, description, toLearn, material, exams, courseId }) => {
+  ({
+    name,
+    description,
+    toLearn,
+    material,
+    exams,
+    freestyleTimer,
+    freestyleAttemptsCounter,
+    freestyleLatestVisit,
+    freestyleHighestScore,
+    courseId,
+  }) => {
     return (
       <>
         <Row id={name} style={{ marginTop: "35px" }}>
           {/* title */}
           <Col>
-            <h1 style={{ fontSize: "39px" }}>{name}</h1>
+            <h1 className="display-4" style={{ color: "#48bf84" }}>
+              {name}
+            </h1>
           </Col>
         </Row>
         <Row>
           {/* description and material */}
           <Col lg={6}>
-            <hr className="myDivider" />
             <p className="mb-3">{description}</p>
             <p className="mb-1">
               <i className="far fa-lightbulb mr-2" />
@@ -50,8 +62,16 @@ const Topic = React.memo(
           </Col>
           {/* exams */}
           <Col lg={6} className="mt-2 mt-lg-0">
-            <h4 className="mb-3 mt-0 mt-lg-3">Ejercicios</h4>
-            <ExamsAccordion exams={exams} courseId={courseId} />
+            <h4 className="mb-3 mt-0 mt-lg-3">Exámenes</h4>
+            <ExamsAccordion
+              exams={exams}
+              courseId={courseId}
+              // freestyle props
+              freestyleTimer={freestyleTimer}
+              freestyleAttemptsCounter={freestyleAttemptsCounter}
+              freestyleLatestVisit={freestyleLatestVisit}
+              freestyleHighestScore={freestyleHighestScore}
+            />
           </Col>
         </Row>
       </>
@@ -66,6 +86,7 @@ Topic.propTypes = {
   material: PropTypes.array.isRequired,
   exams: PropTypes.array.isRequired,
   courseId: PropTypes.string.isRequired,
+  freestyleTimer: PropTypes.number.isRequired,
 };
 
 export default Topic;

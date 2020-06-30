@@ -24,6 +24,19 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+export const MainCourseLayout = React.memo(({ breadcrumb, children }) => {
+  return (
+    <>
+      <MyNavbar />
+      <div className="marginTop" />
+      <StudentNav />
+      <MyBreadCrumb breadcrumb={breadcrumb} />
+      {children}
+      <ScrollButton scrollStepInPx={150} delayInMs={16.66} />
+    </>
+  );
+});
+
 export const StudentLayout = React.memo(({ breadcrumb, children }) => {
   return (
     <>

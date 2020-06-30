@@ -20,7 +20,8 @@ export default {
   // COURSES
   // =============================================
 
-  fetchCourseInfo: (courseId) => axios.get("/api/course/info/" + courseId),
+  fetchCourseInfo: (courseId, studentId) =>
+    axios.get("/api/course/info/" + courseId + "/" + studentId),
 
   // ==============================================
   // EXAMS
