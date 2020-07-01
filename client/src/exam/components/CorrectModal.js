@@ -19,7 +19,7 @@ const CorrectModal = React.memo(({ showCorrectModal, setShowCorrectModal }) => {
   useEffect(() => {
     // close modal after 2 seconds
     if (showCorrectModal) setTimeout(() => setShowCorrectModal(false), 1500);
-  }, [showCorrectModal]);
+  }, [showCorrectModal, setShowCorrectModal]);
 
   return (
     <>

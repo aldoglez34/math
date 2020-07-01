@@ -36,10 +36,7 @@ const FreestyleCard = React.memo(
             >
               <em>
                 {freestyleLatestVisit
-                  ? moment(freestyleLatestVisit)
-                      .format("llll")
-                      .charAt(0)
-                      .toUpperCase() + freestyleLatestVisit.slice(1)
+                  ? moment(freestyleLatestVisit).format("LLLL")
                   : "No has presentado este examen"}
               </em>
             </strong>

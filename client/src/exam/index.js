@@ -16,35 +16,28 @@ const Exam = React.memo((props) => {
       .then((res) => setExam(res.data))
       .catch((err) => {
         console.log(err);
-        alert("Ocurrió un error en el servidor");
+        alert("Ocurrió un error al cargar las preguntas de tu examen");
       });
-  }, [props.routeProps.match.params.examId]);
+  }, [examId]);
 
   return (
     <StudentLayout>
       {exam ? (
         <>
-          {/* exit button */}
-          <Button
-            variant="link"
-            className="p-0 mt-3"
-            href={"/course/" + courseId}
-            id="examExitButton"
-          >
-            <i className="fas fa-chevron-left mr-1" />
-            Salir
-          </Button>
           {/* title */}
-          <h4 className="mb-0 mt-2" style={{ color: "dimgray" }}>
-            {exam.subject}
-          </h4>
-          <h1 style={{ fontWeight: 800 }} className="mb-0">
-            {exam.name}
-          </h1>
+          <div className="d-flex mt-4">
+            <h1 className="mb-0 pr-3">{exam.name}</h1>
+            <div className="ml-auto d-flex align-items-end">
+              <Button variant="danger" href={"/course/" + courseId}>
+                Salir
+              </Button>
+            </div>
+          </div>
+          <hr />
           {/* questions */}
           <QuestionsContainer
+            examId={examId}
             courseId={courseId}
-            duration={exam.duration}
             questions={exam.questions}
           />
         </>

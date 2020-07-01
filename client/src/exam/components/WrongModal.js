@@ -6,7 +6,7 @@ const WrongModal = React.memo(({ showWrongModal, setShowWrongModal }) => {
   useEffect(() => {
     // close modal after 2 seconds
     if (showWrongModal) setTimeout(() => setShowWrongModal(false), 1500);
-  }, [showWrongModal]);
+  }, [showWrongModal, setShowWrongModal]);
 
   return (
     <>

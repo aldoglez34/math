@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const model = require("../../models");
-const { addListener } = require("../../models/Exam");
 
 // fetchCourseInfo()
 // matches with /api/course/info/:courseId/:studentId
@@ -12,7 +11,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
     .lean()
     .populate(
       "topics.exams",
-      "subject name description difficulty qCounter duration visits"
+      "subject name description difficulty qCounter duration visits qCounter"
     )
     .then((data) => {
       // res.json(data);
@@ -53,6 +52,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
                 name: cv.name,
                 description: cv.description,
                 difficulty: cv.difficulty,
+                qCounter: cv.qCounter,
                 myAttempts: cv.visits.filter((v) => v.student == studentId)
                   .length,
                 latestAttempt: cv.visits
@@ -60,9 +60,9 @@ router.get("/info/:courseId/:studentId", function (req, res) {
                   .sort((a, b) => (a.date > b.date ? -1 : 1))[0]
                   ? cv.visits
                       .filter((v) => v.student == studentId)
-                      .sort((a, b) => (a.date > b.date ? -1 : 1))[0]
+                      .sort((a, b) => (a.date > b.date ? -1 : 1))[0].date
                   : null,
-                latestScore: cv.visits
+                highestScore: cv.visits
                   .filter((v) => v.student == studentId)
                   .sort((a, b) => (a.score > b.score ? -1 : 1))[0]
                   ? cv.visits

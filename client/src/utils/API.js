@@ -29,5 +29,5 @@ export default {
 
   fetchExamInfo: (examId) => axios.get("/api/exam/info/" + examId),
 
-  registerScore: (data) => axios.put("/api/exam/registerScore", data),
+  registerAttempt: (data) => axios.put("/api/exam/registerAttempt", data),
 };

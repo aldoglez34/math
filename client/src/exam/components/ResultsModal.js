@@ -5,7 +5,11 @@ import PropTypes from "prop-types";
 const ResultsModal = React.memo(({ showResultsModal, courseId, score }) => {
   return (
     <>
-      <Modal show={showResultsModal} centered>
+      <Modal
+        show={showResultsModal}
+        centered
+        onHide={() => (window.location.href = "/course/" + courseId)}
+      >
         <Modal.Body className="bg-light rounded">
           <h1>Resultados</h1>
           <hr />

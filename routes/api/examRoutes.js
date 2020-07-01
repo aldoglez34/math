@@ -7,24 +7,60 @@ router.get("/info/:examId", function (req, res) {
   const examId = req.params.examId;
 
   model.Exam.findById(examId)
-    .select("subject name questions duration")
-    .then((data) => res.json(data))
+    .select("name questions qCounter")
+    .then((data) => {
+      const { qCounter } = data;
+      const totalQuestions = data.questions.length;
+
+      const uniqueNumbers = [];
+      while (uniqueNumbers.length <= qCounter) {
+        let n = Math.floor(Math.random() * totalQuestions);
+        if (!uniqueNumbers.includes(n)) uniqueNumbers.push(n);
+        // ...
+        if (uniqueNumbers.length === qCounter) {
+          break;
+        }
+      }
+
+      let qNumber = 0;
+      return {
+        name: data.name,
+        questions: data.questions.reduce((acc, cv, idx) => {
+          if (uniqueNumbers.includes(idx)) {
+            acc.push({
+              _id: cv._id,
+              qNumber: qNumber + 1,
+              qInstruction: cv.qInstruction,
+              qTechnicalInstruction: cv.qTechnicalInstruction,
+              qComment: cv.qComment,
+              qCorrectAnswer: cv.qCorrectAnswer,
+              qCorrectAnswerComplement: cv.qCorrectAnswerComplement,
+            });
+            qNumber++;
+          }
+          return acc;
+        }, []),
+      };
+    })
+    .then((data) => {
+      res.json(data);
+    })
     .catch((err) => {
       console.log("@error", err);
       res.status(422).send({ msg: "Ocurrió un error" });
     });
 });
 
-// registerScore()
-// matches with /api/exam/registerScore
-router.put("/registerScore", function (req, res) {
+// registerAttempt()
+// matches with /api/exam/registerAttempt
+router.put("/registerAttempt", function (req, res) {
   const { studentId, examId, score } = req.body;
 
   const obj = { student: studentId, date: Date.now(), score };
 
   model.Exam.findOneAndUpdate(
     { _id: examId },
-    { $set: { highestScores: obj } },
+    { $push: { visits: obj } },
     { new: true }
   )
     .then(() => {

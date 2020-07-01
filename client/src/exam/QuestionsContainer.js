@@ -4,9 +4,13 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import CorrectModal from "./components/CorrectModal";
 import WrongModal from "./components/WrongModal";
 import ResultsModal from "./components/ResultsModal";
+import API from "../utils/API";
+import { useSelector } from "react-redux";
 
-const QuestionsContainer = React.memo(({ courseId, duration, questions }) => {
+const QuestionsContainer = React.memo(({ examId, courseId, questions }) => {
   const inputRef = useRef();
+
+  const student = useSelector((state) => state.student);
 
   // number of the question AND the question shown in screen
   const [number, setNumber] = useState(1);
@@ -22,14 +26,14 @@ const QuestionsContainer = React.memo(({ courseId, duration, questions }) => {
 
   useEffect(() => {
     setQuestion(questions.filter((q) => q.qNumber === number)[0]);
-  }, [number]);
+  }, [number, questions]);
 
   const increment = () => {
     // save the answer in the state
     const userAnswer = inputRef.current.value;
 
     // check if the answer given by the user is the same as the question in the state
-    if (userAnswer == question.qCorrectAnswer) {
+    if (userAnswer === question.qCorrectAnswer) {
       setShowCorrectModal(true);
       setScore(score + 10);
     } else {
@@ -40,6 +44,13 @@ const QuestionsContainer = React.memo(({ courseId, duration, questions }) => {
     inputRef.current.value = "";
 
     if (number === questions.length) {
+      // register attempt
+      API.registerAttempt({ studentId: student._id, examId, score })
+        .then((res) => console.log(res.data))
+        .catch((err) => {
+          console.log("Error", err);
+          // alert("Ocurrió un error al registrar el examen");
+        });
       // show results modal
       setShowResultsModal(true);
     } else {
@@ -59,24 +70,7 @@ const QuestionsContainer = React.memo(({ courseId, duration, questions }) => {
 
   return question ? (
     <>
-      <Row className="mt-4 mx-lg-1 py-3" style={{ backgroundColor: "white" }}>
-        <Col lg={{ span: 7, offset: 2 }}>
-          <div className="d-flex flex-row">
-            <h2 className="mb-0" style={{ color: "#48bf84" }}>
-              <i
-                className="fas fa-stopwatch mr-2"
-                style={{ color: "#48bf84" }}
-              />
-              <span>{duration}</span>
-            </h2>
-            <h2 className="mb-0 ml-4" style={{ color: "#48bf84" }}>
-              <i className="fas fa-trophy mr-2" />
-              <span>{score}</span>
-            </h2>
-          </div>
-        </Col>
-      </Row>
-      <Row className="mx-lg-1" style={{ backgroundColor: "#f4fbf8" }}>
+      <Row className="mx-lg-1 bg-light mt-4">
         <Col lg={{ span: 7, offset: 2 }} className="p-4">
           {/* INSTRUCTION */}
           <h4>{question.qInstruction}</h4>
@@ -108,6 +102,22 @@ const QuestionsContainer = React.memo(({ courseId, duration, questions }) => {
             Siguiente
           </Button>
         </Col>
+        <Col className="py-4 d-flex align-items-center justify-content-center bg-white">
+          <Row>
+            <Col className="text-center">
+              <h1 className="display-3 mb-0">{number}</h1>
+              <h5 className="text-muted mb-0" style={{ fontWeight: 800 }}>
+                PREGUNTA
+              </h5>
+            </Col>
+            <Col className="text-center ml-3">
+              <h1 className="display-3 mb-0">{score}</h1>
+              <h5 className="text-muted mb-0" style={{ fontWeight: 800 }}>
+                PUNTOS
+              </h5>
+            </Col>
+          </Row>
+        </Col>
       </Row>
       {/* modals */}
       <CorrectModal
@@ -128,8 +138,8 @@ const QuestionsContainer = React.memo(({ courseId, duration, questions }) => {
 });
 
 QuestionsContainer.propTypes = {
+  examId: PropTypes.string.isRequired,
   courseId: PropTypes.string.isRequired,
-  duration: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
 };
 

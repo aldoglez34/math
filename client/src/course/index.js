@@ -29,7 +29,7 @@ export default React.memo((props) => {
         console.log(err);
         alert("Ocurrió un error al cargar la información del curso.");
       });
-  }, [courseId]);
+  }, [courseId, studentId]);
 
   return (
     <MainCourseLayout breadcrumb={breadcrumb}>
