@@ -63,7 +63,7 @@ class QuestionsContainer extends PureComponent {
     this.setState();
   }
 
-  checkIfRight() {
+  checkIfRight = () => {
     // save whatever is in the input
     const userAnswer = this.inputRef.current.value;
 
@@ -75,10 +75,6 @@ class QuestionsContainer extends PureComponent {
     } else {
       setShowWrongModal(true);
     }
-  }
-
-  nextQuestion = () => {
-    this.checkIfRight();
 
     console.log("score", this.state.score);
 
@@ -128,7 +124,7 @@ class QuestionsContainer extends PureComponent {
             <Button
               variant="success"
               className="mt-4"
-              onClick={this.nextQuestion}
+              onClick={this.checkIfRight}
             >
               Siguiente
             </Button>
