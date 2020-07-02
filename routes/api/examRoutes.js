@@ -12,6 +12,7 @@ router.get("/info/:examId", function (req, res) {
       const { qCounter } = data;
       const totalQuestions = data.questions.length;
 
+      // generate random numbers
       const uniqueNumbers = [];
       while (uniqueNumbers.length <= qCounter) {
         let n = Math.floor(Math.random() * totalQuestions);
@@ -22,22 +23,25 @@ router.get("/info/:examId", function (req, res) {
         }
       }
 
-      let qNumber = 0;
+      // extract the questions
+      const randomQuestions = uniqueNumbers.reduce((acc, cv) => {
+        acc.push(data.questions[cv]);
+        return acc;
+      }, []);
+
+      // add the qNumber field and return it
       return {
         name: data.name,
-        questions: data.questions.reduce((acc, cv, idx) => {
-          if (uniqueNumbers.includes(idx)) {
-            acc.push({
-              _id: cv._id,
-              qNumber: qNumber + 1,
-              qInstruction: cv.qInstruction,
-              qTechnicalInstruction: cv.qTechnicalInstruction,
-              qComment: cv.qComment,
-              qCorrectAnswer: cv.qCorrectAnswer,
-              qCorrectAnswerComplement: cv.qCorrectAnswerComplement,
-            });
-            qNumber++;
-          }
+        questions: randomQuestions.reduce((acc, cv, idx) => {
+          acc.push({
+            _id: cv._id,
+            qNumber: idx + 1,
+            qInstruction: cv.qInstruction,
+            qTechnicalInstruction: cv.qTechnicalInstruction,
+            qComment: cv.qComment,
+            qCorrectAnswer: cv.qCorrectAnswer,
+            qCorrectAnswerComplement: cv.qCorrectAnswerComplement,
+          });
           return acc;
         }, []),
       };
@@ -57,6 +61,8 @@ router.put("/registerAttempt", function (req, res) {
   const { studentId, examId, score } = req.body;
 
   const obj = { student: studentId, date: Date.now(), score };
+
+  console.log("registrando intento", obj);
 
   model.Exam.findOneAndUpdate(
     { _id: examId },

@@ -31,7 +31,7 @@ const Topic = React.memo(
           <Col lg={6}>
             <p className="mb-3">{description}</p>
             <p className="mb-1">
-              <i className="far fa-lightbulb mr-2" />
+              <i className="fas fa-lightbulb mr-2" />
               En esta sección aprenderás a:
             </p>
             <ul className="mb-3">
@@ -62,7 +62,7 @@ const Topic = React.memo(
           </Col>
           {/* exams */}
           <Col lg={6} className="mt-2 mt-lg-0">
-            <h4 className="mb-3 mt-0 mt-lg-3">Exámenes</h4>
+            <h4 className="mb-3">Exámenes</h4>
             <ExamsAccordion
               exams={exams}
               courseId={courseId}
