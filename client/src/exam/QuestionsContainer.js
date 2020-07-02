@@ -12,6 +12,7 @@ class QuestionsContainer extends PureComponent {
     number: 1,
     question: null,
     score: 0,
+    // modals
     showCorrectModal: false,
     showWrongModal: false,
     showResultsModal: false,
@@ -24,12 +25,42 @@ class QuestionsContainer extends PureComponent {
   }
 
   componentDidMount() {
+    // checks if its the last question
+    if (number === questions.length) {
+      // IT'S THE LAST QUESTION
+      API.registerAttempt({ studentId: student._id, examId, score })
+        .then(() => this.setState({ showResultsModal: true }))
+        .catch((err) => {
+          console.log("Error", err);
+          // alert("Ocurrió un error al registrar el examen");
+        });
+    } else {
+      // NEXT QUESTION
+      // show correct or wrong modal
+      // increment number
+      // set new question from the props to the state
+      // clear and focus input
+      this.setState(
+        (prevState) => {
+          return { number: prevState.number + 1 };
+        },
+        () =>
+          this.setState(
+            {
+              question: this.props.questions.filter(
+                (q) => q.qNumber === this.state.number
+              )[0],
+            },
+            () => {
+              this.inputRef.current.value = "";
+              this.inputRef.current.focus();
+            }
+          )
+      );
+    }
+
     // setQuestion(questions.filter((q) => q.qNumber === number)[0]);
-    this.setState({
-      question: this.props.questions.filter(
-        (q) => q.qNumber === this.state.number
-      )[0],
-    });
+    this.setState();
   }
 
   checkIfRight() {
@@ -38,7 +69,7 @@ class QuestionsContainer extends PureComponent {
 
     // check if the answer given by the user is the same as the correct answer in the state
     if (userAnswer === this.state.question.qCorrectAnswer) {
-      this.setState({})
+      this.setState({});
       setShowCorrectModal(true);
       setScore(score + 10);
     } else {
@@ -52,26 +83,6 @@ class QuestionsContainer extends PureComponent {
     console.log("score", this.state.score);
 
     // clean the input
-    inputRef.current.value = "";
-
-    if (number === questions.length) {
-      // register attempt
-      API.registerAttempt({ studentId: student._id, examId, score })
-        .then((res) => {
-          console.log(res.data);
-          // show results modal
-          setShowResultsModal(true);
-        })
-        .catch((err) => {
-          console.log("Error", err);
-          // alert("Ocurrió un error al registrar el examen");
-        });
-    } else {
-      // go to next question
-      setNumber(number + 1);
-      // focus the input
-      inputRef.current.focus();
-    }
   };
 
   handleKeyDown = (e) => {
