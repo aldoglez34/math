@@ -11,7 +11,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
     .lean()
     .populate(
       "topics.exams",
-      "subject name description difficulty qCounter duration visits qCounter"
+      "name description difficulty qCounter visits availableTo"
     )
     .then((data) => {
       // res.json(data);
@@ -46,6 +46,8 @@ router.get("/info/:courseId/:studentId", function (req, res) {
                   .filter((v) => v.student == studentId)
                   .sort((a, b) => (a.score > b.score ? -1 : 1))[0].score
               : null,
+            isFreestyleAvailable:
+              cv.freestyle.availableTo.filter((s) => s == studentId).length > 0,
             exams: cv.exams.reduce((acc, cv) => {
               acc.push({
                 _id: cv._id,
@@ -53,6 +55,8 @@ router.get("/info/:courseId/:studentId", function (req, res) {
                 description: cv.description,
                 difficulty: cv.difficulty,
                 qCounter: cv.qCounter,
+                isAvailable:
+                  cv.availableTo.filter((s) => s == studentId).length > 0,
                 myAttempts: cv.visits.filter((v) => v.student == studentId)
                   .length,
                 latestAttempt: cv.visits

@@ -22,7 +22,7 @@ models.Student.remove({})
     console.log("\n> " + data.length + " students added");
     // separating ids only
     let studentIds = data.reduce((acc, cv) => {
-      acc.push({ _id: cv._id });
+      acc.push(cv._id);
       return acc;
     }, []);
     // remove exams

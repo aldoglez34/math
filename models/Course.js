@@ -13,6 +13,12 @@ const schema = new Schema({
       description: { type: String, required: true }, // ej. La suma es una de las cuatro operaciones básicas...
       toLearn: [{ type: String, unique: true }], // el. Aprenderás a sumar números, Aprenderás a blah blah (es un array)
       freestyle: {
+        availableTo: [
+          {
+            type: Schema.Types.ObjectId,
+            ref: "Student",
+          },
+        ],
         timer: { type: Number, required: true },
         visits: [
           {

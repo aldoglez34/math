@@ -13,10 +13,9 @@ const schema = new Schema({
   qCounter: { type: Number, required: true }, // ej. 20 (question counter)
   availableTo: [
     {
-      student: {
-        type: Schema.Types.ObjectId,
-        ref: "Student",
-      },
+      type: Schema.Types.ObjectId,
+      ref: "Student",
+      unique: true,
     },
   ],
   visits: [

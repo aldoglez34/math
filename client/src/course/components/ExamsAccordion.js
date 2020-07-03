@@ -95,6 +95,7 @@ const ExamsAccordion = React.memo(
                   href={"/course/" + courseId + "/exam/" + ex._id}
                   variant="primary"
                   className="shadow-sm"
+                  disabled={ex.isAvailable ? false : true}
                 >
                   Iniciar examen
                 </Button>
