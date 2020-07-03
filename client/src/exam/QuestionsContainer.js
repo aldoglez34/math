@@ -12,6 +12,7 @@ class QuestionsContainer extends Component {
     number: 1,
     question: null,
     score: 0,
+    correct: 0,
     // modals
     showCorrectModal: false,
     showWrongModal: false,
@@ -189,6 +190,8 @@ class QuestionsContainer extends Component {
           showResultsModal={this.state.showResultsModal}
           courseId={this.props.courseId}
           score={this.state.score}
+          correct={this.state.correct}
+          mistakes={this.props.questions.length - this.state.correct}
         />
       </>
     ) : null;

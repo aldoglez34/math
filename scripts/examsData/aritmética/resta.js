@@ -1,4 +1,4 @@
-module.exports = [
+module.exports = (studentIds) => [
   {
     topicCode: "PRIM3y4_Resta",
     name: "Restas 1",
@@ -6,6 +6,7 @@ module.exports = [
       "Duis gravida leo id enim bibendum, in venenatis diam scelerisque. Pellentesque ac justo ornare, fringilla risus eget, tincidunt massa. Sed at sodales nulla.",
     difficulty: "Basic",
     qCounter: 3,
+    availableTo: [...studentIds],
     questions: [
       {
         qInstruction: "Resolver la siguiente resta",

@@ -11,6 +11,14 @@ const schema = new Schema({
     required: true,
   }, // ej. Basic/Intermediate/Advanced/Final
   qCounter: { type: Number, required: true }, // ej. 20 (question counter)
+  availableTo: [
+    {
+      student: {
+        type: Schema.Types.ObjectId,
+        ref: "Student",
+      },
+    },
+  ],
   visits: [
     {
       student: {

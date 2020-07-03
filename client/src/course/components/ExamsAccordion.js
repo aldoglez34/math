@@ -47,7 +47,7 @@ const ExamsAccordion = React.memo(
             <Accordion.Collapse eventKey={ex._id}>
               <Card.Body>
                 {/* TITLE 2 */}
-                <h2 className="mb-3">
+                <h2 className="mb-2">
                   {ex.name}
                   {ex.difficulty === "Final" ? (
                     <i
@@ -56,7 +56,6 @@ const ExamsAccordion = React.memo(
                     />
                   ) : null}
                 </h2>
-                <hr />
                 {/* stars */}
                 <DifficultyStars difficulty={ex.difficulty} />
                 {/* latest attempt */}

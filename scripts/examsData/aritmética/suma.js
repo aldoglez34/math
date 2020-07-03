@@ -1,4 +1,4 @@
-module.exports = [
+module.exports = (studentIds) => [
   {
     topicCode: "PRIM3y4_Suma",
     name: "Sumas 1",
@@ -6,6 +6,7 @@ module.exports = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius risus massa, et sollicitudin est fringilla.",
     difficulty: "Basic",
     qCounter: 3,
+    availableTo: [...studentIds],
     questions: [
       {
         qInstruction: "Resuelve la siguiente suma",

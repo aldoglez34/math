@@ -14,7 +14,6 @@ import rootReducer from "./redux/reducers";
 // para cerrar sesión
 // import firebase from "./firebase/firebase";
 
-
 const persistConfig = {
   key: "primary",
   storage,
@@ -29,12 +28,10 @@ const store = createStore(
 
 const persistor = persistStore(store);
 
-
 // firebase
 //   .auth()
 //   .signOut()
-//   .then(() => {
-//   })
+//   .then(() => {})
 //   .catch((error) => console.log(error));
 
 ReactDOM.render(

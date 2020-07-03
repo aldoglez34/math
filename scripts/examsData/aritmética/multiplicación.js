@@ -1,4 +1,4 @@
-module.exports = [
+module.exports = (studentIds) => [
   {
     topicCode: "PRIM3y4_Multi",
     name: "Multiplicaciones 1",
@@ -6,6 +6,7 @@ module.exports = [
       "Suspendisse non gravida odio. Phasellus a enim non justo porttitor pretium. Curabitur facilisis leo vitae ex efficitur, egestas malesuada augue elementum.",
     difficulty: "Basic",
     qCounter: 3,
+    availableTo: [...studentIds],
     questions: [
       {
         qInstruction: "Resolver la siguiente multiplicación",
