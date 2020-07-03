@@ -14,6 +14,7 @@ const Topic = React.memo(
     freestyleAttemptsCounter,
     freestyleLatestVisit,
     freestyleHighestScore,
+    isFreestyleAvailable,
     courseId,
   }) => {
     return (
@@ -71,6 +72,7 @@ const Topic = React.memo(
               freestyleAttemptsCounter={freestyleAttemptsCounter}
               freestyleLatestVisit={freestyleLatestVisit}
               freestyleHighestScore={freestyleHighestScore}
+              isFreestyleAvailable={isFreestyleAvailable}
             />
           </Col>
         </Row>
@@ -85,8 +87,12 @@ Topic.propTypes = {
   toLearn: PropTypes.array.isRequired,
   material: PropTypes.array.isRequired,
   exams: PropTypes.array.isRequired,
-  courseId: PropTypes.string.isRequired,
   freestyleTimer: PropTypes.number.isRequired,
+  freestyleAttemptsCounter: PropTypes.number.isRequired,
+  freestyleLatestVisit: PropTypes.string,
+  freestyleHighestScore: PropTypes.number,
+  isFreestyleAvailable: PropTypes.bool.isRequired,
+  courseId: PropTypes.string.isRequired,
 };
 
 export default Topic;

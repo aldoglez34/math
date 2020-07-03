@@ -66,6 +66,7 @@ export default React.memo((props) => {
                 freestyleAttemptsCounter={ct.freestyleAttemptsCounter}
                 freestyleLatestVisit={ct.freestyleLatestVisit}
                 freestyleHighestScore={ct.freestyleHighestScore}
+                isFreestyleAvailable={ct.isFreestyleAvailable}
               />
             ))}
           </Container>

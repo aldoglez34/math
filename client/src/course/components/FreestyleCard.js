@@ -10,6 +10,7 @@ const FreestyleCard = React.memo(
     freestyleAttemptsCounter,
     freestyleLatestVisit,
     freestyleHighestScore,
+    isFreestyleAvailable,
   }) => {
     return (
       <Card>
@@ -64,7 +65,12 @@ const FreestyleCard = React.memo(
               </Col>
             </Row>
             {/* button */}
-            <Button variant="primary">Iniciar examen</Button>
+            <Button
+              variant="primary"
+              disabled={isFreestyleAvailable ? false : true}
+            >
+              Iniciar examen
+            </Button>
           </Card.Body>
         </Accordion.Collapse>
       </Card>
@@ -74,6 +80,10 @@ const FreestyleCard = React.memo(
 
 FreestyleCard.propTypes = {
   freestyleTimer: PropTypes.number.isRequired,
+  freestyleAttemptsCounter: PropTypes.number.isRequired,
+  freestyleLatestVisit: PropTypes.string,
+  freestyleHighestScore: PropTypes.number,
+  isFreestyleAvailable: PropTypes.bool.isRequired,
 };
 
 export default FreestyleCard;

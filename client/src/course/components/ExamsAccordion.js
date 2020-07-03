@@ -11,11 +11,12 @@ import "moment/locale/es";
 const ExamsAccordion = React.memo(
   ({
     exams,
-    courseId,
     freestyleTimer,
     freestyleAttemptsCounter,
     freestyleLatestVisit,
     freestyleHighestScore,
+    isFreestyleAvailable,
+    courseId,
   }) => {
     const student = useSelector((state) => state.student);
 
@@ -109,6 +110,7 @@ const ExamsAccordion = React.memo(
           freestyleAttemptsCounter={freestyleAttemptsCounter}
           freestyleLatestVisit={freestyleLatestVisit}
           freestyleHighestScore={freestyleHighestScore}
+          isFreestyleAvailable={isFreestyleAvailable}
         />
       </Accordion>
     );
@@ -117,8 +119,12 @@ const ExamsAccordion = React.memo(
 
 ExamsAccordion.propTypes = {
   exams: PropTypes.array.isRequired,
-  courseId: PropTypes.string.isRequired,
   freestyleTimer: PropTypes.number.isRequired,
+  freestyleAttemptsCounter: PropTypes.number.isRequired,
+  freestyleLatestVisit: PropTypes.string,
+  freestyleHighestScore: PropTypes.number,
+  isFreestyleAvailable: PropTypes.bool.isRequired,
+  courseId: PropTypes.string.isRequired,
 };
 
 export default ExamsAccordion;
