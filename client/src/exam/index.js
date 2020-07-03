@@ -28,8 +28,13 @@ const Exam = React.memo((props) => {
           <div className="d-flex mt-4">
             <h1 className="mb-0 pr-3">{exam.name}</h1>
             <div className="ml-auto d-flex align-items-end">
-              <Button variant="danger" href={"/course/" + courseId}>
-                Salir
+              <Button
+                href={"/course/" + courseId}
+                variant="link"
+                className="text-danger ml-auto"
+                style={{ fontSize: "25px" }}
+              >
+                <i className="fas fa-times" />
               </Button>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import CorrectModal from "./components/CorrectModal";
@@ -7,7 +7,7 @@ import ResultsModal from "./components/ResultsModal";
 import API from "../utils/API";
 import { connect } from "react-redux";
 
-class QuestionsContainer extends PureComponent {
+class QuestionsContainer extends Component {
   state = {
     number: 1,
     question: null,
@@ -15,82 +15,116 @@ class QuestionsContainer extends PureComponent {
     // modals
     showCorrectModal: false,
     showWrongModal: false,
-    showResultsModal: false,
-    // inputRef = React.createRef()
+    showResultsModal: true,
   };
 
-  constructor(props) {
-    super(props);
-    this.inputRef = React.createRef();
-  }
+  inputRef = React.createRef();
 
   componentDidMount() {
-    // checks if its the last question
-    if (number === questions.length) {
-      // IT'S THE LAST QUESTION
-      API.registerAttempt({ studentId: student._id, examId, score })
-        .then(() => this.setState({ showResultsModal: true }))
+    console.log("COMPONENTDIDMOUNT");
+
+    this.setNewQuestion();
+  }
+
+  setNewQuestion() {
+    console.log("setting new question");
+
+    // set question
+    this.setState(
+      {
+        question: this.props.questions.filter(
+          (q) => q.qNumber === this.state.number
+        )[0],
+      },
+      () => this.inputRef.current.focus()
+    );
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.number !== this.state.number) {
+      this.setNewQuestion();
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.showCorrectModal === false) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  checkIfLast() {
+    // checks if it's the last question
+    if (this.state.number === this.props.questions.length) {
+      console.log("its the last one, registering in the db...");
+
+      // register attempt
+      API.registerAttempt({
+        studentId: this.props.student._id,
+        examId: this.props.examId,
+        score: this.state.score,
+      })
+        .then((res) => {
+          console.log(res.data);
+          // show result modal
+          this.setState({ showResultsModal: true });
+        })
         .catch((err) => {
           console.log("Error", err);
           // alert("Ocurrió un error al registrar el examen");
         });
     } else {
-      // NEXT QUESTION
-      // show correct or wrong modal
-      // increment number
-      // set new question from the props to the state
-      // clear and focus input
+      console.log("next question...");
+      // advance to next question
       this.setState(
         (prevState) => {
           return { number: prevState.number + 1 };
         },
-        () =>
-          this.setState(
-            {
-              question: this.props.questions.filter(
-                (q) => q.qNumber === this.state.number
-              )[0],
-            },
-            () => {
-              this.inputRef.current.value = "";
-              this.inputRef.current.focus();
-            }
-          )
+        () => this.inputRef.current.focus()
       );
     }
-
-    // setQuestion(questions.filter((q) => q.qNumber === number)[0]);
-    this.setState();
   }
 
-  checkIfRight = () => {
+  increment = () => {
     // save whatever is in the input
     const userAnswer = this.inputRef.current.value;
+    console.log("la respuesta del usuario es: ", userAnswer);
 
     // check if the answer given by the user is the same as the correct answer in the state
     if (userAnswer === this.state.question.qCorrectAnswer) {
-      this.setState({});
-      setShowCorrectModal(true);
-      setScore(score + 10);
+      console.log("respuesta correcta! setteando score y correct modal");
+
+      this.setState(
+        (prevState) => {
+          return { score: prevState.score + 10, showCorrectModal: true }; // might have to wait
+        },
+        () => {
+          // clean the input (but wait until the correct modal has disappeared)
+          setTimeout(() => {
+            console.log("limpiando input y revisando si es la última");
+
+            this.inputRef.current.value = "";
+            this.checkIfLast();
+          }, 1500);
+        }
+      );
     } else {
-      setShowWrongModal(true);
+      console.log("respuesta INcorrecta! mostrando wrong modal");
+      this.setState({ showWrongModal: false }, () => this.checkIfLast());
     }
-
-    console.log("score", this.state.score);
-
-    // clean the input
   };
 
   handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      this.nextQuestion();
-      console.log("enter key pressed!");
+      this.increment();
     }
   };
 
   render() {
     return this.state.question ? (
       <>
+        {console.log("rendering...")}
         <Row className="mx-lg-1 bg-light mt-4">
           <Col lg={{ span: 7, offset: 2 }} className="p-4">
             {/* INSTRUCTION */}
@@ -121,11 +155,7 @@ class QuestionsContainer extends PureComponent {
               </span>
             ) : null}
             {/* NEXT BUTTON */}
-            <Button
-              variant="success"
-              className="mt-4"
-              onClick={this.checkIfRight}
-            >
+            <Button variant="success" className="mt-4" onClick={this.increment}>
               Siguiente
             </Button>
           </Col>
@@ -149,11 +179,11 @@ class QuestionsContainer extends PureComponent {
         {/* modals */}
         <CorrectModal
           showCorrectModal={this.state.showCorrectModal}
-          setShowCorrectModal={this.setShowCorrectModal}
+          setShowCorrectModal={() => this.setState({ showCorrectModal: false })}
         />
         <WrongModal
           showWrongModal={this.state.showWrongModal}
-          setShowWrongModal={this.setShowWrongModal}
+          setShowWrongModal={() => this.setState({ setShowWrongModal: false })}
         />
         <ResultsModal
           showResultsModal={this.state.showResultsModal}

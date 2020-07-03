@@ -30,7 +30,8 @@ const CorrectModal = React.memo(({ showCorrectModal, setShowCorrectModal }) => {
               <i className="fas fa-check-circle" />
             </h1>
             <h1 className="text-light">
-              {words[Math.floor(Math.random() * 10) + 1]}
+              {/* {words[Math.floor(Math.random() * 10) + 1]} */}
+              muy bien!
             </h1>
           </div>
         </Modal.Body>
