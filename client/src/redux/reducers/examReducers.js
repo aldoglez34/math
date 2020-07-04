@@ -7,8 +7,7 @@ const examReducers = (state = null, action) => {
       };
     case "exam/setResults":
       return {
-        _id: action.data._id,
-        name: action.data.name,
+        results: action.data.results,
       };
     case "exam/clear":
       return null;
