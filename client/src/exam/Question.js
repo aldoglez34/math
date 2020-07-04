@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { Button, Form, Row, Col, Spinner } from "react-bootstrap";
 import API from "../utils/API";
 import { connect } from "react-redux";
 
-class Question extends Component {
+class Question extends PureComponent {
   state = {
     number: 1,
     question: null,
