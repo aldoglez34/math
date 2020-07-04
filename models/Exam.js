@@ -24,7 +24,7 @@ const schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Student",
       },
-      score: { type: Number },
+      score: { type: Number, default: 0 },
       date: { type: Date, default: Date.now() },
     },
   ],

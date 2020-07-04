@@ -28,26 +28,29 @@ router.get("/info/:courseId/:studentId", function (req, res) {
             description: cv.description,
             toLearn: cv.toLearn,
             material: cv.material,
-            freestyleTimer: cv.freestyle.timer,
-            freestyleAttemptsCounter: cv.freestyle.visits
-              .filter((v) => v.student == studentId)
-              .sort((a, b) => (a.date > b.date ? -1 : 1)).length,
-            freestyleLatestVisit: cv.freestyle.visits
-              .filter((v) => v.student == studentId)
-              .sort((a, b) => (a.date > b.date ? -1 : 1))[0]
-              ? cv.freestyle.visits
-                  .filter((v) => v.student == studentId)
-                  .sort((a, b) => (a.date > b.date ? -1 : 1))[0].date
-              : null,
-            freestyleHighestScore: cv.freestyle.visits
-              .filter((v) => v.student == studentId)
-              .sort((a, b) => (a.score > b.score ? -1 : 1))[0]
-              ? cv.freestyle.visits
-                  .filter((v) => v.student == studentId)
-                  .sort((a, b) => (a.score > b.score ? -1 : 1))[0].score
-              : null,
-            isFreestyleAvailable:
-              cv.freestyle.availableTo.filter((s) => s == studentId).length > 0,
+            freestyle: {
+              isFreestyleAvailable:
+                cv.freestyle.availableTo.filter((s) => s == studentId).length >
+                0,
+              freestyleTimer: cv.freestyle.timer,
+              freestyleAttemptsCounter: cv.freestyle.visits
+                .filter((v) => v.student == studentId)
+                .sort((a, b) => (a.date > b.date ? -1 : 1)).length,
+              freestyleLatestVisit: cv.freestyle.visits
+                .filter((v) => v.student == studentId)
+                .sort((a, b) => (a.date > b.date ? -1 : 1))[0]
+                ? cv.freestyle.visits
+                    .filter((v) => v.student == studentId)
+                    .sort((a, b) => (a.date > b.date ? -1 : 1))[0].date
+                : null,
+              freestyleHighestScore: cv.freestyle.visits
+                .filter((v) => v.student == studentId)
+                .sort((a, b) => (a.score > b.score ? -1 : 1))[0]
+                ? cv.freestyle.visits
+                    .filter((v) => v.student == studentId)
+                    .sort((a, b) => (a.score > b.score ? -1 : 1))[0].score
+                : null,
+            },
             exams: cv.exams.reduce((acc, cv) => {
               acc.push({
                 _id: cv._id,

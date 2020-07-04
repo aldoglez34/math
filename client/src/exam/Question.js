@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Button, Form, Row, Col } from "react-bootstrap";
-import CorrectModal from "./components/CorrectModal";
-import WrongModal from "./components/WrongModal";
 import ResultsModal from "./components/ResultsModal";
 import API from "../utils/API";
 import { connect } from "react-redux";
 
-class QuestionsContainer extends Component {
+class Question extends Component {
   state = {
     number: 1,
     question: null,
@@ -124,76 +122,58 @@ class QuestionsContainer extends Component {
 
   render() {
     return this.state.question ? (
-      <>
+      <Row className="mx-lg-1 bg-light mt-4">
         {console.log("rendering...")}
-        <Row className="mx-lg-1 bg-light mt-4">
-          <Col lg={{ span: 7, offset: 2 }} className="p-4">
-            {/* INSTRUCTION */}
-            <h4>{this.state.question.qInstruction}</h4>
-            {/* TECHNICAL INSTRUCTION */}
-            <h4>{this.state.question.qTechnicalInstruction}</h4>
-            {/* INPUT FORM */}
-            <Form className="w-50 mt-4">
-              <div className="d-flex flex-row mt-3">
-                <Form.Control
-                  type="text"
-                  maxLength="10"
-                  ref={this.inputRef}
-                  onKeyDown={this.handleKeyDown}
-                />
-                {/* question complement (if any) */}
-                {this.state.question.qCorrectAnswerComplement ? (
-                  <h4 className="ml-2 mb-0">
-                    {this.state.question.qCorrectAnswerComplement}
-                  </h4>
-                ) : null}
-              </div>
-            </Form>
-            {/* QUESTION COMMENT */}
-            {this.state.question.qComment ? (
-              <span className="text-muted mt-2 mb-2">
-                {this.state.question.qComment}
-              </span>
-            ) : null}
-            {/* NEXT BUTTON */}
-            <Button variant="success" className="mt-4" onClick={this.increment}>
-              Siguiente
-            </Button>
-          </Col>
-          <Col className="py-4 d-flex align-items-center justify-content-center bg-white">
-            <Row>
-              <Col className="text-center">
-                <h1 className="display-3 mb-0">{this.state.number}</h1>
-                <h5 className="text-muted mb-0" style={{ fontWeight: 800 }}>
-                  PREGUNTA
-                </h5>
-              </Col>
-              <Col className="text-center ml-3">
-                <h1 className="display-3 mb-0">{this.state.score}</h1>
-                <h5 className="text-muted mb-0" style={{ fontWeight: 800 }}>
-                  PUNTOS
-                </h5>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-        {/* modals */}
-        <CorrectModal
-          showCorrectModal={this.state.showCorrectModal}
-          setShowCorrectModal={() => this.setState({ showCorrectModal: false })}
-        />
-        <WrongModal
-          showWrongModal={this.state.showWrongModal}
-          setShowWrongModal={() => this.setState({ setShowWrongModal: false })}
-        />
-        <ResultsModal
-          showResultsModal={this.state.showResultsModal}
-          courseId={this.props.courseId}
-          score={this.state.score}
-          correct={this.state.correct}
-          mistakes={this.props.questions.length - this.state.correct}
-        />
-      </>
+        <Col lg={{ span: 7, offset: 2 }} className="p-4">
+          {/* INSTRUCTION */}
+          <h4>{this.state.question.qInstruction}</h4>
+          {/* TECHNICAL INSTRUCTION */}
+          <h4>{this.state.question.qTechnicalInstruction}</h4>
+          {/* INPUT FORM */}
+          <Form className="w-50 mt-4">
+            <div className="d-flex flex-row mt-3">
+              <Form.Control
+                type="text"
+                maxLength="10"
+                ref={this.inputRef}
+                onKeyDown={this.handleKeyDown}
+              />
+              {/* question complement (if any) */}
+              {this.state.question.qCorrectAnswerComplement ? (
+                <h4 className="ml-2 mb-0">
+                  {this.state.question.qCorrectAnswerComplement}
+                </h4>
+              ) : null}
+            </div>
+          </Form>
+          {/* QUESTION COMMENT */}
+          {this.state.question.qComment ? (
+            <span className="text-muted mt-2 mb-2">
+              {this.state.question.qComment}
+            </span>
+          ) : null}
+          {/* NEXT BUTTON */}
+          <Button variant="success" className="mt-4" onClick={this.increment}>
+            Siguiente
+          </Button>
+        </Col>
+        <Col className="py-4 d-flex align-items-center justify-content-center bg-white">
+          <Row>
+            <Col className="text-center">
+              <h1 className="display-3 mb-0">{this.state.number}</h1>
+              <h5 className="text-muted mb-0" style={{ fontWeight: 800 }}>
+                PREGUNTA
+              </h5>
+            </Col>
+            <Col className="text-center ml-3">
+              <h1 className="display-3 mb-0">{this.state.score}</h1>
+              <h5 className="text-muted mb-0" style={{ fontWeight: 800 }}>
+                PUNTOS
+              </h5>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
     ) : null;
   }
 }
@@ -204,10 +184,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-QuestionsContainer.propTypes = {
+Question.propTypes = {
+  questions: PropTypes.array.isRequired,
   examId: PropTypes.string.isRequired,
   courseId: PropTypes.string.isRequired,
-  questions: PropTypes.array.isRequired,
 };
 
-export default connect(mapStateToProps, null)(QuestionsContainer);
+export default connect(mapStateToProps, null)(Question);

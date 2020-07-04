@@ -31,6 +31,7 @@ router.get("/info/:examId", function (req, res) {
 
       // add the qNumber field and return it
       return {
+        _id: data._id,
         name: data.name,
         questions: randomQuestions.reduce((acc, cv, idx) => {
           acc.push({

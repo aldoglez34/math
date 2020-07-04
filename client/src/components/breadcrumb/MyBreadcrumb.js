@@ -1,12 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Container } from "react-bootstrap";
 import "./mybreadcrumb.scss";
+import { useSelector } from "react-redux";
 
-const MyBreadcrumb = React.memo(({ breadcrumb }) => {
+const MyBreadcrumb = React.memo(() => {
+  const breadcrumb = useSelector((state) => state.breadcrumb);
+
   return breadcrumb ? (
     <Container className="py-4" style={{ fontSize: "15px" }}>
-      {/* <i className="fas fa-chalkboard-teacher mr-2 text-dark" /> */}
       {breadcrumb.map((b) =>
         b.link ? (
           <span key={b.text}>
@@ -22,9 +23,5 @@ const MyBreadcrumb = React.memo(({ breadcrumb }) => {
     </Container>
   ) : null;
 });
-
-MyBreadcrumb.propTypes = {
-  breadcrumb: PropTypes.array,
-};
 
 export default MyBreadcrumb;

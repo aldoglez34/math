@@ -32,7 +32,7 @@ export default () => {
       {/* exam */}
       <Route
         exact
-        path="/course/:courseId/exam/:examId"
+        path="/course/:courseId/:examId"
         render={(props) => <Exam routeProps={props} />}
       />
 
