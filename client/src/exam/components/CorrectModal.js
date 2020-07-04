@@ -3,18 +3,18 @@ import { Modal } from "react-bootstrap";
 import PropTypes from "prop-types";
 
 const CorrectModal = React.memo(({ showCorrectModal, setShowCorrectModal }) => {
-  const words = [
-    "¡Increíble!",
-    "¡Muy bien!",
-    "¡Así se hace!",
-    "¡Perfecto!",
-    "¡Súper!",
-    "¡Excelente!",
-    "¡Sigue así!",
-    "¡Correcto!",
-    "¡Buen trabajo!",
-    "¡Maravilloso!",
-  ];
+  // const words = [
+  //   "¡Increíble!",
+  //   "¡Muy bien!",
+  //   "¡Así se hace!",
+  //   "¡Perfecto!",
+  //   "¡Súper!",
+  //   "¡Excelente!",
+  //   "¡Sigue así!",
+  //   "¡Correcto!",
+  //   "¡Buen trabajo!",
+  //   "¡Maravilloso!",
+  // ];
 
   useEffect(() => {
     // close modal after 2 seconds
@@ -31,7 +31,7 @@ const CorrectModal = React.memo(({ showCorrectModal, setShowCorrectModal }) => {
             </h1>
             <h1 className="text-light">
               {/* {words[Math.floor(Math.random() * 10) + 1]} */}
-              muy bien!
+              ¡Muy Bien!
             </h1>
           </div>
         </Modal.Body>

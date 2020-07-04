@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Button, Form, Row, Col } from "react-bootstrap";
-import ResultsModal from "./components/ResultsModal";
+import { Button, Form, Row, Col, Spinner } from "react-bootstrap";
 import API from "../utils/API";
 import { connect } from "react-redux";
 
@@ -9,172 +8,158 @@ class Question extends Component {
   state = {
     number: 1,
     question: null,
-    score: 0,
-    correct: 0,
-    // modals
-    showCorrectModal: false,
-    showWrongModal: false,
-    showResultsModal: true,
+    studentAnswers: [],
+    //
+    isLoading: false,
   };
 
   inputRef = React.createRef();
 
   componentDidMount() {
-    console.log("COMPONENTDIDMOUNT");
+    console.log("====================================");
+    console.log("componentDidMount");
 
-    this.setNewQuestion();
+    this.setQuestion();
   }
 
-  setNewQuestion() {
-    console.log("setting new question");
+  setQuestion() {
+    console.log("setting a question");
 
-    // set question
-    this.setState(
-      {
-        question: this.props.questions.filter(
-          (q) => q.qNumber === this.state.number
-        )[0],
-      },
-      () => this.inputRef.current.focus()
-    );
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.number !== this.state.number) {
-      this.setNewQuestion();
-    }
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.showCorrectModal === false) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  checkIfLast() {
-    // checks if it's the last question
-    if (this.state.number === this.props.questions.length) {
-      console.log("its the last one, registering in the db...");
-
-      // register attempt
-      API.registerAttempt({
-        studentId: this.props.student._id,
-        examId: this.props.examId,
-        score: this.state.score,
-      })
-        .then((res) => {
-          console.log(res.data);
-          // show result modal
-          this.setState({ showResultsModal: true });
-        })
-        .catch((err) => {
-          console.log("Error", err);
-          // alert("Ocurrió un error al registrar el examen");
-        });
-    } else {
-      console.log("next question...");
-      // advance to next question
+    // set question (only if number is less or equal than questions length)
+    if (this.state.number <= this.props.questions.length) {
       this.setState(
-        (prevState) => {
-          return { number: prevState.number + 1 };
+        {
+          question: this.props.questions.filter(
+            (q) => q.qNumber === this.state.number
+          )[0],
         },
         () => this.inputRef.current.focus()
       );
+    } else if (this.state.number === this.props.questions.length) {
+      console.log("FINAL QUESTION, CAN'T SET NEW QUESTION");
     }
   }
 
-  increment = () => {
-    // save whatever is in the input
+  nextQuestion = () => {
+    // add answer to the student answers arr
     const userAnswer = this.inputRef.current.value;
-    console.log("la respuesta del usuario es: ", userAnswer);
-
-    // check if the answer given by the user is the same as the correct answer in the state
-    if (userAnswer === this.state.question.qCorrectAnswer) {
-      console.log("respuesta correcta! setteando score y correct modal");
-
-      this.setState(
-        (prevState) => {
-          return { score: prevState.score + 10, showCorrectModal: true }; // might have to wait
-        },
-        () => {
-          // clean the input (but wait until the correct modal has disappeared)
-          setTimeout(() => {
-            console.log("limpiando input y revisando si es la última");
-
-            this.inputRef.current.value = "";
-            this.checkIfLast();
-          }, 1500);
+    this.setState(
+      (prevState) => {
+        return {
+          studentAnswers: [
+            ...prevState.studentAnswers,
+            { qNumber: this.state.number, answer: userAnswer },
+          ],
+        };
+      },
+      () => {
+        // clear the input and check if next question or not
+        this.inputRef.current.value = "";
+        if (this.state.number < this.props.questions.length) {
+          console.log("avanzando a siguiente pregunta");
+          this.setState((prevState) => {
+            return { number: prevState.number + 1 };
+          });
+        } else {
+          console.log("ya no se avanza porque es la última");
         }
-      );
-    } else {
-      console.log("respuesta INcorrecta! mostrando wrong modal");
-      this.setState({ showWrongModal: false }, () => this.checkIfLast());
-    }
+      }
+    );
   };
+
+  lastQuestion() {
+    // add answer to the student answers arr
+    const userAnswer = this.inputRef.current.value;
+    this.setState(
+      (prevState) => {
+        return {
+          studentAnswers: [
+            ...prevState.studentAnswers,
+            { qNumber: this.state.number, answer: userAnswer },
+          ],
+        };
+      },
+      () => {
+        console.log("aquí termina todo");
+      }
+    );
+  }
 
   handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      this.increment();
+      this.nextQuestion();
     }
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    // if the NUMBER changes, re-render and set a new question
+    if (prevState.number !== this.state.number) {
+      this.setQuestion();
+    }
+  }
+
   render() {
     return this.state.question ? (
-      <Row className="mx-lg-1 bg-light mt-4">
-        {console.log("rendering...")}
-        <Col lg={{ span: 7, offset: 2 }} className="p-4">
-          {/* INSTRUCTION */}
-          <h4>{this.state.question.qInstruction}</h4>
-          {/* TECHNICAL INSTRUCTION */}
-          <h4>{this.state.question.qTechnicalInstruction}</h4>
-          {/* INPUT FORM */}
-          <Form className="w-50 mt-4">
-            <div className="d-flex flex-row mt-3">
-              <Form.Control
-                type="text"
-                maxLength="10"
-                ref={this.inputRef}
-                onKeyDown={this.handleKeyDown}
-              />
-              {/* question complement (if any) */}
-              {this.state.question.qCorrectAnswerComplement ? (
-                <h4 className="ml-2 mb-0">
-                  {this.state.question.qCorrectAnswerComplement}
-                </h4>
-              ) : null}
-            </div>
-          </Form>
-          {/* QUESTION COMMENT */}
-          {this.state.question.qComment ? (
-            <span className="text-muted mt-2 mb-2">
-              {this.state.question.qComment}
-            </span>
-          ) : null}
-          {/* NEXT BUTTON */}
-          <Button variant="success" className="mt-4" onClick={this.increment}>
-            Siguiente
-          </Button>
-        </Col>
-        <Col className="py-4 d-flex align-items-center justify-content-center bg-white">
-          <Row>
-            <Col className="text-center">
-              <h1 className="display-3 mb-0">{this.state.number}</h1>
-              <h5 className="text-muted mb-0" style={{ fontWeight: 800 }}>
-                PREGUNTA
-              </h5>
-            </Col>
-            <Col className="text-center ml-3">
-              <h1 className="display-3 mb-0">{this.state.score}</h1>
-              <h5 className="text-muted mb-0" style={{ fontWeight: 800 }}>
-                PUNTOS
-              </h5>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-    ) : null;
+      <>
+        <Row className="mx-lg-1">
+          {console.log("rendering...")}
+          <Col lg={{ span: 7, offset: 2 }} className="p-4">
+            {/* INSTRUCTION */}
+            <h4>
+              <span className="mr-1">{this.state.question.qNumber + "."}</span>
+              <span>{this.state.question.qInstruction}</span>
+            </h4>
+            {/* TECHNICAL INSTRUCTION */}
+            <h4>{this.state.question.qTechnicalInstruction}</h4>
+            {/* INPUT FORM */}
+            <Form className="w-50 mt-4">
+              <div className="d-flex flex-row mt-3">
+                <Form.Control
+                  type="text"
+                  maxLength="10"
+                  ref={this.inputRef}
+                  onKeyDown={this.handleKeyDown}
+                />
+                {/* question complement (if any) */}
+                {this.state.question.qCorrectAnswerComplement ? (
+                  <h4 className="ml-2 mb-0">
+                    {this.state.question.qCorrectAnswerComplement}
+                  </h4>
+                ) : null}
+              </div>
+            </Form>
+            {/* QUESTION COMMENT */}
+            {this.state.question.qComment ? (
+              <span className="text-muted mt-2 mb-2">
+                {this.state.question.qComment}
+              </span>
+            ) : null}
+            {/* buttons */}
+            {this.state.number < this.props.questions.length ? (
+              <Button
+                variant="success"
+                className="shadow-sm mt-4"
+                onClick={this.nextQuestion}
+              >
+                Siguiente
+              </Button>
+            ) : (
+              <Button
+                variant="primary"
+                className="shadow-sm mt-4"
+                onClick={this.lastQuestion}
+              >
+                Finalizar
+              </Button>
+            )}
+          </Col>
+        </Row>
+      </>
+    ) : (
+      <div className="text-center mt-4 pt-4">
+        <Spinner animation="border" variant="success" />
+      </div>
+    );
   }
 }
 

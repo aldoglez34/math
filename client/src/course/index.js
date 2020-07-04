@@ -37,7 +37,7 @@ export default React.memo((props) => {
         alert("Ocurrió un error al cargar la información del curso.");
         window.location.href = "/dashboard";
       });
-  }, [courseId, studentId]);
+  }, [courseId, studentId, dispatch]);
 
   return (
     <MainCourseLayout>

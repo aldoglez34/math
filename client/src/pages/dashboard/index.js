@@ -28,7 +28,7 @@ const Dashboard = React.memo(() => {
           alert("Ocurrió un error inesperado");
         });
     }
-  }, [student]);
+  }, [student, dispatch]);
 
   return (
     <StudentLayout>

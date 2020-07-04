@@ -6,8 +6,6 @@ import Question from "./Question";
 import { useSelector, useDispatch } from "react-redux";
 import * as breadcrumbActions from "../redux/actions/breadcrumb";
 import * as examActions from "../redux/actions/exam";
-import CorrectModal from "./components/CorrectModal";
-import WrongModal from "./components/WrongModal";
 
 const Exam = React.memo((props) => {
   const dispatch = useDispatch();
@@ -19,10 +17,6 @@ const Exam = React.memo((props) => {
   const courseId = props.routeProps.match.params.courseId;
 
   const [exam, setExam] = useState();
-
-  // modals
-  const [showCorrectModal, setShowCorrectModal] = useState(false);
-  const [showWrongModal, setShowWrongModal] = useState(false);
 
   useEffect(() => {
     API.fetchExamInfo(examId)
@@ -43,7 +37,7 @@ const Exam = React.memo((props) => {
         console.log(err);
         alert("Ocurrió un error al cargar las preguntas de tu examen");
       });
-  }, []);
+  }, [examId, courseId, reduxCourse, dispatch]);
 
   return (
     <StudentLayout>
@@ -70,22 +64,6 @@ const Exam = React.memo((props) => {
             examId={examId}
             courseId={courseId}
           />
-          {/* modals */}
-          <CorrectModal
-            showCorrectModal={showCorrectModal}
-            setShowCorrectModal={setShowCorrectModal}
-          />
-          <WrongModal
-            showWrongModal={showWrongModal}
-            setShowWrongModal={setShowWrongModal}
-          />
-          {/* <ResultsModal
-            showResultsModal={this.state.showResultsModal}
-            courseId={this.props.courseId}
-            score={this.state.score}
-            correct={this.state.correct}
-            mistakes={this.props.questions.length - this.state.correct}
-          /> */}
         </>
       ) : (
         <div className="text-center mt-4 pt-4">
