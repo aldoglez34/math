@@ -7,18 +7,13 @@ import DifficultyStars from "./DifficultyStars";
 import FreestyleCard from "./FreestyleCard";
 import moment from "moment";
 import "moment/locale/es";
+import { useDispatch } from "react-redux";
+import * as examActions from "../../redux/actions/exam";
 
-const ExamsAccordion = React.memo(({ exams, courseId, freestyle }) => {
+const ExamsAccordion = React.memo(({ exams, freestyle }) => {
+  const dispatch = useDispatch();
+
   const student = useSelector((state) => state.student);
-
-  const registerAttempt = (examId) => {
-    API.registerAttempt({ studentId: student._id, examId })
-      .then((res) => console.log(res.data))
-      .catch((err) => {
-        console.log("Error", err);
-        // alert("Ocurrió un error al registrar el examen");
-      });
-  };
 
   return (
     <Accordion className="shadow-sm">
@@ -83,8 +78,26 @@ const ExamsAccordion = React.memo(({ exams, courseId, freestyle }) => {
               </Row>
               {/* button */}
               <Button
-                onClick={() => registerAttempt(ex._id)}
-                href={"/course/" + courseId + "/" + ex._id}
+                onClick={() =>
+                  API.registerAttempt({
+                    studentId: student._id,
+                    examId: ex._id,
+                  })
+                    .then(() => {
+                      return dispatch(
+                        examActions.setExam({
+                          _id: ex._id,
+                          name: ex.name,
+                        })
+                      );
+                    })
+                    .then(() => (window.location.href = "/course/exam"))
+                    .catch((err) => {
+                      console.log("error", err);
+                      alert("Ocurrió un error inesperado");
+                      window.location.href = "/course";
+                    })
+                }
                 variant="primary"
                 className="shadow-sm"
                 disabled={ex.isAvailable ? false : true}
@@ -103,7 +116,6 @@ const ExamsAccordion = React.memo(({ exams, courseId, freestyle }) => {
 
 ExamsAccordion.propTypes = {
   exams: PropTypes.array.isRequired,
-  courseId: PropTypes.string.isRequired,
   freestyle: PropTypes.object.isRequired,
 };
 

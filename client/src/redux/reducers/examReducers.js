@@ -5,6 +5,11 @@ const examReducers = (state = null, action) => {
         _id: action.data._id,
         name: action.data.name,
       };
+    case "exam/setResults":
+      return {
+        _id: action.data._id,
+        name: action.data.name,
+      };
     case "exam/clear":
       return null;
     default:

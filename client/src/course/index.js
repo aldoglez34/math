@@ -7,37 +7,42 @@ import CourseIntro from "./components/CourseIntro";
 import Topic from "./components/Topic";
 import { useSelector, useDispatch } from "react-redux";
 import * as breadcrumbActions from "../redux/actions/breadcrumb";
-import * as courseActions from "../redux/actions/course";
+import * as examActions from "../redux/actions/exam";
 
-export default React.memo((props) => {
+export default React.memo(() => {
   const dispatch = useDispatch();
 
   const [course, setCourse] = useState();
 
-  const courseId = props.routeProps.match.params.courseId;
-
-  const studentId = useSelector((state) => state.student._id);
+  const reduxCourse = useSelector((state) => state.course);
+  const reduxStudent = useSelector((state) => state.student);
+  const reduxExam = useSelector((state) => state.exam);
 
   useEffect(() => {
-    API.fetchCourseInfo(courseId, studentId)
-      .then((res) => {
-        setCourse(res.data);
-        dispatch(
-          breadcrumbActions.setBreadcrumb([
-            { text: "Mis cursos", link: "/dashboard" },
-            { text: res.data.name },
-          ])
-        );
-        dispatch(
-          courseActions.setCourse({ _id: res.data._id, name: res.data.name })
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("Ocurrió un error al cargar la información del curso.");
-        window.location.href = "/dashboard";
-      });
-  }, [courseId, studentId, dispatch]);
+    // clear redux
+    if (reduxExam) dispatch(examActions.clearExam());
+
+    // fetch course info
+    if (reduxCourse && reduxStudent) {
+      API.fetchCourseInfo(reduxCourse._id, reduxStudent._id)
+        .then((res) => {
+          // setting course in this state
+          setCourse(res.data);
+          // setting bredcrumb
+          dispatch(
+            breadcrumbActions.setBreadcrumb([
+              { text: "Mis cursos", link: "/dashboard" },
+              { text: res.data.name },
+            ])
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Ocurrió un error al cargar la información del curso.");
+          window.location.href = "/dashboard";
+        });
+    }
+  }, [reduxCourse, reduxStudent, dispatch]);
 
   return (
     <MainCourseLayout>
@@ -50,7 +55,7 @@ export default React.memo((props) => {
             topics={course.topics.reduce((acc, cv) => {
               acc.push({ _id: cv._id, subject: cv.subject, name: cv.name });
               return acc;
-            }, [])} // only sending _id, subject and name
+            }, [])} // only sending "_id", "subject" and "name"
             courseId={course._id}
           />
           {/* TOPICS */}
@@ -64,7 +69,7 @@ export default React.memo((props) => {
             {course.topics.map((ct) => (
               <Topic
                 key={ct._id}
-                courseId={courseId} // for the exit button in the exam page
+                // courseId={courseId} // for the exit button in the exam page
                 topic={ct}
               />
             ))}

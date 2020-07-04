@@ -3,14 +3,25 @@ import { Badge, Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 import "./dashboardcoursecard.scss";
 import { HashLink as Link } from "react-router-hash-link";
+import { useDispatch } from "react-redux";
+import * as courseActions from "../../../redux/actions/course";
 
 const DashboardCourseCard = React.memo(({ course }) => {
+  const dispatch = useDispatch();
+
+  const buttonClicked = async (courseId, courseName) => {
+    dispatch(courseActions.setCourse({ _id: courseId, name: courseName }));
+  };
+
   return (
     <Card className="dashboardCourseCard shadow-sm">
       <Card.Body>
         <Card.Title className="d-flex flex-row">
-          <h2 style={{ color: "#3b424b" }}>{course.name}</h2>
+          <h2 className="mb-0" style={{ color: "#3b424b" }}>
+            {course.name}
+          </h2>
         </Card.Title>
+        <hr />
         <Card.Text>{course.shortDescription}</Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
@@ -24,8 +35,16 @@ const DashboardCourseCard = React.memo(({ course }) => {
         ))}
       </ListGroup>
       <Card.Body>
-        <Button className="openBttn shadow-sm" href={"/course/" + course._id}>
-          Abrir
+        <Button
+          className="openBttn shadow-sm"
+          onClick={() =>
+            buttonClicked(course._id, course.name).then(
+              () => (window.location.href = "/course")
+            )
+          }
+        >
+          <strong>Abrir</strong>
+          <i className="fas fa-sign-in-alt ml-2" />
         </Button>
       </Card.Body>
     </Card>

@@ -5,6 +5,13 @@ export const setExam = (data) => {
   };
 };
 
+export const setResults = (data) => {
+  return {
+    type: "exam/setResults",
+    data,
+  };
+};
+
 export const clearExam = () => {
   return {
     type: "exam/clear",

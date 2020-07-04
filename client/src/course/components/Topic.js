@@ -3,7 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import ExamsAccordion from "./ExamsAccordion";
 
-const Topic = React.memo(({ courseId, topic }) => {
+const Topic = React.memo(({ topic }) => {
   return (
     <>
       <Row id={topic.name} style={{ marginTop: "35px" }}>
@@ -47,11 +47,7 @@ const Topic = React.memo(({ courseId, topic }) => {
         {/* exams */}
         <Col lg={6} className="mt-2 mt-lg-0">
           <h4 className="mb-3">Exámenes</h4>
-          <ExamsAccordion
-            exams={topic.exams}
-            courseId={courseId}
-            freestyle={topic.freestyle}
-          />
+          <ExamsAccordion exams={topic.exams} freestyle={topic.freestyle} />
         </Col>
       </Row>
     </>
@@ -59,7 +55,6 @@ const Topic = React.memo(({ courseId, topic }) => {
 });
 
 Topic.propTypes = {
-  courseId: PropTypes.string.isRequired,
   topic: PropTypes.object.isRequired,
 };
 

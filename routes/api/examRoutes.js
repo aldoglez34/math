@@ -63,8 +63,6 @@ router.put("/registerAttempt", function (req, res) {
 
   const obj = { student: studentId, date: Date.now(), score };
 
-  console.log("registrando intento", obj);
-
   model.Exam.findOneAndUpdate(
     { _id: examId },
     { $push: { visits: obj } },

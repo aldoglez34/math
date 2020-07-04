@@ -11,6 +11,7 @@ import Exam from "../exam";
 export default () => {
   return (
     <Switch>
+      {/* student dashboard */}
       <Route exact path="/dashboard" component={Dashboard} />
 
       {/* courses info */}
@@ -23,18 +24,10 @@ export default () => {
       <Route exact path="/courses/preparatoria" component={CourseInfoPrepa} />
 
       {/* courses main */}
-      <Route
-        exact
-        path="/course/:courseId"
-        render={(props) => <Course routeProps={props} />}
-      />
+      <Route exact path="/course" component={Course} />
 
       {/* exam */}
-      <Route
-        exact
-        path="/course/:courseId/:examId"
-        render={(props) => <Exam routeProps={props} />}
-      />
+      <Route exact path="/course/exam" component={Exam} />
 
       <Redirect from="/" to="/dashboard" />
 

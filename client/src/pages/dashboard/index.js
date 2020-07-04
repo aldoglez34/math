@@ -8,20 +8,30 @@ import MyCourses from "./MyCourses";
 import API from "../../utils/API";
 import { useDispatch } from "react-redux";
 import * as breadcrumbActions from "../../redux/actions/breadcrumb";
+import * as courseActions from "../../redux/actions/course";
+import * as examActions from "../../redux/actions/exam";
 
 const Dashboard = React.memo(() => {
   const dispatch = useDispatch();
 
   const student = useSelector((state) => state.student);
+  const course = useSelector((state) => state.course);
+  const exam = useSelector((state) => state.exam);
+  const breadcrumb = useSelector((state) => state.breadcrumb);
 
   const [myCourses, setMyCourses] = useState();
 
   useEffect(() => {
+    // clear redux
+    if (course) dispatch(courseActions.clearCourse());
+    if (exam) dispatch(examActions.clearExam());
+    if (breadcrumb) dispatch(breadcrumbActions.clearBreadcrumb());
+
+    // fetch student's courses
     if (student) {
       API.fetchMyCourses(student._id)
         .then((res) => {
           setMyCourses(res.data);
-          dispatch(breadcrumbActions.clearBreadcrumb());
         })
         .catch((err) => {
           console.log(err);
