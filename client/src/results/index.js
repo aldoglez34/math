@@ -37,6 +37,7 @@ const Results = React.memo(() => {
     })
       .then((res) => console.log("new attempt", res))
       .catch((err) => console.log("error", err));
+  }, []);
 
   return exam.results ? (
     <StudentLayout>
