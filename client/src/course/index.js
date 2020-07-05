@@ -42,7 +42,7 @@ export default React.memo(() => {
           window.location.href = "/dashboard";
         });
     }
-  }, [reduxCourse, reduxStudent, dispatch]);
+  }, [reduxCourse]);
 
   return (
     <MainCourseLayout>

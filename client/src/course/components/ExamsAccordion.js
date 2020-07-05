@@ -91,6 +91,7 @@ const ExamsAccordion = React.memo(({ exams, freestyle }) => {
                         examActions.setExam({
                           _id: ex._id,
                           name: ex.name,
+                          difficulty: ex.difficulty,
                         })
                       );
                     })

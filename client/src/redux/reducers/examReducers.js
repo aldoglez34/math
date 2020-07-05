@@ -4,6 +4,7 @@ const examReducers = (state = null, action) => {
       return {
         _id: action.data._id,
         name: action.data.name,
+        difficulty: action.data.difficulty,
       };
     case "exam/setResults":
       return {

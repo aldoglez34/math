@@ -59,7 +59,10 @@ router.get("/info/:examId", function (req, res) {
 // registerAttempt()
 // matches with /api/exam/registerAttempt
 router.put("/registerAttempt", function (req, res) {
-  const { studentId, examId, score } = req.body;
+  // difficulty and score here are optional
+  // if there's no score it means it's just registering a visit
+  // if there's difficulty AND the score is greater than 8, unlock next difficuly
+  const { studentId, examId, score, difficulty } = req.body;
 
   const obj = { student: studentId, date: Date.now(), score };
 

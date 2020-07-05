@@ -33,10 +33,10 @@ const Results = React.memo(() => {
       studentId: student._id,
       examId: exam._id,
       score: calif / 10,
+      difficulty: exam.difficulty,
     })
       .then((res) => console.log("new attempt", res))
       .catch((err) => console.log("error", err));
-  }, []);
 
   return exam.results ? (
     <StudentLayout>
