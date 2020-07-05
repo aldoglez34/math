@@ -7,6 +7,7 @@ import NoMatch from "../pages/nomatch/NoMatch";
 import Dashboard from "../pages/dashboard";
 import Course from "../course";
 import Exam from "../exam";
+import Results from "../results";
 
 export default () => {
   return (
@@ -28,6 +29,7 @@ export default () => {
 
       {/* exam */}
       <Route exact path="/course/exam" component={Exam} />
+      <Route exact path="/course/exam/results" component={Results} />
 
       <Redirect from="/" to="/dashboard" />
 

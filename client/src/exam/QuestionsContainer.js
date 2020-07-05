@@ -20,7 +20,10 @@ const QuestionsContainer = React.memo(({ questions }) => {
 
     // check if last
     if (number > questions.length) {
-      dispatch(examActions.setResults()); // SET RESULTS HERE
+      // save results in redux
+      dispatch(examActions.setResults(answers));
+      // go to results page
+      window.location.href = "/course/exam/results";
     }
   }, [number, answers]);
 
@@ -28,12 +31,21 @@ const QuestionsContainer = React.memo(({ questions }) => {
     // get the answer and push it
     const userAnswer = inputRef.current.value;
 
-    setAnswers([...answers, userAnswer]);
+    setAnswers([
+      ...answers,
+      {
+        _id: question._id,
+        qNumber: question.qNumber,
+        qInstruction: question.qInstruction,
+        qTechnicalInstruction: question.qTechnicalInstruction,
+        userAnswer: userAnswer,
+        qCorrectAnswer: question.qCorrectAnswer,
+      },
+    ]);
 
     // clean, set number and focus input
     inputRef.current.value = "";
     setNumber(number + 1);
-    // inputRef.current.focus();
   };
 
   const handleKeyDown = (e) => {
@@ -48,7 +60,6 @@ const QuestionsContainer = React.memo(({ questions }) => {
     ) : (
       <>
         <Row className="mx-lg-1 bg-light mt-3">
-          {console.log("rendering...")}
           <Col
             lg={{ span: 7, offset: 2 }}
             className="px-3"

@@ -59,14 +59,14 @@ const ExamsAccordion = React.memo(({ exams, freestyle }) => {
               </strong>
               {/* description */}
               <p style={{ fontSize: "14px" }} className="mb-3">
-                {ex.description}
+                {ex.description} Este examen tiene una duración de 30 minutos.
               </p>
               {/* columns */}
               <Row className="mb-3 py-2 pt-3">
                 <Col className="text-center">
                   <h1 className="mb-0 text-info">{ex.highestScore}</h1>
                   <h4>
-                    <small className="text-muted">Mayor puntaje</small>
+                    <small className="text-muted">Calificación</small>
                   </h4>
                 </Col>
                 <Col className="text-center">
