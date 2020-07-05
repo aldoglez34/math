@@ -1,10 +1,20 @@
-import React from "react";
-import { Spinner, Row, Col, Alert, ListGroup, Image } from "react-bootstrap";
+import React, { useEffect } from "react";
+import {
+  Spinner,
+  Row,
+  Col,
+  Alert,
+  ListGroup,
+  Image,
+  Button,
+} from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { StudentLayout } from "../components/Layout";
+import API from "../utils/API";
 
 const Results = React.memo(() => {
   const exam = useSelector((state) => state.exam);
+  const student = useSelector((state) => state.student);
 
   const aciertos = exam.results.reduce((acc, cv) => {
     if (cv.qCorrectAnswer === cv.userAnswer) acc++;
@@ -18,26 +28,94 @@ const Results = React.memo(() => {
 
   const calif = Math.round((aciertos / exam.results.length) * 100);
 
+  useEffect(() => {
+    API.registerAttempt({
+      studentId: student._id,
+      examId: exam._id,
+      score: calif / 10,
+    })
+      .then((res) => console.log("new attempt", res))
+      .catch((err) => console.log("error", err));
+  }, []);
+
   return exam.results ? (
     <StudentLayout>
-      {/* <h1 className="mb-0">Resultado</h1> */}
+      {/* medal */}
       <Row className="mt-2">
+        {calif >= 80 ? (
+          <Col lg={{ span: 7, offset: 2 }}>
+            <h2 className="text-success text-center">
+              Resultado satisfactorio
+            </h2>
+            {aciertos === exam.results.length ? (
+              <h2 className="text-success text-center">
+                ¡Calificación perfecta!
+              </h2>
+            ) : null}
+            <p className="text-success text-center mt-2 lead">Logros:</p>
+            <div className="mt-4 text-center">
+              <Image
+                src="https://image.flaticon.com/icons/svg/3068/3068332.svg"
+                width="100"
+                height="100"
+                title={`Medalla "${exam.name}"`}
+              />
+              {aciertos === exam.results.length ? (
+                <Image
+                  src="https://image.flaticon.com/icons/svg/3141/3141842.svg"
+                  width="100"
+                  height="100"
+                  className="ml-2"
+                  title="Calificación perfecta"
+                />
+              ) : null}
+            </div>
+          </Col>
+        ) : (
+          <Col lg={{ span: 7, offset: 2 }}>
+            <h2 className="text-danger text-center">
+              Resultado no satisfactorio
+            </h2>
+            <p className="text-danger text-center mt-2 lead">
+              Debes obtener un mínimo de 8.0 para aprobar
+            </p>
+            <div className="mt-4 text-center">
+              <Image
+                src="https://image.flaticon.com/icons/svg/2274/2274473.svg"
+                width="100"
+                height="100"
+                title="I'm sad bruh"
+              />
+            </div>
+          </Col>
+        )}
+      </Row>
+      {/* details */}
+      <Row className="mt-4">
         <Col lg={{ span: 7, offset: 2 }}>
-          <h5 className="text-success text-center">
-            ¡Buen trabajo, aprobaste este examen!
-          </h5>
-          <h5 className="text-success text-center mt-2">
-            Recibiste esta medalla:
-          </h5>
-          <div className="mt-4 pt-2 text-center">
-            <Image
-              src="https://image.flaticon.com/icons/svg/3068/3068332.svg"
-              width="100"
-              height="100"
-            />
-          </div>
+          <ListGroup className="shadow-sm">
+            <ListGroup.Item className="d-flex bg-light align-items-center">
+              <h5 className="mb-0">Aciertos</h5>
+              <h5 className="ml-auto mb-0">{aciertos}</h5>
+            </ListGroup.Item>
+            <ListGroup.Item className="d-flex bg-light align-items-center">
+              <h5 className="mb-0">Errores</h5>
+              <h5 className="ml-auto mb-0">{errores}</h5>
+            </ListGroup.Item>
+            <ListGroup.Item className="d-flex bg-light align-items-center">
+              <h5 className="mb-0">Tiempo</h5>
+              <h5 className="ml-auto mb-0">????</h5>
+            </ListGroup.Item>
+            <ListGroup.Item className="d-flex bg-light align-items-center">
+              <h5 className="mb-0">Calificación</h5>
+              <h5 className="ml-auto mb-0">
+                <span>{calif / 10}</span>
+              </h5>
+            </ListGroup.Item>
+          </ListGroup>
         </Col>
       </Row>
+      {/* question */}
       <Row className="mt-4">
         <Col lg={{ span: 7, offset: 2 }}>
           {exam.results.map((q) => {
@@ -82,33 +160,11 @@ const Results = React.memo(() => {
           })}
         </Col>
       </Row>
-      {/* <h1 className="mb-0 mt-4">Detalle</h1> */}
-      <Row className="mt-4">
-        <Col lg={{ span: 7, offset: 2 }}>
-          <ListGroup className="shadow-sm">
-            <ListGroup.Item className="d-flex bg-light align-items-center">
-              <span className="mb-0">Aciertos</span>
-              <h5 className="ml-auto mb-0">{aciertos}</h5>
-            </ListGroup.Item>
-            <ListGroup.Item className="d-flex bg-light align-items-center">
-              <span className="mb-0">Errores</span>
-              <h5 className="ml-auto mb-0">{errores}</h5>
-            </ListGroup.Item>
-            <ListGroup.Item className="d-flex bg-light align-items-center">
-              <span className="mb-0">Tiempo</span>
-              <h5 className="ml-auto mb-0">????</h5>
-            </ListGroup.Item>
-            <ListGroup.Item className="d-flex bg-light align-items-center">
-              <span className="mb-0">Calificación</span>
-              <h5 className="ml-auto mb-0">
-                <span>{calif}</span>
-                <span>/100</span>
-              </h5>
-            </ListGroup.Item>
-          </ListGroup>
-        </Col>
-      </Row>
-      {/* <h1 className="mb-0 mt-4">Resultado</h1> */}
+      <div className="mt-3 text-center">
+        <Button variant="primary" href="/course" className="shadow-sm">
+          Regresar
+        </Button>
+      </div>
     </StudentLayout>
   ) : (
     <div className="text-center mt-4 pt-4">

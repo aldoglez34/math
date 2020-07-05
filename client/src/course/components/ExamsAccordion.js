@@ -5,8 +5,7 @@ import { useSelector } from "react-redux";
 import API from "../../utils/API";
 import DifficultyStars from "./DifficultyStars";
 import FreestyleCard from "./FreestyleCard";
-import moment from "moment";
-import "moment/locale/es";
+import LastVisited from "./LastVisited";
 import { useDispatch } from "react-redux";
 import * as examActions from "../../redux/actions/exam";
 
@@ -23,12 +22,19 @@ const ExamsAccordion = React.memo(({ exams, freestyle }) => {
           <Card.Header style={{ backgroundColor: "#f4fbf8" }}>
             <Accordion.Toggle as={Button} variant="link" eventKey={ex._id}>
               <i className="fas fa-chevron-down mr-1" />
-              <strong>
-                {ex.name}
-                {ex.difficulty === "Final" ? (
-                  <i className="fas fa-medal ml-2 text-warning" />
-                ) : null}
-              </strong>
+              <strong>{ex.name}</strong>
+              {ex.highestScore >= 8 ? (
+                <i
+                  className="fas fa-medal text-warning ml-2"
+                  title="Aprobado"
+                />
+              ) : null}
+              {ex.highestScore === 10 ? (
+                <i
+                  className="fas fa-crown text-warning ml-2"
+                  title="Calificación perfecta"
+                />
+              ) : null}
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey={ex._id}>
@@ -36,33 +42,30 @@ const ExamsAccordion = React.memo(({ exams, freestyle }) => {
               {/* TITLE 2 */}
               <h2 className="mb-2">
                 {ex.name}
-                {ex.difficulty === "Final" ? (
+                {ex.highestScore >= 8 ? (
                   <i
-                    className="fas fa-medal ml-2 text-warning"
-                    title="Medalla final"
+                    className="fas fa-medal text-warning ml-2"
+                    title="Aprobado"
+                  />
+                ) : null}
+                {ex.highestScore === 10 ? (
+                  <i
+                    className="fas fa-crown text-warning ml-2"
+                    title="Calificación perfecta"
                   />
                 ) : null}
               </h2>
+              <hr />
               {/* stars */}
               <DifficultyStars difficulty={ex.difficulty} />
               {/* latest attempt */}
-              <strong
-                className="mb-2 d-block"
-                style={{ fontSize: "14px" }}
-                title="Último intento"
-              >
-                <em>
-                  {ex.latestAttempt
-                    ? moment(ex.latestAttempt).format("LLLL")
-                    : "No has presentado este examen"}
-                </em>
-              </strong>
+              <LastVisited date={ex.latestAttempt} />
               {/* description */}
               <p style={{ fontSize: "14px" }} className="mb-3">
                 {ex.description} Este examen tiene una duración de 30 minutos.
               </p>
               {/* columns */}
-              <Row className="mb-3 py-2 pt-3">
+              <Row className="mb-3 py-2">
                 <Col className="text-center">
                   <h1 className="mb-0 text-info">{ex.highestScore}</h1>
                   <h4>
@@ -102,7 +105,7 @@ const ExamsAccordion = React.memo(({ exams, freestyle }) => {
                 className="shadow-sm"
                 disabled={ex.isAvailable ? false : true}
               >
-                Iniciar examen
+                Iniciar
               </Button>
             </Card.Body>
           </Accordion.Collapse>

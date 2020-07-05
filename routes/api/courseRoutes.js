@@ -11,7 +11,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
     .lean()
     .populate(
       "topics.exams",
-      "name description difficulty qCounter visits availableTo"
+      "name description difficulty qCounter visits availableTo perfect"
     )
     .then((data) => {
       // res.json(data);
@@ -60,6 +60,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
                 qCounter: cv.qCounter,
                 isAvailable:
                   cv.availableTo.filter((s) => s == studentId).length > 0,
+                perfect: cv.perfect.filter((p) => p == studentId).length > 0,
                 myAttempts: cv.visits.filter((v) => v.student == studentId)
                   .length,
                 latestAttempt: cv.visits

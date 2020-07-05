@@ -104,7 +104,7 @@ module.exports = (studentIds) => [
       {
         qInstruction:
           "Una urna tiene 12 pelotas amarillas y 20 pelotas rojas. ¿Cuántas pelotas hay en total dentro de la urna?",
-        qCorrectAnswer: "22",
+        qCorrectAnswer: "32",
         qCorrectAnswerComplement: "pelotas",
       },
       {

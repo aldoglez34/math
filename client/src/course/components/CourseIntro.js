@@ -31,9 +31,7 @@ const CourseIntro = React.memo(
                     {t.subject}
                   </Badge>
                   <strong>
-                    <Link to={"/course/" + courseId + "#" + t.name}>
-                      {t.name}
-                    </Link>
+                    <Link to={"/course/#" + t.name}>{t.name}</Link>
                   </strong>
                 </span>
               ))}

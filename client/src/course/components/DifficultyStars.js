@@ -50,8 +50,11 @@ const DifficultyStars = React.memo(({ difficulty }) => {
   };
 
   return (
-    <strong className="mb-2 d-block text-info" title="Dificultad">
-      {calculateDifficulty(difficulty)}
+    <strong className="mb-2 mt-3 d-block" style={{ fontSize: "14px" }}>
+      {/* <span className="mr-2">Dificultad:</span> */}
+      <span className="text-info" title="Dificultad">
+        {calculateDifficulty(difficulty)}
+      </span>
     </strong>
   );
 });

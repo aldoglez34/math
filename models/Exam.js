@@ -28,6 +28,15 @@ const schema = new Schema({
       date: { type: Date, default: Date.now() },
     },
   ],
+  perfect: [
+    {
+      student: {
+        type: Schema.Types.ObjectId,
+        ref: "Student",
+      },
+      date: { type: Date, default: Date.now() },
+    },
+  ],
   questions: [
     {
       qInstruction: { type: String, required: true }, // instrucción de la pregunta, ejemplo: Resuelve el siguiente problema
