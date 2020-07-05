@@ -11,7 +11,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
     .lean()
     .populate(
       "topics.exams",
-      "name description difficulty qCounter visits availableTo perfect"
+      "subject name description difficulty qCounter visits availableTo perfect"
     )
     .then((data) => {
       // res.json(data);
@@ -54,6 +54,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
             exams: cv.exams.reduce((acc, cv) => {
               acc.push({
                 _id: cv._id,
+                subject: cv.subject,
                 name: cv.name,
                 description: cv.description,
                 difficulty: cv.difficulty,

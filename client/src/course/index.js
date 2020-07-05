@@ -67,11 +67,7 @@ export default React.memo(() => {
             }}
           >
             {course.topics.map((ct) => (
-              <Topic
-                key={ct._id}
-                // courseId={courseId} // for the exit button in the exam page
-                topic={ct}
-              />
+              <Topic key={ct._id} topic={ct} />
             ))}
           </Container>
         </>

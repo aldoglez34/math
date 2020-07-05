@@ -1,11 +1,12 @@
 module.exports = (studentIds) => [
   {
     topicCode: "PRIM3y4_Suma",
+    subject: "Suma",
     name: "Sumas 1",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius risus massa, et sollicitudin est fringilla.",
     difficulty: "Basic",
-    qCounter: 3,
+    qCounter: 5,
     availableTo: [...studentIds],
     questions: [
       {
@@ -86,7 +87,7 @@ module.exports = (studentIds) => [
       {
         qInstruction:
           "Juan tiene 10 años, mientras que Ana tiene 20 años. ¿Cuántos años suman entre los dos?",
-        qCorrectAnswer: "28",
+        qCorrectAnswer: "30",
         qCorrectAnswerComplement: "años",
       },
       {
@@ -117,11 +118,12 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Suma",
+    subject: "Suma",
     name: "Sumas 2",
     description:
       "Suspendisse potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis vehicula eros nec sapien molestie sodales.",
     difficulty: "Intermediate",
-    qCounter: 3,
+    qCounter: 5,
     questions: [
       {
         qInstruction: "Resolver la siguiente suma",
@@ -232,11 +234,12 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Suma",
+    subject: "Suma",
     name: "Sumas 3",
     description:
       "Integer eleifend nibh non sem tincidunt, at ultricies purus vestibulum. Vivamus sed lobortis ligula, ut lacinia elit.",
     difficulty: "Advanced",
-    qCounter: 3,
+    qCounter: 5,
     questions: [
       {
         qInstruction: "Resolver la siguiente suma",
@@ -347,11 +350,12 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Suma",
+    subject: "Suma",
     name: "Sumas Final",
     description:
       "At ultricies purus vestibulum. Vivamus sed lobortis ligula, ut lacinia elit.",
     difficulty: "Final",
-    qCounter: 3,
+    qCounter: 5,
     questions: [
       {
         qInstruction: "Resolver la siguiente suma",

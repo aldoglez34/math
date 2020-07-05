@@ -3,6 +3,7 @@ const examReducers = (state = null, action) => {
     case "exam/set":
       return {
         _id: action.data._id,
+        subject: action.data.subject,
         name: action.data.name,
         difficulty: action.data.difficulty,
       };

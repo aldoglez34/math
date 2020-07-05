@@ -68,7 +68,7 @@ const QuestionsContainer = React.memo(({ questions }) => {
             {/* INSTRUCTION */}
             <h4>
               <span className="mr-1">{question.qNumber + "."}</span>
-              <span>{question.qInstruction}</span>
+              <span className="text-break">{question.qInstruction}</span>
             </h4>
             {/* TECHNICAL INSTRUCTION */}
             <h4>{question.qTechnicalInstruction}</h4>
@@ -76,10 +76,10 @@ const QuestionsContainer = React.memo(({ questions }) => {
             <div className="d-flex flex-row mt-3 mb-2">
               <input
                 type="text"
-                maxLength="10"
+                maxLength="20"
                 ref={inputRef}
                 onKeyDown={handleKeyDown}
-                className="border rounded"
+                className="border rounded px-2"
               />
               {/* question complement (if any) */}
               {questions.qCorrectAnswerComplement ? (

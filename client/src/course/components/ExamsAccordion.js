@@ -90,6 +90,7 @@ const ExamsAccordion = React.memo(({ exams, freestyle }) => {
                       return dispatch(
                         examActions.setExam({
                           _id: ex._id,
+                          subject: ex.subject,
                           name: ex.name,
                           difficulty: ex.difficulty,
                         })

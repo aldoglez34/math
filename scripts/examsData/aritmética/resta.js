@@ -1,11 +1,12 @@
 module.exports = (studentIds) => [
   {
     topicCode: "PRIM3y4_Resta",
+    subject: "Resta",
     name: "Restas 1",
     description:
       "Duis gravida leo id enim bibendum, in venenatis diam scelerisque. Pellentesque ac justo ornare, fringilla risus eget, tincidunt massa. Sed at sodales nulla.",
     difficulty: "Basic",
-    qCounter: 3,
+    qCounter: 5,
     availableTo: [...studentIds],
     questions: [
       {
@@ -117,11 +118,12 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Resta",
+    subject: "Resta",
     name: "Restas 2",
     description:
       "Curabitur vel quam vel mi elementum accumsan. Sed eros arcu, bibendum vitae efficitur nec, efficitur ut dolor. Aliquam eget feugiat nisl. Maecenas at aliquam purus.",
     difficulty: "Intermediate",
-    qCounter: 3,
+    qCounter: 5,
     questions: [
       {
         qInstruction: "Resolver la siguiente resta",
@@ -232,11 +234,12 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Resta",
+    subject: "Resta",
     name: "Restas 3",
     description:
       "Sed lacinia lacus non laoreet pulvinar. Maecenas tincidunt suscipit tortor non vehicula. Ut dolor felis, rutrum non tempus nec, pulvinar in neque.",
     difficulty: "Advanced",
-    qCounter: 3,
+    qCounter: 5,
     questions: [
       {
         qInstruction: "¿Cuál es el número que falta?",
@@ -317,11 +320,12 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Resta",
+    subject: "Resta",
     name: "Restas Final",
     description:
       "Maecenas tincidunt suscipit tortor non vehicula. Ut dolor felis, rutrum non tempus nec, pulvinar in neque.",
     difficulty: "Final",
-    qCounter: 3,
+    qCounter: 5,
     questions: [
       {
         qInstruction: "¿Cuál es el número que falta?",

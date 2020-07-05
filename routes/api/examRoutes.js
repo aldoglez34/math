@@ -62,18 +62,48 @@ router.put("/registerAttempt", function (req, res) {
   // difficulty and score here are optional
   // if there's no score it means it's just registering a visit
   // if there's difficulty AND the score is greater than 8, unlock next difficuly
-  const { studentId, examId, score, difficulty } = req.body;
+  const { studentId, subject, examId, score, difficulty } = req.body;
+
+  let unblockedDiff = null;
+
+  if (difficulty && score > 8) {
+    switch (difficulty) {
+      case "Basic":
+        unblockedDiff = "Intermediate";
+        break;
+      case "Intermediate":
+        unblockedDiff = "Advanced";
+        break;
+      case "Advanced":
+        unblockedDiff = "Final";
+        break;
+    }
+  }
 
   const obj = { student: studentId, date: Date.now(), score };
 
+  // first register the score
   model.Exam.findOneAndUpdate(
     { _id: examId },
     { $push: { visits: obj } },
     { new: true }
   )
     .then(() => {
-      res.send("Se registró un nuevo score");
+      // check if something was unblocked and proceed to unbock it
+      if (!unblockedDiff) {
+        res.json("Se registró un nuevo score");
+      } else {
+        return model.Exam.update(
+          { subject: subject, difficulty: unblockedDiff },
+          { $push: { availableTo: studentId } }
+        );
+      }
     })
+    .then(() =>
+      res.json(
+        "Se registró un nuevo score y se desbloqueó una nueva dificultad"
+      )
+    )
     .catch((err) => {
       console.log("@error", err);
       res.status(422).send("Ocurrió un error");

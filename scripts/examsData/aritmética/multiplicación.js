@@ -1,11 +1,12 @@
 module.exports = (studentIds) => [
   {
     topicCode: "PRIM3y4_Multi",
+    subject: "Multiplicación",
     name: "Multiplicaciones 1",
     description:
       "Suspendisse non gravida odio. Phasellus a enim non justo porttitor pretium. Curabitur facilisis leo vitae ex efficitur, egestas malesuada augue elementum.",
     difficulty: "Basic",
-    qCounter: 3,
+    qCounter: 5,
     availableTo: [...studentIds],
     questions: [
       {
@@ -117,11 +118,12 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Multi",
+    subject: "Multiplicación",
     name: "Multiplicaciones 2",
     description:
       "Duis luctus nisl massa, vel convallis nisi maximus eget. In molestie lacinia ligula at pellentesque. Etiam scelerisque porta mauris quis aliquam.",
     difficulty: "Intermediate",
-    qCounter: 3,
+    qCounter: 5,
     questions: [
       {
         qInstruction: "Resolver la siguiente multiplicación",
@@ -232,11 +234,12 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Multi",
+    subject: "Multiplicación",
     name: "Multiplicaciones 3",
     description:
       "Morbi volutpat ipsum a pellentesque euismod. Nullam in neque eu est finibus vestibulum. Cras sagittis metus sit amet leo malesuada, at tincidunt metus scelerisque.",
     difficulty: "Advanced",
-    qCounter: 3,
+    qCounter: 5,
     questions: [
       {
         qInstruction: "Resolver la siguiente multiplicación",
@@ -317,11 +320,12 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Multi",
+    subject: "Multiplicación",
     name: "Multiplicaciones Final",
     description:
       "Nullam in neque eu est finibus vestibulum. Cras sagittis metus sit amet leo malesuada, at tincidunt metus scelerisque.",
     difficulty: "Final",
-    qCounter: 3,
+    qCounter: 5,
     questions: [
       {
         qInstruction: "Resolver la siguiente multiplicación",

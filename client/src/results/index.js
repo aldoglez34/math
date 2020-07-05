@@ -31,6 +31,7 @@ const Results = React.memo(() => {
   useEffect(() => {
     API.registerAttempt({
       studentId: student._id,
+      subject: exam.subject,
       examId: exam._id,
       score: calif / 10,
       difficulty: exam.difficulty,
@@ -116,7 +117,7 @@ const Results = React.memo(() => {
           </ListGroup>
         </Col>
       </Row>
-      {/* question */}
+      {/* questions */}
       <Row className="mt-4">
         <Col lg={{ span: 7, offset: 2 }}>
           {exam.results.map((q) => {
@@ -142,7 +143,8 @@ const Results = React.memo(() => {
                       </strong>
                     )}
                     <br />
-                    <span>{q.qNumber + ". " + q.qInstruction}</span>
+                    {/* <span>{q.qNumber + ". "}</span> */}
+                    <span className="text-break">{q.qInstruction}</span>
                     {q.qTechnicalInstruction ? (
                       <>
                         <br />
