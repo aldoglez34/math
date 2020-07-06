@@ -26,11 +26,19 @@ const DashboardCourseCard = React.memo(({ course }) => {
       </Card.Body>
       <ListGroup className="list-group-flush">
         {course.topics.map((ct) => (
-          <ListGroupItem key={ct.name}>
-            <Badge variant="dark" className="mr-2">
-              {ct.subject}
-            </Badge>
-            <Link to={"/course/" + course._id + "#" + ct.name}>{ct.name}</Link>
+          <ListGroupItem
+            key={ct._id}
+            className="d-flex flex-row align-items-center"
+          >
+            <Link to={"/course/#" + ct.name} title={"Ir a " + ct.name}>
+              <Badge variant="primary" className="mr-2">
+                {ct.subject}
+              </Badge>
+              {ct.name}
+            </Link>
+            {ct.hasReward ? (
+              <i className="fas fa-trophy text-warning ml-2" title="Aprobado" />
+            ) : null}
           </ListGroupItem>
         ))}
       </ListGroup>

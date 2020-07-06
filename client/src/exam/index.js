@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { StudentLayout } from "../components/Layout";
-import { Spinner, Button } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 import API from "../utils/API";
 import * as breadcrumbActions from "../redux/actions/breadcrumb";
 import QuestionsContainer from "./QuestionsContainer";
@@ -45,19 +45,18 @@ const Exam = React.memo(() => {
     <StudentLayout>
       {exam ? (
         <>
-          {/* title and exit button (only on large screens) */}
-          <div className="d-flex">
-            <h1 className="mb-0">{exam.name}</h1>
-            <div className="ml-auto align-items-end d-none d-lg-flex">
-              <Button
-                href="/course"
-                variant="outline-danger"
-                className="mr-1"
-                title="Salir"
-              >
-                <i className="fas fa-door-open"></i>
-              </Button>
-            </div>
+          {/* title */}
+          <h1>{exam.name}</h1>
+          {/* buttons, timer and stuff */}
+          <div className="d-flex mb-3">
+            <span className="text-dark" title="Duración">
+              <i className="fas fa-stopwatch mr-1" />
+              30 mins.
+            </span>
+            <a href="/course" className="ml-auto text-dark">
+              <i className="fas fa-door-open mr-1" />
+              Salir
+            </a>
           </div>
           {/* questions */}
           <QuestionsContainer questions={exam.questions} />

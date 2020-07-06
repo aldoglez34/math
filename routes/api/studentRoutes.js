@@ -5,6 +5,7 @@ const model = require("../../models");
 // matches with /api/student/fetchByUID/:uid
 router.get("/fetchByUID/:uid", function (req, res) {
   model.Student.find({ firebaseUID: req.params.uid })
+    .select("name firstSurname secondSurname email")
     .then((data) => res.json(data[0]))
     .catch((err) => {
       console.log("@error", err);
@@ -29,34 +30,41 @@ router.post("/new", function (req, res) {
     });
 });
 
-// buyCourse()
-// matches with /api/student/buyCourse
-router.put("/buyCourse", function (req, res) {
-  const { studentId, courseId } = req.body;
-
-  model.Student.findByIdAndUpdate(studentId, {
-    $push: { courses: courseId },
-  })
-    .then(() => {
-      // console.log(data);
-      res.send("Curso comprado con éxito");
-    })
-    .catch((err) => {
-      console.log("@error", err);
-      res.status(422).send("Ocurrió un error");
-    });
-});
-
-// fetchMyCourses()
-// matches with /api/student/fetchCourses/:studentId
-router.get("/fetchCourses/:studentId", function (req, res) {
+// fetchDashboard()
+// matches with /api/student/fetchDashboard/:studentId
+router.get("/fetchDashboard/:studentId", function (req, res) {
   const studentId = req.params.studentId;
 
   model.Student.findById(studentId)
-    .select("courses")
+    .select("courses rewards crowns attempts")
     .lean()
-    .populate("courses", "name shortDescription topics.subject topics.name")
-    .then((data) => res.json(data.courses))
+    .populate(
+      "courses",
+      "name shortDescription topics._id topics.subject topics.name"
+    )
+    .then((data) => {
+      const myRewards = data.rewards;
+
+      return {
+        ...data,
+        courses: data.courses.reduce((acc, cv) => {
+          acc.push({
+            ...cv,
+            topics: cv.topics.reduce((acc, cv) => {
+              acc.push({
+                ...cv,
+                hasReward: myRewards.filter((mr) => mr == cv._id).length
+                  ? true
+                  : false,
+              });
+              return acc;
+            }, []),
+          });
+          return acc;
+        }, []),
+      };
+    })
+    .then((data) => res.json(data))
     .catch((err) => {
       console.log("error", err);
       res.send("Ocurrió un error en el servidor");

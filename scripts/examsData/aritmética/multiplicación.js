@@ -1,13 +1,13 @@
-module.exports = (studentIds) => [
+module.exports = [
   {
     topicCode: "PRIM3y4_Multi",
-    subject: "Multiplicación",
+    topicName: "Multiplicación",
     name: "Multiplicaciones 1",
     description:
       "Suspendisse non gravida odio. Phasellus a enim non justo porttitor pretium. Curabitur facilisis leo vitae ex efficitur, egestas malesuada augue elementum.",
+    duration: 30,
     difficulty: "Basic",
     qCounter: 5,
-    availableTo: [...studentIds],
     questions: [
       {
         qInstruction: "Resolver la siguiente multiplicación",
@@ -118,11 +118,12 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Multi",
-    subject: "Multiplicación",
+    topicName: "Multiplicación",
     name: "Multiplicaciones 2",
     description:
       "Duis luctus nisl massa, vel convallis nisi maximus eget. In molestie lacinia ligula at pellentesque. Etiam scelerisque porta mauris quis aliquam.",
-    difficulty: "Intermediate",
+    duration: 30,
+    difficulty: "Intermediate-Low",
     qCounter: 5,
     questions: [
       {
@@ -234,10 +235,98 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Multi",
-    subject: "Multiplicación",
+    topicName: "Multiplicación",
     name: "Multiplicaciones 3",
     description:
       "Morbi volutpat ipsum a pellentesque euismod. Nullam in neque eu est finibus vestibulum. Cras sagittis metus sit amet leo malesuada, at tincidunt metus scelerisque.",
+    duration: 30,
+    difficulty: "Intermediate-High",
+    qCounter: 5,
+    questions: [
+      {
+        qInstruction: "Resolver la siguiente multiplicación",
+        qTechnicalInstruction: "1 x 5 x 9",
+        qCorrectAnswer: "45",
+      },
+      {
+        qInstruction: "Resolver la siguiente multiplicación",
+        qTechnicalInstruction: "11 x 7 x 1",
+        qCorrectAnswer: "77",
+      },
+      {
+        qInstruction: "Resolver la siguiente multiplicación",
+        qTechnicalInstruction: "10 x 4 x 12",
+        qCorrectAnswer: "480",
+      },
+      {
+        qInstruction: "Resolver la siguiente multiplicación",
+        qTechnicalInstruction: "6 x 8 x 4",
+        qCorrectAnswer: "192",
+      },
+      {
+        qInstruction: "Resolver la siguiente multiplicación",
+        qTechnicalInstruction: "12 x 8 x 4",
+        qCorrectAnswer: "384",
+      },
+      {
+        qInstruction: "Resolver la siguiente multiplicación",
+        qTechnicalInstruction: "3 x 9 x 1",
+        qCorrectAnswer: "27",
+      },
+      {
+        qInstruction: "Resolver la siguiente multiplicación",
+        qTechnicalInstruction: "7 x 7 x 7",
+        qCorrectAnswer: "343",
+      },
+      {
+        qInstruction: "Resolver la siguiente multiplicación",
+        qTechnicalInstruction: "12 x 11 x 9",
+        qCorrectAnswer: "1188",
+      },
+      {
+        qInstruction: "Resolver la siguiente multiplicación",
+        qTechnicalInstruction: "1 x 5 x 7",
+        qCorrectAnswer: "35",
+      },
+      {
+        qInstruction: "Resolver la siguiente multiplicación",
+        qTechnicalInstruction: "6 x 3 x 1",
+        qCorrectAnswer: "18",
+      },
+      {
+        qInstruction: "Resolver la siguiente multiplicación",
+        qTechnicalInstruction: "11 x 1 x 1",
+        qCorrectAnswer: "11",
+      },
+      {
+        qInstruction: "Resolver la siguiente multiplicación",
+        qTechnicalInstruction: "12 x 11 x 12",
+        qCorrectAnswer: "1584",
+      },
+      {
+        qInstruction: "Resolver la siguiente multiplicación",
+        qTechnicalInstruction: "2 x 7 x 12",
+        qCorrectAnswer: "168",
+      },
+      {
+        qInstruction: "Resolver la siguiente multiplicación",
+        qTechnicalInstruction: "10 x 5 x 3",
+        qCorrectAnswer: "150",
+      },
+      {
+        qInstruction: "Resolver la siguiente multiplicación",
+        qTechnicalInstruction: "11 x 9 x 10",
+        qCorrectAnswer: "990",
+      },
+    ],
+  },
+  {
+    topicCode: "PRIM3y4_Multi",
+    topicName: "Multiplicación",
+    name: "Multiplicaciones 4",
+    description:
+      "Morbi volutpat ipsum a pellentesque euismod. Nullam in neque eu est finibus vestibulum. Cras sagittis metus sit amet leo malesuada, at tincidunt metus scelerisque.",
+    duration: 30,
     difficulty: "Advanced",
     qCounter: 5,
     questions: [
@@ -320,10 +409,11 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Multi",
-    subject: "Multiplicación",
+    topicName: "Multiplicación",
     name: "Multiplicaciones Final",
     description:
       "Nullam in neque eu est finibus vestibulum. Cras sagittis metus sit amet leo malesuada, at tincidunt metus scelerisque.",
+    duration: 30,
     difficulty: "Final",
     qCounter: 5,
     questions: [

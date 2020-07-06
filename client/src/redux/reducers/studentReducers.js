@@ -7,6 +7,7 @@ const studentReducers = (state = null, action) => {
         firstSurname: action.data.firstSurname,
         secondSurname: action.data.secondSurname,
         email: action.data.email,
+        username: action.data.email.split("@", 1)[0],
       };
     case "student/logout":
       return null;

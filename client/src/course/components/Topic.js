@@ -10,6 +10,9 @@ const Topic = React.memo(({ topic }) => {
         {/* title */}
         <Col>
           <h1 className="display-4" style={{ color: "#48bf84" }}>
+            {topic.hasReward ? (
+              <i className="fas fa-trophy text-warning mr-2" title="Aprobado" />
+            ) : null}
             {topic.name}
           </h1>
         </Col>
@@ -23,8 +26,8 @@ const Topic = React.memo(({ topic }) => {
             En esta sección aprenderás a:
           </p>
           <ul className="mb-3">
-            {topic.toLearn.map((tl) => (
-              <li key={tl}>{tl}</li>
+            {topic.toLearn.map((tl, idx) => (
+              <li key={idx}>{tl}</li>
             ))}
           </ul>
           <div className="mb-3 mb-lg-0">
@@ -47,7 +50,10 @@ const Topic = React.memo(({ topic }) => {
         {/* exams */}
         <Col lg={6} className="mt-2 mt-lg-0">
           <h4 className="mb-3">Exámenes</h4>
-          <ExamsAccordion exams={topic.exams} freestyle={topic.freestyle} />
+          <ExamsAccordion
+            exams={topic.exams}
+            freestyleTimer={topic.freestyleTimer}
+          />
         </Col>
       </Row>
     </>

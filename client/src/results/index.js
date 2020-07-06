@@ -15,6 +15,7 @@ import API from "../utils/API";
 const Results = React.memo(() => {
   const exam = useSelector((state) => state.exam);
   const student = useSelector((state) => state.student);
+  const course = useSelector((state) => state.course);
 
   const aciertos = exam.results.reduce((acc, cv) => {
     if (cv.qCorrectAnswer === cv.userAnswer) acc++;
@@ -30,10 +31,11 @@ const Results = React.memo(() => {
 
   useEffect(() => {
     API.registerAttempt({
-      studentId: student._id,
-      subject: exam.subject,
       examId: exam._id,
-      score: calif / 10,
+      studentId: student._id,
+      courseId: course._id,
+      grade: calif / 10,
+      topicName: exam.topicName,
       difficulty: exam.difficulty,
     })
       .then((res) => console.log("new attempt", res))

@@ -29,9 +29,9 @@ const Dashboard = React.memo(() => {
 
     // fetch student's courses
     if (student) {
-      API.fetchMyCourses(student._id)
+      API.fetchDashboard(student._id)
         .then((res) => {
-          setMyCourses(res.data);
+          setMyCourses(res.data.courses);
         })
         .catch((err) => {
           console.log(err);

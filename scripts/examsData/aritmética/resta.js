@@ -1,13 +1,13 @@
-module.exports = (studentIds) => [
+module.exports = [
   {
     topicCode: "PRIM3y4_Resta",
-    subject: "Resta",
+    topicName: "Resta",
     name: "Restas 1",
     description:
       "Duis gravida leo id enim bibendum, in venenatis diam scelerisque. Pellentesque ac justo ornare, fringilla risus eget, tincidunt massa. Sed at sodales nulla.",
+    duration: 30,
     difficulty: "Basic",
     qCounter: 5,
-    availableTo: [...studentIds],
     questions: [
       {
         qInstruction: "Resolver la siguiente resta",
@@ -118,11 +118,12 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Resta",
-    subject: "Resta",
+    topicName: "Resta",
     name: "Restas 2",
     description:
       "Curabitur vel quam vel mi elementum accumsan. Sed eros arcu, bibendum vitae efficitur nec, efficitur ut dolor. Aliquam eget feugiat nisl. Maecenas at aliquam purus.",
-    difficulty: "Intermediate",
+    duration: 30,
+    difficulty: "Intermediate-Low",
     qCounter: 5,
     questions: [
       {
@@ -234,10 +235,98 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Resta",
-    subject: "Resta",
+    topicName: "Resta",
     name: "Restas 3",
     description:
       "Sed lacinia lacus non laoreet pulvinar. Maecenas tincidunt suscipit tortor non vehicula. Ut dolor felis, rutrum non tempus nec, pulvinar in neque.",
+    duration: 30,
+    difficulty: "Intermediate-High",
+    qCounter: 5,
+    questions: [
+      {
+        qInstruction: "¿Cuál es el número que falta?",
+        qTechnicalInstruction: "27 - ? = 2",
+        qCorrectAnswer: "25",
+      },
+      {
+        qInstruction: "¿Cuál es el número que falta?",
+        qTechnicalInstruction: "49 - ? = 4",
+        qCorrectAnswer: "45",
+      },
+      {
+        qInstruction: "¿Cuál es el número que falta?",
+        qTechnicalInstruction: "46 - ? = 36",
+        qCorrectAnswer: "10",
+      },
+      {
+        qInstruction: "¿Cuál es el número que falta?",
+        qTechnicalInstruction: "31 - ? = 19",
+        qCorrectAnswer: "12",
+      },
+      {
+        qInstruction: "¿Cuál es el número que falta?",
+        qTechnicalInstruction: "47 - ? = 44",
+        qCorrectAnswer: "3",
+      },
+      {
+        qInstruction: "¿Cuál es el número que falta?",
+        qTechnicalInstruction: "44 - ? = 21",
+        qCorrectAnswer: "23",
+      },
+      {
+        qInstruction: "¿Cuál es el número que falta?",
+        qTechnicalInstruction: "28 - ? = 11",
+        qCorrectAnswer: "17",
+      },
+      {
+        qInstruction: "¿Cuál es el número que falta?",
+        qTechnicalInstruction: "38 - ? = 13",
+        qCorrectAnswer: "25",
+      },
+      {
+        qInstruction: "¿Cuál es el número que falta?",
+        qTechnicalInstruction: "5 - ? = 4",
+        qCorrectAnswer: "1",
+      },
+      {
+        qInstruction: "¿Cuál es el número que falta?",
+        qTechnicalInstruction: "36 - ? = 6",
+        qCorrectAnswer: "30",
+      },
+      {
+        qInstruction: "¿Cuál es el número que falta?",
+        qTechnicalInstruction: "11 - ? = 7",
+        qCorrectAnswer: "4",
+      },
+      {
+        qInstruction: "¿Cuál es el número que falta?",
+        qTechnicalInstruction: "35 - ? = 5",
+        qCorrectAnswer: "30",
+      },
+      {
+        qInstruction: "¿Cuál es el número que falta?",
+        qTechnicalInstruction: "16 - ? = 8",
+        qCorrectAnswer: "8",
+      },
+      {
+        qInstruction: "¿Cuál es el número que falta?",
+        qTechnicalInstruction: "28 - ? = 14",
+        qCorrectAnswer: "14",
+      },
+      {
+        qInstruction: "¿Cuál es el número que falta?",
+        qTechnicalInstruction: "19 - ? = 1",
+        qCorrectAnswer: "18",
+      },
+    ],
+  },
+  {
+    topicCode: "PRIM3y4_Resta",
+    topicName: "Resta",
+    name: "Restas 4",
+    description:
+      "Sed lacinia lacus non laoreet pulvinar. Maecenas tincidunt suscipit tortor non vehicula. Ut dolor felis, rutrum non tempus nec, pulvinar in neque.",
+    duration: 30,
     difficulty: "Advanced",
     qCounter: 5,
     questions: [
@@ -320,10 +409,11 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Resta",
-    subject: "Resta",
+    topicName: "Resta",
     name: "Restas Final",
     description:
       "Maecenas tincidunt suscipit tortor non vehicula. Ut dolor felis, rutrum non tempus nec, pulvinar in neque.",
+    duration: 30,
     difficulty: "Final",
     qCounter: 5,
     questions: [

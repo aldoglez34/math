@@ -7,41 +7,51 @@ const DifficultyStars = React.memo(({ difficulty }) => {
       case "Basic":
         return (
           <>
-            <i className="fas fa-star pb-1 mx-1" />
-            <i className="far fa-star pb-1 mx-1" />
-            <i className="far fa-star pb-1 mx-1" />
-            <i className="far fa-star pb-1 mx-1" />
-            <i className="far fa-star pb-1 mx-1" />
+            <i className="fas fa-star" />
+            <i className="far fa-star ml-1" />
+            <i className="far fa-star ml-1" />
+            <i className="far fa-star ml-1" />
+            <i className="far fa-star ml-1" />
           </>
         );
-      case "Intermediate":
+      case "Intermediate-Low":
         return (
           <>
-            <i className="fas fa-star pb-1 mx-1" />
-            <i className="fas fa-star pb-1 mx-1" />
-            <i className="far fa-star pb-1 mx-1" />
-            <i className="far fa-star pb-1 mx-1" />
-            <i className="far fa-star pb-1 mx-1" />
+            <i className="fas fa-star" />
+            <i className="fas fa-star ml-1" />
+            <i className="far fa-star ml-1" />
+            <i className="far fa-star ml-1" />
+            <i className="far fa-star ml-1" />
+          </>
+        );
+      case "Intermediate-High":
+        return (
+          <>
+            <i className="fas fa-star" />
+            <i className="fas fa-star ml-1" />
+            <i className="fas fa-star ml-1" />
+            <i className="far fa-star ml-1" />
+            <i className="far fa-star ml-1" />
           </>
         );
       case "Advanced":
         return (
           <>
-            <i className="fas fa-star pb-1 mx-1" />
-            <i className="fas fa-star pb-1 mx-1" />
-            <i className="fas fa-star pb-1 mx-1" />
-            <i className="far fa-star pb-1 mx-1" />
-            <i className="far fa-star pb-1 mx-1" />
+            <i className="fas fa-star" />
+            <i className="fas fa-star ml-1" />
+            <i className="fas fa-star ml-1" />
+            <i className="fas fa-star ml-1" />
+            <i className="far fa-star ml-1" />
           </>
         );
       case "Final":
         return (
           <>
-            <i className="fas fa-star pb-1 mx-1" />
-            <i className="fas fa-star pb-1 mx-1" />
-            <i className="fas fa-star pb-1 mx-1" />
-            <i className="fas fa-star pb-1 mx-1" />
-            <i className="fas fa-star pb-1 mx-1" />
+            <i className="fas fa-star" />
+            <i className="fas fa-star ml-1" />
+            <i className="fas fa-star ml-1" />
+            <i className="fas fa-star ml-1" />
+            <i className="fas fa-star ml-1" />
           </>
         );
       default:
@@ -50,12 +60,13 @@ const DifficultyStars = React.memo(({ difficulty }) => {
   };
 
   return (
-    <strong className="mb-2 mt-3 d-block" style={{ fontSize: "14px" }}>
-      {/* <span className="mr-2">Dificultad:</span> */}
-      <span className="text-info" title="Dificultad">
+    <>
+      {/* <span>Dificultad:</span>
+      <br /> */}
+      <span className="text-danger" title="Dificultad">
         {calculateDifficulty(difficulty)}
       </span>
-    </strong>
+    </>
   );
 });
 

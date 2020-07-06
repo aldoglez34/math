@@ -3,38 +3,27 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema({
   topicCode: { type: String, required: true }, // ej. PRIM3y4_Suma o PRIM3y4_Resta
-  subject: { type: String, required: true }, // ej. Suma, Resta, etc
+  topicName: { type: String, required: true }, // ej. Suma, Resta, etc
   name: { type: String, required: true, unique: true }, // ej. Sumas 1 o Restas 3
   description: { type: String, required: true }, // ej. "Este es un examen blah blah..."
+  duration: { type: Number, required: true }, // ej. 30 (mins)
   difficulty: {
     type: String,
-    enum: ["Basic", "Intermediate", "Advanced", "Final"],
+    enum: [
+      "Basic",
+      "Intermediate-Low",
+      "Intermediate-High",
+      "Advanced",
+      "Final",
+      "Freestyle",
+    ],
     required: true,
-  }, // ej. Basic/Intermediate/Advanced/Final
+  },
   qCounter: { type: Number, required: true }, // ej. 20 (question counter)
-  availableTo: [
+  leaderboard: [
     {
-      type: Schema.Types.ObjectId,
-      ref: "Student",
-      unique: true,
-    },
-  ],
-  visits: [
-    {
-      student: {
-        type: Schema.Types.ObjectId,
-        ref: "Student",
-      },
-      score: { type: Number, default: 0 },
-      date: { type: Date, default: Date.now() },
-    },
-  ],
-  perfect: [
-    {
-      student: {
-        type: Schema.Types.ObjectId,
-        ref: "Student",
-      },
+      username: { type: String },
+      grade: { type: Number },
       date: { type: Date, default: Date.now() },
     },
   ],

@@ -59,51 +59,76 @@ router.get("/info/:examId", function (req, res) {
 // registerAttempt()
 // matches with /api/exam/registerAttempt
 router.put("/registerAttempt", function (req, res) {
-  // difficulty and score here are optional
-  // if there's no score it means it's just registering a visit
-  // if there's difficulty AND the score is greater than 8, unlock next difficuly
-  const { studentId, subject, examId, score, difficulty } = req.body;
+  const {
+    examId,
+    studentId,
+    courseId,
+    grade,
+    topicName,
+    difficulty,
+  } = req.body;
 
-  let unblockedDiff = null;
+  let dataToPushOrSet = {};
 
-  if (difficulty && score > 8) {
-    switch (difficulty) {
-      case "Basic":
-        unblockedDiff = "Intermediate";
-        break;
-      case "Intermediate":
-        unblockedDiff = "Advanced";
-        break;
-      case "Advanced":
-        unblockedDiff = "Final";
-        break;
-    }
-  }
+  // push attempt regardless of grade
+  dataToPushOrSet.$push = { attempts: { exam: examId, grade: grade } };
 
-  const obj = { student: studentId, date: Date.now(), score };
+  let toSet = {};
+  if (grade >= 8) toSet.rewards = courseId;
+  if (grade === 10) toSet.crowns = examId;
 
-  // first register the score
-  model.Exam.findOneAndUpdate(
-    { _id: examId },
-    { $push: { visits: obj } },
-    { new: true }
-  )
+  dataToPushOrSet.$set = toSet;
+
+  // first register the attempt
+  // doesn't matter if he passed or not
+  model.Student.findOneAndUpdate({ _id: studentId }, dataToPushOrSet, {
+    new: true,
+  })
     .then(() => {
-      // check if something was unblocked and proceed to unbock it
+      // check if a new difficulty was unblocked
+      let unblockedDiff = null;
+      if (difficulty && grade >= 8) {
+        switch (difficulty) {
+          case "Basic":
+            unblockedDiff = "Intermediate-Low";
+            break;
+          case "Intermediate-Low":
+            unblockedDiff = "Intermediate-High";
+            break;
+          case "Intermediate-High":
+            unblockedDiff = "Advanced";
+            break;
+          case "Advanced":
+            unblockedDiff = "Final";
+            break;
+        }
+      }
+      // if nothing was unblocked, send responde to
       if (!unblockedDiff) {
-        res.json("Se registró un nuevo score");
+        res.json("\nNew grade added, nothing unblocked");
       } else {
-        return model.Exam.update(
-          { subject: subject, difficulty: unblockedDiff },
-          { $push: { availableTo: studentId } }
-        );
+        // if an exam was indeed unblocked, search for its id and push it
+        model.Exam.findOne({
+          topicName: topicName,
+          difficulty: unblockedDiff,
+        })
+          .then((examUnblocked) => {
+            // push it
+            model.Student.findOneAndUpdate(
+              { _id: studentId },
+              {
+                $push: { exams: examUnblocked._id },
+              }
+            ).then(() => {
+              res.json("\nNew grade added and new difficulty unblocked");
+            });
+          })
+          .catch((err) => {
+            console.log("@error", err);
+            res.status(422).send("Ocurrió un error");
+          });
       }
     })
-    .then(() =>
-      res.json(
-        "Se registró un nuevo score y se desbloqueó una nueva dificultad"
-      )
-    )
     .catch((err) => {
       console.log("@error", err);
       res.status(422).send("Ocurrió un error");

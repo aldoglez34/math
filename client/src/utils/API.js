@@ -9,12 +9,10 @@ export default {
 
   registerNewStudent: (data) => axios.post("/api/student/new", data),
 
-  buyCourse: (data) => axios.put("/api/student/buyCourse", data),
-
   // student panel
 
-  fetchMyCourses: (studentId) =>
-    axios.get("/api/student/fetchCourses/" + studentId),
+  fetchDashboard: (studentId) =>
+    axios.get("/api/student/fetchDashboard/" + studentId),
 
   // ==============================================
   // COURSES
