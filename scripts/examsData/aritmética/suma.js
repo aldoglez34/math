@@ -1,13 +1,13 @@
-module.exports = (studentIds) => [
+module.exports = [
   {
     topicCode: "PRIM3y4_Suma",
-    subject: "Suma",
+    topicName: "Suma",
     name: "Sumas 1",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius risus massa, et sollicitudin est fringilla.",
+    duration: 30,
     difficulty: "Basic",
     qCounter: 5,
-    availableTo: [...studentIds],
     questions: [
       {
         qInstruction: "Resuelve la siguiente suma",
@@ -118,11 +118,12 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Suma",
-    subject: "Suma",
+    topicName: "Suma",
     name: "Sumas 2",
     description:
       "Suspendisse potenti. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis vehicula eros nec sapien molestie sodales.",
-    difficulty: "Intermediate",
+    duration: 30,
+    difficulty: "Intermediate-Low",
     qCounter: 5,
     questions: [
       {
@@ -234,10 +235,128 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Suma",
-    subject: "Suma",
+    topicName: "Suma",
     name: "Sumas 3",
     description:
       "Integer eleifend nibh non sem tincidunt, at ultricies purus vestibulum. Vivamus sed lobortis ligula, ut lacinia elit.",
+    duration: 30,
+    difficulty: "Intermediate-High",
+    qCounter: 5,
+    questions: [
+      {
+        qInstruction: "Resolver la siguiente suma",
+        qTechnicalInstruction: "939 + 57",
+        qCorrectAnswer: "996",
+      },
+      {
+        qInstruction: "Resolver la siguiente suma",
+        qTechnicalInstruction: "925 + 465",
+        qCorrectAnswer: "1390",
+      },
+      {
+        qInstruction: "Resolver la siguiente suma",
+        qTechnicalInstruction: "901 + 456",
+        qCorrectAnswer: "1357",
+      },
+      {
+        qInstruction: "Resolver la siguiente suma",
+        qTechnicalInstruction: "867 + 261",
+        qCorrectAnswer: "1128",
+      },
+      {
+        qInstruction: "Resolver la siguiente suma",
+        qTechnicalInstruction: "927 + 750",
+        qCorrectAnswer: "1677",
+      },
+      {
+        qInstruction: "Resolver la siguiente suma",
+        qTechnicalInstruction: "331 + 0",
+        qCorrectAnswer: "331",
+      },
+      {
+        qInstruction: "Resolver la siguiente suma",
+        qTechnicalInstruction: "114 + 106",
+        qCorrectAnswer: "220",
+      },
+      {
+        qInstruction: "Resolver la siguiente suma",
+        qTechnicalInstruction: "996 + 694",
+        qCorrectAnswer: "1690",
+      },
+      {
+        qInstruction: "Resolver la siguiente suma",
+        qTechnicalInstruction: "652 + 450",
+        qCorrectAnswer: "1102",
+      },
+      {
+        qInstruction: "Resolver la siguiente suma",
+        qTechnicalInstruction: "935 + 707",
+        qCorrectAnswer: "1642",
+      },
+      {
+        qInstruction: "Resolver la siguiente suma",
+        qTechnicalInstruction: "569 + 555",
+        qCorrectAnswer: "1124",
+      },
+      {
+        qInstruction: "Resolver la siguiente suma",
+        qTechnicalInstruction: "983 + 932",
+        qCorrectAnswer: "1915",
+      },
+      {
+        qInstruction: "Resolver la siguiente suma",
+        qTechnicalInstruction: "683 + 392",
+        qCorrectAnswer: "1075",
+      },
+      {
+        qInstruction: "Resolver la siguiente suma",
+        qTechnicalInstruction: "974 + 816",
+        qCorrectAnswer: "1790",
+      },
+      {
+        qInstruction: "Resolver la siguiente suma",
+        qTechnicalInstruction: "415 + 411",
+        qCorrectAnswer: "826",
+      },
+      {
+        qInstruction:
+          "En una escuela hay 834 alumnos de primaria, 772 alumnos de secundaria y 909 alumnos de preparatoria. ¿Cuántos alumnos hay en total en la escuela?",
+        qCorrectAnswer: "2515",
+        qCorrectAnswerComplement: "alumnos",
+      },
+      {
+        qInstruction:
+          "En una granja hay 386 vacas, 585 cerdos y 450 caballos. ¿Cuántos animales hay en total en la granja?",
+        qCorrectAnswer: "1421",
+        qCorrectAnswerComplement: "animales",
+      },
+      {
+        qInstruction:
+          "El costo de un pantalón es de 699 pesos y el de una camisa es de 646 pesos. ¿Cuánto se debe pagar por las dos prendas?",
+        qCorrectAnswer: "1345",
+        qCorrectAnswerComplement: "pesos",
+      },
+      {
+        qInstruction:
+          "En su recorrido, un coche recorre 372 kilómetros en el primer día, mientras que en el segundo recorre 418 kilómetros. ¿Cuántos kilómetros lleva el coche recorridos al finalizar el segundo día?",
+        qCorrectAnswer: "790",
+        qCorrectAnswerComplement: "kilómetros",
+      },
+      {
+        qInstruction:
+          "Usando los datos de su celular, Diego se gasto el viernes 319 megas y el sábado 373 megas. ¿Cuántos megas se gastó en esos dos días?",
+        qCorrectAnswer: "692",
+        qCorrectAnswerComplement: "megas",
+      },
+    ],
+  },
+  {
+    topicCode: "PRIM3y4_Suma",
+    topicName: "Suma",
+    name: "Sumas 4",
+    description:
+      "Integer eleifend nibh non sem tincidunt, at ultricies purus vestibulum. Vivamus sed lobortis ligula, ut lacinia elit.",
+    duration: 30,
     difficulty: "Advanced",
     qCounter: 5,
     questions: [
@@ -350,10 +469,11 @@ module.exports = (studentIds) => [
   },
   {
     topicCode: "PRIM3y4_Suma",
-    subject: "Suma",
+    topicName: "Suma",
     name: "Sumas Final",
     description:
       "At ultricies purus vestibulum. Vivamus sed lobortis ligula, ut lacinia elit.",
+    duration: 30,
     difficulty: "Final",
     qCounter: 5,
     questions: [

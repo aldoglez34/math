@@ -7,76 +7,59 @@ router.get("/info/:courseId/:studentId", function (req, res) {
   const courseId = req.params.courseId;
   const studentId = req.params.studentId;
 
+  var courseData = {};
+
+  // 1. first get the course data
   model.Course.findById(courseId)
     .lean()
+    .select(
+      "name longDescription topics._id topics.subject topics.name topics.description topics.toLearn topics.freestyleTimer topics.material topics.exams"
+    )
     .populate(
       "topics.exams",
-      "subject name description difficulty qCounter visits availableTo perfect"
+      "_id topicName name description duration difficulty qCounter leaderboard"
     )
     .then((data) => {
-      // res.json(data);
+      courseData = data;
 
+      // 2. then get the student data
+      return model.Student.findById(studentId).select(
+        "exams attempts rewards crowns"
+      );
+    })
+    .then((data) => {
+      const studentData = data;
+
+      // 3. combine both results and send to client
       return {
-        _id: data._id,
-        name: data.name,
-        longDescription: data.longDescription,
-        topics: data.topics.reduce((acc, cv) => {
+        ...courseData,
+        topics: courseData.topics.reduce((acc, cv) => {
           acc.push({
-            _id: cv._id,
-            subject: cv.subject,
-            name: cv.name,
-            description: cv.description,
-            toLearn: cv.toLearn,
-            material: cv.material,
-            freestyle: {
-              isFreestyleAvailable:
-                cv.freestyle.availableTo.filter((s) => s == studentId).length >
-                0,
-              freestyleTimer: cv.freestyle.timer,
-              freestyleAttemptsCounter: cv.freestyle.visits
-                .filter((v) => v.student == studentId)
-                .sort((a, b) => (a.date > b.date ? -1 : 1)).length,
-              freestyleLatestVisit: cv.freestyle.visits
-                .filter((v) => v.student == studentId)
-                .sort((a, b) => (a.date > b.date ? -1 : 1))[0]
-                ? cv.freestyle.visits
-                    .filter((v) => v.student == studentId)
-                    .sort((a, b) => (a.date > b.date ? -1 : 1))[0].date
-                : null,
-              freestyleHighestScore: cv.freestyle.visits
-                .filter((v) => v.student == studentId)
-                .sort((a, b) => (a.score > b.score ? -1 : 1))[0]
-                ? cv.freestyle.visits
-                    .filter((v) => v.student == studentId)
-                    .sort((a, b) => (a.score > b.score ? -1 : 1))[0].score
-                : null,
-            },
+            ...cv,
+            hasReward: studentData.rewards.includes(cv._id),
             exams: cv.exams.reduce((acc, cv) => {
               acc.push({
-                _id: cv._id,
-                subject: cv.subject,
-                name: cv.name,
-                description: cv.description,
-                difficulty: cv.difficulty,
-                qCounter: cv.qCounter,
-                isAvailable:
-                  cv.availableTo.filter((s) => s == studentId).length > 0,
-                perfect: cv.perfect.filter((p) => p == studentId).length > 0,
-                myAttempts: cv.visits.filter((v) => v.student == studentId)
-                  .length,
-                latestAttempt: cv.visits
-                  .filter((v) => v.student == studentId)
+                ...cv,
+                isAvailable: studentData.exams.includes(cv._id),
+                hasCrown: studentData.crowns.includes(cv._id),
+                attemptsCounter: studentData.attempts.filter(
+                  (a) => a.exam.toString() === cv._id.toString()
+                ).length,
+                //
+                latestAttempt: studentData.attempts
+                  .filter((a) => a.exam.toString() === cv._id.toString())
                   .sort((a, b) => (a.date > b.date ? -1 : 1))[0]
-                  ? cv.visits
-                      .filter((v) => v.student == studentId)
+                  ? studentData.attempts
+                      .filter((a) => a.exam.toString() === cv._id.toString())
                       .sort((a, b) => (a.date > b.date ? -1 : 1))[0].date
                   : null,
-                highestScore: cv.visits
-                  .filter((v) => v.student == studentId)
-                  .sort((a, b) => (a.score > b.score ? -1 : 1))[0]
-                  ? cv.visits
-                      .filter((v) => v.student == studentId)
-                      .sort((a, b) => (a.score > b.score ? -1 : 1))[0].score
+                //
+                highestGrade: studentData.attempts
+                  .filter((a) => a.exam === cv._id)
+                  .sort((a, b) => (a.grade > b.grade ? -1 : 1))[0]
+                  ? studentData.attempts
+                      .filter((a) => a.exam === cv._id)
+                      .sort((a, b) => (a.grade > b.grade ? -1 : 1))[0].grade
                   : 0,
               });
               return acc;
@@ -86,12 +69,12 @@ router.get("/info/:courseId/:studentId", function (req, res) {
         }, []),
       };
     })
-    .then((toFront) => {
-      res.json(toFront);
+    .then((data) => {
+      res.json(data);
     })
     .catch((err) => {
       console.log("@error", err);
-      res.status(422).send({ msg: "Ocurrió un error" });
+      res.status(422).send("Ocurrió un error");
     });
 });
 

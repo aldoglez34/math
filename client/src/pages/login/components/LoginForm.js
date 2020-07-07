@@ -58,7 +58,7 @@ const SignUpForm = React.memo(() => {
           })
           .catch((error) => {
             alert(
-              "El usuario no existe. Verifica tu correo o contraseña y vuelve a intentarlo."
+              "Tu correo y/o contraseña son incorrectos. Verifica tus datos y vuelve a intentarlo."
             );
             console.log(error.code);
             console.log(error.message);

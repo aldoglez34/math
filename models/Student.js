@@ -34,6 +34,36 @@ const schema = new Schema({
       unique: true,
     },
   ],
+  exams: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Exam",
+      unique: true,
+    },
+  ],
+  attempts: [
+    {
+      exam: {
+        type: Schema.Types.ObjectId,
+        ref: "Exam",
+      },
+      grade: { type: Number, default: 0 },
+      date: { type: Date, default: Date.now() },
+    },
+  ],
+  rewards: [
+    {
+      type: String,
+      unique: true,
+    },
+  ],
+  crowns: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Exam",
+      unique: true,
+    },
+  ],
   registeredAt: {
     type: Date,
     default: Date.now(),

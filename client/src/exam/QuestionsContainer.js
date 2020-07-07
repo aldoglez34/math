@@ -58,65 +58,51 @@ const QuestionsContainer = React.memo(({ questions }) => {
         <Spinner animation="border" variant="primary" />
       </div>
     ) : (
-      <>
-        <Row className="mx-lg-1 bg-light mt-3">
-          <Col
-            lg={{ span: 7, offset: 2 }}
-            className="px-3"
-            style={{ paddingTop: "40px", paddingBottom: "45px" }}
-          >
-            {/* INSTRUCTION */}
-            <h4>
-              <span className="mr-1">{question.qNumber + "."}</span>
-              <span className="text-break">{question.qInstruction}</span>
-            </h4>
-            {/* TECHNICAL INSTRUCTION */}
-            <h4>{question.qTechnicalInstruction}</h4>
-            {/* INPUT FORM */}
-            <div className="d-flex flex-row mt-3 mb-2">
-              <input
-                type="text"
-                maxLength="20"
-                ref={inputRef}
-                onKeyDown={handleKeyDown}
-                className="border rounded px-2"
-              />
-              {/* question complement (if any) */}
-              {questions.qCorrectAnswerComplement ? (
-                <h4 className="ml-2 mb-0">
-                  {questions.qCorrectAnswerComplement}
-                </h4>
-              ) : null}
-            </div>
-            {/* QUESTION COMMENT */}
-            {questions.qComment ? (
-              <small className="text-muted">{questions.qComment}</small>
+      <Row className="mx-lg-1 bg-light">
+        <Col
+          lg={{ span: 7, offset: 2 }}
+          className="px-3"
+          style={{ paddingTop: "40px", paddingBottom: "45px" }}
+        >
+          {/* INSTRUCTION */}
+          <h4>
+            <span className="mr-1">{question.qNumber + "."}</span>
+            <span className="text-break">{question.qInstruction}</span>
+          </h4>
+          {/* TECHNICAL INSTRUCTION */}
+          <h4>{question.qTechnicalInstruction}</h4>
+          {/* INPUT FORM */}
+          <div className="d-flex flex-row mt-3 mb-2">
+            <input
+              type="text"
+              maxLength="20"
+              ref={inputRef}
+              onKeyDown={handleKeyDown}
+              className="border rounded px-2"
+            />
+            {/* question complement (if any) */}
+            {questions.qCorrectAnswerComplement ? (
+              <h4 className="ml-2 mb-0">
+                {questions.qCorrectAnswerComplement}
+              </h4>
             ) : null}
-            {/* BUTTONS */}
-            {number === questions.length ? (
-              <div className="mt-3">
-                <Button
-                  variant="primary"
-                  className="shadow-sm"
-                  onClick={pushQuestion}
-                >
-                  Finalizar
-                </Button>
-              </div>
-            ) : (
-              <div className="mt-3">
-                <Button
-                  variant="success"
-                  className="shadow-sm"
-                  onClick={pushQuestion}
-                >
-                  Siguiente
-                </Button>
-              </div>
-            )}
-          </Col>
-        </Row>
-      </>
+          </div>
+          {/* QUESTION COMMENT */}
+          {questions.qComment ? (
+            <small className="text-muted">{questions.qComment}</small>
+          ) : null}
+          {/* BUTTON */}
+          <div className="mt-3">
+            <Button
+              variant={number === questions.length ? "primary" : "success"}
+              className="shadow-sm"
+              onClick={pushQuestion}
+            >
+              {number === questions.length ? "Finalizar" : "Siguiente"}
+            </Button>
+          </div>
+        </Col>
+      </Row>
     )
   ) : null;
 });
