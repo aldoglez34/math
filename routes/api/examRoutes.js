@@ -74,7 +74,7 @@ router.put("/registerAttempt", function (req, res) {
   dataToPushOrSet.$push = { attempts: { exam: examId, grade: grade } };
 
   let toSet = {};
-  if (grade >= 8) toSet.rewards = courseId;
+  if (grade >= 8 && difficulty === "Final") toSet.rewards = courseId;
   if (grade === 10) toSet.crowns = examId;
 
   dataToPushOrSet.$set = toSet;

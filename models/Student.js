@@ -52,6 +52,7 @@ const schema = new Schema({
     },
   ],
   rewards: [
+    // medals and/or trophies
     {
       type: String,
       unique: true,

@@ -26,7 +26,9 @@ module.exports = (examsArr) => [
           "Identificar los elementos y propiedades de la suma",
           "Resolver problemas usando la suma",
         ],
-        freestyleTimer: 10,
+        freestyle: {
+          timer: 10,
+        },
         material: [
           {
             type: "pdf",
@@ -57,7 +59,9 @@ module.exports = (examsArr) => [
           "Identificar los elementos y propiedades de la resta",
           "Resolver problemas usando la resta",
         ],
-        freestyleTimer: 10,
+        freestyle: {
+          timer: 10,
+        },
         material: [
           {
             type: "pdf",
@@ -93,7 +97,9 @@ module.exports = (examsArr) => [
           "Identificar los elementos y propiedades de la multiplicación",
           "Resolver problemas usando la multiplicación",
         ],
-        freestyleTimer: 10,
+        freestyle: {
+          timer: 10,
+        },
         material: [
           {
             type: "pdf",

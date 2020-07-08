@@ -13,7 +13,15 @@ const schema = new Schema({
       description: { type: String, required: true }, // ej. La suma es una de las cuatro operaciones básicas...
       reward: { type: String, required: true }, // ej. "/images/medals/sumas1.png"
       toLearn: [{ type: String, unique: true }], // ej. Aprenderás a sumar números, Aprenderás a blah blah (es un array)
-      freestyleTimer: { type: Number, required: true }, // ej. 10 (minutos)
+      freestyle: {
+        timer: { type: Number, required: true }, // ej. 10 (minutos)
+        attempts: [
+          {
+            score: { type: Number, required: true },
+            date: { type: Date, default: Date.now() },
+          },
+        ],
+      },
       material: [
         // todo lo que tenga links: pdfs/videos/etc
         {

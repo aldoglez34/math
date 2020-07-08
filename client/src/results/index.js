@@ -44,36 +44,30 @@ const Results = React.memo(() => {
 
   return exam.results ? (
     <StudentLayout>
-      {/* medal */}
+      {/* reward */}
       <Row className="mt-2">
         {calif >= 80 ? (
           <Col lg={{ span: 7, offset: 2 }}>
             <h2 className="text-success text-center">
               Resultado satisfactorio
             </h2>
-            {aciertos === exam.results.length ? (
-              <h2 className="text-success text-center">
-                ¡Calificación perfecta!
-              </h2>
+            {calif === 10 ? (
+              <>
+                <h2 className="text-success text-center">
+                  ¡Calificación perfecta!
+                </h2>
+                <p className="text-success text-center mt-2 lead">Logros:</p>
+                <div className="mt-4 text-center">
+                  <Image
+                    src="/images/crown.png"
+                    width="100"
+                    height="100"
+                    className="ml-2"
+                    title="Calificación perfecta"
+                  />
+                </div>
+              </>
             ) : null}
-            <p className="text-success text-center mt-2 lead">Logros:</p>
-            <div className="mt-4 text-center">
-              <Image
-                src="https://image.flaticon.com/icons/svg/3068/3068332.svg"
-                width="100"
-                height="100"
-                title={`Medalla "${exam.name}"`}
-              />
-              {aciertos === exam.results.length ? (
-                <Image
-                  src="https://image.flaticon.com/icons/svg/3141/3141842.svg"
-                  width="100"
-                  height="100"
-                  className="ml-2"
-                  title="Calificación perfecta"
-                />
-              ) : null}
-            </div>
           </Col>
         ) : (
           <Col lg={{ span: 7, offset: 2 }}>
