@@ -8,7 +8,7 @@ const LastVisited = React.memo(({ date }) => {
     : "No has presentado este examen";
 
   return (
-    <span style={{ fontSize: "14px" }} title="Último intento">
+    <span style={{ fontSize: "14px", cursor: "help" }} title="Último intento">
       <i className="fas fa-calendar-alt mr-2" />
       {formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1)}
     </span>

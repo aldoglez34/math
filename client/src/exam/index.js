@@ -5,7 +5,6 @@ import { Spinner } from "react-bootstrap";
 import API from "../utils/API";
 import * as breadcrumbActions from "../redux/actions/breadcrumb";
 import QuestionsContainer from "./components/QuestionsContainer";
-import Timer from "./components/Timer";
 
 const Exam = React.memo(() => {
   const dispatch = useDispatch();
@@ -48,14 +47,6 @@ const Exam = React.memo(() => {
         <>
           {/* title */}
           <h1>{exam.name}</h1>
-          {/* buttons, timer and stuff */}
-          <div className="d-flex mb-3">
-            <Timer duration={exam.duration} />
-            <a href="/course" className="ml-auto text-dark">
-              <i className="fas fa-door-open mr-1" />
-              Salir
-            </a>
-          </div>
           {/* questions */}
           <QuestionsContainer questions={exam.questions} />
         </>

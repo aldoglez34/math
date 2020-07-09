@@ -63,7 +63,11 @@ const DifficultyStars = React.memo(({ difficulty }) => {
     <>
       {/* <span>Dificultad:</span>
       <br /> */}
-      <span className="text-danger" title="Dificultad">
+      <span
+        className="text-danger"
+        title="Dificultad"
+        style={{ cursor: "help" }}
+      >
         {calculateDifficulty(difficulty)}
       </span>
     </>

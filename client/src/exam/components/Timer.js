@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import API from "../../utils/API";
 import { useSelector } from "react-redux";
 
-const Timer = React.memo(({ duration }) => {
+const Timer = React.memo(() => {
   const student = useSelector((state) => state.student);
   const exam = useSelector((state) => state.exam);
 
-  const [secondsLeft, setSecondsLeft] = useState(duration + 1 * 60);
-  const [minutesLeft, setMinutesLeft] = useState(duration);
+  const [secondsLeft, setSecondsLeft] = useState(exam.duration + 1 * 60);
+  const [minutesLeft, setMinutesLeft] = useState(exam.duration);
 
   useEffect(() => {
     if ((secondsLeft % 60) / 100 === 0) setMinutesLeft(minutesLeft - 1);
@@ -30,15 +29,11 @@ const Timer = React.memo(({ duration }) => {
   }, [secondsLeft]);
 
   return (
-    <span className="text-dark" title="Tiempo restante">
-      <i className="fas fa-stopwatch mr-1" />
+    <span title="Tiempo restante" style={{ cursor: "help" }}>
+      <i className="fas fa-stopwatch text-dark mr-1" />
       {minutesLeft > 1 ? minutesLeft + " mins." : secondsLeft + " segs."}
     </span>
   );
 });
-
-Timer.propTypes = {
-  duration: PropTypes.number.isRequired,
-};
 
 export default Timer;

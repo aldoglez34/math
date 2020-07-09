@@ -5,11 +5,12 @@ import DifficultyStars from "./DifficultyStars";
 import LastVisited from "./LastVisited";
 import { useDispatch } from "react-redux";
 import * as examActions from "../../redux/actions/exam";
+import NotAvailableBttn from "./buttons/NotAvailableBttn";
 
 const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
   const dispatch = useDispatch();
 
-  const setExamInRedux = async (_id, topicName, name, difficulty) => {
+  const setExamInRedux = async (_id, topicName, name, difficulty, duration) => {
     dispatch(
       examActions.setExam({
         _id,
@@ -17,6 +18,7 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
         reward,
         name,
         difficulty,
+        duration,
       })
     );
   };
@@ -52,47 +54,72 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
               <LastVisited date={ex.latestAttempt} />
               <br />
               {/* duration */}
-              <span style={{ fontSize: "14px" }} title="Duración">
+              <span
+                style={{ fontSize: "14px", cursor: "help" }}
+                title="Duración"
+              >
                 <i className="fas fa-stopwatch mr-2" />
                 {ex.duration + " mins."}
               </span>
               {/* columns */}
               <Row className="my-3">
                 <Col className="text-center">
-                  <h1 className="mb-0 text-info">{ex.highestGrade}</h1>
+                  <h1 className="mb-0 text-info">
+                    <span
+                      style={{ cursor: "help" }}
+                      title="Calificación más alta"
+                    >
+                      {ex.highestGrade}
+                    </span>
+                  </h1>
                   <h4>
                     <small className="text-muted">Calificación</small>
                   </h4>
                 </Col>
                 <Col className="text-center">
-                  <h1 className="mb-0 text-info">{ex.attemptsCounter}</h1>
+                  <h1
+                    className="mb-0 text-info"
+                    style={{ cursor: "help" }}
+                    title="Número de intentos"
+                  >
+                    <span
+                      style={{ cursor: "help" }}
+                      title="Calificación más alta"
+                    >
+                      {ex.attemptsCounter}
+                    </span>
+                  </h1>
                   <h4>
                     <small className="text-muted">Intentos</small>
                   </h4>
                 </Col>
               </Row>
               {/* go to exam - button */}
-              <Button
-                onClick={() =>
-                  setExamInRedux(ex._id, ex.topicName, ex.name, ex.difficulty)
-                    .then(() => (window.location.href = "/course/exam"))
-                    .catch((err) => {
-                      console.log("error", err);
-                      alert("Ocurrió un error inesperado");
-                      window.location.href = "/course";
-                    })
-                }
-                variant="primary"
-                className="shadow-sm"
-                disabled={ex.isAvailable ? false : true}
-                title={
-                  ex.isAvailable
-                    ? null
-                    : "Para desbloquear este nivel es necesario aprobar el anterior con 8 o más"
-                }
-              >
-                Iniciar
-              </Button>
+              {ex.isAvailable ? (
+                <Button
+                  onClick={() =>
+                    setExamInRedux(
+                      ex._id,
+                      ex.topicName,
+                      ex.name,
+                      ex.difficulty,
+                      ex.duration
+                    )
+                      .then(() => (window.location.href = "/course/exam"))
+                      .catch((err) => {
+                        console.log("error", err);
+                        alert("Ocurrió un error inesperado");
+                        window.location.href = "/course";
+                      })
+                  }
+                  variant="primary"
+                  className="shadow-sm"
+                >
+                  Iniciar
+                </Button>
+              ) : (
+                <NotAvailableBttn />
+              )}
             </Card.Body>
           </Accordion.Collapse>
         </Card>
