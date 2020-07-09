@@ -29,6 +29,7 @@ const DashboardCourseCard = React.memo(({ course }) => {
           <ListGroupItem
             key={ct._id}
             className="d-flex flex-row align-items-center"
+            disabled
           >
             <Link to={"/course/#" + ct.name} title={"Ir a " + ct.name}>
               <Badge variant="primary" className="mr-2">
