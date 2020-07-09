@@ -31,8 +31,8 @@ const DashboardCourseCard = React.memo(({ course }) => {
             className="d-flex flex-row align-items-center"
             disabled
           >
-            <Link to={"/course/#" + ct.name} title={"Ir a " + ct.name}>
-              <Badge variant="primary" className="mr-2">
+            <Link to={"/course/#" + ct.name} title={"Ir a " + ct.name} className="text-dark">
+              <Badge variant="dark" className="mr-2">
                 {ct.subject}
               </Badge>
               {ct.name}
