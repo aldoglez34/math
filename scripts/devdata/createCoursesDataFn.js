@@ -21,7 +21,10 @@ module.exports = (examsArr) => [
         name: "Suma",
         description:
           "Quisque eget posuere lacus, in posuere risus. Curabitur semper fermentum dolor. Integer imperdiet, lectus eu suscipit rutrum, felis nisi vestibulum turpis, vel dictum magna odio sit amet orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris aliquam justo vel lacus ultricies iaculis.",
-        reward: "/rewards/sumaMedal.png",
+        reward: {
+          name: "Medalla de Suma",
+          link: "/rewards/sumaMedal.png",
+        },
         toLearn: [
           "Identificar los elementos y propiedades de la suma",
           "Resolver problemas usando la suma",
@@ -54,7 +57,10 @@ module.exports = (examsArr) => [
         name: "Resta",
         description:
           "Sed lacinia lacus non laoreet pulvinar. Maecenas tincidunt suscipit tortor non vehicula. Ut dolor felis, rutrum non tempus nec, pulvinar in neque. Donec facilisis nunc lacinia libero laoreet, et volutpat felis convallis. Nunc sollicitudin, leo at laoreet faucibus.",
-        reward: "/rewards/restaMedal.png",
+        reward: {
+          name: "Medalla de Resta",
+          link: "/rewards/restaMedal.png",
+        },
         toLearn: [
           "Identificar los elementos y propiedades de la resta",
           "Resolver problemas usando la resta",
@@ -90,7 +96,10 @@ module.exports = (examsArr) => [
         topicCode: "PRIM3y4_Multi",
         subject: "Aritmética",
         name: "Multiplicación",
-        reward: "/rewards/multiplicaciónMedal.png",
+        reward: {
+          name: "Medalla de Multiplicación",
+          link: "/rewards/multiplicaciónMedal.png",
+        },
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tellus urna, interdum sit amet libero eu, viverra dignissim lacus. Donec malesuada iaculis nunc sollicitudin ornare.",
         toLearn: [

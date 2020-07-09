@@ -54,7 +54,7 @@ const TeacherJumbotron = React.memo(() => {
                   los resultados obtenidos."
                 </h2>
                 <footer className="blockquote-footer">
-                  Ing. Luis Rodrigo López Utrera
+                  M.C. Luis Rodrigo López Utrera
                 </footer>
               </blockquote>
             </Fade>

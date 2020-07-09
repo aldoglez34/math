@@ -52,13 +52,13 @@ const schema = new Schema({
     },
   ],
   rewards: [
-    // medals and/or trophies
     {
-      type: String,
-      unique: true,
+      topicName: { type: String, required: true, unique: true },
+      name: { type: String, required: true },
+      link: { type: String, required: true },
     },
   ],
-  crowns: [
+  perfectGrades: [
     {
       type: Schema.Types.ObjectId,
       ref: "Exam",

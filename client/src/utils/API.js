@@ -28,4 +28,9 @@ export default {
   fetchExamInfo: (examId) => axios.get("/api/exam/info/" + examId),
 
   registerAttempt: (data) => axios.put("/api/exam/registerAttempt", data),
+  registerPerfectGrade: (data) =>
+    axios.put("/api/exam/registerPerfectGrade", data),
+  registerReward: (data) => axios.put("/api/exam/registerReward", data),
+
+  unblockExam: (data) => axios.put("/api/exam/unblockExam", data),
 };

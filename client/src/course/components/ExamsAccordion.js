@@ -6,7 +6,7 @@ import LastVisited from "./LastVisited";
 import { useDispatch } from "react-redux";
 import * as examActions from "../../redux/actions/exam";
 
-const ExamsAccordion = React.memo(({ exams, freestyleTimer }) => {
+const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
   const dispatch = useDispatch();
 
   const setExamInRedux = async (_id, topicName, name, difficulty) => {
@@ -14,6 +14,7 @@ const ExamsAccordion = React.memo(({ exams, freestyleTimer }) => {
       examActions.setExam({
         _id,
         topicName,
+        reward,
         name,
         difficulty,
       })
@@ -29,7 +30,7 @@ const ExamsAccordion = React.memo(({ exams, freestyleTimer }) => {
             <Accordion.Toggle as={Button} variant="link" eventKey={ex._id}>
               <i className="fas fa-chevron-down mr-1" />
               <strong>{ex.name}</strong>
-              {ex.hasCrown ? (
+              {ex.hasPerfectScore ? (
                 <i
                   className="fas fa-crown text-warning ml-2"
                   title="Calificación perfecta"
@@ -99,7 +100,8 @@ const ExamsAccordion = React.memo(({ exams, freestyleTimer }) => {
 
 ExamsAccordion.propTypes = {
   exams: PropTypes.array.isRequired,
-  freestyleTimer: PropTypes.number.isRequired,
+  reward: PropTypes.object.isRequired,
+  freestyle: PropTypes.object.isRequired,
 };
 
 export default ExamsAccordion;

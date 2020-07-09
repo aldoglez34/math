@@ -10,10 +10,10 @@ const Topic = React.memo(({ topic }) => {
         {/* title */}
         <Col>
           <h1 className="display-4" style={{ color: "#48bf84" }}>
-            {topic.hasReward ? (
-              <i className="fas fa-trophy text-warning mr-2" title="Aprobado" />
-            ) : null}
             {topic.name}
+            {topic.hasReward ? (
+              <i className="fas fa-trophy text-warning ml-2" title="Aprobado" />
+            ) : null}
           </h1>
         </Col>
       </Row>
@@ -52,7 +52,8 @@ const Topic = React.memo(({ topic }) => {
           <h4 className="mb-3">Exámenes</h4>
           <ExamsAccordion
             exams={topic.exams}
-            freestyleTimer={topic.freestyleTimer}
+            reward={topic.reward}
+            freestyle={topic.freestyle}
           />
         </Col>
       </Row>

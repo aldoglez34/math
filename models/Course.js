@@ -11,12 +11,19 @@ const schema = new Schema({
       subject: { type: String, required: true }, // ej. Aritmética
       name: { type: String, required: true, unique: true }, // ej. Suma/Resta/Multiplicación
       description: { type: String, required: true }, // ej. La suma es una de las cuatro operaciones básicas...
-      reward: { type: String, required: true }, // ej. "/images/medals/sumas1.png"
+      reward: {
+        name: { type: String, required: true }, // ej. "Medalla de Suma"
+        link: { type: String, required: true }, // ej. "/images/medals/sumas1.png"
+      },
       toLearn: [{ type: String, unique: true }], // ej. Aprenderás a sumar números, Aprenderás a blah blah (es un array)
       freestyle: {
         timer: { type: Number, required: true }, // ej. 10 (minutos)
         attempts: [
           {
+            student: {
+              type: Schema.Types.ObjectId,
+              ref: "Student",
+            },
             score: { type: Number, required: true },
             date: { type: Date, default: Date.now() },
           },

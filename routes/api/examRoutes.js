@@ -59,75 +59,106 @@ router.get("/info/:examId", function (req, res) {
 // registerAttempt()
 // matches with /api/exam/registerAttempt
 router.put("/registerAttempt", function (req, res) {
-  const {
-    examId,
-    studentId,
-    courseId,
-    grade,
-    topicName,
-    difficulty,
-  } = req.body;
+  const { studentId, examId, grade } = req.body;
 
-  let dataToPushOrSet = {};
-
-  // push attempt regardless of grade
-  dataToPushOrSet.$push = { attempts: { exam: examId, grade: grade } };
-
-  let toSet = {};
-  if (grade >= 8 && difficulty === "Final") toSet.rewards = courseId;
-  if (grade === 10) toSet.crowns = examId;
-
-  dataToPushOrSet.$set = toSet;
-
-  // first register the attempt
-  // doesn't matter if he passed or not
-  model.Student.findOneAndUpdate({ _id: studentId }, dataToPushOrSet, {
-    new: true,
-  })
+  model.Student.findOneAndUpdate(
+    { _id: studentId },
+    { $push: { attempts: { exam: examId, grade: grade } } }
+  )
     .then(() => {
-      // check if a new difficulty was unblocked
-      let unblockedDiff = null;
-      if (difficulty && grade >= 8) {
-        switch (difficulty) {
-          case "Basic":
-            unblockedDiff = "Intermediate-Low";
-            break;
-          case "Intermediate-Low":
-            unblockedDiff = "Intermediate-High";
-            break;
-          case "Intermediate-High":
-            unblockedDiff = "Advanced";
-            break;
-          case "Advanced":
-            unblockedDiff = "Final";
-            break;
-        }
-      }
-      // if nothing was unblocked, send responde to
-      if (!unblockedDiff) {
-        res.json("\nNew grade added, nothing unblocked");
-      } else {
-        // if an exam was indeed unblocked, search for its id and push it
-        model.Exam.findOne({
+      // console.log(attempt);
+      res.json("Attempt registered successfully");
+    })
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error");
+    });
+});
+
+// registerPerfectGrade()
+// matches with /api/exam/registerPerfectGrade
+router.put("/registerPerfectGrade", function (req, res) {
+  const { studentId, examId } = req.body;
+
+  model.Student.findOneAndUpdate(
+    { _id: studentId },
+    { $addToSet: { perfectGrades: examId } }
+  )
+    .then(() => {
+      // console.log(perfectGrade);
+      res.json("Perfect grade registered successfully");
+    })
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error");
+    });
+});
+
+// registerReward()
+// matches with /api/exam/registerReward
+router.put("/registerReward", function (req, res) {
+  const { studentId, topicName, name, link } = req.body;
+
+  // push the reward only if the topic isn't already there
+  model.Student.findOneAndUpdate(
+    { _id: studentId, "rewards.topicName": { $ne: topicName } },
+    {
+      $addToSet: {
+        rewards: {
           topicName: topicName,
-          difficulty: unblockedDiff,
-        })
-          .then((examUnblocked) => {
-            // push it
-            model.Student.findOneAndUpdate(
-              { _id: studentId },
-              {
-                $push: { exams: examUnblocked._id },
-              }
-            ).then(() => {
-              res.json("\nNew grade added and new difficulty unblocked");
-            });
-          })
-          .catch((err) => {
-            console.log("@error", err);
-            res.status(422).send("Ocurrió un error");
-          });
-      }
+          name: name,
+          link: link,
+        },
+      },
+    }
+  )
+    .then(() => {
+      // console.log(perfectGrade);
+      res.json("Reward registered successfully");
+    })
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error");
+    });
+});
+
+// unblockExam()
+// matches with /api/exam/unblockExam
+router.put("/unblockExam", function (req, res) {
+  const { studentId, difficulty } = req.body;
+
+  let unblockedDiff = null;
+  switch (difficulty) {
+    case "Basic":
+      unblockedDiff = "Intermediate-Low";
+      break;
+    case "Intermediate-Low":
+      unblockedDiff = "Intermediate-High";
+      break;
+    case "Intermediate-High":
+      unblockedDiff = "Advanced";
+      break;
+    case "Advanced":
+      unblockedDiff = "Final";
+      break;
+  }
+
+  // push the reward only if the topic isn't already there
+  model.Student.findOneAndUpdate(
+    { _id: studentId, "rewards.topicName": { $ne: topicName } },
+    {
+      $addToSet: {
+        rewards: {
+          topicName: topicName,
+          name: name,
+          link: link,
+        },
+      },
+    }
+  )
+    .then(() => {
+      // console.log(perfectGrade);
+      res.json("Reward registered successfully");
     })
     .catch((err) => {
       console.log("@error", err);

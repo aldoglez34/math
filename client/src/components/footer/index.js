@@ -16,11 +16,14 @@ const MyFooter = React.memo(() => {
             </p>
             <p className="mb-1">
               <a
-                href="https://twitter.com/"
+                href="https://www.instagram.com/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i className="fab fa-twitter mr-3 socials" title="Twitter" />
+                <i
+                  className="fab fa-instagram mr-3 socials"
+                  title="Instagram"
+                />
               </a>
               <a
                 href="https://www.facebook.com/"
@@ -47,7 +50,7 @@ const MyFooter = React.memo(() => {
               <i className="far fa-id-card mr-2" />
               Contacto
             </h5>
-            <p className="mb-0">Ing. Luis Rodrigo López Utrera</p>
+            <p className="mb-0">M.C. Luis Rodrigo López Utrera</p>
             <p className="mb-0">229 909 1675</p>
             <p className="mb-0">mexmaticas23@gmail.com</p>
           </Col>
@@ -65,9 +68,8 @@ const MyFooter = React.memo(() => {
               <i className="far fa-clock mr-2" />
               Horarios
             </h5>
-            <p className="mb-0">Lunes a Viernes: 16:00 a 19:00</p>
+            <p className="mb-0">Lunes a Viernes: 16:00 a 20:00</p>
             <p className="mb-0">Sábados: 10:00 a 14:00</p>
-            <p className="mb-0">Domingos: 10:00 a 14:00</p>
           </Col>
         </Row>
       </Container>

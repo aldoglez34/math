@@ -36,13 +36,14 @@ router.get("/fetchDashboard/:studentId", function (req, res) {
   const studentId = req.params.studentId;
 
   model.Student.findById(studentId)
-    .select("courses rewards crowns attempts")
+    .select("courses attempts rewards perfectGrades")
     .lean()
     .populate(
       "courses",
       "name shortDescription topics._id topics.subject topics.name"
     )
     .then((data) => {
+      res.json(data);
       const myRewards = data.rewards;
 
       return {

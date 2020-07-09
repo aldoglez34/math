@@ -13,7 +13,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
   model.Course.findById(courseId)
     .lean()
     .select(
-      "name longDescription topics._id topics.subject topics.name topics.description topics.toLearn topics.freestyle topics.material topics.exams"
+      "name longDescription topics._id topics.subject topics.name topics.description topics.toLearn topics.freestyle topics.material topics.exams topics.reward"
     )
     .populate(
       "topics.exams",
@@ -24,7 +24,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
 
       // 2. then get the student data
       return model.Student.findById(studentId).select(
-        "exams attempts rewards crowns"
+        "exams attempts rewards perfectGrades"
       );
     })
     .then((data) => {
@@ -33,19 +33,24 @@ router.get("/info/:courseId/:studentId", function (req, res) {
       // 3. combine both results and send to client
       return {
         ...courseData,
+        // topics reduce
         topics: courseData.topics.reduce((acc, cv) => {
           acc.push({
             ...cv,
-            hasReward: studentData.rewards.includes(cv._id),
+            hasReward: studentData.rewards.filter(
+              (r) => r.topicName === cv.name
+            ).length
+              ? true
+              : false,
+            // exams reduce
             exams: cv.exams.reduce((acc, cv) => {
               acc.push({
                 ...cv,
                 isAvailable: studentData.exams.includes(cv._id),
-                hasCrown: studentData.crowns.includes(cv._id),
+                hasPerfectGrade: studentData.perfectGrades.includes(cv._id),
                 attemptsCounter: studentData.attempts.filter(
                   (a) => a.exam.toString() === cv._id.toString()
                 ).length,
-                //
                 latestAttempt: studentData.attempts
                   .filter((a) => a.exam.toString() === cv._id.toString())
                   .sort((a, b) => (a.date > b.date ? -1 : 1))[0]
@@ -53,7 +58,6 @@ router.get("/info/:courseId/:studentId", function (req, res) {
                       .filter((a) => a.exam.toString() === cv._id.toString())
                       .sort((a, b) => (a.date > b.date ? -1 : 1))[0].date
                   : null,
-                //
                 highestGrade: studentData.attempts
                   .filter((a) => a.exam === cv._id)
                   .sort((a, b) => (a.grade > b.grade ? -1 : 1))[0]
