@@ -12,7 +12,7 @@ const WrongAnswer = React.memo(
     );
 
     return (
-      <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+      <OverlayTrigger placement="bottom" trigger="click" overlay={popover}>
         <Alert
           className="shadow-sm"
           variant="danger"

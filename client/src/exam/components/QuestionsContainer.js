@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Row, Col, Button, Spinner } from "react-bootstrap";
 import PropTypes from "prop-types";
-import * as examActions from "../redux/actions/exam";
+import * as examActions from "../../redux/actions/exam";
 
 const QuestionsContainer = React.memo(({ questions }) => {
   const dispatch = useDispatch();

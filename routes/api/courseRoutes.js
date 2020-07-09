@@ -59,10 +59,10 @@ router.get("/info/:courseId/:studentId", function (req, res) {
                       .sort((a, b) => (a.date > b.date ? -1 : 1))[0].date
                   : null,
                 highestGrade: studentData.attempts
-                  .filter((a) => a.exam === cv._id)
+                  .filter((a) => a.exam.toString() === cv._id.toString())
                   .sort((a, b) => (a.grade > b.grade ? -1 : 1))[0]
                   ? studentData.attempts
-                      .filter((a) => a.exam === cv._id)
+                      .filter((a) => a.exam.toString() === cv._id.toString())
                       .sort((a, b) => (a.grade > b.grade ? -1 : 1))[0].grade
                   : 0,
               });

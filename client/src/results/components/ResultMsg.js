@@ -6,36 +6,18 @@ import { useSelector } from "react-redux";
 const ResultMsg = React.memo(({ calif }) => {
   const exam = useSelector((state) => state.exam);
 
-  const words = [
-    "¡Increíble!",
-    "¡Muy bien!",
-    "¡Así se hace!",
-    "¡Perfecto!",
-    "¡Súper!",
-    "¡Excelente!",
-    "¡Sigue así!",
-    "¡Correcto!",
-    "¡Buen trabajo!",
-    "¡Maravilloso!",
-  ];
-
-  const msg = words[Math.floor(Math.random() * 10) + 1];
-
   return calif >= 80 ? (
     <Col lg={{ span: 7, offset: 2 }}>
       <h2 className="text-success text-center">Resultado satisfactorio</h2>
-      <h2 className="text-success text-center">{msg}</h2>
       {calif / 10 === 10 ? (
-        <h2 className="text-success text-center">Calificación perfecta</h2>
-      ) : null}
+        <h2 className="text-success text-center">¡Calificación perfecta!</h2>
+      ) : (
+        <h2 className="text-success text-center">
+          ¡Desbloqueaste un nuevo examen!
+        </h2>
+      )}
 
-      {exam.difficulty === "Final" ? (
-        <p className="text-success text-center mt-2 lead">
-          Terminaste con éxito el tema: {exam.topicName}
-        </p>
-      ) : null}
-
-      <div className="text-center">
+      <div className="text-center mt-4">
         {calif / 10 === 10 ? (
           <Image
             src="/images/crown.png"
@@ -47,11 +29,11 @@ const ResultMsg = React.memo(({ calif }) => {
         ) : null}
         {exam.difficulty === "Final" && calif >= 8 ? (
           <Image
-            src="/images/crown.png"
+            src={exam.reward.link}
             width="100"
             height="100"
             className="mt-2 mx-2"
-            title="Calificación perfecta"
+            title={exam.reward.name}
           />
         ) : null}
       </div>

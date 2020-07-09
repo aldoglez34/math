@@ -4,7 +4,8 @@ import { StudentLayout } from "../components/Layout";
 import { Spinner } from "react-bootstrap";
 import API from "../utils/API";
 import * as breadcrumbActions from "../redux/actions/breadcrumb";
-import QuestionsContainer from "./QuestionsContainer";
+import QuestionsContainer from "./components/QuestionsContainer";
+import Timer from "./components/Timer";
 
 const Exam = React.memo(() => {
   const dispatch = useDispatch();
@@ -49,10 +50,7 @@ const Exam = React.memo(() => {
           <h1>{exam.name}</h1>
           {/* buttons, timer and stuff */}
           <div className="d-flex mb-3">
-            <span className="text-dark" title="Duración">
-              <i className="fas fa-stopwatch mr-1" />
-              30 mins.
-            </span>
+            <Timer duration={exam.duration} />
             <a href="/course" className="ml-auto text-dark">
               <i className="fas fa-door-open mr-1" />
               Salir

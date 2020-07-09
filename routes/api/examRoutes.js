@@ -7,7 +7,7 @@ router.get("/info/:examId", function (req, res) {
   const examId = req.params.examId;
 
   model.Exam.findById(examId)
-    .select("name questions qCounter")
+    .select("name questions duration qCounter")
     .then((data) => {
       const { qCounter } = data;
       const totalQuestions = data.questions.length;
@@ -33,6 +33,7 @@ router.get("/info/:examId", function (req, res) {
       return {
         _id: data._id,
         name: data.name,
+        duration: data.duration,
         questions: randomQuestions.reduce((acc, cv, idx) => {
           acc.push({
             _id: cv._id,
@@ -125,7 +126,9 @@ router.put("/registerReward", function (req, res) {
 // unblockExam()
 // matches with /api/exam/unblockExam
 router.put("/unblockExam", function (req, res) {
-  const { studentId, difficulty } = req.body;
+  const { studentId, topicName, difficulty } = req.body;
+
+  console.log("entrando a unblock exam");
 
   let unblockedDiff = null;
   switch (difficulty) {
@@ -143,22 +146,26 @@ router.put("/unblockExam", function (req, res) {
       break;
   }
 
-  // push the reward only if the topic isn't already there
-  model.Student.findOneAndUpdate(
-    { _id: studentId, "rewards.topicName": { $ne: topicName } },
-    {
-      $addToSet: {
-        rewards: {
-          topicName: topicName,
-          name: name,
-          link: link,
-        },
-      },
-    }
-  )
-    .then(() => {
-      // console.log(perfectGrade);
-      res.json("Reward registered successfully");
+  // find the exam's _id (the new one)
+  model.Exam.findOne({ topicName: topicName, difficulty: unblockedDiff })
+    .select("_id")
+    .then((newExam) => {
+      const newExamId = newExam._id;
+
+      // push if it doesn't exist
+      model.Student.findOneAndUpdate(
+        { _id: studentId, exams: { $ne: newExamId } },
+        {
+          $addToSet: {
+            exams: newExamId,
+          },
+        }
+      )
+        .then(() => res.send("New exam unlocked"))
+        .catch((err) => {
+          console.log("@error", err);
+          res.status(422).send("Ocurrió un error");
+        });
     })
     .catch((err) => {
       console.log("@error", err);

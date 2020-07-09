@@ -9,7 +9,7 @@ const LastVisited = React.memo(({ date }) => {
 
   return (
     <span style={{ fontSize: "14px" }} title="Último intento">
-      <i className="fas fa-calendar-alt mr-1" />
+      <i className="fas fa-calendar-alt mr-2" />
       {formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1)}
     </span>
   );

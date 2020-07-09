@@ -43,10 +43,9 @@ router.get("/fetchDashboard/:studentId", function (req, res) {
       "name shortDescription topics._id topics.subject topics.name"
     )
     .then((data) => {
-      res.json(data);
       const myRewards = data.rewards;
 
-      return {
+      res.json({
         ...data,
         courses: data.courses.reduce((acc, cv) => {
           acc.push({
@@ -54,7 +53,8 @@ router.get("/fetchDashboard/:studentId", function (req, res) {
             topics: cv.topics.reduce((acc, cv) => {
               acc.push({
                 ...cv,
-                hasReward: myRewards.filter((mr) => mr == cv._id).length
+                hasReward: myRewards.filter((mr) => mr.topicName === cv.name)
+                  .length
                   ? true
                   : false,
               });
@@ -63,9 +63,8 @@ router.get("/fetchDashboard/:studentId", function (req, res) {
           });
           return acc;
         }, []),
-      };
+      });
     })
-    .then((data) => res.json(data))
     .catch((err) => {
       console.log("error", err);
       res.send("Ocurrió un error en el servidor");

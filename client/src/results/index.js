@@ -49,8 +49,12 @@ const Results = React.memo(() => {
         .catch((err) => console.log("error", err));
     }
     // unblock an exam if difficulty is NOT "freestyle" and the grade is greater than 8
-    if (exam.difficulty !== "Freestyle" && calif / 10 >= 8) {
-      API.unblockExam({ studentId: student._id, difficulty: exam.difficulty })
+    if (exam.difficulty !== "Final" && calif / 10 >= 8) {
+      API.unblockExam({
+        studentId: student._id,
+        topicName: exam.topicName,
+        difficulty: exam.difficulty,
+      })
         .then((res) => console.log(res.data))
         .catch((err) => console.log("error", err));
     }
@@ -65,6 +69,7 @@ const Results = React.memo(() => {
       {/* details */}
       <Row className="mt-4">
         <Col lg={{ span: 7, offset: 2 }}>
+          <h4 className="mb-3">Resumen</h4>
           <ListGroup className="shadow-sm">
             <ListGroup.Item className="d-flex bg-light align-items-center">
               <h5 className="mb-0">Aciertos</h5>
@@ -73,10 +78,6 @@ const Results = React.memo(() => {
             <ListGroup.Item className="d-flex bg-light align-items-center">
               <h5 className="mb-0">Errores</h5>
               <h5 className="ml-auto mb-0">{errores}</h5>
-            </ListGroup.Item>
-            <ListGroup.Item className="d-flex bg-light align-items-center">
-              <h5 className="mb-0">Tiempo</h5>
-              <h5 className="ml-auto mb-0">????</h5>
             </ListGroup.Item>
             <ListGroup.Item className="d-flex bg-light align-items-center">
               <h5 className="mb-0">Calificación</h5>
@@ -90,6 +91,7 @@ const Results = React.memo(() => {
       {/* questions */}
       <Row className="mt-4">
         <Col lg={{ span: 7, offset: 2 }}>
+          <h4 className="mb-3">Respuestas</h4>
           {exam.results.map((q) => {
             return q.qCorrectAnswer === q.userAnswer ? (
               <Alert className="shadow-sm" key={q._id} variant="success">

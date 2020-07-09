@@ -30,7 +30,7 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
             <Accordion.Toggle as={Button} variant="link" eventKey={ex._id}>
               <i className="fas fa-chevron-down mr-1" />
               <strong>{ex.name}</strong>
-              {ex.hasPerfectScore ? (
+              {ex.hasPerfectGrade ? (
                 <i
                   className="fas fa-crown text-warning ml-2"
                   title="Calificación perfecta"
@@ -53,7 +53,7 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
               <br />
               {/* duration */}
               <span style={{ fontSize: "14px" }} title="Duración">
-                <i className="fas fa-stopwatch mr-1" />
+                <i className="fas fa-stopwatch mr-2" />
                 {ex.duration + " mins."}
               </span>
               {/* columns */}
@@ -85,6 +85,11 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
                 variant="primary"
                 className="shadow-sm"
                 disabled={ex.isAvailable ? false : true}
+                title={
+                  ex.isAvailable
+                    ? null
+                    : "Para desbloquear este nivel es necesario aprobar el anterior con 8 o más"
+                }
               >
                 Iniciar
               </Button>
