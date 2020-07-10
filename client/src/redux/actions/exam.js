@@ -12,6 +12,13 @@ export const setResults = (data) => {
   };
 };
 
+export const unlockExam = (data) => {
+  return {
+    type: "exam/unlock",
+    data,
+  };
+};
+
 export const clearExam = () => {
   return {
     type: "exam/clear",

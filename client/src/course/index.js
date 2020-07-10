@@ -8,6 +8,7 @@ import Topic from "./components/Topic";
 import { useSelector, useDispatch } from "react-redux";
 import * as breadcrumbActions from "../redux/actions/breadcrumb";
 import * as examActions from "../redux/actions/exam";
+import ExamUnlockedModal from "./components/ExamUnlockedModal";
 
 export default React.memo(() => {
   const dispatch = useDispatch();
@@ -18,9 +19,16 @@ export default React.memo(() => {
   const reduxStudent = useSelector((state) => state.student);
   const reduxExam = useSelector((state) => state.exam);
 
+  const [newExamModal, setNewExamModal] = useState(false);
+
   useEffect(() => {
-    // clear redux
-    if (reduxExam) dispatch(examActions.clearExam());
+    // if a new exam is unlocked, show modal
+    if (reduxExam) {
+      if (reduxExam.unlocked) {
+        alert("Nuevo curso desbloqueado: " + reduxExam.unlocked);
+      }
+      dispatch(examActions.clearExam());
+    }
 
     // fetch course info
     if (reduxCourse && reduxStudent) {
@@ -46,6 +54,11 @@ export default React.memo(() => {
 
   return (
     <MainCourseLayout>
+      <ExamUnlockedModal
+        // setShow={setNewExamModal}
+        // show={newExamModal}
+        // newExam={"Sumas 2"}
+      />
       {course ? (
         <>
           {/* TOP INTRO */}

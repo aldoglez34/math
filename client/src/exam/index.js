@@ -46,7 +46,7 @@ const Exam = React.memo(() => {
       {exam ? (
         <>
           {/* title */}
-          <h1>{exam.name}</h1>
+          <h1 className="display-4">{exam.name}</h1>
           {/* questions */}
           <QuestionsContainer questions={exam.questions} />
         </>

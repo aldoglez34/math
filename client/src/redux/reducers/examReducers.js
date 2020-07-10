@@ -9,6 +9,11 @@ const examReducers = (state = null, action) => {
         difficulty: action.data.difficulty,
         duration: action.data.duration,
       };
+    case "exam/unlock":
+      return {
+        ...state,
+        unlocked: action.data,
+      };
     case "exam/setResults":
       return {
         ...state,

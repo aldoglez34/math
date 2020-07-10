@@ -32,5 +32,5 @@ export default {
     axios.put("/api/exam/registerPerfectGrade", data),
   registerReward: (data) => axios.put("/api/exam/registerReward", data),
 
-  unblockExam: (data) => axios.put("/api/exam/unblockExam", data),
+  unlockExam: (data) => axios.put("/api/exam/unlockExam", data),
 };

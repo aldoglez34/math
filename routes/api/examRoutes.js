@@ -123,9 +123,9 @@ router.put("/registerReward", function (req, res) {
     });
 });
 
-// unblockExam()
-// matches with /api/exam/unblockExam
-router.put("/unblockExam", function (req, res) {
+// unlockExam()
+// matches with /api/exam/unlockExam
+router.put("/unlockExam", function (req, res) {
   const { studentId, topicName, difficulty } = req.body;
 
   console.log("entrando a unblock exam");
@@ -148,9 +148,10 @@ router.put("/unblockExam", function (req, res) {
 
   // find the exam's _id (the new one)
   model.Exam.findOne({ topicName: topicName, difficulty: unblockedDiff })
-    .select("_id")
+    .select("_id name")
     .then((newExam) => {
       const newExamId = newExam._id;
+      const newExamName = newExam.name;
 
       // push if it doesn't exist
       model.Student.findOneAndUpdate(
@@ -161,7 +162,7 @@ router.put("/unblockExam", function (req, res) {
           },
         }
       )
-        .then(() => res.send("New exam unlocked"))
+        .then(() => res.send(newExamName))
         .catch((err) => {
           console.log("@error", err);
           res.status(422).send("Ocurrió un error");

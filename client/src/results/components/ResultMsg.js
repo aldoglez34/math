@@ -11,11 +11,7 @@ const ResultMsg = React.memo(({ calif }) => {
       <h2 className="text-success text-center">Resultado satisfactorio</h2>
       {calif / 10 === 10 ? (
         <h2 className="text-success text-center">¡Calificación perfecta!</h2>
-      ) : (
-        <h2 className="text-success text-center">
-          ¡Desbloqueaste un nuevo examen!
-        </h2>
-      )}
+      ) : null}
 
       <div className="text-center mt-4">
         {calif / 10 === 10 ? (

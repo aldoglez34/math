@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import { Spinner, Row, Col, Alert, ListGroup, Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { StudentLayout } from "../components/Layout";
 import API from "../utils/API";
 import ResultMsg from "./components/ResultMsg";
 import WrongAnswer from "./components/WrongAnswer";
+import { unlockExam } from "../redux/actions/exam";
 
 const Results = React.memo(() => {
+  const dispatch = useDispatch();
+
   const exam = useSelector((state) => state.exam);
   const student = useSelector((state) => state.student);
 
@@ -50,12 +53,16 @@ const Results = React.memo(() => {
     }
     // unblock an exam if difficulty is NOT "freestyle" and the grade is greater than 8
     if (exam.difficulty !== "Final" && calif / 10 >= 8) {
-      API.unblockExam({
+      API.unlockExam({
         studentId: student._id,
         topicName: exam.topicName,
         difficulty: exam.difficulty,
       })
-        .then((res) => console.log(res.data))
+        .then((res) => {
+          // set the name of the exam in redux so the next time the user go to the course main
+          // a modal will be presented and then the "unlocked" will be deleted
+          dispatch(unlockExam(res.data));
+        })
         .catch((err) => console.log("error", err));
     }
   }, []);
