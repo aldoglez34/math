@@ -17,9 +17,9 @@ const DashboardCourseCard = React.memo(({ course }) => {
     <Card className="dashboardCourseCard shadow-sm">
       <Card.Body>
         <Card.Title className="d-flex flex-row">
-          <h2 className="mb-0" style={{ color: "#3b424b" }}>
+          <h3 className="mb-0" style={{ color: "#3b424b" }}>
             {course.name}
-          </h2>
+          </h3>
         </Card.Title>
         <hr />
         <Card.Text>{course.shortDescription}</Card.Text>
@@ -32,9 +32,9 @@ const DashboardCourseCard = React.memo(({ course }) => {
             disabled
           >
             <Link to={"/course/#" + ct.name} title={"Ir a " + ct.name} className="text-dark">
-              <Badge variant="dark" className="mr-2">
+              {/* <Badge variant="dark" className="mr-2">
                 {ct.subject}
-              </Badge>
+              </Badge> */}
               {ct.name}
             </Link>
             {ct.hasReward ? (

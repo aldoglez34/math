@@ -9,6 +9,8 @@ export default {
 
   registerNewStudent: (data) => axios.post("/api/student/new", data),
 
+  fetchRewards: (studentId) => axios.get("/api/student/rewards" + studentId),
+
   // student panel
 
   fetchDashboard: (studentId) =>
