@@ -162,7 +162,14 @@ router.put("/unlockExam", function (req, res) {
           },
         }
       )
-        .then(() => res.send(newExamName))
+        .then((data) => {
+          // if data retrieves null, it means nothing was ublocked, therefore return null to the client
+          if (!data) {
+            res.send(null);
+          } else {
+            res.send(newExamName);
+          }
+        })
         .catch((err) => {
           console.log("@error", err);
           res.status(422).send("Ocurrió un error");

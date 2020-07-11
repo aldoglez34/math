@@ -5,7 +5,7 @@ import { StudentLayout } from "../components/Layout";
 import API from "../utils/API";
 import ResultMsg from "./components/ResultMsg";
 import WrongAnswer from "./components/WrongAnswer";
-import { unlockExam } from "../redux/actions/exam";
+import { unlockedExam } from "../redux/actions/unlocked";
 
 const Results = React.memo(() => {
   const dispatch = useDispatch();
@@ -59,9 +59,9 @@ const Results = React.memo(() => {
         difficulty: exam.difficulty,
       })
         .then((res) => {
-          // set the name of the exam in redux so the next time the user go to the course main
-          // a modal will be presented and then the "unlocked" will be deleted
-          dispatch(unlockExam(res.data));
+          // res should contain the data from the backend
+          // if its empty it means nothing was unblocked
+          if (res.data) dispatch(unlockedExam(res.data));
         })
         .catch((err) => console.log("error", err));
     }

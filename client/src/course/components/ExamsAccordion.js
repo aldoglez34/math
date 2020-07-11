@@ -32,10 +32,18 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
             <Accordion.Toggle as={Button} variant="link" eventKey={ex._id}>
               <i className="fas fa-chevron-down mr-1" />
               <strong>{ex.name}</strong>
+              {ex.highestGrade >= 8 ? (
+                <i
+                  className="fas fa-check-circle text-warning ml-2"
+                  title="Aprobado"
+                  style={{ cursor: "help" }}
+                />
+              ) : null}
               {ex.hasPerfectGrade ? (
                 <i
                   className="fas fa-crown text-warning ml-2"
                   title="Calificación perfecta"
+                  style={{ cursor: "help" }}
                 />
               ) : null}
             </Accordion.Toggle>
