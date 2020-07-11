@@ -1,10 +1,10 @@
 import React from "react";
-import { Badge, Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
+import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 import "./dashboardcoursecard.scss";
-import { HashLink as Link } from "react-router-hash-link";
 import { useDispatch } from "react-redux";
 import * as courseActions from "../../../redux/actions/course";
+import MyRewards from "./MyRewards";
 
 const DashboardCourseCard = React.memo(({ course }) => {
   const dispatch = useDispatch();
@@ -22,6 +22,9 @@ const DashboardCourseCard = React.memo(({ course }) => {
           </h3>
         </Card.Title>
         <hr />
+        <Card.Text>
+          <MyRewards rewards={course.rewards} />
+        </Card.Text>
         <Card.Text>{course.shortDescription}</Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
@@ -31,14 +34,9 @@ const DashboardCourseCard = React.memo(({ course }) => {
             className="d-flex flex-row align-items-center"
             disabled
           >
-            <Link to={"/course/#" + ct.name} title={"Ir a " + ct.name} className="text-dark">
-              {/* <Badge variant="dark" className="mr-2">
-                {ct.subject}
-              </Badge> */}
-              {ct.name}
-            </Link>
+            <strong>{ct.name}</strong>
             {ct.hasReward ? (
-              <i className="fas fa-trophy text-warning ml-2" title="Aprobado" />
+              <i className="fas fa-medal text-warning ml-2" title="Aprobado" />
             ) : null}
           </ListGroupItem>
         ))}

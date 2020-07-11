@@ -50,6 +50,9 @@ router.get("/fetchDashboard/:studentId", function (req, res) {
         courses: data.courses.reduce((acc, cv) => {
           acc.push({
             ...cv,
+            rewards: myRewards.filter((mr) =>
+              cv.topics.filter((t) => t.name === mr.topicName)
+            ),
             topics: cv.topics.reduce((acc, cv) => {
               acc.push({
                 ...cv,

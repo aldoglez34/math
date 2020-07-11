@@ -12,7 +12,11 @@ const Topic = React.memo(({ topic }) => {
           <h1 className="display-4" style={{ color: "#48bf84" }}>
             {topic.name}
             {topic.hasReward ? (
-              <i className="fas fa-trophy text-warning ml-2" title="Aprobado" />
+              <i
+                className="fas fa-medal text-warning ml-2"
+                title="Aprobado"
+                style={{ fontSize: "35px" }}
+              />
             ) : null}
           </h1>
         </Col>

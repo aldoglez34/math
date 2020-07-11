@@ -98,7 +98,7 @@ module.exports = (examsArr) => [
         name: "Multiplicación",
         reward: {
           name: "Medalla de Multiplicación",
-          link: "/rewards/multiplicaciónMedal.png",
+          link: "/rewards/multiplicacionMedal.png",
         },
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tellus urna, interdum sit amet libero eu, viverra dignissim lacus. Donec malesuada iaculis nunc sollicitudin ornare.",

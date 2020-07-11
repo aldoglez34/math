@@ -1,34 +1,26 @@
-import React, { useState, useEffect } from "react";
-import API from "../../../utils/API";
-import { useSelector } from "react-redux";
+import React from "react";
 import { Image } from "react-bootstrap";
+import PropTypes from "prop-types";
 
-const MyRewards = React.memo(() => {
-  const student = useSelector((state) => state.student);
-
-  const [rewards, setRewards] = useState([]);
-
-  useEffect(() => {
-    API.fetchRewards(student._id)
-      .then((res) => setRewards(res.data.rewards))
-      .catch((err) => console.log(err));
-  }, []);
-
+const MyRewards = React.memo(({ rewards }) => {
   return rewards.length ? (
-    <div className="py-4 px-2 d-flex flex-row">
-      <h4>Mis logros:</h4>
+    <span className="pt-2 d-flex flex-row justify-content-center">
       {rewards.map((r) => (
         <Image
           key={r.name}
           src={r.link}
-          width="50"
-          height="50"
+          width="70"
+          height="70"
           className="mx-2"
           title={r.name}
         />
       ))}
-    </div>
+    </span>
   ) : null;
 });
+
+MyRewards.propTypes = {
+  rewards: PropTypes.array,
+};
 
 export default MyRewards;
