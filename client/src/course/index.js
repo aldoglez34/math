@@ -21,7 +21,6 @@ export default React.memo(() => {
   const unlocked = useSelector((state) => state.unlocked);
 
   const [showUnlocked, setShowExamUnlocked] = useState(false);
-  const setShowExamUnlocked_ = (show) => setShowExamUnlocked(show);
 
   useEffect(() => {
     // if a new exam is unlocked, show modal

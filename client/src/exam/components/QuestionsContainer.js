@@ -27,7 +27,7 @@ const QuestionsContainer = React.memo(({ questions }) => {
       // go to results page
       window.location.href = "/course/exam/results";
     }
-  }, [number, answers]);
+  }, [dispatch, number, answers, questions]);
 
   const pushQuestion = () => {
     // get the answer and push it
