@@ -34,7 +34,7 @@ app.get("*", (req, res) => {
 let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mathDB";
 mongoose
   .connect(MONGODB_URI, {
-    autoIndex: false,
+    // autoIndex: false,
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
