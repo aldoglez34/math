@@ -5,6 +5,7 @@ const models = require("../models");
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mathDB";
 mongoose
   .connect(MONGODB_URI, {
+    autoIndex: false,
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
