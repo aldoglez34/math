@@ -6,6 +6,7 @@ import LastVisited from "./LastVisited";
 import { useDispatch } from "react-redux";
 import * as examActions from "../../redux/actions/exam";
 import NotAvailableBttn from "./buttons/NotAvailableBttn";
+import FreestyleCard from "./FreestyleCard";
 
 const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
   const dispatch = useDispatch();
@@ -85,15 +86,8 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
                   </h4>
                 </Col>
                 <Col className="text-center">
-                  <h1
-                    className="mb-0 text-info"
-                    style={{ cursor: "help" }}
-                    title="Número de intentos"
-                  >
-                    <span
-                      style={{ cursor: "help" }}
-                      title="Calificación más alta"
-                    >
+                  <h1 className="mb-0 text-info" style={{ cursor: "help" }}>
+                    <span style={{ cursor: "help" }} title="Número de intentos">
                       {ex.attemptsCounter}
                     </span>
                   </h1>
@@ -133,7 +127,7 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
         </Card>
       ))}
       {/* freestyle */}
-      {/* <FreestyleCard freestyleTimer={freestyleTimer} /> */}
+      <FreestyleCard />
     </Accordion>
   );
 });

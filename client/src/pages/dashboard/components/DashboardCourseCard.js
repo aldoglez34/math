@@ -32,18 +32,22 @@ const DashboardCourseCard = React.memo(({ course }) => {
           <ListGroupItem
             key={ct._id}
             className="d-flex flex-row align-items-center"
-            disabled
           >
-            <strong>{ct.name}</strong>
+            <strong className="text-dark">{ct.name}</strong>
             {ct.hasReward ? (
-              <i className="fas fa-medal text-warning ml-2" title="Aprobado" />
+              <i
+                className="fas fa-medal text-warning ml-2"
+                title="Aprobado"
+                style={{ cursor: "help" }}
+              />
             ) : null}
           </ListGroupItem>
         ))}
       </ListGroup>
       <Card.Body>
         <Button
-          className="openBttn shadow-sm"
+          variant="dark"
+          className="shadow-sm"
           onClick={() =>
             buttonClicked(course._id, course.name).then(
               () => (window.location.href = "/course")

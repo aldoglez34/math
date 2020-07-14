@@ -1,8 +1,7 @@
 import React from "react";
-import { Card, Button, Accordion, Row, Col } from "react-bootstrap";
+import { Table, Card, Button, Accordion } from "react-bootstrap";
 import PropTypes from "prop-types";
 import LastVisited from "./LastVisited";
-import DifficultyStars from "./DifficultyStars";
 
 const FreestyleCard = React.memo(({ freestyle }) => {
   return (
@@ -10,49 +9,79 @@ const FreestyleCard = React.memo(({ freestyle }) => {
       <Card.Header style={{ backgroundColor: "#f4fbf8" }}>
         <Accordion.Toggle as={Button} variant="link" eventKey="freestyle">
           <i className="fas fa-chevron-down mr-1" />
-          <strong>Freestyle</strong>
+          <strong>Modo rápido</strong>
         </Accordion.Toggle>
       </Card.Header>
       <Accordion.Collapse eventKey="freestyle">
         <Card.Body>
-          <h2 className="mb-3">Freestyle</h2>
-          <hr />
-          {/* stars */}
-          <DifficultyStars difficulty={"Final"} />
-          {/* last visited */}
-          <LastVisited date={freestyle.freestyleLatestVisit} />
+          <h2 className="mb-3">Modo rápido</h2>
           {/* description */}
-          <p style={{ fontSize: "14px" }} className="mb-3">
-            Contesta todos los ejercicios que puedas en{" "}
-            {freestyle.freestyleTimer} minutos
+          <p style={{ fontSize: "14px" }} className="mb-2 mt-2">
+            Integer eleifend nibh non sem tincidunt, at ultricies purus
+            vestibulum. Vivamus sed lobortis ligula, ut lacinia elit.
           </p>
-          {/* columns */}
-          <Row className="mb-3 py-2 pt-3">
-            <Col className="text-center">
-              <h1 className="mb-0 text-info">
-                {freestyle.freestyleHighestScore
-                  ? freestyle.freestyleHighestScore
-                  : 0}
-              </h1>
-              <h4>
-                <small className="text-muted">Puntos</small>
-              </h4>
-            </Col>
-            <Col className="text-center">
-              <h1 className="mb-0 text-info">
-                {freestyle.freestyleAttemptsCounter}
-              </h1>
-              <h4>
-                <small className="text-muted">Intentos</small>
-              </h4>
-            </Col>
-          </Row>
+          {/* last visited */}
+          <LastVisited date={Date.now()} />
+          <br />
+          {/* duration */}
+          <span style={{ fontSize: "14px", cursor: "help" }} title="Duración">
+            <i className="fas fa-stopwatch mr-2" />
+            {10 + " mins."}
+          </span>
+          <br />
+          {/* highest score */}
+          <span
+            style={{ fontSize: "14px", cursor: "help" }}
+            title="Máxima puntuación"
+          >
+            <i className="fas fa-hand-point-up mr-2" />
+            {45 + " pts."}
+          </span>
+          <h2 className="my-3">Top 5</h2>
+          {/* top 10 */}
+          <Table size="sm" className="rounded" style={{ fontSize: "14px" }}>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Puntos</th>
+                <th>Usuario</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>45</td>
+                <td>aldoglez34</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>30</td>
+                <td>guest</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>25</td>
+                <td>asds</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>20</td>
+                <td>sdsds</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>10</td>
+                <td>jjkl</td>
+              </tr>
+            </tbody>
+          </Table>
+          <br />
           {/* button */}
           <Button
             variant="primary"
-            disabled={freestyle.isFreestyleAvailable ? false : true}
+            // disabled={freestyle.isFreestyleAvailable ? false : true}
           >
-            Iniciar examen
+            <i className="fas fa-bolt mx-3" />
           </Button>
         </Card.Body>
       </Accordion.Collapse>

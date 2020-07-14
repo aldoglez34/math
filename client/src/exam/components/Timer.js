@@ -26,7 +26,7 @@ const Timer = React.memo(() => {
     setTimeout(() => {
       setSecondsLeft(secondsLeft - 1);
     }, 1000);
-  }, [secondsLeft, student._id, exam._id]);
+  }, [secondsLeft]);
 
   return (
     <span title="Tiempo restante" style={{ cursor: "help" }}>

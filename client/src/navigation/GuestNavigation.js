@@ -24,6 +24,7 @@ export default () => {
       <Route exact path="/courses/preparatoria" component={CourseInfoPrepa} />
 
       <Redirect from="/dashboard" to="/" />
+      <Redirect from="/course" to="/" />
 
       {/* 404 not found */}
       <Route component={NoMatch} />
