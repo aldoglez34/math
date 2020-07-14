@@ -126,10 +126,9 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
           </Accordion.Collapse>
         </Card>
       ))}
-      {console.log(freestyle)}
       {/* only show freestly if student has the reward */}
       {freestyle.isAvailable ? <FreestyleCard /> : null}
-      <FreestyleCard /> 
+      <FreestyleCard freestyle={freestyle} />
     </Accordion>
   );
 });

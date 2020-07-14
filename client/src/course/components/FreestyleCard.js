@@ -1,7 +1,8 @@
 import React from "react";
-import { Table, Card, Button, Accordion } from "react-bootstrap";
+import { Table, Card, Button, Accordion, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import LastVisited from "./LastVisited";
+import Leaderboards from "./modal/Leaderboards";
 
 const FreestyleCard = React.memo(({ freestyle }) => {
   return (
@@ -29,59 +30,34 @@ const FreestyleCard = React.memo(({ freestyle }) => {
             {10 + " mins."}
           </span>
           <br />
-          {/* highest score */}
-          <span
-            style={{ fontSize: "14px", cursor: "help" }}
-            title="Máxima puntuación"
-          >
-            <i className="fas fa-hand-point-up mr-2" />
-            {45 + " pts."}
-          </span>
-          <h2 className="my-3">Top 5</h2>
-          {/* top 10 */}
-          <Table size="sm" className="rounded" style={{ fontSize: "14px" }}>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Puntos</th>
-                <th>Usuario</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>45</td>
-                <td>aldoglez34</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>30</td>
-                <td>guest</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>25</td>
-                <td>asds</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>20</td>
-                <td>sdsds</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>10</td>
-                <td>jjkl</td>
-              </tr>
-            </tbody>
-          </Table>
+          <Leaderboards />
           <br />
+          {/* columns */}
+          <Row className="my-3">
+            <Col className="text-center">
+              <h1 className="mb-0 text-info">
+                <span style={{ cursor: "help" }} title="Puntuación más alta">
+                  {/* {freestyle.highestScore} */}
+                  60
+                </span>
+              </h1>
+              <h4>
+                <small className="text-muted">Puntos</small>
+              </h4>
+            </Col>
+            <Col className="text-center">
+              <h1 className="mb-0 text-info" style={{ cursor: "help" }}>
+                <span style={{ cursor: "help" }} title="Número de intentos">
+                  {freestyle.attempts.length}
+                </span>
+              </h1>
+              <h4>
+                <small className="text-muted">Intentos</small>
+              </h4>
+            </Col>
+          </Row>
           {/* button */}
-          <Button
-            variant="primary"
-            className="shadow-sm"
-            // disabled={freestyle.isFreestyleAvailable ? false : true}
-          >
+          <Button variant="primary" className="shadow-sm">
             <i className="fas fa-bolt mx-3" />
           </Button>
         </Card.Body>

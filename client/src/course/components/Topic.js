@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import ExamsAccordion from "./ExamsAccordion";
 
@@ -50,9 +50,6 @@ const Topic = React.memo(({ topic }) => {
               );
             })}
           </div>
-          <Button variant="info" className="mt-3">
-            Freestyle
-          </Button>
         </Col>
         {/* exams */}
         <Col lg={6} className="mt-2 mt-lg-0">
@@ -60,7 +57,11 @@ const Topic = React.memo(({ topic }) => {
           <ExamsAccordion
             exams={topic.exams}
             reward={topic.reward}
-            freestyle={{ ...topic.freestyle, isAvailable: topic.hasReward }}
+            freestyle={{
+              ...topic.freestyle,
+              isAvailable: topic.hasReward,
+              topicId: topic._id,
+            }}
           />
         </Col>
       </Row>
