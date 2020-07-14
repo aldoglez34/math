@@ -60,7 +60,7 @@ const Topic = React.memo(({ topic }) => {
           <ExamsAccordion
             exams={topic.exams}
             reward={topic.reward}
-            freestyle={topic.freestyle}
+            freestyle={{ ...topic.freestyle, isAvailable: topic.hasReward }}
           />
         </Col>
       </Row>

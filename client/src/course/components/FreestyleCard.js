@@ -79,6 +79,7 @@ const FreestyleCard = React.memo(({ freestyle }) => {
           {/* button */}
           <Button
             variant="primary"
+            className="shadow-sm"
             // disabled={freestyle.isFreestyleAvailable ? false : true}
           >
             <i className="fas fa-bolt mx-3" />
