@@ -16,7 +16,7 @@ const schema = new Schema({
       "Advanced",
       "Final",
       "Freestyle",
-    ],|
+    ],
     required: true,
   },
   qCounter: { type: Number, required: true }, // ej. 20 (question counter)
@@ -31,21 +31,20 @@ const schema = new Schema({
     {
       qType: {
         type: String,
-        enum: ["qText", "qImage", "qMulitpleChoice"],
+        enum: [
+          "qText",
+          "qImage",
+          "qMultipleChoiceText",
+          "qMultipleChoiceImage",
+        ],
         required: true,
       },
-      // for qText
-      qInstruction: { type: String, required: true }, // instrucción de la pregunta, ejemplo: Resuelve el siguiente problema
-      qTechnicalInstruction: { type: String }, // instrucción técnica de la pregunta, ejemplo: 10 + 15
-
-      // for qImage
-      qComment: { type: String }, // comentario de la pregunta (o hint), ejemplo: da tu resultado con dos decimales
-
-      // for qMulitpleChoice
-
-
-      qCorrectAnswers: [{ type: String }], // resultado(s) correcto de la pregunta, ejemplo: [15] o [15, 67]
-      qCorrectAnswersComplement: { type: String }, // texto complemento a la respuesta, ejemplo: animales/frutas/pesos}],
+      qInstruction: { type: String, required: true },
+      qTechnicalInstruction: { type: String }, // for qText
+      qImgLink: { type: String }, // for qImage
+      qPossibleAnswers: [{ type: String }], // for qMulitpleChoice
+      qCorrectAnswers: [{ type: String }],
+      qComment: { type: String },
     },
   ],
   createdAt: {
