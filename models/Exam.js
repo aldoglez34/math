@@ -43,7 +43,13 @@ const schema = new Schema({
       qTechnicalInstruction: { type: String }, // for qText
       qImgLink: { type: String }, // for qImage
       qPossibleAnswers: [{ type: String }], // for qMulitpleChoice
-      qCorrectAnswers: [{ type: String }],
+      qCorrectAnswers: [
+        {
+          answer: { type: String },
+          text: { type: String },
+          location: { type: String, default: "right" },
+        },
+      ],
       qComment: { type: String },
     },
   ],
