@@ -1,15 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Row, Col, Button, Spinner } from "react-bootstrap";
 import PropTypes from "prop-types";
 import * as examActions from "../../redux/actions/exam";
 import Timer from "./Timer";
 import QNumber from "./QNumber";
+import QInstruction from "../question/QInstruction";
+import QTechnicalInstruction from "../question/QTechnicalInstruction";
+import QMultipleChoice from "../question/QMultipleChoice";
 
 const QuestionsContainer = React.memo(({ questions }) => {
   const dispatch = useDispatch();
-
-  const inputRef = useRef();
 
   const [number, setNumber] = useState(1);
   const [question, setQuestion] = useState();
@@ -31,7 +32,22 @@ const QuestionsContainer = React.memo(({ questions }) => {
 
   const pushQuestion = () => {
     // get the answer and push it
-    const userAnswer = inputRef.current.value;
+    const numberOfAnswers = question.qCorrectAnswers.length;
+    const userAnswers = [];
+
+    for (var i = 0; i < numberOfAnswers; i++) {
+      let a = document.getElementById("answer" + i).value;
+      userAnswers.push(a.trim());
+    }
+
+    console.log("userAnswers", userAnswers.toString());
+
+    const correctAnswers = question.qCorrectAnswers.reduce((acc, cv) => {
+      acc.push(cv.answer);
+      return acc;
+    }, []);
+
+    console.log("correctAnswers", correctAnswers.toString());
 
     setAnswers([
       ...answers,
@@ -40,14 +56,25 @@ const QuestionsContainer = React.memo(({ questions }) => {
         qNumber: question.qNumber,
         qInstruction: question.qInstruction,
         qTechnicalInstruction: question.qTechnicalInstruction,
-        userAnswer: userAnswer,
-        qCorrectAnswer: question.qCorrectAnswer,
+        qMultipleChoice: question.qMultipleChoice,
+        userAnswers: userAnswers.toString(),
+        qCorrectAnswer: correctAnswers.toString(),
       },
     ]);
 
-    // clean, set number and focus input
-    inputRef.current.value = "";
-    setNumber(number + 1);
+    console.log({
+      _id: question._id,
+      qNumber: question.qNumber,
+      qInstruction: question.qInstruction,
+      qTechnicalInstruction: question.qTechnicalInstruction,
+      qMultipleChoice: question.qMultipleChoice,
+      userAnswers: userAnswers.toString(),
+      qCorrectAnswer: correctAnswers.toString(),
+    });
+
+    // // clean, set number and focus input
+    // inputRef.current.value = "";
+    // setNumber(number + 1);
   };
 
   const handleKeyDown = (e) => {
@@ -70,39 +97,67 @@ const QuestionsContainer = React.memo(({ questions }) => {
             Salir
           </a>
         </div>
-        <Row className="mx-lg-1 bg-light">
+        <Row className="mx-lg-1 bg-light rounded">
           <Col
             lg={{ span: 7, offset: 2 }}
             className="px-3"
             style={{ paddingTop: "40px", paddingBottom: "45px" }}
           >
             {/* INSTRUCTION */}
-            <h4>
-              <span className="mr-1">{question.qNumber + "."}</span>
-              <span className="text-break">{question.qInstruction}</span>
-            </h4>
+            <QInstruction
+              qNumber={question.qNumber}
+              qInstruction={question.qInstruction}
+            />
+
             {/* TECHNICAL INSTRUCTION */}
-            <h4>{question.qTechnicalInstruction}</h4>
-            {/* INPUT FORM */}
-            <div className="d-flex flex-row mt-3 mb-2">
-              <input
-                type="text"
-                maxLength="20"
-                ref={inputRef}
-                onKeyDown={handleKeyDown}
-                className="border rounded px-2"
+            {question.qTechnicalInstruction ? (
+              <QTechnicalInstruction
+                type={question.qTechnicalInstruction.type}
+                text={question.qTechnicalInstruction.text}
+                imageLink={question.qTechnicalInstruction.imageLink}
               />
-              {/* question complement (if any) */}
-              {questions.qCorrectAnswerComplement ? (
-                <h4 className="ml-2 mb-0">
-                  {questions.qCorrectAnswerComplement}
-                </h4>
-              ) : null}
-            </div>
-            {/* QUESTION COMMENT */}
-            {questions.qComment ? (
-              <small className="text-muted">{questions.qComment}</small>
             ) : null}
+
+            {/* MULTIPLE CHOICES OR ANSWER INPUTS */}
+            {question.qMultipleChoice ? (
+              <QMultipleChoice
+                type={question.qMultipleChoice.type}
+                textChoices={question.qMultipleChoice.textChoices}
+                imageChoices={question.qMultipleChoice.imageChoices}
+              />
+            ) : (
+              question.qCorrectAnswers.map((ca, idx) => (
+                <div key={ca._id} className="d-flex flex-row mt-3 mb-2">
+                  {/* LEFT question complement (if any) */}
+                  {ca.complement && ca.placement === "left" ? (
+                    <h4 className="mr-2 mb-0">
+                      <small>{ca.complement}</small>
+                    </h4>
+                  ) : null}
+                  {/* input */}
+                  <input
+                    type="text"
+                    maxLength="20"
+                    // ref={inputRef}
+                    onKeyDown={handleKeyDown}
+                    className="border rounded px-2"
+                    id={"answer" + idx}
+                  />
+                  {/* RIGHT question complement (if any) */}
+                  {ca.complement && ca.placement === "right" ? (
+                    <h4 className="ml-2 mb-0">
+                      <small>{ca.complement}</small>
+                    </h4>
+                  ) : null}
+                </div>
+              ))
+            )}
+
+            {/* QUESTION COMMENT */}
+            {question.qComment ? (
+              <small className="text-muted mb-3">{question.qComment}</small>
+            ) : null}
+
             {/* BUTTON */}
             <div className="mt-3">
               <Button

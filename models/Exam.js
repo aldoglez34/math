@@ -29,11 +29,31 @@ const schema = new Schema({
   ],
   questions: [
     {
-      qInstruction: { type: String, required: true }, // instrucción de la pregunta, ejemplo: Resuelve el siguiente problema
-      qTechnicalInstruction: { type: String }, // instrucción técnica de la pregunta, ejemplo: 10 + 15
-      qComment: { type: String }, // comentario de la pregunta, ejemplo: da tu resultado con dos decimales
-      qCorrectAnswer: { type: String, required: true }, // resultado correcto de la pregunta, ejemplo: 15
-      qCorrectAnswerComplement: { type: String }, // texto complemento a la respuesta, ejemplo: animales/frutas/pesos}],
+      qInstruction: { type: String, required: true },
+      qTechnicalInstruction: {
+        type: {
+          type: String,
+          enum: ["text", "image"],
+        },
+        text: { type: String },
+        imageLink: { type: String },
+      },
+      qMultipleChoice: {
+        type: {
+          type: String,
+          enum: ["text", "image"],
+        },
+        textChoices: [{ type: String }],
+        imageChoices: [{ type: String }],
+      },
+      qCorrectAnswers: [
+        {
+          answer: { type: String, required: true },
+          complement: { type: String },
+          placement: { type: String },
+        },
+      ],
+      qComment: { type: String },
     },
   ],
   createdAt: {

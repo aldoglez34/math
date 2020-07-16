@@ -23,7 +23,7 @@ const Leaderboards = React.memo(() => {
         <Modal.Body>
           <div className="text-center">
             <Image
-              src="https://image.flaticon.com/icons/svg/3112/3112946.svg"
+              src="/images/trophy.png"
               lenght="75"
               width="75"
               className="mb-2 mt-3"

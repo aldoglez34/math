@@ -39,17 +39,56 @@ router.get("/info/:examId", function (req, res) {
             _id: cv._id,
             qNumber: idx + 1,
             qInstruction: cv.qInstruction,
-            qTechnicalInstruction: cv.qTechnicalInstruction,
+            qTechnicalInstruction: cv.qTechnicalInstruction.type
+              ? cv.qTechnicalInstruction
+              : null,
+            qMultipleChoice:
+              cv.qMultipleChoice.textChoices.length ||
+              cv.qMultipleChoice.imageChoices.length
+                ? cv.qMultipleChoice
+                : null,
+            qCorrectAnswers: cv.qCorrectAnswers,
             qComment: cv.qComment,
-            qCorrectAnswer: cv.qCorrectAnswer,
-            qCorrectAnswerComplement: cv.qCorrectAnswerComplement,
           });
           return acc;
         }, []),
       };
     })
     .then((data) => {
-      res.json(data);
+      // res.json(data);
+
+      const temp = {
+        _id: "5f108d56b33987398c75fa57",
+        name: "Sumas 1",
+        duration: 30,
+        questions: [
+          {
+            _id: "5f108d57b33987398c75fa5a",
+            qNumber: 1,
+            qInstruction:
+              "Escribe 3 (pesos) en el primer input y 5 (manzanas) en el segundo",
+            qTechnicalInstruction: null,
+            qMultipleChoice: null,
+            qCorrectAnswers: [
+              {
+                _id: "5f108d57b33987398c75fa5b",
+                answer: "3",
+                complement: "pesos",
+                placement: "right",
+              },
+              {
+                _id: "5f108d57b33987398c75fa5c",
+                answer: "5",
+                complement: "manzanas",
+                placement: "left",
+              },
+            ],
+            qComment: "literal sólo eso",
+          },
+        ],
+      };
+
+      res.json(temp);
     })
     .catch((err) => {
       console.log("@error", err);
