@@ -38,16 +38,14 @@ const schema = new Schema({
         text: { type: String },
         imageLink: { type: String },
       },
-      qMultipleChoice: [
-        {
-          type: {
-            type: String,
-            enum: ["text", "image"],
-          },
-          textChoices: [{ type: String }],
-          imageChoices: [{ type: String }],
+      qMultipleChoice: {
+        type: {
+          type: String,
+          enum: ["text", "image"],
         },
-      ],
+        textChoices: [{ type: String }],
+        imageChoices: [{ type: String }],
+      },
       qCorrectAnswers: [
         {
           answer: { type: String, required: true },

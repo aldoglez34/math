@@ -22,8 +22,8 @@ module.exports = [
         qInstruction:
           "Escribe 3 (pesos) en el primer input y 5 (manzanas) en el segundo",
         qCorrectAnswers: [
-          { answer: "3", text: "pesos", placement: "right" },
-          { answer: "5", text: "manzanas", placement: "left" },
+          { answer: "3", complement: "pesos", placement: "right" },
+          { answer: "5", complement: "manzanas", placement: "left" },
         ],
         qComment: "literal sólo eso",
       },
@@ -48,8 +48,8 @@ module.exports = [
           imageLink: "/exams/suma/suma2.png",
         },
         qCorrectAnswers: [
-          { answer: "45", text: "números:", placement: "left" },
-          { answer: "7", text: "números:", placement: "left" },
+          { answer: "45", complement: "números:", placement: "left" },
+          { answer: "7", complement: "números:", placement: "left" },
         ],
       },
       {
@@ -64,23 +64,19 @@ module.exports = [
       // ========================================================
       {
         qInstruction: "¿Cuánto es 5 + 8? Elige la respuesta correcta",
-        qMultipleChoice: [
-          {
-            type: "text",
-            textChoices: ["12", "13", "14", "15"],
-          },
-        ],
+        qMultipleChoice: {
+          type: "text",
+          textChoices: ["12", "13", "14", "15"],
+        },
         qCorrectAnswers: [{ answer: "13" }],
         qComment: "selecciona respuesta correcta y da clic en siguiente",
       },
       {
         qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
-        qMultipleChoice: [
-          {
-            type: "text",
-            textChoices: ["55", "43", "14", "2"],
-          },
-        ],
+        qMultipleChoice: {
+          type: "text",
+          textChoices: ["55", "43", "14", "2"],
+        },
         qCorrectAnswers: [{ answer: "14" }],
       },
     ],

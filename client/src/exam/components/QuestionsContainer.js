@@ -5,8 +5,9 @@ import PropTypes from "prop-types";
 import * as examActions from "../../redux/actions/exam";
 import Timer from "./Timer";
 import QNumber from "./QNumber";
-import QInstruction from "../question/qInstruction";
+import QInstruction from "../question/QInstruction";
 import QTechnicalInstruction from "../question/QTechnicalInstruction";
+import QMultipleChoice from "../question/QMultipleChoice";
 
 const QuestionsContainer = React.memo(({ questions }) => {
   const dispatch = useDispatch();
@@ -83,6 +84,7 @@ const QuestionsContainer = React.memo(({ questions }) => {
               qNumber={questions.qNumber}
               qInstruction={question.qInstruction}
             />
+
             {/* TECHNICAL INSTRUCTION */}
             {Object.keys(question.qTechnicalInstruction).length ? (
               <QTechnicalInstruction
@@ -91,32 +93,49 @@ const QuestionsContainer = React.memo(({ questions }) => {
                 imageLink={question.qTechnicalInstruction.imageLink}
               />
             ) : null}
-            {/* INPUT FORM */}
-            <div className="d-flex flex-row mt-3 mb-2">
-              <input
-                type="text"
-                maxLength="20"
-                ref={inputRef}
-                onKeyDown={handleKeyDown}
-                className="border rounded px-2"
+
+            {/* MULTIPLE CHOICES OR ANSWER INPUTS */}
+            {question.qMultipleChoice.textChoices.length ||
+            question.qMultipleChoice.imageChoices.length ? (
+              <QMultipleChoice
+                type={question.qMultipleChoice.type}
+                textChoices={question.qMultipleChoice.textChoices}
+                imageChoices={question.qMultipleChoice.imageChoices}
               />
-              {/* question complement (if any) */}
-              {questions.qCorrectAnswerComplement ? (
-                <h4 className="ml-2 mb-0">
-                  {questions.qCorrectAnswerComplement}
-                </h4>
-              ) : null}
-            </div>
+            ) : (
+              question.qCorrectAnswers.map((ca) => (
+                <div key={ca._id} className="d-flex flex-row mt-3 mb-2">
+                  {/* LEFT question complement (if any) */}
+                  {ca.complement && ca.placement === "left" ? (
+                    <h4 className="mr-2 mb-0">{ca.complement}</h4>
+                  ) : null}
+                  {/* input */}
+                  <input
+                    type="text"
+                    maxLength="20"
+                    // ref={inputRef}
+                    // onKeyDown={handleKeyDown}
+                    className="border rounded px-2"
+                  />
+                  {/* RIGHT question complement (if any) */}
+                  {ca.complement && ca.placement === "right" ? (
+                    <h4 className="ml-2 mb-0">{ca.complement}</h4>
+                  ) : null}
+                </div>
+              ))
+            )}
+
             {/* QUESTION COMMENT */}
-            {questions.qComment ? (
-              <small className="text-muted">{questions.qComment}</small>
+            {question.qComment ? (
+              <small className="text-muted mb-3">{question.qComment}</small>
             ) : null}
+
             {/* BUTTON */}
             <div className="mt-3">
               <Button
                 variant={number === questions.length ? "primary" : "success"}
                 className="shadow-sm"
-                onClick={pushQuestion}
+                // onClick={pushQuestion}
               >
                 {number === questions.length ? "Finalizar" : "Siguiente"}
               </Button>
