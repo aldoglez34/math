@@ -39,8 +39,14 @@ router.get("/info/:examId", function (req, res) {
             _id: cv._id,
             qNumber: idx + 1,
             qInstruction: cv.qInstruction,
-            qTechnicalInstruction: cv.qTechnicalInstruction,
-            qMultipleChoice: cv.qMultipleChoice,
+            qTechnicalInstruction: cv.qTechnicalInstruction.type
+              ? cv.qTechnicalInstruction
+              : null,
+            qMultipleChoice:
+              cv.qMultipleChoice.textChoices.length ||
+              cv.qMultipleChoice.imageChoices.length
+                ? cv.qMultipleChoice
+                : null,
             qCorrectAnswers: cv.qCorrectAnswers,
             qComment: cv.qComment,
           });
@@ -50,92 +56,28 @@ router.get("/info/:examId", function (req, res) {
     })
     .then((data) => {
       // res.json(data);
+
       const temp = {
-        _id: "5f0fbfe1cf99800a70c4387b",
+        _id: "5f108d56b33987398c75fa57",
         name: "Sumas 1",
         duration: 30,
         questions: [
           {
-            _id: "5f0fbfe1cf99800a70c43881",
-            qNumber: 2,
-            qInstruction:
-              "Escribe 45 en el primer input y 2 en el segundo y 77 en el tercero",
-            qTechnicalInstruction: {},
-            qMultipleChoice: {
-              textChoices: [],
-              imageChoices: [],
-            },
-            qCorrectAnswers: [
-              {
-                _id: "5f0fbfe1cf99800a70c43882",
-                answer: "45",
-              },
-              {
-                _id: "5f0fbfe1cf99800a70c43883",
-                answer: "2",
-              },
-              {
-                _id: "5f0fbfe1cf99800a70c43884",
-                answer: "77",
-              },
-            ],
-          },
-          {
-            _id: "5f0fbfe1cf99800a70c4388e",
+            _id: "5f108d57b33987398c75fa5a",
             qNumber: 1,
-            qInstruction: "¿Cuánto es 5 + 8? Elige la respuesta correcta",
-            qTechnicalInstruction: {},
-            qMultipleChoice: {
-              textChoices: ["12", "13", "14", "15"],
-              imageChoices: [],
-              type: "text",
-            },
-            qCorrectAnswers: [
-              {
-                _id: "5f0fbfe1cf99800a70c4388f",
-                answer: "13",
-              },
-            ],
-            qComment: "selecciona respuesta correcta y da clic en siguiente",
-          },
-          {
-            _id: "5f0fbfe1cf99800a70c43885",
-            qNumber: 3,
-            qInstruction: "Resuelve la siguiente suma",
-            qTechnicalInstruction: {
-              type: "image",
-              imageLink: "/exams/suma/suma1.png",
-            },
-            qMultipleChoice: {
-              textChoices: [],
-              imageChoices: [],
-            },
-            qCorrectAnswers: [
-              {
-                _id: "5f0fbfe1cf99800a70c43886",
-                answer: "14",
-              },
-            ],
-          },
-          {
-            _id: "5f0fbfe1cf99800a70c4387e",
-            qNumber: 4,
             qInstruction:
               "Escribe 3 (pesos) en el primer input y 5 (manzanas) en el segundo",
-            qTechnicalInstruction: {},
-            qMultipleChoice: {
-              textChoices: [],
-              imageChoices: [],
-            },
+            qTechnicalInstruction: null,
+            qMultipleChoice: null,
             qCorrectAnswers: [
               {
-                _id: "5f0fbfe1cf99800a70c4387f",
+                _id: "5f108d57b33987398c75fa5b",
                 answer: "3",
                 complement: "pesos",
                 placement: "right",
               },
               {
-                _id: "5f0fbfe1cf99800a70c43880",
+                _id: "5f108d57b33987398c75fa5c",
                 answer: "5",
                 complement: "manzanas",
                 placement: "left",
@@ -143,99 +85,9 @@ router.get("/info/:examId", function (req, res) {
             ],
             qComment: "literal sólo eso",
           },
-          {
-            _id: "5f0fbfe1cf99800a70c43887",
-            qNumber: 5,
-            qInstruction: "Escribe los números que se muestran en la imagen",
-            qTechnicalInstruction: {
-              type: "image",
-              imageLink: "/exams/suma/suma2.png",
-            },
-            qMultipleChoice: {
-              textChoices: [],
-              imageChoices: [],
-            },
-            qCorrectAnswers: [
-              {
-                _id: "5f0fbfe1cf99800a70c43888",
-                answer: "45",
-                complement: "números:",
-                placement: "left",
-              },
-              {
-                _id: "5f0fbfe1cf99800a70c43889",
-                answer: "7",
-                complement: "números:",
-                placement: "left",
-              },
-            ],
-          },
-          {
-            _id: "5f0fbfe1cf99800a70c4387c",
-            qNumber: 6,
-            qInstruction: "Resuelve la siguiente suma",
-            qTechnicalInstruction: {
-              type: "text",
-              text: "10 + 7",
-            },
-            qMultipleChoice: {
-              textChoices: [],
-              imageChoices: [],
-            },
-            qCorrectAnswers: [
-              {
-                _id: "5f0fbfe1cf99800a70c4387d",
-                answer: "17",
-              },
-            ],
-          },
-          {
-            _id: "5f0fbfe1cf99800a70c4388a",
-            qNumber: 7,
-            qInstruction: "Escribe los números que se muestran en la imagen",
-            qTechnicalInstruction: {
-              type: "image",
-              imageLink: "/exams/suma/suma3.png",
-            },
-            qMultipleChoice: {
-              textChoices: [],
-              imageChoices: [],
-            },
-            qCorrectAnswers: [
-              {
-                _id: "5f0fbfe1cf99800a70c4388b",
-                answer: "11",
-              },
-              {
-                _id: "5f0fbfe1cf99800a70c4388c",
-                answer: "8",
-              },
-              {
-                _id: "5f0fbfe1cf99800a70c4388d",
-                answer: "34",
-              },
-            ],
-            qComment: "sólo escribe los números",
-          },
-          {
-            _id: "5f0fbfe1cf99800a70c43890",
-            qNumber: 8,
-            qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
-            qTechnicalInstruction: {},
-            qMultipleChoice: {
-              textChoices: ["55", "43", "14", "2"],
-              imageChoices: [],
-              type: "text",
-            },
-            qCorrectAnswers: [
-              {
-                _id: "5f0fbfe1cf99800a70c43891",
-                answer: "14",
-              },
-            ],
-          },
         ],
       };
+
       res.json(temp);
     })
     .catch((err) => {
