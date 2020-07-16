@@ -29,25 +29,30 @@ const schema = new Schema({
   ],
   questions: [
     {
-      qType: {
-        type: String,
-        enum: [
-          "qText",
-          "qImage",
-          "qMultipleChoiceText",
-          "qMultipleChoiceImage",
-        ],
-        required: true,
-      },
       qInstruction: { type: String, required: true },
-      qTechnicalInstruction: { type: String }, // for qText
-      qImgLink: { type: String }, // for qImage
-      qPossibleAnswers: [{ type: String }], // for qMulitpleChoice
+      qTechnicalInstruction: {
+        type: {
+          type: String,
+          enum: ["text", "image"],
+        },
+        text: { type: String },
+        imageLink: { type: String },
+      },
+      qMultipleChoice: [
+        {
+          type: {
+            type: String,
+            enum: ["text", "image"],
+          },
+          textChoices: [{ type: String }],
+          imageChoices: [{ type: String }],
+        },
+      ],
       qCorrectAnswers: [
         {
-          answer: { type: String },
-          text: { type: String },
-          location: { type: String, default: "right" },
+          answer: { type: String, required: true },
+          complement: { type: String },
+          placement: { type: String },
         },
       ],
       qComment: { type: String },

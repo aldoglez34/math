@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import * as examActions from "../../redux/actions/exam";
 import Timer from "./Timer";
 import QNumber from "./QNumber";
+import QInstruction from "../question/qInstruction";
+import QTechnicalInstruction from "../question/QTechnicalInstruction";
 
 const QuestionsContainer = React.memo(({ questions }) => {
   const dispatch = useDispatch();
@@ -77,12 +79,18 @@ const QuestionsContainer = React.memo(({ questions }) => {
             style={{ paddingTop: "40px", paddingBottom: "45px" }}
           >
             {/* INSTRUCTION */}
-            <h4>
-              <span className="mr-1">{question.qNumber + "."}</span>
-              <span className="text-break">{question.qInstruction}</span>
-            </h4>
+            <QInstruction
+              qNumber={questions.qNumber}
+              qInstruction={question.qInstruction}
+            />
             {/* TECHNICAL INSTRUCTION */}
-            <h4>{question.qTechnicalInstruction}</h4>
+            {Object.keys(question.qTechnicalInstruction).length ? (
+              <QTechnicalInstruction
+                type={question.qTechnicalInstruction.type}
+                text={question.qTechnicalInstruction.text}
+                imageLink={question.qTechnicalInstruction.imageLink}
+              />
+            ) : null}
             {/* INPUT FORM */}
             <div className="d-flex flex-row mt-3 mb-2">
               <input

@@ -40,9 +40,9 @@ router.get("/info/:examId", function (req, res) {
             qNumber: idx + 1,
             qInstruction: cv.qInstruction,
             qTechnicalInstruction: cv.qTechnicalInstruction,
+            qMultipleChoice: cv.qMultipleChoice,
+            qCorrectAnswers: cv.qCorrectAnswers,
             qComment: cv.qComment,
-            qCorrectAnswer: cv.qCorrectAnswer,
-            qCorrectAnswerComplement: cv.qCorrectAnswerComplement,
           });
           return acc;
         }, []),

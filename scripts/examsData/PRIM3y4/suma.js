@@ -9,72 +9,79 @@ module.exports = [
     difficulty: "Basic",
     qCounter: 5,
     questions: [
-      // qText ========================================================
+      // ========================================================
       {
-        qType: "qText",
         qInstruction: "Resuelve la siguiente suma",
-        qTechnicalInstruction: "10 + 7",
-        qCorrectAnswers: ["17"],
-        qComment: "sólo  una prueba",
+        qTechnicalInstruction: {
+          type: "text",
+          text: "10 + 7",
+        },
+        qCorrectAnswers: [{ answer: "17" }],
       },
       {
-        qType: "qText",
-        qInstruction: "Escribe 3 en el primer input y 5 en el segundo",
-        qCorrectAnswers: ["3", "5"],
+        qInstruction:
+          "Escribe 3 (pesos) en el primer input y 5 (manzanas) en el segundo",
+        qCorrectAnswers: [
+          { answer: "3", text: "pesos", placement: "right" },
+          { answer: "5", text: "manzanas", placement: "left" },
+        ],
+        qComment: "literal sólo eso",
       },
       {
-        qType: "qText",
         qInstruction:
           "Escribe 45 en el primer input y 2 en el segundo y 77 en el tercero",
-        qCorrectAnswers: ["45", "2", "77"],
+        qCorrectAnswers: [{ answer: "45" }, { answer: "2" }, { answer: "77" }],
       },
-      // qImage ========================================================
+      // ========================================================
       {
-        qType: "qImage",
         qInstruction: "Resuelve la siguiente suma",
-        qImgLink: "/exams/suma/suma1.png",
-        qCorrectAnswers: ["14"],
-        qComment: "sólo  una prueba",
+        qTechnicalInstruction: {
+          type: "image",
+          imageLink: "/exams/suma/suma1.png",
+        },
+        qCorrectAnswers: [{ answer: "14" }],
       },
       {
-        qType: "qImage",
         qInstruction: "Escribe los números que se muestran en la imagen",
-        qImgLink: "/exams/suma/suma2.png",
-        qCorrectAnswers: ["45", "7"],
+        qTechnicalInstruction: {
+          type: "image",
+          imageLink: "/exams/suma/suma2.png",
+        },
+        qCorrectAnswers: [
+          { answer: "45", text: "números:", placement: "left" },
+          { answer: "7", text: "números:", placement: "left" },
+        ],
       },
       {
-        qType: "qImage",
         qInstruction: "Escribe los números que se muestran en la imagen",
-        qImgLink: "/exams/suma/suma3.png",
-        qCorrectAnswers: ["11", "8", "34"],
-        qComment: "sólo  una prueba",
+        qTechnicalInstruction: {
+          type: "image",
+          imageLink: "/exams/suma/suma3.png",
+        },
+        qCorrectAnswers: [{ answer: "11" }, { answer: "8" }, { answer: "34" }],
+        qComment: "sólo escribe los números",
       },
-      // qMultipleChoiceText ========================================================
+      // ========================================================
       {
-        qType: "qMultipleChoiceText",
         qInstruction: "¿Cuánto es 5 + 8? Elige la respuesta correcta",
-        qPossibleAnswers: ["12", "13", "14", "15"],
-        qCorrectAnswers: ["13"],
+        qMultipleChoice: [
+          {
+            type: "text",
+            textChoices: ["12", "13", "14", "15"],
+          },
+        ],
+        qCorrectAnswers: [{ answer: "13" }],
+        qComment: "selecciona respuesta correcta y da clic en siguiente",
       },
       {
-        qType: "qMultipleChoiceText",
-        qInstruction: "¿Cuánto es 5 + 8? Elige la respuesta correcta",
-        qPossibleAnswers: ["12", "13", "14", "15"],
-        qCorrectAnswers: ["13"],
-      },
-      // qMultipleChoiceImage ========================================================
-      {
-        qType: "qMultipleChoiceImage",
-        qImgLink: "link",
-        qPossibleAnswers: ["link1", "link2", "link3", "link4"],
-        qCorrectAnswers: ["link3"],
-        qComment: "sólo  una prueba",
-      },
-      {
-        qType: "qMultipleChoiceImage",
-        qImgLink: "link",
-        qPossibleAnswers: ["link1", "link2", "link3", "link4"],
-        qCorrectAnswers: ["link1"],
+        qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
+        qMultipleChoice: [
+          {
+            type: "text",
+            textChoices: ["55", "43", "14", "2"],
+          },
+        ],
+        qCorrectAnswers: [{ answer: "14" }],
       },
     ],
   },
