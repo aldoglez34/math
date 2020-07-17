@@ -63,27 +63,21 @@ router.get("/info/:examId", function (req, res) {
         duration: 30,
         questions: [
           {
-            _id: "5f108d57b33987398c75fa5a",
+            _id: "5f110af898a3432ba0a0704d",
             qNumber: 1,
-            qInstruction:
-              "Escribe 3 (pesos) en el primer input y 5 (manzanas) en el segundo",
+            qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
             qTechnicalInstruction: null,
-            qMultipleChoice: null,
+            qMultipleChoice: {
+              textChoices: ["55", "43", "14", "2"],
+              imageChoices: [],
+              type: "text",
+            },
             qCorrectAnswers: [
               {
-                _id: "5f108d57b33987398c75fa5b",
-                answer: "3",
-                complement: "pesos",
-                placement: "right",
-              },
-              {
-                _id: "5f108d57b33987398c75fa5c",
-                answer: "5",
-                complement: "manzanas",
-                placement: "left",
+                _id: "5f110af898a3432ba0a0704e",
+                answer: "14",
               },
             ],
-            qComment: "literal sólo eso",
           },
         ],
       };

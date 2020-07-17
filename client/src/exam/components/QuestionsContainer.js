@@ -30,50 +30,67 @@ const QuestionsContainer = React.memo(({ questions }) => {
     }
   }, [dispatch, number, answers, questions]);
 
+  // this is where the value from the multiple choice is stored
+  const [choice, setChoice] = useState();
+  const getValueFromMultipleChoice = (value) => setChoice(value);
+
   const pushQuestion = () => {
-    // get the answer and push it
-    const numberOfAnswers = question.qCorrectAnswers.length;
-    const userAnswers = [];
-
-    for (var i = 0; i < numberOfAnswers; i++) {
-      let a = document.getElementById("answer" + i).value;
-      userAnswers.push(a.trim());
-    }
-
-    console.log("userAnswers", userAnswers.toString());
-
+    // get correct answers
     const correctAnswers = question.qCorrectAnswers.reduce((acc, cv) => {
       acc.push(cv.answer);
       return acc;
     }, []);
 
-    console.log("correctAnswers", correctAnswers.toString());
+    // the behavior will be different depending wether its a multiple choice or regular inputs
+    const isMultipleChoice = question.qMultipleChoice ? true : false;
 
-    setAnswers([
-      ...answers,
-      {
+    if (isMultipleChoice) {
+      // the option choosen by the student is stored in the "choice" state
+      setAnswers([
+        ...answers,
+        {
+          _id: question._id,
+          qNumber: question.qNumber,
+          qInstruction: question.qInstruction,
+          qTechnicalInstruction: question.qTechnicalInstruction,
+          qMultipleChoice: question.qMultipleChoice,
+          userAnswers: choice,
+          qCorrectAnswers: correctAnswers.toString(),
+        },
+      ]);
+
+      console.log({
         _id: question._id,
         qNumber: question.qNumber,
         qInstruction: question.qInstruction,
         qTechnicalInstruction: question.qTechnicalInstruction,
         qMultipleChoice: question.qMultipleChoice,
-        userAnswers: userAnswers.toString(),
-        qCorrectAnswer: correctAnswers.toString(),
-      },
-    ]);
+        userAnswers: choice,
+        qCorrectAnswers: correctAnswers.toString(),
+      });
+    } else {
+      // get the value from the answer inputs and push them
+      const numberOfAnswers = question.qCorrectAnswers.length;
+      const userAnswers = [];
+      for (var i = 0; i < numberOfAnswers; i++) {
+        let a = document.getElementById("answer" + i).value;
+        userAnswers.push(a.trim());
+      }
 
-    console.log({
-      _id: question._id,
-      qNumber: question.qNumber,
-      qInstruction: question.qInstruction,
-      qTechnicalInstruction: question.qTechnicalInstruction,
-      qMultipleChoice: question.qMultipleChoice,
-      userAnswers: userAnswers.toString(),
-      qCorrectAnswer: correctAnswers.toString(),
-    });
+      setAnswers([
+        ...answers,
+        {
+          _id: question._id,
+          qNumber: question.qNumber,
+          qInstruction: question.qInstruction,
+          qTechnicalInstruction: question.qTechnicalInstruction,
+          qMultipleChoice: question.qMultipleChoice,
+          userAnswers: userAnswers.toString(),
+          qCorrectAnswers: correctAnswers.toString(),
+        },
+      ]);
+    }
 
-    // // clean, set number and focus input
-    // inputRef.current.value = "";
     // setNumber(number + 1);
   };
 
@@ -124,6 +141,7 @@ const QuestionsContainer = React.memo(({ questions }) => {
                 type={question.qMultipleChoice.type}
                 textChoices={question.qMultipleChoice.textChoices}
                 imageChoices={question.qMultipleChoice.imageChoices}
+                getValueFromMultipleChoice={getValueFromMultipleChoice}
               />
             ) : (
               question.qCorrectAnswers.map((ca, idx) => (

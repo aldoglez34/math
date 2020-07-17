@@ -14,7 +14,7 @@ const QTechnicalInstruction = React.memo(({ type, text, imageLink }) => {
 
 QTechnicalInstruction.propTypes = {
   type: PropTypes.oneOf(["text", "image"]).isRequired,
-  text: PropTypes.number,
+  text: PropTypes.string,
   imageLink: PropTypes.string,
 };
 
