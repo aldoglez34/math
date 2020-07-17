@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const QNumber = React.memo(({ current, total }) => {
   return (
-    <div title="Pregunta" style={{ cursor: "help" }}>
+    <div title="Número de pregunta" style={{ cursor: "help" }}>
       <strong className="ml-3 mr-1 text-dark">P:</strong>
       <span>{current}</span>
       <span className="mx-1">/</span>

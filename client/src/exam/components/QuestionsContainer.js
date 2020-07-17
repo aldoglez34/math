@@ -89,9 +89,19 @@ const QuestionsContainer = React.memo(({ questions }) => {
           qCorrectAnswers: correctAnswers.toString(),
         },
       ]);
+
+      console.log({
+        _id: question._id,
+        qNumber: question.qNumber,
+        qInstruction: question.qInstruction,
+        qTechnicalInstruction: question.qTechnicalInstruction,
+        qMultipleChoice: question.qMultipleChoice,
+        userAnswers: userAnswers.toString(),
+        qCorrectAnswers: correctAnswers.toString(),
+      });
     }
 
-    // setNumber(number + 1);
+    setNumber(number + 1);
   };
 
   const handleKeyDown = (e) => {

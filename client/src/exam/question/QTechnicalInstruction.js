@@ -8,7 +8,7 @@ const QTechnicalInstruction = React.memo(({ type, text, imageLink }) => {
       <span className="text-break">{text}</span>
     </h4>
   ) : type === "image" ? (
-    <Image src={imageLink} />
+    <Image src={imageLink} className="mt-2" />
   ) : null;
 });
 

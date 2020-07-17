@@ -55,34 +55,33 @@ router.get("/info/:examId", function (req, res) {
       };
     })
     .then((data) => {
-      // res.json(data);
+      res.json(data);
 
-      const temp = {
-        _id: "5f108d56b33987398c75fa57",
-        name: "Sumas 1",
-        duration: 30,
-        questions: [
-          {
-            _id: "5f110af898a3432ba0a0704d",
-            qNumber: 1,
-            qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
-            qTechnicalInstruction: null,
-            qMultipleChoice: {
-              textChoices: ["55", "43", "14", "2"],
-              imageChoices: [],
-              type: "text",
-            },
-            qCorrectAnswers: [
-              {
-                _id: "5f110af898a3432ba0a0704e",
-                answer: "14",
-              },
-            ],
-          },
-        ],
-      };
+      // const temp = {
+      //   _id: "5f108d56b33987398c75fa57",
+      //   name: "Sumas 1",
+      //   duration: 30,
+      //   questions: [
+      //     {
+      //       _id: "5f110af898a3432ba0a07042",
+      //       qNumber: 1,
+      //       qInstruction: "Resuelve la siguiente suma",
+      //       qTechnicalInstruction: {
+      //         type: "image",
+      //         imageLink: "/exams/suma/suma1.png",
+      //       },
+      //       qMultipleChoice: null,
+      //       qCorrectAnswers: [
+      //         {
+      //           _id: "5f110af898a3432ba0a07043",
+      //           answer: "14",
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // };
 
-      res.json(temp);
+      // res.json(temp);
     })
     .catch((err) => {
       console.log("@error", err);
