@@ -1,5 +1,13 @@
 import React, { useEffect } from "react";
-import { Spinner, Row, Col, Alert, ListGroup, Button } from "react-bootstrap";
+import {
+  Spinner,
+  Row,
+  Col,
+  Alert,
+  ListGroup,
+  Button,
+  Image,
+} from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { StudentLayout } from "../components/Layout";
 import API from "../utils/API";
@@ -14,12 +22,12 @@ const Results = React.memo(() => {
   const student = useSelector((state) => state.student);
 
   const aciertos = exam.results.reduce((acc, cv) => {
-    if (cv.qCorrectAnswers === cv.userAnswers) acc++;
+    if (cv.qCorrectAnswers === cv.userAnswers.answer) acc++;
     return acc;
   }, 0);
 
   const errores = exam.results.reduce((acc, cv) => {
-    if (cv.qCorrectAnswers !== cv.userAnswers) acc++;
+    if (cv.qCorrectAnswers !== cv.userAnswers.answer) acc++;
     return acc;
   }, 0);
 
@@ -100,7 +108,7 @@ const Results = React.memo(() => {
         <Col lg={{ span: 7, offset: 2 }}>
           <h4 className="mb-3">Respuestas</h4>
           {exam.results.map((q) => {
-            return q.qCorrectAnswers === q.userAnswers ? (
+            return q.qCorrectAnswers.answer === q.userAnswers.answer ? (
               <Alert className="shadow-sm" key={q._id} variant="success">
                 <Row>
                   <Col>
@@ -109,18 +117,44 @@ const Results = React.memo(() => {
                       CORRECTO
                     </strong>
                     <br />
+                    {/* TECHNICAL INSTRUCTION */}
                     <span className="text-break">{q.qInstruction}</span>
                     {q.qTechnicalInstruction ? (
-                      <>
-                        <br />
-                        <span>{q.qTechnicalInstruction}</span>
-                      </>
+                      q.qTechnicalInstruction.type === "text" ? (
+                        <>
+                          <br />
+                          <span className="my-2">
+                            {q.qTechnicalInstruction.text}
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <br />
+                          <Image
+                            src={q.qTechnicalInstruction.imageLink}
+                            className="my-2"
+                            width="150"
+                            height="150"
+                            rounded
+                          />
+                        </>
+                      )
                     ) : null}
+                    {/* USER ANSWERS */}
                     <br />
-                    <span>
-                      <strong className="mr-2">R.</strong>
-                      {q.userAnswers}
-                    </span>
+                    <strong className="mr-2">Tu respuesta:</strong>
+                    <br />
+                    {q.userAnswers.type === "text" ? (
+                      <span>{q.userAnswers.answer}</span>
+                    ) : (
+                      <Image
+                        src={q.userAnswers.answer}
+                        className="my-2"
+                        width="50"
+                        height="50"
+                        rounded
+                      />
+                    )}
                   </Col>
                 </Row>
               </Alert>

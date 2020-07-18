@@ -54,8 +54,14 @@ const QuestionsContainer = React.memo(({ questions }) => {
           qInstruction: question.qInstruction,
           qTechnicalInstruction: question.qTechnicalInstruction,
           qMultipleChoice: question.qMultipleChoice,
-          userAnswers: choice,
-          qCorrectAnswers: correctAnswers.toString(),
+          userAnswers:
+            question.qMultipleChoice.type === "text"
+              ? { type: "text", answer: choice }
+              : { type: "image", answer: choice },
+          qCorrectAnswers:
+            question.qMultipleChoice.type === "text"
+              ? { type: "text", answer: correctAnswers.toString() }
+              : { type: "image", answer: correctAnswers.toString() },
         },
       ]);
 
@@ -65,8 +71,14 @@ const QuestionsContainer = React.memo(({ questions }) => {
         qInstruction: question.qInstruction,
         qTechnicalInstruction: question.qTechnicalInstruction,
         qMultipleChoice: question.qMultipleChoice,
-        userAnswers: choice,
-        qCorrectAnswers: correctAnswers.toString(),
+        userAnswers:
+          question.qMultipleChoice.type === "text"
+            ? { type: "text", answer: choice }
+            : { type: "image", answer: choice },
+        qCorrectAnswers:
+          question.qMultipleChoice.type === "text"
+            ? { type: "text", answer: correctAnswers.toString() }
+            : { type: "image", answer: correctAnswers.toString() },
       });
     } else {
       // get the value from the answer inputs and push them
@@ -85,8 +97,8 @@ const QuestionsContainer = React.memo(({ questions }) => {
           qInstruction: question.qInstruction,
           qTechnicalInstruction: question.qTechnicalInstruction,
           qMultipleChoice: question.qMultipleChoice,
-          userAnswers: userAnswers.toString(),
-          qCorrectAnswers: correctAnswers.toString(),
+          userAnswers: { type: "text", answer: userAnswers.toString() },
+          qCorrectAnswers: { type: "text", answer: correctAnswers.toString() },
         },
       ]);
 
@@ -96,8 +108,8 @@ const QuestionsContainer = React.memo(({ questions }) => {
         qInstruction: question.qInstruction,
         qTechnicalInstruction: question.qTechnicalInstruction,
         qMultipleChoice: question.qMultipleChoice,
-        userAnswers: userAnswers.toString(),
-        qCorrectAnswers: correctAnswers.toString(),
+        userAnswers: { type: "text", answer: userAnswers.toString() },
+        qCorrectAnswers: { type: "text", answer: correctAnswers.toString() },
       });
     }
 

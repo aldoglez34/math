@@ -1,18 +1,41 @@
 import React from "react";
-import { Row, Col, OverlayTrigger, Popover, Alert } from "react-bootstrap";
+import {
+  Image,
+  Row,
+  Col,
+  OverlayTrigger,
+  Popover,
+  Alert,
+} from "react-bootstrap";
 import PropTypes from "prop-types";
 
 const WrongAnswer = React.memo(
-  ({ qInstruction, qTechnicalInstruction, userAnswer, qCorrectAnswer }) => {
+  ({ qInstruction, qTechnicalInstruction, userAnswers, qCorrectAnswers }) => {
     const popover = (
       <Popover>
-        <Popover.Title as="h3">Respuesta correcta</Popover.Title>
-        <Popover.Content>{qCorrectAnswer}</Popover.Content>
+        <Popover.Title as="h3" className="bg-success text-light">
+          Respuesta correcta
+        </Popover.Title>
+        <Popover.Content as="h3">
+          {qCorrectAnswers.type === "text" ? (
+            <span>{qCorrectAnswers.answer}</span>
+          ) : (
+            <div className="text-center">
+              <Image
+                src={qCorrectAnswers.answer}
+                className="my-2"
+                width="50"
+                height="50"
+                rounded
+              />
+            </div>
+          )}
+        </Popover.Content>
       </Popover>
     );
 
     return (
-      <OverlayTrigger placement="bottom" trigger="click" overlay={popover}>
+      <OverlayTrigger placement="top" trigger="click" overlay={popover}>
         <Alert
           className="shadow-sm"
           variant="danger"
@@ -28,16 +51,39 @@ const WrongAnswer = React.memo(
               <br />
               <span className="text-break">{qInstruction}</span>
               {qTechnicalInstruction ? (
-                <>
-                  <br />
-                  <span>{qTechnicalInstruction}</span>
-                </>
+                qTechnicalInstruction.type === "text" ? (
+                  <>
+                    <br />
+                    <span className="my-2">{qTechnicalInstruction.text}</span>
+                  </>
+                ) : (
+                  <>
+                    <br />
+                    <Image
+                      src={qTechnicalInstruction.imageLink}
+                      className="my-2"
+                      width="150"
+                      height="150"
+                      rounded
+                    />
+                  </>
+                )
               ) : null}
+              {/* YOUR ANSWERS */}
               <br />
-              <span>
-                <strong className="mr-2">R.</strong>
-                {userAnswer}
-              </span>
+              <strong className="mr-2">Tu respuesta:</strong>
+              <br />
+              {userAnswers.type === "text" ? (
+                <span>{userAnswers.answer}</span>
+              ) : (
+                <Image
+                  src={userAnswers.answer}
+                  className="my-2"
+                  width="50"
+                  height="50"
+                  rounded
+                />
+              )}
             </Col>
           </Row>
         </Alert>
@@ -48,9 +94,9 @@ const WrongAnswer = React.memo(
 
 WrongAnswer.propTypes = {
   qInstruction: PropTypes.string.isRequired,
-  qTechnicalInstruction: PropTypes.string,
-  userAnswer: PropTypes.string.isRequired,
-  qCorrectAnswer: PropTypes.string.isRequired,
+  qTechnicalInstruction: PropTypes.object,
+  userAnswers: PropTypes.object.isRequired,
+  qCorrectAnswers: PropTypes.object.isRequired,
 };
 
 export default WrongAnswer;
