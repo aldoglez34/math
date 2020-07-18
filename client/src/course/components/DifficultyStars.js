@@ -12,6 +12,10 @@ const DifficultyStars = React.memo(({ difficulty }) => {
             <i className="far fa-star ml-1" />
             <i className="far fa-star ml-1" />
             <i className="far fa-star ml-1" />
+            <br />
+            <span className="text-danger">
+              <strong>Básico</strong>
+            </span>
           </>
         );
       case "Intermediate-Low":
@@ -22,6 +26,10 @@ const DifficultyStars = React.memo(({ difficulty }) => {
             <i className="far fa-star ml-1" />
             <i className="far fa-star ml-1" />
             <i className="far fa-star ml-1" />
+            <br />
+            <span className="text-danger">
+              <strong>Básico-Intermedio</strong>
+            </span>
           </>
         );
       case "Intermediate-High":
@@ -32,6 +40,10 @@ const DifficultyStars = React.memo(({ difficulty }) => {
             <i className="fas fa-star ml-1" />
             <i className="far fa-star ml-1" />
             <i className="far fa-star ml-1" />
+            <br />
+            <span className="text-danger">
+              <strong>Intermedio</strong>
+            </span>
           </>
         );
       case "Advanced":
@@ -42,6 +54,10 @@ const DifficultyStars = React.memo(({ difficulty }) => {
             <i className="fas fa-star ml-1" />
             <i className="fas fa-star ml-1" />
             <i className="far fa-star ml-1" />
+            <br />
+            <span className="text-danger">
+              <strong>Intermedio-Avanzado</strong>
+            </span>
           </>
         );
       case "Final":
@@ -52,36 +68,19 @@ const DifficultyStars = React.memo(({ difficulty }) => {
             <i className="fas fa-star ml-1" />
             <i className="fas fa-star ml-1" />
             <i className="fas fa-star ml-1" />
+            <br />
+            <span className="text-danger">
+              <strong>Avanzado</strong>
+            </span>
           </>
         );
-      default:
-        break;
-    }
-  };
-
-  const translateDiff = () => {
-    switch (difficulty) {
-      case "Basic":
-        return "Dificultad: Básico";
-      case "Intermediate-Low":
-        return "Dificultad: Intermedio-Básico";
-      case "Intermediate-High":
-        return "Dificultad: Intermedio-Alto";
-      case "Advanced":
-        return "Dificultad: Avanzado";
-      case "Final":
-        return "Dificultad: Final";
       default:
         break;
     }
   };
 
   return (
-    <span
-      className="text-danger"
-      title={translateDiff()}
-      style={{ cursor: "help" }}
-    >
+    <span className="text-danger" title="Dificultad" style={{ cursor: "help" }}>
       {calculateDifficulty()}
     </span>
   );

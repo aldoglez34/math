@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const QNumber = React.memo(({ current, total }) => {
   return (
     <div title="Número de pregunta" style={{ cursor: "help" }}>
-      <strong className="ml-3 mr-1 text-dark">P:</strong>
+      <i className="fas fa-check-circle text-dark ml-3 mr-1" />
       <span>{current}</span>
       <span className="mx-1">/</span>
       <span>{total}</span>

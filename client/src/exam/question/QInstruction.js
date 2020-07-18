@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 const QInstruction = React.memo(({ qNumber, qInstruction }) => {
   return (
     <h4>
-      <span className="mr-1">{qNumber + "."}</span>
       <span className="text-break">{qInstruction}</span>
     </h4>
   );

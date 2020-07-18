@@ -10,19 +10,6 @@ const ExamUnlocked = React.memo(({ showUnlocked, setShowExamUnlocked_ }) => {
 
   const unlocked = useSelector((state) => state.unlocked);
 
-  const translateDiff = (diff) => {
-    switch (diff) {
-      case "Intermediate-Low":
-        return "Intermedio-Básico";
-      case "Intermediate-High":
-        return "Intermedio-Alto";
-      case "Advanced":
-        return "Avanzado";
-      case "Final":
-        return "Examen Final";
-    }
-  };
-
   return unlocked ? (
     <>
       <Modal
@@ -49,9 +36,6 @@ const ExamUnlocked = React.memo(({ showUnlocked, setShowExamUnlocked_ }) => {
               </span>
               <span className="mb-1">
                 Una nueva dificultad de este tema ha sido desbloqueada:{" "}
-              </span>
-              <span className="mb-1" style={{ fontWeight: 600 }}>
-                {translateDiff(unlocked.difficulty)}
               </span>
               <div className="mb-3">
                 <DifficultyStarts difficulty={unlocked.difficulty} />
