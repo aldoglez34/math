@@ -14,12 +14,12 @@ const Results = React.memo(() => {
   const student = useSelector((state) => state.student);
 
   const aciertos = exam.results.reduce((acc, cv) => {
-    if (cv.qCorrectAnswer === cv.userAnswer) acc++;
+    if (cv.qCorrectAnswers === cv.userAnswers) acc++;
     return acc;
   }, 0);
 
   const errores = exam.results.reduce((acc, cv) => {
-    if (cv.qCorrectAnswer !== cv.userAnswer) acc++;
+    if (cv.qCorrectAnswers !== cv.userAnswers) acc++;
     return acc;
   }, 0);
 
@@ -100,7 +100,7 @@ const Results = React.memo(() => {
         <Col lg={{ span: 7, offset: 2 }}>
           <h4 className="mb-3">Respuestas</h4>
           {exam.results.map((q) => {
-            return q.qCorrectAnswer === q.userAnswer ? (
+            return q.qCorrectAnswers === q.userAnswers ? (
               <Alert className="shadow-sm" key={q._id} variant="success">
                 <Row>
                   <Col>
@@ -119,7 +119,7 @@ const Results = React.memo(() => {
                     <br />
                     <span>
                       <strong className="mr-2">R.</strong>
-                      {q.userAnswer}
+                      {q.userAnswers}
                     </span>
                   </Col>
                 </Row>
@@ -129,8 +129,8 @@ const Results = React.memo(() => {
                 key={q._id}
                 qInstruction={q.qInstruction}
                 qTechnicalInstruction={q.qTechnicalInstruction}
-                userAnswer={q.userAnswer}
-                qCorrectAnswer={q.qCorrectAnswer}
+                userAnswers={q.userAnswers}
+                qCorrectAnswers={q.qCorrectAnswers}
               />
             );
           })}
