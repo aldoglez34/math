@@ -29,7 +29,11 @@ module.exports = [
       {
         qInstruction:
           "Escribe 45 en el primer input, 22 en el segundo y 77 en el tercero",
-        qCorrectAnswers: [{ answer: "45" }, { answer: "22" }, { answer: "77" }],
+        qCorrectAnswers: [
+          { answer: "45", complement: "número", placement: "left" },
+          { answer: "22", complement: "otro", placement: "left" },
+          { answer: "77", complement: "último", placement: "left" },
+        ],
       },
       {
         qInstruction: "¿Cuántos lados tiene la siguiente figura?",
@@ -81,7 +85,7 @@ module.exports = [
         qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
         qMultipleChoice: {
           type: "text",
-          textChoices: ["14.5", "16", "15", "14"],
+          textChoices: ["13.5", "13.7", "14", "14.2"],
         },
         qCorrectAnswers: [{ answer: "14" }],
       },
@@ -117,7 +121,11 @@ module.exports = [
       {
         qInstruction:
           "Escribe 45 en el primer input, 22 en el segundo y 77 en el tercero",
-        qCorrectAnswers: [{ answer: "45" }, { answer: "22" }, { answer: "77" }],
+        qCorrectAnswers: [
+          { answer: "45", complement: "número", placement: "left" },
+          { answer: "22", complement: "otro", placement: "left" },
+          { answer: "77", complement: "último", placement: "left" },
+        ],
       },
       {
         qInstruction: "¿Cuántos lados tiene la siguiente figura?",
@@ -169,7 +177,7 @@ module.exports = [
         qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
         qMultipleChoice: {
           type: "text",
-          textChoices: ["14.5", "16", "15", "14"],
+          textChoices: ["13.5", "13.7", "14", "14.2"],
         },
         qCorrectAnswers: [{ answer: "14" }],
       },
@@ -205,7 +213,11 @@ module.exports = [
       {
         qInstruction:
           "Escribe 45 en el primer input, 22 en el segundo y 77 en el tercero",
-        qCorrectAnswers: [{ answer: "45" }, { answer: "22" }, { answer: "77" }],
+        qCorrectAnswers: [
+          { answer: "45", complement: "número", placement: "left" },
+          { answer: "22", complement: "otro", placement: "left" },
+          { answer: "77", complement: "último", placement: "left" },
+        ],
       },
       {
         qInstruction: "¿Cuántos lados tiene la siguiente figura?",
@@ -257,7 +269,7 @@ module.exports = [
         qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
         qMultipleChoice: {
           type: "text",
-          textChoices: ["14.5", "16", "15", "14"],
+          textChoices: ["13.5", "13.7", "14", "14.2"],
         },
         qCorrectAnswers: [{ answer: "14" }],
       },
@@ -293,7 +305,11 @@ module.exports = [
       {
         qInstruction:
           "Escribe 45 en el primer input, 22 en el segundo y 77 en el tercero",
-        qCorrectAnswers: [{ answer: "45" }, { answer: "22" }, { answer: "77" }],
+        qCorrectAnswers: [
+          { answer: "45", complement: "número", placement: "left" },
+          { answer: "22", complement: "otro", placement: "left" },
+          { answer: "77", complement: "último", placement: "left" },
+        ],
       },
       {
         qInstruction: "¿Cuántos lados tiene la siguiente figura?",
@@ -345,7 +361,7 @@ module.exports = [
         qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
         qMultipleChoice: {
           type: "text",
-          textChoices: ["14.5", "16", "15", "14"],
+          textChoices: ["13.5", "13.7", "14", "14.2"],
         },
         qCorrectAnswers: [{ answer: "14" }],
       },
@@ -381,7 +397,11 @@ module.exports = [
       {
         qInstruction:
           "Escribe 45 en el primer input, 22 en el segundo y 77 en el tercero",
-        qCorrectAnswers: [{ answer: "45" }, { answer: "22" }, { answer: "77" }],
+        qCorrectAnswers: [
+          { answer: "45", complement: "número", placement: "left" },
+          { answer: "22", complement: "otro", placement: "left" },
+          { answer: "77", complement: "último", placement: "left" },
+        ],
       },
       {
         qInstruction: "¿Cuántos lados tiene la siguiente figura?",
@@ -433,7 +453,7 @@ module.exports = [
         qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
         qMultipleChoice: {
           type: "text",
-          textChoices: ["14.5", "16", "15", "14"],
+          textChoices: ["13.5", "13.7", "14", "14.2"],
         },
         qCorrectAnswers: [{ answer: "14" }],
       },

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const DifficultyStars = React.memo(({ difficulty }) => {
-  const calculateDifficulty = (difficulty) => {
+  const calculateDifficulty = () => {
     switch (difficulty) {
       case "Basic":
         return (
@@ -59,18 +59,31 @@ const DifficultyStars = React.memo(({ difficulty }) => {
     }
   };
 
+  const translateDiff = () => {
+    switch (difficulty) {
+      case "Basic":
+        return "Dificultad: Básico";
+      case "Intermediate-Low":
+        return "Dificultad: Intermedio-Básico";
+      case "Intermediate-High":
+        return "Dificultad: Intermedio-Alto";
+      case "Advanced":
+        return "Dificultad: Avanzado";
+      case "Final":
+        return "Dificultad: Final";
+      default:
+        break;
+    }
+  };
+
   return (
-    <>
-      {/* <span>Dificultad:</span>
-      <br /> */}
-      <span
-        className="text-danger"
-        title="Dificultad"
-        style={{ cursor: "help" }}
-      >
-        {calculateDifficulty(difficulty)}
-      </span>
-    </>
+    <span
+      className="text-danger"
+      title={translateDiff()}
+      style={{ cursor: "help" }}
+    >
+      {calculateDifficulty()}
+    </span>
   );
 });
 

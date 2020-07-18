@@ -13,7 +13,7 @@ import { StudentLayout } from "../components/Layout";
 import API from "../utils/API";
 import ResultMsg from "./components/ResultMsg";
 import WrongAnswer from "./components/WrongAnswer";
-import { unlockedExam } from "../redux/actions/unlocked";
+import { unlockExam } from "../redux/actions/unlocked";
 
 const Results = React.memo(() => {
   const dispatch = useDispatch();
@@ -59,7 +59,7 @@ const Results = React.memo(() => {
         .then((res) => console.log(res.data))
         .catch((err) => console.log("error", err));
     }
-    // unblock an exam if difficulty is NOT "freestyle" and the grade is greater than 8
+    // unblock an exam if difficulty is NOT "Final" and the grade is greater than 8
     if (exam.difficulty !== "Final" && calif / 10 >= 8) {
       API.unlockExam({
         studentId: student._id,
@@ -69,36 +69,49 @@ const Results = React.memo(() => {
         .then((res) => {
           // res should contain the data from the backend
           // if its empty it means nothing was unblocked
-          if (res.data) dispatch(unlockedExam(res.data));
+          if (res.data) dispatch(unlockExam(res.data));
         })
         .catch((err) => console.log("error", err));
+    }
+    // unlock freestyle if the difficulty is final and the grade is greater than 8
+    if (exam.difficulty === "Final" && calif / 10 >= 8) {
+      // unlock
+      dispatch(
+        unlockExam({
+          name: "Examen Modo rápido",
+          difficulty: "Freestyle",
+          topicName: exam.topicName,
+          rewardLink: exam.reward.link,
+          rewardName: exam.reward.name,
+        })
+      );
     }
   }, []);
 
   return exam.results ? (
     <StudentLayout>
       {/* msg to the user */}
-      <Row className="mt-2">
+      <Row>
         <ResultMsg calif={calif} />
       </Row>
       {/* details */}
       <Row className="mt-4">
         <Col lg={{ span: 7, offset: 2 }}>
-          <h4 className="mb-3">Resumen</h4>
+          <h3 className="mb-3 text-dark">Resumen</h3>
           <ListGroup className="shadow-sm">
             <ListGroup.Item className="d-flex bg-light align-items-center">
-              <h5 className="mb-0">Aciertos</h5>
-              <h5 className="ml-auto mb-0">{aciertos}</h5>
+              <h5 className="mb-0 text-success">Aciertos</h5>
+              <h3 className="ml-auto mb-0 text-success">{aciertos}</h3>
             </ListGroup.Item>
             <ListGroup.Item className="d-flex bg-light align-items-center">
-              <h5 className="mb-0">Errores</h5>
-              <h5 className="ml-auto mb-0">{errores}</h5>
+              <h5 className="mb-0 text-danger">Errores</h5>
+              <h3 className="ml-auto mb-0 text-danger">{errores}</h3>
             </ListGroup.Item>
             <ListGroup.Item className="d-flex bg-light align-items-center">
-              <h5 className="mb-0">Calificación</h5>
-              <h5 className="ml-auto mb-0">
+              <h5 className="mb-0 text-dark">Calificación</h5>
+              <h3 className="ml-auto mb-0 text-dark">
                 <span>{calif / 10}</span>
-              </h5>
+              </h3>
             </ListGroup.Item>
           </ListGroup>
         </Col>
@@ -106,7 +119,7 @@ const Results = React.memo(() => {
       {/* questions */}
       <Row className="mt-4">
         <Col lg={{ span: 7, offset: 2 }}>
-          <h4 className="mb-3">Respuestas</h4>
+          <h3 className="mb-3 text-dark">Respuestas</h3>
           {exam.results.map((q) => {
             return q.qCorrectAnswers.answer === q.userAnswers.answer ? (
               <Alert className="shadow-sm" key={q._id} variant="success">
@@ -116,45 +129,37 @@ const Results = React.memo(() => {
                       <i className="fas fa-check mr-2" />
                       CORRECTO
                     </strong>
-                    <br />
                     {/* TECHNICAL INSTRUCTION */}
-                    <span className="text-break">{q.qInstruction}</span>
-                    {q.qTechnicalInstruction ? (
-                      q.qTechnicalInstruction.type === "text" ? (
-                        <>
-                          <br />
-                          <span className="my-2">
-                            {q.qTechnicalInstruction.text}
-                          </span>
-                        </>
-                      ) : (
-                        <>
-                          <br />
+                    <div className="d-flex flex-column my-2">
+                      <span className="text-break mb-2">{q.qInstruction}</span>
+                      {q.qTechnicalInstruction ? (
+                        q.qTechnicalInstruction.type === "text" ? (
+                          <span>{q.qTechnicalInstruction.text}</span>
+                        ) : (
                           <Image
                             src={q.qTechnicalInstruction.imageLink}
-                            className="my-2"
                             width="150"
                             height="150"
                             rounded
                           />
-                        </>
-                      )
-                    ) : null}
+                        )
+                      ) : null}
+                    </div>
                     {/* USER ANSWERS */}
-                    <br />
-                    <strong className="mr-2">Tu respuesta:</strong>
-                    <br />
-                    {q.userAnswers.type === "text" ? (
-                      <span>{q.userAnswers.answer}</span>
-                    ) : (
-                      <Image
-                        src={q.userAnswers.answer}
-                        className="my-2"
-                        width="50"
-                        height="50"
-                        rounded
-                      />
-                    )}
+                    <div className="d-flex flex-column">
+                      <strong className="my-2">Tu respuesta:</strong>
+                      {q.userAnswers.type === "text" ? (
+                        <span>{q.userAnswers.answer}</span>
+                      ) : (
+                        <Image
+                          src={q.userAnswers.answer}
+                          className="my-2"
+                          width="50"
+                          height="50"
+                          rounded
+                        />
+                      )}
+                    </div>
                   </Col>
                 </Row>
               </Alert>
@@ -172,6 +177,7 @@ const Results = React.memo(() => {
       </Row>
       <div className="mt-3 text-center">
         <Button variant="primary" href="/course" className="shadow-sm">
+          <i className="fas fa-arrow-left mr-2" />
           Regresar
         </Button>
       </div>

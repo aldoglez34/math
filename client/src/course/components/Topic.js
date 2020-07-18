@@ -14,8 +14,8 @@ const Topic = React.memo(({ topic }) => {
             {topic.hasReward ? (
               <i
                 className="fas fa-medal text-warning ml-2"
-                title="Aprobado"
-                style={{ fontSize: "35px" }}
+                title="Tema aprobado"
+                style={{ fontSize: "35px", cursor: "help" }}
               />
             ) : null}
           </h1>

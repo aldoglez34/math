@@ -154,10 +154,11 @@ router.put("/unlockExam", function (req, res) {
 
   // find the exam's _id (the new one)
   model.Exam.findOne({ topicName: topicName, difficulty: unblockedDiff })
-    .select("_id name")
+    .select("_id name difficulty")
     .then((newExam) => {
       const newExamId = newExam._id;
       const newExamName = newExam.name;
+      const newExamDifficulty = newExam.difficulty;
 
       // push if it doesn't exist
       model.Student.findOneAndUpdate(
@@ -173,7 +174,7 @@ router.put("/unlockExam", function (req, res) {
           if (!data) {
             res.send(null);
           } else {
-            res.send(newExamName);
+            res.send({ name: newExamName, difficulty: newExamDifficulty });
           }
         })
         .catch((err) => {

@@ -26,7 +26,7 @@ export default React.memo(() => {
     // if a new exam is unlocked, show modal
     if (reduxExam) dispatch(examActions.clearExam());
 
-    // if there was a new exam unlocked, show it
+    // if there was a new exam unlocked, show it (this covers freestyle as well)
     if (unlocked) setShowExamUnlocked(true);
 
     // fetch course info

@@ -13,6 +13,7 @@ const MyRewards = React.memo(({ rewards }) => {
           height="70"
           className="mx-2"
           title={r.name}
+          style={{ cursor: "help" }}
         />
       ))}
     </span>

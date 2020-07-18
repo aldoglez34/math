@@ -15,7 +15,6 @@ const schema = new Schema({
       "Intermediate-High",
       "Advanced",
       "Final",
-      "Freestyle",
     ],
     required: true,
   },

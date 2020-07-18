@@ -1,9 +1,7 @@
 const unlockedReducers = (state = null, action) => {
   switch (action.type) {
-    case "unlocked/new":
-      return {
-        name: action.data,
-      };
+    case "unlock/new":
+      return action.data;
     case "unlocked/clear":
       return null;
     default:

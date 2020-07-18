@@ -1,6 +1,6 @@
-export const unlockedExam = (data) => {
+export const unlockExam = (data) => {
   return {
-    type: "unlocked/new",
+    type: "unlock/new",
     data,
   };
 };

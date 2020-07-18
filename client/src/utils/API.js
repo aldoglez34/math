@@ -33,6 +33,4 @@ export default {
   registerReward: (data) => axios.put("/api/exam/registerReward", data),
 
   unlockExam: (data) => axios.put("/api/exam/unlockExam", data),
-
-  fetchFreestyle: (topicId) => axios.get("/api/exam/freestyle/" + topicId),
 };

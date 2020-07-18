@@ -1,34 +1,38 @@
-import React, { useState } from "react";
-import { Spinner } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Image } from "react-bootstrap";
+import { StudentLayout } from "../components/Layout";
+import { useSelector, useDispatch } from "react-redux";
+import { setBreadcrumb } from "../redux/actions/breadcrumb";
 
 const Freestyle = React.memo(() => {
-  const [freestyle, setFreestyle] = useState();
+  const dispatch = useDispatch();
+
+  const course = useSelector((state) => state.course);
 
   useEffect(() => {
-    API.fetchFreestyle()
-      .then((res) => {
-        setFreestyle(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("Ocurrió un error al cargar las preguntas de tu examen");
-      });
+    dispatch(
+      setBreadcrumb([
+        { text: "Mis cursos", link: "/dashboard" },
+        {
+          text: course.name,
+          link: "/course",
+        },
+        { text: "Modo Rápido" },
+      ])
+    );
   }, []);
 
   return (
     <StudentLayout>
-      {freestyle ? (
-        <>
-          {/* title */}
-          <h1 className="display-4">Freestyle</h1>
-          {/* questions */}
-          {/* <QuestionsContainer questions={exam.questions} /> */}
-        </>
-      ) : (
-        <div className="text-center mt-4 pt-4">
-          <Spinner animation="border" variant="primary" />
-        </div>
-      )}
+      <div className="text-center">
+        <Image
+          src="https://image.flaticon.com/icons/svg/3121/3121743.svg"
+          className="my-4"
+          width="250"
+          height="250"
+        />
+        <h1>UNDER CONSTRUCTION</h1>
+      </div>
     </StudentLayout>
   );
 });

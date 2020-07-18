@@ -8,9 +8,14 @@ const FreestyleCard = React.memo(({ freestyle }) => {
   return (
     <Card>
       <Card.Header style={{ backgroundColor: "#f4fbf8" }}>
-        <Accordion.Toggle as={Button} variant="link" eventKey="freestyle">
-          <i className="fas fa-chevron-down mr-1" />
-          <strong>Modo rápido</strong>
+        <Accordion.Toggle
+          as={Button}
+          variant="link"
+          eventKey="freestyle"
+          className="text-danger"
+        >
+          <i className="fas fa-bolt mr-2" />
+          <strong>Modo Rápido</strong>
         </Accordion.Toggle>
       </Card.Header>
       <Accordion.Collapse eventKey="freestyle">
@@ -27,7 +32,7 @@ const FreestyleCard = React.memo(({ freestyle }) => {
           {/* duration */}
           <span style={{ fontSize: "14px", cursor: "help" }} title="Duración">
             <i className="fas fa-stopwatch mr-2" />
-            {10 + " mins."}
+            {freestyle.timer + " mins."}
           </span>
           <br />
           <Leaderboards />
@@ -37,8 +42,7 @@ const FreestyleCard = React.memo(({ freestyle }) => {
             <Col className="text-center">
               <h1 className="mb-0 text-info">
                 <span style={{ cursor: "help" }} title="Puntuación más alta">
-                  {/* {freestyle.highestScore} */}
-                  60
+                  ?
                 </span>
               </h1>
               <h4>
@@ -48,7 +52,7 @@ const FreestyleCard = React.memo(({ freestyle }) => {
             <Col className="text-center">
               <h1 className="mb-0 text-info" style={{ cursor: "help" }}>
                 <span style={{ cursor: "help" }} title="Número de intentos">
-                  {freestyle.attempts.length}
+                  ?
                 </span>
               </h1>
               <h4>
@@ -57,7 +61,11 @@ const FreestyleCard = React.memo(({ freestyle }) => {
             </Col>
           </Row>
           {/* button */}
-          <Button variant="primary" className="shadow-sm">
+          <Button
+            variant="primary"
+            className="shadow-sm"
+            href="/course/exam/freestyle"
+          >
             <i className="fas fa-bolt mx-3" />
           </Button>
         </Card.Body>

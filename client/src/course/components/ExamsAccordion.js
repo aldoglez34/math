@@ -33,6 +33,7 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
             <Accordion.Toggle as={Button} variant="link" eventKey={ex._id}>
               <i className="fas fa-chevron-down mr-1" />
               <strong>{ex.name}</strong>
+              {/* exam cheked (passed) */}
               {ex.highestGrade >= 8 ? (
                 <i
                   className="fas fa-check-circle text-warning ml-2"
@@ -40,6 +41,7 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
                   style={{ cursor: "help" }}
                 />
               ) : null}
+              {/* crown for perfect grade */}
               {ex.hasPerfectGrade ? (
                 <i
                   className="fas fa-crown text-warning ml-2"
@@ -47,6 +49,14 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
                   style={{ cursor: "help" }}
                 />
               ) : null}
+              {/* locked exam */}
+              {ex.isAvailable ? null : (
+                <i
+                  className="fas fa-lock ml-2"
+                  title="Bloqueado"
+                  style={{ cursor: "help" }}
+                />
+              )}
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey={ex._id}>
@@ -126,9 +136,8 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
           </Accordion.Collapse>
         </Card>
       ))}
-      {/* only show freestly if student has the reward */}
-      {freestyle.isAvailable ? <FreestyleCard /> : null}
-      <FreestyleCard freestyle={freestyle} />
+      {/* only show freestyle if student has the reward */}
+      {freestyle.isAvailable ? <FreestyleCard freestyle={freestyle} /> : null}
     </Accordion>
   );
 });
