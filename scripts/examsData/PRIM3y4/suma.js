@@ -7,9 +7,8 @@ module.exports = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius risus massa, et sollicitudin est fringilla.",
     duration: 30,
     difficulty: "Basic",
-    qCounter: 5,
+    qCounter: 8,
     questions: [
-      // ========================================================
       {
         qInstruction: "Resuelve la siguiente suma",
         qTechnicalInstruction: {
@@ -23,59 +22,66 @@ module.exports = [
           "Escribe 3 (pesos) en el primer input y 5 (manzanas) en el segundo",
         qCorrectAnswers: [
           { answer: "3", complement: "pesos", placement: "right" },
-          { answer: "5", complement: "manzanas", placement: "left" },
+          { answer: "5", complement: "manzanas", placement: "right" },
         ],
-        qComment: "literal sólo eso",
+        qComment: "este comentario es de prueba",
       },
       {
         qInstruction:
-          "Escribe 45 en el primer input y 2 en el segundo y 77 en el tercero",
-        qCorrectAnswers: [{ answer: "45" }, { answer: "2" }, { answer: "77" }],
+          "Escribe 45 en el primer input, 22 en el segundo y 77 en el tercero",
+        qCorrectAnswers: [{ answer: "45" }, { answer: "22" }, { answer: "77" }],
       },
-      // ========================================================
       {
-        qInstruction: "Resuelve la siguiente suma",
+        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/suma/suma1.png",
+          imageLink: "/exams/suma/suma1/figura1.png",
         },
-        qCorrectAnswers: [{ answer: "14" }],
+        qCorrectAnswers: [{ answer: "4" }],
       },
       {
-        qInstruction: "Escribe los números que se muestran en la imagen",
+        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/suma/suma2.png",
+          imageLink: "/exams/suma/suma1/figura2.png",
         },
-        qCorrectAnswers: [
-          { answer: "45", complement: "números:", placement: "left" },
-          { answer: "7", complement: "números:", placement: "left" },
-        ],
+        qCorrectAnswers: [{ answer: "6" }],
       },
       {
-        qInstruction: "Escribe los números que se muestran en la imagen",
+        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/suma/suma3.png",
+          imageLink: "/exams/suma/suma1/figura3.png",
         },
-        qCorrectAnswers: [{ answer: "11" }, { answer: "8" }, { answer: "34" }],
-        qComment: "sólo escribe los números",
+        qMultipleChoice: {
+          type: "image",
+          imageChoices: [
+            "/exams/suma/suma1/res4.png",
+            "/exams/suma/suma1/res5.png",
+            "/exams/suma/suma1/res6.png",
+            "/exams/suma/suma1/res7.png",
+          ],
+        },
+        qCorrectAnswers: [{ answer: "/exams/suma/suma1/res5.png" }],
       },
-      // ========================================================
       {
-        qInstruction: "¿Cuánto es 5 + 8? Elige la respuesta correcta",
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text: "5 + 8",
+        },
         qMultipleChoice: {
           type: "text",
-          textChoices: ["12", "13", "14", "15"],
+          textChoices: ["11", "12", "13", "14"],
         },
         qCorrectAnswers: [{ answer: "13" }],
-        qComment: "selecciona respuesta correcta y da clic en siguiente",
+        qComment: "Selecciona respuesta correcta y da clic en siguiente",
       },
       {
         qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
         qMultipleChoice: {
           type: "text",
-          textChoices: ["55", "43", "14", "2"],
+          textChoices: ["14.5", "16", "15", "14"],
         },
         qCorrectAnswers: [{ answer: "14" }],
       },

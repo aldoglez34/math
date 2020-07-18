@@ -7,7 +7,7 @@ const MultipleChoice = React.memo(
     const [selected, setSelected] = useState();
 
     return type === "text" ? (
-      <div className="mt-4 mb-3">
+      <div className="mt-3">
         {textChoices.map((c) => (
           <Button
             key={c}
@@ -24,7 +24,7 @@ const MultipleChoice = React.memo(
         ))}
       </div>
     ) : type === "image" ? (
-      <div className="mt-4">
+      <div className="mt-3">
         {imageChoices.map((c) => (
           <Button
             key={c}
