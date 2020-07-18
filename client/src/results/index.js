@@ -22,12 +22,12 @@ const Results = React.memo(() => {
   const student = useSelector((state) => state.student);
 
   const aciertos = exam.results.reduce((acc, cv) => {
-    if (cv.qCorrectAnswers === cv.userAnswers.answer) acc++;
+    if (cv.qCorrectAnswers.answer === cv.userAnswers.answer) acc++;
     return acc;
   }, 0);
 
   const errores = exam.results.reduce((acc, cv) => {
-    if (cv.qCorrectAnswers !== cv.userAnswers.answer) acc++;
+    if (cv.qCorrectAnswers.answer !== cv.userAnswers.answer) acc++;
     return acc;
   }, 0);
 
