@@ -34,7 +34,8 @@ const Topic = React.memo(({ topic }) => {
               <li key={idx}>{tl}</li>
             ))}
           </ul>
-          <div className="mb-3 mb-lg-0">
+          <span>Videos, Pdfs y más:</span>
+          <div className="mb-3 mt-1 mb-lg-0">
             {topic.material.map((mat) => {
               return (
                 <p key={mat._id} className="mb-1">
