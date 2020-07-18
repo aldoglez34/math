@@ -29,7 +29,7 @@ const MultipleChoice = React.memo(
           <Button
             key={c}
             variant="outline-secondary"
-            className="mr-2"
+            className="mr-2 py-3"
             active={selected === c ? true : false}
             onClick={() => {
               getValueFromMultipleChoice(c);

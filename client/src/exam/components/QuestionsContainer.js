@@ -64,22 +64,6 @@ const QuestionsContainer = React.memo(({ questions }) => {
               : { type: "image", answer: correctAnswers.toString() },
         },
       ]);
-
-      console.log({
-        _id: question._id,
-        qNumber: question.qNumber,
-        qInstruction: question.qInstruction,
-        qTechnicalInstruction: question.qTechnicalInstruction,
-        qMultipleChoice: question.qMultipleChoice,
-        userAnswers:
-          question.qMultipleChoice.type === "text"
-            ? { type: "text", answer: choice }
-            : { type: "image", answer: choice },
-        qCorrectAnswers:
-          question.qMultipleChoice.type === "text"
-            ? { type: "text", answer: correctAnswers.toString() }
-            : { type: "image", answer: correctAnswers.toString() },
-      });
     } else {
       // get the value from the answer inputs and push them
       const numberOfAnswers = question.qCorrectAnswers.length;
@@ -101,16 +85,6 @@ const QuestionsContainer = React.memo(({ questions }) => {
           qCorrectAnswers: { type: "text", answer: correctAnswers.toString() },
         },
       ]);
-
-      console.log({
-        _id: question._id,
-        qNumber: question.qNumber,
-        qInstruction: question.qInstruction,
-        qTechnicalInstruction: question.qTechnicalInstruction,
-        qMultipleChoice: question.qMultipleChoice,
-        userAnswers: { type: "text", answer: userAnswers.toString() },
-        qCorrectAnswers: { type: "text", answer: correctAnswers.toString() },
-      });
     }
 
     setNumber(number + 1);

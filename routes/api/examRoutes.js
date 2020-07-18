@@ -56,42 +56,6 @@ router.get("/info/:examId", function (req, res) {
     })
     .then((data) => {
       res.json(data);
-
-      const temp = {
-        _id: "5f108d56b33987398c75fa57",
-        name: "Sumas 1",
-        duration: 30,
-        questions: [
-          {
-            _id: "5f12236d95715e3134a6ca02",
-            qNumber: 4,
-            qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-            qTechnicalInstruction: {
-              type: "image",
-              imageLink: "/exams/suma/suma1/figura3.png",
-            },
-            qMultipleChoice: {
-              textChoices: [],
-              imageChoices: [
-                "/exams/suma/suma1/res4.png",
-                "/exams/suma/suma1/res5.png",
-                "/exams/suma/suma1/res6.png",
-                "/exams/suma/suma1/res7.png",
-              ],
-              type: "image",
-            },
-            qCorrectAnswers: [
-              {
-                _id: "5f12236d95715e3134a6ca03",
-                answer: "/exams/suma/suma1/res5.png",
-              },
-            ],
-            qComment: "sólo escribe los números",
-          },
-        ],
-      };
-
-      res.json(temp);
     })
     .catch((err) => {
       console.log("@error", err);
