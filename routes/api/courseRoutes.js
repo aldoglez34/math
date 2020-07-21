@@ -17,7 +17,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
     )
     .populate(
       "topics.exams",
-      "_id topicName name description duration difficulty qCounter leaderboard"
+      "_id topicName name description duration difficulty qCounter"
     )
     .then((data) => {
       courseData = data;

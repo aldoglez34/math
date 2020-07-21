@@ -49,7 +49,7 @@ const Results = React.memo(() => {
         .catch((err) => console.log("error", err));
     }
     // register reward (medal or trophy) only if its a final exam and the grade is greater than 8
-    if (exam.difficulty === "Final" && calif / 10 >= 8) {
+    if (exam.difficulty === "Advanced" && calif / 10 >= 8) {
       API.registerReward({
         studentId: student._id,
         topicName: exam.topicName,
@@ -60,7 +60,7 @@ const Results = React.memo(() => {
         .catch((err) => console.log("error", err));
     }
     // unblock an exam if difficulty is NOT "Final" and the grade is greater than 8
-    if (exam.difficulty !== "Final" && calif / 10 >= 8) {
+    if (exam.difficulty !== "Advanced" && calif / 10 >= 8) {
       API.unlockExam({
         studentId: student._id,
         topicName: exam.topicName,
@@ -74,7 +74,7 @@ const Results = React.memo(() => {
         .catch((err) => console.log("error", err));
     }
     // unlock freestyle if the difficulty is final and the grade is greater than 8
-    if (exam.difficulty === "Final" && calif / 10 >= 8) {
+    if (exam.difficulty === "Advanced" && calif / 10 >= 8) {
       // unlock
       dispatch(
         unlockExam({

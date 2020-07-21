@@ -9,9 +9,13 @@ const StudentNav = React.memo(() => {
   return (
     <div id="studentNav">
       <Container>
-        <h2 className="mb-0 text-white">
+        <h2 className="mb-1 text-white">
           {student ? student.email.split("@", 1)[0] : null}
         </h2>
+        <span className="text-light">
+          <i className="fas fa-user mr-2" />
+          {student ? student.name + " " + student.firstSurname : null}
+        </span>
       </Container>
     </div>
   );

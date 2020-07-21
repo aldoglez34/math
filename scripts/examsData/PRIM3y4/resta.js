@@ -98,7 +98,7 @@ module.exports = [
     description:
       "Curabitur vel quam vel mi elementum accumsan. Sed eros arcu, bibendum vitae efficitur nec, efficitur ut dolor. Aliquam eget feugiat nisl. Maecenas at aliquam purus.",
     duration: 30,
-    difficulty: "Intermediate-Low",
+    difficulty: "Basic-Intermediate",
     qCounter: 8,
     questions: [
       {
@@ -190,7 +190,7 @@ module.exports = [
     description:
       "Sed lacinia lacus non laoreet pulvinar. Maecenas tincidunt suscipit tortor non vehicula. Ut dolor felis, rutrum non tempus nec, pulvinar in neque.",
     duration: 30,
-    difficulty: "Intermediate-High",
+    difficulty: "Intermediate",
     qCounter: 8,
     questions: [
       {
@@ -282,7 +282,7 @@ module.exports = [
     description:
       "Sed lacinia lacus non laoreet pulvinar. Maecenas tincidunt suscipit tortor non vehicula. Ut dolor felis, rutrum non tempus nec, pulvinar in neque.",
     duration: 30,
-    difficulty: "Advanced",
+    difficulty: "Intermediate-Advanced",
     qCounter: 8,
     questions: [
       {
@@ -374,7 +374,7 @@ module.exports = [
     description:
       "Maecenas tincidunt suscipit tortor non vehicula. Ut dolor felis, rutrum non tempus nec, pulvinar in neque.",
     duration: 30,
-    difficulty: "Final",
+    difficulty: "Advanced",
     qCounter: 8,
     questions: [
       {

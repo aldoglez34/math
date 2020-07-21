@@ -139,16 +139,16 @@ router.put("/unlockExam", function (req, res) {
   let unblockedDiff = null;
   switch (difficulty) {
     case "Basic":
-      unblockedDiff = "Intermediate-Low";
+      unblockedDiff = "Basic-Intermediate";
       break;
-    case "Intermediate-Low":
-      unblockedDiff = "Intermediate-High";
+    case "Basic-Intermediate":
+      unblockedDiff = "Intermediate";
       break;
-    case "Intermediate-High":
+    case "Intermediate":
+      unblockedDiff = "Intermediate-Advanced";
+      break;
+    case "Intermediate-Advanced":
       unblockedDiff = "Advanced";
-      break;
-    case "Advanced":
-      unblockedDiff = "Final";
       break;
   }
 

@@ -34,7 +34,10 @@ const Topic = React.memo(({ topic }) => {
               <li key={idx}>{tl}</li>
             ))}
           </ul>
-          <span>Videos, Pdfs y más:</span>
+          <p className="mb-2">
+            <i className="fas fa-hand-point-down mr-2" />
+            Apuntes, teoría, videos y más
+          </p>
           <div className="mb-3 mt-1 mb-lg-0">
             {topic.material.map((mat) => {
               return (
@@ -54,7 +57,9 @@ const Topic = React.memo(({ topic }) => {
         </Col>
         {/* exams */}
         <Col lg={6} className="mt-2 mt-lg-0">
-          <h4 className="mb-3">Exámenes</h4>
+          <h4 className="mb-3" style={{ color: "#50575e" }}>
+            Exámenes
+          </h4>
           <ExamsAccordion
             exams={topic.exams}
             reward={topic.reward}

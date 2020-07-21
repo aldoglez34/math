@@ -98,7 +98,7 @@ module.exports = [
     description:
       "Duis luctus nisl massa, vel convallis nisi maximus eget. In molestie lacinia ligula at pellentesque. Etiam scelerisque porta mauris quis aliquam.",
     duration: 30,
-    difficulty: "Intermediate-Low",
+    difficulty: "Basic-Intermediate",
     qCounter: 8,
     questions: [
       {
@@ -190,7 +190,7 @@ module.exports = [
     description:
       "Morbi volutpat ipsum a pellentesque euismod. Nullam in neque eu est finibus vestibulum. Cras sagittis metus sit amet leo malesuada, at tincidunt metus scelerisque.",
     duration: 30,
-    difficulty: "Intermediate-High",
+    difficulty: "Intermediate",
     qCounter: 8,
     questions: [
       {
@@ -282,7 +282,7 @@ module.exports = [
     description:
       "Morbi volutpat ipsum a pellentesque euismod. Nullam in neque eu est finibus vestibulum. Cras sagittis metus sit amet leo malesuada, at tincidunt metus scelerisque.",
     duration: 30,
-    difficulty: "Advanced",
+    difficulty: "Intermediate-Advanced",
     qCounter: 8,
     questions: [
       {
@@ -374,7 +374,7 @@ module.exports = [
     description:
       "Nullam in neque eu est finibus vestibulum. Cras sagittis metus sit amet leo malesuada, at tincidunt metus scelerisque.",
     duration: 30,
-    difficulty: "Final",
+    difficulty: "Advanced",
     qCounter: 8,
     questions: [
       {

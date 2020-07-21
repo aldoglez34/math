@@ -36,7 +36,7 @@ const DashboardCourseCard = React.memo(({ course }) => {
             {ct.hasReward ? (
               <i
                 className="fas fa-medal text-warning ml-2"
-                title="Tema aprobado"
+                title="Aprobado"
                 style={{ cursor: "help" }}
               />
             ) : null}

@@ -11,21 +11,14 @@ const schema = new Schema({
     type: String,
     enum: [
       "Basic",
-      "Intermediate-Low",
-      "Intermediate-High",
+      "Basic-Intermediate",
+      "Intermediate",
+      "Intermediate-Advanced",
       "Advanced",
-      "Final",
     ],
     required: true,
   },
   qCounter: { type: Number, required: true }, // ej. 20 (question counter)
-  leaderboard: [
-    {
-      username: { type: String },
-      grade: { type: Number },
-      date: { type: Date, default: Date.now() },
-    },
-  ],
   questions: [
     {
       qInstruction: { type: String, required: true },

@@ -18,7 +18,7 @@ const DifficultyStars = React.memo(({ difficulty }) => {
             </span>
           </>
         );
-      case "Intermediate-Low":
+      case "Basic-Intermediate":
         return (
           <>
             <i className="fas fa-star" />
@@ -32,7 +32,7 @@ const DifficultyStars = React.memo(({ difficulty }) => {
             </span>
           </>
         );
-      case "Intermediate-High":
+      case "Intermediate":
         return (
           <>
             <i className="fas fa-star" />
@@ -46,7 +46,7 @@ const DifficultyStars = React.memo(({ difficulty }) => {
             </span>
           </>
         );
-      case "Advanced":
+      case "Intermediate-Advanced":
         return (
           <>
             <i className="fas fa-star" />
@@ -60,7 +60,7 @@ const DifficultyStars = React.memo(({ difficulty }) => {
             </span>
           </>
         );
-      case "Final":
+      case "Advanced":
         return (
           <>
             <i className="fas fa-star" />

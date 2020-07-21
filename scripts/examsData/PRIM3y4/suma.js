@@ -98,7 +98,7 @@ module.exports = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius risus massa, et sollicitudin est fringilla.",
     duration: 30,
-    difficulty: "Intermediate-Low",
+    difficulty: "Basic-Intermediate",
     qCounter: 8,
     questions: [
       {
@@ -190,7 +190,7 @@ module.exports = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius risus massa, et sollicitudin est fringilla.",
     duration: 30,
-    difficulty: "Intermediate-High",
+    difficulty: "Intermediate",
     qCounter: 8,
     questions: [
       {
@@ -282,7 +282,7 @@ module.exports = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius risus massa, et sollicitudin est fringilla.",
     duration: 30,
-    difficulty: "Advanced",
+    difficulty: "Intermediate-Advanced",
     qCounter: 8,
     questions: [
       {
@@ -374,7 +374,7 @@ module.exports = [
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius risus massa, et sollicitudin est fringilla.",
     duration: 30,
-    difficulty: "Final",
+    difficulty: "Advanced",
     qCounter: 8,
     questions: [
       {
