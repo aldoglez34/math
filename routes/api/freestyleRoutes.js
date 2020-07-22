@@ -12,17 +12,32 @@ router.get("/:topicName", function (req, res) {
   })
     .select("name questions difficulty")
     .then((data) => {
-      res.json(
-        data.reduce((acc, cv) => {
-          acc.push(
-            ...cv.questions
-            // examName: cv.name,
-            // difficulty: cv.difficulty,
-          );
-          return acc;
-        }, [])
-      );
+      // mix all the questions
+      const allQuestions = data.reduce((acc, cv) => {
+        acc.push(...cv.questions);
+        return acc;
+      }, []);
+
+      const allQuestionsCounter = allQuestions.length;
+
+      // generate random numbers
+      const uniqueNumbers = [];
+      while (uniqueNumbers.length <= allQuestionsCounter) {
+        let n = Math.floor(Math.random() * allQuestionsCounter);
+        if (!uniqueNumbers.includes(n)) uniqueNumbers.push(n);
+        // ...
+        if (uniqueNumbers.length === allQuestionsCounter) {
+          break;
+        }
+      }
+
+      // extract the questions
+      return uniqueNumbers.reduce((acc, cv) => {
+        acc.push(allQuestions[cv]);
+        return acc;
+      }, []);
     })
+    .then((data) => res.json(data))
     .catch((err) => {
       console.log("@error", err);
       res.status(422).send("Ocurrió un error");
