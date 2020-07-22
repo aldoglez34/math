@@ -1,14 +1,7 @@
 const examReducers = (state = null, action) => {
   switch (action.type) {
     case "exam/set":
-      return {
-        _id: action.data._id,
-        topicName: action.data.topicName,
-        reward: action.data.reward,
-        name: action.data.name,
-        difficulty: action.data.difficulty,
-        duration: action.data.duration,
-      };
+      return action.data;
     case "exam/unlock":
       return {
         ...state,

@@ -26,6 +26,10 @@ const Exam = React.memo(() => {
                 text: course.name,
                 link: "/course",
               },
+              {
+                text: reduxExam.topicName,
+                link: "/course/#" + reduxExam.topicName,
+              },
               { text: reduxExam.name },
             ])
           );

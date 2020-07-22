@@ -27,7 +27,7 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
   return (
     <Accordion className="shadow-sm">
       {exams.map((ex, idx) => (
-        <React.fragment key={idx}>
+        <React.Fragment key={idx}>
           <Card>
             {/* TITLE */}
             <Card.Header style={{ backgroundColor: "#f4fbf8" }}>
@@ -141,9 +141,16 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
           </Card>
           {/* only show freestyle if student has the reward AND it has to be the last card */}
           {exams.length === idx + 1 && freestyle.isAvailable ? (
-            <FreestyleCard freestyle={freestyle} />
+            <FreestyleCard
+              exam={{
+                duration: ex.duration,
+                name: "Examen Rápido",
+                topicName: ex.topicName,
+              }}
+              freestyle={freestyle}
+            />
           ) : null}
-        </React.fragment>
+        </React.Fragment>
       ))}
     </Accordion>
   );

@@ -9,4 +9,7 @@ router.use("/api/course", courseRoutes);
 const examRoutes = require("./api/examRoutes");
 router.use("/api/exam", examRoutes);
 
+const freestyleRoutes = require("./api/freestyleRoutes");
+router.use("/api/freestyle", freestyleRoutes);
+
 module.exports = router;

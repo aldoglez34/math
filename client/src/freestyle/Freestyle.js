@@ -8,6 +8,7 @@ const Freestyle = React.memo(() => {
   const dispatch = useDispatch();
 
   const course = useSelector((state) => state.course);
+  const reduxExam = useSelector((state) => state.exam);
 
   useEffect(() => {
     dispatch(
@@ -17,7 +18,11 @@ const Freestyle = React.memo(() => {
           text: course.name,
           link: "/course",
         },
-        { text: "Modo Rápido" },
+        {
+          text: reduxExam.topicName,
+          link: "/course/#" + reduxExam.topicName,
+        },
+        { text: reduxExam.name },
       ])
     );
   }, []);

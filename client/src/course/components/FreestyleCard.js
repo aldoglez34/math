@@ -3,11 +3,18 @@ import { Card, Button, Accordion, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import LastVisited from "./LastVisited";
 import Leaderboards from "./modal/Leaderboards";
+import { useDispatch } from "react-redux";
+import * as examActions from "../../redux/actions/exam";
 
-const FreestyleCard = React.memo(({ freestyle }) => {
+const FreestyleCard = React.memo(({ exam, freestyle }) => {
+  const dispatch = useDispatch();
+
+  const setExamInRedux = async (obj) => {
+    dispatch(examActions.setExam(obj));
+  };
+
   return (
     <Card>
-      {console.log(freestyle)}
       <Card.Header style={{ backgroundColor: "#f4fbf8" }}>
         <Accordion.Toggle
           as={Button}
@@ -65,7 +72,15 @@ const FreestyleCard = React.memo(({ freestyle }) => {
           <Button
             variant="primary"
             className="shadow-sm"
-            href="/course/exam/freestyle"
+            onClick={() =>
+              setExamInRedux(exam)
+                .then(() => (window.location.href = "/course/exam/freestyle"))
+                .catch((err) => {
+                  console.log("error", err);
+                  alert("Ocurrió un error inesperado");
+                  window.location.href = "/course";
+                })
+            }
           >
             <i className="fas fa-bolt mx-3" />
           </Button>
@@ -77,6 +92,7 @@ const FreestyleCard = React.memo(({ freestyle }) => {
 
 FreestyleCard.propTypes = {
   freestyle: PropTypes.object.isRequired,
+  exam: PropTypes.object.isRequired,
 };
 
 export default FreestyleCard;
