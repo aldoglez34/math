@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Card, Button, Accordion, Row, Col } from "react-bootstrap";
+import { Card, Button, Accordion, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import LastVisited from "./LastVisited";
 import Leaderboards from "./modal/Leaderboards";
@@ -7,6 +7,7 @@ import Leaderboards from "./modal/Leaderboards";
 const FreestyleCard = React.memo(({ freestyle }) => {
   return (
     <Card>
+      {console.log(freestyle)}
       <Card.Header style={{ backgroundColor: "#f4fbf8" }}>
         <Accordion.Toggle
           as={Button}
@@ -27,7 +28,7 @@ const FreestyleCard = React.memo(({ freestyle }) => {
             vestibulum. Vivamus sed lobortis ligula, ut lacinia elit.
           </p>
           {/* last visited */}
-          <LastVisited date={Date.now()} />
+          <LastVisited date={freestyle.lastVisit} />
           <br />
           {/* duration */}
           <span style={{ fontSize: "14px", cursor: "help" }} title="Duración">
@@ -35,14 +36,14 @@ const FreestyleCard = React.memo(({ freestyle }) => {
             {freestyle.timer + " mins."}
           </span>
           <br />
-          <Leaderboards />
+          <Leaderboards top10={freestyle.top10} />
           <br />
           {/* columns */}
           <Row className="my-3">
             <Col className="text-center">
               <h1 className="mb-0 text-info">
                 <span style={{ cursor: "help" }} title="Puntuación más alta">
-                  ?
+                  {freestyle.myHighestScore}
                 </span>
               </h1>
               <h4>
@@ -52,7 +53,7 @@ const FreestyleCard = React.memo(({ freestyle }) => {
             <Col className="text-center">
               <h1 className="mb-0 text-info" style={{ cursor: "help" }}>
                 <span style={{ cursor: "help" }} title="Número de intentos">
-                  ?
+                  {freestyle.myTryouts}
                 </span>
               </h1>
               <h4>

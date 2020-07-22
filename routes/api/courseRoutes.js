@@ -37,6 +37,33 @@ router.get("/info/:courseId/:studentId", function (req, res) {
         topics: courseData.topics.reduce((acc, cv) => {
           acc.push({
             ...cv,
+            freestyle: {
+              ...cv.freestyle,
+              lastVisit: cv.freestyle.attempts
+                .filter((a) => a.studentId.toString() === studentId.toString())
+                .sort((a, b) => (a.date > b.date ? -1 : 1))[0]
+                ? cv.freestyle.attempts
+                    .filter(
+                      (a) => a.studentId.toString() === studentId.toString()
+                    )
+                    .sort((a, b) => (a.date > b.date ? -1 : 1))[0].date
+                : null,
+              myHighestScore: cv.freestyle.attempts
+                .filter((a) => a.studentId.toString() === studentId.toString())
+                .sort((a, b) => (a.score > b.score ? -1 : 1))[0]
+                ? cv.freestyle.attempts
+                    .filter(
+                      (a) => a.studentId.toString() === studentId.toString()
+                    )
+                    .sort((a, b) => (a.score > b.score ? -1 : 1))[0].score
+                : 0,
+              myTryouts: cv.freestyle.attempts.filter(
+                (a) => a.studentId.toString() === studentId.toString()
+              ).length,
+              top10: cv.freestyle.attempts
+                .sort((a, b) => (a.score > b.score ? -1 : 1))
+                .slice(0, 9),
+            },
             hasReward: studentData.rewards.filter(
               (r) => r.topicName === cv.name
             ).length
@@ -73,9 +100,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
         }, []),
       };
     })
-    .then((data) => {
-      res.json(data);
-    })
+    .then((data) => res.json(data))
     .catch((err) => {
       console.log("@error", err);
       res.status(422).send("Ocurrió un error");

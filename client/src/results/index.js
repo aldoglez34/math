@@ -74,11 +74,11 @@ const Results = React.memo(() => {
         .catch((err) => console.log("error", err));
     }
     // unlock freestyle if the difficulty is final and the grade is greater than 8
+    // this is only for the modal in the course main page
     if (exam.difficulty === "Advanced" && calif / 10 >= 8) {
-      // unlock
       dispatch(
         unlockExam({
-          name: "Examen Modo rápido",
+          name: "Examen Modo Rápido",
           difficulty: "Freestyle",
           topicName: exam.topicName,
           rewardLink: exam.reward.link,

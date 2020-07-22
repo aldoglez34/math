@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Modal, Button, Image, Table } from "react-bootstrap";
+import PropTypes from "prop-types";
 
-const Leaderboards = React.memo(() => {
+const Leaderboards = React.memo(({ top10 }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -41,63 +42,29 @@ const Leaderboards = React.memo(() => {
                 <th className="py-2 text-center bg-light border-top-0">
                   Usuario
                 </th>
+                <th className="py-2 text-center bg-light border-top-0">
+                  Fecha
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>45</td>
-                <td>aldoglez34</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>30</td>
-                <td>guest</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>25</td>
-                <td>asds</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>20</td>
-                <td>sdsds</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>10</td>
-                <td>jjkl</td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>9</td>
-                <td>uiu</td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td>8</td>
-                <td>pp</td>
-              </tr>
-              <tr>
-                <td>8</td>
-                <td>5</td>
-                <td>snmdmc</td>
-              </tr>
-              <tr>
-                <td>9</td>
-                <td>5</td>
-                <td>jjkl</td>
-              </tr>
-              <tr>
-                <td>10</td>
-                <td>2</td>
-                <td>mmmml</td>
-              </tr>
+              {top10.map((t, idx) => (
+                <tr key={t._id}>
+                  <td>{idx}</td>
+                  <td>{t.score}</td>
+                  <td>{t.student}</td>
+                  <td>{t.date}</td>
+                </tr>
+              ))}
             </tbody>
           </Table>
-          <div className="text-center mt-2 mb-2">
-            <Button variant="primary" onClick={handleClose}>
+          <div className="text-center mt-4 mb-2">
+            <Button
+              variant="primary"
+              className="shadow-sm"
+              onClick={handleClose}
+            >
+              <i className="fas fa-arrow-left mr-2" />
               Salir
             </Button>
           </div>
@@ -106,5 +73,9 @@ const Leaderboards = React.memo(() => {
     </>
   );
 });
+
+Leaderboards.propTypes = {
+  top10: PropTypes.array.isRequired,
+};
 
 export default Leaderboards;

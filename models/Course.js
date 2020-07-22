@@ -21,10 +21,11 @@ const schema = new Schema({
         attempts: [
           // leaderboard will come out from here too
           {
-            student: {
+            studentId: {
               type: Schema.Types.ObjectId,
               ref: "Student",
             },
+            username: { type: String },
             score: { type: Number, required: true },
             date: { type: Date, default: Date.now() },
           },
