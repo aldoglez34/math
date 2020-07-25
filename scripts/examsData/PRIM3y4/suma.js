@@ -6,7 +6,7 @@ module.exports = [
     description: " Sumas sin acarreos menores a 100.",
     duration: 15,
     difficulty: "Basic",
-    qCounter: 20,
+    qCounter: 3,
     questions: [
       {
         qInstruction: "Resuelve la siguiente suma: 3 + 1",
@@ -826,7 +826,7 @@ module.exports = [
     description: "Sumas sin acarreo menores a 1,000.",
     duration: 15,
     difficulty: "Basic-Intermediate",
-    qCounter: 20,
+    qCounter: 3,
     questions: [
       {
         qInstruction: "Resuelve la siguiente suma: 100+100",
@@ -1646,7 +1646,7 @@ module.exports = [
     description: "Sumas con un acarreo menores a 1,000.",
     duration: 20,
     difficulty: "Intermediate",
-    qCounter: 20,
+    qCounter: 3,
     questions: [
       {
         qInstruction: "Resuelve la siguiente suma: 16+15",
@@ -2264,7 +2264,7 @@ module.exports = [
     description: "Sumas con dos acarreos mayores a 1,000.",
     duration: 15,
     difficulty: "Intermediate-Advanced",
-    qCounter: 1,
+    qCounter: 3,
     questions: [
       {
         qInstruction: "Resuelve la siguiente suma",
@@ -2355,7 +2355,7 @@ module.exports = [
     description: "Resolución de problemas y sumas mayores a 1,000.",
     duration: 20,
     difficulty: "Advanced",
-    qCounter: 1,
+    qCounter: 3,
     questions: [
       {
         qInstruction: "Resuelve la siguiente suma",
