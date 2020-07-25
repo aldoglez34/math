@@ -32,7 +32,8 @@ router.get("/:topicName", function (req, res) {
       }
 
       // extract the questions
-      return uniqueNumbers.reduce((acc, cv) => {
+      return uniqueNumbers.reduce((acc, cv, idx) => {
+        console.log(idx + 1);
         acc.push(allQuestions[cv]);
         return acc;
       }, []);

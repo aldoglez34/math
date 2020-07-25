@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
-import { Image } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Spinner } from "react-bootstrap";
 import { StudentLayout } from "../components/Layout";
 import { useSelector, useDispatch } from "react-redux";
 import { setBreadcrumb } from "../redux/actions/breadcrumb";
+import API from "../utils/API";
+import FreestyleQuestions from "./components/FreestyleQuestions";
 
 const Freestyle = React.memo(() => {
   const dispatch = useDispatch();
@@ -10,34 +12,53 @@ const Freestyle = React.memo(() => {
   const course = useSelector((state) => state.course);
   const reduxExam = useSelector((state) => state.exam);
 
+  const [freestyle, setFreestyle] = useState();
+
   useEffect(() => {
-    dispatch(
-      setBreadcrumb([
-        { text: "Mis cursos", link: "/dashboard" },
-        {
-          text: course.name,
-          link: "/course",
-        },
-        {
-          text: reduxExam.topicName,
-          link: "/course/#" + reduxExam.topicName,
-        },
-        { text: reduxExam.name },
-      ])
-    );
+    if (course && reduxExam) {
+      API.fetchFreestyle()
+        .then((res) => {
+          // set exam
+          setFreestyle(res.data);
+          // set breadcrumb
+          dispatch(
+            setBreadcrumb([
+              { text: "Mis cursos", link: "/dashboard" },
+              {
+                text: course.name,
+                link: "/course",
+              },
+              {
+                text: reduxExam.topicName,
+                link: "/course/#" + reduxExam.topicName,
+              },
+              { text: reduxExam.name },
+            ])
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Ocurrió un error al cargar las preguntas de tu examen");
+        });
+    } else {
+      window.location.href = "/course";
+    }
   }, []);
 
   return (
     <StudentLayout>
-      <div className="text-center">
-        <Image
-          src="https://image.flaticon.com/icons/svg/3121/3121743.svg"
-          className="my-4"
-          width="250"
-          height="250"
-        />
-        <h1>UNDER CONSTRUCTION</h1>
-      </div>
+      {freestyle ? (
+        <>
+          {/* title */}
+          <h1 className="display-4">Examen Rápido</h1>
+          {/* questions */}
+          <FreestyleQuestions questions={freestyle} />
+        </>
+      ) : (
+        <div className="text-center mt-4 pt-4">
+          <Spinner animation="border" variant="primary" />
+        </div>
+      )}
     </StudentLayout>
   );
 });

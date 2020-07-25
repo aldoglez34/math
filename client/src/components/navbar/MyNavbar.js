@@ -27,8 +27,10 @@ const MyNavbar = React.memo(() => {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Container className="px-0 px-lg-3">
           {/* left */}
-          <Nav as={Col} className=" d-none d-lg-block pr-0">
-            <CoursesDropdown />
+          <Nav as={Col} className="d-none d-lg-block pr-0">
+            <div className="d-flex flex-row">
+              <CoursesDropdown />
+            </div>
           </Nav>
           {/* middle */}
           <Nav as={Col} className="d-none d-lg-block text-center pr-0">
