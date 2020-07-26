@@ -33,8 +33,14 @@ router.get("/:topicName", function (req, res) {
 
       // extract the questions
       return uniqueNumbers.reduce((acc, cv, idx) => {
-        console.log(idx + 1);
-        acc.push(allQuestions[cv]);
+        acc.push({
+          qNumber: idx + 1,
+          qInstruction: allQuestions[cv].qInstruction,
+          qTechnicalInstruction: allQuestions[cv].qTechnicalInstruction,
+          qMultipleChoice: allQuestions[cv].qMultipleChoice,
+          qCorrectAnswers: allQuestions[cv].qCorrectAnswers,
+          qComment: allQuestions[cv].qComment,
+        });
         return acc;
       }, []);
     })

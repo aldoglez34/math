@@ -104,7 +104,7 @@ const FreestyleQuestions = React.memo(({ questions }) => {
         {/* buttons, timer and stuff */}
         <div className="d-flex mb-3">
           <Timer />
-          <QNumber current={number} total={questions.length} />
+          {/* <QNumber current={number} total={questions.length} /> */}
           <a href="/course" className="ml-auto text-dark">
             <i className="fas fa-door-open mr-1" />
             Salir

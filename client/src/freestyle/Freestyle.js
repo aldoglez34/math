@@ -16,7 +16,7 @@ const Freestyle = React.memo(() => {
 
   useEffect(() => {
     if (course && reduxExam) {
-      API.fetchFreestyle()
+      API.fetchFreestyle(reduxExam.topicName)
         .then((res) => {
           // set exam
           setFreestyle(res.data);
