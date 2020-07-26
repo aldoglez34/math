@@ -36,8 +36,14 @@ router.get("/:topicName", function (req, res) {
         acc.push({
           qNumber: idx + 1,
           qInstruction: allQuestions[cv].qInstruction,
-          qTechnicalInstruction: allQuestions[cv].qTechnicalInstruction,
-          qMultipleChoice: allQuestions[cv].qMultipleChoice,
+          qTechnicalInstruction: allQuestions[cv].qTechnicalInstruction.type
+            ? allQuestions[cv].qTechnicalInstruction
+            : null,
+          qMultipleChoice:
+            allQuestions[cv].qMultipleChoice.textChoices.length ||
+            allQuestions[cv].qMultipleChoice.imageChoices.length
+              ? allQuestions[cv].qMultipleChoice
+              : null,
           qCorrectAnswers: allQuestions[cv].qCorrectAnswers,
           qComment: allQuestions[cv].qComment,
         });

@@ -2267,84 +2267,84 @@ module.exports = [
     qCounter: 3,
     questions: [
       {
-        qInstruction: "Resuelve la siguiente suma",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "10 + 7",
-        },
-        qCorrectAnswers: [{ answer: "17" }],
+        qInstruction: "Resuelve la siguiente suma: 178+145",
+        qCorrectAnswers: [{ answer: "323" }],
       },
       {
-        qInstruction:
-          "Escribe 3 (pesos) en el primer input y 5 (manzanas) en el segundo",
-        qCorrectAnswers: [
-          { answer: "3", complement: "pesos", placement: "right" },
-          { answer: "5", complement: "manzanas", placement: "right" },
-        ],
-        qComment: "este comentario es de prueba",
+        qInstruction: "Resuelve la siguiente suma: 159+158",
+        qCorrectAnswers: [{ answer: "317" }],
       },
       {
-        qInstruction:
-          "Escribe 45 en el primer input, 22 en el segundo y 77 en el tercero",
-        qCorrectAnswers: [
-          { answer: "45", complement: "número", placement: "left" },
-          { answer: "22", complement: "otro", placement: "left" },
-          { answer: "77", complement: "último", placement: "left" },
-        ],
+        qInstruction: "Resuelve la siguiente suma: 192+128",
+        qCorrectAnswers: [{ answer: "320" }],
       },
       {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura1.png",
-        },
-        qCorrectAnswers: [{ answer: "4" }],
+        qInstruction: "Resuelve la siguiente suma: 175+155",
+        qCorrectAnswers: [{ answer: "330" }],
       },
       {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura2.png",
-        },
-        qCorrectAnswers: [{ answer: "6" }],
+        qInstruction: "Resuelve la siguiente suma: 187+123",
+        qCorrectAnswers: [{ answer: "310" }],
       },
       {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura3.png",
-        },
-        qMultipleChoice: {
-          type: "image",
-          imageChoices: [
-            "/exams/suma/suma1/res4.png",
-            "/exams/suma/suma1/res5.png",
-            "/exams/suma/suma1/res6.png",
-            "/exams/suma/suma1/res7.png",
-          ],
-        },
-        qCorrectAnswers: [{ answer: "/exams/suma/suma1/res5.png" }],
+        qInstruction: "Resuelve la siguiente suma: 188+173",
+        qCorrectAnswers: [{ answer: "361" }],
       },
       {
-        qInstruction: "Resuelve el siguiente problema",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "5 + 8",
-        },
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["11", "12", "13", "14"],
-        },
-        qCorrectAnswers: [{ answer: "13" }],
-        qComment: "Selecciona respuesta correcta y da clic en siguiente",
+        qInstruction: "Resuelve la siguiente suma: 179+151",
+        qCorrectAnswers: [{ answer: "330" }],
       },
       {
-        qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["13.5", "13.7", "14", "14.2"],
-        },
-        qCorrectAnswers: [{ answer: "14" }],
+        qInstruction: "Resuelve la siguiente suma: 178+144",
+        qCorrectAnswers: [{ answer: "322" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 167+148",
+        qCorrectAnswers: [{ answer: "315" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 188+144",
+        qCorrectAnswers: [{ answer: "332" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 192+178",
+        qCorrectAnswers: [{ answer: "370" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 234+188",
+        qCorrectAnswers: [{ answer: "422" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 222+198",
+        qCorrectAnswers: [{ answer: "420" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 225+185",
+        qCorrectAnswers: [{ answer: "410" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 248+156",
+        qCorrectAnswers: [{ answer: "404" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 265+186",
+        qCorrectAnswers: [{ answer: "451" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 278+245",
+        qCorrectAnswers: [{ answer: "523" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 254+199",
+        qCorrectAnswers: [{ answer: "453" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 285+239",
+        qCorrectAnswers: [{ answer: "524" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 292+179",
+        qCorrectAnswers: [{ answer: "471" }],
       },
     ],
   },
@@ -2436,6 +2436,28 @@ module.exports = [
           textChoices: ["13.5", "13.7", "14", "14.2"],
         },
         qCorrectAnswers: [{ answer: "14" }],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "En un estacionamiento conté 23 automóviles, 14 camionetas y 8 motocicletas, ¿cuántos vehículos había en total?",
+        },
+        qCorrectAnswers: [
+          { answer: "45", complement: "vehículos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Yo tengo 13 a~ nos y mi hermano es 15 años mayor que yo, ¿qué edad tiene mi hermano?",
+        },
+        qCorrectAnswers: [
+          { answer: "28", complement: "a~ nos", placement: "right" },
+        ],
       },
     ],
   },

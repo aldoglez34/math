@@ -4,10 +4,11 @@ import { Row, Col, Button, Spinner } from "react-bootstrap";
 import PropTypes from "prop-types";
 import * as examActions from "../../redux/actions/exam";
 import Timer from "../../exam/components/Timer";
-import QNumber from "../../exam/components/QNumber";
+import FreestyleQNumber from "./FreestyleQNumber";
 import QInstruction from "../../exam/question/QInstruction";
 import QTechnicalInstruction from "../../exam/question/QTechnicalInstruction";
 import QMultipleChoice from "../../exam/question/QMultipleChoice";
+import FreestyleQPoints from "./FreestyleQPoints";
 
 const FreestyleQuestions = React.memo(({ questions }) => {
   const dispatch = useDispatch();
@@ -16,12 +17,14 @@ const FreestyleQuestions = React.memo(({ questions }) => {
   const [question, setQuestion] = useState();
   const [answers, setAnswers] = useState([]);
 
+  const [score, setScore] = useState(0);
+
   useEffect(() => {
     // only if number is less than the questions length
     if (number <= questions.length)
       setQuestion(questions.filter((q) => q.qNumber === number)[0]);
 
-    // check if last
+    // check if last -- OJO AQUÍ!!
     if (number > questions.length) {
       // save results in redux
       dispatch(examActions.setResults(answers));
@@ -104,7 +107,8 @@ const FreestyleQuestions = React.memo(({ questions }) => {
         {/* buttons, timer and stuff */}
         <div className="d-flex mb-3">
           <Timer />
-          {/* <QNumber current={number} total={questions.length} /> */}
+          <FreestyleQNumber current={number} total={questions.length} />
+          <FreestyleQPoints score={score} />
           <a href="/course" className="ml-auto text-dark">
             <i className="fas fa-door-open mr-1" />
             Salir
