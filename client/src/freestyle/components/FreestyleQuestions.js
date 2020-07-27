@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Row, Col, Button, Spinner } from "react-bootstrap";
 import PropTypes from "prop-types";
 import * as examActions from "../../redux/actions/exam";
-import Timer from "../../exam/components/Timer";
+import FreestyleTimer from "./FreestyleTimer";
 import FreestyleQNumber from "./FreestyleQNumber";
 import QInstruction from "../../exam/question/QInstruction";
 import QTechnicalInstruction from "../../exam/question/QTechnicalInstruction";
@@ -106,7 +106,7 @@ const FreestyleQuestions = React.memo(({ questions }) => {
       <>
         {/* buttons, timer and stuff */}
         <div className="d-flex mb-3">
-          <Timer />
+          <FreestyleTimer />
           <FreestyleQNumber current={number} total={questions.length} />
           <FreestyleQPoints score={score} />
           <a href="/course" className="ml-auto text-dark">
