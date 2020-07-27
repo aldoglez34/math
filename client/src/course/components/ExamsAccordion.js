@@ -141,14 +141,7 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
           </Card>
           {/* only show freestyle if student has the reward AND it has to be the last card */}
           {exams.length === idx + 1 && freestyle.isAvailable ? (
-            <FreestyleCard
-              exam={{
-                duration: ex.duration,
-                name: "Examen Rápido",
-                topicName: ex.topicName,
-              }}
-              freestyle={freestyle}
-            />
+            <FreestyleCard topicName={ex.topicName} freestyle={freestyle} />
           ) : null}
         </React.Fragment>
       ))}

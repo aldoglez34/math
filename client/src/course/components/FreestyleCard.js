@@ -6,7 +6,7 @@ import Leaderboards from "./modal/Leaderboards";
 import { useDispatch } from "react-redux";
 import * as examActions from "../../redux/actions/exam";
 
-const FreestyleCard = React.memo(({ exam, freestyle }) => {
+const FreestyleCard = React.memo(({ topicName, freestyle }) => {
   const dispatch = useDispatch();
 
   const setExamInRedux = async (obj) => {
@@ -73,7 +73,11 @@ const FreestyleCard = React.memo(({ exam, freestyle }) => {
             variant="primary"
             className="shadow-sm"
             onClick={() =>
-              setExamInRedux(exam)
+              setExamInRedux({
+                duration: freestyle.timer,
+                name: "Modo Rápido",
+                topicName: topicName,
+              })
                 .then(() => (window.location.href = "/course/exam/freestyle"))
                 .catch((err) => {
                   console.log("error", err);
@@ -92,7 +96,7 @@ const FreestyleCard = React.memo(({ exam, freestyle }) => {
 
 FreestyleCard.propTypes = {
   freestyle: PropTypes.object.isRequired,
-  exam: PropTypes.object.isRequired,
+  topicName: PropTypes.string.isRequired,
 };
 
 export default FreestyleCard;

@@ -57,4 +57,32 @@ router.get("/:topicName", function (req, res) {
     });
 });
 
+// registerFreestyleAttempt()
+// matches with /api/freestyle/registerAttempt
+router.put("/registerAttempt", function (req, res) {
+  const { courseId, topicName, studentId, username, score } = req.body;
+
+  model.Course.findOne(
+    { _id: courseId, "topics.name": topicName }
+    // {
+    //   $push: {
+    //     "freestyle.attempts": {
+    //       studentId: studentId,
+    //       username: username,
+    //       score: score,
+    //     },
+    //   },
+    // }
+  )
+    .then((attempt) => {
+      // console.log(attempt);
+      res.json(attempt);
+      // res.json("Attempt registered successfully");
+    })
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error");
+    });
+});
+
 module.exports = router;

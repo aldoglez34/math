@@ -9,6 +9,8 @@ import QInstruction from "../../exam/question/QInstruction";
 import QTechnicalInstruction from "../../exam/question/QTechnicalInstruction";
 import QMultipleChoice from "../../exam/question/QMultipleChoice";
 import FreestyleQPoints from "./FreestyleQPoints";
+import CorrectModal from "./modals/CorrectModal";
+import IncorrectModal from "./modals/IncorrectModal";
 
 const FreestyleQuestions = React.memo(({ questions }) => {
   const dispatch = useDispatch();
@@ -19,12 +21,15 @@ const FreestyleQuestions = React.memo(({ questions }) => {
 
   const [score, setScore] = useState(0);
 
+  const [showCorrect, setShowCorrect] = useState(false);
+  const [showIncorrect, setShowIncorrect] = useState(false);
+
   useEffect(() => {
     // only if number is less than the questions length
     if (number <= questions.length)
       setQuestion(questions.filter((q) => q.qNumber === number)[0]);
 
-    // check if last -- OJO AQUÍ!!
+    // check if last (highly unlikely that the student finishes all the questions)
     if (number > questions.length) {
       // save results in redux
       dispatch(examActions.setResults(answers));
@@ -47,26 +52,24 @@ const FreestyleQuestions = React.memo(({ questions }) => {
     // the behavior will be different depending wether its a multiple choice or regular inputs
     const isMultipleChoice = question.qMultipleChoice ? true : false;
 
+    // get answer
+    let obj;
     if (isMultipleChoice) {
-      // the option choosen by the student is stored in the "choice" state
-      setAnswers([
-        ...answers,
-        {
-          _id: question._id,
-          qNumber: question.qNumber,
-          qInstruction: question.qInstruction,
-          qTechnicalInstruction: question.qTechnicalInstruction,
-          qMultipleChoice: question.qMultipleChoice,
-          userAnswers:
-            question.qMultipleChoice.type === "text"
-              ? { type: "text", answer: choice }
-              : { type: "image", answer: choice },
-          qCorrectAnswers:
-            question.qMultipleChoice.type === "text"
-              ? { type: "text", answer: correctAnswers.toString() }
-              : { type: "image", answer: correctAnswers.toString() },
-        },
-      ]);
+      obj = {
+        _id: question._id,
+        qNumber: question.qNumber,
+        qInstruction: question.qInstruction,
+        qTechnicalInstruction: question.qTechnicalInstruction,
+        qMultipleChoice: question.qMultipleChoice,
+        userAnswers:
+          question.qMultipleChoice.type === "text"
+            ? { type: "text", answer: choice }
+            : { type: "image", answer: choice },
+        qCorrectAnswers:
+          question.qMultipleChoice.type === "text"
+            ? { type: "text", answer: correctAnswers.toString() }
+            : { type: "image", answer: correctAnswers.toString() },
+      };
     } else {
       // get the value from the answer inputs and push them
       const numberOfAnswers = question.qCorrectAnswers.length;
@@ -76,20 +79,29 @@ const FreestyleQuestions = React.memo(({ questions }) => {
         userAnswers.push(a.trim());
       }
 
-      setAnswers([
-        ...answers,
-        {
-          _id: question._id,
-          qNumber: question.qNumber,
-          qInstruction: question.qInstruction,
-          qTechnicalInstruction: question.qTechnicalInstruction,
-          qMultipleChoice: question.qMultipleChoice,
-          userAnswers: { type: "text", answer: userAnswers.toString() },
-          qCorrectAnswers: { type: "text", answer: correctAnswers.toString() },
-        },
-      ]);
+      obj = {
+        _id: question._id,
+        qNumber: question.qNumber,
+        qInstruction: question.qInstruction,
+        qTechnicalInstruction: question.qTechnicalInstruction,
+        qMultipleChoice: question.qMultipleChoice,
+        userAnswers: { type: "text", answer: userAnswers.toString() },
+        qCorrectAnswers: { type: "text", answer: correctAnswers.toString() },
+      };
     }
 
+    // validate answer
+    if (obj.userAnswers.answer === obj.qCorrectAnswers.answer) {
+      setShowCorrect(true);
+      setScore(score + 1);
+    } else {
+      setShowIncorrect(true);
+    }
+
+    // push answer to redux (so they can be read later on the results page)
+    setAnswers([...answers, obj]);
+
+    // next question
     setNumber(number + 1);
   };
 
@@ -106,8 +118,8 @@ const FreestyleQuestions = React.memo(({ questions }) => {
       <>
         {/* buttons, timer and stuff */}
         <div className="d-flex mb-3">
-          <FreestyleTimer />
-          <FreestyleQNumber current={number} total={questions.length} />
+          <FreestyleTimer score={score} />
+          <FreestyleQNumber current={number} />
           <FreestyleQPoints score={score} />
           <a href="/course" className="ml-auto text-dark">
             <i className="fas fa-door-open mr-1" />
@@ -188,6 +200,15 @@ const FreestyleQuestions = React.memo(({ questions }) => {
             </div>
           </Col>
         </Row>
+        {/* modals */}
+        <CorrectModal
+          showCorrect={showCorrect}
+          setShowCorrect={setShowCorrect}
+        />
+        <IncorrectModal
+          showIncorrect={showIncorrect}
+          setShowIncorrect={setShowIncorrect}
+        />
       </>
     )
   ) : null;
