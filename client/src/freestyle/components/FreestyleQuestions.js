@@ -29,7 +29,7 @@ const FreestyleQuestions = React.memo(({ questions }) => {
       // save results in redux
       dispatch(examActions.setResults(answers));
       // go to results page
-      window.location.href = "/course/exam/results";
+      window.location.href = "/course/exam/freestyle/results";
     }
   }, [dispatch, number, answers, questions]);
 
