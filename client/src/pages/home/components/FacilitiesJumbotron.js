@@ -1,6 +1,8 @@
 import React from "react";
 import { Container, Carousel, Row, Col } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
+// images
+import salaespera from "/images/facilities/_DSC3817.jpg";
 
 const FacilitiesJumbotron = React.memo(() => {
   return (
@@ -38,7 +40,7 @@ const FacilitiesJumbotron = React.memo(() => {
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src="/images/facilities/_DSC3817.jpg"
+                src="./images/facilities/_DSC3817.jpg"
                 alt="salaespera"
               />
               <Carousel.Caption>
@@ -50,7 +52,7 @@ const FacilitiesJumbotron = React.memo(() => {
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src="/images/facilities/_DSC3805.jpg"
+                src={salaespera}
                 alt="aulasamplias"
               />
               <Carousel.Caption>
