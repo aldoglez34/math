@@ -2,7 +2,11 @@ import React from "react";
 import { Container, Carousel, Row, Col } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
 // images
-import salaespera from "/images/facilities/_DSC3817.jpg";
+import salaespera from "../images/salaespera.png";
+import salonesamplios from "../images/salonesamplios.png";
+import audiovisual from "../images/audiovisual.png";
+import dosplantas from "../images/dosplantas.png";
+import ambiente from "../images/ambiente.png";
 
 const FacilitiesJumbotron = React.memo(() => {
   return (
@@ -40,8 +44,8 @@ const FacilitiesJumbotron = React.memo(() => {
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src="./images/facilities/_DSC3817.jpg"
-                alt="salaespera"
+                src={salaespera}
+                alt={salaespera}
               />
               <Carousel.Caption>
                 <h3 className="text-white" style={{ fontWeight: 700 }}>
@@ -52,8 +56,8 @@ const FacilitiesJumbotron = React.memo(() => {
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src={salaespera}
-                alt="aulasamplias"
+                src={salonesamplios}
+                alt={salonesamplios}
               />
               <Carousel.Caption>
                 <h3 className="text-white" style={{ fontWeight: 700 }}>
@@ -64,8 +68,8 @@ const FacilitiesJumbotron = React.memo(() => {
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src="/images/facilities/_DSC3830.jpg"
-                alt="audiovisual"
+                src={audiovisual}
+                alt={audiovisual}
               />
               <Carousel.Caption>
                 <h3 className="text-white" style={{ fontWeight: 700 }}>
@@ -76,8 +80,8 @@ const FacilitiesJumbotron = React.memo(() => {
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src="/images/facilities/_DSC3841.jpg"
-                alt="dosplantas"
+                src={dosplantas}
+                alt={dosplantas}
               />
               <Carousel.Caption>
                 <h3 className="text-white" style={{ fontWeight: 700 }}>
@@ -86,11 +90,7 @@ const FacilitiesJumbotron = React.memo(() => {
               </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src="/images/facilities/IMG_1701.jpg"
-                alt="Third slide"
-              />
+              <img className="d-block w-100" src={ambiente} alt={ambiente} />
               <Carousel.Caption>
                 <h3 className="text-white" style={{ fontWeight: 700 }}>
                   Ambiente de trabajo
