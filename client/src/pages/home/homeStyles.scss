@@ -2,37 +2,44 @@
 // WELCOME JUMBOTRON
 // ============================================================
 .wj_jumboStyle {
-  padding: 110px 0px !important;
-  background-color: #0d2129 !important;
+  padding: 100px 0px !important;
   margin-bottom: 0px !important;
+  background-image: url("/images/schoolBack.jpg");
+  background-size: cover;
+  background-color: gray !important;
+  background-blend-mode: multiply;
 }
 
-#wj_homeImage {
-  width: 280px !important;
-  height: 280px !important;
+.wj_title {
+  color: #49bf84 !important;
+  font-weight: 800 !important;
 }
 
-.wj_secondaryText {
-  color: rgba(245, 245, 245, 0.74);
-  font-size: 16px;
+.wj_text {
+  color: #f4fbf8 !important;
+  font-size: 22px;
 }
 
-.wj_mainText {
-  color: ghostwhite;
+.wj_plusIcon {
+  font-size: 22px;
+  margin-right: 10px;
+  color: #49bf84 !important;
 }
 
 @media only screen and (max-width: 991px) {
-  .wj_mainText {
-    font-size: 38px !important;
-  }
   .wj_jumboStyle {
-    padding: 30px 0px !important;
+    padding: 60px 0px !important;
+    background-image: url("/images/schoolBacksm.jpg");
   }
-  #wj_homeImage {
-    margin-top: 0px !important;
-    margin-bottom: 20px;
-    width: 180px !important;
-    height: 180px !important;
+  .wj_title {
+    font-size: 42px !important;
+  }
+  .wj_plusIcon {
+    font-size: 16px;
+    margin-right: 5px;
+  }
+  .wj_text {
+    font-size: 16px !important;
   }
 }
 
@@ -41,6 +48,8 @@
 // ============================================================
 .tc_container {
   margin-top: 100px !important;
+  background-image: url("/images/threecolumns.png");
+  background-size: cover;
 }
 
 .tc_pic {
@@ -50,29 +59,6 @@
 
 @media only screen and (max-width: 991px) {
   .tc_container {
-    margin-top: 80px !important;
-  }
-}
-
-// ============================================================
-// QUOTE JUMBOTRON
-// ============================================================
-.qj_jumboStyle {
-  margin-top: 100px !important;
-  padding-bottom: 110px !important;
-  padding-top: 110px !important;
-  background-color: #f4fbf8 !important;
-  margin-bottom: 0px !important;
-}
-
-.qj_quote {
-  font-family: "Noto Serif", serif;
-  font-weight: 400 !important;
-  font-style: italic;
-}
-
-@media only screen and (max-width: 991px) {
-  #qj_img {
     margin-top: 80px !important;
   }
 }
@@ -133,23 +119,12 @@
 // FACILITIES JUMBOTRON
 // ============================================================
 .facj_jumbo {
-  margin-top: 100px !important;
-}
-
-.facj_image {
-  width: 120px !important;
-  height: 120px !important;
+  margin-top: 150px !important;
 }
 
 @media only screen and (max-width: 991px) {
   .facj_jumbo {
     margin-top: 80px !important;
-  }
-
-  .facj_image {
-    margin-right: 15px;
-    width: 100px !important;
-    height: 100px !important;
   }
 }
 

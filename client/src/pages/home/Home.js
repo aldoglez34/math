@@ -2,7 +2,6 @@ import React from "react";
 import { Layout } from "../../components/Layout";
 import WelcomeJumbotron from "./components/WelcomeJumbotron";
 import ThreeColumns from "./components/ThreeColumns";
-import QuoteJumbotron from "./components/QuoteJumbotron";
 import OurCourses from "./components/OurCourses";
 import TeacherJumbotron from "./components/TeacherJumbotron";
 import FacilitiesJumbotron from "./components/FacilitiesJumbotron";
@@ -15,7 +14,6 @@ const Home = React.memo(() => {
     <Layout>
       <WelcomeJumbotron />
       <ThreeColumns />
-      <QuoteJumbotron />
       <OurCourses />
       <TeacherJumbotron />
       <FacilitiesJumbotron />
