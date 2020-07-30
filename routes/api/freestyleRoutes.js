@@ -60,11 +60,11 @@ router.get("/:topicName", function (req, res) {
 // registerFreestyleAttempt()
 // matches with /api/freestyle/registerAttempt
 router.put("/registerAttempt", function (req, res) {
-  console.log("entrando al register...");
+  console.log("\n\nentrando al register...");
   const { courseId, topicName, studentId, username, score } = req.body;
 
-  model.Course.findOne(
-    { _id: courseId }
+  model.Course.find(
+    { _id: courseId, "topics.name": "Resta" }
     // {
     //   $push: {
     //     "freestyle.attempts": {
@@ -75,11 +75,9 @@ router.put("/registerAttempt", function (req, res) {
     //   },
     // }
   )
-    .select("topics")
-    .then((attempt) => {
-      // console.log(attempt);
-      res.json(attempt);
-      // res.json("Attempt registered successfully");
+    // .select("topics")
+    .then((data) => {
+      res.send(data[0]);
     })
     .catch((err) => {
       console.log("@error", err);

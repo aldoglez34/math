@@ -23,16 +23,4 @@ module.exports = (coursesIds, examsArr) => [
       return acc;
     }, []),
   },
-  {
-    firebaseUID: "mUxhiHVYzSQYofhgVgUdUuVQTLB2",
-    name: "Testence",
-    firstSurname: "Guest",
-    secondSurname: "Guest",
-    email: "guest@guest.com",
-    courses: [...coursesIds],
-    exams: examsArr.reduce((acc, cv) => {
-      if (cv.difficulty === "Basic") acc.push(cv.examId);
-      return acc;
-    }, []),
-  },
 ];

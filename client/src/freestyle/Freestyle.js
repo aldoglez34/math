@@ -50,7 +50,7 @@ const Freestyle = React.memo(() => {
       {freestyle ? (
         <>
           {/* title */}
-          <h1 className="display-4">Examen Rápido</h1>
+          <h1 className="display-4">Modo Rápido</h1>
           {/* questions */}
           <FreestyleQuestions questions={freestyle} />
         </>

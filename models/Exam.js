@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
   topicCode: { type: String, required: true }, // ej. PRIM3y4_Suma o PRIM3y4_Resta
   topicName: { type: String, required: true }, // ej. Suma, Resta, etc
-  name: { type: String, required: true, unique: true }, // ej. Sumas 1 o Restas 3
+  name: { type: String, required: true }, // ej. Sumas 1 o Restas 3
   description: { type: String, required: true }, // ej. "Este es un examen blah blah..."
   duration: { type: Number, required: true }, // ej. 30 (mins)
   difficulty: {

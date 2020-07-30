@@ -9,13 +9,13 @@ const schema = new Schema({
     {
       topicCode: { type: String, required: true }, // ej. PRIM3y4_Suma o PRIM3y4_Resta
       subject: { type: String, required: true }, // ej. Aritmética
-      name: { type: String, required: true, unique: true }, // ej. Suma/Resta/Multiplicación
+      name: { type: String, required: true }, // ej. Suma/Resta/Multiplicación
       description: { type: String, required: true }, // ej. La suma es una de las cuatro operaciones básicas...
       reward: {
         name: { type: String, required: true }, // ej. "Medalla de Suma"
         link: { type: String, required: true }, // ej. "/images/medals/sumas1.png"
       },
-      toLearn: [{ type: String, unique: true }], // ej. Aprenderás a sumar números, Aprenderás a blah blah (es un array)
+      toLearn: [{ type: String }], // ej. Aprenderás a sumar números, Aprenderás a blah blah (es un array)
       freestyle: {
         timer: { type: Number, required: true }, // ej. 10 (minutos)
         attempts: [
@@ -35,15 +35,14 @@ const schema = new Schema({
         // todo lo que tenga links: pdfs/videos/etc
         {
           type: { type: String, required: true },
-          name: { type: String, required: true, unique: true },
-          link: { type: String, required: true, unique: true },
+          name: { type: String, required: true },
+          link: { type: String, required: true },
         },
       ],
       exams: [
         {
           type: Schema.Types.ObjectId,
           ref: "Exam",
-          unique: true,
         },
       ],
     },

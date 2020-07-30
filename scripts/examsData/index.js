@@ -1,5 +1,4 @@
-const suma = require("./PRIM3y4/suma");
-const resta = require("./PRIM3y4/resta");
-const multiplicación = require("./PRIM3y4/multiplicación");
+const PRIM3y4 = require("./PRIM3y4");
+const PRIM5y6 = require("./PRIM5y6");
 
-module.exports = [...suma, ...resta, ...multiplicación];
+module.exports = [...PRIM3y4, ...PRIM5y6];
