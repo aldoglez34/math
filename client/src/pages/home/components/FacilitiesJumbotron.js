@@ -6,13 +6,12 @@ import salaespera from "../images/salaespera.png";
 import salonesamplios from "../images/salonesamplios.png";
 import audiovisual from "../images/audiovisual.png";
 import dosplantas from "../images/dosplantas.png";
-import ambiente from "../images/ambiente.png";
 
 const FacilitiesJumbotron = React.memo(() => {
   return (
     <Container className="facj_jumbo">
       <Fade>
-        <div className="text-center">
+        <div className="text-center mb-4">
           <h1 className="display-4" style={{ fontWeight: 600 }}>
             Instalaciones
           </h1>
@@ -21,22 +20,6 @@ const FacilitiesJumbotron = React.memo(() => {
             nuestros alumnos tengan el mejor desempeño.
           </p>
         </div>
-        <Row className="mb-4">
-          <Col lg={{ offset: 3, span: 4 }}>
-            <ul className="lead">
-              <li>5 salones amplios</li>
-              <li>Baños</li>
-              <li>Sala de espera</li>
-            </ul>
-          </Col>
-          <Col>
-            <ul className="lead">
-              <li>Dispensador de agua</li>
-              <li>Aire acondicionado</li>
-              <li>Conexión a internet</li>
-            </ul>
-          </Col>
-        </Row>
       </Fade>
       <Row>
         <Col>
@@ -86,14 +69,6 @@ const FacilitiesJumbotron = React.memo(() => {
               <Carousel.Caption>
                 <h3 className="text-white" style={{ fontWeight: 700 }}>
                   2 plantas
-                </h3>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img className="d-block w-100" src={ambiente} alt={ambiente} />
-              <Carousel.Caption>
-                <h3 className="text-white" style={{ fontWeight: 700 }}>
-                  Ambiente de trabajo
                 </h3>
               </Carousel.Caption>
             </Carousel.Item>

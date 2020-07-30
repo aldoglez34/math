@@ -10,10 +10,14 @@ const OurCourses = React.memo(() => {
         <h2 className="display-4 text-center mb-4" style={{ fontWeight: 600 }}>
           Nuestros cursos
         </h2>
-        <p className="lead text-left text-lg-center oc_subtitle pb-3">
+        <p className="lead text-left text-lg-center oc_subtitle">
           Enfocados para diferentes niveles educativos, en cada uno el alumno
           podrá reforzar los temas que más se le compliquen las veces que él
           crea necesarias hasta que logre comprender el tema.
+        </p>
+        <p className="lead text-left text-lg-center oc_subtitle pb-3">
+          Hazte de todas las medallas y coronas en cada uno de nuestros cursos y
+          obten el puntaje más alto en la sección de cálculo mental.
         </p>
         <CardGroup>
           <HomeCard

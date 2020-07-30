@@ -16,7 +16,7 @@ const MyFooter = React.memo(() => {
             </p>
             <p className="mb-1">
               <a
-                href="https://www.instagram.com/?hl=en"
+                href="https://www.instagram.com/mexmaticas/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -26,7 +26,7 @@ const MyFooter = React.memo(() => {
                 />
               </a>
               <a
-                href="https://www.facebook.com/"
+                href="https://www.facebook.com/MeXmaticas/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -36,7 +36,7 @@ const MyFooter = React.memo(() => {
                 />
               </a>
               <a
-                href="https://www.youtube.com/"
+                href="https://www.youtube.com/mexmaticas"
                 target="_blank"
                 rel="noopener noreferrer"
               >

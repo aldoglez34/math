@@ -22,25 +22,21 @@ const MyJumbotron = React.memo(() => {
               <p className="mb-1 mt-3 mt-lg-0">
                 <i className="fas fa-plus wj_plusIcon" />
                 <span className="wj_text">
-                  Cursos de matemáticas para estudiantes de cualquier edad
+                  Cursos de matemáticas para estudiantes de cualquier grado
+                  educativo y/o edad
                 </span>
               </p>
               <p className="mb-1">
                 <i className="fas fa-plus wj_plusIcon" />
                 <span className="wj_text">
-                  Más de 4,000 ejercicios con explicaciones y videos tutoriales
+                  Miles de ejercicios con explicaciones y videos tutoriales
                 </span>
               </p>
               <p className="mb-1">
                 <i className="fas fa-plus wj_plusIcon" />
                 <span className="wj_text">
-                  Clases personalizadas, respondemos cada una de tus dudas
-                </span>
-              </p>
-              <p className="mb-1">
-                <i className="fas fa-plus wj_plusIcon" />
-                <span className="wj_text">
-                  Aprendiendo matemáticas con un método único en el mercado
+                  Aprendiendo matemáticas a tu propio ritmo y con un método
+                  único
                 </span>
               </p>
               <p className="mt-4 mb-1">
