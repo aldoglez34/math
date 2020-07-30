@@ -17,7 +17,7 @@ const CorrectModal = React.memo(({ showCorrect, setShowCorrect }) => {
               <i className="fas fa-check-circle" />
             </h1>
             <h1 className="text-light">Correcto</h1>
-            <h3 className="text-warning">+1 pts.</h3>
+            <h3 className="text-warning">+1 punto</h3>
           </div>
         </Modal.Body>
       </Modal>
