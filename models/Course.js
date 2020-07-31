@@ -19,7 +19,7 @@ const schema = new Schema({
       freestyle: {
         timer: { type: Number, required: true }, // ej. 10 (minutos)
         attempts: [
-          // leaderboard will come out from here too
+          // el leaderboard va a salir de aquí
           {
             studentId: {
               type: Schema.Types.ObjectId,
