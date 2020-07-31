@@ -15,7 +15,7 @@ const FacilitiesJumbotron = React.memo(() => {
           <h1 className="display-4" style={{ fontWeight: 600 }}>
             Instalaciones
           </h1>
-          <p className="lead pb-2 mt-3 mt-lg-1">
+          <p className="lead text-left text-lg-center pb-2 mt-3 mt-lg-1">
             En MeXmáticas nos preocupamos por el más mínimo detalle para que
             nuestros alumnos tengan el mejor desempeño.
           </p>
