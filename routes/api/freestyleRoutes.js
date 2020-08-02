@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const model = require("../../models");
-const mongoose = require("mongoose");
 
 // fetchFreestyle()
 // matches with /api/freestyle/:topicName
@@ -64,26 +63,19 @@ router.put("/registerAttempt", function (req, res) {
   console.log("\n\nentrando al register...");
   const { courseId, topicName, studentId, username, score } = req.body;
 
-  // model.Course.find(
-  //   { _id: courseId, topics: { $elemMatch: { $eq: topicName } } }
-  //   // {
-  //   //   $push: {
-  //   //     "freestyle.attempts": {
-  //   //       studentId: studentId,
-  //   //       username: username,
-  //   //       score: score,
-  //   //     },
-  //   //   },
-  //   // }
-  // )
-
-  model.Course.aggregate([
+  model.Course.find(
+    { _id: courseId },
+    { topics: { $elemMatch: { name: topicName } } },
     {
-      $match: {
-        _id: mongoose.Types.ObjectId(courseId),
+      $push: {
+        "topics.freestyle.attempts": {
+          studentId: studentId,
+          username: username,
+          score: score,
+        },
       },
-    },
-  ])
+    }
+  )
     .then((data) => {
       res.send(data);
     })
