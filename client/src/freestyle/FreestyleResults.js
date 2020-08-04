@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { StudentLayout } from "../components/Layout";
 import { useSelector, useDispatch } from "react-redux";
 import { setBreadcrumb } from "../redux/actions/breadcrumb";
+import API from "../utils/API";
 
 const FreestyleResults = React.memo(() => {
   const dispatch = useDispatch();
@@ -10,21 +11,10 @@ const FreestyleResults = React.memo(() => {
   const reduxExam = useSelector((state) => state.exam);
 
   useEffect(() => {
-    // set breadcrumb
-    dispatch(
-      setBreadcrumb([
-        { text: "Mis cursos", link: "/dashboard" },
-        {
-          text: course.name,
-          link: "/course",
-        },
-        {
-          text: reduxExam.topicName,
-          link: "/course/#" + reduxExam.topicName,
-        },
-        { text: reduxExam.name },
-      ])
-    );
+    // register attempt regardless of grade
+    API.registerFreestyleAttempt()
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log("error", err));
   }, []);
 
   return (

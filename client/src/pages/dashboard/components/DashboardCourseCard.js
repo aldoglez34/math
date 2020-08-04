@@ -21,10 +21,11 @@ const DashboardCourseCard = React.memo(({ course }) => {
             {course.name}
           </h3>
         </Card.Title>
+
+        <Card.Text>{course.shortDescription}</Card.Text>
         <Card.Text>
           <MyRewards rewards={course.rewards} />
         </Card.Text>
-        <Card.Text>{course.shortDescription}</Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
         {course.topics.map((ct) => (
