@@ -9,7 +9,6 @@ import Course from "../course";
 import Exam from "../exam";
 import Results from "../results";
 import Freestyle from "../freestyle/Freestyle";
-import FreestyleResults from "../freestyle/FreestyleResults";
 
 export default () => {
   return (
@@ -35,11 +34,6 @@ export default () => {
 
       {/* freestyle */}
       <Route exact path="/course/exam/freestyle" component={Freestyle} />
-      <Route
-        exact
-        path="/course/exam/freestyle/results"
-        component={FreestyleResults}
-      />
 
       <Redirect from="/" to="/dashboard" />
 

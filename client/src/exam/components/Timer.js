@@ -12,7 +12,7 @@ const Timer = React.memo(() => {
   useEffect(() => {
     if ((secondsLeft % 60) / 100 === 0) setMinutesLeft(minutesLeft - 1);
 
-    if (minutesLeft === 0) {
+    if (secondsLeft === 0) {
       // register attempt
       API.registerAttempt({ studentId: student._id, examId: exam._id })
         .then((res) => console.log(res.data))
@@ -29,10 +29,16 @@ const Timer = React.memo(() => {
   }, [secondsLeft]);
 
   return (
-    <span title="Tiempo restante" style={{ cursor: "help" }}>
-      <i className="fas fa-stopwatch text-dark mr-1" />
-      {minutesLeft > 1 ? minutesLeft + " mins." : secondsLeft + " segs."}
-    </span>
+    <div
+      className="text-secondary p-1"
+      style={{ cursor: "help" }}
+      title="Tiempo restante"
+    >
+      <i className="fas fa-stopwatch mr-1" />
+      <strong>
+        {minutesLeft > 1 ? minutesLeft + " mins." : secondsLeft + " segs."}
+      </strong>
+    </div>
   );
 });
 

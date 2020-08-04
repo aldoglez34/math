@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { Modal, Button, Image, Table } from "react-bootstrap";
 import PropTypes from "prop-types";
+import moment from "moment";
+import "moment/locale/es";
 
 const Leaderboards = React.memo(({ top10 }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const formattedDate = (date) => moment(date).format("LL");
 
   return (
     <>
@@ -50,10 +54,10 @@ const Leaderboards = React.memo(({ top10 }) => {
             <tbody>
               {top10.map((t, idx) => (
                 <tr key={t._id}>
-                  <td>{idx}</td>
-                  <td>{t.score}</td>
-                  <td>{t.student}</td>
-                  <td>{t.date}</td>
+                  <td className="text-center">{idx + 1}</td>
+                  <td className="text-center">{t.score}</td>
+                  <td className="text-center">{t.username}</td>
+                  <td className="text-right">{formattedDate(t.date)}</td>
                 </tr>
               ))}
             </tbody>
@@ -64,8 +68,7 @@ const Leaderboards = React.memo(({ top10 }) => {
               className="shadow-sm"
               onClick={handleClose}
             >
-              <i className="fas fa-arrow-left mr-2" />
-              Salir
+              OK
             </Button>
           </div>
         </Modal.Body>

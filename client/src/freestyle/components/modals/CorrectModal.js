@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const CorrectModal = React.memo(({ showCorrect, setShowCorrect }) => {
   useEffect(() => {
     // close modal after 2 seconds
-    if (showCorrect) setTimeout(() => setShowCorrect(false), 1500);
+    if (showCorrect) setTimeout(() => setShowCorrect(false), 1000);
   }, [showCorrect, setShowCorrect]);
 
   return (

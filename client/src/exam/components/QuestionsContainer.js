@@ -8,6 +8,7 @@ import QNumber from "./QNumber";
 import QInstruction from "../question/QInstruction";
 import QTechnicalInstruction from "../question/QTechnicalInstruction";
 import QMultipleChoice from "../question/QMultipleChoice";
+import ExitButton from "./ExitButton";
 
 const QuestionsContainer = React.memo(({ questions }) => {
   const dispatch = useDispatch();
@@ -105,10 +106,7 @@ const QuestionsContainer = React.memo(({ questions }) => {
         <div className="d-flex mb-3">
           <Timer />
           <QNumber current={number} total={questions.length} />
-          <a href="/course" className="ml-auto text-dark">
-            <i className="fas fa-door-open mr-1" />
-            Salir
-          </a>
+          <ExitButton />
         </div>
         <Row className="mx-lg-1 bg-light rounded">
           <Col

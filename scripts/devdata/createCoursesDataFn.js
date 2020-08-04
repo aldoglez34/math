@@ -66,7 +66,7 @@ module.exports = (examsArr) => [
           "Resolver problemas usando la resta",
         ],
         freestyle: {
-          timer: 10,
+          timer: 1,
         },
         material: [
           {

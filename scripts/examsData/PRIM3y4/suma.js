@@ -3,10 +3,10 @@ module.exports = [
     topicCode: "PRIM3y4_Suma",
     topicName: "Suma",
     name: "Sumas 1",
-    description: " Sumas sin acarreos menores a 100.",
+    description: "Sumas sin acarreos menores a 100.",
     duration: 15,
     difficulty: "Basic",
-    qCounter: 3,
+    qCounter: 20,
     questions: [
       {
         qInstruction: "Resuelve la siguiente suma: 3 + 1",
@@ -826,7 +826,7 @@ module.exports = [
     description: "Sumas sin acarreo menores a 1,000.",
     duration: 15,
     difficulty: "Basic-Intermediate",
-    qCounter: 3,
+    qCounter: 20,
     questions: [
       {
         qInstruction: "Resuelve la siguiente suma: 100+100",
@@ -1646,7 +1646,7 @@ module.exports = [
     description: "Sumas con un acarreo menores a 1,000.",
     duration: 20,
     difficulty: "Intermediate",
-    qCounter: 3,
+    qCounter: 20,
     questions: [
       {
         qInstruction: "Resuelve la siguiente suma: 16+15",
@@ -2264,7 +2264,7 @@ module.exports = [
     description: "Sumas con dos acarreos mayores a 1,000.",
     duration: 15,
     difficulty: "Intermediate-Advanced",
-    qCounter: 3,
+    qCounter: 20,
     questions: [
       {
         qInstruction: "Resuelve la siguiente suma: 178+145",
@@ -2338,6 +2338,7 @@ module.exports = [
         qInstruction: "Resuelve la siguiente suma: 254+199",
         qCorrectAnswers: [{ answer: "453" }],
       },
+
       {
         qInstruction: "Resuelve la siguiente suma: 285+239",
         qCorrectAnswers: [{ answer: "524" }],
@@ -2345,6 +2346,532 @@ module.exports = [
       {
         qInstruction: "Resuelve la siguiente suma: 292+179",
         qCorrectAnswers: [{ answer: "471" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 295+155",
+        qCorrectAnswers: [{ answer: "450" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 304+199",
+        qCorrectAnswers: [{ answer: "503" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 328+295",
+        qCorrectAnswers: [{ answer: "623" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 355+155",
+        qCorrectAnswers: [{ answer: "510" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 234+188",
+        qCorrectAnswers: [{ answer: "422" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 256+185",
+        qCorrectAnswers: [{ answer: "441" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 344+188",
+        qCorrectAnswers: [{ answer: "532" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 366+155",
+        qCorrectAnswers: [{ answer: "521" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 343+177",
+        qCorrectAnswers: [{ answer: "520" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 349+251",
+        qCorrectAnswers: [{ answer: "600" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 345+276",
+        qCorrectAnswers: [{ answer: "621" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 349+288",
+        qCorrectAnswers: [{ answer: "637" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 378+235",
+        qCorrectAnswers: [{ answer: "613" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 483+139",
+        qCorrectAnswers: [{ answer: "622" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 455+255",
+        qCorrectAnswers: [{ answer: "710" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 443+388",
+        qCorrectAnswers: [{ answer: "831" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 433+177",
+        qCorrectAnswers: [{ answer: "610" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 382+298",
+        qCorrectAnswers: [{ answer: "680" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 426+195",
+        qCorrectAnswers: [{ answer: "621" }],
+      },
+
+      {
+        qInstruction: "Resuelve la siguiente suma: 623+298",
+        qCorrectAnswers: [{ answer: "921" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 492+249",
+        qCorrectAnswers: [{ answer: "741" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 554+368",
+        qCorrectAnswers: [{ answer: "922" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 344+266",
+        qCorrectAnswers: [{ answer: "610" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 544+296",
+        qCorrectAnswers: [{ answer: "840" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 534+299",
+        qCorrectAnswers: [{ answer: "833" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 433+399",
+        qCorrectAnswers: [{ answer: "832" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 593+248",
+        qCorrectAnswers: [{ answer: "841" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 293+128",
+        qCorrectAnswers: [{ answer: "421" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 534+377",
+        qCorrectAnswers: [{ answer: "911" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 348+299",
+        qCorrectAnswers: [{ answer: "647" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 633+277",
+        qCorrectAnswers: [{ answer: "910" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 549+161",
+        qCorrectAnswers: [{ answer: "710" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 652+199",
+        qCorrectAnswers: [{ answer: "851" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 671+299",
+        qCorrectAnswers: [{ answer: "970" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 668+248",
+        qCorrectAnswers: [{ answer: "916" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 685+255",
+        qCorrectAnswers: [{ answer: "940" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 548+383",
+        qCorrectAnswers: [{ answer: "931" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 674+288",
+        qCorrectAnswers: [{ answer: "962" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 544+176",
+        qCorrectAnswers: [{ answer: "720" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 438+398",
+        qCorrectAnswers: [{ answer: "836" }],
+      },
+
+      {
+        qInstruction: "Resuelve la siguiente suma: 432+199",
+        qCorrectAnswers: [{ answer: "631" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 234+189",
+        qCorrectAnswers: [{ answer: "423" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 343+278",
+        qCorrectAnswers: [{ answer: "621" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 455+455",
+        qCorrectAnswers: [{ answer: "910" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 452+179",
+        qCorrectAnswers: [{ answer: "631" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 643+287",
+        qCorrectAnswers: [{ answer: "930" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 231+179",
+        qCorrectAnswers: [{ answer: "410" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 543+189",
+        qCorrectAnswers: [{ answer: "732" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 732+188",
+        qCorrectAnswers: [{ answer: "920" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 548+277",
+        qCorrectAnswers: [{ answer: "825" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 399+299",
+        qCorrectAnswers: [{ answer: "698" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 199+99",
+        qCorrectAnswers: [{ answer: "298" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 299+299",
+        qCorrectAnswers: [{ answer: "598" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 399+399+",
+        qCorrectAnswers: [{ answer: "798" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 499+499",
+        qCorrectAnswers: [{ answer: "998" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 348+272",
+        qCorrectAnswers: [{ answer: "620" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 444+188",
+        qCorrectAnswers: [{ answer: "632" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 727+193",
+        qCorrectAnswers: [{ answer: "920" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 541+399",
+        qCorrectAnswers: [{ answer: "940" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 343+297",
+        qCorrectAnswers: [{ answer: "640" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 349+151",
+        qCorrectAnswers: [{ answer: "500" }],
+      },
+
+      {
+        qInstruction: "Resuelve la siguiente suma: 256+165",
+        qCorrectAnswers: [{ answer: "421" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 542+268",
+        qCorrectAnswers: [{ answer: "810" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 437+284",
+        qCorrectAnswers: [{ answer: "721" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 283+177",
+        qCorrectAnswers: [{ answer: "460" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 248+152",
+        qCorrectAnswers: [{ answer: "400" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 356+244",
+        qCorrectAnswers: [{ answer: "600" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 89+75",
+        qCorrectAnswers: [{ answer: "164" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 88+66",
+        qCorrectAnswers: [{ answer: "154" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 454+349",
+        qCorrectAnswers: [{ answer: "803" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 439+177",
+        qCorrectAnswers: [{ answer: "616" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 348+89",
+        qCorrectAnswers: [{ answer: "437" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 792+88",
+        qCorrectAnswers: [{ answer: "880" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 654+89",
+        qCorrectAnswers: [{ answer: "743" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 488+65",
+        qCorrectAnswers: [{ answer: "553" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 387+33",
+        qCorrectAnswers: [{ answer: "420" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 234+69",
+        qCorrectAnswers: [{ answer: "303" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 244+196",
+        qCorrectAnswers: [{ answer: "440" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 659+61",
+        qCorrectAnswers: [{ answer: "720" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 854+77",
+        qCorrectAnswers: [{ answer: "931" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 439+199",
+        qCorrectAnswers: [{ answer: "638" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 658+293",
+        qCorrectAnswers: [{ answer: "951" }],
+      },
+
+      {
+        qInstruction: "Resuelve la siguiente suma: 845+65",
+        qCorrectAnswers: [{ answer: "910" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 234+177",
+        qCorrectAnswers: [{ answer: "411" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 255+178",
+        qCorrectAnswers: [{ answer: "433" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 388+222",
+        qCorrectAnswers: [{ answer: "610" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 558+352",
+        qCorrectAnswers: [{ answer: "910" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 473+358",
+        qCorrectAnswers: [{ answer: "831" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 483+177",
+        qCorrectAnswers: [{ answer: "660" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 789+122",
+        qCorrectAnswers: [{ answer: "911" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 393+297",
+        qCorrectAnswers: [{ answer: "690" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 627+199",
+        qCorrectAnswers: [{ answer: "826" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 349+266",
+        qCorrectAnswers: [{ answer: "615" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 778+155",
+        qCorrectAnswers: [{ answer: "933" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 448+178",
+        qCorrectAnswers: [{ answer: "626" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 552+199",
+        qCorrectAnswers: [{ answer: "751" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 834+89",
+        qCorrectAnswers: [{ answer: "923" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 292+98",
+        qCorrectAnswers: [{ answer: "390" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 554+298",
+        qCorrectAnswers: [{ answer: "852" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 433+177",
+        qCorrectAnswers: [{ answer: "610" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 485+356",
+        qCorrectAnswers: [{ answer: "841" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 657+145",
+        qCorrectAnswers: [{ answer: "802" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 483+189",
+        qCorrectAnswers: [{ answer: "672" }],
+      },
+
+      {
+        qInstruction: "Resuelve la siguiente suma: 299+155",
+        qCorrectAnswers: [{ answer: "454" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 455+166",
+        qCorrectAnswers: [{ answer: "621" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 882+89",
+        qCorrectAnswers: [{ answer: "971" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 234+178",
+        qCorrectAnswers: [{ answer: "412" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 529+283",
+        qCorrectAnswers: [{ answer: "812" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 454+377",
+        qCorrectAnswers: [{ answer: "831" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 343+188",
+        qCorrectAnswers: [{ answer: "531" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 299+164",
+        qCorrectAnswers: [{ answer: "463" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 674+177",
+        qCorrectAnswers: [{ answer: "851" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 547+166",
+        qCorrectAnswers: [{ answer: "713" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 547+366",
+        qCorrectAnswers: [{ answer: "913" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 676+79",
+        qCorrectAnswers: [{ answer: "755" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 485+99",
+        qCorrectAnswers: [{ answer: "584" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 429+78",
+        qCorrectAnswers: [{ answer: "507" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 778+56",
+        qCorrectAnswers: [{ answer: "834" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 834+76",
+        qCorrectAnswers: [{ answer: "910" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 477+245",
+        qCorrectAnswers: [{ answer: "722" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 347+157",
+        qCorrectAnswers: [{ answer: "504" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 799+44",
+        qCorrectAnswers: [{ answer: "843" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 665+297",
+        qCorrectAnswers: [{ answer: "962" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 333+98",
+        qCorrectAnswers: [{ answer: "431" }],
+      },
+
+      {
+        qInstruction: "Resuelve la siguiente suma: 655+266",
+        qCorrectAnswers: [{ answer: "921" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 548+179",
+        qCorrectAnswers: [{ answer: "727" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 244+188",
+        qCorrectAnswers: [{ answer: "432" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 549+88",
+        qCorrectAnswers: [{ answer: "637" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 588+345",
+        qCorrectAnswers: [{ answer: "933" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 551+289",
+        qCorrectAnswers: [{ answer: "840" }],
       },
     ],
   },
@@ -2355,88 +2882,8 @@ module.exports = [
     description: "Resolución de problemas y sumas mayores a 1,000.",
     duration: 20,
     difficulty: "Advanced",
-    qCounter: 3,
+    qCounter: 20,
     questions: [
-      {
-        qInstruction: "Resuelve la siguiente suma",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "10 + 7",
-        },
-        qCorrectAnswers: [{ answer: "17" }],
-      },
-      {
-        qInstruction:
-          "Escribe 3 (pesos) en el primer input y 5 (manzanas) en el segundo",
-        qCorrectAnswers: [
-          { answer: "3", complement: "pesos", placement: "right" },
-          { answer: "5", complement: "manzanas", placement: "right" },
-        ],
-        qComment: "este comentario es de prueba",
-      },
-      {
-        qInstruction:
-          "Escribe 45 en el primer input, 22 en el segundo y 77 en el tercero",
-        qCorrectAnswers: [
-          { answer: "45", complement: "número", placement: "left" },
-          { answer: "22", complement: "otro", placement: "left" },
-          { answer: "77", complement: "último", placement: "left" },
-        ],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura1.png",
-        },
-        qCorrectAnswers: [{ answer: "4" }],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura2.png",
-        },
-        qCorrectAnswers: [{ answer: "6" }],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura3.png",
-        },
-        qMultipleChoice: {
-          type: "image",
-          imageChoices: [
-            "/exams/suma/suma1/res4.png",
-            "/exams/suma/suma1/res5.png",
-            "/exams/suma/suma1/res6.png",
-            "/exams/suma/suma1/res7.png",
-          ],
-        },
-        qCorrectAnswers: [{ answer: "/exams/suma/suma1/res5.png" }],
-      },
-      {
-        qInstruction: "Resuelve el siguiente problema",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "5 + 8",
-        },
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["11", "12", "13", "14"],
-        },
-        qCorrectAnswers: [{ answer: "13" }],
-        qComment: "Selecciona respuesta correcta y da clic en siguiente",
-      },
-      {
-        qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["13.5", "13.7", "14", "14.2"],
-        },
-        qCorrectAnswers: [{ answer: "14" }],
-      },
       {
         qInstruction: "Resuelve el siguiente problema",
         qTechnicalInstruction: {
@@ -2453,11 +2900,1039 @@ module.exports = [
         qTechnicalInstruction: {
           type: "text",
           text:
-            "Yo tengo 13 a~ nos y mi hermano es 15 años mayor que yo, ¿qué edad tiene mi hermano?",
+            "En un estacionamiento conté 28 automóviles, 11 camionetas y 13 motocicletas, ¿cuántos vehículos había en total?",
         },
         qCorrectAnswers: [
-          { answer: "28", complement: "a~ nos", placement: "right" },
+          { answer: "52", complement: "vehículos", placement: "right" },
         ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Yo tengo 13 a~ nos y mi hermano es 15 a~ nos mayor que yo, ¿qué edad tiene mi hermano?",
+        },
+        qCorrectAnswers: [
+          { answer: "28", complement: "años", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Yo tengo 12 a~ nos y mi hermano es 19 años mayor que yo, ¿qué edad tiene mi hermano?",
+        },
+        qCorrectAnswers: [
+          { answer: "31", complement: "a~ nos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "En mi escuela hay dos grupos de primer año. Uno de ellos tiene 48 alumnos y el otro tiene 37 alumnos. ¿Cuántos alumnos de primer a~ no tiene en total la escuela?",
+        },
+        qCorrectAnswers: [
+          { answer: "85", complement: "alumnos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "En mi escuela hay dos grupos de primer año. Uno de ellos tiene 25 alumnos y el otro tiene 27 alumnos. ¿Cuántos alumnos de primer a~ no tiene en total la escuela?",
+        },
+        qCorrectAnswers: [
+          { answer: "52", complement: "alumnos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Diego tiene 23 años y su papá es 33 años más viejo que él, ¿qué edad tiene el papá de Diego?",
+        },
+        qCorrectAnswers: [
+          { answer: "56", complement: "a~ nos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Diego tiene 19 a~ nos y su papá es 29 años más viejo que él, ¿qué edad tiene el papá de Diego?",
+        },
+        qCorrectAnswers: [
+          { answer: "48", complement: "a~ nos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "El tío de Natalia tiene una papelería. En enero vendió 370 sacapuntas, en febrero vendió 120 sacapuntas y en marzo vendió otros 228 sacapuntas, ¿cuántos sacapuntas vendió en total del tío de Natalia?",
+        },
+        qCorrectAnswers: [
+          { answer: "718", complement: "sacapuntas", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "El tío de Natalia tiene una papelería. En enero vendió 110 sacapuntas, en febrero vendió 85 sacapuntas y en marzo vendió otros 234 sacapuntas, ¿cuántos sacapuntas vendió en total del tío de Natalia?",
+        },
+        qCorrectAnswers: [
+          { answer: "429", complement: "sacapuntas", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Patricia está ahorrando para comprarse un vestido. En enero ahorró 150 pesos, en febrero ahorró otros 104 pesos y en marzo su tío le regaló 230 pesos, ¿cuánto dinero ha ahorrado Patricia?",
+        },
+        qCorrectAnswers: [
+          { answer: "484", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Patricia está ahorrando para comprarse un vestido. En enero ahorró 232 pesos, en febrero ahorró otros 155 pesos y en marzo su tío le regaló 500 pesos, ¿cuánto dinero ha ahorrado Patricia?",
+        },
+        qCorrectAnswers: [
+          { answer: "887", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Armando compró dos costales de frijoles, uno pesó 54 kilogramos y el segundo pesó 66 kilogramos, ¿cuántos kilogramos pesan los dos costales juntos?",
+        },
+        qCorrectAnswers: [
+          { answer: "120", complement: "kilogramos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Armando compró dos costales de frijoles, uno pesó 49 kilogramos y el segundo pesó 32 kilogramos, ¿cuántos kilogramos pesan los dos costales juntos?",
+        },
+        qCorrectAnswers: [
+          { answer: "81", complement: "kilogramos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "En un restaurante, el costo de una sopa es de 49 pesos, el plato fuerte cuesta 89 pesos, el vaso de agua cuesta 15 pesos y el postre del día tiene un costo de 32 pesos, ¿cuánto se va a pagar en total por una comida completa?",
+        },
+        qCorrectAnswers: [
+          { answer: "185", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "En un restaurante, el costo de una sopa es de 55 pesos, el plato fuerte cuesta 115 pesos, el vaso de agua cuesta 20 pesos y el postre del día tiene un costo de 28 pesos, cuánto se va a pagar en total por una comida completa?",
+        },
+        qCorrectAnswers: [
+          { answer: "218", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Emilio tiene 44 botellas de agua y luego compra otras 25 botellas más, ¿cuántas botellas de agua tendrá Emilio al final?",
+        },
+        qCorrectAnswers: [
+          { answer: "69", complement: "botellas", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Emilio tiene 22 botellas de agua y luego compra otras 19 botellas más, ¿cuántas botellas de agua tendrá Emilio al final?",
+        },
+        qCorrectAnswers: [
+          { answer: "41", complement: "botellas de agua", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Carolina tiene 37 lapices de colores y se encuentra otros 14 lapices de colores, ¿cuántos lapices de colores tendrá Carolina al final?",
+        },
+        qCorrectAnswers: [
+          {
+            answer: "51",
+            complement: "lapices de colores",
+            placement: "right",
+          },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Carolina tiene 44 lapices de colores y se encuentra otros 15 lapices de colores, ¿cuántos lapices de colores tendrá Carolina al final?",
+        },
+        qCorrectAnswers: [
+          {
+            answer: "59",
+            complement: "lapices de colores",
+            placement: "right",
+          },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Gerardo tiene 24 naranjas. Luis tiene 13 naranjas. Si Gerardo le da todas sus naranjas a Luis, ¿cuántas naranjas tendrá Luis?",
+        },
+        qCorrectAnswers: [
+          { answer: "37", complement: "naranjas", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Gerardo tiene 32 naranjas. Luis tiene 21 naranjas. Si Gerardo le da todas sus naranjas a Luis, ¿cuántas naranjas tendrá Luis?",
+        },
+        qCorrectAnswers: [
+          { answer: "53", complement: "naranjas", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Olivia tiene 47 estampas, mientras que Katia tiene 68 estampas. Si Olivia le da todas sus estampas a Katia, ¿cuántas estampas tendrá Katia?",
+        },
+        qCorrectAnswers: [
+          { answer: "115", complement: "estampas", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Olivia tiene 38 estampas, mientras que Katia tiene 123 estampas. Si Katia le da todas sus estampas a Olivia, ¿cuántas estampas tendrá Olivia?",
+        },
+        qCorrectAnswers: [
+          { answer: "161", complement: "estampas", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "En un partido de baloncesto el equipo A anotó 88 puntos, mientras que el equipo B anotó 95 puntos. Cuántos puntos anotaron entre los dos equipos?",
+        },
+        qCorrectAnswers: [
+          { answer: "183", complement: "puntos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "En un partido de baloncesto el equipo A anotó 97 puntos, mientras que el equipo B anotó 78 puntos. ¿Cuántos puntos anotaron entre los dos equipos?",
+        },
+        qCorrectAnswers: [
+          { answer: "175", complement: "puntos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Karen tiene 68 crayones, su mamá le compra 95 crayones más. ¿Cuántos crayones tiene Karen en total?",
+        },
+        qCorrectAnswers: [
+          { answer: "163", complement: "crayones", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Karen tiene 34 crayones, su mamá le compra 67 crayones más. ¿Cuántos crayones tiene Karen en total?",
+        },
+        qCorrectAnswers: [
+          { answer: "101", complement: "crayones", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Patricio tiene 24 plumones, si su papá le regala 45 plumones más, ¿cuántos plumones tiene Patricio en total?",
+        },
+        qCorrectAnswers: [
+          { answer: "69", complement: "plumones", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Patricio tiene 37 plumones, si su papá le regala 65 plumones más, ¿cuántos plumones tiene Patricio en total?",
+        },
+        qCorrectAnswers: [
+          { answer: "102", complement: "plumones", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Mario fue el domingo al cine, si su entrada costó 55 pesos, su refresco 82 pesos y sus palomitas 125 pesos, ¿cuánto pagó en total Mario en el cine?",
+        },
+        qCorrectAnswers: [
+          { answer: "262", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Diego fue el fin de semana al cine, la entrada le costó 72 pesos, su refresco le costó 64 pesos y sus palomitas 98 pesos, ¿cuánto pagó en total Diego en el cine?",
+        },
+        qCorrectAnswers: [
+          { answer: "234", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Leticia salió a correr tres días seguidos, el primer día corrió 7 kilómetros, el segundo día corrió otros 11 kilómetros y el tercer día corrió solo 5 kilómetros. ¿Cuántos kilómetros corrió en total Leticia?",
+        },
+        qCorrectAnswers: [
+          { answer: "23", complement: "kilómetros", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Ana salió a correr cuatro días seguidos, el primer día corrió 12 kilómetros, el segundo día corrió otros 6 kilómetros, el tercer día corrió solo 4 kilómetros y el cuarto día corrió 14 kilómetros. ¿Cuántos kilómetros corrió en total Ana?",
+        },
+        qCorrectAnswers: [
+          { answer: "36", complement: "kilómetros", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Rogelio lleva armando un rompecabezas por 3 días, el primer día puso 58 piezas, el segundo día puso 61 piezas y el tercer día puso 88 piezas, ¿cuántas piezas ha puesto Rogelio en estos tres días?",
+        },
+        qCorrectAnswers: [
+          { answer: "207", complement: "piezas", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Mauricio lleva armando un rompecabezas por 2 días, el primer día puso 236 piezas y el segundo día puso 192 piezas, ¿cuántas piezas ha puesto Mauricio en total?",
+        },
+        qCorrectAnswers: [
+          { answer: "428", complement: "piezas", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Teresa tiene actualmente 15 años, ¿cuántos años tendrá dentro de 32 años?",
+        },
+        qCorrectAnswers: [
+          { answer: "47", complement: "a~ nos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Claudia tiene actualmente 23 años, ¿cuántos a~ nos tendrá dentro de 28 años?",
+        },
+        qCorrectAnswers: [
+          { answer: "51", complement: "a~ nos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "En un fin de semana una panadería vende 129 panes el sábado, mientras que el domingo vende 223 panes más, ¿cuántos panes vendió en total la panadería?",
+        },
+        qCorrectAnswers: [
+          { answer: "352", complement: "panes", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Durante el fin de semana, una panadería vende 391 bolillos el sábado, mientras que el domingo vende otros 453 bolillos, ¿cuántos bolillos vendió en total la panadería?",
+        },
+        qCorrectAnswers: [
+          { answer: "844", complement: "bolillos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Un oficinista necesita comprar tintas para su impresora, él necesita comprar una tinta de colores y otra tinta de color negra, si la tinta de colores tiene un costo de 450 pesos y la titna de color negra tiene un costo de 255 pesos, ¿cuánto dinero necesita el oficinista en total?",
+        },
+        qCorrectAnswers: [
+          { answer: "705", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Un oficinista necesita comprar tintas para su impresora, él necesita comprar una tinta de colores y otra tinta de color negra, si la tinta de colores tiene un costo de 385 pesos y la titna de color negra tiene un costo de 190 pesos, ¿cuánto dinero necesita el oficinista en total?",
+        },
+        qCorrectAnswers: [
+          { answer: "575", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Durante un partido de fútbol americano el equipo A anotó 28 puntos, mientras que el equipo B anotó 35 puntos, ¿cuántos puntos se anotaron en total en el partido?",
+        },
+        qCorrectAnswers: [
+          { answer: "63", complement: "puntos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Durante un partido de fútbol americano el equipo A anotó 52 puntos, mientras que el equipo B anotó 37 puntos, ¿cuántos puntos se anotaron en total en el partido?",
+        },
+        qCorrectAnswers: [
+          { answer: "89", complement: "puntos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Arturo trabajó el fin de semana en la tiendita de su tío. El sábado vendió un total de 520 pesos y el domingo vendió 345 pesos, ¿cuánto vendió Arturo en total?",
+        },
+        qCorrectAnswers: [
+          { answer: "865", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Ricardo trabajó el fin de semana en la panadería de su tía. El sábado vendió un total de 390 pesos y el domingo vendió 564 pesos, ¿cuánto vendió Ricardo en total?",
+        },
+        qCorrectAnswers: [
+          { answer: "954", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Valentina tiene una colección de 45 muñecas, si su papá le regala 12 mu~ necas mas y su mamá le regala 15 muñecas, ¿cuántas muñecas en total tendrá la colección de Valentina?",
+        },
+        qCorrectAnswers: [
+          { answer: "72", complement: "mu~ necas", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Esmeralda tiene una colección de 52 muñecas, si su mamá le regala 36 muñecas, ¿cuántas muñecas en total tendrá la colección de Esmeralda?",
+        },
+        qCorrectAnswers: [
+          { answer: "88", complement: "muñecas", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Julio necesita comprarse el uniforme escolar. El costo de la camisa es de 140 pesos, el pantalón cuesta 235 pesos, los calcetines cuestan 60 pesos y los zapatos tienen un costo de 460 pesos. ¿Cuánto tendrá que pagar Julio por todo el uniforme?",
+        },
+        qCorrectAnswers: [
+          { answer: "895", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Karina necesita comprarse el uniforme escolar. El costo de la blusa es de 165 pesos, la falda cuesta 285 pesos, los calcetines cuestan 75 pesos y los zapatos tienen un costo de 345 pesos. ¿Cuánto tendrá que pagar Karina por todo el uniforme?",
+        },
+        qCorrectAnswers: [
+          { answer: "870", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Laura está leyendo un libro. El día lunes lee 43 páginas y el día martes lee 52 páginas, ¿cuántas páginas ha leído Laura en total?",
+        },
+        qCorrectAnswers: [
+          { answer: "95", complement: "páginas", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Regina está leyendo un libro. El día lunes lee 24 páginas, el día martes lee 44 páginas y el miércoles lee 51 páginas, ¿cuántas páginas ha leído Regina en total?",
+        },
+        qCorrectAnswers: [
+          { answer: "119", complement: "páginas", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Una familia decide viajar a la ciudad de México saliendo de Veracruz. Recorren 107 kilómetros hasta llegar a Xalapa y parar a desayunar. Paran en Puebla para comer, luego de recorrer 194 kilómetros y luego de recorrer 151 kilómetros llegan a la ciudad de México. ¿Cuántos kilómetros recorrió la familia en total?",
+        },
+        qCorrectAnswers: [
+          { answer: "452", complement: "kilómetros", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Para ir de Oaxaca a Guanajuato, una familia recorre 340 kilómetros hasta llegar a Puebla y pasar el día ahí. Al día siguiente recorren 471 kilómetros hasta llegar a su destino en Guanajuato. ¿Cuántos kilómetros recorrió la familia en total?",
+        },
+        qCorrectAnswers: [
+          { answer: "811", complement: "kilómetros", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Elisa compró dos costales de naranjas, un costal tiene 43 naranjas y el otro tiene 38 naranjas, ¿cuántas naranjas en total tiene Elisa?",
+        },
+        qCorrectAnswers: [
+          { answer: "81", complement: "naranjas", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Manuel compró tres costales de papas. El primer costal tiene 52 papas, el segundo tiene 23 papas y el tercero tiene 58 papas, ¿cuántas papas tiene Manuel en total?",
+        },
+        qCorrectAnswers: [
+          { answer: "133", complement: "papas", placement: "right" },
+        ],
+      },
+
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Diego ahorró en enero 300 pesos, en febrero 250 pesos y en marzo 180 pesos, ¿cuánto dinero ha ahorrado Diego en total?",
+        },
+        qCorrectAnswers: [
+          { answer: "730", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "En lo que va del a~ no, Rodrigo ha ahorrado las siguientes cantidades: 388 pesos en enero, 342 pesos en febrero y 195 pesos en marzo ¿cuánto dinero ha ahorrado Rodrigo en total?",
+        },
+        qCorrectAnswers: [
+          { answer: "925", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Un mesero ha recibido tres propinas, la primera fue de 52 pesos, la segunda de 34 pesos y la tercera de 68 pesos, ¿cuánto dinero ganó el mesero de sus propinas?",
+        },
+        qCorrectAnswers: [
+          { answer: "154", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Una mesera ha recibido dos propinas, la primera fue de 47 pesos y la segunda de 75 pesos, ¿cuánto dinero ganó la mesera de sus propinas?",
+        },
+        qCorrectAnswers: [
+          { answer: "122", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Un oso polar en sus primeros años de vida pesa 45 kilogramos. Después de 6 años su peso incrementa 315 kilogramos, ¿cuál es el peso total de oso polar pasados estos años?",
+        },
+        qCorrectAnswers: [
+          { answer: "360", complement: "kilogramos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Una jirafa al nacer pesa 65 kilogramos. Cuando llega a su edad adulta, su peso se incrementa en 683 kilogramos, ¿cuál es el peso de la jirafa en su edad adulta?",
+        },
+        qCorrectAnswers: [
+          { answer: "748", complement: "kilogramos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "La alimentación de un oso panda consiste en comer bambú. El lunes come 15 kilogramos de bambú, el martes come 23 kilogramos y el miércoles come 19 kilogramos, ¿cuántos kilogramos de bambú ha comido en total el oso panda?",
+        },
+        qCorrectAnswers: [
+          { answer: "57", complement: "kilogramos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Se sabe que el elefante come hojas de árboles. El primer día come 178 kilogramos de hojas, el segundo día come 155 kilogramos de hojas y el tercer día come 238 kilogramos de hojas. ¿Cuántos kilogramos de hojas ha comido en total el elefante?",
+        },
+        qCorrectAnswers: [
+          { answer: "571", complement: "kilogramos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "En un salón de secundaria hay 23 estudiantes hombres y 19 estudiantes mujeres, ¿cuántos estudiantes hay en total en el salón?",
+        },
+        qCorrectAnswers: [
+          { answer: "42", complement: "estudiantes", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "En un salón de secundaria hay 21 estudiantes hombres y 18 estudiantes mujeres, ¿cuántos estudiantes hay en total en el salón?",
+        },
+        qCorrectAnswers: [
+          { answer: "39", complement: "estudiantes", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Natalia fue a la verdulería y compró 48 pesos de aguacate, 25 pesos de tomate y 42 pesos de plátano, ¿cuánto pagó en total Natalia?",
+        },
+        qCorrectAnswers: [
+          { answer: "115", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Natalia fue a la verdulería y compró 55 pesos de aguacate, 19 pesos de tomate, 35 pesos de papaya y 41 pesos de champi~ nones, ¿cuánto pagó en total Natalia?",
+        },
+        qCorrectAnswers: [
+          { answer: "150", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Rodrigo compró dos rompecabezas, uno le costó 320 pesos y el otro le costó 430 pesos, ¿cuánto pagó por los dos rompecabezas?",
+        },
+        qCorrectAnswers: [
+          { answer: "750", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Gerardo compró tres rompecabezas, el primero le costó 320 pesos, el segundo 240 pesos y el tercero le costó 375 pesos, ¿cuánto pagó por los tres rompecabezas?",
+        },
+        qCorrectAnswers: [
+          { answer: "935", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Alonso tomó 2 litros de agua el lunes, 2 litros el martes, 4 litros el miércoles y 2 litros el jueves, ¿cuántos litros de agua tomó en total Alonso?",
+        },
+        qCorrectAnswers: [
+          { answer: "10", complement: "litros", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Elena tomó 3 litros de agua el lunes, 2 litros el martes, 5 litros el miércoles, 5 litros el jueves y 3 litros el viernes, ¿cuántos litros de agua tomó en total Elena?",
+        },
+        qCorrectAnswers: [
+          { answer: "18", complement: "litros", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Luis compró un pantalón de 430 pesos y una playera de 335 pesos, ¿cuánto pagó en total Luis por su ropa?",
+        },
+        qCorrectAnswers: [
+          { answer: "765", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Diego compró una camisa de 520 pesos y unos zapatos de 340 pesos, ¿cuánto pagó en total Diego por su ropa?",
+        },
+        qCorrectAnswers: [
+          { answer: "860", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Una tienda de abarrotes recibe tres costales de cacahuates, el primer costal tiene un peso de 54 kilogramos, el segundo pesa 35 kilogramos y el tercero tiene un peso de 49 kilogramos, ¿cuánto pesaron en total los costales de cacahuate?",
+        },
+        qCorrectAnswers: [
+          { answer: "138", complement: "kilogramos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Una tienda de abarrotes recibe 4 costales de narajnas, el primer costal tiene pesa de 62 kilogramos, el segundo pesa 53 kilogramos, el tercero pesa de 49 kilogramos y el cuarto pesa 61 kilogramos ¿cuánto pesaron en total los costales de naranjas?",
+        },
+        qCorrectAnswers: [
+          { answer: "225", complement: "kilogramos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Paula está escribiendo un documento, en el día uno escribió 238 palabras y en el día escribió 450 palabras, ¿cuántas palabras ha escrito en total Paula?",
+        },
+        qCorrectAnswers: [
+          { answer: "688", complement: "palabras", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Katia está escribiendo su tarea de español. El viernes escribió 330 palabras, el sábado escribió 255 palabras y el domingo escribió 415 palabras, ¿cuántas palabras en total escribió Katia?",
+        },
+        qCorrectAnswers: [
+          { answer: "1000", complement: "palabras", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Para poder estudiar mejor Ana Karen necesita comprar una lampara. El costo de la lampara es de 425 pesos pero no incluye foco, por lo que Ana Karen compra un foco de 88 pesos, ¿cuánto pagó en total Ana Karen?",
+        },
+        qCorrectAnswers: [
+          { answer: "513", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Para poder estudiar mejor Julieta necesita comprar una lampara. El costo de la lampara es de 549 pesos pero no incluye foco, por lo que Julieta compra un foco de 75 pesos, ¿cuánto pagó en total Julieta?",
+        },
+        qCorrectAnswers: [
+          { answer: "624", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 1283+1034",
+        qCorrectAnswers: [{ answer: "2317" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 834+734",
+        qCorrectAnswers: [{ answer: "1568" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 839+455",
+        qCorrectAnswers: [{ answer: "1294" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 1293+893",
+        qCorrectAnswers: [{ answer: "2186" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 898+777",
+        qCorrectAnswers: [{ answer: "1675" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 2330+1920",
+        qCorrectAnswers: [{ answer: "4250" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 1083+792",
+        qCorrectAnswers: [{ answer: "1875" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 990+825",
+        qCorrectAnswers: [{ answer: "1815" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 1723+627",
+        qCorrectAnswers: [{ answer: "2350" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 1508+780",
+        qCorrectAnswers: [{ answer: "2288" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 901+888",
+        qCorrectAnswers: [{ answer: "1789" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 1023+1022",
+        qCorrectAnswers: [{ answer: "2045" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 3203+2732",
+        qCorrectAnswers: [{ answer: "5935" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 1777+522",
+        qCorrectAnswers: [{ answer: "2299" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 2278+633",
+        qCorrectAnswers: [{ answer: "2911" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 1222+450",
+        qCorrectAnswers: [{ answer: "1672" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 898+677",
+        qCorrectAnswers: [{ answer: "1575" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 889+771",
+        qCorrectAnswers: [{ answer: "1660" }],
+      },
+
+      {
+        qInstruction: "Resuelve la siguiente suma: 2335+1655",
+        qCorrectAnswers: [{ answer: "3990" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 1892+777",
+        qCorrectAnswers: [{ answer: "2669" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 1999+345",
+        qCorrectAnswers: [{ answer: "2344" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 1929+1432",
+        qCorrectAnswers: [{ answer: "3361" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 778+664",
+        qCorrectAnswers: [{ answer: "1442" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 1222+1037",
+        qCorrectAnswers: [{ answer: "2259" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 893+433",
+        qCorrectAnswers: [{ answer: "1326" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 2340+377",
+        qCorrectAnswers: [{ answer: "2717" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 2983+1772",
+        qCorrectAnswers: [{ answer: "4755" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 3882+1909",
+        qCorrectAnswers: [{ answer: "5791" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 2932+1777",
+        qCorrectAnswers: [{ answer: "4709" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 2888+1452",
+        qCorrectAnswers: [{ answer: "4340" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 928+552",
+        qCorrectAnswers: [{ answer: "1480" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 2308+1456",
+        qCorrectAnswers: [{ answer: "3764" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 2881+1782",
+        qCorrectAnswers: [{ answer: "4663" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 3908+2782",
+        qCorrectAnswers: [{ answer: "6690" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 1287+783",
+        qCorrectAnswers: [{ answer: "2070" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 928+726",
+        qCorrectAnswers: [{ answer: "1654" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 2893+1982",
+        qCorrectAnswers: [{ answer: "4875" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 892+624",
+        qCorrectAnswers: [{ answer: "1516" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 1267+394",
+        qCorrectAnswers: [{ answer: "1661" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente suma: 3542+2732",
+        qCorrectAnswers: [{ answer: "6274" }],
       },
     ],
   },

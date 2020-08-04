@@ -62,7 +62,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
               ).length,
               top10: cv.freestyle.attempts
                 .sort((a, b) => (a.score > b.score ? -1 : 1))
-                .slice(0, 9),
+                .slice(0, 10),
             },
             hasReward: studentData.rewards.filter(
               (r) => r.topicName === cv.name

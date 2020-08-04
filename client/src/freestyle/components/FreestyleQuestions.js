@@ -11,6 +11,7 @@ import QMultipleChoice from "../../exam/question/QMultipleChoice";
 import FreestyleQPoints from "./FreestyleQPoints";
 import CorrectModal from "./modals/CorrectModal";
 import IncorrectModal from "./modals/IncorrectModal";
+import FreestyleExitButton from "./FreestyleExitButton";
 
 const FreestyleQuestions = React.memo(({ questions }) => {
   const dispatch = useDispatch();
@@ -31,10 +32,10 @@ const FreestyleQuestions = React.memo(({ questions }) => {
 
     // check if last (highly unlikely that the student finishes all the questions)
     if (number > questions.length) {
-      // save results in redux
-      dispatch(examActions.setResults(answers));
+      // alert the user
+      alert("El tiempo ha finalizado.\nTu puntuación final fue de: " + score);
       // go to results page
-      window.location.href = "/course/exam/freestyle/results";
+      window.location.href = "/course";
     }
   }, [dispatch, number, answers, questions]);
 
@@ -121,10 +122,7 @@ const FreestyleQuestions = React.memo(({ questions }) => {
           <FreestyleTimer score={score} />
           <FreestyleQNumber current={number} />
           <FreestyleQPoints score={score} />
-          <a href="/course" className="ml-auto text-dark">
-            <i className="fas fa-door-open mr-1" />
-            Salir
-          </a>
+          <FreestyleExitButton />
         </div>
         <Row className="mx-lg-1 bg-light rounded">
           <Col

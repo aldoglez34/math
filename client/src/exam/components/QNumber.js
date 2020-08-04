@@ -3,11 +3,15 @@ import PropTypes from "prop-types";
 
 const QNumber = React.memo(({ current, total }) => {
   return (
-    <div title="Número de pregunta" style={{ cursor: "help" }}>
-      <i className="fas fa-check-circle text-dark ml-3 mr-1" />
-      <span>{current}</span>
-      <span className="mx-1">/</span>
-      <span>{total}</span>
+    <div
+      title="Número de pregunta"
+      className="text-secondary ml-2 p-1"
+      style={{ cursor: "help" }}
+    >
+      <i className="fas fa-question-circle mr-1" />
+      <strong>{current}</strong>
+      <strong className="mx-1">de</strong>
+      <strong>{total}</strong>
     </div>
   );
 });

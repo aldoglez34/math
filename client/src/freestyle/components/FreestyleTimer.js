@@ -14,7 +14,7 @@ const FreestyleTimer = React.memo(({ score }) => {
   useEffect(() => {
     if ((secondsLeft % 60) / 100 === 0) setMinutesLeft(minutesLeft - 1);
 
-    if (minutesLeft === 0) {
+    if (secondsLeft === 0) {
       // register attempt
       API.registerFreestyleAttempt({
         courseId: course._id,
@@ -26,9 +26,9 @@ const FreestyleTimer = React.memo(({ score }) => {
         .then((res) => console.log(res.data))
         .catch((err) => console.log("error", err));
       // alert the user
-      alert("¡Tu tiempo ha finalizado!");
+      alert("El tiempo ha finalizado.\nTu puntuación final fue de: " + score);
       // go back
-      window.location.href = "/course/exam/freestyle/results";
+      window.location.href = "/course";
     }
 
     setTimeout(() => {
@@ -37,10 +37,16 @@ const FreestyleTimer = React.memo(({ score }) => {
   }, [secondsLeft]);
 
   return (
-    <span title="Tiempo restante" style={{ cursor: "help" }}>
-      <i className="fas fa-stopwatch text-dark mr-1" />
-      {minutesLeft > 1 ? minutesLeft + " mins." : secondsLeft + " segs."}
-    </span>
+    <div
+      className="text-secondary p-1"
+      style={{ cursor: "help" }}
+      title="Tiempo restante"
+    >
+      <i className="fas fa-stopwatch mr-1" />
+      <strong>
+        {minutesLeft > 1 ? minutesLeft + " mins." : secondsLeft + " segs."}
+      </strong>
+    </div>
   );
 });
 
