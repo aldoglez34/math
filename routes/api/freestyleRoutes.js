@@ -60,19 +60,22 @@ router.get("/:topicName", function (req, res) {
 // registerFreestyleAttempt()
 // matches with /api/freestyle/registerAttempt
 router.put("/registerAttempt", function (req, res) {
-  console.log("\n\nentrando al register...");
-  const { courseId, topicName, studentId, username, score } = req.body;
+  const { courseId, topicName } = req.body;
 
-  model.Course.find(
-    { _id: courseId },
-    { topics: { $elemMatch: { name: topicName } } },
+  const newAttempt = {
+    studentId: req.body.studentId,
+    username: req.body.username,
+    score: req.body.score,
+  };
+
+  model.Course.update(
+    {
+      _id: courseId,
+      "topics.name": topicName,
+    },
     {
       $push: {
-        "topics.freestyle.attempts": {
-          studentId: studentId,
-          username: username,
-          score: score,
-        },
+        "topics.$.freestyle.attempts": newAttempt,
       },
     }
   )

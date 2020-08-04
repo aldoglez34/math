@@ -72,7 +72,7 @@ const ExamUnlocked = React.memo(({ showUnlocked, setShowExamUnlocked_ }) => {
                 que corresponde a terminar todos los exámenes del tema{" "}
                 <span style={{ fontWeight: 600 }}>{unlocked.topicName}</span>
               </span>
-              <div className="mt-4 mb-3">
+              <div className="mt-4 pt-3 mb-3">
                 <Image src="/images/freestyle.png" width="80" height="80" />
               </div>
               <span className="mb-3">
