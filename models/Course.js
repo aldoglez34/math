@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-  name: { type: String, required: true }, // ej. Primaria 3ro y 4to
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+  }, // ej. Primaria 3ro y 4to
   shortDescription: { type: String, required: true },
   longDescription: { type: String, required: true },
   topics: [

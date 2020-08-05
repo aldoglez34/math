@@ -5,7 +5,7 @@ const schema = new Schema({
   firebaseUID: {
     type: String,
     required: true,
-    // unique: true,
+    unique: true,
   },
   name: {
     type: String,
@@ -24,7 +24,7 @@ const schema = new Schema({
   email: {
     type: String,
     trim: true,
-    // unique: true,
+    unique: true,
     required: true,
   },
   courses: [

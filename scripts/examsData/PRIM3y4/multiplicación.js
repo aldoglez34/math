@@ -23,7 +23,7 @@ module.exports = [
         qComment: "Selecciona respuesta correcta y da clic en siguiente",
       },
       {
-        qInstruction: "Test",
+        qInstruction: "Resuelve el siguiente problema",
         qTechnicalInstruction: {
           type: "text",
           text: "5 + 8",
@@ -33,7 +33,6 @@ module.exports = [
           textChoices: ["11", "12", "13", "14"],
         },
         qCorrectAnswers: [{ answer: "13" }],
-        qComment: "Selecciona respuesta correcta y da clic en siguiente",
       },
       {
         qInstruction: "Resuelve el siguiente problema",
@@ -46,7 +45,6 @@ module.exports = [
           textChoices: ["11", "12", "13", "14"],
         },
         qCorrectAnswers: [{ answer: "13" }],
-        qComment: "Selecciona respuesta correcta y da clic en siguiente",
       },
     ],
   },
