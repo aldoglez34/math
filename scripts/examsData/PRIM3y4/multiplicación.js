@@ -7,7 +7,7 @@ module.exports = [
       "Suspendisse non gravida odio. Phasellus a enim non justo porttitor pretium. Curabitur facilisis leo vitae ex efficitur, egestas malesuada augue elementum.",
     duration: 30,
     difficulty: "Basic",
-    qCounter: 3,
+    qCounter: 2,
     questions: [
       {
         qInstruction: "Resuelve el siguiente problema",
