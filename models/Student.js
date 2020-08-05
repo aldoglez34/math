@@ -5,7 +5,7 @@ const schema = new Schema({
   firebaseUID: {
     type: String,
     required: true,
-    unique: true,
+    // unique: true,
   },
   name: {
     type: String,
@@ -24,21 +24,21 @@ const schema = new Schema({
   email: {
     type: String,
     trim: true,
-    unique: true,
+    // unique: true,
     required: true,
   },
   courses: [
     {
       type: Schema.Types.ObjectId,
       ref: "Course",
-      unique: true,
+      // unique: true,
     },
   ],
   exams: [
     {
       type: Schema.Types.ObjectId,
       ref: "Exam",
-      unique: true,
+      // unique: true,
     },
   ],
   attempts: [
@@ -53,7 +53,11 @@ const schema = new Schema({
   ],
   rewards: [
     {
-      topicName: { type: String, required: true, unique: true },
+      topicName: {
+        type: String,
+        required: true,
+        // unique: true
+      },
       name: { type: String, required: true },
       link: { type: String, required: true },
     },
@@ -62,7 +66,7 @@ const schema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: "Exam",
-      unique: true,
+      // unique: true,
     },
   ],
   registeredAt: {
