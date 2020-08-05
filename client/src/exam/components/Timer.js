@@ -10,9 +10,6 @@ const Timer = React.memo(() => {
   const [minutesLeft, setMinutesLeft] = useState(exam.duration);
 
   useEffect(() => {
-    console.log("secondsLeft", secondsLeft);
-    console.log("minutesLeft", minutesLeft);
-
     if ((secondsLeft % 60) / 100 === 0) setMinutesLeft(minutesLeft - 1);
 
     if (secondsLeft === 0) {
