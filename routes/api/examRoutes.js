@@ -59,7 +59,7 @@ router.get("/info/:examId", function (req, res) {
     })
     .catch((err) => {
       console.log("@error", err);
-      res.status(422).send({ msg: "Ocurrió un error" });
+      res.status(422).send("Ocurrió un error");
     });
 });
 

@@ -2911,7 +2911,7 @@ module.exports = [
         qTechnicalInstruction: {
           type: "text",
           text:
-            "Yo tengo 13 a~ nos y mi hermano es 15 a~ nos mayor que yo, ¿qué edad tiene mi hermano?",
+            "Yo tengo 13 años y mi hermano es 15 años mayor que yo, ¿qué edad tiene mi hermano?",
         },
         qCorrectAnswers: [
           { answer: "28", complement: "años", placement: "right" },
@@ -2922,10 +2922,10 @@ module.exports = [
         qTechnicalInstruction: {
           type: "text",
           text:
-            "Yo tengo 12 a~ nos y mi hermano es 19 años mayor que yo, ¿qué edad tiene mi hermano?",
+            "Yo tengo 12 años y mi hermano es 19 años mayor que yo, ¿qué edad tiene mi hermano?",
         },
         qCorrectAnswers: [
-          { answer: "31", complement: "a~ nos", placement: "right" },
+          { answer: "31", complement: "años", placement: "right" },
         ],
       },
       {
@@ -2933,7 +2933,7 @@ module.exports = [
         qTechnicalInstruction: {
           type: "text",
           text:
-            "En mi escuela hay dos grupos de primer año. Uno de ellos tiene 48 alumnos y el otro tiene 37 alumnos. ¿Cuántos alumnos de primer a~ no tiene en total la escuela?",
+            "En mi escuela hay dos grupos de primer año. Uno de ellos tiene 48 alumnos y el otro tiene 37 alumnos. ¿Cuántos alumnos de primer año tiene en total la escuela?",
         },
         qCorrectAnswers: [
           { answer: "85", complement: "alumnos", placement: "right" },
@@ -2944,7 +2944,7 @@ module.exports = [
         qTechnicalInstruction: {
           type: "text",
           text:
-            "En mi escuela hay dos grupos de primer año. Uno de ellos tiene 25 alumnos y el otro tiene 27 alumnos. ¿Cuántos alumnos de primer a~ no tiene en total la escuela?",
+            "En mi escuela hay dos grupos de primer año. Uno de ellos tiene 25 alumnos y el otro tiene 27 alumnos. ¿Cuántos alumnos de primer año tiene en total la escuela?",
         },
         qCorrectAnswers: [
           { answer: "52", complement: "alumnos", placement: "right" },
@@ -2958,7 +2958,7 @@ module.exports = [
             "Diego tiene 23 años y su papá es 33 años más viejo que él, ¿qué edad tiene el papá de Diego?",
         },
         qCorrectAnswers: [
-          { answer: "56", complement: "a~ nos", placement: "right" },
+          { answer: "56", complement: "años", placement: "right" },
         ],
       },
       {
@@ -2966,10 +2966,10 @@ module.exports = [
         qTechnicalInstruction: {
           type: "text",
           text:
-            "Diego tiene 19 a~ nos y su papá es 29 años más viejo que él, ¿qué edad tiene el papá de Diego?",
+            "Diego tiene 19 años y su papá es 29 años más viejo que él, ¿qué edad tiene el papá de Diego?",
         },
         qCorrectAnswers: [
-          { answer: "48", complement: "a~ nos", placement: "right" },
+          { answer: "48", complement: "años", placement: "right" },
         ],
       },
       {
@@ -3296,7 +3296,7 @@ module.exports = [
             "Teresa tiene actualmente 15 años, ¿cuántos años tendrá dentro de 32 años?",
         },
         qCorrectAnswers: [
-          { answer: "47", complement: "a~ nos", placement: "right" },
+          { answer: "47", complement: "aos", placement: "right" },
         ],
       },
       {
@@ -3304,10 +3304,10 @@ module.exports = [
         qTechnicalInstruction: {
           type: "text",
           text:
-            "Claudia tiene actualmente 23 años, ¿cuántos a~ nos tendrá dentro de 28 años?",
+            "Claudia tiene actualmente 23 años, ¿cuántos años tendrá dentro de 28 años?",
         },
         qCorrectAnswers: [
-          { answer: "51", complement: "a~ nos", placement: "right" },
+          { answer: "51", complement: "años", placement: "right" },
         ],
       },
       {
@@ -3403,10 +3403,10 @@ module.exports = [
         qTechnicalInstruction: {
           type: "text",
           text:
-            "Valentina tiene una colección de 45 muñecas, si su papá le regala 12 mu~ necas mas y su mamá le regala 15 muñecas, ¿cuántas muñecas en total tendrá la colección de Valentina?",
+            "Valentina tiene una colección de 45 muñecas, si su papá le regala 12 muñecas mas y su mamá le regala 15 muñecas, ¿cuántas muñecas en total tendrá la colección de Valentina?",
         },
         qCorrectAnswers: [
-          { answer: "72", complement: "mu~ necas", placement: "right" },
+          { answer: "72", complement: "muñecas", placement: "right" },
         ],
       },
       {
@@ -3525,7 +3525,7 @@ module.exports = [
         qTechnicalInstruction: {
           type: "text",
           text:
-            "En lo que va del a~ no, Rodrigo ha ahorrado las siguientes cantidades: 388 pesos en enero, 342 pesos en febrero y 195 pesos en marzo ¿cuánto dinero ha ahorrado Rodrigo en total?",
+            "En lo que va del año, Rodrigo ha ahorrado las siguientes cantidades: 388 pesos en enero, 342 pesos en febrero y 195 pesos en marzo ¿cuánto dinero ha ahorrado Rodrigo en total?",
         },
         qCorrectAnswers: [
           { answer: "925", complement: "pesos", placement: "right" },
@@ -3635,7 +3635,7 @@ module.exports = [
         qTechnicalInstruction: {
           type: "text",
           text:
-            "Natalia fue a la verdulería y compró 55 pesos de aguacate, 19 pesos de tomate, 35 pesos de papaya y 41 pesos de champi~ nones, ¿cuánto pagó en total Natalia?",
+            "Natalia fue a la verdulería y compró 55 pesos de aguacate, 19 pesos de tomate, 35 pesos de papaya y 41 pesos de champiñones, ¿cuánto pagó en total Natalia?",
         },
         qCorrectAnswers: [
           { answer: "150", complement: "pesos", placement: "right" },

@@ -44,7 +44,7 @@ const FreestyleTimer = React.memo(({ score }) => {
     >
       <i className="fas fa-stopwatch mr-1" />
       <strong>
-        {minutesLeft > 1 ? minutesLeft + " mins." : secondsLeft + " segs."}
+        {minutesLeft > 0 ? minutesLeft + " min." : secondsLeft + " seg."}
       </strong>
     </div>
   );
