@@ -8,7 +8,7 @@ const FreestyleTimer = React.memo(({ score }) => {
   const exam = useSelector((state) => state.exam);
   const course = useSelector((state) => state.course);
 
-  const [secondsLeft, setSecondsLeft] = useState(exam.duration * 60 + 60);
+  const [secondsLeft, setSecondsLeft] = useState(exam.duration * 60 + 59);
   const [minutesLeft, setMinutesLeft] = useState(exam.duration);
 
   useEffect(() => {
