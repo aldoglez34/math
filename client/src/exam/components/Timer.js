@@ -6,10 +6,13 @@ const Timer = React.memo(() => {
   const student = useSelector((state) => state.student);
   const exam = useSelector((state) => state.exam);
 
-  const [secondsLeft, setSecondsLeft] = useState(exam.duration + 1 * 60);
+  const [secondsLeft, setSecondsLeft] = useState(exam.duration * 60 + 60);
   const [minutesLeft, setMinutesLeft] = useState(exam.duration);
 
   useEffect(() => {
+    console.log("secondsLeft", secondsLeft);
+    console.log("minutesLeft", minutesLeft);
+
     if ((secondsLeft % 60) / 100 === 0) setMinutesLeft(minutesLeft - 1);
 
     if (secondsLeft === 0) {
