@@ -10,7 +10,7 @@ import * as breadcrumbActions from "../redux/actions/breadcrumb";
 import * as examActions from "../redux/actions/exam";
 import ExamUnlocked from "./components/modal/ExamUnlocked";
 
-export default React.memo((props) => {
+export default React.memo(() => {
   const dispatch = useDispatch();
 
   const [course, setCourse] = useState();
