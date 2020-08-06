@@ -47,6 +47,7 @@ const Freestyle = React.memo(() => {
 
   return (
     <StudentLayout>
+      {console.log("nueva")}
       {freestyle ? (
         <>
           {/* title */}
