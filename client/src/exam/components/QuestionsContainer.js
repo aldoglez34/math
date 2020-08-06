@@ -17,6 +17,10 @@ const QuestionsContainer = React.memo(({ questions }) => {
   const [question, setQuestion] = useState();
   const [answers, setAnswers] = useState([]);
 
+  // this is where the value from the multiple choice is stored
+  const [choice, setChoice] = useState();
+  const getValueFromMultipleChoice = (value) => setChoice(value);
+
   useEffect(() => {
     // only if number is less than the questions length
     if (number <= questions.length)
@@ -24,16 +28,12 @@ const QuestionsContainer = React.memo(({ questions }) => {
 
     // check if last
     if (number > questions.length) {
-      // save results in redux
+      // save results in redux (so they can be read in the results page)
       dispatch(examActions.setResults(answers));
       // go to results page
       window.location.href = "/course/exam/results";
     }
-  }, [dispatch, number, answers, questions]);
-
-  // this is where the value from the multiple choice is stored
-  const [choice, setChoice] = useState();
-  const getValueFromMultipleChoice = (value) => setChoice(value);
+  }, [dispatch, number, answers, questions, choice]);
 
   const pushQuestion = () => {
     // get correct answers
@@ -45,26 +45,26 @@ const QuestionsContainer = React.memo(({ questions }) => {
     // the behavior will be different depending wether its a multiple choice or regular inputs
     const isMultipleChoice = question.qMultipleChoice ? true : false;
 
+    // get answer
+    let obj;
     if (isMultipleChoice) {
       // the option choosen by the student is stored in the "choice" state
-      setAnswers([
-        ...answers,
-        {
-          _id: question._id,
-          qNumber: question.qNumber,
-          qInstruction: question.qInstruction,
-          qTechnicalInstruction: question.qTechnicalInstruction,
-          qMultipleChoice: question.qMultipleChoice,
-          userAnswers:
-            question.qMultipleChoice.type === "text"
-              ? { type: "text", answer: choice }
-              : { type: "image", answer: choice },
-          qCorrectAnswers:
-            question.qMultipleChoice.type === "text"
-              ? { type: "text", answer: correctAnswers.toString() }
-              : { type: "image", answer: correctAnswers.toString() },
-        },
-      ]);
+      // crate object
+      obj = {
+        _id: question._id,
+        qNumber: question.qNumber,
+        qInstruction: question.qInstruction,
+        qTechnicalInstruction: question.qTechnicalInstruction,
+        qMultipleChoice: question.qMultipleChoice,
+        userAnswers:
+          question.qMultipleChoice.type === "text"
+            ? { type: "text", answer: choice }
+            : { type: "image", answer: choice },
+        qCorrectAnswers:
+          question.qMultipleChoice.type === "text"
+            ? { type: "text", answer: correctAnswers.toString() }
+            : { type: "image", answer: correctAnswers.toString() },
+      };
     } else {
       // get the value from the answer inputs and push them
       const numberOfAnswers = question.qCorrectAnswers.length;
@@ -73,21 +73,23 @@ const QuestionsContainer = React.memo(({ questions }) => {
         let a = document.getElementById("answer" + i).value;
         userAnswers.push(a.trim());
       }
-
-      setAnswers([
-        ...answers,
-        {
-          _id: question._id,
-          qNumber: question.qNumber,
-          qInstruction: question.qInstruction,
-          qTechnicalInstruction: question.qTechnicalInstruction,
-          qMultipleChoice: question.qMultipleChoice,
-          userAnswers: { type: "text", answer: userAnswers.toString() },
-          qCorrectAnswers: { type: "text", answer: correctAnswers.toString() },
-        },
-      ]);
+      // crate object
+      obj = {
+        _id: question._id,
+        qNumber: question.qNumber,
+        qInstruction: question.qInstruction,
+        qTechnicalInstruction: question.qTechnicalInstruction,
+        qMultipleChoice: question.qMultipleChoice,
+        userAnswers: { type: "text", answer: userAnswers.toString() },
+        qCorrectAnswers: { type: "text", answer: correctAnswers.toString() },
+      };
     }
 
+    // push to state
+    setAnswers([...answers, obj]);
+
+    // clear choice and advance to next question
+    setChoice();
     setNumber(number + 1);
   };
 
@@ -135,6 +137,7 @@ const QuestionsContainer = React.memo(({ questions }) => {
                 type={question.qMultipleChoice.type}
                 textChoices={question.qMultipleChoice.textChoices}
                 imageChoices={question.qMultipleChoice.imageChoices}
+                choiceSelected={choice}
                 getValueFromMultipleChoice={getValueFromMultipleChoice}
               />
             ) : (

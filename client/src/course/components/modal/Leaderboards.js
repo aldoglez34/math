@@ -36,32 +36,39 @@ const Leaderboards = React.memo(({ top10 }) => {
             <h2>Leaderboards</h2>
           </div>
           {/* top 10 */}
-          <Table size="sm" className="mt-3">
-            <thead>
-              <tr>
-                <th className="py-2 text-center bg-light border-top-0">#</th>
-                <th className="py-2 text-center bg-light border-top-0">
-                  Puntos
-                </th>
-                <th className="py-2 text-center bg-light border-top-0">
-                  Usuario
-                </th>
-                <th className="py-2 text-center bg-light border-top-0">
-                  Fecha
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {top10.map((t, idx) => (
-                <tr key={t._id}>
-                  <td className="text-center">{idx + 1}</td>
-                  <td className="text-center">{t.score}</td>
-                  <td className="text-center">{t.username}</td>
-                  <td className="text-right">{formattedDate(t.date)}</td>
+          {top10.length ? (
+            <Table size="sm" className="mt-3">
+              <thead>
+                <tr>
+                  <th className="py-2 text-center bg-light border-top-0">#</th>
+                  <th className="py-2 text-center bg-light border-top-0">
+                    Puntos
+                  </th>
+                  <th className="py-2 text-center bg-light border-top-0">
+                    Usuario
+                  </th>
+                  <th className="py-2 text-center bg-light border-top-0">
+                    Fecha
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </Table>
+              </thead>
+              <tbody>
+                {top10.map((t, idx) => (
+                  <tr key={t._id}>
+                    <td className="text-center">{idx + 1}</td>
+                    <td className="text-center">{t.score}</td>
+                    <td className="text-center">{t.username}</td>
+                    <td className="text-right">{formattedDate(t.date)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          ) : (
+            <div className="my-4 text-center">
+              <em className="text-muted">Parece que hay nada aquí aún</em>
+            </div>
+          )}
+
           <div className="text-center mt-4 mb-2">
             <Button
               variant="primary"

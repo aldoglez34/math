@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Button, Spinner } from "react-bootstrap";
 import PropTypes from "prop-types";
-import * as examActions from "../../redux/actions/exam";
 import FreestyleTimer from "./FreestyleTimer";
 import FreestyleQNumber from "./FreestyleQNumber";
 import QInstruction from "../../exam/question/QInstruction";
@@ -12,9 +11,14 @@ import FreestyleQPoints from "./FreestyleQPoints";
 import CorrectModal from "./modals/CorrectModal";
 import IncorrectModal from "./modals/IncorrectModal";
 import FreestyleExitButton from "./FreestyleExitButton";
+import API from "../../utils/API";
 
 const FreestyleQuestions = React.memo(({ questions }) => {
   const dispatch = useDispatch();
+
+  const student = useSelector((state) => state.student);
+  const exam = useSelector((state) => state.exam);
+  const course = useSelector((state) => state.course);
 
   const [number, setNumber] = useState(1);
   const [question, setQuestion] = useState();
@@ -25,6 +29,10 @@ const FreestyleQuestions = React.memo(({ questions }) => {
   const [showCorrect, setShowCorrect] = useState(false);
   const [showIncorrect, setShowIncorrect] = useState(false);
 
+  // this is where the value from the multiple choice is stored
+  const [choice, setChoice] = useState();
+  const getValueFromMultipleChoice = (value) => setChoice(value);
+
   useEffect(() => {
     // only if number is less than the questions length
     if (number <= questions.length)
@@ -32,16 +40,27 @@ const FreestyleQuestions = React.memo(({ questions }) => {
 
     // check if last (highly unlikely that the student finishes all the questions)
     if (number > questions.length) {
-      // alert the user
-      alert("El tiempo ha finalizado.\nTu puntuación final fue de: " + score);
-      // go to results page
-      window.location.href = "/course";
+      // register attempt
+      API.registerFreestyleAttempt({
+        courseId: course._id,
+        topicName: exam.topicName,
+        studentId: student._id,
+        username: student.username,
+        score: score,
+      })
+        .then((res) => {
+          console.log(res.data);
+          // alert the user
+          alert(
+            "Ya no hay más preguntas para mostrar.\nTu puntuación final fue de: " +
+              score
+          );
+          // go back
+          window.location.href = "/course";
+        })
+        .catch((err) => console.log("error", err));
     }
-  }, [dispatch, number, answers, questions]);
-
-  // this is where the value from the multiple choice is stored
-  const [choice, setChoice] = useState();
-  const getValueFromMultipleChoice = (value) => setChoice(value);
+  }, [dispatch, number, answers, questions, choice]);
 
   const pushQuestion = () => {
     // get correct answers
@@ -56,6 +75,7 @@ const FreestyleQuestions = React.memo(({ questions }) => {
     // get answer
     let obj;
     if (isMultipleChoice) {
+      // crate object
       obj = {
         _id: question._id,
         qNumber: question.qNumber,
@@ -79,7 +99,7 @@ const FreestyleQuestions = React.memo(({ questions }) => {
         let a = document.getElementById("answer" + i).value;
         userAnswers.push(a.trim());
       }
-
+      // crate object
       obj = {
         _id: question._id,
         qNumber: question.qNumber,
@@ -94,16 +114,19 @@ const FreestyleQuestions = React.memo(({ questions }) => {
     // validate answer
     if (obj.userAnswers.answer === obj.qCorrectAnswers.answer) {
       setShowCorrect(true);
-      setScore(score + 1);
+      setScore(score + question.qValue);
     } else {
       setShowIncorrect(true);
     }
 
-    // push answer to redux (so they can be read later on the results page)
+    // push answer to state
     setAnswers([...answers, obj]);
 
-    // next question
-    setNumber(number + 1);
+    // clear choice and advance to next question (wait until modal is closed so the correct modal show the correct amount of points)
+    setTimeout(() => {
+      setChoice();
+      setNumber(number + 1);
+    }, 900);
   };
 
   const handleKeyDown = (e) => {
@@ -130,11 +153,16 @@ const FreestyleQuestions = React.memo(({ questions }) => {
             className="px-3"
             style={{ paddingTop: "40px", paddingBottom: "45px" }}
           >
+            {/* QUESTION VALUE */}
+            <strong className="text-muted">
+              {question.qValue}
+              <span className="ml-1">
+                {question.qValue > 1 ? "puntos" : "punto"}
+              </span>
+            </strong>
+
             {/* INSTRUCTION */}
-            <QInstruction
-              qNumber={question.qNumber}
-              qInstruction={question.qInstruction}
-            />
+            <QInstruction qInstruction={question.qInstruction} />
 
             {/* TECHNICAL INSTRUCTION */}
             {question.qTechnicalInstruction ? (
@@ -151,6 +179,7 @@ const FreestyleQuestions = React.memo(({ questions }) => {
                 type={question.qMultipleChoice.type}
                 textChoices={question.qMultipleChoice.textChoices}
                 imageChoices={question.qMultipleChoice.imageChoices}
+                choiceSelected={choice}
                 getValueFromMultipleChoice={getValueFromMultipleChoice}
               />
             ) : (
@@ -202,6 +231,7 @@ const FreestyleQuestions = React.memo(({ questions }) => {
         <CorrectModal
           showCorrect={showCorrect}
           setShowCorrect={setShowCorrect}
+          qValue={question.qValue}
         />
         <IncorrectModal
           showIncorrect={showIncorrect}

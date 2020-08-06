@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Button, Image } from "react-bootstrap";
 
 const MultipleChoice = React.memo(
-  ({ type, textChoices, imageChoices, getValueFromMultipleChoice }) => {
-    const [selected, setSelected] = useState();
-
+  ({
+    type,
+    textChoices,
+    imageChoices,
+    getValueFromMultipleChoice,
+    choiceSelected,
+  }) => {
     return type === "text" ? (
       <div className="mt-3">
         {textChoices.map((c) => (
@@ -13,11 +17,8 @@ const MultipleChoice = React.memo(
             key={c}
             variant="outline-secondary"
             className="mr-2"
-            active={selected === c ? true : false}
-            onClick={() => {
-              getValueFromMultipleChoice(c);
-              setSelected(c);
-            }}
+            active={choiceSelected === c ? true : false}
+            onClick={() => getValueFromMultipleChoice(c)}
           >
             {c}
           </Button>
@@ -30,11 +31,8 @@ const MultipleChoice = React.memo(
             key={c}
             variant="outline-secondary"
             className="mr-2 py-3"
-            active={selected === c ? true : false}
-            onClick={() => {
-              getValueFromMultipleChoice(c);
-              setSelected(c);
-            }}
+            active={choiceSelected === c ? true : false}
+            onClick={() => getValueFromMultipleChoice(c)}
           >
             <Image src={c} />
           </Button>
@@ -49,6 +47,7 @@ MultipleChoice.propTypes = {
   textChoices: PropTypes.array,
   imageChoices: PropTypes.array,
   getValueFromMultipleChoice: PropTypes.func.isRequired,
+  choiceSelected: PropTypes.string,
 };
 
 export default MultipleChoice;

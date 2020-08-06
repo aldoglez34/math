@@ -12,9 +12,31 @@ router.get("/:topicName", function (req, res) {
   })
     .select("name questions difficulty")
     .then((data) => {
-      // mix all the questions
+      // mix all the questions (and set the value for each Q)
       const allQuestions = data.reduce((acc, cv) => {
-        acc.push(...cv.questions);
+        const value =
+          cv.difficulty === "Intermediate"
+            ? 1
+            : cv.difficulty === "Intermediate-Advanced"
+            ? 2
+            : cv.difficulty === "Advanced"
+            ? 3
+            : null;
+
+        const arr = cv.questions.reduce((acc, cv) => {
+          acc.push({
+            qValue: value,
+            qInstruction: cv.qInstruction,
+            qTechnicalInstruction: cv.qTechnicalInstruction,
+            qMultipleChoice: cv.qMultipleChoice,
+            qCorrectAnswers: cv.qCorrectAnswers,
+            qComment: cv.qComment,
+          });
+          return acc;
+        }, []);
+
+        acc.push(...arr);
+
         return acc;
       }, []);
 
@@ -35,6 +57,7 @@ router.get("/:topicName", function (req, res) {
       return uniqueNumbers.reduce((acc, cv, idx) => {
         acc.push({
           qNumber: idx + 1,
+          qValue: allQuestions[cv].qValue,
           qInstruction: allQuestions[cv].qInstruction,
           qTechnicalInstruction: allQuestions[cv].qTechnicalInstruction.type
             ? allQuestions[cv].qTechnicalInstruction
