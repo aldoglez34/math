@@ -23,10 +23,15 @@ const FreestyleTimer = React.memo(({ score }) => {
         username: student.username,
         score: score,
       })
-        .then((res) => console.log(res.data))
+        .then((res) => {
+          console.log(res.data);
+          alert(
+            "El tiempo ha finalizado.\nTu puntuación final fue de: " + score
+          );
+        })
         .catch((err) => console.log("error", err));
       // alert the user
-      alert("El tiempo ha finalizado.\nTu puntuación final fue de: " + score);
+
       // go back
       window.location.href = "/course";
     }
