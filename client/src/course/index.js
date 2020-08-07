@@ -26,7 +26,8 @@ export default React.memo((props) => {
 
   useEffect(() => {
     const _hash = props.routeProps.location.hash;
-    const hash = _hash ? _hash.replace("#", "") : null;
+    // decode so there are no problems with tildes
+    const hash = _hash ? decodeURI(_hash.replace("#", "")) : null;
 
     // if a new exam is unlocked, show modal
     if (reduxExam) dispatch(examActions.clearExam());

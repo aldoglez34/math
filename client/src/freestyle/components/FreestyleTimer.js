@@ -30,7 +30,7 @@ const FreestyleTimer = React.memo(({ score }) => {
             "El tiempo ha finalizado.\nTu puntuación final fue de: " + score
           );
           // go back
-          window.location.href = "/course";
+          window.location.href = "/course/#" + exam.topicName;
         })
         .catch((err) => console.log("error", err));
     }

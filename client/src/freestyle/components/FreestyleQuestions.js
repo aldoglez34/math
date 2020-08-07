@@ -56,7 +56,7 @@ const FreestyleQuestions = React.memo(({ questions }) => {
               score
           );
           // go back
-          window.location.href = "/course";
+          window.location.href = "/course/#" + exam.topicName;
         })
         .catch((err) => console.log("error", err));
     }

@@ -180,7 +180,11 @@ const Results = React.memo(() => {
         </Col>
       </Row>
       <div className="mt-3 text-center">
-        <Button variant="primary" href="/course" className="shadow-sm">
+        <Button
+          variant="primary"
+          href={"/course/#" + exam.topicName}
+          className="shadow-sm"
+        >
           <i className="fas fa-arrow-left mr-2" />
           Regresar
         </Button>
