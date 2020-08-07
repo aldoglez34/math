@@ -27,10 +27,18 @@ const CourseIntro = React.memo(({ name, longDescription, topics }) => {
                 style={{ fontSize: "15.5px" }}
               >
                 <strong>
-                  <Link to={"/course/#" + t.name} title={"Ir a " + t.name}>
-                    <Badge variant="primary" className="mr-2">
+                  <Link
+                    smooth
+                    to={"/course/#" + t.name}
+                    title={"Ir a " + t.name}
+                  >
+                    <Badge variant="dark" className="mr-2">
                       {t.subject}
                     </Badge>
+                    <i
+                      className="fas fa-location-arrow mr-1"
+                      style={{ fontSize: "13px" }}
+                    />
                     {t.name}
                   </Link>
                 </strong>

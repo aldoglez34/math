@@ -26,7 +26,12 @@ export default () => {
       <Route exact path="/courses/preparatoria" component={CourseInfoPrepa} />
 
       {/* courses main */}
-      <Route exact path="/course" component={Course} />
+      {/* <Route exact path="/course" component={Course} /> */}
+      <Route
+        exact
+        path="/course"
+        render={(props) => <Course routeProps={props} />}
+      />
 
       {/* exam */}
       <Route exact path="/course/exam" component={Exam} />

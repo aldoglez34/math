@@ -10,7 +10,7 @@ import * as breadcrumbActions from "../redux/actions/breadcrumb";
 import * as examActions from "../redux/actions/exam";
 import ExamUnlocked from "./components/modal/ExamUnlocked";
 
-export default React.memo(() => {
+export default React.memo((props) => {
   const dispatch = useDispatch();
 
   const [course, setCourse] = useState();
@@ -22,7 +22,12 @@ export default React.memo(() => {
 
   const [showUnlocked, setShowExamUnlocked] = useState(false);
 
+  const setCourseAsync = async (c) => setCourse(c);
+
   useEffect(() => {
+    const _hash = props.routeProps.location.hash;
+    const hash = _hash ? _hash.replace("#", "") : null;
+
     // if a new exam is unlocked, show modal
     if (reduxExam) dispatch(examActions.clearExam());
 
@@ -33,8 +38,15 @@ export default React.memo(() => {
     if (reduxCourse && reduxStudent) {
       API.fetchCourseInfo(reduxCourse._id, reduxStudent._id)
         .then((res) => {
-          // setting course in this state
-          setCourse(res.data);
+          // setting course in this state (async)
+          setCourseAsync(res.data).then(() => {
+            // move to the hash position
+            if (hash) {
+              const element = document.getElementById(hash);
+              element.scrollIntoView();
+            }
+          });
+
           // setting bredcrumb
           dispatch(
             breadcrumbActions.setBreadcrumb([
