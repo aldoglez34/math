@@ -1,5 +1,6 @@
 module.exports = [
   {
+    examCode: "suma_01",
     topicCode: "PRIM3y4_Suma",
     topicName: "Suma",
     name: "Sumas 1",
@@ -820,6 +821,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "suma_02",
     topicCode: "PRIM3y4_Suma",
     topicName: "Suma",
     name: "Sumas 2",
@@ -1640,6 +1642,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "suma_03",
     topicCode: "PRIM3y4_Suma",
     topicName: "Suma",
     name: "Sumas 3",
@@ -2258,6 +2261,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "suma_04",
     topicCode: "PRIM3y4_Suma",
     topicName: "Suma",
     name: "Sumas 4",
@@ -2876,6 +2880,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "suma_05",
     topicCode: "PRIM3y4_Suma",
     topicName: "Suma",
     name: "Sumas Final",

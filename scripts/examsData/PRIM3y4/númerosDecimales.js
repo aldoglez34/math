@@ -1,5 +1,6 @@
 module.exports = [
   {
+    examCode: "númerosDecimales_01",
     topicCode: "PRIM3y4_NúmerosDecimales",
     topicName: "Números Decimales",
     name: "Suma de decimales",
@@ -31,6 +32,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "númerosDecimales_02",
     topicCode: "PRIM3y4_NúmerosDecimales",
     topicName: "Números Decimales",
     name: "Resta de decimales",
@@ -72,6 +74,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "númerosDecimales_03",
     topicCode: "PRIM3y4_NúmerosDecimales",
     topicName: "Números Decimales",
     name: "Multiplicación de decimales",
@@ -113,6 +116,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "númerosDecimales_04",
     topicCode: "PRIM3y4_NúmerosDecimales",
     topicName: "Números Decimales",
     name: "División de decimales",
@@ -155,6 +159,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "númerosDecimales_05",
     topicCode: "PRIM3y4_NúmerosDecimales",
     topicName: "Números Decimales",
     name: "Resolución de problemas",

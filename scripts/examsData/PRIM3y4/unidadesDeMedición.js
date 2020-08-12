@@ -1,5 +1,6 @@
 module.exports = [
   {
+    examCode: "unidadesDeMedición_01",
     topicCode: "PRIM3y4_UnidadesDeMedición",
     topicName: "Unidades de Medición",
     name: "El reloj",
@@ -56,6 +57,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "unidadesDeMedición_02",
     topicCode: "PRIM3y4_UnidadesDeMedición",
     topicName: "Unidades de Medición",
     name: "Unidades de tiempo 1",
@@ -97,6 +99,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "unidadesDeMedición_03",
     topicCode: "PRIM3y4_UnidadesDeMedición",
     topicName: "Unidades de Medición",
     name: "Unidades de tiempo 2",
@@ -138,6 +141,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "unidadesDeMedición_04",
     topicCode: "PRIM3y4_UnidadesDeMedición",
     topicName: "Unidades de Medición",
     name: "Unidades de longitud 1",
@@ -179,6 +183,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "unidadesDeMedición_05",
     topicCode: "PRIM3y4_UnidadesDeMedición",
     topicName: "Unidades de Medición",
     name: "Unidades de longitud 2",

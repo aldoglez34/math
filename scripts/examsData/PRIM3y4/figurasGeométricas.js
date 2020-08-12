@@ -1,5 +1,6 @@
 module.exports = [
   {
+    examCode: "figurasGeométricas_01",
     topicCode: "PRIM3y4_FigurasGeometricas",
     topicName: "Figuras Geométricas",
     name: "Nombres",
@@ -71,6 +72,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "figurasGeométricas_02",
     topicCode: "PRIM3y4_FigurasGeometricas",
     topicName: "Figuras Geométricas",
     name: "Elementos",
@@ -147,6 +149,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "figurasGeométricas_03",
     topicCode: "PRIM3y4_FigurasGeometricas",
     topicName: "Figuras Geométricas",
     name: "Perímetro",
@@ -213,6 +216,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "figurasGeométricas_04",
     topicCode: "PRIM3y4_FigurasGeometricas",
     topicName: "Figuras Geométricas",
     name: "Área",
@@ -279,6 +283,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "figurasGeométricas_05",
     topicCode: "PRIM3y4_FigurasGeometricas",
     topicName: "Figuras Geométricas",
     name: "Resolución de problemas",

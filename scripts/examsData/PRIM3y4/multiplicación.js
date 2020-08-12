@@ -1,5 +1,6 @@
 module.exports = [
   {
+    examCode: "multiplicación_01",
     topicCode: "PRIM3y4_Multiplicación",
     topicName: "Multiplicación",
     name: "Multiplicaciones 1",
@@ -32,6 +33,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "multiplicación_02",
     topicCode: "PRIM3y4_Multiplicación",
     topicName: "Multiplicación",
     name: "Multiplicaciones 2",
@@ -63,6 +65,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "multiplicación_03",
     topicCode: "PRIM3y4_Multiplicación",
     topicName: "Multiplicación",
     name: "Multiplicaciones 3",
@@ -95,6 +98,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "multiplicación_04",
     topicCode: "PRIM3y4_Multiplicación",
     topicName: "Multiplicación",
     name: "Multiplicaciones 4",
@@ -127,6 +131,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "multiplicación_05",
     topicCode: "PRIM3y4_Multiplicación",
     topicName: "Multiplicación",
     name: "Multiplicaciones Final",

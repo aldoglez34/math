@@ -1,5 +1,6 @@
 module.exports = [
   {
+    examCode: "fracciones_01",
     topicCode: "PRIM3y4_Fracciones",
     topicName: "Fracciones",
     name: "Clasificación de fracciones",
@@ -51,6 +52,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "fracciones_02",
     topicCode: "PRIM3y4_Fracciones",
     topicName: "Fracciones",
     name: "Representación de fracciones",
@@ -112,6 +114,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "fracciones_03",
     topicCode: "PRIM3y4_Fracciones",
     topicName: "Fracciones",
     name: "Fracciones equivalentes",
@@ -168,6 +171,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "fracciones_04",
     topicCode: "PRIM3y4_Fracciones",
     topicName: "Fracciones",
     name: "Fracciones mixtas a impropias",
@@ -199,6 +203,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "fracciones_05",
     topicCode: "PRIM3y4_Fracciones",
     topicName: "Fracciones",
     name: "Fracciones impropias a mixtas",

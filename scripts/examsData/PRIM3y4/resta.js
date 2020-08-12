@@ -1,5 +1,6 @@
 module.exports = [
   {
+    examCode: "resta_01",
     topicCode: "PRIM3y4_Resta",
     topicName: "Resta",
     name: "Restas 1",
@@ -31,6 +32,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "resta_02",
     topicCode: "PRIM3y4_Resta",
     topicName: "Resta",
     name: "Restas 2",
@@ -62,6 +64,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "resta_03",
     topicCode: "PRIM3y4_Resta",
     topicName: "Resta",
     name: "Restas 3",
@@ -93,6 +96,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "resta_04",
     topicCode: "PRIM3y4_Resta",
     topicName: "Resta",
     name: "Restas 4",
@@ -124,6 +128,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "resta_05",
     topicCode: "PRIM3y4_Resta",
     topicName: "Resta",
     name: "Restas Final",

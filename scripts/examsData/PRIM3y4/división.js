@@ -1,5 +1,6 @@
 module.exports = [
   {
+    examCode: "división_01",
     topicCode: "PRIM3y4_División",
     topicName: "División",
     name: "Divisiones 1",
@@ -32,6 +33,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "división_02",
     topicCode: "PRIM3y4_División",
     topicName: "División",
     name: "Divisiones 2",
@@ -64,6 +66,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "división_03",
     topicCode: "PRIM3y4_División",
     topicName: "División",
     name: "Divisiones 3",
@@ -116,6 +119,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "división_04",
     topicCode: "PRIM3y4_División",
     topicName: "División",
     name: "Divisiones 4",
@@ -168,6 +172,7 @@ module.exports = [
     ],
   },
   {
+    examCode: "división_05",
     topicCode: "PRIM3y4_División",
     topicName: "División",
     name: "Divisiones Final",
