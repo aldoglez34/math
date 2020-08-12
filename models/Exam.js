@@ -5,7 +5,6 @@ const schema = new Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
   }, // ej. Sumas 1 o Restas 3
   topicCode: { type: String, required: true }, // ej. PRIM3y4_Suma o PRIM3y4_Resta
   topicName: { type: String, required: true }, // ej. Suma, Resta, etc

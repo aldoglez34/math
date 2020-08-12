@@ -7,6 +7,12 @@ const schema = new Schema({
     required: true,
     unique: true,
   },
+  email: {
+    type: String,
+    trim: true,
+    unique: true,
+    required: true,
+  },
   name: {
     type: String,
     trim: true,
@@ -21,24 +27,16 @@ const schema = new Schema({
     type: String,
     trim: true,
   },
-  email: {
-    type: String,
-    trim: true,
-    unique: true,
-    required: true,
-  },
   courses: [
     {
       type: Schema.Types.ObjectId,
       ref: "Course",
-      // unique: true,
     },
   ],
   exams: [
     {
       type: Schema.Types.ObjectId,
       ref: "Exam",
-      // unique: true,
     },
   ],
   attempts: [
@@ -56,7 +54,6 @@ const schema = new Schema({
       topicName: {
         type: String,
         required: true,
-        // unique: true
       },
       name: { type: String, required: true },
       link: { type: String, required: true },
@@ -66,7 +63,6 @@ const schema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: "Exam",
-      // unique: true,
     },
   ],
   registeredAt: {

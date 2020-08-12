@@ -19,7 +19,6 @@ const schema = new Schema({
         name: { type: String, required: true }, // ej. "Medalla de Suma"
         link: { type: String, required: true }, // ej. "/images/medals/sumas1.png"
       },
-      toLearn: [{ type: String }], // ej. Aprenderás a sumar números, Aprenderás a blah blah (es un array)
       freestyle: {
         timer: { type: Number, required: true }, // ej. 10 (minutos)
         attempts: [

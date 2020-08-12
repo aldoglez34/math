@@ -20,15 +20,11 @@ module.exports = (examsArr) => [
         subject: "Aritmética",
         name: "Suma",
         description:
-          "Quisque eget posuere lacus, in posuere risus. Curabitur semper fermentum dolor. Integer imperdiet, lectus eu suscipit rutrum, felis nisi vestibulum turpis, vel dictum magna odio sit amet orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris aliquam justo vel lacus ultricies iaculis.",
+          "La primera operación básica de las matemáticas, la suma es una operación que agrupa números o cosas. En esta sección aprenderás a sumar números con y sin acarreos y resolverás problemas de la vida cotidiana usando esta operación.",
         reward: {
           name: "Medalla de Suma",
           link: "/rewards/sumaMedal.png",
         },
-        toLearn: [
-          "Identificar los elementos y propiedades de la suma",
-          "Resolver problemas usando la suma",
-        ],
         freestyle: {
           timer: 10,
         },
@@ -56,17 +52,13 @@ module.exports = (examsArr) => [
         subject: "Aritmética",
         name: "Resta",
         description:
-          "Sed lacinia lacus non laoreet pulvinar. Maecenas tincidunt suscipit tortor non vehicula. Ut dolor felis, rutrum non tempus nec, pulvinar in neque. Donec facilisis nunc lacinia libero laoreet, et volutpat felis convallis. Nunc sollicitudin, leo at laoreet faucibus.",
+          "La segunda operación básica de las matemáticas, la resta es una operación que quita objetos. En esta sección aprenderás a restar números con y sin acarreos, harás restas con minuendos múltiplos de 10 y resolverás problemas de la vida cotidiana usando esta operación.",
         reward: {
           name: "Medalla de Resta",
           link: "/rewards/restaMedal.png",
         },
-        toLearn: [
-          "Identificar los elementos y propiedades de la resta",
-          "Resolver problemas usando la resta",
-        ],
         freestyle: {
-          timer: 1,
+          timer: 10,
         },
         material: [
           {
@@ -93,7 +85,7 @@ module.exports = (examsArr) => [
         exams: insertExams("PRIM3y4_Resta", examsArr), // dont forget to give the course code here (manually)
       },
       {
-        topicCode: "PRIM3y4_Multi",
+        topicCode: "PRIM3y4_Multiplicación",
         subject: "Aritmética",
         name: "Multiplicación",
         reward: {
@@ -101,11 +93,7 @@ module.exports = (examsArr) => [
           link: "/rewards/multiplicacionMedal.png",
         },
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tellus urna, interdum sit amet libero eu, viverra dignissim lacus. Donec malesuada iaculis nunc sollicitudin ornare.",
-        toLearn: [
-          "Identificar los elementos y propiedades de la multiplicación",
-          "Resolver problemas usando la multiplicación",
-        ],
+          "La tercera operación básica de las matemáticas, la multiplicación es una abreviación de una suma, por lo que al igual que la suma, agrupa objetos. En esta sección aprenderás las tablas de multiplicar, harás multiplicaciones con números de dos y tres cifras resolverás problemas de la vida cotidiana usando esta operación.",
         freestyle: {
           timer: 10,
         },
@@ -126,7 +114,103 @@ module.exports = (examsArr) => [
             link: "https://youtu.be/suU4_TB6S_Q",
           },
         ],
-        exams: insertExams("PRIM3y4_Multi", examsArr), // dont forget to give the course code here (manually)
+        exams: insertExams("PRIM3y4_Multiplicación", examsArr), // dont forget to give the course code here (manually)
+      },
+      {
+        topicCode: "PRIM3y4_División",
+        subject: "Aritmética",
+        name: "División",
+        reward: {
+          name: "Medalla de División",
+          link: "/rewards/divisionMedal.png",
+        },
+        description:
+          "La cuarta operación básica de las matemáticas, la división es una operación que reparte objetos e involucra la multiplicación y resta. En esta sección harás divisiones con dividendos de dos o más cifras y divisores de una cifra y resolverás problemas de la vida cotidiana usando esta operación.",
+        freestyle: {
+          timer: 10,
+        },
+        material: [],
+        exams: insertExams("PRIM3y4_División", examsArr), // dont forget to give the course code here (manually)
+      },
+      {
+        topicCode: "PRIM3y4_Fracciones",
+        subject: "Aritmética",
+        name: "Fracciones",
+        reward: {
+          name: "Medalla de Fracciones",
+          link: "/rewards/fraccionesMedal.png",
+        },
+        description:
+          "La fracción es una manera de representar una división y son muy usados en la vida cotidiana. En esta sección clasificarás las fracciones, representarás fracciones usando figuras geométricas y convertirás fracciones mixtas a impropias y viceversa.",
+        freestyle: {
+          timer: 10,
+        },
+        material: [],
+        exams: insertExams("PRIM3y4_Fracciones", examsArr), // dont forget to give the course code here (manually)
+      },
+      {
+        topicCode: "PRIM3y4_OperacionesConFracciones",
+        subject: "Aritmética",
+        name: "Operaciones con Fracciones",
+        reward: {
+          name: "Medalla de Operaciones con Fracciones",
+          link: "/rewards/operacionesConFraccMedal.png",
+        },
+        description:
+          "Suma, resta, multiplicación y división son operaciones que también se pueden hacer con fracciones. En esta sección aprenderás hacerlas y resolverás problemas de la vida cotidiana usando fracciones.",
+        freestyle: {
+          timer: 10,
+        },
+        material: [],
+        exams: insertExams("PRIM3y4_OperacionesConFracciones", examsArr), // dont forget to give the course code here (manually)
+      },
+      {
+        topicCode: "PRIM3y4_FigurasGeometricas",
+        subject: "Aritmética",
+        name: "Figuras Geométricas",
+        reward: {
+          name: "Medalla de Figuras Geométricas",
+          link: "/rewards/figurasGeometricasMedal.png",
+        },
+        description:
+          "Las figuras geométricas son superficies delimitas por líneas que pueden ser curvas o rectas. En esta sección aprenderás el nombre de las figuras, calcularás su perímetro y área y resolverás problemas de la vida cotidiana que involucren a dichas figuras.",
+        freestyle: {
+          timer: 10,
+        },
+        material: [],
+        exams: insertExams("PRIM3y4_FigurasGeometricas", examsArr), // dont forget to give the course code here (manually)
+      },
+      {
+        topicCode: "PRIM3y4_NúmerosDecimales",
+        subject: "Aritmética",
+        name: "Números Decimales",
+        reward: {
+          name: "Medalla de Números Decimales",
+          link: "/rewards/numerosDecimalesMedal.png",
+        },
+        description:
+          "Suma, resta, multiplicación y división con números decimales, son operaciones que aprenderás hacer en esta sección y resolverás problemas de la vida cotidiana usando estos números.",
+        freestyle: {
+          timer: 10,
+        },
+        material: [],
+        exams: insertExams("PRIM3y4_NúmerosDecimales", examsArr), // dont forget to give the course code here (manually)
+      },
+      {
+        topicCode: "PRIM3y4_UnidadesDeMedición",
+        subject: "Aritmética",
+        name: "Unidades de Medición",
+        reward: {
+          name: "Medalla de Unidades de Medición",
+          link: "/rewards/unidadesDeMedicion.png",
+        },
+        description:
+          "Las unidades de medición nos ayudan a saber cuánto vamos a pagar, qué estamos midiendo, cuánto tiempo ha transcurrido, etc. En esta sección aprenderás a leer el reloj, convertirás unidades de tiempo y convertirás unidades de longitud.",
+        freestyle: {
+          timer: 10,
+        },
+        material: [],
+        exams: insertExams("PRIM3y4_UnidadesDeMedición", examsArr), // dont forget to give the course code here (manually)
       },
     ],
   },

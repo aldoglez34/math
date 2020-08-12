@@ -1,418 +1,191 @@
 module.exports = [
   {
-    topicCode: "PRIM3y4_Multi",
+    topicCode: "PRIM3y4_Multiplicación",
     topicName: "Multiplicación",
     name: "Multiplicaciones 1",
     description:
-      "Suspendisse non gravida odio. Phasellus a enim non justo porttitor pretium. Curabitur facilisis leo vitae ex efficitur, egestas malesuada augue elementum.",
-    duration: 30,
+      "La tercera operación básica de las matemáticas, la multiplicación es una abreviación de una suma, por lo que al igual que la suma, agrupa objetos. En esta sección aprenderás las tablas de multiplicar, harás multiplicaciones con números de dos y tres cifras resolverás problemas de la vida cotidiana usando esta operación.",
+    duration: 15,
     difficulty: "Basic",
-    qCounter: 2,
+    qCounter: 3,
     questions: [
       {
-        qInstruction: "Resuelve el siguiente problema",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "5 + 8",
-        },
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["11", "12", "13", "14"],
-        },
-        qCorrectAnswers: [{ answer: "13" }],
-        qComment: "Selecciona respuesta correcta y da clic en siguiente",
+        qInstruction: "Resuelve la siguiente multiplicación: 2x1",
+        qCorrectAnswers: [{ answer: "2" }],
       },
       {
-        qInstruction: "Resuelve el siguiente problema",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "5 + 8",
-        },
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["11", "12", "13", "14"],
-        },
-        qCorrectAnswers: [{ answer: "13" }],
-      },
-      {
-        qInstruction: "Resuelve el siguiente problema",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "5 + 8",
-        },
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["11", "12", "13", "14"],
-        },
-        qCorrectAnswers: [{ answer: "13" }],
-      },
-    ],
-  },
-  {
-    topicCode: "PRIM3y4_Multi",
-    topicName: "Multiplicación",
-    name: "Multiplicaciones 2",
-    description:
-      "Duis luctus nisl massa, vel convallis nisi maximus eget. In molestie lacinia ligula at pellentesque. Etiam scelerisque porta mauris quis aliquam.",
-    duration: 30,
-    difficulty: "Basic-Intermediate",
-    qCounter: 8,
-    questions: [
-      {
-        qInstruction: "Resuelve la siguiente suma",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "10 + 7",
-        },
-        qCorrectAnswers: [{ answer: "17" }],
-      },
-      {
-        qInstruction:
-          "Escribe 3 (pesos) en el primer input y 5 (manzanas) en el segundo",
-        qCorrectAnswers: [
-          { answer: "3", complement: "pesos", placement: "right" },
-          { answer: "5", complement: "manzanas", placement: "right" },
-        ],
-        qComment: "este comentario es de prueba",
-      },
-      {
-        qInstruction:
-          "Escribe 45 en el primer input, 22 en el segundo y 77 en el tercero",
-        qCorrectAnswers: [
-          { answer: "45", complement: "número", placement: "left" },
-          { answer: "22", complement: "otro", placement: "left" },
-          { answer: "77", complement: "último", placement: "left" },
-        ],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura1.png",
-        },
+        qInstruction: "Resuelve la siguiente multiplicación: 2x2",
         qCorrectAnswers: [{ answer: "4" }],
       },
       {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura2.png",
-        },
+        qInstruction: "Resuelve la siguiente multiplicación: 2x3",
         qCorrectAnswers: [{ answer: "6" }],
       },
       {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura3.png",
-        },
-        qMultipleChoice: {
-          type: "image",
-          imageChoices: [
-            "/exams/suma/suma1/res4.png",
-            "/exams/suma/suma1/res5.png",
-            "/exams/suma/suma1/res6.png",
-            "/exams/suma/suma1/res7.png",
-          ],
-        },
-        qCorrectAnswers: [{ answer: "/exams/suma/suma1/res5.png" }],
+        qInstruction: "Resuelve la siguiente multiplicación: 2x4",
+        qCorrectAnswers: [{ answer: "8" }],
       },
       {
-        qInstruction: "Resuelve el siguiente problema",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "5 + 8",
-        },
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["11", "12", "13", "14"],
-        },
-        qCorrectAnswers: [{ answer: "13" }],
-        qComment: "Selecciona respuesta correcta y da clic en siguiente",
-      },
-      {
-        qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["13.5", "13.7", "14", "14.2"],
-        },
-        qCorrectAnswers: [{ answer: "14" }],
+        qInstruction: "Resuelve la siguiente multiplicación: 2x5",
+        qCorrectAnswers: [{ answer: "10" }],
       },
     ],
   },
   {
-    topicCode: "PRIM3y4_Multi",
+    topicCode: "PRIM3y4_Multiplicación",
+    topicName: "Multiplicación",
+    name: "Multiplicaciones 2",
+    description: "Aprenderás las tablas de multiplicar del 6 al 10",
+    duration: 15,
+    difficulty: "Basic-Intermediate",
+    qCounter: 3,
+    questions: [
+      {
+        qInstruction: "Resuelve la siguiente multiplicación: 6 x 1",
+        qCorrectAnswers: [{ answer: "6" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente multiplicación: 6x2",
+        qCorrectAnswers: [{ answer: "12" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente multiplicación: 6x3",
+        qCorrectAnswers: [{ answer: "18" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente multiplicación: 6x4",
+        qCorrectAnswers: [{ answer: "24" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente multiplicación: 6x5",
+        qCorrectAnswers: [{ answer: "30" }],
+      },
+    ],
+  },
+  {
+    topicCode: "PRIM3y4_Multiplicación",
     topicName: "Multiplicación",
     name: "Multiplicaciones 3",
     description:
-      "Morbi volutpat ipsum a pellentesque euismod. Nullam in neque eu est finibus vestibulum. Cras sagittis metus sit amet leo malesuada, at tincidunt metus scelerisque.",
-    duration: 30,
+      "Multiplicarás números con dos y tres cifras por números con una cifra",
+    duration: 15,
     difficulty: "Intermediate",
-    qCounter: 8,
+    qCounter: 3,
     questions: [
       {
-        qInstruction: "Resuelve la siguiente suma",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "10 + 7",
-        },
-        qCorrectAnswers: [{ answer: "17" }],
+        qInstruction: "Resuelve la siguiente multiplicación: 11x2",
+        qCorrectAnswers: [{ answer: "22" }],
       },
       {
-        qInstruction:
-          "Escribe 3 (pesos) en el primer input y 5 (manzanas) en el segundo",
-        qCorrectAnswers: [
-          { answer: "3", complement: "pesos", placement: "right" },
-          { answer: "5", complement: "manzanas", placement: "right" },
-        ],
-        qComment: "este comentario es de prueba",
+        qInstruction: "Resuelve la siguiente multiplicación: 14x2",
+        qCorrectAnswers: [{ answer: "28" }],
       },
       {
-        qInstruction:
-          "Escribe 45 en el primer input, 22 en el segundo y 77 en el tercero",
-        qCorrectAnswers: [
-          { answer: "45", complement: "número", placement: "left" },
-          { answer: "22", complement: "otro", placement: "left" },
-          { answer: "77", complement: "último", placement: "left" },
-        ],
+        qInstruction: "Resuelve la siguiente multiplicación: 15x2",
+        qCorrectAnswers: [{ answer: "30" }],
       },
       {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura1.png",
-        },
-        qCorrectAnswers: [{ answer: "4" }],
+        qInstruction: "Resuelve la siguiente multiplicación: 18x2",
+        qCorrectAnswers: [{ answer: "36" }],
       },
       {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura2.png",
-        },
-        qCorrectAnswers: [{ answer: "6" }],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura3.png",
-        },
-        qMultipleChoice: {
-          type: "image",
-          imageChoices: [
-            "/exams/suma/suma1/res4.png",
-            "/exams/suma/suma1/res5.png",
-            "/exams/suma/suma1/res6.png",
-            "/exams/suma/suma1/res7.png",
-          ],
-        },
-        qCorrectAnswers: [{ answer: "/exams/suma/suma1/res5.png" }],
-      },
-      {
-        qInstruction: "Resuelve el siguiente problema",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "5 + 8",
-        },
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["11", "12", "13", "14"],
-        },
-        qCorrectAnswers: [{ answer: "13" }],
-        qComment: "Selecciona respuesta correcta y da clic en siguiente",
-      },
-      {
-        qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["13.5", "13.7", "14", "14.2"],
-        },
-        qCorrectAnswers: [{ answer: "14" }],
+        qInstruction: "Resuelve la siguiente multiplicación: 20x2",
+        qCorrectAnswers: [{ answer: "40" }],
       },
     ],
   },
   {
-    topicCode: "PRIM3y4_Multi",
+    topicCode: "PRIM3y4_Multiplicación",
     topicName: "Multiplicación",
     name: "Multiplicaciones 4",
     description:
-      "Morbi volutpat ipsum a pellentesque euismod. Nullam in neque eu est finibus vestibulum. Cras sagittis metus sit amet leo malesuada, at tincidunt metus scelerisque.",
-    duration: 30,
+      "Multiplicarás números de dos cifras y tres cifras por números dos cifras",
+    duration: 15,
     difficulty: "Intermediate-Advanced",
-    qCounter: 8,
+    qCounter: 3,
     questions: [
       {
-        qInstruction: "Resuelve la siguiente suma",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "10 + 7",
-        },
-        qCorrectAnswers: [{ answer: "17" }],
+        qInstruction: "Resuelve la siguiente multiplicación: 15x11",
+        qCorrectAnswers: [{ answer: "165" }],
       },
       {
-        qInstruction:
-          "Escribe 3 (pesos) en el primer input y 5 (manzanas) en el segundo",
-        qCorrectAnswers: [
-          { answer: "3", complement: "pesos", placement: "right" },
-          { answer: "5", complement: "manzanas", placement: "right" },
-        ],
-        qComment: "este comentario es de prueba",
+        qInstruction: "Resuelve la siguiente multiplicación: 11x11",
+        qCorrectAnswers: [{ answer: "121" }],
       },
       {
-        qInstruction:
-          "Escribe 45 en el primer input, 22 en el segundo y 77 en el tercero",
-        qCorrectAnswers: [
-          { answer: "45", complement: "número", placement: "left" },
-          { answer: "22", complement: "otro", placement: "left" },
-          { answer: "77", complement: "último", placement: "left" },
-        ],
+        qInstruction: "Resuelve la siguiente multiplicación: 12x12",
+        qCorrectAnswers: [{ answer: "144" }],
       },
       {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura1.png",
-        },
-        qCorrectAnswers: [{ answer: "4" }],
+        qInstruction: "Resuelve la siguiente multiplicación: 13x13",
+        qCorrectAnswers: [{ answer: "169" }],
       },
       {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura2.png",
-        },
-        qCorrectAnswers: [{ answer: "6" }],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura3.png",
-        },
-        qMultipleChoice: {
-          type: "image",
-          imageChoices: [
-            "/exams/suma/suma1/res4.png",
-            "/exams/suma/suma1/res5.png",
-            "/exams/suma/suma1/res6.png",
-            "/exams/suma/suma1/res7.png",
-          ],
-        },
-        qCorrectAnswers: [{ answer: "/exams/suma/suma1/res5.png" }],
-      },
-      {
-        qInstruction: "Resuelve el siguiente problema",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "5 + 8",
-        },
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["11", "12", "13", "14"],
-        },
-        qCorrectAnswers: [{ answer: "13" }],
-        qComment: "Selecciona respuesta correcta y da clic en siguiente",
-      },
-      {
-        qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["13.5", "13.7", "14", "14.2"],
-        },
-        qCorrectAnswers: [{ answer: "14" }],
+        qInstruction: "Resuelve la siguiente multiplicación: 14x14",
+        qCorrectAnswers: [{ answer: "196" }],
       },
     ],
   },
   {
-    topicCode: "PRIM3y4_Multi",
+    topicCode: "PRIM3y4_Multiplicación",
     topicName: "Multiplicación",
     name: "Multiplicaciones Final",
-    description:
-      "Nullam in neque eu est finibus vestibulum. Cras sagittis metus sit amet leo malesuada, at tincidunt metus scelerisque.",
-    duration: 30,
+    description: "Resolverás problemas usando la multiplicación",
+    duration: 15,
     difficulty: "Advanced",
-    qCounter: 8,
+    qCounter: 3,
     questions: [
       {
-        qInstruction: "Resuelve la siguiente suma",
+        qInstruction: "Resuelve el siguiente problema",
         qTechnicalInstruction: {
           type: "text",
-          text: "10 + 7",
+          text:
+            "Luis compró 5 cajas de chocolates, si cada caja tiene 8 chocolates, ¿cuántos chocolates tiene en total Luis?",
         },
-        qCorrectAnswers: [{ answer: "17" }],
-      },
-      {
-        qInstruction:
-          "Escribe 3 (pesos) en el primer input y 5 (manzanas) en el segundo",
         qCorrectAnswers: [
-          { answer: "3", complement: "pesos", placement: "right" },
-          { answer: "5", complement: "manzanas", placement: "right" },
+          { answer: "40", complement: "chocolates", placement: "right" },
         ],
-        qComment: "este comentario es de prueba",
-      },
-      {
-        qInstruction:
-          "Escribe 45 en el primer input, 22 en el segundo y 77 en el tercero",
-        qCorrectAnswers: [
-          { answer: "45", complement: "número", placement: "left" },
-          { answer: "22", complement: "otro", placement: "left" },
-          { answer: "77", complement: "último", placement: "left" },
-        ],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura1.png",
-        },
-        qCorrectAnswers: [{ answer: "4" }],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura2.png",
-        },
-        qCorrectAnswers: [{ answer: "6" }],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura3.png",
-        },
-        qMultipleChoice: {
-          type: "image",
-          imageChoices: [
-            "/exams/suma/suma1/res4.png",
-            "/exams/suma/suma1/res5.png",
-            "/exams/suma/suma1/res6.png",
-            "/exams/suma/suma1/res7.png",
-          ],
-        },
-        qCorrectAnswers: [{ answer: "/exams/suma/suma1/res5.png" }],
       },
       {
         qInstruction: "Resuelve el siguiente problema",
         qTechnicalInstruction: {
           type: "text",
-          text: "5 + 8",
+          text:
+            "Una barra de granola cuesta 8 pesos. ¿Cuánto se pagará por 6 barras de granola?",
         },
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["11", "12", "13", "14"],
-        },
-        qCorrectAnswers: [{ answer: "13" }],
-        qComment: "Selecciona respuesta correcta y da clic en siguiente",
+        qCorrectAnswers: [
+          { answer: "48", complement: "pesos", placement: "right" },
+        ],
       },
       {
-        qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
-        qMultipleChoice: {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
           type: "text",
-          textChoices: ["13.5", "13.7", "14", "14.2"],
+          text:
+            "Un kilo de aguacate cuesta 65 pesos, ¿cuánto se pagará por 5 kilos de aguacate?",
         },
-        qCorrectAnswers: [{ answer: "14" }],
+        qCorrectAnswers: [
+          { answer: "325", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Si a Ximena le pagan 120 pesos por cada hora que trabaja, ¿cuánto dinero recibirá si trabajó 8 horas?",
+        },
+        qCorrectAnswers: [
+          { answer: "960", complement: "pesos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text: "¿Cuál es el triple de 8?",
+        },
+        qCorrectAnswers: [{ answer: "24" }],
       },
     ],
   },

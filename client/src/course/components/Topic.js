@@ -6,10 +6,13 @@ import ExamsAccordion from "./ExamsAccordion";
 const Topic = React.memo(({ topic }) => {
   return (
     <>
+      <br />
+      <br />
+      <br />
       <Row id={topic.name} style={{ marginTop: "35px" }}>
         {/* title */}
         <Col>
-          <h1 className="display-4" style={{ color: "#48bf84" }}>
+          <h1 className="display-4 mt-4 mb-4" style={{ color: "#48bf84" }}>
             {topic.name}
             {topic.hasReward ? (
               <i
@@ -24,18 +27,12 @@ const Topic = React.memo(({ topic }) => {
       <Row>
         {/* description and material */}
         <Col lg={6}>
-          <p className="mb-3">{topic.description}</p>
-          <p className="mb-1">
-            <i className="fas fa-lightbulb mr-2" />
-            En esta sección aprenderás a:
-          </p>
-          <ul className="mb-3">
-            {topic.toLearn.map((tl, idx) => (
-              <li key={idx}>{tl}</li>
-            ))}
-          </ul>
           <p className="mb-2">
-            <i className="fas fa-hand-point-down mr-2" />
+            <i className="fas fa-bullhorn mr-2 text-dark" />
+            {topic.description}
+          </p>
+          <p className="mb-2">
+            <i className="fas fa-hand-point-down mr-2 text-dark" />
             Apuntes, teoría, videos y más
           </p>
           <div className="mb-3 mt-1 mb-lg-0">

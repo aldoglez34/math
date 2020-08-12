@@ -3,91 +3,30 @@ module.exports = [
     topicCode: "PRIM3y4_Resta",
     topicName: "Resta",
     name: "Restas 1",
-    description:
-      "Duis gravida leo id enim bibendum, in venenatis diam scelerisque. Pellentesque ac justo ornare, fringilla risus eget, tincidunt massa. Sed at sodales nulla.",
-    duration: 30,
+    description: "Harás restas sin acarreos menores a 100",
+    duration: 15,
     difficulty: "Basic",
-    qCounter: 8,
+    qCounter: 3,
     questions: [
       {
-        qInstruction: "Resuelve la siguiente suma",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "10 + 7",
-        },
-        qCorrectAnswers: [{ answer: "17" }],
+        qInstruction: "Resuelve la siguiente resta: 10-1",
+        qCorrectAnswers: [{ answer: "9" }],
       },
       {
-        qInstruction:
-          "Escribe 3 (pesos) en el primer input y 5 (manzanas) en el segundo",
-        qCorrectAnswers: [
-          { answer: "3", complement: "pesos", placement: "right" },
-          { answer: "5", complement: "manzanas", placement: "right" },
-        ],
-        qComment: "este comentario es de prueba",
+        qInstruction: "Resuelve la siguiente resta: 2-1",
+        qCorrectAnswers: [{ answer: "1" }],
       },
       {
-        qInstruction:
-          "Escribe 45 en el primer input, 22 en el segundo y 77 en el tercero",
-        qCorrectAnswers: [
-          { answer: "45", complement: "número", placement: "left" },
-          { answer: "22", complement: "otro", placement: "left" },
-          { answer: "77", complement: "último", placement: "left" },
-        ],
+        qInstruction: "Resuelve la siguiente resta: 3-2",
+        qCorrectAnswers: [{ answer: "1" }],
       },
       {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura1.png",
-        },
+        qInstruction: "Resuelve la siguiente resta: 3-1",
+        qCorrectAnswers: [{ answer: "2" }],
+      },
+      {
+        qInstruction: "Resuelve la siguiente resta: 5-1",
         qCorrectAnswers: [{ answer: "4" }],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura2.png",
-        },
-        qCorrectAnswers: [{ answer: "6" }],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura3.png",
-        },
-        qMultipleChoice: {
-          type: "image",
-          imageChoices: [
-            "/exams/suma/suma1/res4.png",
-            "/exams/suma/suma1/res5.png",
-            "/exams/suma/suma1/res6.png",
-            "/exams/suma/suma1/res7.png",
-          ],
-        },
-        qCorrectAnswers: [{ answer: "/exams/suma/suma1/res5.png" }],
-      },
-      {
-        qInstruction: "Resuelve el siguiente problema",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "5 + 8",
-        },
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["11", "12", "13", "14"],
-        },
-        qCorrectAnswers: [{ answer: "13" }],
-        qComment: "Selecciona respuesta correcta y da clic en siguiente",
-      },
-      {
-        qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["13.5", "13.7", "14", "14.2"],
-        },
-        qCorrectAnswers: [{ answer: "14" }],
       },
     ],
   },
@@ -95,91 +34,30 @@ module.exports = [
     topicCode: "PRIM3y4_Resta",
     topicName: "Resta",
     name: "Restas 2",
-    description:
-      "Curabitur vel quam vel mi elementum accumsan. Sed eros arcu, bibendum vitae efficitur nec, efficitur ut dolor. Aliquam eget feugiat nisl. Maecenas at aliquam purus.",
-    duration: 30,
+    description: "Harás restas sin acarreos menores a 1,000",
+    duration: 15,
     difficulty: "Basic-Intermediate",
-    qCounter: 8,
+    qCounter: 3,
     questions: [
       {
-        qInstruction: "Resuelve la siguiente suma",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "10 + 7",
-        },
-        qCorrectAnswers: [{ answer: "17" }],
+        qInstruction: "Resuelve la siguiente resta: 127-16",
+        qCorrectAnswers: [{ answer: "111" }],
       },
       {
-        qInstruction:
-          "Escribe 3 (pesos) en el primer input y 5 (manzanas) en el segundo",
-        qCorrectAnswers: [
-          { answer: "3", complement: "pesos", placement: "right" },
-          { answer: "5", complement: "manzanas", placement: "right" },
-        ],
-        qComment: "este comentario es de prueba",
+        qInstruction: "Resuelve la siguiente resta: 131-10",
+        qCorrectAnswers: [{ answer: "121" }],
       },
       {
-        qInstruction:
-          "Escribe 45 en el primer input, 22 en el segundo y 77 en el tercero",
-        qCorrectAnswers: [
-          { answer: "45", complement: "número", placement: "left" },
-          { answer: "22", complement: "otro", placement: "left" },
-          { answer: "77", complement: "último", placement: "left" },
-        ],
+        qInstruction: "Resuelve la siguiente resta: 125-24",
+        qCorrectAnswers: [{ answer: "101" }],
       },
       {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura1.png",
-        },
-        qCorrectAnswers: [{ answer: "4" }],
+        qInstruction: "Resuelve la siguiente resta: 137-31",
+        qCorrectAnswers: [{ answer: "106" }],
       },
       {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura2.png",
-        },
-        qCorrectAnswers: [{ answer: "6" }],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura3.png",
-        },
-        qMultipleChoice: {
-          type: "image",
-          imageChoices: [
-            "/exams/suma/suma1/res4.png",
-            "/exams/suma/suma1/res5.png",
-            "/exams/suma/suma1/res6.png",
-            "/exams/suma/suma1/res7.png",
-          ],
-        },
-        qCorrectAnswers: [{ answer: "/exams/suma/suma1/res5.png" }],
-      },
-      {
-        qInstruction: "Resuelve el siguiente problema",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "5 + 8",
-        },
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["11", "12", "13", "14"],
-        },
-        qCorrectAnswers: [{ answer: "13" }],
-        qComment: "Selecciona respuesta correcta y da clic en siguiente",
-      },
-      {
-        qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["13.5", "13.7", "14", "14.2"],
-        },
-        qCorrectAnswers: [{ answer: "14" }],
+        qInstruction: "Resuelve la siguiente resta: 145-33",
+        qCorrectAnswers: [{ answer: "112" }],
       },
     ],
   },
@@ -187,91 +65,30 @@ module.exports = [
     topicCode: "PRIM3y4_Resta",
     topicName: "Resta",
     name: "Restas 3",
-    description:
-      "Sed lacinia lacus non laoreet pulvinar. Maecenas tincidunt suscipit tortor non vehicula. Ut dolor felis, rutrum non tempus nec, pulvinar in neque.",
-    duration: 30,
+    description: "Harás restas con un acarreo menores a 1,000",
+    duration: 20,
     difficulty: "Intermediate",
-    qCounter: 8,
+    qCounter: 3,
     questions: [
       {
-        qInstruction: "Resuelve la siguiente suma",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "10 + 7",
-        },
-        qCorrectAnswers: [{ answer: "17" }],
+        qInstruction: "Resuelve la siguiente resta: 23-16",
+        qCorrectAnswers: [{ answer: "7" }],
       },
       {
-        qInstruction:
-          "Escribe 3 (pesos) en el primer input y 5 (manzanas) en el segundo",
-        qCorrectAnswers: [
-          { answer: "3", complement: "pesos", placement: "right" },
-          { answer: "5", complement: "manzanas", placement: "right" },
-        ],
-        qComment: "este comentario es de prueba",
+        qInstruction: "Resuelve la siguiente resta: 24-17",
+        qCorrectAnswers: [{ answer: "7" }],
       },
       {
-        qInstruction:
-          "Escribe 45 en el primer input, 22 en el segundo y 77 en el tercero",
-        qCorrectAnswers: [
-          { answer: "45", complement: "número", placement: "left" },
-          { answer: "22", complement: "otro", placement: "left" },
-          { answer: "77", complement: "último", placement: "left" },
-        ],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura1.png",
-        },
-        qCorrectAnswers: [{ answer: "4" }],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura2.png",
-        },
+        qInstruction: "Resuelve la siguiente resta: 24-18",
         qCorrectAnswers: [{ answer: "6" }],
       },
       {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura3.png",
-        },
-        qMultipleChoice: {
-          type: "image",
-          imageChoices: [
-            "/exams/suma/suma1/res4.png",
-            "/exams/suma/suma1/res5.png",
-            "/exams/suma/suma1/res6.png",
-            "/exams/suma/suma1/res7.png",
-          ],
-        },
-        qCorrectAnswers: [{ answer: "/exams/suma/suma1/res5.png" }],
+        qInstruction: "Resuelve la siguiente resta: 23-19",
+        qCorrectAnswers: [{ answer: "4" }],
       },
       {
-        qInstruction: "Resuelve el siguiente problema",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "5 + 8",
-        },
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["11", "12", "13", "14"],
-        },
-        qCorrectAnswers: [{ answer: "13" }],
-        qComment: "Selecciona respuesta correcta y da clic en siguiente",
-      },
-      {
-        qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["13.5", "13.7", "14", "14.2"],
-        },
-        qCorrectAnswers: [{ answer: "14" }],
+        qInstruction: "Resuelve la siguiente resta: 25-19",
+        qCorrectAnswers: [{ answer: "6" }],
       },
     ],
   },
@@ -279,91 +96,30 @@ module.exports = [
     topicCode: "PRIM3y4_Resta",
     topicName: "Resta",
     name: "Restas 4",
-    description:
-      "Sed lacinia lacus non laoreet pulvinar. Maecenas tincidunt suscipit tortor non vehicula. Ut dolor felis, rutrum non tempus nec, pulvinar in neque.",
-    duration: 30,
+    description: "Harás restas con dos acarreos y minuendos con ceros",
+    duration: 20,
     difficulty: "Intermediate-Advanced",
-    qCounter: 8,
+    qCounter: 3,
     questions: [
       {
-        qInstruction: "Resuelve la siguiente suma",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "10 + 7",
-        },
-        qCorrectAnswers: [{ answer: "17" }],
+        qInstruction: "Resuelve la siguiente resta: 70-24",
+        qCorrectAnswers: [{ answer: "46" }],
       },
       {
-        qInstruction:
-          "Escribe 3 (pesos) en el primer input y 5 (manzanas) en el segundo",
-        qCorrectAnswers: [
-          { answer: "3", complement: "pesos", placement: "right" },
-          { answer: "5", complement: "manzanas", placement: "right" },
-        ],
-        qComment: "este comentario es de prueba",
+        qInstruction: "Resuelve la siguiente resta: 80-51",
+        qCorrectAnswers: [{ answer: "29" }],
       },
       {
-        qInstruction:
-          "Escribe 45 en el primer input, 22 en el segundo y 77 en el tercero",
-        qCorrectAnswers: [
-          { answer: "45", complement: "número", placement: "left" },
-          { answer: "22", complement: "otro", placement: "left" },
-          { answer: "77", complement: "último", placement: "left" },
-        ],
+        qInstruction: "Resuelve la siguiente resta: 100-84",
+        qCorrectAnswers: [{ answer: "16" }],
       },
       {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura1.png",
-        },
-        qCorrectAnswers: [{ answer: "4" }],
+        qInstruction: "Resuelve la siguiente resta: 100-76",
+        qCorrectAnswers: [{ answer: "24" }],
       },
       {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura2.png",
-        },
-        qCorrectAnswers: [{ answer: "6" }],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura3.png",
-        },
-        qMultipleChoice: {
-          type: "image",
-          imageChoices: [
-            "/exams/suma/suma1/res4.png",
-            "/exams/suma/suma1/res5.png",
-            "/exams/suma/suma1/res6.png",
-            "/exams/suma/suma1/res7.png",
-          ],
-        },
-        qCorrectAnswers: [{ answer: "/exams/suma/suma1/res5.png" }],
-      },
-      {
-        qInstruction: "Resuelve el siguiente problema",
-        qTechnicalInstruction: {
-          type: "text",
-          text: "5 + 8",
-        },
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["11", "12", "13", "14"],
-        },
-        qCorrectAnswers: [{ answer: "13" }],
-        qComment: "Selecciona respuesta correcta y da clic en siguiente",
-      },
-      {
-        qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["13.5", "13.7", "14", "14.2"],
-        },
-        qCorrectAnswers: [{ answer: "14" }],
+        qInstruction: "Resuelve la siguiente resta: 100-85",
+        qCorrectAnswers: [{ answer: "15" }],
       },
     ],
   },
@@ -372,90 +128,65 @@ module.exports = [
     topicName: "Resta",
     name: "Restas Final",
     description:
-      "Maecenas tincidunt suscipit tortor non vehicula. Ut dolor felis, rutrum non tempus nec, pulvinar in neque.",
-    duration: 30,
+      "Resolverás problemas usando la división y harás restas mayores a 1,000",
+    duration: 20,
     difficulty: "Advanced",
-    qCounter: 8,
+    qCounter: 3,
     questions: [
       {
-        qInstruction: "Resuelve la siguiente suma",
+        qInstruction: "Resuelve el siguiente problema",
         qTechnicalInstruction: {
           type: "text",
-          text: "10 + 7",
+          text:
+            "Elena tiene 24 plumones y le presta 8 a su hermano, ¿con cuántos plumones se quedó Elena?",
         },
-        qCorrectAnswers: [{ answer: "17" }],
-      },
-      {
-        qInstruction:
-          "Escribe 3 (pesos) en el primer input y 5 (manzanas) en el segundo",
         qCorrectAnswers: [
-          { answer: "3", complement: "pesos", placement: "right" },
-          { answer: "5", complement: "manzanas", placement: "right" },
+          { answer: "16", complement: "plumones", placement: "right" },
         ],
-        qComment: "este comentario es de prueba",
-      },
-      {
-        qInstruction:
-          "Escribe 45 en el primer input, 22 en el segundo y 77 en el tercero",
-        qCorrectAnswers: [
-          { answer: "45", complement: "número", placement: "left" },
-          { answer: "22", complement: "otro", placement: "left" },
-          { answer: "77", complement: "último", placement: "left" },
-        ],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura1.png",
-        },
-        qCorrectAnswers: [{ answer: "4" }],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura2.png",
-        },
-        qCorrectAnswers: [{ answer: "6" }],
-      },
-      {
-        qInstruction: "¿Cuántos lados tiene la siguiente figura?",
-        qTechnicalInstruction: {
-          type: "image",
-          imageLink: "/exams/suma/suma1/figura3.png",
-        },
-        qMultipleChoice: {
-          type: "image",
-          imageChoices: [
-            "/exams/suma/suma1/res4.png",
-            "/exams/suma/suma1/res5.png",
-            "/exams/suma/suma1/res6.png",
-            "/exams/suma/suma1/res7.png",
-          ],
-        },
-        qCorrectAnswers: [{ answer: "/exams/suma/suma1/res5.png" }],
       },
       {
         qInstruction: "Resuelve el siguiente problema",
         qTechnicalInstruction: {
           type: "text",
-          text: "5 + 8",
+          text:
+            "Juan fue a la tienda y compró un total de 64 pesos. Si pagó con un billete de 100 pesos, ¿cuánto dinero recibió de cambio?",
         },
-        qMultipleChoice: {
-          type: "text",
-          textChoices: ["11", "12", "13", "14"],
-        },
-        qCorrectAnswers: [{ answer: "13" }],
-        qComment: "Selecciona respuesta correcta y da clic en siguiente",
+        qCorrectAnswers: [
+          { answer: "36", complement: "pesos", placement: "right" },
+        ],
       },
       {
-        qInstruction: "¿Cuánto es 10 + 4? Elige la respuesta correcta",
-        qMultipleChoice: {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
           type: "text",
-          textChoices: ["13.5", "13.7", "14", "14.2"],
+          text:
+            "Rodrigo tiene 42 a~ nos y Diego es 11 a~ nos menor que Rodrigo, ¿cuántos años tiene Diego?",
         },
-        qCorrectAnswers: [{ answer: "14" }],
+        qCorrectAnswers: [
+          { answer: "31", complement: "años", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "En un partido de baloncesto el equipo A anotó 78 puntos, mientras que el equipo B anotó 69 puntos. ¿Por cuántos puntos le ganó el equipo A al equipo B?",
+        },
+        qCorrectAnswers: [
+          { answer: "9", complement: "puntos", placement: "right" },
+        ],
+      },
+      {
+        qInstruction: "Resuelve el siguiente problema",
+        qTechnicalInstruction: {
+          type: "text",
+          text:
+            "Gerardo tenía 340 pesos y decidió comprar un libro de 189 pesos, ¿cuánto dinero le quedó?",
+        },
+        qCorrectAnswers: [
+          { answer: "151", complement: "pesos", placement: "right" },
+        ],
       },
     ],
   },
