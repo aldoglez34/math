@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
+  examCode: { type: String, required: true, unique: true }, // ej. 01, 02, 03...
   topicCode: { type: String, required: true }, // ej. PRIM3y4_Suma o PRIM3y4_Resta
   name: {
     type: String,
