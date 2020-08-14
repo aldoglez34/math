@@ -42,7 +42,7 @@ const Dashboard = React.memo(() => {
 
   return (
     <StudentLayout>
-      <h2 className="display-4 mb-0 mt-4">Mis cursos</h2>
+      <h2 className="display-4 mb-0 mt-4">Bienvenido a mis cursos</h2>
       {myCourses ? (
         myCourses.length ? (
           <MyCourses courses={myCourses} />

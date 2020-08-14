@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 import "./dashboardcoursecard.scss";
 import { useDispatch } from "react-redux";
 import * as courseActions from "../../../redux/actions/course";
-import MyRewards from "./MyRewards";
-import { HashLink as Link } from "react-router-hash-link";
 
 const DashboardCourseCard = React.memo(({ course }) => {
   const dispatch = useDispatch();
@@ -24,9 +22,6 @@ const DashboardCourseCard = React.memo(({ course }) => {
         </Card.Title>
 
         <Card.Text>{course.shortDescription}</Card.Text>
-        <Card.Text>
-          <MyRewards rewards={course.rewards} />
-        </Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
         {course.topics.map((ct) => (
@@ -42,13 +37,11 @@ const DashboardCourseCard = React.memo(({ course }) => {
                   () => (window.location.href = "/course/#" + ct.name)
                 )
               }
-              // to={"/course/#" + ct.name}
               title={"Ir a " + ct.name}
             >
               <strong>{ct.name}</strong>
             </Button>
 
-            {/* <strong className="text-dark">{ct.name}</strong> */}
             {ct.hasReward ? (
               <i
                 className="fas fa-medal text-warning ml-2"
