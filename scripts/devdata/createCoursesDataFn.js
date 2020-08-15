@@ -9,14 +9,12 @@ const insertExams = (topicCode, examsArr) => {
 
 module.exports = (examsArr) => [
   {
-    name: "Primaria 3ro y 4to",
-    shortDescription:
+    name: "Primaria 3ro",
+    description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius risus massa, et sollicitudin est fringilla hendrerit. Etiam luctus blandit dolor, vitae tristique elit convallis in. Quisque eleifend consectetur velit id ultrices.",
-    longDescription:
-      "Quisque eget posuere lacus, in posuere risus. Curabitur semper fermentum dolor. Integer imperdiet, lectus eu suscipit rutrum, felis nisi vestibulum turpis, vel dictum magna odio sit amet orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris aliquam justo vel lacus ultricies iaculis.",
     topics: [
       {
-        topicCode: "PRIM3y4_Suma",
+        topicCode: "PRIM_3_Suma",
         subject: "Aritmética",
         name: "Suma",
         description:
@@ -45,10 +43,10 @@ module.exports = (examsArr) => [
             link: "https://youtu.be/UFclruOiQRg",
           },
         ],
-        exams: insertExams("PRIM3y4_Suma", examsArr), // dont forget to give the course code here (manually)
+        exams: insertExams("PRIM_3_Suma", examsArr), // dont forget to give the course code here (manually)
       },
       {
-        topicCode: "PRIM3y4_Resta",
+        topicCode: "PRIM_3_Resta",
         subject: "Aritmética",
         name: "Resta",
         description:
@@ -82,10 +80,10 @@ module.exports = (examsArr) => [
             link: "https://youtu.be/FiTOOjrBZTc",
           },
         ],
-        exams: insertExams("PRIM3y4_Resta", examsArr), // dont forget to give the course code here (manually)
+        exams: insertExams("PRIM_3_Resta", examsArr), // dont forget to give the course code here (manually)
       },
       {
-        topicCode: "PRIM3y4_Multiplicación",
+        topicCode: "PRIM_3_Multiplicación",
         subject: "Aritmética",
         name: "Multiplicación",
         reward: {
@@ -114,10 +112,10 @@ module.exports = (examsArr) => [
             link: "https://youtu.be/suU4_TB6S_Q",
           },
         ],
-        exams: insertExams("PRIM3y4_Multiplicación", examsArr), // dont forget to give the course code here (manually)
+        exams: insertExams("PRIM_3_Multiplicación", examsArr), // dont forget to give the course code here (manually)
       },
       {
-        topicCode: "PRIM3y4_División",
+        topicCode: "PRIM_3_División",
         subject: "Aritmética",
         name: "División",
         reward: {
@@ -130,10 +128,10 @@ module.exports = (examsArr) => [
           timer: 10,
         },
         material: [],
-        exams: insertExams("PRIM3y4_División", examsArr), // dont forget to give the course code here (manually)
+        exams: insertExams("PRIM_3_División", examsArr), // dont forget to give the course code here (manually)
       },
       {
-        topicCode: "PRIM3y4_Fracciones",
+        topicCode: "PRIM_3_Fracciones",
         subject: "Aritmética",
         name: "Fracciones",
         reward: {
@@ -146,10 +144,10 @@ module.exports = (examsArr) => [
           timer: 10,
         },
         material: [],
-        exams: insertExams("PRIM3y4_Fracciones", examsArr), // dont forget to give the course code here (manually)
+        exams: insertExams("PRIM_3_Fracciones", examsArr), // dont forget to give the course code here (manually)
       },
       {
-        topicCode: "PRIM3y4_OperacionesConFracciones",
+        topicCode: "PRIM_3_OperacionesConFracciones",
         subject: "Aritmética",
         name: "Operaciones con Fracciones",
         reward: {
@@ -162,10 +160,10 @@ module.exports = (examsArr) => [
           timer: 10,
         },
         material: [],
-        exams: insertExams("PRIM3y4_OperacionesConFracciones", examsArr), // dont forget to give the course code here (manually)
+        exams: insertExams("PRIM_3_OperacionesConFracciones", examsArr), // dont forget to give the course code here (manually)
       },
       {
-        topicCode: "PRIM3y4_FigurasGeometricas",
+        topicCode: "PRIM_3_FigurasGeometricas",
         subject: "Aritmética",
         name: "Figuras Geométricas",
         reward: {
@@ -178,10 +176,10 @@ module.exports = (examsArr) => [
           timer: 10,
         },
         material: [],
-        exams: insertExams("PRIM3y4_FigurasGeometricas", examsArr), // dont forget to give the course code here (manually)
+        exams: insertExams("PRIM_3_FigurasGeometricas", examsArr), // dont forget to give the course code here (manually)
       },
       {
-        topicCode: "PRIM3y4_NúmerosDecimales",
+        topicCode: "PRIM_3_NúmerosDecimales",
         subject: "Aritmética",
         name: "Números Decimales",
         reward: {
@@ -194,10 +192,10 @@ module.exports = (examsArr) => [
           timer: 10,
         },
         material: [],
-        exams: insertExams("PRIM3y4_NúmerosDecimales", examsArr), // dont forget to give the course code here (manually)
+        exams: insertExams("PRIM_3_NúmerosDecimales", examsArr), // dont forget to give the course code here (manually)
       },
       {
-        topicCode: "PRIM3y4_UnidadesDeMedición",
+        topicCode: "PRIM_3_UnidadesDeMedición",
         subject: "Aritmética",
         name: "Unidades de Medición",
         reward: {
@@ -210,7 +208,7 @@ module.exports = (examsArr) => [
           timer: 10,
         },
         material: [],
-        exams: insertExams("PRIM3y4_UnidadesDeMedición", examsArr), // dont forget to give the course code here (manually)
+        exams: insertExams("PRIM_3_UnidadesDeMedición", examsArr), // dont forget to give the course code here (manually)
       },
     ],
   },

@@ -7,8 +7,7 @@ const schema = new Schema({
     required: true,
     unique: true,
   }, // ej. Primaria 3ro y 4to
-  shortDescription: { type: String, required: true },
-  longDescription: { type: String, required: true },
+  description: { type: String, required: true },
   topics: [
     {
       topicCode: { type: String, required: true }, // ej. PRIM3y4_Suma o PRIM3y4_Resta
