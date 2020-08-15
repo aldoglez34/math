@@ -16,9 +16,9 @@ const DashboardCourseCard = React.memo(({ course }) => {
     <Card className="dashboardCourseCard shadow-sm">
       <Card.Body>
         <Card.Title className="d-flex flex-row">
-          <h3 className="mb-0" style={{ color: "#3b424b" }}>
+          <h2 className="mb-0" style={{ color: "#3b424b" }}>
             {course.name}
-          </h3>
+          </h2>
         </Card.Title>
 
         <Card.Text>{course.shortDescription}</Card.Text>
