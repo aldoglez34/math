@@ -1,7 +1,7 @@
 module.exports = [
   {
-    examCode: "división_01",
-    topicCode: "PRIM3y4_División",
+    examCode: "PRIM_3_División_Exam01",
+    topicCode: "PRIM_3_División",
     topicName: "División",
     name: "Divisiones 1",
     description:
@@ -33,8 +33,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "división_02",
-    topicCode: "PRIM3y4_División",
+    examCode: "PRIM_3_División_Exam02",
+    topicCode: "PRIM_3_División",
     topicName: "División",
     name: "Divisiones 2",
     description:
@@ -66,8 +66,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "división_03",
-    topicCode: "PRIM3y4_División",
+    examCode: "PRIM_3_División_Exam03",
+    topicCode: "PRIM_3_División",
     topicName: "División",
     name: "Divisiones 3",
     description:
@@ -119,8 +119,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "división_04",
-    topicCode: "PRIM3y4_División",
+    examCode: "PRIM_3_División_Exam04",
+    topicCode: "PRIM_3_División",
     topicName: "División",
     name: "Divisiones 4",
     description:
@@ -172,8 +172,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "división_05",
-    topicCode: "PRIM3y4_División",
+    examCode: "PRIM_3_División_Exam05",
+    topicCode: "PRIM_3_División",
     topicName: "División",
     name: "Divisiones Final",
     description: "Resolverás problemas usando la división",

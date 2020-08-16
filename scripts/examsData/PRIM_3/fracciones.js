@@ -1,7 +1,7 @@
 module.exports = [
   {
-    examCode: "fracciones_01",
-    topicCode: "PRIM3y4_Fracciones",
+    examCode: "PRIM_3_Fracciones_Exam01",
+    topicCode: "PRIM_3_Fracciones",
     topicName: "Fracciones",
     name: "Clasificación de fracciones",
     description: "Clasificarás las fracciones en propias, impropias y mixtas",
@@ -52,8 +52,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "fracciones_02",
-    topicCode: "PRIM3y4_Fracciones",
+    examCode: "PRIM_3_Fracciones_Exam02",
+    topicCode: "PRIM_3_Fracciones",
     topicName: "Fracciones",
     name: "Representación de fracciones",
     description: "Usarás fracciones para representar una figura geométrica",
@@ -114,8 +114,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "fracciones_03",
-    topicCode: "PRIM3y4_Fracciones",
+    examCode: "PRIM_3_Fracciones_Exam03",
+    topicCode: "PRIM_3_Fracciones",
     topicName: "Fracciones",
     name: "Fracciones equivalentes",
     description: "Escribirás una fracción equivalente a la de las imágenes",
@@ -171,8 +171,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "fracciones_04",
-    topicCode: "PRIM3y4_Fracciones",
+    examCode: "PRIM_3_Fracciones_Exam04",
+    topicCode: "PRIM_3_Fracciones",
     topicName: "Fracciones",
     name: "Fracciones mixtas a impropias",
     description: "Convertirás fracciones mixtas a fracciones impropias",
@@ -203,8 +203,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "fracciones_05",
-    topicCode: "PRIM3y4_Fracciones",
+    examCode: "PRIM_3_Fracciones_Exam05",
+    topicCode: "PRIM_3_Fracciones",
     topicName: "Fracciones",
     name: "Fracciones impropias a mixtas",
     description: "Convertirás fracciones impropias a fracciones mixtas",

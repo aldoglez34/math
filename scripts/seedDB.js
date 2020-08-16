@@ -13,6 +13,8 @@ mongoose
   .catch((error) => console.log(error));
 
 //============================================================
+//============================================================
+//============================================================
 var examsArr = [];
 models.Exam.remove({})
   .then(() => {
@@ -69,50 +71,3 @@ models.Exam.remove({})
     console.log(err);
     process.exit(1);
   });
-//============================================================
-
-// models.Student.remove({})
-//   .then(() => {
-//     const studentsData = require("./devdata/studentsData");
-//     return models.Student.insertMany(studentsData);
-//   })
-//   .then((data) => {
-//     console.log("\n> " + data.length + " students added");
-//     // separating ids only
-//     let studentIds = data.reduce((acc, cv) => {
-//       acc.push(cv._id);
-//       return acc;
-//     }, []);
-//     // remove exams
-//     models.Exam.remove({});
-//     // prepare exams data
-//     const createExamsData = require("./examsData");
-//     const examsData = createExamsData(studentIds);
-
-//     return models.Exam.insertMany(examsData);
-//   })
-//   .then((data) => {
-//     console.log("> " + data.length + " exams added");
-//     // separating ids only
-//     let examsIds = data.reduce((acc, cv) => {
-//       acc.push({ topicCode: cv.topicCode, examId: cv._id });
-//       return acc;
-//     }, []);
-//     // remove courses
-//     models.Course.remove({});
-//     // prepare courses data
-//     const createCoursesDataFn = require("./devdata/createCoursesDataFn");
-//     const coursesData = createCoursesDataFn(examsIds);
-
-//     return models.Course.insertMany(coursesData);
-//   })
-//   .then((data) => {
-//     console.log("> " + data.length + " courses added");
-
-//     console.log("\nfinishing process...");
-//     process.exit(0);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//     process.exit(1);
-//   });

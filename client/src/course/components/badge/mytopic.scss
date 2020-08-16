@@ -1,0 +1,19 @@
+.topicBadge {
+  background-color: #1d7e8d;
+  color: white;
+
+  &:hover {
+    background-color: #249aac;
+    transition: 0.3;
+  }
+}
+
+.topicText {
+  font-size: 15px;
+  font-weight: 100;
+}
+
+.topicArrow {
+  font-size: 10px;
+  margin-right: 5px;
+}

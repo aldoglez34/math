@@ -1,7 +1,7 @@
 module.exports = [
   {
-    examCode: "operacionesConFracciones_01",
-    topicCode: "PRIM3y4_OperacionesConFracciones",
+    examCode: "PRIM_3_OperacionesConFracciones_Exam01",
+    topicCode: "PRIM_3_OperacionesConFracciones",
     topicName: "Operaciones con Fracciones",
     name: "Suma de fracciones",
     description: "Sumarás fracciones con denominadores iguales",
@@ -42,8 +42,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "operacionesConFracciones_02",
-    topicCode: "PRIM3y4_OperacionesConFracciones",
+    examCode: "PRIM_3_OperacionesConFracciones_Exam02",
+    topicCode: "PRIM_3_OperacionesConFracciones",
     topicName: "Operaciones con Fracciones",
     name: "Resta de fracciones",
     description: "Restarás fracciones con denominadores iguales",
@@ -84,8 +84,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "operacionesConFracciones_03",
-    topicCode: "PRIM3y4_OperacionesConFracciones",
+    examCode: "PRIM_3_OperacionesConFracciones_Exam03",
+    topicCode: "PRIM_3_OperacionesConFracciones",
     topicName: "Operaciones con Fracciones",
     name: "Multiplicación de fracciones",
     description: "Multiplicarás fracciones",
@@ -131,8 +131,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "operacionesConFracciones_04",
-    topicCode: "PRIM3y4_OperacionesConFracciones",
+    examCode: "PRIM_3_OperacionesConFracciones_Exam04",
+    topicCode: "PRIM_3_OperacionesConFracciones",
     topicName: "Operaciones con Fracciones",
     name: "División de fracciones",
     description: "Dividirás fracciones",
@@ -178,8 +178,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "operacionesConFracciones_05",
-    topicCode: "PRIM3y4_OperacionesConFracciones",
+    examCode: "PRIM_3_OperacionesConFracciones_Exam05",
+    topicCode: "PRIM_3_OperacionesConFracciones",
     topicName: "Operaciones con Fracciones",
     name: "Resolución de problemas",
     description: "Resolverás problemas que involucren fracciones",

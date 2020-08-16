@@ -1,7 +1,7 @@
 module.exports = [
   {
-    examCode: "figurasGeométricas_01",
-    topicCode: "PRIM3y4_FigurasGeometricas",
+    examCode: "PRIM_3_FigurasGeométricas_Exam01",
+    topicCode: "PRIM_3_FigurasGeométricas",
     topicName: "Figuras Geométricas",
     name: "Nombres",
     description: "Nombrarás las diferentes figuras geométricas",
@@ -72,8 +72,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "figurasGeométricas_02",
-    topicCode: "PRIM3y4_FigurasGeometricas",
+    examCode: "PRIM_3_FigurasGeométricas_Exam02",
+    topicCode: "PRIM_3_FigurasGeométricas",
     topicName: "Figuras Geométricas",
     name: "Elementos",
     description: "Restarás fracciones con denominadores iguales",
@@ -149,8 +149,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "figurasGeométricas_03",
-    topicCode: "PRIM3y4_FigurasGeometricas",
+    examCode: "PRIM_3_FigurasGeométricas_Exam03",
+    topicCode: "PRIM_3_FigurasGeométricas",
     topicName: "Figuras Geométricas",
     name: "Perímetro",
     description: "Calcularás el perímetro de figuras geométricas",
@@ -216,8 +216,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "figurasGeométricas_04",
-    topicCode: "PRIM3y4_FigurasGeometricas",
+    examCode: "PRIM_3_FigurasGeométricas_Exam04",
+    topicCode: "PRIM_3_FigurasGeométricas",
     topicName: "Figuras Geométricas",
     name: "Área",
     description: "Calcularás el área de figuras geométricas",
@@ -283,8 +283,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "figurasGeométricas_05",
-    topicCode: "PRIM3y4_FigurasGeometricas",
+    examCode: "PRIM_3_FigurasGeométricas_Exam05",
+    topicCode: "PRIM_3_FigurasGeométricas",
     topicName: "Figuras Geométricas",
     name: "Resolución de problemas",
     description: "Resolverás problemas que involucren figuras geométricas",

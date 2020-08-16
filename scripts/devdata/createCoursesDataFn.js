@@ -20,8 +20,8 @@ module.exports = (examsArr) => [
         description:
           "La primera operación básica de las matemáticas, la suma es una operación que agrupa números o cosas. En esta sección aprenderás a sumar números con y sin acarreos y resolverás problemas de la vida cotidiana usando esta operación.",
         reward: {
-          name: "Medalla de Suma",
-          link: "/rewards/sumaMedal.png",
+          name: "Medalla del tema: Suma",
+          link: "/rewards/primaria/3/suma.png",
         },
         freestyle: {
           timer: 10,
@@ -52,8 +52,8 @@ module.exports = (examsArr) => [
         description:
           "La segunda operación básica de las matemáticas, la resta es una operación que quita objetos. En esta sección aprenderás a restar números con y sin acarreos, harás restas con minuendos múltiplos de 10 y resolverás problemas de la vida cotidiana usando esta operación.",
         reward: {
-          name: "Medalla de Resta",
-          link: "/rewards/restaMedal.png",
+          name: "Medalla del tema: Resta",
+          link: "/rewards/primaria/3/resta.png",
         },
         freestyle: {
           timer: 10,
@@ -87,8 +87,8 @@ module.exports = (examsArr) => [
         subject: "Aritmética",
         name: "Multiplicación",
         reward: {
-          name: "Medalla de Multiplicación",
-          link: "/rewards/multiplicacionMedal.png",
+          name: "Medalla del tema: Multiplicación",
+          link: "/rewards/primaria/3/multiplicacion.png",
         },
         description:
           "La tercera operación básica de las matemáticas, la multiplicación es una abreviación de una suma, por lo que al igual que la suma, agrupa objetos. En esta sección aprenderás las tablas de multiplicar, harás multiplicaciones con números de dos y tres cifras resolverás problemas de la vida cotidiana usando esta operación.",
@@ -119,8 +119,8 @@ module.exports = (examsArr) => [
         subject: "Aritmética",
         name: "División",
         reward: {
-          name: "Medalla de División",
-          link: "/rewards/divisionMedal.png",
+          name: "Medalla del tema: División",
+          link: "/rewards/primaria/3/division.png",
         },
         description:
           "La cuarta operación básica de las matemáticas, la división es una operación que reparte objetos e involucra la multiplicación y resta. En esta sección harás divisiones con dividendos de dos o más cifras y divisores de una cifra y resolverás problemas de la vida cotidiana usando esta operación.",
@@ -135,8 +135,8 @@ module.exports = (examsArr) => [
         subject: "Aritmética",
         name: "Fracciones",
         reward: {
-          name: "Medalla de Fracciones",
-          link: "/rewards/fraccionesMedal.png",
+          name: "Medalla del tema: Fracciones",
+          link: "/rewards/primaria/3/fracciones.png",
         },
         description:
           "La fracción es una manera de representar una división y son muy usados en la vida cotidiana. En esta sección clasificarás las fracciones, representarás fracciones usando figuras geométricas y convertirás fracciones mixtas a impropias y viceversa.",
@@ -151,8 +151,8 @@ module.exports = (examsArr) => [
         subject: "Aritmética",
         name: "Operaciones con Fracciones",
         reward: {
-          name: "Medalla de Operaciones con Fracciones",
-          link: "/rewards/operacionesConFraccMedal.png",
+          name: "Medalla del tema: Operaciones con Fracciones",
+          link: "/rewards/primaria/3/operacionesConFracciones.png",
         },
         description:
           "Suma, resta, multiplicación y división son operaciones que también se pueden hacer con fracciones. En esta sección aprenderás hacerlas y resolverás problemas de la vida cotidiana usando fracciones.",
@@ -163,12 +163,12 @@ module.exports = (examsArr) => [
         exams: insertExams("PRIM_3_OperacionesConFracciones", examsArr), // dont forget to give the course code here (manually)
       },
       {
-        topicCode: "PRIM_3_FigurasGeometricas",
+        topicCode: "PRIM_3_FigurasGeométricas",
         subject: "Aritmética",
         name: "Figuras Geométricas",
         reward: {
-          name: "Medalla de Figuras Geométricas",
-          link: "/rewards/figurasGeometricasMedal.png",
+          name: "Medalla del tema: Figuras Geométricas",
+          link: "/rewards/primaria/3/figurasGeometricas.png",
         },
         description:
           "Las figuras geométricas son superficies delimitas por líneas que pueden ser curvas o rectas. En esta sección aprenderás el nombre de las figuras, calcularás su perímetro y área y resolverás problemas de la vida cotidiana que involucren a dichas figuras.",
@@ -176,15 +176,15 @@ module.exports = (examsArr) => [
           timer: 10,
         },
         material: [],
-        exams: insertExams("PRIM_3_FigurasGeometricas", examsArr), // dont forget to give the course code here (manually)
+        exams: insertExams("PRIM_3_FigurasGeométricas", examsArr), // dont forget to give the course code here (manually)
       },
       {
         topicCode: "PRIM_3_NúmerosDecimales",
         subject: "Aritmética",
         name: "Números Decimales",
         reward: {
-          name: "Medalla de Números Decimales",
-          link: "/rewards/numerosDecimalesMedal.png",
+          name: "Medalla del tema: Números Decimales",
+          link: "/rewards/primaria/3/numerosDecimales.png",
         },
         description:
           "Suma, resta, multiplicación y división con números decimales, son operaciones que aprenderás hacer en esta sección y resolverás problemas de la vida cotidiana usando estos números.",
@@ -199,8 +199,8 @@ module.exports = (examsArr) => [
         subject: "Aritmética",
         name: "Unidades de Medición",
         reward: {
-          name: "Medalla de Unidades de Medición",
-          link: "/rewards/unidadesDeMedicion.png",
+          name: "Medalla del tema: Unidades de Medición",
+          link: "/rewards/primaria/3/unidadesDeMedicion.png",
         },
         description:
           "Las unidades de medición nos ayudan a saber cuánto vamos a pagar, qué estamos midiendo, cuánto tiempo ha transcurrido, etc. En esta sección aprenderás a leer el reloj, convertirás unidades de tiempo y convertirás unidades de longitud.",

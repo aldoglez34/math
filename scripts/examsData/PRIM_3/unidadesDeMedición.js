@@ -1,7 +1,7 @@
 module.exports = [
   {
-    examCode: "unidadesDeMedición_01",
-    topicCode: "PRIM3y4_UnidadesDeMedición",
+    examCode: "PRIM_3_UnidadesDeMedición_Exam01",
+    topicCode: "PRIM_3_UnidadesDeMedición",
     topicName: "Unidades de Medición",
     name: "El reloj",
     description: "Escribirás la hora del reloj",
@@ -57,8 +57,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "unidadesDeMedición_02",
-    topicCode: "PRIM3y4_UnidadesDeMedición",
+    examCode: "PRIM_3_UnidadesDeMedición_Exam02",
+    topicCode: "PRIM_3_UnidadesDeMedición",
     topicName: "Unidades de Medición",
     name: "Unidades de tiempo 1",
     description: "Convertirás unidades de tiempo mayores a menores",
@@ -99,8 +99,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "unidadesDeMedición_03",
-    topicCode: "PRIM3y4_UnidadesDeMedición",
+    examCode: "PRIM_3_UnidadesDeMedición_Exam03",
+    topicCode: "PRIM_3_UnidadesDeMedición",
     topicName: "Unidades de Medición",
     name: "Unidades de tiempo 2",
     description: "Convertirás unidades de tiempo menores a mayores",
@@ -141,8 +141,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "unidadesDeMedición_04",
-    topicCode: "PRIM3y4_UnidadesDeMedición",
+    examCode: "PRIM_3_UnidadesDeMedición_Exam04",
+    topicCode: "PRIM_3_UnidadesDeMedición",
     topicName: "Unidades de Medición",
     name: "Unidades de longitud 1",
     description: "Convertirás unidades de longitud mayores a menores",
@@ -183,8 +183,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "unidadesDeMedición_05",
-    topicCode: "PRIM3y4_UnidadesDeMedición",
+    examCode: "PRIM_3_UnidadesDeMedición_Exam05",
+    topicCode: "PRIM_3_UnidadesDeMedición",
     topicName: "Unidades de Medición",
     name: "Unidades de longitud 2",
     description: "Convertirás unidades de longitud menores a mayores",

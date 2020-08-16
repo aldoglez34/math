@@ -1,7 +1,7 @@
 module.exports = [
   {
-    examCode: "suma_01",
-    topicCode: "PRIM3y4_Suma",
+    examCode: "PRIM_3_Suma_Exam01",
+    topicCode: "PRIM_3_Suma",
     topicName: "Suma",
     name: "Sumas 1",
     description: "Sumas sin acarreos menores a 100",
@@ -821,8 +821,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "suma_02",
-    topicCode: "PRIM3y4_Suma",
+    examCode: "PRIM_3_Suma_Exam02",
+    topicCode: "PRIM_3_Suma",
     topicName: "Suma",
     name: "Sumas 2",
     description: "Sumas sin acarreo menores a 1,000",
@@ -1642,8 +1642,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "suma_03",
-    topicCode: "PRIM3y4_Suma",
+    examCode: "PRIM_3_Suma_Exam03",
+    topicCode: "PRIM_3_Suma",
     topicName: "Suma",
     name: "Sumas 3",
     description: "Sumas con un acarreo menores a 1,000",
@@ -2261,8 +2261,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "suma_04",
-    topicCode: "PRIM3y4_Suma",
+    examCode: "PRIM_3_Suma_Exam04",
+    topicCode: "PRIM_3_Suma",
     topicName: "Suma",
     name: "Sumas 4",
     description: "Sumas con dos acarreos mayores a 1,000",
@@ -2880,8 +2880,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "suma_05",
-    topicCode: "PRIM3y4_Suma",
+    examCode: "PRIM_3_Suma_Exam05",
+    topicCode: "PRIM_3_Suma",
     topicName: "Suma",
     name: "Sumas Final",
     description: "Resolución de problemas y sumas mayores a 1,000",

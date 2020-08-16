@@ -75,7 +75,6 @@ export default React.memo((props) => {
           {/* TOP INTRO */}
           <CourseIntro
             name={course.name}
-            longDescription={course.longDescription}
             topics={course.topics.reduce((acc, cv) => {
               acc.push({ _id: cv._id, subject: cv.subject, name: cv.name });
               return acc;

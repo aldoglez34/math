@@ -1,7 +1,7 @@
 module.exports = [
   {
-    examCode: "multiplicación_01",
-    topicCode: "PRIM3y4_Multiplicación",
+    examCode: "PRIM_3_Multiplicación_Exam01",
+    topicCode: "PRIM_3_Multiplicación",
     topicName: "Multiplicación",
     name: "Multiplicaciones 1",
     description:
@@ -33,8 +33,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "multiplicación_02",
-    topicCode: "PRIM3y4_Multiplicación",
+    examCode: "PRIM_3_Multiplicación_Exam02",
+    topicCode: "PRIM_3_Multiplicación",
     topicName: "Multiplicación",
     name: "Multiplicaciones 2",
     description: "Aprenderás las tablas de multiplicar del 6 al 10",
@@ -65,8 +65,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "multiplicación_03",
-    topicCode: "PRIM3y4_Multiplicación",
+    examCode: "PRIM_3_Multiplicación_Exam03",
+    topicCode: "PRIM_3_Multiplicación",
     topicName: "Multiplicación",
     name: "Multiplicaciones 3",
     description:
@@ -98,8 +98,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "multiplicación_04",
-    topicCode: "PRIM3y4_Multiplicación",
+    examCode: "PRIM_3_Multiplicación_Exam04",
+    topicCode: "PRIM_3_Multiplicación",
     topicName: "Multiplicación",
     name: "Multiplicaciones 4",
     description:
@@ -131,8 +131,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "multiplicación_05",
-    topicCode: "PRIM3y4_Multiplicación",
+    examCode: "PRIM_3_Multiplicación_Exam05",
+    topicCode: "PRIM_3_Multiplicación",
     topicName: "Multiplicación",
     name: "Multiplicaciones Final",
     description: "Resolverás problemas usando la multiplicación",

@@ -1,7 +1,7 @@
 module.exports = [
   {
-    examCode: "resta_01",
-    topicCode: "PRIM3y4_Resta",
+    examCode: "PRIM_3_Resta_Exam01",
+    topicCode: "PRIM_3_Resta",
     topicName: "Resta",
     name: "Restas 1",
     description: "Harás restas sin acarreos menores a 100",
@@ -32,8 +32,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "resta_02",
-    topicCode: "PRIM3y4_Resta",
+    examCode: "PRIM_3_Resta_Exam02",
+    topicCode: "PRIM_3_Resta",
     topicName: "Resta",
     name: "Restas 2",
     description: "Harás restas sin acarreos menores a 1,000",
@@ -64,8 +64,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "resta_03",
-    topicCode: "PRIM3y4_Resta",
+    examCode: "PRIM_3_Resta_Exam03",
+    topicCode: "PRIM_3_Resta",
     topicName: "Resta",
     name: "Restas 3",
     description: "Harás restas con un acarreo menores a 1,000",
@@ -96,8 +96,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "resta_04",
-    topicCode: "PRIM3y4_Resta",
+    examCode: "PRIM_3_Resta_Exam04",
+    topicCode: "PRIM_3_Resta",
     topicName: "Resta",
     name: "Restas 4",
     description: "Harás restas con dos acarreos y minuendos con ceros",
@@ -128,8 +128,8 @@ module.exports = [
     ],
   },
   {
-    examCode: "resta_05",
-    topicCode: "PRIM3y4_Resta",
+    examCode: "PRIM_3_Resta_Exam05",
+    topicCode: "PRIM_3_Resta",
     topicName: "Resta",
     name: "Restas Final",
     description:
