@@ -60,8 +60,8 @@ const ExamUnlocked = React.memo(({ showUnlocked, setShowExamUnlocked_ }) => {
               <div className="my-2">
                 <Image
                   src={unlocked.rewardLink}
-                  width="120"
-                  height="120"
+                  width="90"
+                  height="130"
                   title={unlocked.rewardName}
                 />
               </div>

@@ -165,7 +165,7 @@ module.exports = [
         qTechnicalInstruction: {
           type: "text",
           text:
-            "Rodrigo tiene 42 a~ nos y Diego es 11 a~ nos menor que Rodrigo, ¿cuántos años tiene Diego?",
+            "Rodrigo tiene 42 años y Diego es 11 años menor que Rodrigo, ¿cuántos años tiene Diego?",
         },
         qCorrectAnswers: [
           { answer: "31", complement: "años", placement: "right" },

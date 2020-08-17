@@ -79,6 +79,7 @@ export default React.memo((props) => {
               acc.push({ _id: cv._id, subject: cv.subject, name: cv.name });
               return acc;
             }, [])} // only sending "_id", "subject" and "name"
+            rewards={course.rewards}
             courseId={course._id}
           />
           {/* TOPICS */}

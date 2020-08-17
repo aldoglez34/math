@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import MyTopic from "./badge/MyTopic";
 import MedalTable from "./medaltable/MedalTable";
 
-const CourseIntro = React.memo(({ name, topics }) => {
+const CourseIntro = React.memo(({ name, topics, rewards }) => {
   return (
     <div
       style={{
@@ -37,7 +37,7 @@ const CourseIntro = React.memo(({ name, topics }) => {
               Medallero
             </h4>
             <div className="mt-2">
-              <MedalTable />
+              <MedalTable rewards={rewards} />
             </div>
           </Col>
         </Row>
@@ -49,6 +49,7 @@ const CourseIntro = React.memo(({ name, topics }) => {
 CourseIntro.propTypes = {
   name: PropTypes.string.isRequired,
   topics: PropTypes.array.isRequired,
+  rewards: PropTypes.array.isRequired,
 };
 
 export default CourseIntro;

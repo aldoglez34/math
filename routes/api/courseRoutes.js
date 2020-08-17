@@ -30,6 +30,20 @@ router.get("/info/:courseId/:studentId", function (req, res) {
     .then((data) => {
       const studentData = data;
 
+      courseData.rewards = courseData.topics.reduce((acc, cv) => {
+        acc.push({
+          topicName: cv.name,
+          medalName: cv.reward.name,
+          link: cv.reward.link,
+          hasReward: studentData.rewards.filter((r) => r.topicName === cv.name)
+            .length
+            ? true
+            : false,
+        });
+
+        return acc;
+      }, []);
+
       // 3. combine both results and send to client
       return {
         ...courseData,

@@ -316,7 +316,7 @@ module.exports = [
       },
       {
         qInstruction:
-          "Carlos corre todas las ma~ nanas 2 vueltas alrededor de un parque rectangular cuyas medidas se muestran en la imagen. ¿Cuántos metros corre Carlos?",
+          "Carlos corre todas las mañanas 2 vueltas alrededor de un parque rectangular cuyas medidas se muestran en la imagen. ¿Cuántos metros corre Carlos?",
         qTechnicalInstruction: {
           type: "image",
           imageLink:
@@ -328,7 +328,7 @@ module.exports = [
       },
       {
         qInstruction:
-          "Karla corre todas las ma~ nanas 3 vueltas alrededor de un parque rectangular cuyas medidas se muestran en la imagen. ¿Cuántos metros corre Karla?",
+          "Karla corre todas las mañanas 3 vueltas alrededor de un parque rectangular cuyas medidas se muestran en la imagen. ¿Cuántos metros corre Karla?",
         qTechnicalInstruction: {
           type: "image",
           imageLink:
