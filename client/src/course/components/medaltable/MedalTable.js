@@ -25,24 +25,14 @@ const MedalTable = ({ rewards }) => {
             />
           </OverlayTrigger>
         ) : (
-          <OverlayTrigger
+          <Image
             key={r.topicName}
-            placement="top"
-            overlay={
-              <Tooltip>
-                Medalla <strong>bloqueada</strong>.
-              </Tooltip>
-            }
-          >
-            <Image
-              key={r.topicName}
-              src="/rewards/empty.png"
-              width="80"
-              height="120"
-              className="m-3"
-              style={{ opacity: 0.1 }}
-            />
-          </OverlayTrigger>
+            src="/rewards/empty.png"
+            width="80"
+            height="120"
+            className="m-3"
+            style={{ opacity: 0.1 }}
+          />
         )
       )}
     </div>
