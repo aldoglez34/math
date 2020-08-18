@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Button, Spinner } from "react-bootstrap";
 import PropTypes from "prop-types";
 import FreestyleTimer from "./FreestyleTimer";
-import FreestyleQNumber from "./FreestyleQNumber";
 import QInstruction from "../../exam/question/QInstruction";
 import QTechnicalInstruction from "../../exam/question/QTechnicalInstruction";
 import QMultipleChoice from "../../exam/question/QMultipleChoice";
@@ -140,14 +139,8 @@ const FreestyleQuestions = React.memo(({ questions }) => {
       </div>
     ) : (
       <>
-        {/* buttons, timer and stuff */}
-        <div className="d-flex mb-3">
-          <FreestyleTimer score={score} />
-          <FreestyleQNumber current={number} />
-          <FreestyleQPoints score={score} />
-          <FreestyleExitButton />
-        </div>
-        <Row className="mx-lg-1 bg-light rounded">
+        {/* question */}
+        <Row className="mx-lg-1 rounded">
           <Col
             lg={{ span: 7, offset: 2 }}
             className="px-3"
@@ -227,6 +220,12 @@ const FreestyleQuestions = React.memo(({ questions }) => {
             </div>
           </Col>
         </Row>
+        {/* buttons, timer and stuff */}
+        <div className="d-flex mt-3">
+          <FreestyleTimer score={score} />
+          <FreestyleQPoints score={score} />
+          <FreestyleExitButton />
+        </div>
         {/* modals */}
         <CorrectModal
           showCorrect={showCorrect}

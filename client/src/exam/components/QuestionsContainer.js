@@ -9,6 +9,7 @@ import QInstruction from "../question/QInstruction";
 import QTechnicalInstruction from "../question/QTechnicalInstruction";
 import QMultipleChoice from "../question/QMultipleChoice";
 import ExitButton from "./ExitButton";
+import Progress from "./Progress";
 
 const QuestionsContainer = React.memo(({ questions }) => {
   const dispatch = useDispatch();
@@ -104,13 +105,8 @@ const QuestionsContainer = React.memo(({ questions }) => {
       </div>
     ) : (
       <>
-        {/* buttons, timer and stuff */}
-        <div className="d-flex mb-3">
-          <Timer />
-          <QNumber current={number} total={questions.length} />
-          <ExitButton />
-        </div>
-        <Row className="mx-lg-1 bg-light rounded">
+        {/* question */}
+        <Row className="mx-lg-1 rounded" style={{ backgroundColor: "#f4fbf8" }}>
           <Col
             lg={{ span: 7, offset: 2 }}
             className="px-3"
@@ -185,6 +181,13 @@ const QuestionsContainer = React.memo(({ questions }) => {
             </div>
           </Col>
         </Row>
+        {/* buttons, timer and stuff */}
+        <div className="d-flex mt-3">
+          {/* <QNumber current={number} total={questions.length} /> */}
+          <Timer />
+          <Progress current={number} total={questions.length} />
+          <ExitButton />
+        </div>
       </>
     )
   ) : null;
