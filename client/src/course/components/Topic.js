@@ -6,13 +6,10 @@ import ExamsAccordion from "./ExamsAccordion";
 const Topic = React.memo(({ topic }) => {
   return (
     <>
-      <br />
-      <br />
-      <br />
-      <Row id={topic.name} style={{ marginTop: "35px" }}>
+      <Row id={topic.name}>
         {/* title */}
         <Col>
-          <h1 className="display-4 mt-4 mb-4" style={{ color: "#48bf84" }}>
+          <h1 className="display-4 mb-4" style={{ color: "#48bf84" }}>
             {topic.name}
             {topic.hasReward ? (
               <i

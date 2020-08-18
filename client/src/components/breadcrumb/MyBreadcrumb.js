@@ -11,11 +11,13 @@ const MyBreadcrumb = React.memo(() => {
       {breadcrumb.map((b) =>
         b.link ? (
           <span key={b.text}>
-            <a href={b.link}>{b.text}</a>
-            <span className="mx-2 text-muted">/</span>
+            <a className="lead" href={b.link}>
+              {b.text}
+            </a>
+            <span className="mx-2 lead text-muted">/</span>
           </span>
         ) : (
-          <span key={b.text} className="text-muted">
+          <span key={b.text} className="lead text-muted">
             {b.text}
           </span>
         )

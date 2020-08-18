@@ -1,32 +1,48 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Image } from "react-bootstrap";
+import { Image, OverlayTrigger, Tooltip } from "react-bootstrap";
+import "./medaltable.scss";
 
 const MedalTable = ({ rewards }) => {
   return (
     <div>
       {rewards.map((r) =>
         r.hasReward ? (
-          <Image
+          <OverlayTrigger
             key={r.topicName}
-            src={r.link}
-            width="80"
-            height="120"
-            className="m-3"
-            title={r.medalName}
-            style={{ cursor: "help" }}
-          />
+            placement="top"
+            overlay={
+              <Tooltip>
+                Medalla del tema <strong>{r.topicName}</strong>.
+              </Tooltip>
+            }
+          >
+            <Image
+              src={r.link}
+              width="80"
+              height="120"
+              className="m-3 medalstyle"
+            />
+          </OverlayTrigger>
         ) : (
-          <Image
+          <OverlayTrigger
             key={r.topicName}
-            src="/rewards/empty.png"
-            width="80"
-            height="120"
-            className="m-3"
-            title={r.medalName}
-            style={{ cursor: "help" }}
-            style={{ opacity: 0.4 }}
-          />
+            placement="top"
+            overlay={
+              <Tooltip>
+                Medalla <strong>bloqueada</strong>.
+              </Tooltip>
+            }
+          >
+            <Image
+              key={r.topicName}
+              src="/rewards/empty.png"
+              width="80"
+              height="120"
+              className="m-3"
+              style={{ opacity: 0.1 }}
+            />
+          </OverlayTrigger>
         )
       )}
     </div>

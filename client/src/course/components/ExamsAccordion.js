@@ -30,10 +30,10 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
         <React.Fragment key={idx}>
           <Card>
             {/* TITLE */}
-            <Card.Header style={{ backgroundColor: "#f4fbf8" }}>
+            <Card.Header style={{ backgroundColor: "#e7edee" }}>
               <Accordion.Toggle as={Button} variant="link" eventKey={ex._id}>
-                <i className="fas fa-chevron-down mr-1" />
-                <strong>{ex.name}</strong>
+                <i className="fas fa-chevron-down mr-2" />
+                <strong style={{ color: "#0f5257" }}>{ex.name}</strong>
                 {/* exam cheked (passed) */}
                 {ex.highestGrade >= 8 ? (
                   <i

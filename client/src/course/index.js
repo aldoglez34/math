@@ -83,17 +83,18 @@ export default React.memo((props) => {
             courseId={course._id}
           />
           {/* TOPICS */}
-          <Container
-            style={{
-              paddingTop: "0px",
-              paddingBottom: "55px",
-              fontSize: "16px",
-            }}
-          >
+          <div>
             {course.topics.map((ct) => (
-              <Topic key={ct._id} topic={ct} />
+              <React.Fragment key={ct._id}>
+                <hr className="section-break-1" />
+                <div className="topicSection">
+                  <Container>
+                    <Topic topic={ct} />
+                  </Container>
+                </div>
+              </React.Fragment>
             ))}
-          </Container>
+          </div>
         </>
       ) : (
         <div className="text-center mt-4 pt-4">

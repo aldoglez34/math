@@ -8,23 +8,22 @@ const CourseIntro = React.memo(({ name, topics, rewards }) => {
   return (
     <div
       style={{
-        backgroundColor: "#f4fbf8",
+        backgroundColor: "#0d2129",
         paddingTop: "45px",
-        paddingBottom: "70px",
+        paddingBottom: "60px",
+        marginBottom: "100px",
       }}
     >
       <Container>
         {/* topic name */}
-        <h1 className="mb-0 display-2" style={{ color: "#154e55" }}>
-          {name}
-        </h1>
-        {/* <hr style={{ border: "1px solid gainsboro", marginTop: "1" }} /> */}
-        <Row className="mt-1">
+        <h1 className="display-1 text-white">{name}</h1>
+        <br />
+        <Row>
           {/* temario */}
-          <Col lg={5}>
-            <h4 style={{ color: "#154e55" }} className="mb-3">
+          <Col lg={6}>
+            <h3 style={{ color: "#828c90" }} className="mb-4">
               Temario
-            </h4>
+            </h3>
             <div className="d-flex flex-column">
               {topics.map((t) => (
                 <MyTopic key={t.name} topicName={t.name} />
@@ -32,13 +31,11 @@ const CourseIntro = React.memo(({ name, topics, rewards }) => {
             </div>
           </Col>
           {/* medallero */}
-          <Col lg={7} className="mt-4 mt-lg-0 pb-3 pb-lg-0">
-            <h4 style={{ color: "#154e55" }} className="mb-3">
+          <Col lg={6} className="mt-4 mt-lg-0 pb-3 pb-lg-0">
+            <h3 style={{ color: "#828c90" }} className="mb-4">
               Medallero
-            </h4>
-            <div className="mt-2">
-              <MedalTable rewards={rewards} />
-            </div>
+            </h3>
+            <MedalTable rewards={rewards} />
           </Col>
         </Row>
       </Container>

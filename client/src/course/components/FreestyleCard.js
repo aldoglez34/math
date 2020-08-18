@@ -15,7 +15,7 @@ const FreestyleCard = React.memo(({ topicName, freestyle }) => {
 
   return (
     <Card>
-      <Card.Header style={{ backgroundColor: "#f4fbf8" }}>
+      <Card.Header style={{ backgroundColor: "#e7edee" }}>
         <Accordion.Toggle
           as={Button}
           variant="link"
