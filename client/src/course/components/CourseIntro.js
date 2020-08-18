@@ -21,7 +21,7 @@ const CourseIntro = React.memo(({ name, topics, rewards }) => {
         <Row>
           {/* temario */}
           <Col lg={6}>
-            <h3 style={{ color: "#828c90" }} className="mb-4">
+            <h3 style={{ color: "#828c90" }} className="mb-2">
               Temario
             </h3>
             <div className="d-flex flex-column">
@@ -32,7 +32,7 @@ const CourseIntro = React.memo(({ name, topics, rewards }) => {
           </Col>
           {/* medallero */}
           <Col lg={6} className="mt-4 mt-lg-0 pb-3 pb-lg-0">
-            <h3 style={{ color: "#828c90" }} className="mb-4">
+            <h3 style={{ color: "#828c90" }} className="mb-2">
               Medallero
             </h3>
             <MedalTable rewards={rewards} />
