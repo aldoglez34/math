@@ -10,7 +10,7 @@ const CourseIntro = React.memo(({ name, topics, rewards }) => {
       style={{
         backgroundColor: "#0d2129",
         paddingTop: "45px",
-        paddingBottom: "60px",
+        paddingBottom: "68px",
         marginBottom: "100px",
       }}
     >
@@ -24,6 +24,7 @@ const CourseIntro = React.memo(({ name, topics, rewards }) => {
             <h3 style={{ color: "#828c90" }} className="mb-2">
               Temario
             </h3>
+            {/* <br /> */}
             <div className="d-flex flex-column">
               {topics.map((t) => (
                 <MyTopic key={t.name} topicName={t.name} />
@@ -35,6 +36,7 @@ const CourseIntro = React.memo(({ name, topics, rewards }) => {
             <h3 style={{ color: "#828c90" }} className="mb-2">
               Medallero
             </h3>
+            {/* <br /> */}
             <MedalTable rewards={rewards} />
           </Col>
         </Row>

@@ -5,7 +5,7 @@ import "./medaltable.scss";
 
 const MedalTable = ({ rewards }) => {
   return (
-    <div>
+    <div className="text-center">
       {rewards.map((r) =>
         r.hasReward ? (
           <OverlayTrigger
@@ -21,7 +21,7 @@ const MedalTable = ({ rewards }) => {
               src={r.link}
               width="80"
               height="120"
-              className="m-3 medalstyle"
+              className="my-1 mx-3 medalstyle"
             />
           </OverlayTrigger>
         ) : (
@@ -30,7 +30,7 @@ const MedalTable = ({ rewards }) => {
             src="/rewards/empty.png"
             width="80"
             height="120"
-            className="m-3"
+            className="my-1 mx-3"
             style={{ opacity: 0.1 }}
           />
         )
