@@ -7,24 +7,3 @@
     transition: 0.3;
   }
 }
-
-.topicBadge {
-  background-color: #48bf84;
-  color: #0d2129;
-
-  &:hover {
-    background-color: white;
-    transition: 0.3;
-  }
-}
-
-.topicText {
-  font-size: 17px;
-  padding: 0px 6px;
-  font-weight: 500;
-}
-
-.topicArrow {
-  font-size: 13px;
-  margin-left: 2px;
-}

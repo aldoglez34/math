@@ -3,17 +3,11 @@ import { Container, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import MyTopic from "./badge/MyTopic";
 import MedalTable from "./medaltable/MedalTable";
+import "./courseintro.scss";
 
 const CourseIntro = React.memo(({ name, topics, rewards }) => {
   return (
-    <div
-      style={{
-        backgroundColor: "#0d2129",
-        paddingTop: "45px",
-        paddingBottom: "68px",
-        marginBottom: "100px",
-      }}
-    >
+    <div id="courseintrostyle">
       <Container>
         {/* topic name */}
         <h1 className="display-1 text-white">{name}</h1>
