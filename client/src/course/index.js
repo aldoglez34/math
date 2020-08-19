@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Spinner, Container } from "react-bootstrap";
 import API from "../utils/API";
 import "./course.scss";
-import { MainCourseLayout } from "../components/Layout";
+import { StudentLayout } from "../components/Layout";
 import CourseIntro from "./components/CourseIntro";
 import Topic from "./components/Topic";
 import { useSelector, useDispatch } from "react-redux";
@@ -65,7 +65,7 @@ export default React.memo((props) => {
   }, [reduxCourse]);
 
   return (
-    <MainCourseLayout>
+    <StudentLayout>
       <ExamUnlocked
         showUnlocked={showUnlocked}
         setShowExamUnlocked_={setShowExamUnlocked}
@@ -101,6 +101,6 @@ export default React.memo((props) => {
           <Spinner animation="border" variant="primary" />
         </div>
       )}
-    </MainCourseLayout>
+    </StudentLayout>
   );
 });

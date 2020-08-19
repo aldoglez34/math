@@ -6,8 +6,8 @@ import "./layout.scss";
 import MyBreadCrumb from "../components/breadcrumb/MyBreadcrumb";
 import StudentNav from "./studentnav/StudentNav";
 import ScrollButton from "./scrollbutton";
-import { Container } from "react-bootstrap";
 
+// for public routes
 export const Layout = React.memo(({ children }) => {
   return (
     <>
@@ -24,19 +24,7 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export const MainCourseLayout = React.memo(({ breadcrumb, children }) => {
-  return (
-    <>
-      <MyNavbar />
-      <div className="marginTop" />
-      <StudentNav />
-      <MyBreadCrumb breadcrumb={breadcrumb} />
-      {children}
-      <ScrollButton scrollStepInPx={150} delayInMs={16.66} />
-    </>
-  );
-});
-
+// for protected routes
 export const StudentLayout = React.memo(({ breadcrumb, children }) => {
   return (
     <>
@@ -44,11 +32,7 @@ export const StudentLayout = React.memo(({ breadcrumb, children }) => {
       <div className="marginTop" />
       <StudentNav />
       <MyBreadCrumb breadcrumb={breadcrumb} />
-      <Container
-        style={{ paddingTop: "0px", paddingBottom: "55px", fontSize: "16px" }}
-      >
-        {children}
-      </Container>
+      {children}
       <ScrollButton scrollStepInPx={150} delayInMs={16.66} />
     </>
   );

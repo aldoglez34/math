@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { StudentLayout } from "../components/Layout";
-import { Spinner } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import API from "../utils/API";
 import * as breadcrumbActions from "../redux/actions/breadcrumb";
-import QuestionsContainer from "./components/QuestionsContainer";
+import QuestionsContainer from "./questionscontainer/QuestionsContainer";
 
 const Exam = React.memo(() => {
   const dispatch = useDispatch();
@@ -50,7 +50,9 @@ const Exam = React.memo(() => {
       {exam ? (
         <>
           {/* title */}
-          <h1 className="display-4">{exam.name}</h1>
+          <Container>
+            <h1 className="display-4">{exam.name}</h1>
+          </Container>
           {/* questions */}
           <QuestionsContainer questions={exam.questions} />
         </>

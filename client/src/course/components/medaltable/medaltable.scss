@@ -1,7 +1,17 @@
+.emptyMedalstyle {
+  opacity: 0.2;
+
+  &:hover {
+    opacity: 0.1;
+    transition: 0.3s;
+  }
+}
+
 .medalstyle {
   opacity: 1;
 
   &:hover {
     opacity: 0.8;
+    transition: 0.3s;
   }
 }

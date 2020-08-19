@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import API from "../../utils/API";
+import API from "../../../utils/API";
 import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 
-const Timer = React.memo(() => {
+const FreestyleTimer = React.memo(({ score }) => {
   const student = useSelector((state) => state.student);
   const exam = useSelector((state) => state.exam);
+  const course = useSelector((state) => state.course);
 
   const [secondsLeft, setSecondsLeft] = useState(exam.duration * 60 + 59);
   const [minutesLeft, setMinutesLeft] = useState(exam.duration);
@@ -14,13 +16,23 @@ const Timer = React.memo(() => {
 
     if (secondsLeft === 0) {
       // register attempt
-      API.registerAttempt({ studentId: student._id, examId: exam._id })
-        .then((res) => console.log(res.data))
+      API.registerFreestyleAttempt({
+        courseId: course._id,
+        topicName: exam.topicName,
+        studentId: student._id,
+        username: student.username,
+        score: score,
+      })
+        .then((res) => {
+          console.log(res.data);
+          // alert the user
+          alert(
+            "El tiempo ha finalizado.\nTu puntuación final fue de: " + score
+          );
+          // go back
+          window.location.href = "/course/#" + exam.topicName;
+        })
         .catch((err) => console.log("error", err));
-      // alert the user
-      alert("Lo sentimos, tu tiempo finalizó");
-      // go back
-      window.location.href = "/course";
     }
 
     setTimeout(() => {
@@ -42,4 +54,8 @@ const Timer = React.memo(() => {
   );
 });
 
-export default Timer;
+FreestyleTimer.propTypes = {
+  score: PropTypes.number.isRequired,
+};
+
+export default FreestyleTimer;

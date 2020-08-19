@@ -8,11 +8,12 @@ import Dashboard from "../pages/dashboard";
 import Course from "../course";
 import Exam from "../exam";
 import Results from "../results";
-import Freestyle from "../freestyle/Freestyle";
+import Freestyle from "../freestyle";
 
 export default () => {
   return (
     <Switch>
+      {/* ================= PUBLIC ROUTES ================= */}
       {/* student dashboard */}
       <Route exact path="/dashboard" component={Dashboard} />
 
@@ -25,8 +26,8 @@ export default () => {
       />
       <Route exact path="/courses/preparatoria" component={CourseInfoPrepa} />
 
+      {/* ================= STUDENT ROUTES ================= */}
       {/* courses main */}
-      {/* <Route exact path="/course" component={Course} /> */}
       <Route
         exact
         path="/course"

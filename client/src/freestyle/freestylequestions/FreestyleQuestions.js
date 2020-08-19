@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Row, Col, Button, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import PropTypes from "prop-types";
-import FreestyleTimer from "./FreestyleTimer";
-import QInstruction from "../../exam/question/QInstruction";
-import QTechnicalInstruction from "../../exam/question/QTechnicalInstruction";
-import QMultipleChoice from "../../exam/question/QMultipleChoice";
-import FreestyleQPoints from "./FreestyleQPoints";
-import CorrectModal from "./modals/CorrectModal";
-import IncorrectModal from "./modals/IncorrectModal";
-import FreestyleExitButton from "./FreestyleExitButton";
+import QInstruction from "../../exam/questionscontainer/components/QInstruction";
+import QTechnicalInstruction from "../../exam/questionscontainer/components/QTechnicalInstruction";
+import QMultipleChoice from "../../exam/questionscontainer/components/QMultipleChoice";
+import FreestyleTimer from "./components/FreestyleTimer";
+import FreestyleQPoints from "./components/FreestyleQPoints";
+import CorrectModal from "./components/modals/CorrectModal";
+import IncorrectModal from "./components/modals/IncorrectModal";
 import API from "../../utils/API";
+import ExitButton from "../../components/exitbutton/ExitButton";
 
 const FreestyleQuestions = React.memo(({ questions }) => {
   const dispatch = useDispatch();
@@ -140,92 +140,104 @@ const FreestyleQuestions = React.memo(({ questions }) => {
     ) : (
       <>
         {/* question */}
-        <Row className="mx-lg-1 rounded">
-          <Col
-            lg={{ span: 7, offset: 2 }}
-            className="px-3"
-            style={{ paddingTop: "40px", paddingBottom: "45px" }}
-          >
-            {/* QUESTION VALUE */}
-            <strong className="text-muted">
-              {question.qValue}
-              <span className="ml-1">
-                {question.qValue > 1 ? "puntos" : "punto"}
-              </span>
-            </strong>
+        <Container>
+          <div style={{ backgroundColor: "#e9ecef" }}>
+            <Container>
+              <Row className="mx-lg-1 rounded">
+                <Col
+                  lg={{ span: 7, offset: 2 }}
+                  className="px-3"
+                  style={{ paddingTop: "40px", paddingBottom: "45px" }}
+                >
+                  {/* QUESTION VALUE */}
+                  <strong className="text-muted">
+                    {question.qValue}
+                    <span className="ml-1">
+                      {question.qValue > 1 ? "puntos" : "punto"}
+                    </span>
+                  </strong>
 
-            {/* INSTRUCTION */}
-            <QInstruction qInstruction={question.qInstruction} />
+                  {/* INSTRUCTION */}
+                  <QInstruction qInstruction={question.qInstruction} />
 
-            {/* TECHNICAL INSTRUCTION */}
-            {question.qTechnicalInstruction ? (
-              <QTechnicalInstruction
-                type={question.qTechnicalInstruction.type}
-                text={question.qTechnicalInstruction.text}
-                imageLink={question.qTechnicalInstruction.imageLink}
-              />
-            ) : null}
-
-            {/* MULTIPLE CHOICES OR ANSWER INPUTS */}
-            {question.qMultipleChoice ? (
-              <QMultipleChoice
-                type={question.qMultipleChoice.type}
-                textChoices={question.qMultipleChoice.textChoices}
-                imageChoices={question.qMultipleChoice.imageChoices}
-                choiceSelected={choice}
-                getValueFromMultipleChoice={getValueFromMultipleChoice}
-              />
-            ) : (
-              question.qCorrectAnswers.map((ca, idx) => (
-                <div key={ca._id} className="d-flex flex-row mt-3 mb-2">
-                  {/* LEFT question complement (if any) */}
-                  {ca.complement && ca.placement === "left" ? (
-                    <h4 className="mr-2 mb-0">
-                      <small>{ca.complement}</small>
-                    </h4>
+                  {/* TECHNICAL INSTRUCTION */}
+                  {question.qTechnicalInstruction ? (
+                    <QTechnicalInstruction
+                      type={question.qTechnicalInstruction.type}
+                      text={question.qTechnicalInstruction.text}
+                      imageLink={question.qTechnicalInstruction.imageLink}
+                    />
                   ) : null}
-                  {/* input */}
-                  <input
-                    type="text"
-                    maxLength="20"
-                    // ref={inputRef}
-                    onKeyDown={handleKeyDown}
-                    className="border rounded px-2"
-                    id={"answer" + idx}
-                  />
-                  {/* RIGHT question complement (if any) */}
-                  {ca.complement && ca.placement === "right" ? (
-                    <h4 className="ml-2 mb-0">
-                      <small>{ca.complement}</small>
-                    </h4>
+
+                  {/* MULTIPLE CHOICES OR ANSWER INPUTS */}
+                  {question.qMultipleChoice ? (
+                    <QMultipleChoice
+                      type={question.qMultipleChoice.type}
+                      textChoices={question.qMultipleChoice.textChoices}
+                      imageChoices={question.qMultipleChoice.imageChoices}
+                      choiceSelected={choice}
+                      getValueFromMultipleChoice={getValueFromMultipleChoice}
+                    />
+                  ) : (
+                    question.qCorrectAnswers.map((ca, idx) => (
+                      <div key={ca._id} className="d-flex flex-row mt-3 mb-2">
+                        {/* LEFT question complement (if any) */}
+                        {ca.complement && ca.placement === "left" ? (
+                          <h4 className="mr-2 mb-0">
+                            <small>{ca.complement}</small>
+                          </h4>
+                        ) : null}
+                        {/* input */}
+                        <input
+                          type="text"
+                          maxLength="20"
+                          // ref={inputRef}
+                          onKeyDown={handleKeyDown}
+                          className="border rounded px-2"
+                          id={"answer" + idx}
+                        />
+                        {/* RIGHT question complement (if any) */}
+                        {ca.complement && ca.placement === "right" ? (
+                          <h4 className="ml-2 mb-0">
+                            <small>{ca.complement}</small>
+                          </h4>
+                        ) : null}
+                      </div>
+                    ))
+                  )}
+
+                  {/* QUESTION COMMENT */}
+                  {question.qComment ? (
+                    <small className="text-muted mb-3">
+                      {question.qComment}
+                    </small>
                   ) : null}
-                </div>
-              ))
-            )}
 
-            {/* QUESTION COMMENT */}
-            {question.qComment ? (
-              <small className="text-muted mb-3">{question.qComment}</small>
-            ) : null}
-
-            {/* BUTTON */}
-            <div className="mt-3">
-              <Button
-                variant={number === questions.length ? "primary" : "success"}
-                className="shadow-sm"
-                onClick={pushQuestion}
-              >
-                {number === questions.length ? "Finalizar" : "Siguiente"}
-              </Button>
-            </div>
-          </Col>
-        </Row>
+                  {/* BUTTON */}
+                  <div className="mt-3">
+                    <Button
+                      variant={
+                        number === questions.length ? "primary" : "success"
+                      }
+                      className="shadow-sm"
+                      onClick={pushQuestion}
+                    >
+                      {number === questions.length ? "Finalizar" : "Siguiente"}
+                    </Button>
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        </Container>
         {/* buttons, timer and stuff */}
-        <div className="d-flex mt-3">
-          <FreestyleTimer score={score} />
-          <FreestyleQPoints score={score} />
-          <FreestyleExitButton />
-        </div>
+        <Container>
+          <div className="d-flex mt-3">
+            <FreestyleTimer score={score} />
+            <FreestyleQPoints score={score} />
+            <ExitButton url={"/course/#" + exam.topicName} />
+          </div>
+        </Container>
         {/* modals */}
         <CorrectModal
           showCorrect={showCorrect}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Spinner } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import { StudentLayout } from "../../components/Layout";
 import { useSelector } from "react-redux";
 import "./dashboard.scss";
@@ -42,18 +42,20 @@ const Dashboard = React.memo(() => {
 
   return (
     <StudentLayout>
-      <h2 className="display-4 mb-0 mt-4">Bienvenido a tus cursos</h2>
-      {myCourses ? (
-        myCourses.length ? (
-          <MyCourses courses={myCourses} />
+      <Container>
+        <h2 className="display-4 mb-0 mt-4">Bienvenido a tus cursos</h2>
+        {myCourses ? (
+          myCourses.length ? (
+            <MyCourses courses={myCourses} />
+          ) : (
+            <NoCourses />
+          )
         ) : (
-          <NoCourses />
-        )
-      ) : (
-        <div className="text-center mt-4 pt-4">
-          <Spinner animation="border" variant="primary" />
-        </div>
-      )}
+          <div className="text-center mt-4 pt-4">
+            <Spinner animation="border" variant="primary" />
+          </div>
+        )}
+      </Container>
     </StudentLayout>
   );
 });

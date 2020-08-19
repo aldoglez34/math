@@ -4,17 +4,17 @@ import PropTypes from "prop-types";
 
 const Progress = React.memo(({ current, total }) => {
   return (
-    <div className="d-flex align-items-center ml-3">
-      <ProgressBar
-        min="1"
-        max={total}
-        variant="secondary"
-        style={{ width: "12rem", height: "1.5rem", cursor: "help" }}
-        now={current}
-        title="Avance"
-        label={`${current * total}%`}
-      />
-    </div>
+    <ProgressBar
+      animated
+      min="1"
+      max={total}
+      variant="dark"
+      style={{ height: "1.7rem" }}
+      now={current}
+      title="Avance"
+      className="w-100 rounded-0"
+      // label={`${(current / total) * 100}%`}
+    />
   );
 });
 

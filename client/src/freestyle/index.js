@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Spinner } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import { StudentLayout } from "../components/Layout";
 import { useSelector, useDispatch } from "react-redux";
 import { setBreadcrumb } from "../redux/actions/breadcrumb";
 import API from "../utils/API";
-import FreestyleQuestions from "./components/FreestyleQuestions";
+import FreestyleQuestions from "./freestylequestions/FreestyleQuestions";
 
 const Freestyle = React.memo(() => {
   const dispatch = useDispatch();
@@ -50,7 +50,9 @@ const Freestyle = React.memo(() => {
       {freestyle ? (
         <>
           {/* title */}
-          <h1 className="display-4 mb-3">Modo Rápido</h1>
+          <Container>
+            <h1 className="display-4 mb-3">Modo Rápido</h1>
+          </Container>
           {/* questions */}
           <FreestyleQuestions questions={freestyle} />
         </>

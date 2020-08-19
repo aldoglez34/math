@@ -30,8 +30,7 @@ const MedalTable = ({ rewards }) => {
             src="/rewards/empty.png"
             width="80"
             height="120"
-            className="my-1 mx-3"
-            style={{ opacity: 0.1 }}
+            className="my-1 mx-3 emptyMedalstyle"
           />
         )
       )}
