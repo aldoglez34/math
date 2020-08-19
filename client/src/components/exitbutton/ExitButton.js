@@ -12,10 +12,10 @@ const ExitButton = React.memo(({ url }) => {
     <>
       <Button
         variant="danger"
-        className="ml-auto p-1 px-2 shadow-sm"
+        className="ml-auto shadow-sm"
         onClick={handleShow}
       >
-        <strong>Salir</strong>
+        Abandonar
       </Button>
 
       <Modal show={show} onHide={handleClose} centered className="bg-light">
