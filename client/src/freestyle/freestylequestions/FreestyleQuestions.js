@@ -59,6 +59,8 @@ const FreestyleQuestions = React.memo(({ questions }) => {
         })
         .catch((err) => console.log("error", err));
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, number, answers, questions, choice]);
 
   const pushQuestion = () => {

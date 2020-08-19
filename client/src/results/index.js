@@ -91,6 +91,8 @@ const Results = React.memo(() => {
         })
       );
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return exam.results ? (

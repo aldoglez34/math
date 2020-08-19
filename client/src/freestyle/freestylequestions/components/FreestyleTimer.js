@@ -38,6 +38,8 @@ const FreestyleTimer = React.memo(({ score }) => {
     setTimeout(() => {
       setSecondsLeft(secondsLeft - 1);
     }, 1000);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [secondsLeft]);
 
   return (

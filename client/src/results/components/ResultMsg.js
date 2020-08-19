@@ -1,11 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Image, Col } from "react-bootstrap";
-import { useSelector } from "react-redux";
 
 const ResultMsg = React.memo(({ calif }) => {
-  const exam = useSelector((state) => state.exam);
-
   return calif >= 80 ? (
     <Col lg={{ span: 7, offset: 2 }}>
       {/* PASS EXAM */}

@@ -43,6 +43,8 @@ const Freestyle = React.memo(() => {
     } else {
       window.location.href = "/course";
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

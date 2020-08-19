@@ -21,6 +21,7 @@ const Dashboard = React.memo(() => {
 
   const [myCourses, setMyCourses] = useState();
 
+  // eslint-disable-next-line
   useEffect(() => {
     // clear redux
     if (course) dispatch(courseActions.clearCourse());
@@ -38,6 +39,8 @@ const Dashboard = React.memo(() => {
           alert("Ocurrió un error inesperado");
         });
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [student, dispatch]);
 
   return (

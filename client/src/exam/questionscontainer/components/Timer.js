@@ -26,6 +26,8 @@ const Timer = React.memo(() => {
     setTimeout(() => {
       setSecondsLeft(secondsLeft - 1);
     }, 1000);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [secondsLeft]);
 
   return (

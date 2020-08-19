@@ -62,6 +62,8 @@ export default React.memo((props) => {
           window.location.href = "/dashboard";
         });
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduxCourse]);
 
   return (
