@@ -10,7 +10,7 @@ const CourseIntro = React.memo(({ name, topics, rewards }) => {
     <div id="courseintrostyle">
       <Container>
         {/* topic name */}
-        <h1 className="display-1 text-white">{name}</h1>
+        <h1 className="display-1 topicNameIntro text-white">{name}</h1>
         <br />
         <Row>
           {/* temario */}

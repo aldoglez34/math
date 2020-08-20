@@ -34,8 +34,11 @@
 }
 
 @media only screen and (max-width: 991px) {
-  #sumvideo {
-    width: 85% !important;
-    height: 85% !important;
+  .section-break-1 {
+    margin: 4rem auto !important;
+  }
+
+  .topicName {
+    font-size: 45px !important;
   }
 }

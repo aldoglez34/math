@@ -9,7 +9,7 @@ const Topic = React.memo(({ topic }) => {
       <Row id={topic.name}>
         {/* title */}
         <Col>
-          <h1 className="display-4 mb-4" style={{ color: "#48bf84" }}>
+          <h1 className="display-3 topicName mb-0" style={{ color: "#48bf84" }}>
             {topic.name}
             {topic.hasReward ? (
               <i
@@ -19,6 +19,14 @@ const Topic = React.memo(({ topic }) => {
               />
             ) : null}
           </h1>
+          <div className="d-flex mb-4">
+            <h3
+              className="mb-0"
+              style={{ backgroundColor: "#c6d9d7", color: "#212529" }}
+            >
+              {topic.subject}
+            </h3>
+          </div>
         </Col>
       </Row>
       <Row>
@@ -51,7 +59,7 @@ const Topic = React.memo(({ topic }) => {
         </Col>
         {/* exams */}
         <Col lg={6} className="mt-2 mt-lg-0">
-          <h4 className="mb-3" style={{ color: "#50575e" }}>
+          <h4 className="mb-3" style={{ color: "#212529" }}>
             Exámenes
           </h4>
           <ExamsAccordion

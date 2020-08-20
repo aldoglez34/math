@@ -4,3 +4,9 @@
   padding-bottom: 68px;
   margin-bottom: 10px;
 }
+
+@media only screen and (max-width: 991px) {
+  .topicNameIntro {
+    font-size: 55px !important;
+  }
+}
