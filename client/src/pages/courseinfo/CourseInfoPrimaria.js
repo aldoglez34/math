@@ -33,14 +33,19 @@ const CourseInfoPrimaria = React.memo(() => {
         <Row>
           <Col md={6}>
             <CourseInfoCard
-              lessonCounter={9}
+              lessonCounter={8}
               title="3ro Primaria"
               price={500}
-              description="En la compra de este curso obtienes material, videos, asistencia y ejercicios sobre los temas siguientes:"
+              description="En la compra de este curso obtienes material didáctico, videos exclusivos, asistencia personalizada y cientos de ejercicios sobre los siguientes temas:"
               lessons={[
-                "Operaciones con números",
-                "Ubicación en la recta numérica",
+                "Sumas",
+                "Restas",
+                "Divisiones",
                 "Fracciones",
+                "Operaciones con Fracciones",
+                "Figuras Geométricas",
+                "Números Decimales",
+                "Unidades de Medición",
               ]}
             />
           </Col>
