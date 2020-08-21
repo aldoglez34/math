@@ -1,71 +1,95 @@
 import React from "react";
 import { Layout } from "../../components/Layout";
 import ScrollButton from "../../components/scrollbutton";
-import { Container, CardGroup } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import CourseInfoCard from "./components/CourseInfoCard";
 
 const CourseInfoPrepa = React.memo(() => {
   return (
-    <Layout>
-      <Container style={{ paddingTop: "40px", paddingBottom: "40px" }}>
+    <Layout backgroundColor="#f4fbf8">
+      <Container
+        style={{
+          paddingTop: "40px",
+          marginBottom: "80px",
+        }}
+      >
         {/* title */}
-        <p className="display-4" style={{ fontWeight: 700, color: "#0d2129" }}>
-          Preparatoria
-        </p>
-        <p className="lead mt-3">
-          Nunc eget quam et ipsum dapibus euismod. Aliquam rutrum iaculis dui
-          sit amet ullamcorper. Etiam maximus mi urna, scelerisque tempor turpis
-          blandit vitae. Aliquam gravida enim a ante lobortis accumsan. Nam ut
-          metus eu mauris varius accumsan eget a sapien. Pellentesque habitant
-          morbi tristique senectus et netus et malesuada fames ac turpis
-          egestas.
-        </p>
+        <Row>
+          <Col md={{ span: 8, offset: 2 }}>
+            <div className="text-center">
+              <h1 className="courseinfoheader">Preparatoria</h1>
+            </div>
+            <p className="lead text-left text-md-center mt-3">
+              Independientemente de la carrera por la cual se llegue a decidir,
+              la Trigonometría, Álgebra y Estadística son de los retos que el
+              estudiante en Preparatoria puede llegar a enfrentar, el curso ha
+              sido pensado para acompañar, practicar y aprender estos temas que
+              lo ayudarán a prepararse de tal forma que en su vida universitaria
+              el alumno pueda llevar una vida equilibrada entre asignaciones.
+            </p>
+          </Col>
+        </Row>
         {/* courses */}
-        <CardGroup>
-          <CourseInfoCard
-            title="1ro"
-            price="$500"
-            description="Donec orci diam, mattis ultrices ipsum quis, mattis laoreet ante."
-            lessons={[
-              "Álgebra",
-              "Ecuaciones lineales",
-              "Ecucaciones cuadráticas",
-              "Series aritméticas",
-            ]}
-            courseName="PREPA1"
-          />
-          <CourseInfoCard
-            title="2do"
-            price="$500"
-            description="Nulla posuere velit eu lorem sollicitudin dictum. Ut non nulla euismod, ullamcorper tortor eu, molestie nisi. Phasellus fermentum facilisis tellus."
-            lessons={[
-              "Trigonometría",
-              "Funciones trigonométricas",
-              "Ley de senos",
-              "Ley de cosenos",
-            ]}
-            courseName="PREPA2"
-          />
-          <CourseInfoCard
-            title="3ro"
-            price="$500"
-            description="Etiam tempor, lorem vel tempor aliquam, sapien est pulvinar enim, a viverra velit ligula eget arcu. Sed imperdiet erat ligula, sed facilisis lorem rutrum vitae."
-            lessons={["Geometría analítica", "Parábola", "Elipse", "Hipérbola"]}
-            courseName="PREPA3"
-          />
-          <CourseInfoCard
-            title="4to"
-            price="$500"
-            description="In pulvinar pulvinar urna, vel placerat enim pulvinar et. Fusce tincidunt, ipsum ut hendrerit interdum, neque nisl convallis justo, ac tincidunt erat mauris non risus."
-            lessons={[
-              "Pre-cálculo",
-              "Ecuaciones polinomiales",
-              "Ecuaciones exponenciales",
-              "Ecuaciones logarítmicas",
-            ]}
-            courseName="PREPA4"
-          />
-        </CardGroup>
+        <Row>
+          <Col md={6}>
+            <CourseInfoCard
+              lessonCounter={10}
+              title="1ro Preparatoria"
+              price={500}
+              description="Donec orci diam, mattis ultrices ipsum quis, mattis laoreet ante."
+              lessons={[
+                "Álgebra",
+                "Ecuaciones lineales",
+                "Ecucaciones cuadráticas",
+                "Series aritméticas",
+              ]}
+            />
+          </Col>
+          <Col md={6}>
+            <CourseInfoCard
+              lessonCounter={10}
+              title="2do Preparatoria"
+              price={500}
+              description="Nulla posuere velit eu lorem sollicitudin dictum. Ut non nulla euismod, ullamcorper tortor eu, molestie nisi. Phasellus fermentum facilisis tellus."
+              lessons={[
+                "Trigonometría",
+                "Funciones trigonométricas",
+                "Ley de senos",
+                "Ley de cosenos",
+              ]}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={6}>
+            <CourseInfoCard
+              lessonCounter={10}
+              title="3ro Preparatoria"
+              price={500}
+              description="Etiam tempor, lorem vel tempor aliquam, sapien est pulvinar enim, a viverra velit ligula eget arcu. Sed imperdiet erat ligula, sed facilisis lorem rutrum vitae."
+              lessons={[
+                "Geometría analítica",
+                "Parábola",
+                "Elipse",
+                "Hipérbola",
+              ]}
+            />
+          </Col>
+          <Col md={6}>
+            <CourseInfoCard
+              lessonCounter={10}
+              title="4to Preparatoria"
+              price={500}
+              description="In pulvinar pulvinar urna, vel placerat enim pulvinar et. Fusce tincidunt, ipsum ut hendrerit interdum, neque nisl convallis justo, ac tincidunt erat mauris non risus."
+              lessons={[
+                "Pre-cálculo",
+                "Ecuaciones polinomiales",
+                "Ecuaciones exponenciales",
+                "Ecuaciones logarítmicas",
+              ]}
+            />
+          </Col>
+        </Row>
       </Container>
       <ScrollButton scrollStepInPx={150} delayInMs={16.66} />
     </Layout>

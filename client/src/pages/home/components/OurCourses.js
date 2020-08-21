@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, CardGroup } from "react-bootstrap";
+import { Container, CardGroup, Row, Col } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
 import HomeCard from "../../../components/homecard/HomeCard";
 
@@ -10,23 +10,64 @@ const OurCourses = React.memo(() => {
         <h2 className="display-4 text-center mb-4" style={{ fontWeight: 600 }}>
           Nuestros cursos
         </h2>
+        <Row>
+          <Col className="lead text-left text-lg-center">
+            Los cursos de esta plataforma están dirigidos a todos los y a las
+            estudiantes; así como, a la población en general que desee estudiar,
+            reforzar, practicar y desarrollar las habilidades matemáticas.
+          </Col>
+          <Col className="lead text-left text-lg-center">
+            El estudiante tendrá la opción de elegir su propio ritmo de trabajo;
+            también podrá seleccionar los temas que más se le compliquen,
+            practicará las veces que sean necesarias hasta que logre comprender
+            y adquirir el conocimiento.
+          </Col>
+        </Row>
+        <Row>
+          <Col className="lead text-left text-lg-center">
+            En cada curso encontrarás miles de ejercicios y videos tutoriales
+            para que reafirmes el conocimiento y una vez que concluyas cada
+            curso obtendrás una medalla como reconocimiento a tu dedicación y
+            esfuerzo.
+          </Col>
+          <Col className="lead text-left text-lg-center">
+            Para que el alumno desarrolle el cálculo mental, creamos el "Modo
+            Rápido" el cual consiste en realizar la mayor cantidad de ejercicios
+            en un tiempo determinado y a la vez tener el puntaje más alto entre
+            todos los estudiantes.
+          </Col>
+        </Row>
+        {/* <p className="lead text-left text-lg-center oc_subtitle">
+          Los cursos de esta plataforma están dirigidos a todos los y a las
+          estudiantes; así como, a la población en general que desee estudiar,
+          reforzar, practicar y desarrollar las habilidades matemáticas.
+        </p>
         <p className="lead text-left text-lg-center oc_subtitle">
-          Enfocados para diferentes niveles educativos, en cada uno el alumno
-          podrá reforzar los temas que más se le compliquen las veces que él
-          crea necesarias hasta que logre comprender el tema.
+          El estudiante tendrá la opción de elegir su propio ritmo de trabajo;
+          también podrá seleccionar los temas que más se le compliquen,
+          practicará las veces que sean necesarias hasta que logre comprender y
+          adquirir el conocimiento.
+        </p>
+        <p className="lead text-left text-lg-center oc_subtitle">
+          En cada curso encontrarás miles de ejercicios y videos tutoriales para
+          que reafirmes el conocimiento y una vez que concluyas cada curso
+          obtendrás una medalla como reconocimiento a tu dedicación y esfuerzo.
         </p>
         <p className="lead text-left text-lg-center oc_subtitle pb-3">
-          Hazte de todas las medallas y coronas en cada uno de nuestros cursos y
-          obten el puntaje más alto en la sección de cálculo mental.
-        </p>
+          Para que el alumno desarrolle el cálculo mental, creamos el "Modo
+          Rápido" el cual consiste en realizar la mayor cantidad de ejercicios
+          en un tiempo determinado y a la vez tener el puntaje más alto entre
+          todos los estudiantes.
+        </p> */}
+        {/* cards */}
         <CardGroup>
           <HomeCard
             title="Primaria"
-            lessons={7}
+            coursesCounter={4}
             description="Nulla eros mauris, mollis et vestibulum ut, egestas vel ex. Sed sodales vehicula nisi ac semper. Nulla at malesuada nibh."
             courses={[
               {
-                title: "3ro y 4to de primaria",
+                title: "3ro de Primaria",
                 list: [
                   "Operaciones con números",
                   "Ubicación en la recta numérica",
@@ -34,7 +75,24 @@ const OurCourses = React.memo(() => {
                 ],
               },
               {
-                title: "5to y 6to de primaria",
+                title: "4to de Primaria",
+                list: [
+                  "Operaciones con números",
+                  "Ubicación en la recta numérica",
+                  "Fracciones",
+                ],
+              },
+              {
+                title: "5to de Primaria",
+                list: [
+                  "Fracciones",
+                  "Porcentajes",
+                  "Relaciones",
+                  "Áreas y perímetros",
+                ],
+              },
+              {
+                title: "6to de Primaria",
                 list: [
                   "Fracciones",
                   "Porcentajes",
@@ -47,11 +105,11 @@ const OurCourses = React.memo(() => {
           />
           <HomeCard
             title="Secundaria"
-            lessons={9}
+            coursesCounter={2}
             description="Ut rutrum vulputate arcu, non vehicula lacus ornare sed. Duis efficitur sollicitudin tristique. Ut in ultrices dui, vel porta tortor. Nam aliquet luctus diam, id porta ligula interdum a."
             courses={[
               {
-                title: "1ro de secundaria",
+                title: "1ro de Secundaria",
                 list: [
                   "Operaciones con números",
                   "Pre-álgebra",
@@ -60,7 +118,7 @@ const OurCourses = React.memo(() => {
                 ],
               },
               {
-                title: "2do de secundaria",
+                title: "2do de Secundaria",
                 list: ["Ecuaciones lineales", "Sistemas de ecuaciones"],
               },
             ]}
@@ -68,11 +126,11 @@ const OurCourses = React.memo(() => {
           />
           <HomeCard
             title="Preparatoria"
-            lessons={17}
+            coursesCounter={4}
             description="Etiam risus ipsum, gravida sit amet eros a, placerat dapibus massa. Duis tincidunt venenatis risus in tincidunt. Nullam a turpis turpis. Mauris pulvinar rutrum ultricies."
             courses={[
               {
-                title: "1ro de preparatoria",
+                title: "1ro de Preparatoria",
                 list: [
                   "Álgebra",
                   "Ecuaciones lineales",

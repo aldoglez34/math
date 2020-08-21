@@ -3,18 +3,15 @@ import { Card, Col, Badge } from "react-bootstrap";
 import PropTypes from "prop-types";
 
 const HomeCard = React.memo(
-  ({ title, lessons, description, courses, link }) => {
+  ({ title, coursesCounter, description, courses, link }) => {
     return (
       <Card className="m-lg-3 border rounded shadow-sm oc_coursecard">
         <Card.Body>
           <Card.Title as={Col} className="px-0">
             <div className="d-flex">
-              <h3 className="mb-0">{title}</h3>
-              <Badge
-                variant="success"
-                className="ml-auto d-flex align-items-center oc_cardBadge"
-              >
-                {lessons + " lecciones"}
+              <h2 className="mb-0">{title}</h2>
+              <Badge className="ml-auto d-flex align-items-center oc_cardBadge">
+                {coursesCounter + " cursos"}
               </Badge>
             </div>
           </Card.Title>
@@ -61,7 +58,7 @@ const HomeCard = React.memo(
 
 HomeCard.propTypes = {
   title: PropTypes.string.isRequired,
-  lessons: PropTypes.number.isRequired,
+  coursesCounter: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   courses: PropTypes.array.isRequired,
   link: PropTypes.string.isRequired,

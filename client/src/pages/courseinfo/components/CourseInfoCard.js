@@ -1,42 +1,28 @@
 import React from "react";
-import { Card, Button } from "react-bootstrap";
+import { Badge, Row, Col, Card, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
-import API from "../../../utils/API";
 
 const CourseInfoCard = React.memo(
-  ({ title, description, price, lessons, courseName }) => {
-    const student = useSelector((state) => state.student);
-
-    const buyCourse = () => {
-      API.buyCourse({ studentId: student._id, course: courseName })
-        .then((res) => {
-          console.log(res.data);
-          alert("¡Felicidades! Compraste este curso satisfactoriamente");
-          window.location.href = "/dashboard";
-          // the alert message is called in the reducer
-        })
-        .catch((err) => {
-          console.log(err);
-          alert("Ocurrió un error inesperado al comprar el curso.");
-        });
-    };
-
+  ({ title, description, price, lessons, lessonCounter }) => {
     return (
       <Card
-        className="border rounded mr-0 mr-lg-4"
-        style={{ marginTop: "30px", backgroundColor: "#f4fbf8" }}
+        className="border rounded mr-0 mr-lg-4 shadow-sm"
+        style={{ marginTop: "30px", backgroundColor: "white" }}
       >
         <Card.Body>
           <div className="d-flex flex-row">
-            <h1 className="pr-2 mb-0" style={{ color: "#51585f" }}>
+            {/* title */}
+            <h2 className="pr-2 mb-0" style={{ color: "#212529" }}>
               {title}
-            </h1>
-            <h1 className="ml-auto mb-0" style={{ color: "#dc2a2a" }}>
-              {price}
-            </h1>
+            </h2>
+            {/* lessons counter */}
+            <Badge className="ml-auto d-flex align-items-center oc_cardBadge">
+              {lessonCounter + " lecciones"}
+            </Badge>
           </div>
+          {/* description */}
           <p className="lead mt-4">{description}</p>
+          {/* lessons list */}
           {lessons.map((l) => {
             return (
               <div key={l} style={{ fontSize: "15px" }}>
@@ -50,25 +36,30 @@ const CourseInfoCard = React.memo(
               </div>
             );
           })}
-          <Button
-            variant="danger"
-            className="mt-3 shadow-sm"
-            // disabled={student ? false : true}
-            disabled={true}
-            onClick={buyCourse}
-          >
-            Comprar
-          </Button>
-          <p className="text-muted mb-0 mt-2">Próximamente</p>
-          {/* {student ? null : (
-            <p className="text-muted mb-0 mt-2">
-              Es necesario{" "}
-              <a href="/login" className="text-warning">
-                iniciar sesión
-              </a>{" "}
-              para comprar un cusro
-            </p>
-          )} */}
+          {/* price */}
+          <Row>
+            <Col>
+              <h1
+                className="mb-0 mt-3 text-center"
+                style={{ color: "#495057" }}
+              >
+                {"$" + price + " MXN"}
+              </h1>
+            </Col>
+          </Row>
+          {/* button */}
+          <Row>
+            <Col md={{ span: 6, offset: 3 }}>
+              <Button
+                block
+                className="shadow-sm mt-3 buyButton"
+                onClick={() => alert("Has comprado el curso xx")}
+                size="lg"
+              >
+                Comprar
+              </Button>
+            </Col>
+          </Row>
         </Card.Body>
       </Card>
     );
@@ -78,9 +69,9 @@ const CourseInfoCard = React.memo(
 CourseInfoCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   lessons: PropTypes.array.isRequired,
-  courseName: PropTypes.string.isRequired,
+  lessonCounter: PropTypes.number.isRequired,
 };
 
 export default CourseInfoCard;

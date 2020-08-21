@@ -8,11 +8,11 @@ import StudentNav from "./studentnav/StudentNav";
 import ScrollButton from "./scrollbutton";
 
 // for public routes
-export const Layout = React.memo(({ children }) => {
+export const Layout = React.memo(({ children, backgroundColor = "white" }) => {
   return (
     <>
       <MyNavbar />
-      <div className="d-flex flex-column marginTop h-100">
+      <div className="d-flex flex-column marginTop" style={{ backgroundColor }}>
         {children}
         <MyFooter />
       </div>
@@ -22,6 +22,7 @@ export const Layout = React.memo(({ children }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  backgroundColor: PropTypes.string,
 };
 
 // for protected routes
