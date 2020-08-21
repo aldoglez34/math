@@ -36,12 +36,21 @@ const CourseInfoCard = React.memo(
               </div>
             );
           })}
+          <br />
+          <div className="text-center mt-4">
+            <strong
+              className="mt-1 lead"
+              style={{ color: "#212529", backgroundColor: "#c6d9d7" }}
+            >
+              Único pago de:
+            </strong>
+          </div>
           {/* price */}
           <Row>
             <Col>
               <h1
-                className="mb-0 mt-3 text-center"
-                style={{ color: "#495057" }}
+                className="mb-0 text-center"
+                style={{ color: "#495057", fontWeight: 800 }}
               >
                 {"$" + price + " MXN"}
               </h1>
