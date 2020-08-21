@@ -67,7 +67,7 @@ module.exports = [
         qTechnicalInstruction: {
           type: "image",
           imageLink:
-            "/exams/fracciones/representacion_de_fracciones/Figura1.png",
+            "/exams/primaria/3/Fracciones/representacion_de_fracciones/Figura1.png",
         },
         qCorrectAnswers: [{ answer: "1/2" }],
       },
@@ -77,7 +77,7 @@ module.exports = [
         qTechnicalInstruction: {
           type: "image",
           imageLink:
-            "/exams/fracciones/representacion_de_fracciones/Figura2.png",
+            "/exams/primaria/3/Fracciones/representacion_de_fracciones/Figura2.png",
         },
         qCorrectAnswers: [{ answer: "2/4" }],
       },
@@ -87,7 +87,7 @@ module.exports = [
         qTechnicalInstruction: {
           type: "image",
           imageLink:
-            "/exams/fracciones/representacion_de_fracciones/Figura3.png",
+            "/exams/primaria/3/Fracciones/representacion_de_fracciones/Figura3.png",
         },
         qCorrectAnswers: [{ answer: "3/6" }],
       },
@@ -97,7 +97,7 @@ module.exports = [
         qTechnicalInstruction: {
           type: "image",
           imageLink:
-            "/exams/fracciones/representacion_de_fracciones/Figura4.png",
+            "/exams/primaria/3/Fracciones/representacion_de_fracciones/Figura4.png",
         },
         qCorrectAnswers: [{ answer: "4/10" }],
       },
@@ -107,7 +107,7 @@ module.exports = [
         qTechnicalInstruction: {
           type: "image",
           imageLink:
-            "/exams/fracciones/representacion_de_fracciones/Figura5.png",
+            "/exams/primaria/3/Fracciones/representacion_de_fracciones/Figura5.png",
         },
         qCorrectAnswers: [{ answer: "2/8" }],
       },
@@ -127,7 +127,8 @@ module.exports = [
         qInstruction: "Una fracción equivalente a la mostrada en la figura es:",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/fracciones/fracciones_equivalentes/Figura1.png",
+          imageLink:
+            "/exams/primaria/3/Fracciones/fracciones_equivalentes/Figura1.png",
         },
         qMultipleChoice: { type: "text", textChoices: ["2/4", "1/3", "2/6"] },
         qCorrectAnswers: [{ answer: "2/4" }],
@@ -136,7 +137,8 @@ module.exports = [
         qInstruction: "Una fracción equivalente a la mostrada en la figura es:",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/fracciones/fracciones_equivalentes/Figura2.png",
+          imageLink:
+            "/exams/primaria/3/Fracciones/fracciones_equivalentes/Figura2.png",
         },
         qMultipleChoice: { type: "text", textChoices: ["1/4", "2/6", "1/2"] },
         qCorrectAnswers: [{ answer: "1/2" }],
@@ -145,7 +147,8 @@ module.exports = [
         qInstruction: "Una fracción equivalente a la mostrada en la figura es:",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/fracciones/fracciones_equivalentes/Figura3.png",
+          imageLink:
+            "/exams/primaria/3/Fracciones/fracciones_equivalentes/Figura3.png",
         },
         qMultipleChoice: { type: "text", textChoices: ["2/6", "3/6", "1/2"] },
         qCorrectAnswers: [{ answer: "1/2" }],
@@ -154,7 +157,8 @@ module.exports = [
         qInstruction: "Una fracción equivalente a la mostrada en la figura es:",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/fracciones/fracciones_equivalentes/Figura4.png",
+          imageLink:
+            "/exams/primaria/3/Fracciones/fracciones_equivalentes/Figura4.png",
         },
         qMultipleChoice: { type: "text", textChoices: ["2/8", "1/4", "1/2"] },
         qCorrectAnswers: [{ answer: "1/4" }],
@@ -163,7 +167,8 @@ module.exports = [
         qInstruction: "Una fracción equivalente a la mostrada en la figura es:",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/fracciones/fracciones_equivalentes/Figura5.png",
+          imageLink:
+            "/exams/primaria/3/Fracciones/fracciones_equivalentes/Figura5.png",
         },
         qMultipleChoice: { type: "text", textChoices: ["1/3", "2/6", "2/3"] },
         qCorrectAnswers: [{ answer: "2/6" }],

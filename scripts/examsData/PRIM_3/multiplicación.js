@@ -4,8 +4,7 @@ module.exports = [
     topicCode: "PRIM_3_Multiplicación",
     topicName: "Multiplicación",
     name: "Multiplicaciones 1",
-    description:
-      "La tercera operación básica de las matemáticas, la multiplicación es una abreviación de una suma, por lo que al igual que la suma, agrupa objetos. En esta sección aprenderás las tablas de multiplicar, harás multiplicaciones con números de dos y tres cifras resolverás problemas de la vida cotidiana usando esta operación.",
+    description: "Aprenderás las tablas de multiplicar del 1 al 5",
     duration: 15,
     difficulty: "Basic",
     qCounter: 3,

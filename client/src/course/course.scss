@@ -12,14 +12,14 @@
 .section-break-1 {
   background-color: transparent;
   border: 0;
-  border-top: 3px double rgb(200, 200, 200);
+  border-top: 3px double #a8cabb;
   height: 3px;
   margin: 7rem auto;
   width: 30%;
 
   &:before {
     background-color: snow;
-    color: rgb(200, 200, 200);
+    color: #a8cabb;
     content: "\22A1";
     font-size: 20px;
     left: 50%;

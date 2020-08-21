@@ -13,7 +13,7 @@ module.exports = [
         qInstruction: "¿Qué hora indica el reloj?",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/unidades_de_medicion/el_reloj/Reloj1.png",
+          imageLink: "/exams/primaria/3/UnidadesDeMedicion/el_reloj/Reloj1.png",
         },
         qCorrectAnswers: [{ answer: "1:00" }],
         qComment: "Usa el formato hh:mm para expresar tu respuesta.",
@@ -22,7 +22,7 @@ module.exports = [
         qInstruction: "¿Qué hora indica el reloj?",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/unidades_de_medicion/el_reloj/Reloj2.png",
+          imageLink: "/exams/primaria/3/UnidadesDeMedicion/el_reloj/Reloj2.png",
         },
         qCorrectAnswers: [{ answer: "2:00" }],
         qComment: "Usa el formato hh:mm para expresar tu respuesta.",
@@ -31,7 +31,7 @@ module.exports = [
         qInstruction: "¿Qué hora indica el reloj?",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/unidades_de_medicion/el_reloj/Reloj3.png",
+          imageLink: "/exams/primaria/3/UnidadesDeMedicion/el_reloj/Reloj3.png",
         },
         qCorrectAnswers: [{ answer: "3:00" }],
         qComment: "Usa el formato hh:mm para expresar tu respuesta.",
@@ -40,7 +40,7 @@ module.exports = [
         qInstruction: "¿Qué hora indica el reloj?",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/unidades_de_medicion/el_reloj/Reloj4.png",
+          imageLink: "/exams/primaria/3/UnidadesDeMedicion/el_reloj/Reloj4.png",
         },
         qCorrectAnswers: [{ answer: "4:00" }],
         qComment: "Usa el formato hh:mm para expresar tu respuesta.",
@@ -49,7 +49,7 @@ module.exports = [
         qInstruction: "¿Qué hora indica el reloj?",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/unidades_de_medicion/el_reloj/Reloj5.png",
+          imageLink: "/exams/primaria/3/UnidadesDeMedicion/el_reloj/Reloj5.png",
         },
         qCorrectAnswers: [{ answer: "5:00" }],
         qComment: "Usa el formato hh:mm para expresar tu respuesta.",

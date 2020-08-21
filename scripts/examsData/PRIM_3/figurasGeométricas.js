@@ -13,7 +13,7 @@ module.exports = [
         qInstruction: "La siguiente figura geométrica se llama:",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/nombres/Figura1.png",
+          imageLink: "/exams/primaria/3/FigurasGeometricas/nombres/Figura1.png",
         },
         qMultipleChoice: {
           type: "text",
@@ -25,7 +25,7 @@ module.exports = [
         qInstruction: "La siguiente figura geométrica se llama:",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/nombres/Figura2.png",
+          imageLink: "/exams/primaria/3/FigurasGeometricas/nombres/Figura2.png",
         },
         qMultipleChoice: {
           type: "text",
@@ -37,7 +37,7 @@ module.exports = [
         qInstruction: "La siguiente figura geométrica se llama:",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/nombres/Figura3.png",
+          imageLink: "/exams/primaria/3/FigurasGeometricas/nombres/Figura3.png",
         },
         qMultipleChoice: {
           type: "text",
@@ -49,7 +49,7 @@ module.exports = [
         qInstruction: "La siguiente figura geométrica se llama:",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/nombres/Figura4.png",
+          imageLink: "/exams/primaria/3/FigurasGeometricas/nombres/Figura4.png",
         },
         qMultipleChoice: {
           type: "text",
@@ -61,7 +61,7 @@ module.exports = [
         qInstruction: "La siguiente figura geométrica se llama:",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/nombres/Figura5.png",
+          imageLink: "/exams/primaria/3/FigurasGeometricas/nombres/Figura5.png",
         },
         qMultipleChoice: {
           type: "text",
@@ -86,7 +86,8 @@ module.exports = [
           "Indica el número de lados, vértices y aristas de la siguiente figura geométrica",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/elementos/Figura1.png",
+          imageLink:
+            "/exams/primaria/3/FigurasGeometricas/elementos/Figura1.png",
         },
         qCorrectAnswers: [
           { answer: "3", complement: "Lados:", placement: "left" },
@@ -99,7 +100,8 @@ module.exports = [
           "Indica el número de lados, vértices y aristas de la siguiente figura geométrica",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/elementos/Figura2.png",
+          imageLink:
+            "/exams/primaria/3/FigurasGeometricas/elementos/Figura2.png",
         },
         qCorrectAnswers: [
           { answer: "4", complement: "Lados:", placement: "left" },
@@ -112,7 +114,8 @@ module.exports = [
           "Indica el número de lados, vértices y aristas de la siguiente figura geométrica",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/elementos/Figura3.png",
+          imageLink:
+            "/exams/primaria/3/FigurasGeometricas/elementos/Figura3.png",
         },
         qCorrectAnswers: [
           { answer: "5", complement: "Lados:", placement: "left" },
@@ -125,7 +128,8 @@ module.exports = [
           "Indica el número de lados, vértices y aristas de la siguiente figura geométrica",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/elementos/Figura4.png",
+          imageLink:
+            "/exams/primaria/3/FigurasGeometricas/elementos/Figura4.png",
         },
         qCorrectAnswers: [
           { answer: "6", complement: "Lados:", placement: "left" },
@@ -138,7 +142,8 @@ module.exports = [
           "Indica el número de lados, vértices y aristas de la siguiente figura geométrica",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/elementos/Figura2.png",
+          imageLink:
+            "/exams/primaria/3/FigurasGeometricas/elementos/Figura2.png",
         },
         qCorrectAnswers: [
           { answer: "7", complement: "Lados:", placement: "left" },
@@ -162,7 +167,8 @@ module.exports = [
         qInstruction: "Calcular el perímetro de la siguiente figura",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/perimetro/Figura1.png",
+          imageLink:
+            "/exams/primaria/3/FigurasGeometricas/perimetro/Figura1.png",
         },
         qCorrectAnswers: [
           { answer: "44", complement: "u", placement: "right" },
@@ -173,7 +179,8 @@ module.exports = [
         qInstruction: "Calcular el perímetro de la siguiente figura",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/perimetro/Figura2.png",
+          imageLink:
+            "/exams/primaria/3/FigurasGeometricas/perimetro/Figura2.png",
         },
         qCorrectAnswers: [
           { answer: "60", complement: "u", placement: "right" },
@@ -184,7 +191,8 @@ module.exports = [
         qInstruction: "Calcular el perímetro de la siguiente figura",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/perimetro/Figura3.png",
+          imageLink:
+            "/exams/primaria/3/FigurasGeometricas/perimetro/Figura3.png",
         },
         qCorrectAnswers: [
           { answer: "39", complement: "u", placement: "right" },
@@ -195,7 +203,8 @@ module.exports = [
         qInstruction: "Calcular el perímetro de la siguiente figura",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/perimetro/Figura4.png",
+          imageLink:
+            "/exams/primaria/3/FigurasGeometricas/perimetro/Figura4.png",
         },
         qCorrectAnswers: [
           { answer: "60", complement: "u", placement: "right" },
@@ -206,7 +215,8 @@ module.exports = [
         qInstruction: "Calcular el perímetro de la siguiente figura",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/perimetro/Figura5.png",
+          imageLink:
+            "/exams/primaria/3/FigurasGeometricas/perimetro/Figura5.png",
         },
         qCorrectAnswers: [
           { answer: "100", complement: "u", placement: "right" },
@@ -229,7 +239,7 @@ module.exports = [
         qInstruction: "Calcular el área de la siguiente figura",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/area/Figura1.png",
+          imageLink: "/exams/primaria/3/FigurasGeometricas/area/Figura1.png",
         },
         qCorrectAnswers: [
           { answer: "64", complement: "u^2", placement: "right" },
@@ -240,7 +250,7 @@ module.exports = [
         qInstruction: "Calcular el área de la siguiente figura",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/area/Figura2.png",
+          imageLink: "/exams/primaria/3/FigurasGeometricas/area/Figura2.png",
         },
         qCorrectAnswers: [
           { answer: "81", complement: "u^2", placement: "right" },
@@ -251,7 +261,7 @@ module.exports = [
         qInstruction: "Calcular el área de la siguiente figura",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/area/Figura3.png",
+          imageLink: "/exams/primaria/3/FigurasGeometricas/area/Figura3.png",
         },
         qCorrectAnswers: [
           { answer: "144", complement: "u^2", placement: "right" },
@@ -262,7 +272,7 @@ module.exports = [
         qInstruction: "Calcular el área de la siguiente figura",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/area/Figura4.png",
+          imageLink: "/exams/primaria/3/FigurasGeometricas/area/Figura4.png",
         },
         qCorrectAnswers: [
           { answer: "225", complement: "u^2", placement: "right" },
@@ -273,7 +283,7 @@ module.exports = [
         qInstruction: "Calcular el área de la siguiente figura",
         qTechnicalInstruction: {
           type: "image",
-          imageLink: "/exams/figuras_geometricas/area/Figura5.png",
+          imageLink: "/exams/primaria/3/FigurasGeometricas/area/Figura5.png",
         },
         qCorrectAnswers: [
           { answer: "441", complement: "u^2", placement: "right" },
@@ -320,7 +330,7 @@ module.exports = [
         qTechnicalInstruction: {
           type: "image",
           imageLink:
-            "/exams/figuras_geometricas/resolucionDeProblemas/Figura1.png",
+            "/exams/primaria/3/FigurasGeometricas/resolucionDeProblemas/Figura1.png",
         },
         qCorrectAnswers: [
           { answer: "140", complement: "metros", placement: "right" },
@@ -332,7 +342,7 @@ module.exports = [
         qTechnicalInstruction: {
           type: "image",
           imageLink:
-            "/exams/figuras_geometricas/resolucionDeProblemas/Figura2.png",
+            "/exams/primaria/3/FigurasGeometricas/resolucionDeProblemas/Figura2.png",
         },
         qCorrectAnswers: [
           { answer: "288", complement: "metros", placement: "right" },

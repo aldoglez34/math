@@ -31,7 +31,7 @@ const DashboardCourseCard = React.memo(({ course }) => {
           >
             <Button
               variant="link"
-              className="p-0"
+              className="p-0 text-left"
               onClick={() =>
                 buttonClicked(course._id, course.name).then(
                   () => (window.location.href = "/course/#" + ct.name)

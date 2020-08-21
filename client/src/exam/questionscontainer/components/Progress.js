@@ -8,7 +8,7 @@ const Progress = React.memo(({ current, total }) => {
       animated
       min="1"
       max={total}
-      variant="dark"
+      variant="success"
       style={{ height: "1.7rem" }}
       now={current}
       title="Avance"
