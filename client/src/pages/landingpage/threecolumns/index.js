@@ -1,15 +1,14 @@
 import React from "react";
 import { Container, Col, Row, Image } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
+import "./threecolumns.scss";
 
 const ThreeColumns = React.memo(() => {
   return (
     <Container className="tc_container">
       <Fade>
-        <h2 className="display-4 text-center mb-4" style={{ fontWeight: 600 }}>
-          ¿Qué ofrecemos?
-        </h2>
-        <p className="lead text-left text-lg-center oc_subtitle pb-3">
+        <h2 className="display-4 text-center mb-3">¿Qué ofrecemos?</h2>
+        <p className="text-center oc_subtitle pb-3">
           En MeXmáticas contamos con tres servicios para así poder llegar a más
           estudiantes a nivel local y nacional.
         </p>

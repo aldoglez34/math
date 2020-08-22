@@ -1,6 +1,7 @@
 import React from "react";
 import { Jumbotron, Container, Accordion, Card, Image } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
+import "./faqjumbotron.scss";
 
 const FAQJumbotron = React.memo(() => {
   const question = ({ key, question, answer }) => {

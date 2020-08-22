@@ -1,12 +1,11 @@
 import React from "react";
 import { Layout } from "../../components/Layout";
-import WelcomeJumbotron from "./components/WelcomeJumbotron";
-import ThreeColumns from "./components/ThreeColumns";
-import OurCourses from "./components/OurCourses";
-import TeacherJumbotron from "./components/TeacherJumbotron";
-import FacilitiesJumbotron from "./components/FacilitiesJumbotron";
-import FAQJumbotron from "./components/FAQJumbotron";
-import "./homeStyles.scss";
+import WelcomeJumbotron from "./welcomejumbotron";
+import ThreeColumns from "./threecolumns";
+import OurCourses from "./ourcourses";
+import TeacherJumbotron from "./teacherjumbotron";
+import FacilitiesJumbotron from "./facilitiesjumbotron";
+import FAQJumbotron from "./faqjumbotron/FAQJumbotron";
 import ScrollButton from "../../components/scrollbutton";
 
 const Home = React.memo(() => {

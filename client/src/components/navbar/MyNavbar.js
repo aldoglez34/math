@@ -15,7 +15,7 @@ const MyNavbar = React.memo(() => {
       expand="lg"
       id="mynavbar"
       variant="dark"
-      className="py-2"
+      className="py-2 shadow"
     >
       <Navbar.Brand href="/" className="d-block d-lg-none">
         <h2 className="mb-0" id="myLogo">

@@ -5,9 +5,9 @@
 html,
 body {
   height: 100%;
-  background-color: white;
-  color: #50575e !important;
-  font-family: "Noto Sans", sans-serif !important;
+  // background-color: white;
+  // color: #50575e !important;
+  font-family: "Noto Sans JP", sans-serif;
   font-size: 14px;
 }
 
@@ -16,8 +16,8 @@ h2,
 h3,
 h4,
 h5 {
-  color: #212529;
   font-family: "Lato", sans-serif;
+  color: #0f5257;
 }
 
 // hr

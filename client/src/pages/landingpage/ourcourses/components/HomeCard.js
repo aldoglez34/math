@@ -50,6 +50,7 @@ const HomeCard = React.memo(
               }}
             >
               Ver más
+              <i className="fas fa-long-arrow-alt-right ml-1" />
             </a>
           </Card.Text>
         </Card.Body>

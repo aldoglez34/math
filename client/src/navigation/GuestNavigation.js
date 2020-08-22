@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import Home from "../pages/home/Home";
+import LandingPage from "../pages/landingpage";
 import NoMatch from "../pages/nomatch/NoMatch";
 import SignUp from "../pages/signup/SignUp";
 import Login from "../pages/login/Login";
@@ -11,7 +11,7 @@ import CourseInfoPrepa from "../pages/courseinfo/CourseInfoPrepa";
 export default () => {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/" component={LandingPage} />
       <Route exact path="/signup" component={SignUp} />
       <Route exact path="/login" component={Login} />
 

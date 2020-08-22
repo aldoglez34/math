@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Jumbotron, Container, Row, Col } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
 import YouTubePlayer from "youtube-player";
+import "./teacherjumbotron.scss";
 
 const TeacherJumbotron = React.memo(() => {
   useEffect(() => {
@@ -27,7 +28,7 @@ const TeacherJumbotron = React.memo(() => {
   return (
     <Jumbotron className="teacherJumbo" fluid>
       <Container>
-        <Fade>
+        {/* <Fade>
           <h2
             className="display-4 text-center mb-4"
             style={{ fontWeight: 600 }}
@@ -40,14 +41,11 @@ const TeacherJumbotron = React.memo(() => {
             logrando que los alumnos alcancen sus metas, aclaren sus dudas y
             puedan llegar a decir: ‘‘¡Ah! ¡Esto era así!’’.
           </p>
-        </Fade>
+        </Fade> */}
         <Row>
-          <Col lg={5} className="d-flex align-items-center">
-            <div id="player-2"></div>
-          </Col>
           <Col lg={7} className="d-flex align-items-center mt-3 mt-lg-0">
             <Fade cascade>
-              <blockquote className="blockquote mb-0 text-left text-lg-right">
+              <blockquote className="blockquote mb-0">
                 <p className="lead mb-1 text-muted">FUNDADOR</p>
                 <h2 className="qj_quote text-dark">
                   "Nuestro compromiso con cada uno de los cursos se refleja en
@@ -58,6 +56,9 @@ const TeacherJumbotron = React.memo(() => {
                 </footer>
               </blockquote>
             </Fade>
+          </Col>
+          <Col lg={5} className="d-flex align-items-center">
+            <div id="player-2"></div>
           </Col>
         </Row>
       </Container>

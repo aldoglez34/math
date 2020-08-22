@@ -1,7 +1,8 @@
 import React from "react";
 import { Container, CardGroup, Row, Col } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
-import HomeCard from "../../../components/homecard/HomeCard";
+import HomeCard from "./components/HomeCard";
+import "./ourcourses.scss";
 
 const OurCourses = React.memo(() => {
   return (

@@ -1,29 +1,24 @@
 import React from "react";
 import { Jumbotron, Button, Container, Row, Col } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
+import "./welcomejumbotron.scss";
 
 const MyJumbotron = React.memo(() => {
   return (
-    <Jumbotron fluid className="wj_jumboStyle shadow">
+    <Jumbotron fluid className="wj_jumboStyle">
       <Container>
         <Row>
-          <Col className="px-4 py-3 py-lg-0">
+          <Col md={{ offset: 2, span: 7 }}>
             {/* title */}
             <Fade bottom cascade>
-              <h2 className="display-2 mb-0 text-center text-lg-left wj_title">
-                MATEMÁTICAS
-              </h2>
-              <h2 className="display-2 text-center text-lg-left wj_title">
-                SIMPLIFICADAS
-              </h2>
-            </Fade>
-            {/* list */}
-            <Fade>
+              <h2 className="text-left wj_title mb-0">MATEMÁTICAS</h2>
+              <h2 className="text-left wj_title">SIMPLIFICADAS</h2>
+              {/* list */}
               <p className="mb-1 mt-3 mt-lg-0">
                 <i className="fas fa-plus wj_plusIcon" />
                 <span className="wj_text">
                   Cursos de matemáticas para estudiantes de cualquier grado
-                  educativo y/o edad
+                  educativo
                 </span>
               </p>
               <p className="mb-1">
@@ -39,18 +34,15 @@ const MyJumbotron = React.memo(() => {
                   único
                 </span>
               </p>
-              <p className="mt-4 mb-1">
-                <Button
-                  size="lg"
-                  variant="primary"
-                  className="shadow"
-                  href="/signup"
-                >
-                  Regístrate
-                  <i className="fas fa-user-plus ml-2" />
-                </Button>
-              </p>
             </Fade>
+            {/* button */}
+            <Button
+              size="lg"
+              className="shadow mt-4 wj_registerButton"
+              href="/signup"
+            >
+              Regístrate
+            </Button>
           </Col>
         </Row>
       </Container>
