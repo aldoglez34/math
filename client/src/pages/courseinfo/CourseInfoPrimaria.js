@@ -7,7 +7,7 @@ import "./courseinfostyle.scss";
 
 const CourseInfoPrimaria = React.memo(() => {
   return (
-    <Layout>
+    <Layout backgroundColor="white">
       <Container
         style={{
           paddingTop: "40px",

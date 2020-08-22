@@ -6,7 +6,7 @@ import CourseInfoCard from "./components/CourseInfoCard";
 
 const CourseInfoSecundaria = React.memo(() => {
   return (
-    <Layout backgroundColor="#f4fbf8">
+    <Layout>
       <Container
         style={{
           paddingTop: "40px",
