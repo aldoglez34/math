@@ -9,7 +9,9 @@ const HomeCard = React.memo(
         <Card.Body>
           <Card.Title as={Col} className="px-0">
             <div className="d-flex">
-              <h2 className="mb-0">{title}</h2>
+              <h2 className="mb-0" style={{ color: "#0f5257" }}>
+                {title}
+              </h2>
               <Badge className="ml-auto d-flex align-items-center oc_cardBadge">
                 {coursesCounter + " cursos"}
               </Badge>
