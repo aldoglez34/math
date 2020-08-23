@@ -32,7 +32,7 @@ const Timer = React.memo(() => {
 
   return (
     <div
-      className="text-secondary p-1"
+      className="text-secondary lead"
       style={{ cursor: "help" }}
       title="Tiempo restante"
     >

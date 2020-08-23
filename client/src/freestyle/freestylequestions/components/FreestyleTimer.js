@@ -44,7 +44,7 @@ const FreestyleTimer = React.memo(({ score }) => {
 
   return (
     <div
-      className="text-secondary p-1"
+      className="text-secondary lead"
       style={{ cursor: "help" }}
       title="Tiempo restante"
     >

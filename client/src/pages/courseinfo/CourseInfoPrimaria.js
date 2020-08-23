@@ -51,15 +51,23 @@ const CourseInfoPrimaria = React.memo(() => {
           </Col>
           <Col md={6}>
             <CourseInfoCard
-              lessonCounter={10}
+              lessonCounter={12}
               title="4to Primaria"
               price={500}
-              description="In interdum facilisis faucibus. Nunc eget quam et ipsum dapibus euismod. Aliquam rutrum iaculis dui sit amet ullamcorper."
+              description="En la compra de este curso obtienes material didáctico, videos exclusivos, asistencia personalizada y cientos de ejercicios sobre los siguientes temas:"
               lessons={[
+                "Sistema Decimal",
+                "Sumas",
+                "Restas",
+                "Multiplicaciones",
+                "Divisiones",
                 "Fracciones",
-                "Porcentajes",
-                "Relaciones",
-                "Áreas y perímetros",
+                "Sumas y Restas con Fracciones",
+                "Multiplicación y División de Fracciones",
+                "Figuras Geométricas",
+                "Números Decimales",
+                "Multiplicación y División con Números Decimales",
+                "Sistemas de Numeración",
               ]}
             />
           </Col>
@@ -67,16 +75,24 @@ const CourseInfoPrimaria = React.memo(() => {
         <Row>
           <Col md={6}>
             <CourseInfoCard
-              lessonCounter={10}
+              lessonCounter={13}
               title="5to Primaria"
               price={500}
-              description="Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam, eaque
-            ipsa."
+              description="En la compra de este curso obtienes material didáctico, videos exclusivos, asistencia personalizada y cientos de ejercicios sobre los siguientes temas:"
               lessons={[
-                "Operaciones con números",
-                "Ubicación en la recta numérica",
+                "Sistema Decimal",
+                "Suma y Resta",
+                "Multiplicación y División",
                 "Fracciones",
+                "Suma de Fracciones",
+                "Resta de Fracciones",
+                "Multiplicación y División de Fracciones",
+                "Números Decimales",
+                "Multiplicación y División con Números Decimales",
+                "Unidades de Medición",
+                "Tiempo y Números Romanos",
+                "Figuras Geométricas",
+                "Cuerpos Geométricos",
               ]}
             />
           </Col>
@@ -85,12 +101,22 @@ const CourseInfoPrimaria = React.memo(() => {
               lessonCounter={10}
               title="6to Primaria"
               price={500}
-              description="In interdum facilisis faucibus. Nunc eget quam et ipsum dapibus euismod. Aliquam rutrum iaculis dui sit amet ullamcorper."
+              description="En la compra de este curso obtienes material didáctico, videos exclusivos, asistencia personalizada y cientos de ejercicios sobre los siguientes temas:"
               lessons={[
+                "Teoría de Números",
+                "Operaciones Básicas",
                 "Fracciones",
+                "Sumas y Restas con Fracciones",
+                "Multiplicación y División de Fracciones",
+                "Operaciones con Números Decimales",
+                "Resolución de Problemas",
+                "Figuras Geométricas",
+                "Cuerpos Geométricos",
+                "Conversión de Unidades",
                 "Porcentajes",
-                "Relaciones",
-                "Áreas y perímetros",
+                "Proporciones y Razones",
+                "Probabilidad y Estadística",
+                "Ángulos",
               ]}
             />
           </Col>
