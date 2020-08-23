@@ -7,8 +7,8 @@
   cursor: pointer;
   color: #48bf84;
   text-decoration: none;
-  font-family: "Noto Serif", serif;
-  font-weight: 700;
+  font-family: "Noto Serif", serif !important;
+  font-weight: 700 !important;
 }
 
 .navbarItem {
@@ -21,6 +21,7 @@
   background-color: transparent !important;
   border-color: transparent !important;
   color: #7b8887 !important;
+
   &:hover {
     color: gainsboro !important;
     transition: 0.2s !important;

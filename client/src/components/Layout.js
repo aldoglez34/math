@@ -12,7 +12,10 @@ export const Layout = React.memo(({ children, backgroundColor = "white" }) => {
   return (
     <>
       <MyNavbar />
-      <div className="d-flex flex-column marginTop" style={{ backgroundColor }}>
+      <div
+        className="d-flex flex-column marginTop h-100"
+        style={{ backgroundColor }}
+      >
         {children}
         <MyFooter />
       </div>

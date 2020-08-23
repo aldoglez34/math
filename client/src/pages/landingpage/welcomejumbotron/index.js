@@ -15,20 +15,20 @@ const MyJumbotron = React.memo(() => {
               <h2 className="text-left wj_title">SIMPLIFICADAS</h2>
               {/* list */}
               <p className="mb-1 mt-3 mt-lg-0">
-                <i className="fas fa-plus wj_plusIcon" />
+                <i className="fas fa-plus-circle wj_plusIcon" />
                 <span className="wj_text">
                   Cursos de matemáticas para estudiantes de cualquier grado
                   educativo
                 </span>
               </p>
               <p className="mb-1">
-                <i className="fas fa-plus wj_plusIcon" />
+                <i className="fas fa-plus-circle wj_plusIcon" />
                 <span className="wj_text">
                   Miles de ejercicios con explicaciones y videos tutoriales
                 </span>
               </p>
               <p className="mb-1">
-                <i className="fas fa-plus wj_plusIcon" />
+                <i className="fas fa-plus-circle wj_plusIcon" />
                 <span className="wj_text">
                   Aprendiendo matemáticas a tu propio ritmo y con un método
                   único

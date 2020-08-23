@@ -73,7 +73,7 @@ const MyFooter = React.memo(() => {
           </Col>
         </Row>
       </Container>
-      <Image src="/images/footerback.png" className="w-100" />
+      <Image src="/images/footerback.png" className="w-100 footerImg" />
     </footer>
   );
 });
