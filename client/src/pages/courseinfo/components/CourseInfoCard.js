@@ -16,7 +16,7 @@ const CourseInfoCard = React.memo(
               {title}
             </h2>
             {/* lessons counter */}
-            <Badge className="ml-auto d-flex align-items-center oc_cardBadge">
+            <Badge className="ml-auto d-flex align-items-center courseCounterBadge">
               {lessonCounter + " lecciones"}
             </Badge>
           </div>
