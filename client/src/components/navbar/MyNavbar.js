@@ -71,7 +71,7 @@ const MyNavbar = React.memo(() => {
             ) : (
               <>
                 <Nav.Link className="navbarItem mr-lg-4" href="/login">
-                  Inicia sesión
+                  Inicia Sesión
                 </Nav.Link>
                 <Nav.Link className="navbarItem" href="/signup">
                   Regístrate

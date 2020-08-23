@@ -10,14 +10,14 @@ const ThreeColumns = React.memo(() => {
     <Container className="tc_container">
       <Fade>
         <SectionTitle
-          title="¿Qué ofrecemos?"
+          title="¿Qué Ofrecemos?"
           text="En MeXmáticas contamos con tres servicios para así poder llegar a más
           estudiantes a nivel local y nacional."
         />
         <CardDeck>
           <OfferCard
             img="/images/laptop.png"
-            title="Cursos en línea"
+            title="Cursos en Línea"
             text="Una manera innovadora de aprender matemáticas, nuestra
                 plataforma en línea se acopla al programa educativo de la SEP."
           />
@@ -29,7 +29,7 @@ const ThreeColumns = React.memo(() => {
           />
           <OfferCard
             img="/images/chat.png"
-            title="Clases de regularización"
+            title="Clases de Regularización"
             text="Abarcamos temas de matemáticas para alumnos de cualquier
             nivel educativo, de manera presencial o en línea."
           />

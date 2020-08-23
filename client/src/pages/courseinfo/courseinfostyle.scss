@@ -19,13 +19,13 @@
 .courseinfoheader {
   position: relative;
   //   font-family: Lato;
-  font-weight: 300;
+  font-weight: 900 !important;
   display: inline-block;
   color: #0f5257;
   font-size: 60px;
   //   margin: 30px;
-  border-left: solid 1px #48bf84;
-  border-right: solid 1px #48bf84;
+  border-left: solid 1px #0f5257;
+  border-right: solid 1px #0f5257;
   padding: 0 10px;
 }
 
@@ -39,7 +39,7 @@
 .courseinfoheader:after {
   position: absolute;
   content: "";
-  border-bottom: 1px solid #48bf84;
+  border-bottom: 1px solid #0f5257;
   width: 30px;
   bottom: 23px;
 }

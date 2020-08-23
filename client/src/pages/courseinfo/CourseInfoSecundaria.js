@@ -56,6 +56,22 @@ const CourseInfoSecundaria = React.memo(() => {
             />
           </Col>
         </Row>
+        <Row>
+          <Col md={6}>
+            <CourseInfoCard
+              lessonCounter={10}
+              title="3ro Secundaria"
+              price={500}
+              description="In pulvinar pulvinar urna, vel placerat enim pulvinar et. Fusce tincidunt, ipsum ut hendrerit interdum, neque nisl convallis justo, ac tincidunt erat mauris non risus."
+              lessons={[
+                "Operaciones con números",
+                "Pre-álgebra",
+                "Expresiones algebraicas",
+                "Números negativos",
+              ]}
+            />
+          </Col>
+        </Row>
       </Container>
       <ScrollButton scrollStepInPx={150} delayInMs={16.66} />
     </Layout>

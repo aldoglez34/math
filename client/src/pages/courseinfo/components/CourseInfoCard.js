@@ -21,18 +21,16 @@ const CourseInfoCard = React.memo(
             </Badge>
           </div>
           {/* description */}
-          <p className="lead mt-4">{description}</p>
+          <p className="mt-4">{description}</p>
           {/* lessons list */}
           {lessons.map((l) => {
             return (
-              <div key={l} style={{ fontSize: "15px" }}>
+              <div key={l}>
                 <i
                   className="fas fa-check-circle mr-2"
                   style={{ color: "#48bf84" }}
                 />
-                <span className="lead" style={{ fontSize: "15px" }}>
-                  {l}
-                </span>
+                <span>{l}</span>
               </div>
             );
           })}
@@ -64,11 +62,12 @@ const CourseInfoCard = React.memo(
             <Col md={{ span: 6, offset: 3 }}>
               <Button
                 block
-                className="shadow-sm mt-3 py-3 buyButton"
+                className="shadow-sm mt-4 mb-3 py-3 buyButton"
                 onClick={() => alert("Has comprado el curso xx")}
                 size="lg"
               >
                 Comprar
+                <i className="fas fa-cart-plus ml-2" />
               </Button>
             </Col>
           </Row>

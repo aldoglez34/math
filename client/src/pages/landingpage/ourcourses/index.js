@@ -11,7 +11,7 @@ const OurCourses = React.memo(() => {
       <Fade>
         {/* title */}
         <SectionTitle
-          title="Nuestros cursos"
+          title="Nuestros Cursos"
           text="Cursos de matemáticas para los siguientes niveles educativos."
         />
         {/* courses */}
@@ -136,7 +136,7 @@ const OurCourses = React.memo(() => {
                         ],
                       },
                       {
-                        title: "2do de preparatoria",
+                        title: "2do de Preparatoria",
                         list: [
                           "Trigonometría",
                           "Funciones trigonométricas",
@@ -145,7 +145,7 @@ const OurCourses = React.memo(() => {
                         ],
                       },
                       {
-                        title: "3ro de preparatoria",
+                        title: "3ro de Preparatoria",
                         list: [
                           "Geometría analítica",
                           "Parábola",
@@ -154,7 +154,7 @@ const OurCourses = React.memo(() => {
                         ],
                       },
                       {
-                        title: "4to de preparatoria",
+                        title: "4to de Preparatoria",
                         list: [
                           "Pre-cálculo",
                           "Ecuaciones polinomiales",
