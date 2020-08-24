@@ -15,6 +15,7 @@ import API from "../utils/API";
 import ResultMsg from "./components/ResultMsg";
 import WrongAnswer from "./components/WrongAnswer";
 import { unlockExam } from "../redux/actions/unlocked";
+import Grade from "./components/Grade";
 
 const Results = React.memo(() => {
   const dispatch = useDispatch();
@@ -100,6 +101,8 @@ const Results = React.memo(() => {
       <Container style={{ paddingBottom: "45px" }}>
         {/* msg to the user */}
         <ResultMsg calif={calif} />
+        {/* grade */}
+        <Grade grade={calif} />
         {/* details */}
         <Row className="mt-4">
           <Col lg={{ span: 7, offset: 2 }}>

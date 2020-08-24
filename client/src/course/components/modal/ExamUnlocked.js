@@ -22,13 +22,13 @@ const ExamUnlocked = React.memo(({ showUnlocked, setShowExamUnlocked_ }) => {
           dispatch(clearUnlockedExam());
         }}
       >
-        <Modal.Body className="text-center">
+        <Modal.Body className="text-center p-4 bg-light">
           {unlocked.difficulty !== "Freestyle" ? (
             <div className="d-flex flex-column">
               <div className="my-2">
                 <Image src="/images/lock.png" width="80" height="80" />
               </div>
-              <h3 className="mb-2">¡Nuevo examen!</h3>
+              <h3 className="mb-2 text-dark">¡Nuevo examen!</h3>
               <span className="mb-1 lead">
                 El examen{" "}
                 <span style={{ fontWeight: 600 }}>{unlocked.name}</span> ha sido
@@ -60,20 +60,20 @@ const ExamUnlocked = React.memo(({ showUnlocked, setShowExamUnlocked_ }) => {
               <div className="my-2">
                 <Image
                   src={unlocked.rewardLink}
-                  width="90"
-                  height="130"
+                  width="100"
+                  height="140"
                   title={unlocked.rewardName}
                 />
               </div>
-              <h4 className="mb-2">¡Felicidades!</h4>
+              <h3 className="mb-2 text-dark">¡Felicidades!</h3>
               <span className="mb-2 lead">
                 Has obtenido la recompensa{" "}
                 <span style={{ fontWeight: 600 }}>{unlocked.rewardName}</span>{" "}
-                que corresponde a terminar todos los exámenes del tema{" "}
-                <span style={{ fontWeight: 600 }}>{unlocked.topicName}</span>
+                que corresponde a aprobar todos los exámenes del tema{" "}
+                <span style={{ fontWeight: 600 }}>{unlocked.topicName}.</span>
               </span>
               <div className="mt-4 pt-3 mb-3">
-                <Image src="/images/freestyle.png" width="80" height="80" />
+                <Image src="/images/freestyle.png" width="90" height="90" />
               </div>
               <span className="mb-3">
                 Has desbloqueado la nueva modalidad{" "}
@@ -81,11 +81,11 @@ const ExamUnlocked = React.memo(({ showUnlocked, setShowExamUnlocked_ }) => {
                 cantidad de preguntas que puedas sobre el tema{" "}
                 <strong>{unlocked.topicName}</strong> con un límite de tiempo,
                 competirás con los puntos que hagas contra todos los estudiantes
-                que han llevado este curso. ¡Mucha suerte!
+                que han llevado este curso, ¡Mucha suerte!
               </span>
-              <div className="text-center mb-1">
+              <div className="text-center mt-3 mb-1">
                 <Button
-                  variant="primary"
+                  variant="dark"
                   className="shadow-sm"
                   onClick={() => {
                     // close modal
