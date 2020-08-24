@@ -10,6 +10,23 @@
 }
 
 #gradestyle {
-  color: rgb(26, 26, 26);
+  // color: rgb(26, 26, 26);
   font-size: 120px;
+}
+
+.aciertosStyle {
+  // background-color: #d4edda;
+  background-color: #f4fbf8;
+
+  border-bottom: 1px solid gainsboro !important;
+}
+
+.erroresStyle {
+  // background-color: #f8d7da;
+  background-color: #f4fbf8;
+}
+
+.numberstyle {
+  color: rgb(26, 26, 26);
+  font-size: 50px;
 }

@@ -4,7 +4,6 @@ import {
   Row,
   Col,
   Alert,
-  ListGroup,
   Button,
   Image,
   Container,
@@ -99,36 +98,20 @@ const Results = React.memo(() => {
   return exam.results ? (
     <StudentLayout>
       <Container style={{ paddingBottom: "45px" }}>
-        {/* msg to the user */}
-        <ResultMsg calif={calif} />
-        {/* grade */}
-        <Grade grade={calif} />
-        {/* details */}
-        <Row className="mt-4">
-          <Col lg={{ span: 7, offset: 2 }}>
-            <h3 className="mb-3 text-dark">Resumen</h3>
-            <ListGroup className="shadow-sm">
-              <ListGroup.Item className="d-flex bg-light align-items-center">
-                <h5 className="mb-0 text-success">Aciertos</h5>
-                <h3 className="ml-auto mb-0 text-success">{aciertos}</h3>
-              </ListGroup.Item>
-              <ListGroup.Item className="d-flex bg-light align-items-center">
-                <h5 className="mb-0 text-danger">Errores</h5>
-                <h3 className="ml-auto mb-0 text-danger">{errores}</h3>
-              </ListGroup.Item>
-              <ListGroup.Item className="d-flex bg-light align-items-center">
-                <h5 className="mb-0 text-dark">Calificación</h5>
-                <h3 className="ml-auto mb-0 text-dark">
-                  <span>{calif / 10}</span>
-                </h3>
-              </ListGroup.Item>
-            </ListGroup>
+        <Row>
+          <Col md={{ offset: 3, span: 6 }}>
+            <h1>Tu resultado...</h1>
           </Col>
         </Row>
+
+        {/* grade */}
+        <Grade grade={calif} aciertos={aciertos} errores={errores} />
+        {/* msg to the user */}
+        <ResultMsg calif={calif} />
         {/* questions */}
         <Row className="mt-4">
-          <Col lg={{ span: 7, offset: 2 }}>
-            <h3 className="mb-3 text-dark">Respuestas</h3>
+          <Col lg={{ span: 6, offset: 3 }} className="mb-3">
+            {/* <h3 className="mb-3 text-dark">Respuestas</h3> */}
             {exam.results.map((q) => {
               return q.qCorrectAnswers.answer === q.userAnswers.answer ? (
                 <Alert className="shadow-sm" key={q._id} variant="success">
@@ -187,7 +170,7 @@ const Results = React.memo(() => {
           </Col>
         </Row>
         {/* button */}
-        <div className="mt-3 text-center">
+        <div className="text-center">
           <Button
             variant="success"
             href={"/course/#" + exam.topicName}
