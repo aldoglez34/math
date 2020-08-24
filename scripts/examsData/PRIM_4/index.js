@@ -7,7 +7,7 @@ const fracciones = require("./fracciones");
 const sumasYRestasDeFracciones = require("./sumasYRestasDeFracciones");
 const multiplicaciónYDivisiónDeFracciones = require("./multiplicaciónYDivisiónDeFracciones");
 const figurasGeométricas = require("./figurasGeométricas");
-const numerosDecimales = require("./numerosDecimales");
+const númerosDecimales = require("./númerosDecimales");
 const multiplicaciónYDivisiónConNúmerosDecimales = require("./multiplicaciónYDivisiónConNúmerosDecimales");
 const sistemasDeNumeración = require("./sistemasDeNumeración");
 
@@ -21,7 +21,7 @@ module.exports = [
   ...sumasYRestasDeFracciones,
   ...multiplicaciónYDivisiónDeFracciones,
   ...figurasGeométricas,
-  ...numerosDecimales,
+  ...númerosDecimales,
   ...multiplicaciónYDivisiónConNúmerosDecimales,
   ...sistemasDeNumeración,
 ];

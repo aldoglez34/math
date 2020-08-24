@@ -16,7 +16,7 @@ const MultipleChoice = React.memo(
           <Button
             key={c}
             variant="outline-secondary"
-            className="mr-2"
+            className="mr-2 mb-2 mb-md-0"
             active={choiceSelected === c ? true : false}
             onClick={() => getValueFromMultipleChoice(c)}
           >
@@ -30,7 +30,7 @@ const MultipleChoice = React.memo(
           <Button
             key={c}
             variant="outline-secondary"
-            className="mr-2 py-3"
+            className="m-2 mb-2 mb-md-0"
             active={choiceSelected === c ? true : false}
             onClick={() => getValueFromMultipleChoice(c)}
           >

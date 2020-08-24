@@ -18,7 +18,7 @@ const Timer = React.memo(() => {
         .then((res) => console.log(res.data))
         .catch((err) => console.log("error", err));
       // alert the user
-      alert("Lo sentimos, tu tiempo finalizó");
+      alert("El tiempo ha finalizado.");
       // go back
       window.location.href = "/course";
     }

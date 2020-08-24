@@ -5,6 +5,7 @@ import { Container, Spinner } from "react-bootstrap";
 import API from "../utils/API";
 import * as breadcrumbActions from "../redux/actions/breadcrumb";
 import QuestionsContainer from "./questionscontainer/QuestionsContainer";
+import "./examstyle.scss";
 
 const Exam = React.memo(() => {
   const dispatch = useDispatch();
@@ -53,10 +54,12 @@ const Exam = React.memo(() => {
         <>
           {/* title */}
           <Container>
-            <h1 className="display-4">{exam.name}</h1>
+            <h1 className="examNameStyle">{exam.name}</h1>
           </Container>
           {/* questions */}
           <QuestionsContainer questions={exam.questions} />
+          <br />
+          <br />
         </>
       ) : (
         <div className="text-center mt-4 pt-4">

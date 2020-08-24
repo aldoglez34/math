@@ -142,7 +142,7 @@ const FreestyleQuestions = React.memo(({ questions }) => {
     ) : (
       <>
         {/* question */}
-        <Container>
+        <Container className="mt-3">
           <div style={{ backgroundColor: "#e9ecef" }}>
             <Container>
               <Row className="mx-lg-1 rounded">

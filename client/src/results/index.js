@@ -67,7 +67,7 @@ const Results = React.memo(() => {
     if (exam.difficulty !== "Advanced" && calif / 10 >= 8) {
       API.unlockExam({
         studentId: student._id,
-        topicName: exam.topicName,
+        topicCode: exam.topicCode,
         difficulty: exam.difficulty,
       })
         .then((res) => {
@@ -186,9 +186,9 @@ const Results = React.memo(() => {
         {/* button */}
         <div className="mt-3 text-center">
           <Button
-            variant="primary"
+            variant="success"
             href={"/course/#" + exam.topicName}
-            className="shadow-sm"
+            className="shadow"
           >
             <i className="fas fa-arrow-left mr-2" />
             Regresar

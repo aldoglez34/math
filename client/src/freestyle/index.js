@@ -53,10 +53,12 @@ const Freestyle = React.memo(() => {
         <>
           {/* title */}
           <Container>
-            <h1 className="display-4 mb-3">Modo Rápido</h1>
+            <h1 className="examNameStyle">Modo Rápido</h1>
           </Container>
           {/* questions */}
           <FreestyleQuestions questions={freestyle} />
+          <br />
+          <br />
         </>
       ) : (
         <div className="text-center mt-4 pt-4">

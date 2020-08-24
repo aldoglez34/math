@@ -9,7 +9,7 @@ const Topic = React.memo(({ topic }) => {
       <Row id={topic.name}>
         {/* title */}
         <Col>
-          <h1 className="display-3 topicName mb-0" style={{ color: "#48bf84" }}>
+          <h1 className="display-4 topicName mb-2" style={{ color: "#48bf84" }}>
             {topic.name}
             {topic.hasReward ? (
               <i

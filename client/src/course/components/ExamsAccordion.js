@@ -11,10 +11,20 @@ import FreestyleCard from "./FreestyleCard";
 const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
   const dispatch = useDispatch();
 
-  const setExamInRedux = async (_id, topicName, name, difficulty, duration) => {
+  const setExamInRedux = async (
+    _id,
+    examCode,
+    topicCode,
+    topicName,
+    name,
+    difficulty,
+    duration
+  ) => {
     dispatch(
       examActions.setExam({
         _id,
+        examCode,
+        topicCode,
         topicName,
         reward,
         name,
@@ -116,6 +126,8 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
                     onClick={() =>
                       setExamInRedux(
                         ex._id,
+                        ex.examCode,
+                        ex.topicCode,
                         ex.topicName,
                         ex.name,
                         ex.difficulty,

@@ -132,9 +132,7 @@ router.put("/registerReward", function (req, res) {
 // unlockExam()
 // matches with /api/exam/unlockExam
 router.put("/unlockExam", function (req, res) {
-  const { studentId, topicName, difficulty } = req.body;
-
-  console.log("entrando a unblock exam");
+  const { studentId, topicCode, difficulty } = req.body;
 
   let unblockedDiff = null;
   switch (difficulty) {
@@ -153,7 +151,7 @@ router.put("/unlockExam", function (req, res) {
   }
 
   // find the exam's _id (the new one)
-  model.Exam.findOne({ topicName: topicName, difficulty: unblockedDiff })
+  model.Exam.findOne({ topicCode: topicCode, difficulty: unblockedDiff })
     .select("_id name difficulty")
     .then((newExam) => {
       const newExamId = newExam._id;
