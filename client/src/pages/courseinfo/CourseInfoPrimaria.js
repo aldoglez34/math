@@ -31,7 +31,7 @@ const CourseInfoPrimaria = React.memo(() => {
         </Row>
         {/* courses */}
         <Row>
-          <Col md={6}>
+          <Col md={6} className="mb-4">
             <CourseInfoCard
               lessonCounter={8}
               title="3ro Primaria"
@@ -49,7 +49,7 @@ const CourseInfoPrimaria = React.memo(() => {
               ]}
             />
           </Col>
-          <Col md={6}>
+          <Col md={6} className="mb-4">
             <CourseInfoCard
               lessonCounter={12}
               title="4to Primaria"

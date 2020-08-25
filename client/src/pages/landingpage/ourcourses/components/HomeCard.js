@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Col } from "react-bootstrap";
+import { Card, Col, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 
 const HomeCard = React.memo(({ courses, link }) => {
@@ -30,17 +30,10 @@ const HomeCard = React.memo(({ courses, link }) => {
           })}
         </Card.Text>
         <Card.Text className="mt-4">
-          <a
-            href={link}
-            style={{
-              color: "#49bf84",
-              fontSize: "16px",
-              fontWeight: 600,
-            }}
-          >
-            Ver más
-            <i className="fas fa-long-arrow-alt-right ml-1" />
-          </a>
+          <Button href={link} className="shadow-sm seemorebttn">
+            Ir a compras
+            <i className="fas fa-long-arrow-alt-right ml-2" />
+          </Button>
         </Card.Text>
       </Card.Body>
     </Card>

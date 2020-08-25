@@ -6,10 +6,10 @@ const CourseInfoCard = React.memo(
   ({ title, description, price, lessons, lessonCounter }) => {
     return (
       <Card
-        className="border rounded mr-0 mr-lg-4 shadow-sm"
+        className="border rounded mr-0 mr-lg-4 shadow-sm h-100"
         style={{ marginTop: "30px", backgroundColor: "#f4fbf8" }}
       >
-        <Card.Body>
+        <Card.Body className="d-flex flex-column">
           <div className="d-flex flex-row">
             {/* title */}
             <h2 className="pr-2 mb-0" style={{ color: "#0f5257" }}>
@@ -34,8 +34,7 @@ const CourseInfoCard = React.memo(
               </div>
             );
           })}
-          <br />
-          <div className="text-center mt-4">
+          <div className="text-center mt-auto">
             <strong
               className="mt-1 lead"
               style={{
@@ -49,10 +48,7 @@ const CourseInfoCard = React.memo(
           {/* price */}
           <Row>
             <Col>
-              <h1
-                className="mb-0 text-center"
-                style={{ color: "#495057", fontWeight: 800 }}
-              >
+              <h1 className="mb-0 text-center coursePrice">
                 {"$" + price + " MXN"}
               </h1>
             </Col>
@@ -62,7 +58,7 @@ const CourseInfoCard = React.memo(
             <Col md={{ span: 6, offset: 3 }}>
               <Button
                 block
-                className="shadow-sm mt-4 mb-3 py-3 buyButton"
+                className="shadow-sm mt-2 mb-3 py-3 buyButton"
                 onClick={() => alert("Has comprado el curso xx")}
                 size="lg"
               >
