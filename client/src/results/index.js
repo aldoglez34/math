@@ -1,20 +1,12 @@
 import React, { useEffect } from "react";
-import {
-  Spinner,
-  Row,
-  Col,
-  Alert,
-  Button,
-  Image,
-  Container,
-} from "react-bootstrap";
+import { Spinner, Row, Col, Button, Container } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { StudentLayout } from "../components/Layout";
 import API from "../utils/API";
 import ResultMsg from "./components/ResultMsg";
-import WrongAnswer from "./components/WrongAnswer";
 import { unlockExam } from "../redux/actions/unlocked";
 import Grade from "./components/Grade";
+import MyResults from "./components/MyResults";
 
 const Results = React.memo(() => {
   const dispatch = useDispatch();
@@ -100,86 +92,27 @@ const Results = React.memo(() => {
       <Container style={{ paddingBottom: "45px" }}>
         <Row>
           <Col md={{ offset: 3, span: 6 }}>
-            <h1>Tu resultado...</h1>
+            {/* grade */}
+            <Grade grade={calif} aciertos={aciertos} errores={errores} />
+            {/* msg to the user */}
+            <hr />
+            <ResultMsg calif={calif} />
+            {/* questions */}
+            <hr />
+            <MyResults results={exam.results} />
+            {/* button */}
+            <div className="text-center">
+              <Button
+                variant="success"
+                href={"/course/#" + exam.topicName}
+                className="shadow"
+              >
+                <i className="fas fa-arrow-left mr-2" />
+                Regresar
+              </Button>
+            </div>
           </Col>
         </Row>
-
-        {/* grade */}
-        <Grade grade={calif} aciertos={aciertos} errores={errores} />
-        {/* msg to the user */}
-        <ResultMsg calif={calif} />
-        {/* questions */}
-        <Row className="mt-4">
-          <Col lg={{ span: 6, offset: 3 }} className="mb-3">
-            {/* <h3 className="mb-3 text-dark">Respuestas</h3> */}
-            {exam.results.map((q) => {
-              return q.qCorrectAnswers.answer === q.userAnswers.answer ? (
-                <Alert className="shadow-sm" key={q._id} variant="success">
-                  <Row>
-                    <Col>
-                      <strong>
-                        <i className="fas fa-check mr-2" />
-                        CORRECTO
-                      </strong>
-                      {/* TECHNICAL INSTRUCTION */}
-                      <div className="d-flex flex-column my-2">
-                        <span className="text-break mb-2">
-                          {q.qInstruction}
-                        </span>
-                        {q.qTechnicalInstruction ? (
-                          q.qTechnicalInstruction.type === "text" ? (
-                            <span>{q.qTechnicalInstruction.text}</span>
-                          ) : (
-                            <Image
-                              src={q.qTechnicalInstruction.imageLink}
-                              width="150"
-                              height="150"
-                              rounded
-                            />
-                          )
-                        ) : null}
-                      </div>
-                      {/* USER ANSWERS */}
-                      <div className="d-flex flex-column">
-                        <strong className="my-2">Tu respuesta:</strong>
-                        {q.userAnswers.type === "text" ? (
-                          <span>{q.userAnswers.answer}</span>
-                        ) : (
-                          <Image
-                            src={q.userAnswers.answer}
-                            className="my-2"
-                            width="50"
-                            height="50"
-                            rounded
-                          />
-                        )}
-                      </div>
-                    </Col>
-                  </Row>
-                </Alert>
-              ) : (
-                <WrongAnswer
-                  key={q._id}
-                  qInstruction={q.qInstruction}
-                  qTechnicalInstruction={q.qTechnicalInstruction}
-                  userAnswers={q.userAnswers}
-                  qCorrectAnswers={q.qCorrectAnswers}
-                />
-              );
-            })}
-          </Col>
-        </Row>
-        {/* button */}
-        <div className="text-center">
-          <Button
-            variant="success"
-            href={"/course/#" + exam.topicName}
-            className="shadow"
-          >
-            <i className="fas fa-arrow-left mr-2" />
-            Regresar
-          </Button>
-        </div>
       </Container>
     </StudentLayout>
   ) : (
