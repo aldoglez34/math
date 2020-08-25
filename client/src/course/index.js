@@ -88,7 +88,7 @@ export default React.memo((props) => {
           <div>
             {course.topics.map((ct) => (
               <React.Fragment key={ct._id}>
-                <hr className="section-break-1" />
+                <hr className="mexmaticasDivider" />
                 <div className="topicSection">
                   <Container>
                     <Topic topic={ct} />

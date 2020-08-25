@@ -1,0 +1,29 @@
+#leftnavstyle {
+  background-color: #0d2129 !important;
+  padding: 25px;
+  padding-left: 15px;
+
+  font-size: 14px;
+}
+
+#leftnavlogo {
+  color: #48bf84;
+  font-family: "Noto Serif", serif !important;
+  font-weight: 700 !important;
+  font-size: 28px;
+}
+
+.navItemStyle {
+  //   color: #0f5257 !important;
+  color: #2e718a;
+  font-size: 12px;
+}
+
+.navLinkStyle {
+  color: #869094 !important;
+  font-weight: 700 !important;
+
+  &:hover {
+    color: white !important;
+  }
+}

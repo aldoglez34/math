@@ -8,33 +8,30 @@
   background-color: transparent !important;
 }
 
-/* Section Break 1 */
-.section-break-1 {
-  background-color: transparent;
-  border: 0;
-  border-top: 3px double #a8cabb;
-  height: 3px;
-  margin: 7rem auto;
+hr.mexmaticasDivider {
+  overflow: visible; /* For IE */
+  padding: 0;
+  border: none;
   width: 30%;
+  border-top: medium double #49bf85;
+  color: #49bf85;
+  text-align: center;
+  margin: 7rem auto;
+}
 
-  &:before {
-    background-color: snow;
-    color: #a8cabb;
-    content: "\22A1";
-    font-size: 20px;
-    left: 50%;
-    letter-spacing: 0;
-    line-height: 1;
-    position: absolute;
-    text-indent: -2px;
-    text-rendering: geometricPrecision;
-    transform: translate(-50%, -65%);
-    width: 10px;
-  }
+hr.mexmaticasDivider:after {
+  content: "M";
+  font-family: "Noto Serif", serif !important;
+  display: inline-block;
+  position: relative;
+  top: -0.7em;
+  font-size: 1.5em;
+  padding: 0 0.25em;
+  background: white;
 }
 
 @media only screen and (max-width: 991px) {
-  .section-break-1 {
+  .divider1 {
     margin: 4rem auto !important;
   }
 

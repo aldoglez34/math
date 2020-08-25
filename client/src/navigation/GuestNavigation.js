@@ -7,6 +7,9 @@ import Login from "../pages/login/Login";
 import CourseInfoPrimaria from "../pages/courseinfo/CourseInfoPrimaria";
 import CourseInfoSecundaria from "../pages/courseinfo/CourseInfoSecundaria";
 import CourseInfoPrepa from "../pages/courseinfo/CourseInfoPrepa";
+import TeacherLogin from "../teacher/TeacherLogin";
+
+import TeacherCourses from "../teacher/courses/TeacherCourses";
 
 export default () => {
   return (
@@ -25,6 +28,11 @@ export default () => {
 
       <Redirect from="/dashboard" to="/" />
       <Redirect from="/course" to="/" />
+
+      {/* admin */}
+      <Route exact path="/admin" component={TeacherLogin} />
+
+      <Route exact path="/admin/courses" component={TeacherCourses} />
 
       {/* 404 not found */}
       <Route component={NoMatch} />
