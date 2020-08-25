@@ -17,15 +17,9 @@ const TeacherLayout = React.memo(
           {/* top nav */}
           <TopHelperNav backBttn={backBttn} topBttn={topBttn} />
           {/* title */}
-          <TitleRow />
+          <TitleRow title={title} />
           {/* content */}
-          <Container fluid>
-            <Row>
-              <Col className="pt-2 pb-4">
-                <div className="my-3">{children}</div>
-              </Col>
-            </Row>
-          </Container>
+          <div className="p-4">{children}</div>
         </Container>
       </div>
     );

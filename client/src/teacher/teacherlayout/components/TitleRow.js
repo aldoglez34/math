@@ -5,21 +5,21 @@ import "./titlerow.scss";
 
 const TitleRow = React.memo(({ title }) => {
   return (
-    <Container fluid id="titlerowstyle">
-      <Row>
+    <div className="d-flex flex-column" id="titlerowstyle">
+      <h1 className="text-white">{title}</h1>
+      {/* <Row>
         <Col md={8} className="d-flex align-items-center">
-          {/* <h1 className="text-white">{title}</h1> */}
-          <h1 className="text-white">título</h1>
+          <h1 className="text-white">{title}</h1>
         </Col>
-      </Row>
+      </Row> */}
       {/* filters and search bar */}
       {/* {filters ? filters : null} */}
-    </Container>
+    </div>
   );
 });
 
 TitleRow.propTypes = {
-//   title: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default TitleRow;
