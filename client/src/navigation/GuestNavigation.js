@@ -7,8 +7,8 @@ import Login from "../pages/login/Login";
 import CourseInfoPrimaria from "../pages/courseinfo/CourseInfoPrimaria";
 import CourseInfoSecundaria from "../pages/courseinfo/CourseInfoSecundaria";
 import CourseInfoPrepa from "../pages/courseinfo/CourseInfoPrepa";
-import TeacherLogin from "../teacher/TeacherLogin";
 
+import TeacherLogin from "../teacher/login/TeacherLogin";
 import TeacherCourses from "../teacher/courses/TeacherCourses";
 
 export default () => {

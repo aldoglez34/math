@@ -101,6 +101,7 @@ const Results = React.memo(() => {
             <hr />
             <MyResults results={exam.results} />
             {/* button */}
+            <br />
             <div className="text-center">
               <Button
                 variant="success"

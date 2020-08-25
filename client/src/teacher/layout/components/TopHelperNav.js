@@ -6,7 +6,7 @@ import "./tophelpernav.scss";
 const TopHelperNav = React.memo(({ backBttn, topBttn }) => {
   return (
     <Navbar className="pb-0" id="topHelperStyle">
-      <Col className="d-flex justify-content-start align-items-center pl-0">
+      <Col className="d-flex justify-content-start align-items-center">
         {/* back button */}
         {backBttn ? (
           <Button

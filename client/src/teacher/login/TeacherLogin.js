@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
-import firebase from "../firebase/firebase";
+import firebase from "../../firebase/firebase";
 import fbApp from "firebase/app";
 import "./teacherlogin.scss";
 
