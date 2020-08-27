@@ -1,25 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import LeftNav from "./components/LeftNav";
-import TopHelperNav from "./components/TopHelperNav";
-import TitleRow from "./components/TitleRow";
+import TopNav from "./components/TopNav";
 import "./teacherlayout.scss";
 
 const TeacherLayout = React.memo(
-  ({ title, leftBarActive, backBttn, topBttn, children, filters }) => {
+  ({ title, leftBarActive, backBttn, buttons, children }) => {
     return (
-      <div className="d-lg-flex flex-row h-100">
+      <div className="d-flex h-100">
         {/* vertical navbar */}
-        <LeftNav leftBarActive={leftBarActive} />
-        {/* content */}
-        <Container id="containerMargin" fluid>
+        <LeftNav leftBarActive={leftBarActive} className="h-100" />
+        {/* main container */}
+        <Container id="mainContainer" fluid>
           {/* top nav */}
-          <TopHelperNav backBttn={backBttn} topBttn={topBttn} />
-          {/* title */}
-          <TitleRow title={title} />
+          <TopNav title={title} backBttn={backBttn} buttons={buttons} />
           {/* content */}
-          <div className="p-4">{children}</div>
+          <div id="contentDiv" className="h-100">
+            {children}
+          </div>
         </Container>
       </div>
     );
@@ -27,12 +26,11 @@ const TeacherLayout = React.memo(
 );
 
 TeacherLayout.propTypes = {
-  title: PropTypes.string.isRequired,
   leftBarActive: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   backBttn: PropTypes.string,
   children: PropTypes.node.isRequired,
-  filters: PropTypes.node,
-  topBttn: PropTypes.node,
+  buttons: PropTypes.node,
 };
 
 export default TeacherLayout;

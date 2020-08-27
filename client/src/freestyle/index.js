@@ -62,7 +62,7 @@ const Freestyle = React.memo(() => {
         </>
       ) : (
         <div className="text-center mt-4 pt-4">
-          <Spinner animation="border" variant="primary" />
+          <Spinner animation="border" variant="success" />
         </div>
       )}
     </StudentLayout>

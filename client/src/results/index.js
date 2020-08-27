@@ -118,7 +118,7 @@ const Results = React.memo(() => {
     </StudentLayout>
   ) : (
     <div className="text-center mt-4 pt-4">
-      <Spinner animation="border" variant="primary" />
+      <Spinner animation="border" variant="success" />
     </div>
   );
 });

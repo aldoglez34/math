@@ -33,7 +33,7 @@ const withNavigation = (Component) => {
         </AuthUserContext.Provider>
       ) : (
         <div className="h-100 d-flex justify-content-center align-items-center">
-          <Spinner variant="primary" animation="border" role="status">
+          <Spinner variant="success" animation="border" role="status">
             <span className="sr-only">Loading...</span>
           </Spinner>
         </div>

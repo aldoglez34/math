@@ -1,11 +1,9 @@
 #leftnavstyle {
   background-color: #0d2129 !important;
-  // padding: 10px 40px;
-  // padding-left: 15px;
 
   width: 15rem;
 
-  padding: 15px 25px;
+  padding: 13px 25px;
 
   font-size: 16px;
 }
@@ -14,9 +12,9 @@
   color: #48bf84;
   font-family: "Noto Serif", serif !important;
   font-weight: 700 !important;
-  font-size: 26px;
 
-  margin-bottom: 46px;
+  font-size: 68px;
+  margin-bottom: 50px;
 }
 
 .navItemStyle {
@@ -25,14 +23,14 @@
 }
 
 .navLinkStyle {
-  color: #869094 !important;
+  color: gainsboro !important;
   font-weight: 700 !important;
 
   &:hover {
-    color: gainsboro !important;
+    color: white !important;
   }
 
   &.active {
-    color: white !important;
+    color: #48bf84 !important;
   }
 }

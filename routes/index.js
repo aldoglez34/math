@@ -1,5 +1,6 @@
 const router = require("express").Router();
 
+// student
 const studentRoutes = require("./api/studentRoutes");
 router.use("/api/student", studentRoutes);
 
@@ -11,5 +12,9 @@ router.use("/api/exam", examRoutes);
 
 const freestyleRoutes = require("./api/freestyleRoutes");
 router.use("/api/freestyle", freestyleRoutes);
+
+// teacher
+const tCoursesRoutes = require("./teacherAPI/tCoursesRoutes");
+router.use("/teacherAPI", tCoursesRoutes);
 
 module.exports = router;
