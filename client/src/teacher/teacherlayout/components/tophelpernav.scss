@@ -1,5 +1,11 @@
 // top helper nav
 #topHelperStyle {
-  height: 70px;
+  height: 70px !important;
   background-color: #0f5257 !important;
+
+  padding: 0px 24px;
+}
+
+#adminstyle {
+  color: #48bf84;
 }

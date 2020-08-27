@@ -6,7 +6,7 @@ const LeftNav = React.memo(({ leftBarActive }) => {
   return (
     <Nav className="d-flex flex-column h-100" id="leftnavstyle">
       <span className="text-center" id="leftnavlogo">
-        M
+        MeXmáticas
       </span>
       {/* menu */}
       <Nav.Item className="navItemStyle">MENÚ</Nav.Item>

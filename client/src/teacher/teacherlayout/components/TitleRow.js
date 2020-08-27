@@ -5,8 +5,8 @@ import "./titlerow.scss";
 
 const TitleRow = React.memo(({ title }) => {
   return (
-    <div className="d-flex flex-column" id="titlerowstyle">
-      <h1 className="text-white">{title}</h1>
+    <div className="d-flex flex-row align-items-center" id="titlerowstyle">
+      <h1 className="text-white mb-0">{title}</h1>
       {/* <Row>
         <Col md={8} className="d-flex align-items-center">
           <h1 className="text-white">{title}</h1>

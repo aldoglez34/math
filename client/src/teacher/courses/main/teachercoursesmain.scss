@@ -1,0 +1,16 @@
+.teachercoursebttn {
+  background-color: transparent !important;
+  border-color: #48bf84 !important;
+
+  padding: 15px !important;
+
+  font-size: 25px !important;
+
+  color: #48bf84 !important;
+  font-weight: 700 !important;
+
+  &:hover {
+    background-color: #329c67 !important;
+    color: white !important;
+  }
+}
