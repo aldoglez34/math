@@ -1,9 +1,21 @@
 .courseitemstyle {
+  color: #495057 !important;
+
   &.active {
-    background-color: red !important;
+    background-color: #48bf84 !important;
+    border-color: #37ac71 !important;
+    color: white !important;
   }
 
   &:active {
-    background-color: red !important;
+    background-color: #48bf84 !important;
+    border-color: #37ac71 !important;
+    color: white !important;
   }
+}
+
+.courseitemtext {
+  font-size: 28px;
+  font-family: "Lato", sans-serif !important;
+  font-weight: 900;
 }

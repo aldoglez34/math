@@ -53,7 +53,6 @@ const TeacherCoursesMain = React.memo(() => {
                         name={c.name}
                         createdAt={c.createdAt}
                         _id={c._id}
-                        className="courseitemstyle"
                       />
                     ))}
                   </ListGroup>

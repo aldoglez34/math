@@ -12,11 +12,11 @@ const TeacherLayout = React.memo(
         {/* vertical navbar */}
         <LeftNav leftBarActive={leftBarActive} className="h-100" />
         {/* main container */}
-        <Container id="mainContainer" fluid>
+        <Container id="mainContainer" className="h-100" fluid>
           {/* top nav */}
           <TopNav title={title} backBttn={backBttn} buttons={buttons} />
           {/* content */}
-          <div id="contentDiv" className="h-100">
+          <div id="contentDiv">
             {children}
           </div>
         </Container>

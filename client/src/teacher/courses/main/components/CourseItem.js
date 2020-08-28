@@ -9,10 +9,10 @@ const CourseItem = React.memo(({ name, createdAt, _id }) => {
   return (
     <ListGroup.Item
       action
-      className="text-left py-4"
+      className="text-left d-flex flex-column py-4 courseitemstyle"
       href={"/admin/courses/" + _id}
     >
-      <h3 style={{ color: "#495057" }}>{name}</h3>
+      <span className="courseitemtext">{name}</span>
       <span>
         <i className="far fa-calendar-alt mr-2" />
         {moment(createdAt).format("LL")}
