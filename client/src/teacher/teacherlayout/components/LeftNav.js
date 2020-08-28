@@ -5,11 +5,12 @@ import "./leftnav.scss";
 const LeftNav = React.memo(({ leftBarActive }) => {
   return (
     <Nav className="d-flex flex-column h-100" id="leftnavstyle">
-      <span className="text-center" id="leftnavlogo">
-        M
-      </span>
+      {/* logo */}
+      <div className="d-flex flex-column text-center" id="adminlogoContainer">
+        <span id="adminlogo">MeXmáticas</span>
+        <span id="adminlogo2">admin</span>
+      </div>
       {/* menu */}
-      <Nav.Item className="navItemStyle">MENÚ</Nav.Item>
       <Nav.Link
         className="navLinkStyle"
         href="/admin/courses"
@@ -21,7 +22,6 @@ const LeftNav = React.memo(({ leftBarActive }) => {
         />
         <span className="ml-1">Cursos</span>
       </Nav.Link>
-      <Nav.Item className="navItemStyle">ALUMNOS</Nav.Item>
       <Nav.Link
         className="navLinkStyle"
         href="/admin/students"

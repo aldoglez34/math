@@ -1,0 +1,9 @@
+.courseitemstyle {
+  &.active {
+    background-color: red !important;
+  }
+
+  &:active {
+    background-color: red !important;
+  }
+}

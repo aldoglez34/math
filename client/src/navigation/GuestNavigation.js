@@ -10,7 +10,7 @@ import CourseInfoPrepa from "../pages/courseinfo/CourseInfoPrepa";
 
 import TeacherLogin from "../teacher/login/TeacherLogin";
 import TeacherCoursesMain from "../teacher/courses/main/TeacherCoursesMain";
-import NewCourse from "../teacher/courses/newcourse/NewCourse";
+import EditCourse from "../teacher/courses/editcourse/EditCourse";
 
 export default () => {
   return (
@@ -34,7 +34,11 @@ export default () => {
       <Route exact path="/admin" component={TeacherLogin} />
 
       <Route exact path="/admin/courses" component={TeacherCoursesMain} />
-      <Route exact path="/admin/courses/new-course" component={NewCourse} />
+      <Route
+        exact
+        path="/admin/courses/:courseId"
+        render={(props) => <EditCourse routeProps={props} />}
+      />
 
       {/* 404 not found */}
       <Route component={NoMatch} />

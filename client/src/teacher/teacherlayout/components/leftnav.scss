@@ -1,20 +1,30 @@
 #leftnavstyle {
   background-color: #0d2129 !important;
 
-  width: 15rem;
-
-  padding: 13px 25px;
-
   font-size: 16px;
 }
 
-#leftnavlogo {
+#adminlogoContainer {
+  margin-top: 25px;
+  margin-bottom: 30px;
+
+  width: 15rem;
+}
+
+#adminlogo {
   color: #48bf84;
   font-family: "Noto Serif", serif !important;
   font-weight: 700 !important;
 
-  font-size: 68px;
-  margin-bottom: 50px;
+  font-size: 30px;
+}
+
+#adminlogo2 {
+  color: #48bf84;
+  font-family: "Noto Serif", serif !important;
+  font-weight: 700 !important;
+
+  font-size: 20px;
 }
 
 .navItemStyle {
@@ -24,13 +34,14 @@
 
 .navLinkStyle {
   color: gainsboro !important;
-  font-weight: 700 !important;
 
   &:hover {
-    color: white !important;
+    background-color: #13313d;
   }
 
   &.active {
     color: #48bf84 !important;
+    background-color: #13313d;
+    font-weight: 700 !important;
   }
 }

@@ -18,15 +18,10 @@ const TopHelperNav = React.memo(({ title, backBttn, buttons }) => {
             Atrás
           </Button>
         ) : null}
-        {/* admin */}
-        <strong className="ml-auto" style={{ color: "#48bf84" }}>
-          <i className="fas fa-user-shield mr-1" />
-          admin
-        </strong>
       </div>
       <div className="d-flex align-items-center" id="topnavrow2">
         {/* title */}
-        <h1 className="text-white mb-0">{title}</h1>
+        <h1 className="mb-0 text-light">{title}</h1>
       </div>
       {buttons ? (
         <div className="d-flex flex-row align-items-center" id="topnavrow3">

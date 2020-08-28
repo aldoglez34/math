@@ -10,6 +10,13 @@ const insertExams = (topicCode, examsArr) => {
 module.exports = (examsArr) => [
   {
     name: "Primaria 3ro",
+    school: "Primaria",
+    price: 500,
+    topicsSummary: [
+      "Operaciones con Números",
+      "Ubicación en la Recta Numérica",
+      "Fracciones",
+    ],
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius risus massa, et sollicitudin est fringilla hendrerit. Etiam luctus blandit dolor, vitae tristique elit convallis in. Quisque eleifend consectetur velit id ultrices.",
     topics: [
@@ -340,6 +347,14 @@ module.exports = (examsArr) => [
   },
   {
     name: "Primaria 4to",
+    school: "Primaria",
+    price: 500,
+    topicsSummary: [
+      "Fracciones",
+      "Porcentajes",
+      "Relaciones",
+      "Áreas y Perímetros",
+    ],
     description:
       "Donec eleifend magna eu ante fringilla, mollis dignissim tellus fermentum. Suspendisse in accumsan lectus, eu luctus odio. Proin sed est et quam pellentesque volutpat vitae vel velit. In nunc lacus, pretium in ante sed, elementum iaculis tortor. Aliquam cursus dolor luctus, convallis nulla eu, volutpat est.",
     topics: [

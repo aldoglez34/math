@@ -7,7 +7,25 @@ const schema = new Schema({
     required: true,
     unique: true,
   }, // ej. Primaria 3ro y 4to
-  description: { type: String, required: true },
+  school: {
+    type: String,
+    required: true,
+    enum: ["Primaria", "Secundaria", "Preparatoria", "Universidad"],
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  topicsSummary: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+  description: {
+    type: String,
+    required: true,
+  },
   topics: [
     {
       topicCode: {
