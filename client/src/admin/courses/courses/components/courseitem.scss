@@ -1,5 +1,10 @@
 .courseitemstyle {
   color: #495057 !important;
+  background-color: ghostwhite !important;
+
+  &:hover {
+    background-color: rgb(239, 239, 245) !important;
+  }
 
   &.active {
     background-color: #48bf84 !important;

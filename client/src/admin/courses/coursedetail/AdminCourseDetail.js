@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import TeacherLayout from "../../teacherlayout/TeacherLayout";
+import AdminLayout from "../../layout/AdminLayout";
 import { Container, Row, Col, Spinner, Button } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import EditCourseName from "./components/EditCourseName";
-import "./editcourse.scss";
+import "./coursedetail.scss";
 
 const NewCourse = React.memo((props) => {
   const [course, setCourse] = useState();
@@ -16,10 +16,10 @@ const NewCourse = React.memo((props) => {
         console.log(err);
         alert("Ocurrió un error");
       });
-  }, []);
+  }, [props.routeProps.match.params.courseId]);
 
   return (
-    <TeacherLayout
+    <AdminLayout
       title="Editar Curso"
       leftBarActive="Cursos"
       backBttn="/admin/courses"
@@ -34,18 +34,48 @@ const NewCourse = React.memo((props) => {
                 {course.name}
                 <EditCourseName />
               </h1>
+              <br />
               {/* grado escolar */}
               <span className="text-muted">Grado escolar</span>
-              <h1>{course.school}</h1>
+              <h2>{course.school}</h2>
+              <br />
               {/* grado escolar */}
               <span className="text-muted">Precio</span>
-              <h1>{course.price}</h1>
+              <h2>{course.price}</h2>
+              <br />
               {/* description */}
               <span className="text-muted">Descripción</span>
               <h5>{course.description}</h5>
-              {/* description */}
-              <span className="text-muted">Descripción</span>
-              <h5>{course.description}</h5>
+              <br />
+              {/* summary */}
+              <span className="text-muted">Resumen</span>
+              <ul>
+                {course.topicsSummary.map((t) => {
+                  return (
+                    <li key={t}>
+                      <h5>{t}</h5>
+                    </li>
+                  );
+                })}
+              </ul>
+              <br />
+              {/* topics */}
+              <span className="text-muted">Temas</span>
+              <ul>
+                {course.topics.map((t) => {
+                  return (
+                    <li key={t._id}>
+                      <h5>
+                        {t.name}
+                        <Button size="sm" variant="info" className="ml-2">
+                          <i className="fas fa-pen-alt " />
+                        </Button>
+                      </h5>
+                    </li>
+                  );
+                })}
+              </ul>
+              <br />
             </Col>
           </Row>
         </Container>
@@ -54,7 +84,7 @@ const NewCourse = React.memo((props) => {
           <Spinner animation="border" variant="success" />
         </div>
       )}
-    </TeacherLayout>
+    </AdminLayout>
   );
 });
 

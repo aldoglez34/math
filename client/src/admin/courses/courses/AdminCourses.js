@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
-import TeacherLayout from "../../teacherlayout/TeacherLayout";
-import {
-  Container,
-  Row,
-  Col,
-  Button,
-  ListGroup,
-  Spinner,
-} from "react-bootstrap";
+import AdminLayout from "../../layout/AdminLayout";
+import { Container, Row, Col, ListGroup, Spinner } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import CourseItem from "./components/CourseItem";
 
@@ -23,20 +16,8 @@ const TeacherCoursesMain = React.memo(() => {
       });
   }, []);
 
-  const newButtons = (
-    <>
-      <Button variant="outline-light" className="mr-2">
-        Nuevo Curso
-      </Button>
-      <Button variant="outline-light" className="mr-2">
-        Nuevo Tema
-      </Button>
-      <Button variant="outline-light">Nuevo Examen</Button>
-    </>
-  );
-
   return (
-    <TeacherLayout title="Cursos" leftBarActive="Cursos">
+    <AdminLayout title="Cursos" leftBarActive="Cursos">
       <Container fluid>
         <Row>
           <Col className="px-0 mt-4" md={{ offset: 3, span: 7 }}>
@@ -68,7 +49,7 @@ const TeacherCoursesMain = React.memo(() => {
           </Col>
         </Row>
       </Container>
-    </TeacherLayout>
+    </AdminLayout>
   );
 });
 

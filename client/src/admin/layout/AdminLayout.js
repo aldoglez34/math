@@ -3,23 +3,23 @@ import PropTypes from "prop-types";
 import { Container } from "react-bootstrap";
 import LeftNav from "./components/LeftNav";
 import TopNav from "./components/TopNav";
-import "./teacherlayout.scss";
+import ScrollButton from "../../components/scrollbutton";
+import "./adminlayout.scss";
 
 const TeacherLayout = React.memo(
   ({ title, leftBarActive, backBttn, buttons, children }) => {
     return (
       <div className="d-flex h-100">
         {/* vertical navbar */}
-        <LeftNav leftBarActive={leftBarActive} className="h-100" />
+        <LeftNav leftBarActive={leftBarActive} />
         {/* main container */}
         <Container id="mainContainer" className="h-100" fluid>
           {/* top nav */}
           <TopNav title={title} backBttn={backBttn} buttons={buttons} />
           {/* content */}
-          <div id="contentDiv">
-            {children}
-          </div>
+          <div id="contentDiv">{children}</div>
         </Container>
+        <ScrollButton scrollStepInPx={150} delayInMs={16.66} />
       </div>
     );
   }

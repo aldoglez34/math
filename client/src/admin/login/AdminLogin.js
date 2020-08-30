@@ -4,7 +4,7 @@ import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import firebase from "../../firebase/firebase";
 import fbApp from "firebase/app";
-import "./teacherlogin.scss";
+import "./adminlogin.scss";
 
 const Login = () => {
   const loginSchema = yup.object({

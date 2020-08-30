@@ -8,9 +8,10 @@ import CourseInfoPrimaria from "../pages/courseinfo/CourseInfoPrimaria";
 import CourseInfoSecundaria from "../pages/courseinfo/CourseInfoSecundaria";
 import CourseInfoPrepa from "../pages/courseinfo/CourseInfoPrepa";
 
-import TeacherLogin from "../teacher/login/TeacherLogin";
-import TeacherCoursesMain from "../teacher/courses/main/TeacherCoursesMain";
-import EditCourse from "../teacher/courses/editcourse/EditCourse";
+import AdminLogin from "../admin/login/AdminLogin";
+import AdminCourses from "../admin/courses/courses/AdminCourses";
+import AdminCourseDetail from "../admin/courses/coursedetail/AdminCourseDetail";
+import AdminStudents from "../admin/students/AdminStudents";
 
 export default () => {
   return (
@@ -31,14 +32,15 @@ export default () => {
       <Redirect from="/course" to="/" />
 
       {/* admin */}
-      <Route exact path="/admin" component={TeacherLogin} />
+      <Route exact path="/admin" component={AdminLogin} />
 
-      <Route exact path="/admin/courses" component={TeacherCoursesMain} />
+      <Route exact path="/admin/courses" component={AdminCourses} />
       <Route
         exact
         path="/admin/courses/:courseId"
-        render={(props) => <EditCourse routeProps={props} />}
+        render={(props) => <AdminCourseDetail routeProps={props} />}
       />
+      <Route exact path="/admin/students" component={AdminStudents} />
 
       {/* 404 not found */}
       <Route component={NoMatch} />
