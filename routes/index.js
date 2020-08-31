@@ -15,6 +15,9 @@ router.use("/api/freestyle", freestyleRoutes);
 
 // teacher
 const tCoursesRoutes = require("./teacherAPI/tCoursesRoutes");
-router.use("/teacherAPI", tCoursesRoutes);
+router.use("/teacherAPI/courses", tCoursesRoutes);
+
+const tStudentRoutes = require("./teacherAPI/tStudentRoutes");
+router.use("/teacherAPI/students", tStudentRoutes);
 
 module.exports = router;
