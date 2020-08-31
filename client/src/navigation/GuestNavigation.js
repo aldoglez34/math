@@ -11,7 +11,8 @@ import CourseInfoPrepa from "../pages/courseinfo/CourseInfoPrepa";
 import AdminLogin from "../admin/login/AdminLogin";
 import AdminCourses from "../admin/courses/courses/AdminCourses";
 import AdminCourseDetail from "../admin/courses/coursedetail/AdminCourseDetail";
-import AdminStudents from "../admin/students/AdminStudents";
+import AdminStudents from "../admin/students/students/AdminStudents";
+import AdminStudentDetails from "../admin/students/studentdetail/AdminStudentDetails";
 
 export default () => {
   return (
@@ -41,6 +42,11 @@ export default () => {
         render={(props) => <AdminCourseDetail routeProps={props} />}
       />
       <Route exact path="/admin/students" component={AdminStudents} />
+      <Route
+        exact
+        path="/admin/students/:studentId"
+        render={(props) => <AdminStudentDetails routeProps={props} />}
+      />
 
       {/* 404 not found */}
       <Route component={NoMatch} />

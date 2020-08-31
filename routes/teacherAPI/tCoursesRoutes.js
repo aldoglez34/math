@@ -10,7 +10,7 @@ router.get("/all", function (req, res) {
     .then((data) => res.json(data))
     .catch((err) => {
       console.log("@error", err);
-      res.status(422).send({ msg: "Ocurrió un error" });
+      res.status(422).send("Ocurrió un error");
     });
 });
 
@@ -23,7 +23,7 @@ router.get("/:courseId", function (req, res) {
     .then((data) => res.json(data))
     .catch((err) => {
       console.log("@error", err);
-      res.status(422).send({ msg: "Ocurrió un error" });
+      res.status(422).send("Ocurrió un error");
     });
 });
 

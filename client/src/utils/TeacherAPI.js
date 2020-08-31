@@ -6,4 +6,7 @@ export default {
   t_fetchOneCourse: (courseId) => axios.get("/teacherAPI/courses/" + courseId),
 
   t_fetchStudents: () => axios.get("/teacherAPI/students/all"),
+
+  t_fetchOneStudent: (studentId) =>
+    axios.get("/teacherAPI/students/" + studentId),
 };

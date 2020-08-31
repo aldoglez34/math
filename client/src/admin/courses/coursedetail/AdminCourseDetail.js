@@ -30,10 +30,14 @@ const NewCourse = React.memo((props) => {
             <Col className="px-0 mt-4" md={{ offset: 2, span: 9 }}>
               {/* course name */}
               <span className="text-muted">Nombre del curso</span>
-              <h1>
+              <h1 className="mb-0">
                 {course.name}
                 <EditCourseName />
               </h1>
+              <Button size="sm" variant="info">
+                Editar
+              </Button>
+              <br />
               <br />
               {/* grado escolar */}
               <span className="text-muted">Grado escolar</span>
