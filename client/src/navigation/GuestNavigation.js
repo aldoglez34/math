@@ -40,10 +40,10 @@ export default () => {
       <Route exact path="/admin/courses" component={AdminCourses} />
       <Route
         exact
-        path="/admin/courses/:courseId"
+        path="/admin/courses/edit/:courseId"
         render={(props) => <AdminCourseDetail routeProps={props} />}
       />
-      {/* <Route exact path="/admin/courses/newCourse" component={AdminNewCourse} /> */}
+      <Route exact path="/admin/courses/new" component={AdminNewCourse} />
 
       <Route exact path="/admin/students" component={AdminStudents} />
       <Route

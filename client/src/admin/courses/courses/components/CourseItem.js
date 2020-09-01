@@ -8,7 +8,7 @@ const CourseItem = React.memo(({ name, school, _id }) => {
     <ListGroup.Item
       action
       className="text-left d-flex flex-column py-4 courseitemstyle"
-      href={"/admin/courses/" + _id}
+      href={"/admin/courses/edit/" + _id}
     >
       <span className="courseitemtext">{name}</span>
       <span>
