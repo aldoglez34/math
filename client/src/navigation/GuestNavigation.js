@@ -11,6 +11,8 @@ import CourseInfoPrepa from "../pages/courseinfo/CourseInfoPrepa";
 import AdminLogin from "../admin/login/AdminLogin";
 import AdminCourses from "../admin/courses/courses/AdminCourses";
 import AdminCourseDetail from "../admin/courses/coursedetail/AdminCourseDetail";
+import AdminNewCourse from "../admin/courses/newcourse/AdminNewCourse";
+
 import AdminStudents from "../admin/students/students/AdminStudents";
 import AdminStudentDetails from "../admin/students/studentdetail/AdminStudentDetails";
 
@@ -32,7 +34,7 @@ export default () => {
       <Redirect from="/dashboard" to="/" />
       <Redirect from="/course" to="/" />
 
-      {/* admin */}
+      {/* admin ======================== */}
       <Route exact path="/admin" component={AdminLogin} />
 
       <Route exact path="/admin/courses" component={AdminCourses} />
@@ -41,6 +43,8 @@ export default () => {
         path="/admin/courses/:courseId"
         render={(props) => <AdminCourseDetail routeProps={props} />}
       />
+      {/* <Route exact path="/admin/courses/newCourse" component={AdminNewCourse} /> */}
+
       <Route exact path="/admin/students" component={AdminStudents} />
       <Route
         exact

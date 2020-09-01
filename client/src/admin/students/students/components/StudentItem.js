@@ -1,11 +1,9 @@
 import React from "react";
 import { ListGroup } from "react-bootstrap";
-import moment from "moment";
-import "moment/locale/es";
 import PropTypes from "prop-types";
 import "./studentitem.scss";
 
-const CourseItem = React.memo(({ name, registeredAt, email, _id }) => {
+const CourseItem = React.memo(({ name, email, _id }) => {
   return (
     <ListGroup.Item
       action
@@ -13,10 +11,9 @@ const CourseItem = React.memo(({ name, registeredAt, email, _id }) => {
       href={"/admin/students/" + _id}
     >
       <span className="studentitemtext">{name}</span>
-      <span>{email}</span>
       <span>
-        <i className="far fa-calendar-alt mr-2" />
-        {moment(registeredAt).format("LL")}
+        <i className="fas fa-at mr-1" />
+        {email}
       </span>
     </ListGroup.Item>
   );
@@ -24,7 +21,6 @@ const CourseItem = React.memo(({ name, registeredAt, email, _id }) => {
 
 CourseItem.propTypes = {
   name: PropTypes.string.isRequired,
-  registeredAt: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   _id: PropTypes.string.isRequired,
 };

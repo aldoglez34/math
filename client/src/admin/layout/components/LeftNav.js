@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav } from "react-bootstrap";
+import { Nav, Button } from "react-bootstrap";
 import "./leftnav.scss";
 
 const LeftNav = React.memo(({ leftBarActive }) => {
@@ -33,6 +33,30 @@ const LeftNav = React.memo(({ leftBarActive }) => {
         />
         <span className="ml-1">Alumnos</span>
       </Nav.Link>
+      <Nav.Link
+        className="navLinkStyle"
+        href="/admin/messages"
+        active={leftBarActive === "Mensajes" ? true : false}
+      >
+        <i
+          className="fas fa-envelope-open-text"
+          style={{ width: "26px", textAlign: "center" }}
+        />
+        <span className="ml-1">Mensajes</span>
+      </Nav.Link>
+      <div className="mt-auto">
+        <Button
+          variant="transparent"
+          className="mb-3 text-danger text-left"
+          href="/admin"
+        >
+          <i
+            className="fas fa-arrow-circle-left"
+            style={{ width: "26px", textAlign: "center" }}
+          ></i>
+          <strong className="ml-1">Salir</strong>
+        </Button>
+      </div>
     </Nav>
   );
 });

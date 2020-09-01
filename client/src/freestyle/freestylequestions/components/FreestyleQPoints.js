@@ -5,7 +5,7 @@ const FreestyleQPoints = React.memo(({ score }) => {
   return (
     <div
       title="Puntos"
-      className="text-success lead ml-1"
+      className="text-success lead ml-3"
       style={{ cursor: "help" }}
     >
       <i className="fas fa-trophy" />

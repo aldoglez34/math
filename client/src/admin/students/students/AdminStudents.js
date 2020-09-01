@@ -20,7 +20,7 @@ const AdminStudents = React.memo(() => {
     <AdminLayout title="Alumnos" leftBarActive="Alumnos">
       <Container fluid>
         <Row>
-          <Col className="px-0 mt-4" md={{ offset: 3, span: 7 }}>
+          <Col className="px-0 mt-4" md={{ offset: 2, span: 8 }}>
             {students ? (
               students.length ? (
                 <>
@@ -31,10 +31,7 @@ const AdminStudents = React.memo(() => {
                     {students.map((s) => (
                       <StudentItem
                         key={s._id}
-                        name={
-                          s.name + " " + s.firstSurname + " " + s.secondSurname
-                        }
-                        registeredAt={s.registeredAt}
+                        name={s.name + " " + s.firstSurname}
                         email={s.email}
                         _id={s._id}
                       />

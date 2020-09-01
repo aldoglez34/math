@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../../layout/AdminLayout";
-import { Container, Row, Col, ListGroup, Spinner } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Row,
+  Col,
+  ListGroup,
+  Spinner,
+} from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import CourseItem from "./components/CourseItem";
+import "./admincourses.scss";
 
 const TeacherCoursesMain = React.memo(() => {
   const [courses, setCourses] = useState();
@@ -20,7 +28,7 @@ const TeacherCoursesMain = React.memo(() => {
     <AdminLayout title="Cursos" leftBarActive="Cursos">
       <Container fluid>
         <Row>
-          <Col className="px-0 mt-4" md={{ offset: 3, span: 7 }}>
+          <Col className="px-0 mt-4" md={{ offset: 2, span: 8 }}>
             {courses ? (
               courses.length ? (
                 <>
@@ -32,11 +40,20 @@ const TeacherCoursesMain = React.memo(() => {
                       <CourseItem
                         key={c._id}
                         name={c.name}
-                        createdAt={c.createdAt}
+                        school={c.school}
                         _id={c._id}
                       />
                     ))}
                   </ListGroup>
+                  <div className="text-center mt-4">
+                    <Button
+                      className="shadow-sm newcoursebttnstyle"
+                      size="lg"
+                      href="/admin/courses/new"
+                    >
+                      Nuevo Curso
+                    </Button>
+                  </div>
                 </>
               ) : (
                 <div className="text-center mt-4">No hay cursos</div>
