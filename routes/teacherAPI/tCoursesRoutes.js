@@ -58,4 +58,27 @@ router.put("/update/description", function (req, res) {
     });
 });
 
+// t_newCourse
+// matches with /teacherAPI/courses/new
+router.post("/new", function (req, res) {
+  console.log("entrando al new course!!!!!!!!!!!!!!!!!!!!!");
+
+  const { name, school, description, price, summary } = req.body;
+
+  model.Course.create({
+    name,
+    school,
+    price,
+    description,
+    topicsSummary: summary.split(","),
+  })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error.");
+    });
+});
+
 module.exports = router;
