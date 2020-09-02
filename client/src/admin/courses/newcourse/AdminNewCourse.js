@@ -4,7 +4,7 @@ import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 
-const AdminNewCrouse = React.memo((props) => {
+const AdminNewCrouse = React.memo(() => {
   const yupschema = yup.object({
     name: yup.string().min(3, "Nombre demasiado corto").required("Requerido"),
   });
@@ -18,6 +18,8 @@ const AdminNewCrouse = React.memo((props) => {
       <Container>
         <Row>
           <Col md={{ offset: 2, span: 8 }}>
+            <h3 className="mt-4">Ingresa los datos del curso...</h3>
+            <br />
             <Formik
               initialValues={{
                 name: "",
@@ -82,7 +84,7 @@ const AdminNewCrouse = React.memo((props) => {
                   {/* buttons */}
                   <Form.Group className="mt-4">
                     <Button
-                      variant="success"
+                      variant="dark"
                       type="submit"
                       disabled={isSubmitting}
                     >
