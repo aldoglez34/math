@@ -8,7 +8,7 @@ const LeftNav = React.memo(({ leftBarActive }) => {
       {/* logo */}
       <div className="d-flex flex-column text-center" id="adminlogoContainer">
         <span id="adminlogo">MeXmáticas</span>
-        <span id="adminlogo2">admin</span>
+        <span id="adminlogo2">[ admin ]</span>
       </div>
       {/* menu */}
       <Nav.Link

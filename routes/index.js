@@ -17,6 +17,9 @@ router.use("/api/freestyle", freestyleRoutes);
 const tCoursesRoutes = require("./teacherAPI/tCoursesRoutes");
 router.use("/teacherAPI/courses", tCoursesRoutes);
 
+const tTopicsRoutes = require("./teacherAPI/tTopicsRoutes");
+router.use("/teacherAPI/topics", tTopicsRoutes);
+
 const tStudentRoutes = require("./teacherAPI/tStudentRoutes");
 router.use("/teacherAPI/students", tStudentRoutes);
 

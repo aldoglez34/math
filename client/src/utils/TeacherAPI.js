@@ -8,13 +8,36 @@ export default {
 
   t_fetchOneCourse: (courseId) => axios.get("/teacherAPI/courses/" + courseId),
 
+  // new
+
+  t_newCourse: (data) => axios.post("/teacherAPI/courses/new", data),
+
+  // updating
+
   t_updateCourseName: (data) =>
     axios.put("/teacherAPI/courses/update/name", data),
+
+  t_updateCourseSchool: (data) =>
+    axios.put("/teacherAPI/courses/update/school", data),
+
+  t_updateCoursePrice: (data) =>
+    axios.put("/teacherAPI/courses/update/price", data),
 
   t_updateCourseDescription: (data) =>
     axios.put("/teacherAPI/courses/update/description", data),
 
-  t_newCourse: (data) => axios.post("/teacherAPI/courses/new", data),
+  t_updateCourseSummary: (data) =>
+    axios.put("/teacherAPI/courses/update/summary", data),
+
+  // ==============================================
+  // TOPICS
+  // =============================================
+
+  t_fetchTopic: (courseId, topicId) =>
+    axios.get("/teacherAPI/topics/" + courseId + "/" + topicId),
+
+  t_updateTopicName: (data) =>
+    axios.put("/teacherAPI/topics/update/name", data),
 
   // ==============================================
   // STUDENTS

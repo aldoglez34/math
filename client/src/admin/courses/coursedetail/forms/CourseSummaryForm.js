@@ -5,25 +5,22 @@ import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeacherAPI from "../../../../utils/TeacherAPI";
 
-const CourseDescriptionForm = React.memo(
+const CourseSummaryForm = React.memo(
   ({ formLabel, formInitialText, courseId }) => {
     const yupschema = yup.object({
-      newDescription: yup
-        .string()
-        .min(3, "Descripción demasiado corta")
-        .required("Requerido"),
+      newSummary: yup.string().required("Requerido"),
     });
 
     return (
       <Formik
         initialValues={{
-          newDescription: formInitialText,
+          newSummary: formInitialText,
         }}
         validationSchema={yupschema}
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(true);
           values.courseId = courseId;
-          TeacherAPI.t_updateCourseDescription(values)
+          TeacherAPI.t_updateCourseSummary(values)
             .then((res) => {
               console.log(res);
               alert(res.data);
@@ -50,20 +47,24 @@ const CourseDescriptionForm = React.memo(
             <Form.Row>
               <Form.Group as={Col}>
                 <Form.Label>{formLabel}</Form.Label>
+                <Form.Text className="text-muted mb-2">
+                  Separados por coma
+                </Form.Text>
                 <Form.Control
                   maxLength="250"
                   as="textarea"
                   rows="5"
-                  name="newDescription"
-                  value={values.newDescription}
+                  type="text"
+                  name="newSummary"
+                  value={values.newSummary}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  isValid={touched.newDescription && !errors.newDescription}
-                  isInvalid={touched.newDescription && !!errors.newDescription}
+                  isValid={touched.newSummary && !errors.newSummary}
+                  isInvalid={touched.newSummary && !!errors.newSummary}
                 />
                 <ErrorMessage
                   className="text-danger"
-                  name="newDescription"
+                  name="newSummary"
                   component="div"
                 />
               </Form.Group>
@@ -81,9 +82,9 @@ const CourseDescriptionForm = React.memo(
   }
 );
 
-CourseDescriptionForm.propTypes = {
+CourseSummaryForm.propTypes = {
   formLabel: PropTypes.string,
   formInitialText: PropTypes.string,
 };
 
-export default CourseDescriptionForm;
+export default CourseSummaryForm;

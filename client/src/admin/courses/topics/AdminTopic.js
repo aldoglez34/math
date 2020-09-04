@@ -1,0 +1,100 @@
+import React, { useState, useEffect } from "react";
+import AdminLayout from "../../layout/AdminLayout";
+import { Container, Row, Col, Spinner, Image } from "react-bootstrap";
+import TeacherAPI from "../../../utils/TeacherAPI";
+import AdminModal from "../../components/AdminModal";
+import TopicNameForm from "./forms/TopicNameForm";
+
+const AdminTopic = React.memo((props) => {
+  const [topic, setTopic] = useState();
+
+  useEffect(() => {
+    const courseId = props.routeProps.match.params.courseId;
+    const topicId = props.routeProps.match.params.topicId;
+    TeacherAPI.t_fetchTopic(courseId, topicId)
+      .then((res) => setTopic(res.data))
+      .catch((err) => {
+        console.log(err);
+        alert("Ocurrió un error");
+      });
+  }, [
+    props.routeProps.match.params.courseId,
+    props.routeProps.match.params.topicId,
+  ]);
+
+  return (
+    <AdminLayout
+      title="Editar Tema"
+      leftBarActive="Cursos"
+      backBttn={"/admin/courses/edit/" + props.routeProps.match.params.courseId}
+    >
+      {topic ? (
+        <Container>
+          <Row>
+            <Col className="px-0 mt-4" md={{ offset: 2, span: 8 }}>
+              {/* topic name */}
+              <span className="text-muted">Nombre</span>
+              <h1 className="mb-0">
+                {topic.name}
+                <AdminModal
+                  modalTitle="Editar nombre"
+                  Form={TopicNameForm}
+                  formLabel="Nombre"
+                  formInitialText={topic.name}
+                  courseId={props.routeProps.match.params.courseId}
+                  topicId={topic._id}
+                />
+              </h1>
+              <br />
+              {/* subject */}
+              <span className="text-muted">Materia</span>
+              <h2 className="mb-0">{topic.subject}</h2>
+              <br />
+              {/* description */}
+              <span className="text-muted">Descripción</span>
+              <h5 className="mb-0">{topic.description}</h5>
+              <br />
+              {/* freestyle */}
+              <span className="text-muted">Modo rápido</span>
+              <h5 className="mb-0">{topic.freestyle.timer + " minutos"}</h5>
+              <br />
+              {/* reward */}
+              <span className="text-muted">Recompensa</span>
+              <h5 className="mb-2">{topic.reward.name}</h5>
+              <Image src={topic.reward.link} width="70" height="100" />
+              <br />
+              <br />
+              {/* material */}
+              <span className="text-muted">Material</span>
+              {topic.material.length ? (
+                <ul>
+                  {topic.material.map((m) => (
+                    <li key={m._id}>
+                      <h5>
+                        {m.type === "video" ? (
+                          <i className="fas fa-video mr-2" />
+                        ) : m.type === "pdf" ? (
+                          <i className="fas fa-file-pdf mr-2" />
+                        ) : null}
+                        {m.name}
+                      </h5>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <h5>Vacío</h5>
+              )}
+              <br />
+            </Col>
+          </Row>
+        </Container>
+      ) : (
+        <div className="text-center mt-4">
+          <Spinner animation="border" variant="success" />
+        </div>
+      )}
+    </AdminLayout>
+  );
+});
+
+export default AdminTopic;

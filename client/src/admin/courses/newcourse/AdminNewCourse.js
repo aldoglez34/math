@@ -14,7 +14,7 @@ const AdminNewCrouse = React.memo(() => {
       .required("Requerido"),
     description: yup.string().required("Requerido"),
     summary: yup.string().required("Requerido"),
-    price: yup.number().positive("Inválido").required("Requerido"),
+    price: yup.number().positive("¿Por qué negativo?").required("Requerido"),
   });
 
   return (
@@ -50,6 +50,7 @@ const AdminNewCrouse = React.memo(() => {
                     alert(
                       "Un curso con el mismo nombre ya existe, por favor modifica los datos y vuelve a crearlo"
                     );
+                    setSubmitting(false);
                   });
               }}
             >
@@ -157,7 +158,6 @@ const AdminNewCrouse = React.memo(() => {
                         isValid={touched.summary && !errors.summary}
                         isInvalid={touched.summary && !!errors.summary}
                       />
-
                       <ErrorMessage
                         className="text-danger"
                         name="summary"

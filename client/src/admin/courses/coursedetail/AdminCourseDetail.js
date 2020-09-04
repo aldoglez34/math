@@ -7,7 +7,11 @@ import "moment/locale/es";
 //
 import AdminModal from "../../components/AdminModal";
 import CourseNameForm from "./forms/CourseNameForm";
+import CourseSchoolForm from "./forms/CourseSchoolForm";
+import CoursePriceForm from "./forms/CoursePriceForm";
 import CourseDescriptionForm from "./forms/CourseDescriptionForm";
+import CourseSummaryForm from "./forms/CourseSummaryForm";
+import EditTopicsBttn from "../../components/EditTopicsBttn";
 
 const AdminCourseDetail = React.memo((props) => {
   const [course, setCourse] = useState();
@@ -37,9 +41,9 @@ const AdminCourseDetail = React.memo((props) => {
               <h1 className="mb-0">
                 {course.name}
                 <AdminModal
-                  modalTitle="Editar nombre del curso"
+                  modalTitle="Editar nombre"
                   Form={CourseNameForm}
-                  formLabel="Nombre del curso"
+                  formLabel="Nombre"
                   formInitialText={course.name}
                   courseId={course._id}
                 />
@@ -47,48 +51,83 @@ const AdminCourseDetail = React.memo((props) => {
               <br />
               {/* grado escolar */}
               <span className="text-muted">Nivel</span>
-              <h2>{course.school}</h2>
+              <h2>
+                {course.school}
+                <AdminModal
+                  modalTitle="Editar nivel escolar"
+                  Form={CourseSchoolForm}
+                  formLabel="Nivel escolar"
+                  formInitialText={course.school}
+                  courseId={course._id}
+                />
+              </h2>
               <br />
-              {/* grado escolar */}
+              {/* precio */}
               <span className="text-muted">Precio</span>
-              <h2>{course.price}</h2>
+              <h2>
+                {"$" + course.price}
+                <AdminModal
+                  modalTitle="Editar precio"
+                  Form={CoursePriceForm}
+                  formLabel="Precio"
+                  formInitialText={course.price}
+                  courseId={course._id}
+                />
+              </h2>
               <br />
               {/* description */}
               <span className="text-muted">Descripción</span>
               <h5>
                 {course.description}
                 <AdminModal
-                  modalTitle="Editar descripción del curso"
+                  modalTitle="Editar descripción"
                   Form={CourseDescriptionForm}
-                  formLabel="Descripción del curso"
+                  formLabel="Descripción"
                   formInitialText={course.description}
                   courseId={course._id}
                 />
               </h5>
               <br />
               {/* summary */}
-              <span className="text-muted">Resumen</span>
+              <span className="text-muted">
+                Resumen <small>(para el landing page)</small>
+              </span>
               <ul>
-                {course.topicsSummary.map((t) => {
+                {course.topicsSummary.map((t, idx) => {
                   return (
                     <li key={t}>
-                      <h5>{t}</h5>
+                      <h5>
+                        {t}
+                        {idx === course.topicsSummary.length - 1 ? (
+                          <AdminModal
+                            modalTitle="Editar resumen"
+                            Form={CourseSummaryForm}
+                            formLabel="Resumen"
+                            formInitialText={course.topicsSummary.toString()}
+                            courseId={course._id}
+                          />
+                        ) : null}
+                      </h5>
                     </li>
                   );
                 })}
               </ul>
-              <br />
               {/* topics */}
               <span className="text-muted">Temas</span>
-              <ul>
-                {course.topics.map((t) => {
-                  return (
+              {course.topics.length ? (
+                <ul>
+                  {course.topics.map((t) => (
                     <li key={t._id}>
-                      <h5>{t.name}</h5>
+                      <h5>
+                        {t.name}
+                        <EditTopicsBttn courseId={course._id} topicId={t._id} />
+                      </h5>
                     </li>
-                  );
-                })}
-              </ul>
+                  ))}
+                </ul>
+              ) : (
+                <h5>Sin temas</h5>
+              )}
               <br />
               {/* created at */}
               <span className="text-muted">Fecha de creación</span>

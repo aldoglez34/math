@@ -12,7 +12,7 @@ import AdminLogin from "../admin/login/AdminLogin";
 import AdminCourses from "../admin/courses/courses/AdminCourses";
 import AdminCourseDetail from "../admin/courses/coursedetail/AdminCourseDetail";
 import AdminNewCourse from "../admin/courses/newcourse/AdminNewCourse";
-
+import AdminTopic from "../admin/courses/topics/AdminTopic";
 import AdminStudents from "../admin/students/students/AdminStudents";
 import AdminStudentDetails from "../admin/students/studentdetail/AdminStudentDetails";
 
@@ -43,8 +43,12 @@ export default () => {
         path="/admin/courses/edit/:courseId"
         render={(props) => <AdminCourseDetail routeProps={props} />}
       />
+      <Route
+        exact
+        path="/admin/courses/edit/topics/:courseId/:topicId"
+        render={(props) => <AdminTopic routeProps={props} />}
+      />
       <Route exact path="/admin/courses/new" component={AdminNewCourse} />
-
       <Route exact path="/admin/students" component={AdminStudents} />
       <Route
         exact

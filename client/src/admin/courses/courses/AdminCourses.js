@@ -10,7 +10,6 @@ import {
 } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import CourseItem from "./components/CourseItem";
-import "./admincourses.scss";
 
 const TeacherCoursesMain = React.memo(() => {
   const [courses, setCourses] = useState();
@@ -35,7 +34,7 @@ const TeacherCoursesMain = React.memo(() => {
                   <h3 className="mb-3" style={{ color: "#0f5257" }}>
                     Selecciona un curso...
                   </h3>
-                  <ListGroup className="shadow-sm">
+                  <ListGroup>
                     {courses.map((c) => (
                       <CourseItem
                         key={c._id}
@@ -47,8 +46,10 @@ const TeacherCoursesMain = React.memo(() => {
                   </ListGroup>
                   <div className="text-center mt-4">
                     <Button
-                      className="shadow-sm newcoursebttnstyle"
+                      variant="dark"
                       size="lg"
+                      className="py-4"
+                      block
                       href="/admin/courses/new"
                     >
                       Nuevo Curso

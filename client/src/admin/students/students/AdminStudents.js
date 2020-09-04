@@ -27,7 +27,7 @@ const AdminStudents = React.memo(() => {
                   <h3 className="mb-3" style={{ color: "#0f5257" }}>
                     Selecciona un alumno...
                   </h3>
-                  <ListGroup className="shadow-sm">
+                  <ListGroup>
                     {students.map((s) => (
                       <StudentItem
                         key={s._id}

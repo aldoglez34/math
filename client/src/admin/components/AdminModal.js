@@ -14,7 +14,7 @@ const AdminModal = React.memo(
       <>
         <Button
           size="sm"
-          className="editButton shadow-sm ml-2"
+          className="editButton ml-2"
           onClick={handleShow}
           title={modalTitle}
         >
@@ -52,7 +52,7 @@ AdminModal.propTypes = {
   modalHeader: PropTypes.string,
   //   Form: PropTypes.element,
   formLabel: PropTypes.string,
-  formInitialText: PropTypes.string,
+  formInitialText: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default AdminModal;

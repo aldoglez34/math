@@ -5,25 +5,22 @@ import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeacherAPI from "../../../../utils/TeacherAPI";
 
-const CourseDescriptionForm = React.memo(
+const CourseSchoolForm = React.memo(
   ({ formLabel, formInitialText, courseId }) => {
     const yupschema = yup.object({
-      newDescription: yup
-        .string()
-        .min(3, "Descripción demasiado corta")
-        .required("Requerido"),
+      newSchool: yup.string().required("Requerido"),
     });
 
     return (
       <Formik
         initialValues={{
-          newDescription: formInitialText,
+          newSchool: formInitialText,
         }}
         validationSchema={yupschema}
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(true);
           values.courseId = courseId;
-          TeacherAPI.t_updateCourseDescription(values)
+          TeacherAPI.t_updateCourseSchool(values)
             .then((res) => {
               console.log(res);
               alert(res.data);
@@ -51,19 +48,23 @@ const CourseDescriptionForm = React.memo(
               <Form.Group as={Col}>
                 <Form.Label>{formLabel}</Form.Label>
                 <Form.Control
-                  maxLength="250"
-                  as="textarea"
-                  rows="5"
-                  name="newDescription"
-                  value={values.newDescription}
+                  as="select"
+                  type="text"
+                  name="newSchool"
+                  value={values.newSchool}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  isValid={touched.newDescription && !errors.newDescription}
-                  isInvalid={touched.newDescription && !!errors.newDescription}
-                />
+                  isValid={touched.newSchool && !errors.newSchool}
+                  isInvalid={touched.newSchool && !!errors.newSchool}
+                >
+                  <option value="Primaria">Primaria</option>
+                  <option value="Secundaria">Secundaria</option>
+                  <option value="Preparatoria">Preparatoria</option>
+                  <option value="Universidad">Universidad</option>
+                </Form.Control>
                 <ErrorMessage
                   className="text-danger"
-                  name="newDescription"
+                  name="newSchool"
                   component="div"
                 />
               </Form.Group>
@@ -81,9 +82,9 @@ const CourseDescriptionForm = React.memo(
   }
 );
 
-CourseDescriptionForm.propTypes = {
+CourseSchoolForm.propTypes = {
   formLabel: PropTypes.string,
   formInitialText: PropTypes.string,
 };
 
-export default CourseDescriptionForm;
+export default CourseSchoolForm;
