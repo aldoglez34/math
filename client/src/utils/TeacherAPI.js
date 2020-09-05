@@ -39,6 +39,15 @@ export default {
   t_updateTopicName: (data) =>
     axios.put("/teacherAPI/topics/update/name", data),
 
+  t_updateTopicSubject: (data) =>
+    axios.put("/teacherAPI/topics/update/subject", data),
+
+  t_updateTopicDescription: (data) =>
+    axios.put("/teacherAPI/topics/update/description", data),
+
+  t_updateTopicFreestyleTimer: (data) =>
+    axios.put("/teacherAPI/topics/update/timer", data),
+
   // ==============================================
   // STUDENTS
   // =============================================

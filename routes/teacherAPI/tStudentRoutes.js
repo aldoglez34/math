@@ -20,6 +20,7 @@ router.get("/:studentId", function (req, res) {
   const { studentId } = req.params;
 
   model.Student.findById(studentId)
+    .select("email name firstSurname secondSurname")
     .then((data) => res.json(data))
     .catch((err) => {
       console.log("@error", err);

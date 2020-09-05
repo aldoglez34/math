@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
-import "./adminmodal.scss";
 import PropTypes from "prop-types";
 
-const AdminModal = React.memo(
-  ({ modalTitle, Form, formLabel, formInitialText, courseId }) => {
+const AdminTopicModal = React.memo(
+  ({ modalTitle, Form, formLabel, formInitialText, courseId, topicId }) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -38,6 +37,7 @@ const AdminModal = React.memo(
                 formLabel={formLabel}
                 formInitialText={formInitialText}
                 courseId={courseId}
+                topicId={topicId}
               />
             </div>
           </Modal.Body>
@@ -47,13 +47,14 @@ const AdminModal = React.memo(
   }
 );
 
-AdminModal.propTypes = {
+AdminTopicModal.propTypes = {
   modalTitle: PropTypes.string,
   modalHeader: PropTypes.string,
   //   Form: PropTypes.element,
   formLabel: PropTypes.string,
   formInitialText: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   courseId: PropTypes.string,
+  topicId: PropTypes.string,
 };
 
-export default AdminModal;
+export default AdminTopicModal;

@@ -49,7 +49,10 @@ const AdminStudentDetails = React.memo((props) => {
               <br />
               {/* registered at */}
               <span className="text-muted">Fecha de registro</span>
-              <h5>{moment(student.registeredAt).format("LL")}</h5>
+              <h5>
+                <i className="far fa-calendar-alt mr-2" />
+                {moment(student.registeredAt).format("LL")}
+              </h5>
               <br />
               {/* courses bought */}
               <span className="text-muted">Cursos comprados</span>

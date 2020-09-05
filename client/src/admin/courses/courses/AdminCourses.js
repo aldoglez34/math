@@ -52,7 +52,7 @@ const TeacherCoursesMain = React.memo(() => {
                       block
                       href="/admin/courses/new"
                     >
-                      Nuevo Curso
+                      <h5 className="mb-0 text-light">NUEVO CURSO</h5>
                     </Button>
                   </div>
                 </>

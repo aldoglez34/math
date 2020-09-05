@@ -4,6 +4,7 @@ import { Container, Row, Col, Spinner } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import moment from "moment";
 import "moment/locale/es";
+import NewTopicsBttn from "./components/NewTopicsBttn";
 //
 import AdminModal from "../../components/AdminModal";
 import CourseNameForm from "./forms/CourseNameForm";
@@ -113,7 +114,10 @@ const AdminCourseDetail = React.memo((props) => {
                 })}
               </ul>
               {/* topics */}
-              <span className="text-muted">Temas</span>
+              <span className="text-muted">
+                Temas
+                <NewTopicsBttn courseId={course._id} />
+              </span>
               {course.topics.length ? (
                 <ul>
                   {course.topics.map((t) => (
@@ -131,7 +135,10 @@ const AdminCourseDetail = React.memo((props) => {
               <br />
               {/* created at */}
               <span className="text-muted">Fecha de creación</span>
-              <h5>{moment(course.createdAt).format("LL")}</h5>
+              <h5>
+                <i className="far fa-calendar-alt mr-2" />
+                {moment(course.createdAt).format("LL")}
+              </h5>
               <br />
             </Col>
           </Row>

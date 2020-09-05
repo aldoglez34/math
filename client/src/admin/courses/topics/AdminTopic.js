@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import AdminLayout from "../../layout/AdminLayout";
 import { Container, Row, Col, Spinner, Image } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
-import AdminModal from "../../components/AdminModal";
+import AdminTopicModal from "./components/AdminTopicModal";
+//
 import TopicNameForm from "./forms/TopicNameForm";
+import TopicSubjectForm from "./forms/TopicSubjectForm";
+import TopicDescriptionForm from "./forms/TopicDescriptionForm";
+import TopicFreestyleTimerForm from "./forms/TopicFreestyleTimerForm";
 
 const AdminTopic = React.memo((props) => {
   const [topic, setTopic] = useState();
@@ -36,7 +40,7 @@ const AdminTopic = React.memo((props) => {
               <span className="text-muted">Nombre</span>
               <h1 className="mb-0">
                 {topic.name}
-                <AdminModal
+                <AdminTopicModal
                   modalTitle="Editar nombre"
                   Form={TopicNameForm}
                   formLabel="Nombre"
@@ -48,15 +52,45 @@ const AdminTopic = React.memo((props) => {
               <br />
               {/* subject */}
               <span className="text-muted">Materia</span>
-              <h2 className="mb-0">{topic.subject}</h2>
+              <h2 className="mb-0">
+                {topic.subject}
+                <AdminTopicModal
+                  modalTitle="Editar materia"
+                  Form={TopicSubjectForm}
+                  formLabel="Materia"
+                  formInitialText={topic.subject}
+                  courseId={props.routeProps.match.params.courseId}
+                  topicId={topic._id}
+                />
+              </h2>
               <br />
               {/* description */}
               <span className="text-muted">Descripción</span>
-              <h5 className="mb-0">{topic.description}</h5>
+              <h5 className="mb-0">
+                {topic.description}
+                <AdminTopicModal
+                  modalTitle="Editar descripción"
+                  Form={TopicDescriptionForm}
+                  formLabel="Descripción"
+                  formInitialText={topic.description}
+                  courseId={props.routeProps.match.params.courseId}
+                  topicId={topic._id}
+                />
+              </h5>
               <br />
               {/* freestyle */}
               <span className="text-muted">Modo rápido</span>
-              <h5 className="mb-0">{topic.freestyle.timer + " minutos"}</h5>
+              <h5 className="mb-0">
+                {topic.freestyle.timer + " minutos"}
+                <AdminTopicModal
+                  modalTitle="Editar modo rápido"
+                  Form={TopicFreestyleTimerForm}
+                  formLabel="Modo rápido"
+                  formInitialText={topic.freestyle.timer}
+                  courseId={props.routeProps.match.params.courseId}
+                  topicId={topic._id}
+                />
+              </h5>
               <br />
               {/* reward */}
               <span className="text-muted">Recompensa</span>
@@ -85,6 +119,19 @@ const AdminTopic = React.memo((props) => {
                 <h5>Vacío</h5>
               )}
               <br />
+              {/* exams */}
+              <span className="text-muted">Exámenes</span>
+              {topic.exams.length ? (
+                <ul>
+                  {topic.exams.map((e) => (
+                    <li key={e._id}>
+                      <h5>{e.name}</h5>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <h5>Vacío</h5>
+              )}
             </Col>
           </Row>
         </Container>

@@ -13,6 +13,7 @@ import AdminCourses from "../admin/courses/courses/AdminCourses";
 import AdminCourseDetail from "../admin/courses/coursedetail/AdminCourseDetail";
 import AdminNewCourse from "../admin/courses/newcourse/AdminNewCourse";
 import AdminTopic from "../admin/courses/topics/AdminTopic";
+import AdminNewTopic from "../admin/courses/newtopic/AdminNewTopic";
 import AdminStudents from "../admin/students/students/AdminStudents";
 import AdminStudentDetails from "../admin/students/studentdetail/AdminStudentDetails";
 
@@ -36,19 +37,26 @@ export default () => {
 
       {/* admin ======================== */}
       <Route exact path="/admin" component={AdminLogin} />
-
+      {/* courses */}
       <Route exact path="/admin/courses" component={AdminCourses} />
       <Route
         exact
         path="/admin/courses/edit/:courseId"
         render={(props) => <AdminCourseDetail routeProps={props} />}
       />
+      <Route exact path="/admin/courses/new" component={AdminNewCourse} />
+      {/* topics */}
       <Route
         exact
         path="/admin/courses/edit/topics/:courseId/:topicId"
         render={(props) => <AdminTopic routeProps={props} />}
       />
-      <Route exact path="/admin/courses/new" component={AdminNewCourse} />
+      <Route
+        exact
+        path="/admin/courses/courses/newTopic/:courseId"
+        render={(props) => <AdminNewTopic routeProps={props} />}
+      />
+      {/* students */}
       <Route exact path="/admin/students" component={AdminStudents} />
       <Route
         exact

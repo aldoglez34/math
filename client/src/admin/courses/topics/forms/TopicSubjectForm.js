@@ -5,35 +5,30 @@ import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeacherAPI from "../../../../utils/TeacherAPI";
 
-const TopicNameForm = React.memo(
+const TopicSubjectForm = React.memo(
   ({ formLabel, formInitialText, courseId, topicId }) => {
     const yupschema = yup.object({
-      newName: yup
-        .string()
-        .min(3, "Nombre demasiado corto")
-        .required("Requerido"),
+      newSubject: yup.string().min(3, "Demasiado corto").required("Requerido"),
     });
 
     return (
       <Formik
         initialValues={{
-          newName: formInitialText,
+          newSubject: formInitialText,
         }}
         validationSchema={yupschema}
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(true);
           values.courseId = courseId;
           values.topicId = topicId;
-          TeacherAPI.t_updateTopicName(values)
+          TeacherAPI.t_updateTopicSubject(values)
             .then((res) => {
               console.log(res.data);
-              alert("El nombre del tema fue actualizado con éxito.");
+              alert("La materia del tema fue actualizada con éxito.");
               window.location.reload();
             })
             .catch((err) => {
-              alert(
-                "Ocurrió un error. Asegúrate que no exista un tema con este nombre y vuelve a intentarlo."
-              );
+              alert("Ocurrió un error.");
               setSubmitting(false);
               console.log(err);
             });
@@ -56,16 +51,16 @@ const TopicNameForm = React.memo(
                 <Form.Control
                   maxLength="40"
                   type="text"
-                  name="newName"
-                  value={values.newName}
+                  name="newSubject"
+                  value={values.newSubject}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  isValid={touched.newName && !errors.newName}
-                  isInvalid={touched.newName && !!errors.newName}
+                  isValid={touched.newSubject && !errors.newSubject}
+                  isInvalid={touched.newSubject && !!errors.newSubject}
                 />
                 <ErrorMessage
                   className="text-danger"
-                  name="newName"
+                  name="newSubject"
                   component="div"
                 />
               </Form.Group>
@@ -83,11 +78,11 @@ const TopicNameForm = React.memo(
   }
 );
 
-TopicNameForm.propTypes = {
+TopicSubjectForm.propTypes = {
   formLabel: PropTypes.string,
   formInitialText: PropTypes.string,
   courseId: PropTypes.string,
   topicId: PropTypes.string,
 };
 
-export default TopicNameForm;
+export default TopicSubjectForm;

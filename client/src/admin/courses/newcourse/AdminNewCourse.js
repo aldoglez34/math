@@ -14,7 +14,10 @@ const AdminNewCrouse = React.memo(() => {
       .required("Requerido"),
     description: yup.string().required("Requerido"),
     summary: yup.string().required("Requerido"),
-    price: yup.number().positive("¿Por qué negativo?").required("Requerido"),
+    price: yup
+      .number()
+      .positive("El número debe ser mayor a 1")
+      .required("Requerido"),
   });
 
   return (
