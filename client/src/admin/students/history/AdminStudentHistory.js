@@ -27,27 +27,28 @@ const AdminStudentHistory = React.memo((props) => {
       <Container>
         <Row>
           <Col className="px-0 mt-4" md={{ offset: 2, span: 8 }}>
+            <h3 className="mb-3">Exámenes...</h3>
             {history.length ? (
-              <Table striped bordered size="sm">
+              <Table bordered size="sm">
                 <thead>
                   <tr>
                     <th
-                      className="py-3 text-center text-light"
-                      style={{ backgroundColor: "#0f5257" }}
+                      className="py-3 text-center"
+                      style={{ backgroundColor: "#f4fbf8" }}
                     >
-                      Fecha
+                      <h5 className="mb-0">Fecha</h5>
                     </th>
                     <th
-                      className="py-3 text-center text-light"
-                      style={{ backgroundColor: "#0f5257" }}
+                      className="py-3 text-center"
+                      style={{ backgroundColor: "#f4fbf8" }}
                     >
-                      Examen
+                      <h5 className="mb-0">Examen</h5>
                     </th>
                     <th
-                      className="py-3 text-center text-light"
-                      style={{ backgroundColor: "#0f5257" }}
+                      className="py-3 text-center"
+                      style={{ backgroundColor: "#f4fbf8" }}
                     >
-                      Calificación
+                      <h5 className="mb-0">Calificación</h5>
                     </th>
                   </tr>
                 </thead>

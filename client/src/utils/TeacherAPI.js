@@ -60,6 +60,9 @@ export default {
   t_fetchStudentHistory: (studentId) =>
     axios.get("/teacherAPI/students/history/" + studentId),
 
+  t_assignCourse: (data) =>
+    axios.put("/teacherAPI/students/assignCourse", data),
+
   t_fetchOneStudent: (studentId) =>
     axios.get("/teacherAPI/students/" + studentId),
 };
