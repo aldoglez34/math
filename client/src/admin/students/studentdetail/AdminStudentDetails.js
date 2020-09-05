@@ -4,7 +4,7 @@ import { Container, Row, Col, Spinner } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import moment from "moment";
 import "moment/locale/es";
-import History from "./components/History";
+import AdminOptionsDropdown from "../../components/AdminOptionsDropdown";
 
 const AdminStudentDetails = React.memo((props) => {
   const [student, setStudent] = useState();
@@ -55,13 +55,25 @@ const AdminStudentDetails = React.memo((props) => {
               </h5>
               <br />
               {/* courses bought */}
-              <span className="text-muted">Cursos comprados</span>
+              <span className="text-muted d-flex">
+                Cursos comprados
+                <AdminOptionsDropdown
+                  opts={[
+                    {
+                      link:
+                        "/admin/students/unpurchased/" +
+                        props.routeProps.match.params.studentId,
+                      text: "Asignar curso",
+                    },
+                  ]}
+                />
+              </span>
               {student.courses.length ? (
                 <ul>
                   {student.courses.map((c) => {
                     return (
-                      <li key={c}>
-                        <h5 className="mb-0">{c}</h5>
+                      <li key={c._id}>
+                        <h5 className="mb-0">{c.name}</h5>
                       </li>
                     );
                   })}
@@ -71,14 +83,23 @@ const AdminStudentDetails = React.memo((props) => {
               )}
               <br />
               {/* attempts */}
-              <span className="text-muted">
+              <span className="text-muted d-flex">
                 Exámenes presentados / Calificaciones perfectas
+                <AdminOptionsDropdown
+                  opts={[
+                    {
+                      link:
+                        "/admin/students/history/" +
+                        props.routeProps.match.params.studentId,
+                      text: "Ver historial",
+                    },
+                  ]}
+                />
               </span>
               <h2 className="mb-0">
                 {student.attempts.length +
                   " / " +
                   student.attempts.filter((a) => a.grade === 10).length}
-                <History attempts={student.attempts} />
               </h2>
               <br />
               {/* medallas */}

@@ -16,6 +16,8 @@ import AdminTopic from "../admin/courses/topics/AdminTopic";
 import AdminNewTopic from "../admin/courses/newtopic/AdminNewTopic";
 import AdminStudents from "../admin/students/students/AdminStudents";
 import AdminStudentDetails from "../admin/students/studentdetail/AdminStudentDetails";
+import AdminAssignCourse from "../admin/students/assign/AdminAssignCourse";
+import AdminStudentHistory from "../admin/students/history/AdminStudentHistory";
 
 export default () => {
   return (
@@ -62,6 +64,16 @@ export default () => {
         exact
         path="/admin/students/:studentId"
         render={(props) => <AdminStudentDetails routeProps={props} />}
+      />
+      <Route
+        exact
+        path="/admin/students/unpurchased/:studentId"
+        render={(props) => <AdminAssignCourse routeProps={props} />}
+      />
+      <Route
+        exact
+        path="/admin/students/history/:studentId"
+        render={(props) => <AdminStudentHistory routeProps={props} />}
       />
 
       {/* 404 not found */}

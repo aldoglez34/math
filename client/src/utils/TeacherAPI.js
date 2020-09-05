@@ -54,6 +54,12 @@ export default {
 
   t_fetchStudents: () => axios.get("/teacherAPI/students/all"),
 
+  t_fetchStudentUnpurchased: (studentId) =>
+    axios.get("/teacherAPI/students/unpurchased/" + studentId),
+
+  t_fetchStudentHistory: (studentId) =>
+    axios.get("/teacherAPI/students/history/" + studentId),
+
   t_fetchOneStudent: (studentId) =>
     axios.get("/teacherAPI/students/" + studentId),
 };
