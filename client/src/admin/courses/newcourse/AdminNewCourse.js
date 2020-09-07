@@ -10,7 +10,7 @@ const AdminNewCrouse = React.memo(() => {
     name: yup.string().min(3, "Nombre demasiado corto").required("Requerido"),
     school: yup
       .string()
-      .notOneOf(["Elige..."], "Este correo ya se encuentra dado de alta")
+      .notOneOf(["Elige..."], "Requerido")
       .required("Requerido"),
     description: yup.string().required("Requerido"),
     summary: yup.string().required("Requerido"),
