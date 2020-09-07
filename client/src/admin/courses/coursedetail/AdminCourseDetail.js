@@ -4,7 +4,7 @@ import { Container, Row, Col, Spinner } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import moment from "moment";
 import "moment/locale/es";
-import NewTopicsBttn from "./components/NewTopicsBttn";
+import AdminOptionsDropdown from "../../components/AdminOptionsDropdown";
 //
 import AdminModal from "../../components/AdminModal";
 import CourseNameForm from "./forms/CourseNameForm";
@@ -114,9 +114,18 @@ const AdminCourseDetail = React.memo((props) => {
                 })}
               </ul>
               {/* topics */}
-              <span className="text-muted">
+              <span className="text-muted d-flex">
                 Temas
-                <NewTopicsBttn courseId={course._id} />
+                <AdminOptionsDropdown
+                  opts={[
+                    {
+                      link:
+                        "/admin/courses/courses/newTopic/" +
+                        props.routeProps.match.params.courseId,
+                      text: "Nuevo tema",
+                    },
+                  ]}
+                />
               </span>
               {course.topics.length ? (
                 <ul>
