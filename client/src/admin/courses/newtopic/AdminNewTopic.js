@@ -114,6 +114,11 @@ const AdminNewCrouse = React.memo((props) => {
                       />
                     </Col>
                   </Form.Row>
+                  <Form.Row className="mt-3">
+                    <Col md={6}>
+                      <Form.Label>Material</Form.Label>
+                    </Col>
+                  </Form.Row>
                   {/* buttons */}
                   <Form.Group className="mt-4">
                     <Button
