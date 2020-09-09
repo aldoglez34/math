@@ -1,8 +1,9 @@
 import React from "react";
 import AdminLayout from "../../layout/AdminLayout";
-import { Formik, ErrorMessage } from "formik";
+import { Formik, ErrorMessage, Field } from "formik";
 import * as yup from "yup";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
+import MaterialSelector from "./components/MaterialSelector";
 
 const AdminNewCrouse = React.memo((props) => {
   const yupschema = yup.object({
@@ -12,6 +13,7 @@ const AdminNewCrouse = React.memo((props) => {
       .min(3, "Nombre demasiado corto")
       .required("Requerido"),
     description: yup.string().required("Requerido"),
+    material: yup.string().required("Requerido"),
   });
 
   return (
@@ -26,7 +28,12 @@ const AdminNewCrouse = React.memo((props) => {
             <h3 className="mt-4">Ingresa los datos del tema.</h3>
             <br />
             <Formik
-              initialValues={{ name: "", subject: "", description: "" }}
+              initialValues={{
+                name: "",
+                subject: "",
+                description: "",
+                material: "",
+              }}
               validationSchema={yupschema}
               onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
@@ -116,7 +123,24 @@ const AdminNewCrouse = React.memo((props) => {
                   </Form.Row>
                   <Form.Row className="mt-3">
                     <Col md={6}>
-                      <Form.Label>Material</Form.Label>
+                      <Field name="material" id="material" type="string">
+                        {({ field: { value }, form: { setFieldValue } }) => (
+                          <div className="mb-3">
+                            <label htmlFor="material">Tipo</label>
+                            <MaterialSelector
+                              selected={value}
+                              handleClick={(str) =>
+                                setFieldValue("material", str)
+                              }
+                            />
+                          </div>
+                        )}
+                      </Field>
+                      <ErrorMessage
+                        className="text-danger"
+                        name="material"
+                        component="div"
+                      />
                     </Col>
                   </Form.Row>
                   {/* buttons */}
