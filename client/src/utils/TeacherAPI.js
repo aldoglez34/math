@@ -48,6 +48,10 @@ export default {
   t_updateTopicFreestyleTimer: (data) =>
     axios.put("/teacherAPI/topics/update/timer", data),
 
+  // new
+
+  t_newTopic: (data) => axios.put("/teacherAPI/topics/new", data),
+
   // ==============================================
   // STUDENTS
   // =============================================

@@ -30,7 +30,7 @@ const schema = new Schema({
     {
       topicCode: {
         type: String,
-        required: true,
+        // required: true,
         // unique: true,
       }, // ej. PRIM3y4_Suma o PRIM3y4_Resta
       subject: { type: String, required: true }, // ej. Aritmética

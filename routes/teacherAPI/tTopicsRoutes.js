@@ -106,4 +106,69 @@ router.put("/update/timer", function (req, res) {
     });
 });
 
+// new
+
+// t_newTopic()
+// matches with /teacherAPI/topics/new
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: "./client/public/exams",
+  filename: function (req, file, cb) {
+    // cb(null, "IMAGE-" + Date.now() + path.extname(file.originalname));
+    // set the name of the file
+    cb(null, req.body.photo);
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 4000000 },
+}).single("file");
+
+router.put("/new", function (req, res) {
+  upload(req, res, function (err) {
+    if (err instanceof multer.MulterError) {
+      console.log("ERROR - A Multer error occurred when uploading.");
+      res.status(422).send({ msg: "Ocurrió un error." });
+    } else if (err) {
+      console.log("ERROR - An unknown error occurred when uploading.");
+      res.status(422).send({ msg: "Ocurrió un error." });
+    }
+
+    // everything went fine
+    // no errors
+
+    const { courseId, subject, name, description, freestyleTimer } = req.body;
+
+    const newTopic = {
+      topicCode: "nuevo",
+      subject,
+      name,
+      description,
+      reward: {
+        name: "nombre del reward",
+        link: "LINK del reward",
+      },
+      freestyle: {
+        timer: freestyleTimer,
+      },
+    };
+
+    model.Course.findOneAndUpdate(
+      { _id: courseId },
+      {
+        $push: {
+          topics: newTopic,
+        },
+      }
+    )
+      .then((data) => res.send("El tema fue agregado con éxito."))
+      .catch((err) => {
+        console.log("@error", err);
+        res.status(422).send("Ocurrió un error");
+      });
+  });
+});
+
 module.exports = router;

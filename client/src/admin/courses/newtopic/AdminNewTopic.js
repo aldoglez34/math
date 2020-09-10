@@ -1,9 +1,10 @@
 import React from "react";
 import AdminLayout from "../../layout/AdminLayout";
-import { Formik, ErrorMessage, Field } from "formik";
+import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
-import { Container, Row, Form, Button, Col } from "react-bootstrap";
-import MaterialSelector from "./components/MaterialSelector";
+import { Container, Row, Form, Button, Col, InputGroup } from "react-bootstrap";
+import UploadImage from "./components/UploadImage";
+import TeacherAPI from "../../../utils/TeacherAPI";
 
 const AdminNewCrouse = React.memo((props) => {
   const yupschema = yup.object({
@@ -13,8 +14,32 @@ const AdminNewCrouse = React.memo((props) => {
       .min(3, "Nombre demasiado corto")
       .required("Requerido"),
     description: yup.string().required("Requerido"),
-    material: yup.string().required("Requerido"),
+    freestyleTimer: yup
+      .number()
+      .positive("El número debe ser mayor a 1")
+      .required("Requerido"),
+    file: yup
+      .mixed()
+      .required("Requerido")
+      .test(
+        "fileSize",
+        "Imagen muy pesada",
+        (value) => value && value.size <= PHOTO_SIZE
+      )
+      .test(
+        "fileFormat",
+        "Formato no soportado",
+        (value) => value && SUPPORTED_FORMATS.includes(value.type)
+      ),
   });
+
+  const PHOTO_SIZE = 1000000;
+  const SUPPORTED_FORMATS = [
+    "image/jpg",
+    "image/jpeg",
+    "image/gif",
+    "image/png",
+  ];
 
   return (
     <AdminLayout
@@ -32,13 +57,27 @@ const AdminNewCrouse = React.memo((props) => {
                 name: "",
                 subject: "",
                 description: "",
-                material: "",
+                freestyleTimer: "",
+                photo: undefined,
+                file: undefined,
               }}
               validationSchema={yupschema}
               onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
                 values.courseId = props.routeProps.match.params.courseId;
-                console.log(values);
+                TeacherAPI.t_newTopic(values)
+                  .then((res) => {
+                    console.log(res.data);
+                    alert("Tema agregado con éxito");
+                    window.location.href =
+                      "/admin/courses/edit/" +
+                      props.routeProps.match.params.courseId;
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    alert("Ocurrió un error.");
+                    setSubmitting(false);
+                  });
               }}
             >
               {({
@@ -49,6 +88,7 @@ const AdminNewCrouse = React.memo((props) => {
                 handleBlur,
                 handleSubmit,
                 isSubmitting,
+                setFieldValue,
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   {/* name */}
@@ -121,24 +161,47 @@ const AdminNewCrouse = React.memo((props) => {
                       />
                     </Col>
                   </Form.Row>
+                  {/* reward */}
                   <Form.Row className="mt-3">
-                    <Col md={6}>
-                      <Field name="material" id="material" type="string">
-                        {({ field: { value }, form: { setFieldValue } }) => (
-                          <div className="mb-3">
-                            <label htmlFor="material">Tipo</label>
-                            <MaterialSelector
-                              selected={value}
-                              handleClick={(str) =>
-                                setFieldValue("material", str)
-                              }
-                            />
-                          </div>
-                        )}
-                      </Field>
+                    <Col>
+                      <UploadImage
+                        photo={values.photo}
+                        setFieldValue={setFieldValue}
+                        onBlur={handleBlur}
+                        file={values.file}
+                      />
+                    </Col>
+                  </Form.Row>
+                  {/* freestyle timer */}
+                  <Form.Row className="mt-3">
+                    <Col md={4}>
+                      <Form.Label>
+                        Duración modo rápido
+                        <strong className="text-danger">*</strong>
+                      </Form.Label>
+                      <InputGroup className="mb-3">
+                        <Form.Control
+                          type="number"
+                          name="freestyleTimer"
+                          value={values.freestyleTimer}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          isValid={
+                            touched.freestyleTimer && !errors.freestyleTimer
+                          }
+                          isInvalid={
+                            touched.freestyleTimer && !!errors.freestyleTimer
+                          }
+                        />
+                        <InputGroup.Append>
+                          <InputGroup.Text id="basic-addon2">
+                            minutos
+                          </InputGroup.Text>
+                        </InputGroup.Append>
+                      </InputGroup>
                       <ErrorMessage
                         className="text-danger"
-                        name="material"
+                        name="freestyleTimer"
                         component="div"
                       />
                     </Col>

@@ -144,14 +144,17 @@ const AdminNewCrouse = React.memo(() => {
                   <Form.Row className="mt-3">
                     <Col>
                       <Form.Label className="mb-0">
-                        Resumen de temas
+                        Resumen
+                        <small className="text-muted ml-1">
+                          (para el landing page)
+                        </small>
                         <strong className="text-danger">*</strong>
                       </Form.Label>
                       <Form.Text className="text-muted mb-2">
                         Separados por coma
                       </Form.Text>
                       <Form.Control
-                        placeholder="Ej. Fracciones, Porcentajes, Relaciones, etc."
+                        placeholder="Ej. Fracciones, Porcentajes, Ecuaciones, etc."
                         maxLength="250"
                         type="text"
                         name="summary"
