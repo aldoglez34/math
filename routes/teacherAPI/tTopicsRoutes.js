@@ -110,23 +110,26 @@ router.put("/update/timer", function (req, res) {
 
 // t_newTopic()
 // matches with /teacherAPI/topics/new
-const multer = require("multer");
-
-const storage = multer.diskStorage({
-  destination: "./client/public/exams",
-  filename: function (req, file, cb) {
-    // cb(null, "IMAGE-" + Date.now() + path.extname(file.originalname));
-    // set the name of the file
-    cb(null, req.body.photo);
-  },
-});
-
-const upload = multer({
-  storage: storage,
-  limits: { fileSize: 4000000 },
-}).single("file");
-
 router.put("/new", function (req, res) {
+  const multer = require("multer");
+
+  const { courseId } = req.body;
+
+  // uploading reward file
+  const storage = multer.diskStorage({
+    destination: "./client/public/files/" + courseId + "/reward",
+    filename: function (req, file, cb) {
+      // cb(null, "IMAGE-" + Date.now() + path.extname(file.originalname));
+      // set the name of the file
+      cb(null, req.body.photo);
+    },
+  });
+
+  const upload = multer({
+    storage: storage,
+    limits: { fileSize: 4000000 },
+  }).single("file");
+
   upload(req, res, function (err) {
     if (err instanceof multer.MulterError) {
       console.log("ERROR - A Multer error occurred when uploading.");
@@ -148,7 +151,7 @@ router.put("/new", function (req, res) {
       description,
       reward: {
         name: "nombre del reward",
-        link: "LINK del reward",
+        link: "/files/" + courseId + "/reward",
       },
       freestyle: {
         timer: freestyleTimer,

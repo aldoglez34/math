@@ -65,6 +65,7 @@ const AdminNewCrouse = React.memo((props) => {
               onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
                 values.courseId = props.routeProps.match.params.courseId;
+                //
                 TeacherAPI.t_newTopic(values)
                   .then((res) => {
                     console.log(res.data);

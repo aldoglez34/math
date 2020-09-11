@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const model = require("../../models");
+const fs = require("fs");
 
 // t_fetchCourses()
 // matches with /teacherAPI/courses/all
@@ -42,6 +43,51 @@ router.post("/new", function (req, res) {
     topicsSummary: summary.split(","),
   })
     .then((data) => {
+      const newCourseId = data._id;
+
+      // create main folder
+      fs.mkdir("./client/public/files/" + newCourseId, function (err) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("The main folder has been created succesfully.");
+        }
+      });
+
+      // create reward folder
+      fs.mkdir("./client/public/files/" + newCourseId + "/reward", function (
+        err
+      ) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("Reward folder has been created succesfully.");
+        }
+      });
+
+      // create exams folder
+      fs.mkdir("./client/public/files/" + newCourseId + "/exams", function (
+        err
+      ) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("Exams folder has been created succesfully.");
+        }
+      });
+
+      // create material folder
+      fs.mkdir("./client/public/files/" + newCourseId + "/material", function (
+        err
+      ) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("Material folder has been created succesfully.");
+        }
+      });
+
+      // send response to the client
       res.json(data);
     })
     .catch((err) => {
