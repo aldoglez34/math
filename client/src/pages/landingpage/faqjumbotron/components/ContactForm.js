@@ -2,13 +2,14 @@ import React from "react";
 import { Form, Col, Button } from "react-bootstrap";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
+import API from "../../../../utils/API";
 
 const ContactForm = () => {
   const yupschema = yup.object({
     user: yup.string().required("Requerido"),
     email: yup.string().email("Formato inválido").required("Requerido"),
     subject: yup.string().required("Requerido"),
-    body: yup.string().required("Requerido"),
+    body: yup.string(),
   });
 
   return (
@@ -23,7 +24,14 @@ const ContactForm = () => {
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
         values.type = "Guest";
-        console.log(values);
+        API.postMessage(values)
+          .then((res) => {
+            console.log(res);
+            alert(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }}
     >
       {({
@@ -41,14 +49,14 @@ const ContactForm = () => {
             <Form.Group as={Col}>
               <Form.Label>Nombre</Form.Label>
               <Form.Control
-                maxLength="80"
+                maxLength="150"
                 type="text"
                 name="user"
                 value={values.user}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 isValid={touched.user && !errors.user}
-                isInvalid={touched.name && !!errors.user}
+                isInvalid={touched.user && !!errors.user}
               />
               <ErrorMessage
                 className="text-danger"
@@ -62,7 +70,7 @@ const ContactForm = () => {
             <Form.Group as={Col}>
               <Form.Label>Correo</Form.Label>
               <Form.Control
-                maxLength="80"
+                maxLength="150"
                 type="text"
                 name="email"
                 value={values.email}
@@ -83,15 +91,25 @@ const ContactForm = () => {
             <Form.Group as={Col}>
               <Form.Label>Asunto</Form.Label>
               <Form.Control
-                maxLength="80"
+                as="select"
+                defaultValue="Elige..."
                 type="text"
                 name="subject"
-                value={values.subject}
+                // value={values.subject}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 isValid={touched.subject && !errors.subject}
                 isInvalid={touched.subject && !!errors.subject}
-              />
+              >
+                <option disabled>Elige...</option>
+                <option value="Información sobre un curso">
+                  Información sobre un curso
+                </option>
+                <option value="Información sobre costos">
+                  Información sobre costos
+                </option>
+                <option value="Otro">Otro</option>
+              </Form.Control>
               <ErrorMessage
                 className="text-danger"
                 name="subject"

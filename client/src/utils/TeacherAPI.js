@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
   // ==============================================
   // COURSES
-  // =============================================
+  // ==============================================
   t_fetchCourses: () => axios.get("/teacherAPI/courses/all"),
 
   t_fetchOneCourse: (courseId) => axios.get("/teacherAPI/courses/" + courseId),
@@ -31,7 +31,7 @@ export default {
 
   // ==============================================
   // TOPICS
-  // =============================================
+  // ==============================================
 
   t_fetchTopic: (courseId, topicId) =>
     axios.get("/teacherAPI/topics/" + courseId + "/" + topicId),
@@ -54,7 +54,7 @@ export default {
 
   // ==============================================
   // STUDENTS
-  // =============================================
+  // ==============================================
 
   t_fetchStudents: () => axios.get("/teacherAPI/students/all"),
 
@@ -69,4 +69,10 @@ export default {
 
   t_fetchOneStudent: (studentId) =>
     axios.get("/teacherAPI/students/" + studentId),
+
+  // ==============================================
+  // MESSAGES
+  // ==============================================
+
+  t_fetchMessages: () => axios.get("/teacherAPI/messages/all"),
 };
