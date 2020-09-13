@@ -18,6 +18,7 @@ import AdminStudents from "../admin/students/students/AdminStudents";
 import AdminStudentDetails from "../admin/students/studentdetail/AdminStudentDetails";
 import AdminAssignCourse from "../admin/students/assign/AdminAssignCourse";
 import AdminStudentHistory from "../admin/students/history/AdminStudentHistory";
+import AdminMessages from "../admin/messages/AdminMessages";
 
 export default () => {
   return (
@@ -75,6 +76,8 @@ export default () => {
         path="/admin/students/history/:studentId"
         render={(props) => <AdminStudentHistory routeProps={props} />}
       />
+      {/* messages */}
+      <Route exact path="/admin/messages" component={AdminMessages} />
 
       {/* 404 not found */}
       <Route component={NoMatch} />
