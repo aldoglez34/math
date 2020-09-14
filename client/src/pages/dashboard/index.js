@@ -21,7 +21,6 @@ const Dashboard = React.memo(() => {
 
   const [myCourses, setMyCourses] = useState();
 
-  // eslint-disable-next-line
   useEffect(() => {
     // clear redux
     if (course) dispatch(courseActions.clearCourse());

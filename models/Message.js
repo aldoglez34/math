@@ -25,6 +25,16 @@ const schema = new Schema({
     type: String,
     trim: true,
   },
+  seen: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  answered: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
   sentAt: {
     type: Date,
     default: Date.now(),

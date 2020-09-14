@@ -51,10 +51,7 @@ const schema = new Schema({
   ],
   rewards: [
     {
-      topicName: {
-        type: String,
-        required: true,
-      },
+      topicName: { type: String, required: true },
       name: { type: String, required: true },
       link: { type: String, required: true },
     },
@@ -63,6 +60,14 @@ const schema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: "Exam",
+    },
+  ],
+  messages: [
+    {
+      body: { type: String, required: true },
+      answered: { type: Boolean, required: true, default: false },
+      response: { type: String, required: true },
+      date: { type: Date, default: Date.now() },
     },
   ],
   registeredAt: {

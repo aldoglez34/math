@@ -2,8 +2,9 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import ExamsAccordion from "./ExamsAccordion";
+import HelpModal from "./help/HelpModal";
 
-const Topic = React.memo(({ topic }) => {
+const Topic = React.memo(({ courseName, topic }) => {
   return (
     <>
       <Row id={topic.name}>
@@ -19,7 +20,7 @@ const Topic = React.memo(({ topic }) => {
               />
             ) : null}
           </h1>
-          <div className="d-flex mb-4">
+          <div className="d-flex mb-3">
             <h3
               className="mb-0"
               style={{ backgroundColor: "#c6d9d7", color: "#212529" }}
@@ -40,7 +41,7 @@ const Topic = React.memo(({ topic }) => {
             <i className="fas fa-hand-point-down mr-2 text-dark" />
             Apuntes, teoría, videos y más
           </p>
-          <div className="mb-3 mt-1 mb-lg-0">
+          <div className="mb-2">
             {topic.material.map((mat) => {
               return (
                 <p key={mat._id} className="mb-1">
@@ -56,6 +57,8 @@ const Topic = React.memo(({ topic }) => {
               );
             })}
           </div>
+          {/* help modal */}
+          <HelpModal courseName={courseName} topic={topic.name} />
         </Col>
         {/* exams */}
         <Col lg={6} className="mt-2 mt-lg-0">
@@ -78,6 +81,7 @@ const Topic = React.memo(({ topic }) => {
 });
 
 Topic.propTypes = {
+  courseName: PropTypes.string.isRequired,
   topic: PropTypes.object.isRequired,
 };
 

@@ -17,7 +17,6 @@ const StudentDropdown = React.memo(() => {
       .then(() => {
         dispatch(studentActions.logoutStudent());
         alert("¡Adiós, vuelve pronto!");
-        // window.location.href = "/";
       })
       .catch((error) => console.log(error));
   };
@@ -36,9 +35,13 @@ const StudentDropdown = React.memo(() => {
         </span>
       }
     >
-      {/* <NavDropdown.Item href="/">Usuario</NavDropdown.Item>
-      <NavDropdown.Divider /> */}
-      <NavDropdown.Item onClick={logout}>
+      <NavDropdown.Item className="text-right" href="/messages">
+        <i className="fas fa-inbox mr-2" />
+        <strong>Mensajes</strong>
+      </NavDropdown.Item>
+      <NavDropdown.Divider />
+      <NavDropdown.Item className="text-right" onClick={logout}>
+        <i className="fas fa-door-open mr-2" />
         <strong>Cerrar sesión</strong>
       </NavDropdown.Item>
     </NavDropdown>

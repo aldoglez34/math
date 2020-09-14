@@ -29,31 +29,49 @@ const AdminMessages = React.memo(() => {
   }, []);
 
   const filterProducts = (criteria) => {
-    setFilter(criteria === filter ? null : criteria);
-    setFiltered(
-      criteria === filter
-        ? messages
-        : messages.filter((msg) => msg.type === criteria)
-    );
+    switch (criteria) {
+      case "New":
+        setFilter(criteria === filter ? null : criteria);
+        setFiltered(
+          criteria === filter ? messages : messages.filter((msg) => !msg.seen)
+        );
+        break;
+      default:
+        setFilter(criteria === filter ? null : criteria);
+        setFiltered(
+          criteria === filter
+            ? messages
+            : messages.filter((msg) => msg.type === criteria)
+        );
+    }
   };
 
   const filters = (
     <div className="d-flex">
       <Button
         disabled={messages ? false : true}
-        active={filter === "Guest" ? true : false}
+        active={filter === "New" ? true : false}
         variant="outline-light"
         className="shadow-sm"
+        onClick={() => filterProducts("New")}
+      >
+        Nuevos
+      </Button>
+      <Button
+        disabled={messages ? false : true}
+        active={filter === "Guest" ? true : false}
+        variant="outline-light"
+        className="shadow-sm ml-2"
         onClick={() => filterProducts("Guest")}
       >
         Visitante
       </Button>
       <Button
         disabled={messages ? false : true}
-        active={filter === "Estudiante" ? true : false}
+        active={filter === "Student" ? true : false}
         variant="outline-light"
         className="shadow-sm ml-2"
-        onClick={() => filterProducts("Estudiante")}
+        onClick={() => filterProducts("Student")}
       >
         Estudiante
       </Button>
@@ -69,18 +87,21 @@ const AdminMessages = React.memo(() => {
               filtered.length ? (
                 <>
                   <h3 className="mb-3" style={{ color: "#0f5257" }}>
-                    Selecciona un mensaje para leerlo completo...
+                    Selecciona un mensaje para ver su contenido...
                   </h3>
                   <ListGroup>
                     {filtered.map((m) => (
                       <ItemModal
                         key={m._id}
+                        msgId={m._id}
                         sentAt={m.sentAt}
                         type={m.type === "Guest" ? "Visitante" : "Estudiante"}
                         user={m.user}
                         email={m.email}
                         subject={m.subject}
                         body={m.body}
+                        seen={m.seen}
+                        answered={m.answered}
                       />
                     ))}
                   </ListGroup>

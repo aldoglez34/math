@@ -122,7 +122,7 @@ router.put("/update/school", function (req, res) {
 
   model.Course.findByIdAndUpdate(courseId, { school: newSchool })
     .then(() => {
-      res.json("Nivel escolar deñ curso actualizado satisfactoriamente.");
+      res.json("Nivel escolar del curso actualizado satisfactoriamente.");
     })
     .catch((err) => {
       console.log("@error", err);

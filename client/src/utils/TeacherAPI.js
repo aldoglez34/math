@@ -75,4 +75,6 @@ export default {
   // ==============================================
 
   t_fetchMessages: () => axios.get("/teacherAPI/messages/all"),
+
+  t_markSeen: (msgId) => axios.put("/teacherAPI/messages/markSeen/" + msgId),
 };

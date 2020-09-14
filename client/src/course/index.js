@@ -91,7 +91,7 @@ export default React.memo((props) => {
                 <hr className="mexmaticasDivider" />
                 <div className="topicSection">
                   <Container>
-                    <Topic topic={ct} />
+                    <Topic courseName={course.name} topic={ct} />
                   </Container>
                 </div>
               </React.Fragment>

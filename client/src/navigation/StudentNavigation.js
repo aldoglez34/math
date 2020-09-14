@@ -9,6 +9,7 @@ import Course from "../course";
 import Exam from "../exam";
 import Results from "../results";
 import Freestyle from "../freestyle";
+import Messages from "../pages/messages";
 
 export default () => {
   return (
@@ -27,6 +28,9 @@ export default () => {
       <Route exact path="/courses/preparatoria" component={CourseInfoPrepa} />
 
       {/* ================= STUDENT ROUTES ================= */}
+      {/* messages */}
+      <Route exact path="/messages" component={Messages} />
+
       {/* courses main */}
       <Route
         exact

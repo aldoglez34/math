@@ -11,6 +11,7 @@ const ExitButton = React.memo(({ url }) => {
   return (
     <>
       <Button
+        size="sm"
         variant="danger"
         className="ml-auto shadow-sm"
         onClick={handleShow}
