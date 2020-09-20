@@ -6,7 +6,9 @@ import API from "../../utils/API";
 const Dashboard = React.memo(() => {
   const [messages, setMessages] = useState();
 
-//   useEffect(() => {}, []);
+  useEffect(() => {
+    // API.fetchMessages();
+  }, []);
 
   return (
     <StudentLayout>

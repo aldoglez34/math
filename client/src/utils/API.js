@@ -15,6 +15,8 @@ export default {
 
   registerNewStudent: (data) => axios.post("/api/student/new", data),
 
+  fetchMessages: (studentId) => axios.get("/api/student/messages/" + studentId),
+
   // student panel
 
   fetchDashboard: (studentId) =>

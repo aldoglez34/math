@@ -16,11 +16,8 @@ const DashboardCourseCard = React.memo(({ course }) => {
     <Card className="dashboardCourseCard shadow-sm">
       <Card.Body>
         <Card.Title className="d-flex flex-row">
-          <h2 className="mb-0" style={{ color: "#3b424b" }}>
-            {course.name}
-          </h2>
+          <h2 className="mb-0">{course.name}</h2>
         </Card.Title>
-
         <Card.Text>{course.description}</Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
@@ -31,7 +28,7 @@ const DashboardCourseCard = React.memo(({ course }) => {
           >
             <Button
               variant="link"
-              className="p-0 text-left"
+              className="p-0 text-left dashboardCourseLink"
               onClick={() =>
                 buttonClicked(course._id, course.name).then(
                   () => (window.location.href = "/course/#" + ct.name)
@@ -39,7 +36,13 @@ const DashboardCourseCard = React.memo(({ course }) => {
               }
               title={"Ir a " + ct.name}
             >
-              <strong>{ct.name}</strong>
+              <strong>
+                <i
+                  className="fas fa-location-arrow mr-2"
+                  style={{ fontSize: "13px" }}
+                />
+                {ct.name}
+              </strong>
             </Button>
 
             {ct.hasReward ? (
