@@ -4,11 +4,12 @@ const model = require("../../models");
 // postMessage()
 // matches with /api/guest/postMessage
 router.post("/postMessage", function (req, res) {
-  const { body, email, subject, type, user } = req.body;
+  const { body, email, subject, type, name, username } = req.body;
 
   model.Message.create({
     type,
-    user,
+    name,
+    username,
     email,
     subject,
     body,

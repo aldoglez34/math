@@ -96,7 +96,8 @@ const AdminMessages = React.memo(() => {
                         msgId={m._id}
                         sentAt={m.sentAt}
                         type={m.type === "Guest" ? "Visitante" : "Estudiante"}
-                        user={m.user}
+                        name={m.name}
+                        username={m.username}
                         email={m.email}
                         subject={m.subject}
                         body={m.body}

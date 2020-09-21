@@ -7,9 +7,22 @@ const schema = new Schema({
     required: true,
     enum: ["Guest", "Student"],
   },
-  user: {
+  seen: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  answered: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  name: {
     type: String,
     required: true,
+  },
+  username: {
+    type: String,
   },
   email: {
     type: String,
@@ -25,19 +38,12 @@ const schema = new Schema({
     type: String,
     trim: true,
   },
-  seen: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
-  answered: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
   sentAt: {
     type: Date,
     default: Date.now(),
+  },
+  respondedAt: {
+    type: Date,
   },
 });
 

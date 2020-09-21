@@ -68,16 +68,11 @@ const HelpModal = React.memo(({ courseName, topic }) => {
               values.email = student.email;
               values.subject = "Curso: " + courseName + " / Tema: " + topic;
               values.type = "Student";
-              values.user =
-                "Nombre: " +
-                student.name +
-                " " +
-                student.firstSurname +
-                " / Usuario: " +
-                student.username;
+              values.username = student.username;
+              values.name = student.name + " " + student.firstSurname;
               API.postMessage(values)
                 .then((res) => {
-                  console.log(res);
+                  // console.log(res);
                   alert(
                     "Tu mensaje ha sido enviado con éxito, la respuesta del maestro te será notificada en la esquina superior derecha, donde aparece tu correo."
                   );

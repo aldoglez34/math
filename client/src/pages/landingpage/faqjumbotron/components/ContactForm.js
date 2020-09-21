@@ -6,7 +6,7 @@ import API from "../../../../utils/API";
 
 const ContactForm = () => {
   const yupschema = yup.object({
-    user: yup.string().required("Requerido"),
+    name: yup.string().required("Requerido"),
     email: yup.string().email("Formato inválido").required("Requerido"),
     subject: yup.string().required("Requerido"),
     body: yup.string(),
@@ -15,7 +15,7 @@ const ContactForm = () => {
   return (
     <Formik
       initialValues={{
-        user: "",
+        name: "",
         email: "",
         subject: "",
         body: "",
@@ -26,7 +26,7 @@ const ContactForm = () => {
         values.type = "Guest";
         API.postMessage(values)
           .then((res) => {
-            console.log(res);
+            // console.log(res);
             alert(res.data);
           })
           .catch((err) => {
@@ -51,16 +51,16 @@ const ContactForm = () => {
               <Form.Control
                 maxLength="150"
                 type="text"
-                name="user"
-                value={values.user}
+                name="name"
+                value={values.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                isValid={touched.user && !errors.user}
-                isInvalid={touched.user && !!errors.user}
+                isValid={touched.name && !errors.name}
+                isInvalid={touched.name && !!errors.name}
               />
               <ErrorMessage
                 className="text-danger"
-                name="user"
+                name="name"
                 component="div"
               />
             </Form.Group>
