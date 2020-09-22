@@ -4,9 +4,9 @@ import { Image, Button } from "react-bootstrap";
 const NoCourses = React.memo(() => {
   return (
     <div className="text-center mt-4">
-      <Image src="/images/emptybox.png" id="emptyBox" />
+      <Image src="/images/emptybox.png" className="emptyBox" />
       <em className="d-block lead" style={{ color: "#b3b3b3" }}>
-        No tienes cursos en tu cuenta :(
+        No tienes cursos en tu cuenta...
       </em>
       <div className="d-flex mt-4 justify-content-center">
         <Button

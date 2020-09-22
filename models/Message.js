@@ -38,6 +38,10 @@ const schema = new Schema({
     type: String,
     trim: true,
   },
+  response: {
+    type: String,
+    trim: true,
+  },
   sentAt: {
     type: Date,
     default: Date.now(),

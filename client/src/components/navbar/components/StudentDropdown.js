@@ -35,8 +35,11 @@ const StudentDropdown = React.memo(() => {
         </span>
       }
     >
+      <NavDropdown.Item href="/dashboard" className="dropdownStyle">
+        Mis cursos
+      </NavDropdown.Item>
       <NavDropdown.Item href="/messages" className="dropdownStyle">
-        Mensajes
+        Mis mensajes
       </NavDropdown.Item>
       <NavDropdown.Divider />
       <NavDropdown.Item onClick={logout} className="dropdownStyle">

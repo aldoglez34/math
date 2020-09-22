@@ -7,7 +7,7 @@ import TeacherAPI from "../../../utils/TeacherAPI";
 import ResponseForm from "./ResponseForm";
 
 const ItemModal = React.memo(
-  ({ msgId, sentAt, type, user, email, subject, body, seen, answered }) => {
+  ({ msgId, sentAt, type, username, email, subject, body, seen, answered }) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
@@ -77,7 +77,7 @@ const ItemModal = React.memo(
               <h5 className="mt-3 text-dark">Tipo</h5>
               {type}
               <h5 className="mt-3 text-dark">Usuario</h5>
-              {user}
+              {username}
               <h5 className="mt-3 text-dark">Correo</h5>
               {email}
               <h5 className="mt-3 text-dark">Asunto</h5>
@@ -102,7 +102,8 @@ ItemModal.propTypes = {
   msgId: PropTypes.string.isRequired,
   sentAt: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  user: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  username: PropTypes.string,
   email: PropTypes.string.isRequired,
   subject: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
