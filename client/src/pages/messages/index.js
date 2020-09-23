@@ -26,6 +26,8 @@ const Dashboard = React.memo(() => {
         console.log(err);
         alert("Ocurrió un error");
       });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [student._id]);
 
   return (

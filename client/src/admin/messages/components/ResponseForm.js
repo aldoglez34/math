@@ -2,15 +2,17 @@ import React from "react";
 import { Form, Button, Col } from "react-bootstrap";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
+import TeachAPI from "../../../utils/TeacherAPI";
+import PropTypes from "prop-types";
 
-const ResponseForm = React.memo(() => {
+const ResponseForm = React.memo(({ msgId }) => {
   const yupschema = yup.object({
     body: yup.string().required("Requerido"),
   });
 
   return (
     <>
-      <h3 className="mt-3">Tu respuesta</h3>
+      <h5 className="mt-3 text-dark">Respuesta</h5>
       <Formik
         initialValues={{
           body: "",
@@ -18,7 +20,17 @@ const ResponseForm = React.memo(() => {
         validationSchema={yupschema}
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(true);
-          console.log(values);
+          values.msgId = msgId;
+          TeachAPI.t_respondMsg(values)
+            .then((res) => {
+              console.log(res.data);
+              alert("Mensaje respondido");
+              window.location.reload();
+            })
+            .catch((err) => {
+              console.log(err);
+              alert("Ocurrió un error, vuelve a intentarlo más tarde");
+            });
         }}
       >
         {({
@@ -58,7 +70,7 @@ const ResponseForm = React.memo(() => {
               <Button
                 variant="dark"
                 type="submit"
-                className="shadow-sm"
+                className="shadow-sm mt-3"
                 disabled={isSubmitting}
               >
                 Enviar
@@ -70,5 +82,9 @@ const ResponseForm = React.memo(() => {
     </>
   );
 });
+
+ResponseForm.propTypes = {
+  msgId: PropTypes.string.isRequired,
+};
 
 export default ResponseForm;

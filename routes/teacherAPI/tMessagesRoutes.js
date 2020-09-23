@@ -29,4 +29,21 @@ router.put("/markSeen/:msgId", function (req, res) {
     });
 });
 
+// t_respondMsg()
+// matches with /teacherAPI/messages/respond
+router.put("/respond", function (req, res) {
+  const { body, msgId } = req.body;
+
+  model.Message.findByIdAndUpdate(msgId, {
+    response: body,
+    answered: true,
+    respondedAt: Date.now(),
+  })
+    .then((data) => res.json(data))
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send({ msg: "Ocurrió un error" });
+    });
+});
+
 module.exports = router;

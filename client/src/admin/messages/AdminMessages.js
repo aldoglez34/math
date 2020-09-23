@@ -91,19 +91,7 @@ const AdminMessages = React.memo(() => {
                   </h3>
                   <ListGroup>
                     {filtered.map((m) => (
-                      <ItemModal
-                        key={m._id}
-                        msgId={m._id}
-                        sentAt={m.sentAt}
-                        type={m.type === "Guest" ? "Visitante" : "Estudiante"}
-                        name={m.name}
-                        username={m.username}
-                        email={m.email}
-                        subject={m.subject}
-                        body={m.body}
-                        seen={m.seen}
-                        answered={m.answered}
-                      />
+                      <ItemModal key={m._id} message={m} />
                     ))}
                   </ListGroup>
                 </>
