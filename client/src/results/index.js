@@ -102,16 +102,14 @@ const Results = React.memo(() => {
             <MyResults results={exam.results} />
             {/* button */}
             <br />
-            <div className="text-center">
-              <Button
-                variant="success"
-                href={"/course/#" + exam.topicName}
-                className="shadow"
-              >
-                <i className="fas fa-arrow-left mr-2" />
-                Regresar
-              </Button>
-            </div>
+            <Button
+              variant="dark"
+              href={"/course/#" + exam.topicName}
+              className="shadow"
+            >
+              <i className="fas fa-arrow-left mr-2" />
+              Regresar
+            </Button>
           </Col>
         </Row>
       </Container>

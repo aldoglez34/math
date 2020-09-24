@@ -14,6 +14,14 @@ const CourseInfoPrimaria = React.memo(() => {
           marginBottom: "80px",
         }}
       >
+        {/* breadcrumb */}
+        <div className="d-flex flex-row" style={{ fontSize: "22px" }}>
+          <a href="/">
+            <i className="fas fa-home" />
+          </a>
+          <span className="mx-2 text-muted">/</span>
+          <span>Cursos de Primaria</span>
+        </div>
         {/* title */}
         <Row>
           <Col md={{ span: 8, offset: 2 }}>

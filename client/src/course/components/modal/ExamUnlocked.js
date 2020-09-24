@@ -35,7 +35,7 @@ const ExamUnlocked = React.memo(({ showUnlocked, setShowExamUnlocked_ }) => {
                 desbloqueado
               </span>
               <span className="mb-1">
-                Una nueva dificultad de este tema ha sido desbloqueada:{" "}
+                Una nueva dificultad de este tema ha sido desbloqueada
               </span>
               <div className="mb-3">
                 <DifficultyStarts difficulty={unlocked.difficulty} />

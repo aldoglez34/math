@@ -62,10 +62,10 @@ const MyNavbar = React.memo(() => {
                   >
                     MI USUARIO
                   </h6>
-                  <StudentDropdown />
+                  <StudentDropdown unseenMessages={student.unseenMessages} />
                 </div>
                 <div className="d-none d-lg-block">
-                  <StudentDropdown />
+                  <StudentDropdown unseenMessages={student.unseenMessages} />
                 </div>
               </>
             ) : (

@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import * as breadcrumbActions from "../../redux/actions/breadcrumb";
 import * as courseActions from "../../redux/actions/course";
 import * as examActions from "../../redux/actions/exam";
+import * as zenModeActions from "../../redux/actions/zenMode";
 
 const Dashboard = React.memo(() => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const Dashboard = React.memo(() => {
   const course = useSelector((state) => state.course);
   const exam = useSelector((state) => state.exam);
   const breadcrumb = useSelector((state) => state.breadcrumb);
+  const zenMode = useSelector((state) => state.zenMode);
 
   const [myCourses, setMyCourses] = useState();
 
@@ -26,6 +28,7 @@ const Dashboard = React.memo(() => {
     if (course) dispatch(courseActions.clearCourse());
     if (exam) dispatch(examActions.clearExam());
     if (breadcrumb) dispatch(breadcrumbActions.clearBreadcrumb());
+    if (zenMode) dispatch(zenModeActions.zenModeOff());
 
     // fetch student's courses
     if (student) {

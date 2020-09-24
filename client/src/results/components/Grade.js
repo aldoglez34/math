@@ -6,7 +6,7 @@ import "./grade.scss";
 const Grade = React.memo(({ grade, aciertos, errores }) => {
   return (
     <>
-      <h2>Tu calificación es...</h2>
+      <h2 className="mt-4">Tu calificación es...</h2>
       {/* calificación */}
       <div
         className="d-flex flex-column rounded justify-content-center align-items-center"

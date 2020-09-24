@@ -5,7 +5,7 @@ import * as yup from "yup";
 import TeachAPI from "../../../utils/TeacherAPI";
 import PropTypes from "prop-types";
 
-const ResponseForm = React.memo(({ msgId }) => {
+const ResponseForm = React.memo(({ msgId, email }) => {
   const yupschema = yup.object({
     body: yup.string().required("Requerido"),
   });
@@ -21,10 +21,11 @@ const ResponseForm = React.memo(({ msgId }) => {
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(true);
           values.msgId = msgId;
+          values.email = email;
           TeachAPI.t_respondMsg(values)
             .then((res) => {
               console.log(res.data);
-              alert("Mensaje respondido");
+              alert("Mensaje respondido, el usuario será notificado");
               window.location.reload();
             })
             .catch((err) => {
@@ -85,6 +86,7 @@ const ResponseForm = React.memo(({ msgId }) => {
 
 ResponseForm.propTypes = {
   msgId: PropTypes.string.isRequired,
+  email: PropTypes.string,
 };
 
 export default ResponseForm;

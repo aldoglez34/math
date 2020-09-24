@@ -8,6 +8,7 @@ import Topic from "./components/Topic";
 import { useSelector, useDispatch } from "react-redux";
 import * as breadcrumbActions from "../redux/actions/breadcrumb";
 import * as examActions from "../redux/actions/exam";
+import * as zenModeActions from "../redux/actions/zenMode";
 import ExamUnlocked from "./components/modal/ExamUnlocked";
 
 export default React.memo((props) => {
@@ -19,6 +20,7 @@ export default React.memo((props) => {
   const reduxStudent = useSelector((state) => state.student);
   const reduxExam = useSelector((state) => state.exam);
   const unlocked = useSelector((state) => state.unlocked);
+  const zenMode = useSelector((state) => state.zenMode);
 
   const [showUnlocked, setShowExamUnlocked] = useState(false);
 
@@ -34,6 +36,8 @@ export default React.memo((props) => {
 
     // if there was a new exam unlocked, show it (this covers freestyle as well)
     if (unlocked) setShowExamUnlocked(true);
+
+    if (zenMode) dispatch(zenModeActions.zenModeOff());
 
     // fetch course info
     if (reduxCourse && reduxStudent) {

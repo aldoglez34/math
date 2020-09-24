@@ -74,6 +74,11 @@ const schema = new Schema({
     type: Date,
     default: Date.now(),
   },
+  unseenMessages: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
 });
 
 const Student = mongoose.model("Student", schema);

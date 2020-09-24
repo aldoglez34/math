@@ -1,8 +1,11 @@
 import React from "react";
 import { NavDropdown } from "react-bootstrap";
 import "./coursesdropdown.scss";
+import { useSelector } from "react-redux";
 
 const CoursesDropdown = React.memo(() => {
+  const zenMode = useSelector((state) => state.zenMode);
+
   return (
     <NavDropdown
       id="coursesDropdownTextToggle"
@@ -15,6 +18,7 @@ const CoursesDropdown = React.memo(() => {
           />
         </span>
       }
+      disabled={zenMode ? true : false}
     >
       <NavDropdown.Item href="/courses/primaria" className="dropdownStyle">
         Primaria

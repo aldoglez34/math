@@ -4,6 +4,7 @@ import breadcrumb from "./breadcrumbReducers";
 import course from "./courseReducers";
 import exam from "./examReducers";
 import unlocked from "./unlockedReducers";
+import zenMode from "./zenModeReducers";
 
 const rootReducer = combineReducers({
   student,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   course,
   exam,
   unlocked,
+  zenMode,
 });
 
 export default rootReducer;

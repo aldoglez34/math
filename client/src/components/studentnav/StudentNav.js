@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 const StudentNav = React.memo(() => {
   const student = useSelector((state) => state.student);
 
+  const zenMode = useSelector((state) => state.zenMode);
+
   return (
     <div id="studentNav">
       <Container>
@@ -26,6 +28,7 @@ const StudentNav = React.memo(() => {
               size="sm"
               className="shadow-sm"
               href="/dashboard"
+              disabled={zenMode ? true : false}
             >
               <i className="fas fa-graduation-cap mr-2" />
               Cursos
@@ -35,6 +38,7 @@ const StudentNav = React.memo(() => {
               size="sm"
               className="ml-2 shadow-sm"
               href="/messages"
+              disabled={zenMode ? true : false}
             >
               <i className="fas fa-inbox mr-2" />
               Mensajes
@@ -47,6 +51,7 @@ const StudentNav = React.memo(() => {
               size="sm"
               className="shadow-sm"
               href="/dashboard"
+              disabled={zenMode ? true : false}
             >
               <i className="fas fa-graduation-cap" />
             </Button>
@@ -55,6 +60,7 @@ const StudentNav = React.memo(() => {
               size="sm"
               className="shadow-sm mt-1"
               href="/messages"
+              disabled={zenMode ? true : false}
             >
               <i className="fas fa-inbox" />
             </Button>

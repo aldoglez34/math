@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, ListGroup, Button, Form } from "react-bootstrap";
+import { Modal, ListGroup, Button, Form, Row, Col } from "react-bootstrap";
 import moment from "moment";
 import "moment/locale/es";
 import PropTypes from "prop-types";
@@ -66,6 +66,7 @@ const ItemModal = React.memo(({ message }) => {
 
       <Modal show={show} backdrop="static" keyboard={false}>
         <Modal.Body className="bg-light rounded shadow">
+          {/* top */}
           <div className="d-flex">
             <h3 className="mb-3">Mensaje...</h3>
             <Button
@@ -78,30 +79,33 @@ const ItemModal = React.memo(({ message }) => {
               <i className="fas fa-times" style={{ fontSize: "22px" }} />
             </Button>
           </div>
+          <Row>
+            <Col>
+              {" "}
+              <h5 className="text-dark">Cuenta</h5>
+              {message.type === "Student" ? "Estudiante" : "Invitado"}
+            </Col>
+            <Col>
+              {" "}
+              {message.type === "Student" ? (
+                <div className="d-flex flex-column">
+                  <h5 className="text-dark">Usuario</h5>
+                  {message.username}
+                </div>
+              ) : (
+                <div className="d-flex flex-column">
+                  <h5 className="text-dark">Nombre</h5>
+                  {message.name}
+                </div>
+              )}
+            </Col>
+            <Col>
+              {" "}
+              <h5 className="text-dark">Fecha</h5>
+              {moment(message.sentAt).format("L")}
+            </Col>
+          </Row>
           <div>
-            <div className="mt-2 d-flex">
-              <div className="d-flex flex-column">
-                <h5 className="text-dark">Cuenta</h5>
-                {message.type === "Student" ? "Estudiante" : "Invitado"}
-              </div>
-              <div className="d-flex flex-column ml-4">
-                {message.type === "Student" ? (
-                  <div className="d-flex flex-column">
-                    <h5 className="text-dark">Usuario</h5>
-                    {message.username}
-                  </div>
-                ) : (
-                  <div className="d-flex flex-column">
-                    <h5 className="text-dark">Nombre</h5>
-                    {message.name}
-                  </div>
-                )}
-              </div>
-              <div className="d-flex flex-column ml-4">
-                <h5 className="text-dark">Fecha</h5>
-                {moment(message.sentAt).format("L")}
-              </div>
-            </div>
             {message.type === "Student" ? (
               <div className="d-flex flex-column mt-3">
                 <h5 className="text-dark">Nombre</h5>
@@ -130,7 +134,7 @@ const ItemModal = React.memo(({ message }) => {
             {/* response */}
             {message.type === "Guest" ? null : message.type === "Student" &&
               !message.answered ? (
-              <ResponseForm msgId={message._id} />
+              <ResponseForm msgId={message._id} email={message.email} />
             ) : (
               <>
                 <h5 className="mt-3 text-dark">Respuesta</h5>

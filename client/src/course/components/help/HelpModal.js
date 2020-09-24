@@ -45,17 +45,21 @@ const HelpModal = React.memo(({ courseName, topic }) => {
                 <i className="fas fa-times" style={{ fontSize: "22px" }} />
               </Button>
             </div>
-            <strong className="mb-2">
-              ¿Tienes duda sobre el curso <u>{topic}</u>?
-            </strong>
-            <strong className="mb-2">
+            <span className="mb-2">
+              ¿Tienes duda sobre el curso{" "}
+              <strong>
+                <u>{topic}</u>
+              </strong>
+              ?
+            </span>
+            <span className="mb-2">
               Utiliza el siguiente recuadro para hacerle llegar tu comentario al
               maestro.
-            </strong>
-            <strong className="mb-2">
+            </span>
+            <span className="mb-2">
               Recibirás una notificación en la esquina superior derecha (donde
               sale tu correo) cuando tu mensaje sea contestado.
-            </strong>
+            </span>
           </div>
 
           <Formik
@@ -66,12 +70,12 @@ const HelpModal = React.memo(({ courseName, topic }) => {
             onSubmit={(values, { setSubmitting }) => {
               setSubmitting(true);
               values.email = student.email;
-              values.subject = "Curso: " + courseName + " / Tema: " + topic;
+              values.subject = courseName + " / " + topic;
               values.type = "Student";
               values.username = student.username;
               values.name = student.name + " " + student.firstSurname;
               API.postMessage(values)
-                .then((res) => {
+                .then(() => {
                   // console.log(res);
                   alert(
                     "Tu mensaje ha sido enviado con éxito, la respuesta del maestro te será notificada en la esquina superior derecha, donde aparece tu correo."
@@ -96,7 +100,6 @@ const HelpModal = React.memo(({ courseName, topic }) => {
                 {/* body */}
                 <Form.Row>
                   <Form.Group as={Col}>
-                    <Form.Label>Tu mensaje:</Form.Label>
                     <Form.Control
                       maxLength="250"
                       type="text"

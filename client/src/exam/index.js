@@ -4,6 +4,7 @@ import { StudentLayout } from "../components/Layout";
 import { Container, Spinner } from "react-bootstrap";
 import API from "../utils/API";
 import * as breadcrumbActions from "../redux/actions/breadcrumb";
+import * as zenModeActions from "../redux/actions/zenMode";
 import QuestionsContainer from "./questionscontainer/QuestionsContainer";
 import "./examstyle.scss";
 
@@ -19,21 +20,10 @@ const Exam = React.memo(() => {
     if (course && reduxExam) {
       API.fetchExamInfo(reduxExam._id)
         .then((res) => {
-          // set breadcrumb info
-          dispatch(
-            breadcrumbActions.setBreadcrumb([
-              { text: "Mis cursos", link: "/dashboard" },
-              {
-                text: course.name,
-                link: "/course",
-              },
-              {
-                text: reduxExam.topicName,
-                link: "/course/#" + reduxExam.topicName,
-              },
-              { text: reduxExam.name },
-            ])
-          );
+          // clear breadcrumb
+          dispatch(breadcrumbActions.clearBreadcrumb());
+          // zendmode on
+          dispatch(zenModeActions.zenModeOn());
           // set exam info in the state to init the exam
           setExam(res.data);
         })
@@ -46,7 +36,7 @@ const Exam = React.memo(() => {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [course, reduxExam]);
+  }, []);
 
   return (
     <StudentLayout>
@@ -54,7 +44,9 @@ const Exam = React.memo(() => {
         <>
           {/* title */}
           <Container>
-            <h1 className="examNameStyle">{exam.name}</h1>
+            <h1 className="examNameStyle" className="mt-4">
+              {exam.name}
+            </h1>
           </Container>
           {/* questions */}
           <QuestionsContainer questions={exam.questions} />

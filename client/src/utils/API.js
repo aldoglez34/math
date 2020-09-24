@@ -17,6 +17,12 @@ export default {
 
   fetchMessages: (username) => axios.get("/api/student/messages/" + username),
 
+  fetchUnseeenMessages: (studentId) =>
+    axios.get("/api/student/messages/unseen/" + studentId),
+
+  markAllMessagesSeen: (studentId) =>
+    axios.put("/api/student/messages/markAllSeen/" + studentId),
+
   // student panel
 
   fetchDashboard: (studentId) =>

@@ -5,6 +5,7 @@ import API from "../../utils/API";
 import { useSelector, useDispatch } from "react-redux";
 import MyMessages from "./components/MyMessages";
 import * as breadcrumbActions from "../../redux/actions/breadcrumb";
+import * as zenModeActions from "../../redux/actions/zenMode";
 
 const Dashboard = React.memo(() => {
   const dispatch = useDispatch();
@@ -13,14 +14,27 @@ const Dashboard = React.memo(() => {
 
   const student = useSelector((state) => state.student);
   const breadcrumb = useSelector((state) => state.breadcrumb);
+  const zenMode = useSelector((state) => state.zenMode);
 
   useEffect(() => {
     if (breadcrumb) dispatch(breadcrumbActions.clearBreadcrumb());
 
+    if (zenMode) dispatch(zenModeActions.zenModeOff());
+
     API.fetchMessages(student.username)
       .then((res) => {
         setMessages(res.data);
-        console.log(res.data);
+        // console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Ocurrió un error");
+      });
+
+    API.markAllMessagesSeen(student._id)
+      .then(() => {
+        // console.log(res.data);
+        console.log("Todos los mensajes han sido marcados como vistos");
       })
       .catch((err) => {
         console.log(err);
@@ -33,6 +47,7 @@ const Dashboard = React.memo(() => {
   return (
     <StudentLayout>
       <Container className="pb-4">
+        {/* title */}
         <h2 className="studentTitle">Mis mensajes</h2>
         {messages ? (
           messages.length ? (

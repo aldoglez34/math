@@ -100,4 +100,31 @@ router.get("/messages/:username", function (req, res) {
     });
 });
 
+// fetchUnseeenMessages()
+// matches with /api/student/messages/unseen/:studentId
+router.get("/messages/unseen/:studentId", function (req, res) {
+  const studentId = req.params.studentId;
+
+  model.Student.findById(studentId)
+    .select("unseenMessages")
+    .then((data) => res.json(data.unseenMessages))
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send({ msg: "Ocurrió un error" });
+    });
+});
+
+// markAllMessagesSeen()
+// matches with /api/student/messages/markAllSeen/:studentId
+router.put("/messages/markAllSeen/:studentId", function (req, res) {
+  const studentId = req.params.studentId;
+
+  model.Student.findByIdAndUpdate(studentId, { unseenMessages: 0 })
+    .then((data) => res.json(data))
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send({ msg: "Ocurrió un error" });
+    });
+});
+
 module.exports = router;
