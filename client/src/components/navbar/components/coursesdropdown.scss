@@ -1,13 +1,26 @@
-#coursesDropdownText {
+.coursesDropdownText {
   font-weight: bold !important;
   background-color: transparent;
   border-color: transparent;
   color: #7b8887 !important;
   font-size: 16px !important;
+
   &:hover {
     color: gainsboro !important;
     transition: 0.2s !important;
   }
+
+  :disabled {
+    color: red !important;
+  }
+
+  :disabled {
+    color: red !important;
+  }
+}
+
+.coursesDropdownText::disabled {
+  color: red !important;
 }
 
 #coursesDropdownTextToggle {

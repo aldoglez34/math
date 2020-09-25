@@ -3,13 +3,27 @@
   border-bottom: 1px solid #20323a;
 }
 
-#myLogo {
-  // cursor: pointer;
+.mainLogo {
+  cursor: pointer;
 
   color: #48bf84;
   text-decoration: none;
   font-family: "Noto Serif", serif !important;
   font-weight: 700 !important;
+
+  &:hover {
+    color: #87e2b4;
+    transition: 0.2s;
+  }
+
+  &.zenLogo {
+    cursor: default;
+
+    &:hover {
+      color: #48bf84;
+      transition: 0.2s;
+    }
+  }
 }
 
 .navbarItem {

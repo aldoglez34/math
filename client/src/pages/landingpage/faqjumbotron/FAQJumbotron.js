@@ -27,7 +27,7 @@ const FAQJumbotron = React.memo(() => {
           </div>
         </Accordion.Toggle>
         <Accordion.Collapse eventKey={key}>
-          <Card.Body className="fj_answer">{answer}</Card.Body>
+          <Card.Body className="fj_answer bg-light">{answer}</Card.Body>
         </Accordion.Collapse>
       </Card>
     );
@@ -73,7 +73,7 @@ const FAQJumbotron = React.memo(() => {
                   </div>
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="contactForm">
-                  <Card.Body className="fj_answer d-flex flex-column">
+                  <Card.Body className="fj_answer d-flex flex-column bg-light">
                     <strong className="mb-2">
                       Puedes comunicarte al siguiente número de Whatsapp
                     </strong>

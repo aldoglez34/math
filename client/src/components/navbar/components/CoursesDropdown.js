@@ -10,7 +10,7 @@ const CoursesDropdown = React.memo(() => {
     <NavDropdown
       id="coursesDropdownTextToggle"
       title={
-        <span id="coursesDropdownText" className="px-0">
+        <span className="px-0 coursesDropdownText">
           Cursos
           <i
             className="fas fa-chevron-down ml-1"

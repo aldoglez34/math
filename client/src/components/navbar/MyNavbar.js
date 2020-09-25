@@ -8,6 +8,8 @@ import StudentDropdown from "./components/StudentDropdown";
 const MyNavbar = React.memo(() => {
   const student = useSelector((state) => state.student);
 
+  const zenMode = useSelector((state) => state.zenMode);
+
   return (
     <Navbar
       fixed="top"
@@ -17,11 +19,15 @@ const MyNavbar = React.memo(() => {
       variant="dark"
       className="py-2 shadow"
     >
-      <Navbar.Brand href="/" className="d-block d-lg-none">
-        <h2 className="mb-0" id="myLogo">
-          MeXmáticas
-        </h2>
-      </Navbar.Brand>
+      {zenMode ? (
+        <Navbar.Brand className="d-block d-lg-none">
+          <h2 className="mb-0 mainLogo zenLogo">MeXmáticas</h2>
+        </Navbar.Brand>
+      ) : (
+        <Navbar.Brand href="/" className="d-block d-lg-none">
+          <h2 className="mb-0 mainLogo">MeXmáticas</h2>
+        </Navbar.Brand>
+      )}
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
       <Navbar.Collapse id="responsive-navbar-nav">
@@ -34,11 +40,15 @@ const MyNavbar = React.memo(() => {
           </Nav>
           {/* middle */}
           <Nav as={Col} className="d-none d-lg-block text-center pr-0">
-            <Navbar.Brand href="/">
-              <h2 className="mb-0" id="myLogo">
-                MeXmáticas
-              </h2>
-            </Navbar.Brand>
+            {zenMode ? (
+              <Navbar.Brand>
+                <h2 className="mb-0 mainLogo zenLogo">MeXmáticas</h2>
+              </Navbar.Brand>
+            ) : (
+              <Navbar.Brand href="/">
+                <h2 className="mb-0 mainLogo">MeXmáticas</h2>
+              </Navbar.Brand>
+            )}
           </Nav>
           {/* right */}
           <Nav
