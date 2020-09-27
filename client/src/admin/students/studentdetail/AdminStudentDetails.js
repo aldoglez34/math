@@ -1,20 +1,33 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../../layout/AdminLayout";
-import { Container, Row, Col, Spinner } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import moment from "moment";
 import "moment/locale/es";
 import AdminOptionsDropdown from "../../components/AdminOptionsDropdown";
 import AdminSpinner from "../../components/AdminSpinner";
+import { useDispatch } from "react-redux";
+import * as adminActions from "../../../redux/actions/admin";
 
 const AdminStudentDetails = React.memo((props) => {
+  const dispatch = useDispatch();
+
   const [student, setStudent] = useState();
 
   useEffect(() => {
     const studentId = props.routeProps.match.params.studentId;
 
+    // set back button
+    dispatch(
+      adminActions.setBackBttn({ link: "/admin/students", text: "Alumnos" })
+    );
+
     TeacherAPI.t_fetchOneStudent(studentId)
-      .then((res) => setStudent(res.data))
+      .then((res) => {
+        setStudent(res.data);
+        // set title
+        dispatch(adminActions.setTitle(res.data.email.split("@", 1)[0]));
+      })
       .catch((err) => {
         console.log(err);
         alert("Ocurrió un error");
@@ -22,11 +35,7 @@ const AdminStudentDetails = React.memo((props) => {
   }, [props.routeProps.match.params.studentId]);
 
   return student ? (
-    <AdminLayout
-      title={student.email.split("@", 1)[0]}
-      leftBarActive="Alumnos"
-      backBttn={{ link: "/admin/students", text: "Alumnos" }}
-    >
+    <AdminLayout leftBarActive="Alumnos">
       <Container>
         <Row>
           <Col className="px-0 mt-4" md={{ offset: 2, span: 8 }}>

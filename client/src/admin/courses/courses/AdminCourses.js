@@ -4,11 +4,17 @@ import { Button, Container, Row, Col, ListGroup } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import CourseItem from "./components/CourseItem";
 import AdminSpinner from "../../components/AdminSpinner";
+import { useDispatch } from "react-redux";
+import { setTitle } from "../../../redux/actions/admin";
 
 const TeacherCoursesMain = React.memo(() => {
+  const dispatch = useDispatch();
+
   const [courses, setCourses] = useState();
 
   useEffect(() => {
+    dispatch(setTitle("Cursos"));
+
     TeacherAPI.t_fetchCourses()
       .then((res) => setCourses(res.data))
       .catch((err) => {
@@ -18,7 +24,7 @@ const TeacherCoursesMain = React.memo(() => {
   }, []);
 
   return courses ? (
-    <AdminLayout title="Cursos" leftBarActive="Cursos">
+    <AdminLayout leftBarActive="Cursos">
       <Container fluid>
         <Row>
           <Col className="px-0 mt-4" md={{ offset: 2, span: 8 }}>

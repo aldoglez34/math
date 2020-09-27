@@ -4,13 +4,19 @@ import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import ItemModal from "./components/ItemModal";
 import AdminSpinner from "../components/AdminSpinner";
+import { useDispatch } from "react-redux";
+import { setTitle } from "../../redux/actions/admin";
 
 const AdminMessages = React.memo(() => {
+  const dispatch = useDispatch();
+
   const [messages, setMessages] = useState();
   const [filtered, setFiltered] = useState();
   const [filter, setFilter] = useState();
 
   useEffect(() => {
+    dispatch(setTitle("Mensajes"));
+
     TeacherAPI.t_fetchMessages()
       .then((res) => {
         setMessages(res.data);
@@ -73,7 +79,7 @@ const AdminMessages = React.memo(() => {
   );
 
   return filtered ? (
-    <AdminLayout title="Mensajes" leftBarActive="Mensajes" buttons={filters}>
+    <AdminLayout leftBarActive="Mensajes" buttons={filters}>
       <Container fluid>
         <Row>
           <Col className="px-0 mt-4" md={{ offset: 2, span: 8 }}>
