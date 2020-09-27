@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../layout/AdminLayout";
-import {
-  Container,
-  Row,
-  Col,
-  Spinner,
-  ListGroup,
-  Button,
-} from "react-bootstrap";
+import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import ItemModal from "./components/ItemModal";
+import AdminSpinner from "../components/AdminSpinner";
 
 const AdminMessages = React.memo(() => {
   const [messages, setMessages] = useState();
@@ -78,35 +72,31 @@ const AdminMessages = React.memo(() => {
     </div>
   );
 
-  return (
+  return filtered ? (
     <AdminLayout title="Mensajes" leftBarActive="Mensajes" buttons={filters}>
       <Container fluid>
         <Row>
           <Col className="px-0 mt-4" md={{ offset: 2, span: 8 }}>
-            {filtered ? (
-              filtered.length ? (
-                <>
-                  <h3 className="mb-3" style={{ color: "#0f5257" }}>
-                    Selecciona un mensaje para ver su contenido...
-                  </h3>
-                  <ListGroup>
-                    {filtered.map((m) => (
-                      <ItemModal key={m._id} message={m} />
-                    ))}
-                  </ListGroup>
-                </>
-              ) : (
-                <div className="text-center mt-4">Sin mensajes</div>
-              )
+            {filtered.length ? (
+              <>
+                <h3 className="mb-3" style={{ color: "#0f5257" }}>
+                  Selecciona un mensaje para ver su contenido...
+                </h3>
+                <ListGroup>
+                  {filtered.map((m) => (
+                    <ItemModal key={m._id} message={m} />
+                  ))}
+                </ListGroup>
+              </>
             ) : (
-              <div className="text-center mt-4">
-                <Spinner animation="border" variant="success" />
-              </div>
+              <div className="text-center mt-4">Sin mensajes</div>
             )}
           </Col>
         </Row>
       </Container>
     </AdminLayout>
+  ) : (
+    <AdminSpinner />
   );
 });
 

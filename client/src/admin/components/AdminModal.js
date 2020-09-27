@@ -4,7 +4,7 @@ import "./adminmodal.scss";
 import PropTypes from "prop-types";
 
 const AdminModal = React.memo(
-  ({ modalTitle, Form, formLabel, formInitialText, courseId }) => {
+  ({ Form, formLabel, formInitialText, courseId }) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -14,9 +14,9 @@ const AdminModal = React.memo(
       <>
         <Button
           size="sm"
-          className="editButton ml-2"
+          className="editButton ml-1"
           onClick={handleShow}
-          title={modalTitle}
+          title="Editar"
         >
           <i className="fas fa-pen-alt " />
         </Button>
@@ -48,7 +48,6 @@ const AdminModal = React.memo(
 );
 
 AdminModal.propTypes = {
-  modalTitle: PropTypes.string,
   modalHeader: PropTypes.string,
   //   Form: PropTypes.element,
   formLabel: PropTypes.string,

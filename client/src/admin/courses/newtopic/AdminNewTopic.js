@@ -18,6 +18,7 @@ const AdminNewCrouse = React.memo((props) => {
       .number()
       .positive("El número debe ser mayor a 1")
       .required("Requerido"),
+    rewardName: yup.string().required("Requerido"),
     file: yup
       .mixed()
       .required("Requerido")
@@ -45,7 +46,10 @@ const AdminNewCrouse = React.memo((props) => {
     <AdminLayout
       title="Nuevo Tema"
       leftBarActive="Cursos"
-      backBttn={"/admin/courses/edit/" + props.routeProps.match.params.courseId}
+      backBttn={{
+        link: "/admin/courses/edit/" + props.routeProps.match.params.courseId,
+        text: "Curso",
+      }}
     >
       <Container>
         <Row>
@@ -59,6 +63,7 @@ const AdminNewCrouse = React.memo((props) => {
                 description: "",
                 freestyleTimer: "",
                 photo: undefined,
+                rewardName: "",
                 file: undefined,
               }}
               validationSchema={yupschema}
@@ -164,7 +169,28 @@ const AdminNewCrouse = React.memo((props) => {
                   </Form.Row>
                   {/* reward */}
                   <Form.Row className="mt-3">
-                    <Col>
+                    <Col md={8}>
+                      <Form.Label>
+                        Nombre de medalla
+                        <strong className="text-danger">*</strong>
+                      </Form.Label>
+                      <Form.Control
+                        maxLength="150"
+                        type="text"
+                        name="rewardName"
+                        value={values.rewardName}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        isValid={touched.rewardName && !errors.rewardName}
+                        isInvalid={touched.rewardName && !!errors.rewardName}
+                      />
+                      <ErrorMessage
+                        className="text-danger"
+                        name="rewardName"
+                        component="div"
+                      />
+                    </Col>
+                    <Col md={4}>
                       <UploadImage
                         photo={values.photo}
                         setFieldValue={setFieldValue}

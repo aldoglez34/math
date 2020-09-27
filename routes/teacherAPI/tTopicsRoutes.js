@@ -121,7 +121,7 @@ router.put("/new", function (req, res) {
     filename: function (req, file, cb) {
       // cb(null, "IMAGE-" + Date.now() + path.extname(file.originalname));
       // set the name of the file
-      cb(null, req.body.photo);
+      cb(null, req.body.file);
     },
   });
 
@@ -142,7 +142,14 @@ router.put("/new", function (req, res) {
     // everything went fine
     // no errors
 
-    const { courseId, subject, name, description, freestyleTimer } = req.body;
+    const {
+      courseId,
+      subject,
+      name,
+      description,
+      freestyleTimer,
+      rewardName,
+    } = req.body;
 
     const newTopic = {
       topicCode: "nuevo",
@@ -150,7 +157,7 @@ router.put("/new", function (req, res) {
       name,
       description,
       reward: {
-        name: "nombre del reward",
+        name: rewardName,
         link: "/files/" + courseId + "/reward",
       },
       freestyle: {
@@ -166,7 +173,7 @@ router.put("/new", function (req, res) {
         },
       }
     )
-      .then((data) => res.send("El tema fue agregado con éxito."))
+      .then(() => res.send("El tema fue agregado con éxito."))
       .catch((err) => {
         console.log("@error", err);
         res.status(422).send("Ocurrió un error");

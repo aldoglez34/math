@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Container, Spinner } from "react-bootstrap";
 import { StudentLayout } from "../components/Layout";
 import { useSelector, useDispatch } from "react-redux";
-import { setBreadcrumb } from "../redux/actions/breadcrumb";
+import { clearBreadcrumb } from "../redux/actions/breadcrumb";
+import * as zenModeActions from "../redux/actions/zenMode";
 import API from "../utils/API";
 import FreestyleQuestions from "./freestylequestions/FreestyleQuestions";
 
@@ -18,23 +19,12 @@ const Freestyle = React.memo(() => {
     if (course && reduxExam) {
       API.fetchFreestyle(reduxExam.topicName)
         .then((res) => {
+          // clear breadcrumb
+          dispatch(clearBreadcrumb());
+          // zendmode on
+          dispatch(zenModeActions.zenModeOn());
           // set exam
           setFreestyle(res.data);
-          // set breadcrumb
-          dispatch(
-            setBreadcrumb([
-              { text: "Mis cursos", link: "/dashboard" },
-              {
-                text: course.name,
-                link: "/course",
-              },
-              {
-                text: reduxExam.topicName,
-                link: "/course/#" + reduxExam.topicName,
-              },
-              { text: reduxExam.name },
-            ])
-          );
         })
         .catch((err) => {
           console.log(err);
@@ -53,7 +43,7 @@ const Freestyle = React.memo(() => {
         <>
           {/* title */}
           <Container>
-            <h1 className="examNameStyle">Modo Rápido</h1>
+            <h1 className="examNameStyle mt-4">Modo Rápido</h1>
           </Container>
           {/* questions */}
           <FreestyleQuestions questions={freestyle} />

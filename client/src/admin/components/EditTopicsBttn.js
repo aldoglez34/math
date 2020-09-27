@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 const EditTopicsBttn = React.memo(({ courseId, topicId }) => {
   return (
     <Button
-      className="editButton ml-2"
-      title="Editar temas"
+      className="editButton ml-1"
+      title="Editar"
       size="sm"
       href={"/admin/courses/edit/topics/" + courseId + "/" + topicId}
     >

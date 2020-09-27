@@ -24,7 +24,7 @@ const AdminNewCrouse = React.memo(() => {
     <AdminLayout
       title="Nuevo Curso"
       leftBarActive="Cursos"
-      backBttn="/admin/courses"
+      backBttn={{ link: "/admin/courses", text: "Cursos" }}
     >
       <Container>
         <Row>

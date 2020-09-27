@@ -12,10 +12,10 @@ const TopHelperNav = React.memo(({ title, backBttn, buttons }) => {
           <Button
             variant="transparent"
             className="p-0 text-light"
-            href={backBttn}
+            href={backBttn.link}
           >
             <i className="fas fa-chevron-left mr-1" />
-            Atrás
+            {backBttn.text}
           </Button>
         ) : null}
       </div>
@@ -34,7 +34,7 @@ const TopHelperNav = React.memo(({ title, backBttn, buttons }) => {
 
 TopHelperNav.propTypes = {
   title: PropTypes.string.isRequired,
-  backBttn: PropTypes.string,
+  backBttn: PropTypes.object,
   buttons: PropTypes.node,
 };
 

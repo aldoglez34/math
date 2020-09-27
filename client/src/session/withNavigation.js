@@ -3,7 +3,7 @@ import AuthUserContext from "./context";
 import { connect } from "react-redux";
 import firebase from "../firebase/firebase";
 import { logoutStudent } from "../redux/actions/student";
-import { Spinner } from "react-bootstrap";
+import AdminSpinner from "../admin/components/AdminSpinner";
 
 // higher order component
 const withNavigation = (Component) => {
@@ -32,11 +32,7 @@ const withNavigation = (Component) => {
           <Component {...this.props} />
         </AuthUserContext.Provider>
       ) : (
-        <div className="h-100 d-flex justify-content-center align-items-center">
-          <Spinner variant="success" animation="border" role="status">
-            <span className="sr-only">Loading...</span>
-          </Spinner>
-        </div>
+        <AdminSpinner />
       );
     }
   }

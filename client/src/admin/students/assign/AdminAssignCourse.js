@@ -8,6 +8,7 @@ const AdminAssignCourse = React.memo((props) => {
 
   useEffect(() => {
     const studentId = props.routeProps.match.params.studentId;
+
     TeacherAPI.t_fetchStudentUnpurchased(studentId)
       .then((res) => setUnpurchased(res.data))
       .catch((err) => {
@@ -35,9 +36,12 @@ const AdminAssignCourse = React.memo((props) => {
 
   return (
     <AdminLayout
-      title="Historial de exámenes"
+      title="Asignar Curso"
       leftBarActive="Alumnos"
-      backBttn={"/admin/students/" + props.routeProps.match.params.studentId}
+      backBttn={{
+        link: "/admin/students/" + props.routeProps.match.params.studentId,
+        text: "Alumnos",
+      }}
     >
       <Container>
         <Row>

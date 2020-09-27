@@ -15,6 +15,7 @@ const AdminTopic = React.memo((props) => {
   useEffect(() => {
     const courseId = props.routeProps.match.params.courseId;
     const topicId = props.routeProps.match.params.topicId;
+
     TeacherAPI.t_fetchTopic(courseId, topicId)
       .then((res) => setTopic(res.data))
       .catch((err) => {
@@ -28,9 +29,12 @@ const AdminTopic = React.memo((props) => {
 
   return (
     <AdminLayout
-      title="Editar Tema"
+      title="Sistema Decimal"
       leftBarActive="Cursos"
-      backBttn={"/admin/courses/edit/" + props.routeProps.match.params.courseId}
+      backBttn={{
+        link: "/admin/courses/edit/" + props.routeProps.match.params.courseId,
+        text: "Curso",
+      }}
     >
       {topic ? (
         <Container>

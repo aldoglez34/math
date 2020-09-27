@@ -36,6 +36,8 @@ const StudentDropdown = React.memo(() => {
         console.log(err);
         alert("Ocurrió un error al cargar tus mensajes, actualiza la página");
       });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -44,7 +46,13 @@ const StudentDropdown = React.memo(() => {
       alignRight
       title={
         <span id="studentDropdownText">
-          {student ? student.email : null}
+          {student ? (
+            zenMode ? (
+              <s>{student.email}</s>
+            ) : (
+              <span>{student.email}</span>
+            )
+          ) : null}
           <i
             className="fas fa-chevron-down ml-1"
             style={{ fontSize: "13px" }}

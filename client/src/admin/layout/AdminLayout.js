@@ -28,7 +28,7 @@ const TeacherLayout = React.memo(
 TeacherLayout.propTypes = {
   leftBarActive: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  backBttn: PropTypes.string,
+  backBttn: PropTypes.object,
   children: PropTypes.node.isRequired,
   buttons: PropTypes.node,
 };

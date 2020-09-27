@@ -10,8 +10,8 @@ const CoursesDropdown = React.memo(() => {
     <NavDropdown
       id="coursesDropdownTextToggle"
       title={
-        <span className="px-0 coursesDropdownText">
-          Cursos
+        <span id="coursesDropdownText" className="px-0">
+          {zenMode ? <s>Cursos</s> : <span>Cursos</span>}
           <i
             className="fas fa-chevron-down ml-1"
             style={{ fontSize: "13px" }}

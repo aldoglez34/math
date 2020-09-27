@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../../layout/AdminLayout";
-import { Container, Row, Col, Spinner, ListGroup } from "react-bootstrap";
+import { Container, Row, Col, ListGroup } from "react-bootstrap";
 import StudentItem from "./components/StudentItem";
 import TeacherAPI from "../../../utils/TeacherAPI";
+import AdminSpinner from "../../components/AdminSpinner";
 
 const AdminStudents = React.memo(() => {
   const [students, setStudents] = useState();
@@ -16,40 +17,36 @@ const AdminStudents = React.memo(() => {
       });
   }, []);
 
-  return (
+  return students ? (
     <AdminLayout title="Alumnos" leftBarActive="Alumnos">
       <Container fluid>
         <Row>
           <Col className="px-0 mt-4" md={{ offset: 2, span: 8 }}>
-            {students ? (
-              students.length ? (
-                <>
-                  <h3 className="mb-3" style={{ color: "#0f5257" }}>
-                    Selecciona un alumno...
-                  </h3>
-                  <ListGroup>
-                    {students.map((s) => (
-                      <StudentItem
-                        key={s._id}
-                        name={s.name + " " + s.firstSurname}
-                        email={s.email}
-                        _id={s._id}
-                      />
-                    ))}
-                  </ListGroup>
-                </>
-              ) : (
-                <div className="text-center mt-4">No hay estudiantes</div>
-              )
+            {students.length ? (
+              <>
+                <h3 className="mb-3" style={{ color: "#0f5257" }}>
+                  Selecciona un alumno...
+                </h3>
+                <ListGroup>
+                  {students.map((s) => (
+                    <StudentItem
+                      key={s._id}
+                      name={s.name + " " + s.firstSurname}
+                      email={s.email}
+                      _id={s._id}
+                    />
+                  ))}
+                </ListGroup>
+              </>
             ) : (
-              <div className="text-center mt-4">
-                <Spinner animation="border" variant="success" />
-              </div>
+              <div className="text-center mt-4">No hay alumnos</div>
             )}
           </Col>
         </Row>
       </Container>
     </AdminLayout>
+  ) : (
+    <AdminSpinner />
   );
 });
 

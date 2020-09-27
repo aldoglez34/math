@@ -1,13 +1,18 @@
 .editButton {
-  background-color: #48bf84 !important;
-  border-color: #48bf84 !important;
-  color: white !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: #48bf84 !important;
 
-  font-size: 10px !important;
+  font-size: 22px !important;
   padding: 1px 5px !important;
 
+  outline: none;
+  box-shadow: none !important;
+
   &:hover {
-    background-color: #319764 !important;
-    border-color: #319764 !important;
+    background-color: #48bf84 !important;
+    border-color: #48bf84 !important;
+    color: white !important;
+    transition: 0.3s;
   }
 }

@@ -4,12 +4,14 @@ import moment from "moment";
 import "moment/locale/es";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import AdminLayout from "../../layout/AdminLayout";
+import AdminSpinner from "../../components/AdminSpinner";
 
 const AdminStudentHistory = React.memo((props) => {
   const [history, setHistory] = useState(false);
 
   useEffect(() => {
     const studentId = props.routeProps.match.params.studentId;
+
     TeacherAPI.t_fetchStudentHistory(studentId)
       .then((res) => setHistory(res.data))
       .catch((err) => {
@@ -18,11 +20,14 @@ const AdminStudentHistory = React.memo((props) => {
       });
   }, [props.routeProps.match.params.studentId]);
 
-  return (
+  return history ? (
     <AdminLayout
       title="Historial de exámenes"
       leftBarActive="Alumnos"
-      backBttn={"/admin/students/" + props.routeProps.match.params.studentId}
+      backBttn={{
+        link: "/admin/students/" + props.routeProps.match.params.studentId,
+        text: "Alumnos",
+      }}
     >
       <Container>
         <Row>
@@ -73,6 +78,8 @@ const AdminStudentHistory = React.memo((props) => {
         </Row>
       </Container>
     </AdminLayout>
+  ) : (
+    <AdminSpinner />
   );
 });
 
