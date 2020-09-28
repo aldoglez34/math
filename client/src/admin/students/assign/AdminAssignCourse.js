@@ -38,10 +38,7 @@ const AdminAssignCourse = React.memo((props) => {
     <AdminLayout
       title="Asignar Curso"
       leftBarActive="Alumnos"
-      backBttn={{
-        link: "/admin/students/" + props.routeProps.match.params.studentId,
-        text: "Alumnos",
-      }}
+      backBttn={"/admin/students/" + props.routeProps.match.params.studentId}
     >
       <Container>
         <Row>

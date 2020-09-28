@@ -6,27 +6,16 @@ import moment from "moment";
 import "moment/locale/es";
 import AdminOptionsDropdown from "../../components/AdminOptionsDropdown";
 import AdminSpinner from "../../components/AdminSpinner";
-import { useDispatch } from "react-redux";
-import * as adminActions from "../../../redux/actions/admin";
 
 const AdminStudentDetails = React.memo((props) => {
-  const dispatch = useDispatch();
-
   const [student, setStudent] = useState();
 
   useEffect(() => {
     const studentId = props.routeProps.match.params.studentId;
 
-    // set back button
-    dispatch(
-      adminActions.setBackBttn({ link: "/admin/students", text: "Alumnos" })
-    );
-
     TeacherAPI.t_fetchOneStudent(studentId)
       .then((res) => {
         setStudent(res.data);
-        // set title
-        dispatch(adminActions.setTitle(res.data.email.split("@", 1)[0]));
       })
       .catch((err) => {
         console.log(err);
@@ -35,7 +24,11 @@ const AdminStudentDetails = React.memo((props) => {
   }, [props.routeProps.match.params.studentId]);
 
   return student ? (
-    <AdminLayout leftBarActive="Alumnos">
+    <AdminLayout
+      backBttn="/admin/students"
+      title={student.email.split("@", 1)[0]}
+      leftBarActive="Alumnos"
+    >
       <Container>
         <Row>
           <Col className="px-0 mt-4" md={{ offset: 2, span: 8 }}>

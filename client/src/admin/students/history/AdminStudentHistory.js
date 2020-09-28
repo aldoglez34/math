@@ -22,12 +22,9 @@ const AdminStudentHistory = React.memo((props) => {
 
   return history ? (
     <AdminLayout
-      title="Historial de exámenes"
+      title="Historial de Exámenes"
       leftBarActive="Alumnos"
-      backBttn={{
-        link: "/admin/students/" + props.routeProps.match.params.studentId,
-        text: "Alumnos",
-      }}
+      backBttn={"/admin/students/" + props.routeProps.match.params.studentId}
     >
       <Container>
         <Row>

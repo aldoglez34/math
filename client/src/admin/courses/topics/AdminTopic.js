@@ -29,12 +29,9 @@ const AdminTopic = React.memo((props) => {
 
   return (
     <AdminLayout
-      title="Sistema Decimal"
+      title="Detalle de Tema"
       leftBarActive="Cursos"
-      backBttn={{
-        link: "/admin/courses/edit/" + props.routeProps.match.params.courseId,
-        text: "Curso",
-      }}
+      backBttn={"/admin/courses/edit/" + props.routeProps.match.params.courseId}
     >
       {topic ? (
         <Container>

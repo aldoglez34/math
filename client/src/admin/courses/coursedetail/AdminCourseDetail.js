@@ -31,9 +31,9 @@ const AdminCourseDetail = React.memo((props) => {
 
   return course ? (
     <AdminLayout
-      title={course.name}
+      title="Detalle de Curso"
       leftBarActive="Cursos"
-      backBttn={{ link: "/admin/courses", text: "Cursos" }}
+      backBttn="/admin/courses"
     >
       <Container>
         <Row>
