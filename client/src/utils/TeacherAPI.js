@@ -50,8 +50,7 @@ export default {
 
   // new
 
-  t_newTopic: (data) => axios.put("/teacherAPI/topics/new", data),
-
+  t_newTopic: (topicData) => axios.put("/teacherAPI/topics/new", topicData),
   // ==============================================
   // STUDENTS
   // ==============================================

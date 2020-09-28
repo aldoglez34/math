@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const model = require("../../models");
+const multer = require("multer");
 
 // t_fetchTopic()
-// matches with /teacherAPI/topic/:courseId/:topicId
+// matches with /teacherAPI/topics/:courseId/:topicId
 router.get("/:courseId/:topicId", function (req, res) {
   const { courseId, topicId } = req.params;
 
@@ -110,26 +111,22 @@ router.put("/update/timer", function (req, res) {
 
 // t_newTopic()
 // matches with /teacherAPI/topics/new
+const storage = multer.diskStorage({
+  // destination: "./client/public/files/" + req.body.courseId + "/reward",
+  destination: "./client/public/__temp",
+  filename: function (req, file, cb) {
+    // cb(null, "IMAGE-" + Date.now() + path.extname(file.originalname));
+    // set the name of the file
+    cb(null, req.body.photo);
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 4000000 },
+}).single("file");
+
 router.put("/new", function (req, res) {
-  const multer = require("multer");
-
-  const { courseId } = req.body;
-
-  // uploading reward file
-  const storage = multer.diskStorage({
-    destination: "./client/public/files/" + courseId + "/reward",
-    filename: function (req, file, cb) {
-      // cb(null, "IMAGE-" + Date.now() + path.extname(file.originalname));
-      // set the name of the file
-      cb(null, req.body.file);
-    },
-  });
-
-  const upload = multer({
-    storage: storage,
-    limits: { fileSize: 4000000 },
-  }).single("file");
-
   upload(req, res, function (err) {
     if (err instanceof multer.MulterError) {
       console.log("ERROR - A Multer error occurred when uploading.");
@@ -142,38 +139,32 @@ router.put("/new", function (req, res) {
     // everything went fine
     // no errors
 
-    const {
-      courseId,
-      subject,
-      name,
-      description,
-      freestyleTimer,
-      rewardName,
-    } = req.body;
-
-    const newTopic = {
+    const topicData = {
       topicCode: "nuevo",
-      subject,
-      name,
-      description,
+      subject: req.body.subject,
+      name: req.body.name,
+      description: req.body.description,
       reward: {
-        name: rewardName,
-        link: "/files/" + courseId + "/reward",
+        name: req.body.rewardName,
+        link: "/files/" + req.body.courseId + "/reward",
       },
       freestyle: {
-        timer: freestyleTimer,
+        timer: req.body.freestyleTimer,
       },
     };
 
     model.Course.findOneAndUpdate(
-      { _id: courseId },
+      { _id: req.body.courseId },
       {
         $push: {
-          topics: newTopic,
+          topics: topicData,
         },
       }
     )
-      .then(() => res.send("El tema fue agregado con éxito."))
+      .then(() => {
+        res.send("El tema fue agregado con éxito.");
+        console.log("./client/public/files/" + req.body.courseId + "/reward");
+      })
       .catch((err) => {
         console.log("@error", err);
         res.status(422).send("Ocurrió un error");

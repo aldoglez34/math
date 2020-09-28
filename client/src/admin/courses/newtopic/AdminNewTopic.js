@@ -7,6 +7,14 @@ import UploadImage from "./components/UploadImage";
 import TeacherAPI from "../../../utils/TeacherAPI";
 
 const AdminNewCrouse = React.memo((props) => {
+  const PHOTO_SIZE = 1000000;
+  const SUPPORTED_FORMATS = [
+    "image/jpg",
+    "image/jpeg",
+    "image/gif",
+    "image/png",
+  ];
+
   const yupschema = yup.object({
     name: yup.string().min(3, "Nombre demasiado corto").required("Requerido"),
     subject: yup
@@ -34,14 +42,6 @@ const AdminNewCrouse = React.memo((props) => {
       ),
   });
 
-  const PHOTO_SIZE = 1000000;
-  const SUPPORTED_FORMATS = [
-    "image/jpg",
-    "image/jpeg",
-    "image/gif",
-    "image/png",
-  ];
-
   return (
     <AdminLayout
       title="Nuevo Tema"
@@ -59,16 +59,28 @@ const AdminNewCrouse = React.memo((props) => {
                 subject: "",
                 description: "",
                 freestyleTimer: "",
-                photo: undefined,
                 rewardName: "",
+                photo: undefined,
                 file: undefined,
               }}
               validationSchema={yupschema}
               onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
-                values.courseId = props.routeProps.match.params.courseId;
-                //
-                TeacherAPI.t_newTopic(values)
+                // it's neccessary to create a FormData so multer can storage the image in the backend
+                let topicData = new FormData();
+                topicData.append("name", values.name);
+                topicData.append("subject", values.subject);
+                topicData.append("description", values.description);
+                topicData.append("freestyleTimer", values.freestyleTimer);
+                topicData.append("rewardName", values.rewardName);
+                topicData.append("photo", values.photo);
+                topicData.append("file", values.file);
+                topicData.append(
+                  "courseId",
+                  props.routeProps.match.params.courseId
+                );
+
+                TeacherAPI.t_newTopic(topicData)
                   .then((res) => {
                     console.log(res.data);
                     alert("Tema agregado con éxito");
@@ -166,7 +178,7 @@ const AdminNewCrouse = React.memo((props) => {
                   </Form.Row>
                   {/* reward */}
                   <Form.Row className="mt-3">
-                    <Col md={8}>
+                    <Col md={6}>
                       <Form.Label>
                         Nombre de medalla
                         <strong className="text-danger">*</strong>
@@ -187,7 +199,7 @@ const AdminNewCrouse = React.memo((props) => {
                         component="div"
                       />
                     </Col>
-                    <Col md={4}>
+                    <Col md={6}>
                       <UploadImage
                         photo={values.photo}
                         setFieldValue={setFieldValue}
