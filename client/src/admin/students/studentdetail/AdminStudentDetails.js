@@ -4,8 +4,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import moment from "moment";
 import "moment/locale/es";
-import AdminOptionsDropdown from "../../components/AdminOptionsDropdown";
 import AdminSpinner from "../../components/AdminSpinner";
+import AdminButton from "../../components/AdminButton";
 
 const AdminStudentDetails = React.memo((props) => {
   const [student, setStudent] = useState();
@@ -26,53 +26,53 @@ const AdminStudentDetails = React.memo((props) => {
   return student ? (
     <AdminLayout
       backBttn="/admin/students"
-      title={student.email.split("@", 1)[0]}
+      title="Detalle del Alumno"
       leftBarActive="Alumnos"
     >
-      <Container>
+      <Container fluid>
+        {/* username */}
         <Row>
-          <Col className="px-0 mt-4" md={{ offset: 2, span: 8 }}>
-            {/* username */}
+          <Col>
             <span className="text-muted">Usuario</span>
-            <h1 className="mb-0">{student.email.split("@", 1)[0]}</h1>
-            <br />
-            {/* email */}
+            <h1>{student.email.split("@", 1)[0]}</h1>
+          </Col>
+        </Row>
+        {/* email */}
+        <Row>
+          <Col>
             <span className="text-muted">Correo electrónico</span>
-            <h2 className="mb-0">{student.email}</h2>
-            <br />
-            {/* name */}
+            <h2>{student.email}</h2>
+          </Col>
+        </Row>
+        {/* name */}
+        <Row>
+          <Col>
             <span className="text-muted">Nombre completo</span>
-            <h3 className="mb-0">
+            <h3>
               {student.name +
                 " " +
                 student.firstSurname +
                 " " +
                 student.secondSurname}
             </h3>
-            <br />
-            {/* registered at */}
+          </Col>
+        </Row>
+        {/* registered at */}
+        <Row>
+          <Col>
             <span className="text-muted">Fecha de registro</span>
             <h5>
               <i className="far fa-calendar-alt mr-2" />
               {moment(student.registeredAt).format("LL")}
             </h5>
-            <br />
-            {/* courses bought */}
-            <span className="text-muted d-flex">
-              Cursos comprados
-              <AdminOptionsDropdown
-                opts={[
-                  {
-                    link:
-                      "/admin/students/unpurchased/" +
-                      props.routeProps.match.params.studentId,
-                    text: "Asignar curso",
-                  },
-                ]}
-              />
-            </span>
+          </Col>
+        </Row>
+        {/* courses bought */}
+        <Row>
+          <Col>
+            <span className="text-muted d-flex">Cursos comprados</span>
             {student.courses.length ? (
-              <ul>
+              <ul className="mb-2">
                 {student.courses.map((c) => {
                   return (
                     <li key={c._id}>
@@ -84,28 +84,48 @@ const AdminStudentDetails = React.memo((props) => {
             ) : (
               <h5>Ninguno</h5>
             )}
-            <br />
-            {/* attempts */}
+            <AdminButton
+              content={
+                <>
+                  <i className="fas fa-shopping-cart mr-2" />
+                  <span>Asignar curso</span>
+                </>
+              }
+              link={
+                "/admin/students/unpurchased/" +
+                props.routeProps.match.params.studentId
+              }
+            />
+          </Col>
+        </Row>
+        {/* attempts */}
+        <Row>
+          <Col>
             <span className="text-muted d-flex">
               Exámenes presentados / Calificaciones perfectas
-              <AdminOptionsDropdown
-                opts={[
-                  {
-                    link:
-                      "/admin/students/history/" +
-                      props.routeProps.match.params.studentId,
-                    text: "Ver historial",
-                  },
-                ]}
-              />
             </span>
-            <h2 className="mb-0">
+            <h2 className="mb-1">
               {student.attempts.length +
                 " / " +
                 student.attempts.filter((a) => a.grade === 10).length}
             </h2>
-            <br />
-            {/* medallas */}
+            <AdminButton
+              content={
+                <>
+                  <i className="fas fa-history mr-2" />
+                  <span>Ver historial</span>
+                </>
+              }
+              link={
+                "/admin/students/history/" +
+                props.routeProps.match.params.studentId
+              }
+            />
+          </Col>
+        </Row>
+        {/* medallas */}
+        <Row>
+          <Col>
             <span className="text-muted">Medallas</span>
             {student.rewards.length ? (
               <ul>
@@ -120,7 +140,6 @@ const AdminStudentDetails = React.memo((props) => {
             ) : (
               <h5>Sin medallas</h5>
             )}
-            <br />
           </Col>
         </Row>
       </Container>

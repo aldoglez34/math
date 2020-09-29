@@ -21,7 +21,7 @@ const AdminStudents = React.memo(() => {
     <AdminLayout title="Alumnos" leftBarActive="Alumnos">
       <Container fluid>
         <Row>
-          <Col className="px-0 mt-4" md={{ offset: 2, span: 8 }}>
+          <Col md={{ offset: 2, span: 8 }}>
             {students.length ? (
               <>
                 <h3 className="mb-3" style={{ color: "#0f5257" }}>

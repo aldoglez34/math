@@ -29,8 +29,7 @@ const AdminNewCrouse = React.memo(() => {
       <Container>
         <Row>
           <Col md={{ offset: 2, span: 8 }}>
-            <h3 className="mt-4">Ingresa los datos del curso.</h3>
-            <br />
+            <h3 className="mb-3">Ingresa los datos del curso.</h3>
             <Formik
               initialValues={{
                 name: "",

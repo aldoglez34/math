@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, ListGroup, Col, Button } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import AdminLayout from "../../layout/AdminLayout";
+import AdminSpinner from "../../components/AdminSpinner";
+import "./assigncourse.scss";
 
 const AdminAssignCourse = React.memo((props) => {
   const [unpurchased, setUnpurchased] = useState(false);
@@ -34,7 +36,7 @@ const AdminAssignCourse = React.memo((props) => {
       });
   };
 
-  return (
+  return unpurchased ? (
     <AdminLayout
       title="Asignar Curso"
       leftBarActive="Alumnos"
@@ -42,23 +44,22 @@ const AdminAssignCourse = React.memo((props) => {
     >
       <Container>
         <Row>
-          <Col className="px-0 mt-4" md={{ offset: 2, span: 8 }}>
-            <h3 className="mb-3">Elige un curso de la lista...</h3>
+          <Col md={{ offset: 2, span: 8 }}>
+            <h3>Elige un curso de la lista...</h3>
+            <span className="mb-4">
+              Sólo se muestran cursos que no ha adquirido el alumno
+            </span>
             {unpurchased.length ? (
-              <ListGroup>
+              <ListGroup variant="flush" className="mt-3">
                 {unpurchased.map((u) => (
-                  <ListGroup.Item
-                    key={u._id}
-                    className="d-flex py-4"
-                    style={{ backgroundColor: "#f4fbf8" }}
-                  >
-                    <h5 className="mb-0">{u.name}</h5>
+                  <ListGroup.Item key={u._id} className="d-flex py-3">
+                    <h4 className="mb-0">{u.name}</h4>
                     <Button
-                      variant="dark"
                       size="sm"
-                      className="ml-auto editButton"
+                      className="ml-auto assignBttn"
                       onClick={() => assignCourse(u._id)}
                     >
+                      <i className="fas fa-shopping-cart mr-2" />
                       Asignar
                     </Button>
                   </ListGroup.Item>
@@ -73,6 +74,8 @@ const AdminAssignCourse = React.memo((props) => {
         </Row>
       </Container>
     </AdminLayout>
+  ) : (
+    <AdminSpinner />
   );
 });
 

@@ -21,7 +21,7 @@ const TeacherCoursesMain = React.memo(() => {
     <AdminLayout title="Cursos" leftBarActive="Cursos">
       <Container fluid>
         <Row>
-          <Col className="px-0 mt-4" md={{ offset: 2, span: 8 }}>
+          <Col md={{ offset: 2, span: 8 }}>
             {courses.length ? (
               <>
                 <h3 className="mb-3" style={{ color: "#0f5257" }}>
@@ -39,17 +39,15 @@ const TeacherCoursesMain = React.memo(() => {
                 </ListGroup>
               </>
             ) : null}
-            <div className="text-center mt-4">
-              <Button
-                variant="dark"
-                size="lg"
-                className="py-4"
-                block
-                href="/admin/courses/new"
-              >
-                <h5 className="mb-0 text-light">NUEVO CURSO</h5>
-              </Button>
-            </div>
+            <Button
+              variant="dark"
+              size="lg"
+              className="py-4 mt-4"
+              block
+              href="/admin/courses/new"
+            >
+              <h5 className="mb-0 text-light">NUEVO CURSO</h5>
+            </Button>
           </Col>
         </Row>
       </Container>

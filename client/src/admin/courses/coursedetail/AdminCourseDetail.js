@@ -4,7 +4,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import moment from "moment";
 import "moment/locale/es";
-import AdminOptionsDropdown from "../../components/AdminOptionsDropdown";
 import AdminSpinner from "../../components/AdminSpinner";
 //
 import AdminModal from "../../components/AdminModal";
@@ -14,6 +13,7 @@ import CoursePriceForm from "./forms/CoursePriceForm";
 import CourseDescriptionForm from "./forms/CourseDescriptionForm";
 import CourseSummaryForm from "./forms/CourseSummaryForm";
 import EditTopicsBttn from "../../components/EditTopicsBttn";
+import AdminButton from "../../components/AdminButton";
 
 const AdminCourseDetail = React.memo((props) => {
   const [course, setCourse] = useState();
@@ -35,12 +35,12 @@ const AdminCourseDetail = React.memo((props) => {
       leftBarActive="Cursos"
       backBttn="/admin/courses"
     >
-      <Container>
+      <Container fluid>
+        {/* course name */}
         <Row>
-          <Col className="px-0 mt-4" md={{ offset: 2, span: 8 }}>
-            {/* course name */}
+          <Col>
             <span className="text-muted">Nombre</span>
-            <h1 className="mb-0">
+            <h1>
               {course.name}
               <AdminModal
                 Form={CourseNameForm}
@@ -49,8 +49,11 @@ const AdminCourseDetail = React.memo((props) => {
                 courseId={course._id}
               />
             </h1>
-            <br />
-            {/* grado escolar */}
+          </Col>
+        </Row>
+        {/* grado escolar */}
+        <Row>
+          <Col>
             <span className="text-muted">Nivel</span>
             <h2>
               {course.school}
@@ -61,8 +64,11 @@ const AdminCourseDetail = React.memo((props) => {
                 courseId={course._id}
               />
             </h2>
-            <br />
-            {/* precio */}
+          </Col>
+        </Row>
+        {/* precio */}
+        <Row>
+          <Col>
             <span className="text-muted">Precio</span>
             <h2>
               {"$" + course.price}
@@ -73,8 +79,11 @@ const AdminCourseDetail = React.memo((props) => {
                 courseId={course._id}
               />
             </h2>
-            <br />
-            {/* description */}
+          </Col>
+        </Row>
+        {/* description */}
+        <Row>
+          <Col>
             <span className="text-muted">Descripción</span>
             <h5>
               {course.description}
@@ -85,12 +94,15 @@ const AdminCourseDetail = React.memo((props) => {
                 courseId={course._id}
               />
             </h5>
-            <br />
-            {/* summary */}
+          </Col>
+        </Row>
+        {/* summary */}
+        <Row>
+          <Col>
             <span className="text-muted">
               Resumen <small>(para el landing page)</small>
             </span>
-            <ul>
+            <ul className="mb-1 mt-2">
               {course.topicsSummary.map((t, idx) => {
                 return (
                   <li key={t}>
@@ -109,25 +121,17 @@ const AdminCourseDetail = React.memo((props) => {
                 );
               })}
             </ul>
-            {/* topics */}
-            <span className="text-muted d-flex">
-              Temas
-              <AdminOptionsDropdown
-                opts={[
-                  {
-                    link:
-                      "/admin/courses/courses/newTopic/" +
-                      props.routeProps.match.params.courseId,
-                    text: "Nuevo tema",
-                  },
-                ]}
-              />
-            </span>
+          </Col>
+        </Row>
+        {/* topics */}
+        <Row>
+          <Col>
+            <span className="text-muted d-flex">Temas</span>
             {course.topics.length ? (
-              <ul>
+              <ul className="mb-0">
                 {course.topics.map((t) => (
                   <li key={t._id}>
-                    <h5>
+                    <h5 className="mb-0">
                       {t.name}
                       <EditTopicsBttn courseId={course._id} topicId={t._id} />
                     </h5>
@@ -137,14 +141,28 @@ const AdminCourseDetail = React.memo((props) => {
             ) : (
               <h5>Sin temas</h5>
             )}
-            <br />
-            {/* created at */}
+            <AdminButton
+              content={
+                <>
+                  <i className="fas fa-plus-square mr-2" />
+                  <span>Nuevo</span>
+                </>
+              }
+              link={
+                "/admin/courses/courses/newTopic/" +
+                props.routeProps.match.params.courseId
+              }
+            />
+          </Col>
+        </Row>
+        {/* created at */}
+        <Row>
+          <Col>
             <span className="text-muted">Fecha de creación</span>
             <h5>
               <i className="far fa-calendar-alt mr-2" />
               {moment(course.createdAt).format("LL")}
             </h5>
-            <br />
           </Col>
         </Row>
       </Container>

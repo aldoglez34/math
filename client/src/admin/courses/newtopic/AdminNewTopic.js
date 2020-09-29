@@ -51,8 +51,7 @@ const AdminNewCrouse = React.memo((props) => {
       <Container>
         <Row>
           <Col md={{ offset: 2, span: 8 }}>
-            <h3 className="mt-4">Ingresa los datos del tema.</h3>
-            <br />
+            <h3 className="mb-3">Ingresa los datos del tema.</h3>
             <Formik
               initialValues={{
                 name: "",
@@ -243,7 +242,7 @@ const AdminNewCrouse = React.memo((props) => {
                     </Col>
                   </Form.Row>
                   {/* buttons */}
-                  <Form.Group className="mt-4">
+                  <Form.Group className="mt-2">
                     <Button
                       variant="dark"
                       type="submit"

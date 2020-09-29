@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const model = require("../../models");
-const multer = require("multer");
 
 // t_fetchTopic()
 // matches with /teacherAPI/topics/:courseId/:topicId
@@ -111,11 +110,17 @@ router.put("/update/timer", function (req, res) {
 
 // t_newTopic()
 // matches with /teacherAPI/topics/new
+const multer = require("multer");
+const fs = require("fs");
+
+let fileName;
+
 const storage = multer.diskStorage({
   // destination: "./client/public/files/" + req.body.courseId + "/reward",
-  destination: "./client/public/__temp",
+  destination: "./client/public/_temp",
   filename: function (req, file, cb) {
     // cb(null, "IMAGE-" + Date.now() + path.extname(file.originalname));
+    fileName = file.originalname;
     // set the name of the file
     cb(null, req.body.photo);
   },
@@ -146,7 +151,7 @@ router.put("/new", function (req, res) {
       description: req.body.description,
       reward: {
         name: req.body.rewardName,
-        link: "/files/" + req.body.courseId + "/reward",
+        link: `/files/${req.body.courseId}/reward/${fileName}`,
       },
       freestyle: {
         timer: req.body.freestyleTimer,
@@ -162,8 +167,18 @@ router.put("/new", function (req, res) {
       }
     )
       .then(() => {
-        res.send("El tema fue agregado con éxito.");
-        console.log("./client/public/files/" + req.body.courseId + "/reward");
+        // res.send("El tema fue agregado con éxito.");
+
+        // moving the file to the course folder
+        const oldPath = `./client/public/_temp/${fileName}`;
+        const newPath = `./client/public/files/${req.body.courseId}/reward/${fileName}`;
+
+        fs.rename(oldPath, newPath, (err) => {
+          if (err) throw err;
+          console.log("Reward file was renamed (moved) correctly");
+
+          res.send("El tema fue agregado con éxito.");
+        });
       })
       .catch((err) => {
         console.log("@error", err);

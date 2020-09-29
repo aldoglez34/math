@@ -28,7 +28,7 @@ const AdminStudentHistory = React.memo((props) => {
     >
       <Container>
         <Row>
-          <Col className="px-0 mt-4" md={{ offset: 2, span: 8 }}>
+          <Col md={{ offset: 2, span: 8 }}>
             <h3 className="mb-3">Exámenes...</h3>
             {history.length ? (
               <Table bordered size="sm">

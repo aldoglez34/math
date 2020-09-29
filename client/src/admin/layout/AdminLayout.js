@@ -1,10 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Container } from "react-bootstrap";
 import LeftNav from "./components/LeftNav";
 import TopNav from "./components/TopNav";
 import ScrollButton from "../../components/scrollbutton";
-import "./adminlayout.scss";
 
 const TeacherLayout = React.memo(
   ({ leftBarActive, buttons, children, title, backBttn }) => {
@@ -13,12 +11,18 @@ const TeacherLayout = React.memo(
         {/* vertical navbar */}
         <LeftNav leftBarActive={leftBarActive} />
         {/* main container */}
-        <Container id="mainContainer" className="h-100" fluid>
+        <div style={{ marginLeft: "18rem" }} className="h-100 w-100">
           {/* top nav */}
           <TopNav buttons={buttons} title={title} backBttn={backBttn} />
           {/* content */}
-          <div id="contentDiv">{children}</div>
-        </Container>
+          <div
+            style={{
+              padding: "35px 28px",
+            }}
+          >
+            {children}
+          </div>
+        </div>
         <ScrollButton scrollStepInPx={150} delayInMs={16.66} />
       </div>
     );
