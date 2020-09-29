@@ -38,7 +38,9 @@ const TeacherCoursesMain = React.memo(() => {
                   ))}
                 </ListGroup>
               </>
-            ) : null}
+            ) : (
+              <div className="text-center mt-4">No hay cursos</div>
+            )}
             <Button
               variant="dark"
               size="lg"

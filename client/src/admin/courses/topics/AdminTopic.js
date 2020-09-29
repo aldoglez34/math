@@ -4,6 +4,8 @@ import { Container, Row, Col, Image } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import AdminTopicModal from "./components/AdminTopicModal";
 import AdminSpinner from "../../components/AdminSpinner";
+import AddVideo from "./components/AddVideo";
+import AddPDF from "./components/AddPDF";
 //
 import TopicNameForm from "./forms/TopicNameForm";
 import TopicSubjectForm from "./forms/TopicSubjectForm";
@@ -35,11 +37,11 @@ const AdminTopic = React.memo((props) => {
       backBttn={"/admin/courses/edit/" + props.routeProps.match.params.courseId}
     >
       <Container>
+        {/* topic name */}
         <Row>
           <Col>
-            {/* topic name */}
             <span className="text-muted">Nombre</span>
-            <h1 className="mb-0">
+            <h1>
               {topic.name}
               <AdminTopicModal
                 modalTitle="Editar nombre"
@@ -50,10 +52,13 @@ const AdminTopic = React.memo((props) => {
                 topicId={topic._id}
               />
             </h1>
-            <br />
-            {/* subject */}
+          </Col>
+        </Row>
+        {/* subject */}
+        <Row>
+          <Col>
             <span className="text-muted">Materia</span>
-            <h2 className="mb-0">
+            <h2>
               {topic.subject}
               <AdminTopicModal
                 modalTitle="Editar materia"
@@ -64,10 +69,13 @@ const AdminTopic = React.memo((props) => {
                 topicId={topic._id}
               />
             </h2>
-            <br />
-            {/* description */}
+          </Col>
+        </Row>
+        {/* description */}
+        <Row>
+          <Col>
             <span className="text-muted">Descripción</span>
-            <h5 className="mb-0">
+            <h5>
               {topic.description}
               <AdminTopicModal
                 modalTitle="Editar descripción"
@@ -78,10 +86,13 @@ const AdminTopic = React.memo((props) => {
                 topicId={topic._id}
               />
             </h5>
-            <br />
-            {/* freestyle */}
+          </Col>
+        </Row>
+        {/* freestyle */}
+        <Row>
+          <Col>
             <span className="text-muted">Modo rápido</span>
-            <h5 className="mb-0">
+            <h5>
               {topic.freestyle.timer + " minutos"}
               <AdminTopicModal
                 modalTitle="Editar modo rápido"
@@ -92,14 +103,24 @@ const AdminTopic = React.memo((props) => {
                 topicId={topic._id}
               />
             </h5>
-            <br />
-            {/* reward */}
+          </Col>
+        </Row>
+        {/* reward */}
+        <Row>
+          <Col>
             <span className="text-muted">Recompensa</span>
-            <h5 className="mb-2">{topic.reward.name}</h5>
-            <Image src={topic.reward.link} width="70" height="100" />
-            <br />
-            <br />
-            {/* material */}
+            <h5>{topic.reward.name}</h5>
+            <Image
+              src={topic.reward.link}
+              width="70"
+              height="100"
+              className="mb-3"
+            />
+          </Col>
+        </Row>
+        {/* material */}
+        <Row>
+          <Col>
             <span className="text-muted">Material</span>
             {topic.material.length ? (
               <ul>
@@ -119,8 +140,21 @@ const AdminTopic = React.memo((props) => {
             ) : (
               <h5>Vacío</h5>
             )}
-            <br />
-            {/* exams */}
+            <div className="mb-2">
+              <AddVideo
+                courseId={props.routeProps.match.params.courseId}
+                topicId={topic._id}
+              />
+              <AddPDF
+                courseId={props.routeProps.match.params.courseId}
+                topicId={topic._id}
+              />
+            </div>
+          </Col>
+        </Row>
+        {/* exams */}
+        <Row>
+          <Col>
             <span className="text-muted">Exámenes</span>
             {topic.exams.length ? (
               <ul>

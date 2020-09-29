@@ -89,7 +89,7 @@ const AdminMessages = React.memo(() => {
                 </ListGroup>
               </>
             ) : (
-              <div className="text-center mt-4">Sin mensajes</div>
+              <div className="text-center mt-4">No hay mensajes</div>
             )}
           </Col>
         </Row>
