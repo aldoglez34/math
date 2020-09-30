@@ -48,13 +48,17 @@ export default {
   t_updateTopicFreestyleTimer: (data) =>
     axios.put("/teacherAPI/topics/update/timer", data),
 
-  t_addVideoToMaterial: (data) =>
-    axios.put("/teacherAPI/topics/material/addVideo", data),
-
-  t_addPDFToMaterial: (data) =>
-    axios.put("/teacherAPI/topics/material/addPDF", data),
-
   t_newTopic: (topicData) => axios.put("/teacherAPI/topics/new", topicData),
+
+  // ==============================================
+  // MATERIAL
+  // ==============================================
+
+  t_addVideoToMaterial: (data) =>
+    axios.put("/teacherAPI/material/video/add", data),
+
+  t_addPDFToMaterial: (data) => axios.put("/teacherAPI/material/pdf/add", data),
+
   // ==============================================
   // STUDENTS
   // ==============================================

@@ -28,7 +28,7 @@ router.get("/:courseId", function (req, res) {
     });
 });
 
-// new
+////////////////// new
 
 // t_newCourse
 // matches with /teacherAPI/courses/new
@@ -96,7 +96,7 @@ router.post("/new", function (req, res) {
     });
 });
 
-// updating
+////////////////// updating
 
 // t_updateCourseName
 // matches with /teacherAPI/courses/update/name

@@ -78,7 +78,7 @@ const AdminNewCrouse = React.memo((props) => {
                   "courseId",
                   props.routeProps.match.params.courseId
                 );
-
+                //
                 TeacherAPI.t_newTopic(topicData)
                   .then((res) => {
                     console.log(res.data);

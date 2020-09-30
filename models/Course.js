@@ -28,13 +28,8 @@ const schema = new Schema({
   },
   topics: [
     {
-      topicCode: {
-        type: String,
-        // required: true,
-        // unique: true,
-      }, // ej. PRIM3y4_Suma o PRIM3y4_Resta
-      subject: { type: String, required: true }, // ej. Aritmética
       name: { type: String, required: true }, // ej. Suma/Resta/Multiplicación
+      subject: { type: String, required: true }, // ej. Aritmética
       description: { type: String, required: true }, // ej. La suma es una de las cuatro operaciones básicas...
       reward: {
         name: { type: String, required: true }, // ej. "Medalla de Suma"

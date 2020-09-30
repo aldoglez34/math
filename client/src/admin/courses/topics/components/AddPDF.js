@@ -64,15 +64,16 @@ const AddPDF = React.memo(({ courseId, topicId }) => {
                 setSubmitting(true);
                 let materialPDF = new FormData();
                 materialPDF.append("name", values.name);
-                materialPDF.append("photo", values.photo);
+                materialPDF.append("pdf", values.pdf);
                 materialPDF.append("file", values.file);
                 materialPDF.append("courseId", courseId);
                 materialPDF.append("topicId", topicId);
                 //
-                TeacherAPI.t_addPDFToMaterial(values)
+                TeacherAPI.t_addPDFToMaterial(materialPDF)
                   .then((res) => {
                     console.log(res.data);
                     alert("El PDF fue agregado satisfactoriamente");
+                    window.location.reload();
                   })
                   .catch((err) => {
                     console.log(err);

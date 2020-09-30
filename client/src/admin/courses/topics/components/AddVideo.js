@@ -52,6 +52,7 @@ const AddVideo = React.memo(({ courseId, topicId }) => {
                   .then((res) => {
                     console.log(res.data);
                     alert("El video fue agregado satisfactoriamente");
+                    window.location.reload();
                   })
                   .catch((err) => {
                     console.log(err);

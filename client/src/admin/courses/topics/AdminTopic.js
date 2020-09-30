@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../../layout/AdminLayout";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import { Container, Row, Col, Image, Button, Badge } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import AdminTopicModal from "./components/AdminTopicModal";
 import AdminSpinner from "../../components/AdminSpinner";
 import AddVideo from "./components/AddVideo";
 import AddPDF from "./components/AddPDF";
+import AdminButton from "../../components/AdminButton";
 //
 import TopicNameForm from "./forms/TopicNameForm";
 import TopicSubjectForm from "./forms/TopicSubjectForm";
@@ -36,7 +37,7 @@ const AdminTopic = React.memo((props) => {
       leftBarActive="Cursos"
       backBttn={"/admin/courses/edit/" + props.routeProps.match.params.courseId}
     >
-      <Container>
+      <Container fluid>
         {/* topic name */}
         <Row>
           <Col>
@@ -109,7 +110,19 @@ const AdminTopic = React.memo((props) => {
         <Row>
           <Col>
             <span className="text-muted">Recompensa</span>
-            <h5>{topic.reward.name}</h5>
+            <div className="d-flex">
+              <h5>{topic.reward.name}</h5>
+              <Button
+                size="sm"
+                variant="danger"
+                className="ml-1"
+                title="Eliminar"
+              >
+                <strong>
+                  <i className="fas fa-trash-alt" />
+                </strong>
+              </Button>
+            </div>
             <Image
               src={topic.reward.link}
               width="70"
@@ -133,14 +146,24 @@ const AdminTopic = React.memo((props) => {
                         <i className="fas fa-file-pdf mr-2" />
                       ) : null}
                       {m.name}
+                      <Button
+                        size="sm"
+                        variant="danger"
+                        className="ml-1"
+                        title="Eliminar"
+                      >
+                        <strong>
+                          <i className="fas fa-trash-alt" />
+                        </strong>
+                      </Button>
                     </h5>
                   </li>
                 ))}
               </ul>
             ) : (
-              <h5>Vacío</h5>
+              <h5>-</h5>
             )}
-            <div className="mb-2">
+            <div className="mb-3">
               <AddVideo
                 courseId={props.routeProps.match.params.courseId}
                 topicId={topic._id}
@@ -156,7 +179,37 @@ const AdminTopic = React.memo((props) => {
         <Row>
           <Col>
             <span className="text-muted">Exámenes</span>
-            {topic.exams.length ? (
+            <div className="d-flex align-items-end">
+              <h5 className="mb-0">
+                <Badge variant="light">Básico</Badge>
+              </h5>
+              {/* <h5 className="mb-0">-</h5> */}
+            </div>
+            <div className="d-flex align-items-end">
+              <h5 className="mb-0">
+                <Badge variant="light">Básico-Intermedio</Badge>
+              </h5>
+              {/* <h5 className="mb-0">-</h5> */}
+            </div>
+            <div className="d-flex align-items-end">
+              <h5 className="mb-0">
+                <Badge variant="light">Intermedio</Badge>
+              </h5>
+              <h5 className="mb-0">-</h5>
+            </div>
+            <div className="d-flex align-items-end">
+              <h5 className="mb-0">
+                <Badge variant="light">Intermedio-Avanzado</Badge>
+              </h5>
+              <h5 className="mb-0">-</h5>
+            </div>
+            <div className="d-flex align-items-end mb-2">
+              <h5 className="mb-0">
+                <Badge variant="light">Avanzado</Badge>
+              </h5>
+              <h5 className="mb-0">-</h5>
+            </div>
+            {/* {topic.exams.length ? (
               <ul>
                 {topic.exams.map((e) => (
                   <li key={e._id}>
@@ -165,8 +218,17 @@ const AdminTopic = React.memo((props) => {
                 ))}
               </ul>
             ) : (
-              <h5>Vacío</h5>
-            )}
+              <h5>-</h5>
+            )} */}
+            <AdminButton
+              content={
+                <>
+                  <i className="far fa-file-alt mr-2" />
+                  <span>Agregar examen</span>
+                </>
+              }
+              link={`/admin/courses/exam/new/${props.routeProps.match.params.courseId}/${topic._id}`}
+            />
           </Col>
         </Row>
       </Container>

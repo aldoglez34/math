@@ -7,13 +7,14 @@ import Login from "../pages/login/Login";
 import CourseInfoPrimaria from "../pages/courseinfo/CourseInfoPrimaria";
 import CourseInfoSecundaria from "../pages/courseinfo/CourseInfoSecundaria";
 import CourseInfoPrepa from "../pages/courseinfo/CourseInfoPrepa";
-
+//
 import AdminLogin from "../admin/login/AdminLogin";
 import AdminCourses from "../admin/courses/courses/AdminCourses";
 import AdminCourseDetail from "../admin/courses/coursedetail/AdminCourseDetail";
 import AdminNewCourse from "../admin/courses/newcourse/AdminNewCourse";
 import AdminTopic from "../admin/courses/topics/AdminTopic";
 import AdminNewTopic from "../admin/courses/newtopic/AdminNewTopic";
+import AdminNewExam from "../admin/courses/newexam/AdminNewExam";
 import AdminStudents from "../admin/students/students/AdminStudents";
 import AdminStudentDetails from "../admin/students/studentdetail/AdminStudentDetails";
 import AdminAssignCourse from "../admin/students/assign/AdminAssignCourse";
@@ -58,6 +59,12 @@ export default () => {
         exact
         path="/admin/courses/courses/newTopic/:courseId"
         render={(props) => <AdminNewTopic routeProps={props} />}
+      />
+      {/* exam */}
+      <Route
+        exact
+        path="/admin/courses/exam/new/:courseId/:topicId"
+        render={(props) => <AdminNewExam routeProps={props} />}
       />
       {/* students */}
       <Route exact path="/admin/students" component={AdminStudents} />

@@ -128,7 +128,7 @@ const AdminCourseDetail = React.memo((props) => {
           <Col>
             <span className="text-muted d-flex">Temas</span>
             {course.topics.length ? (
-              <ul className="mb-0">
+              <ul className="mb-1">
                 {course.topics.map((t) => (
                   <li key={t._id}>
                     <h5 className="mb-0">
@@ -139,7 +139,7 @@ const AdminCourseDetail = React.memo((props) => {
                 ))}
               </ul>
             ) : (
-              <h5>Sin temas</h5>
+              <h5>-</h5>
             )}
             <AdminButton
               content={
