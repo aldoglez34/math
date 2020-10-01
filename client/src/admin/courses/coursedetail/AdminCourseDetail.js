@@ -156,7 +156,7 @@ const AdminCourseDetail = React.memo((props) => {
           </Col>
         </Row>
         {/* created at */}
-        <Row>
+        <Row className="mt-2">
           <Col>
             <span className="text-muted">Fecha de creación</span>
             <h5>

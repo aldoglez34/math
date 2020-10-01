@@ -63,7 +63,7 @@ export default () => {
       {/* exam */}
       <Route
         exact
-        path="/admin/courses/exam/new/:courseId/:topicId"
+        path="/admin/courses/exam/new/:difficulty/:courseId/:topicId"
         render={(props) => <AdminNewExam routeProps={props} />}
       />
       {/* students */}

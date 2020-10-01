@@ -5,7 +5,7 @@ import "./adminbutton.scss";
 
 const AdminButton = React.memo(({ content, link }) => {
   return (
-    <Button className="px-4  adminbttncolor" size="sm" href={link}>
+    <Button className="px-4 adminbttncolor" size="sm" href={link}>
       {content}
     </Button>
   );

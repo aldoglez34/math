@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../../layout/AdminLayout";
-import { Container, Row, Col, Image, Button, Badge } from "react-bootstrap";
+import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import AdminTopicModal from "./components/AdminTopicModal";
 import AdminSpinner from "../../components/AdminSpinner";
 import AddVideo from "./components/AddVideo";
 import AddPDF from "./components/AddPDF";
-import AdminButton from "../../components/AdminButton";
 //
 import TopicNameForm from "./forms/TopicNameForm";
 import TopicSubjectForm from "./forms/TopicSubjectForm";
 import TopicDescriptionForm from "./forms/TopicDescriptionForm";
 import TopicFreestyleTimerForm from "./forms/TopicFreestyleTimerForm";
+import NewExamBttn from "./components/NewExamBttn";
 
 const AdminTopic = React.memo((props) => {
   const [topic, setTopic] = useState();
@@ -139,7 +139,7 @@ const AdminTopic = React.memo((props) => {
               <ul>
                 {topic.material.map((m) => (
                   <li key={m._id}>
-                    <h5>
+                    <strong style={{ color: "#0f5257" }}>
                       {m.type === "video" ? (
                         <i className="fas fa-video mr-2" />
                       ) : m.type === "pdf" ? (
@@ -156,7 +156,7 @@ const AdminTopic = React.memo((props) => {
                           <i className="fas fa-trash-alt" />
                         </strong>
                       </Button>
-                    </h5>
+                    </strong>
                   </li>
                 ))}
               </ul>
@@ -179,37 +179,7 @@ const AdminTopic = React.memo((props) => {
         <Row>
           <Col>
             <span className="text-muted">Exámenes</span>
-            <div className="d-flex align-items-end">
-              <h5 className="mb-0">
-                <Badge variant="light">Básico</Badge>
-              </h5>
-              {/* <h5 className="mb-0">-</h5> */}
-            </div>
-            <div className="d-flex align-items-end">
-              <h5 className="mb-0">
-                <Badge variant="light">Básico-Intermedio</Badge>
-              </h5>
-              {/* <h5 className="mb-0">-</h5> */}
-            </div>
-            <div className="d-flex align-items-end">
-              <h5 className="mb-0">
-                <Badge variant="light">Intermedio</Badge>
-              </h5>
-              <h5 className="mb-0">-</h5>
-            </div>
-            <div className="d-flex align-items-end">
-              <h5 className="mb-0">
-                <Badge variant="light">Intermedio-Avanzado</Badge>
-              </h5>
-              <h5 className="mb-0">-</h5>
-            </div>
-            <div className="d-flex align-items-end mb-2">
-              <h5 className="mb-0">
-                <Badge variant="light">Avanzado</Badge>
-              </h5>
-              <h5 className="mb-0">-</h5>
-            </div>
-            {/* {topic.exams.length ? (
+            {topic.exams.length ? (
               <ul>
                 {topic.exams.map((e) => (
                   <li key={e._id}>
@@ -219,15 +189,10 @@ const AdminTopic = React.memo((props) => {
               </ul>
             ) : (
               <h5>-</h5>
-            )} */}
-            <AdminButton
-              content={
-                <>
-                  <i className="far fa-file-alt mr-2" />
-                  <span>Agregar examen</span>
-                </>
-              }
-              link={`/admin/courses/exam/new/${props.routeProps.match.params.courseId}/${topic._id}`}
+            )}
+            <NewExamBttn
+              courseId={props.routeProps.match.params.courseId}
+              topicId={topic._id}
             />
           </Col>
         </Row>

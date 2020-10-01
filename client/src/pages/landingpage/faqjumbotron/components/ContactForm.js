@@ -9,7 +9,7 @@ const ContactForm = () => {
     name: yup.string().required("Requerido"),
     email: yup.string().email("Formato inválido").required("Requerido"),
     subject: yup.string().required("Requerido"),
-    body: yup.string(),
+    body: yup.string().required("Requerido"),
   });
 
   return (

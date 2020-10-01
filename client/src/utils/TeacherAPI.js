@@ -60,6 +60,12 @@ export default {
   t_addPDFToMaterial: (data) => axios.put("/teacherAPI/material/pdf/add", data),
 
   // ==============================================
+  // EXAM
+  // ==============================================
+
+  t_newExam: (data) => axios.put("/teacherAPI/exam/new", data),
+
+  // ==============================================
   // STUDENTS
   // ==============================================
 
