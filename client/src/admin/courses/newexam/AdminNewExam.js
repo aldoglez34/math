@@ -24,7 +24,10 @@ const AdminNewExam = React.memo((props) => {
       <Container>
         <Row>
           <Col md={{ offset: 2, span: 8 }}>
-            <h3 className="mb-3">Ingresa los datos del examen.</h3>
+            <h3 className="mb-1">Ingresa los datos del examen.</h3>
+            <strong>[{props.routeProps.match.params.difficulty}]</strong>
+            <br />
+            <br />
             <Formik
               initialValues={{
                 name: "",
@@ -61,7 +64,6 @@ const AdminNewExam = React.memo((props) => {
                 handleBlur,
                 handleSubmit,
                 isSubmitting,
-                setFieldValue,
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
                   {/* name */}

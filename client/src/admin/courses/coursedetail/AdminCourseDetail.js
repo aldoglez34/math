@@ -31,7 +31,7 @@ const AdminCourseDetail = React.memo((props) => {
 
   return course ? (
     <AdminLayout
-      title="Detalle de Curso"
+      title="Curso"
       leftBarActive="Cursos"
       backBttn="/admin/courses"
     >

@@ -6,6 +6,7 @@ import AdminTopicModal from "./components/AdminTopicModal";
 import AdminSpinner from "../../components/AdminSpinner";
 import AddVideo from "./components/AddVideo";
 import AddPDF from "./components/AddPDF";
+import EditExamBttn from "../../components/EditExamBttn";
 //
 import TopicNameForm from "./forms/TopicNameForm";
 import TopicSubjectForm from "./forms/TopicSubjectForm";
@@ -13,7 +14,7 @@ import TopicDescriptionForm from "./forms/TopicDescriptionForm";
 import TopicFreestyleTimerForm from "./forms/TopicFreestyleTimerForm";
 import NewExamBttn from "./components/NewExamBttn";
 
-const AdminTopic = React.memo((props) => {
+const AdminTopicDetail = React.memo((props) => {
   const [topic, setTopic] = useState();
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const AdminTopic = React.memo((props) => {
 
   return topic ? (
     <AdminLayout
-      title="Detalle de Tema"
+      title="Tema"
       leftBarActive="Cursos"
       backBttn={"/admin/courses/edit/" + props.routeProps.match.params.courseId}
     >
@@ -183,7 +184,15 @@ const AdminTopic = React.memo((props) => {
               <ul>
                 {topic.exams.map((e) => (
                   <li key={e._id}>
-                    <h5>{e.name}</h5>
+                    <h5>
+                      {`[${e.difficulty}] `}
+                      {e.name}
+                      <EditExamBttn
+                        courseId={props.routeProps.match.params.courseId}
+                        topicId={props.routeProps.match.params.topicId}
+                        examId={e._id}
+                      />
+                    </h5>
                   </li>
                 ))}
               </ul>
@@ -203,4 +212,4 @@ const AdminTopic = React.memo((props) => {
   );
 });
 
-export default AdminTopic;
+export default AdminTopicDetail;

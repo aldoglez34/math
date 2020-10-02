@@ -6,7 +6,6 @@ const schema = new Schema({
   // topicCode: { type: String, required: true }, // ej. PRIM3y4_Suma o PRIM3y4_Resta
   // topicName: { type: String, required: true }, // ej. Suma, Resta, etc
   // qCounter: { type: Number, required: true }, // ej. 20 (question counter)
-
   difficulty: {
     type: String,
     enum: [
