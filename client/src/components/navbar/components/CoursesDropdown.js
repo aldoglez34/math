@@ -1,10 +1,22 @@
-import React from "react";
-import { NavDropdown } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { NavDropdown, Spinner } from "react-bootstrap";
 import "./coursesdropdown.scss";
 import { useSelector } from "react-redux";
+import API from "../../../utils/API";
 
 const CoursesDropdown = React.memo(() => {
   const zenMode = useSelector((state) => state.zenMode);
+
+  const [courses, setCourses] = useState();
+
+  useEffect(() => {
+    API.fetchSchoolDropdownItems()
+      .then((res) => setCourses(res.data))
+      .catch((err) => {
+        console.log(err);
+        alert("Ocurrió un error, actualiza la página");
+      });
+  }, []);
 
   return (
     <NavDropdown
@@ -20,15 +32,23 @@ const CoursesDropdown = React.memo(() => {
       }
       disabled={zenMode ? true : false}
     >
-      <NavDropdown.Item href="/courses/primaria" className="dropdownStyle">
-        Primaria
-      </NavDropdown.Item>
-      <NavDropdown.Item href="/courses/secundaria" className="dropdownStyle">
-        Secundaria
-      </NavDropdown.Item>
-      <NavDropdown.Item href="/courses/preparatoria" className="dropdownStyle">
-        Preparatoria
-      </NavDropdown.Item>
+      {courses ? (
+        courses.length ? (
+          courses.map((c) => (
+            <NavDropdown.Item
+              key={c}
+              href={"/courses/" + c}
+              className="dropdownStyle"
+            >
+              {c}
+            </NavDropdown.Item>
+          ))
+        ) : null
+      ) : (
+        <div>
+          <Spinner animation="border" role="status" />
+        </div>
+      )}
     </NavDropdown>
   );
 });

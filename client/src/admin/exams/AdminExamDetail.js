@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../layout/AdminLayout";
-import { Container, Row, Col, Image, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import AdminSpinner from "../components/AdminSpinner";
 import AdminExamModal from "./components/AdminExamModal";
@@ -21,6 +21,8 @@ const AdminExamDetail = React.memo((props) => {
         console.log(err);
         alert("Ocurrió un error");
       });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return exam ? (

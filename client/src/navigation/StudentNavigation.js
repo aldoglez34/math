@@ -1,8 +1,5 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import CourseInfoPrimaria from "../pages/courseinfo/CourseInfoPrimaria";
-import CourseInfoSecundaria from "../pages/courseinfo/CourseInfoSecundaria";
-import CourseInfoPrepa from "../pages/courseinfo/CourseInfoPrepa";
 import NoMatch from "../pages/nomatch/NoMatch";
 import Dashboard from "../pages/dashboard";
 import Course from "../course";
@@ -10,6 +7,7 @@ import Exam from "../exam";
 import Results from "../results";
 import Freestyle from "../freestyle";
 import Messages from "../pages/messages";
+import CourseInfo from "../pages/courseinfo/CourseInfo";
 
 export default () => {
   return (
@@ -19,13 +17,11 @@ export default () => {
       <Route exact path="/dashboard" component={Dashboard} />
 
       {/* courses info */}
-      <Route exact path="/courses/primaria" component={CourseInfoPrimaria} />
       <Route
         exact
-        path="/courses/secundaria"
-        component={CourseInfoSecundaria}
+        path="/courses/:course"
+        render={(props) => <CourseInfo routeProps={props} />}
       />
-      <Route exact path="/courses/preparatoria" component={CourseInfoPrepa} />
 
       {/* ================= STUDENT ROUTES ================= */}
       {/* messages */}

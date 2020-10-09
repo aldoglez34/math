@@ -1,12 +1,13 @@
 import React from "react";
 import { Badge, Row, Col, Card, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
+import "./courseinfocard.scss";
 
-const CourseInfoCard = React.memo(
-  ({ title, description, price, lessons, lessonCounter }) => {
-    return (
+const CourseInfoCard = React.memo(({ title, price, topics, lessonCounter }) => {
+  return (
+    <div className="mb-4">
       <Card
-        className="border rounded mr-0 mr-lg-4 shadow-sm h-100"
+        className="courseInfoCard border rounded mr-0 mr-lg-4 shadow-sm h-100"
         style={{ marginTop: "30px", backgroundColor: "#f4fbf8" }}
       >
         <Card.Body className="d-flex flex-column">
@@ -15,15 +16,19 @@ const CourseInfoCard = React.memo(
             <h2 className="pr-2 mb-0" style={{ color: "#0f5257" }}>
               {title}
             </h2>
-            {/* lessons counter */}
+            {/* topics counter */}
             <Badge className="ml-auto d-flex align-items-center courseCounterBadge">
               {lessonCounter + " lecciones"}
             </Badge>
           </div>
           {/* description */}
-          <p className="mt-4">{description}</p>
-          {/* lessons list */}
-          {lessons.map((l) => {
+          <p className="mt-4">
+            En la compra de este curso obtienes material didáctico, videos
+            exclusivos, asistencia personalizada y cientos de ejercicios sobre
+            los siguientes temas:
+          </p>
+          {/* topics list */}
+          {topics.map((l) => {
             return (
               <div key={l}>
                 <i
@@ -69,15 +74,14 @@ const CourseInfoCard = React.memo(
           </Row>
         </Card.Body>
       </Card>
-    );
-  }
-);
+    </div>
+  );
+});
 
 CourseInfoCard.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  lessons: PropTypes.array.isRequired,
+  topics: PropTypes.array.isRequired,
   lessonCounter: PropTypes.number.isRequired,
 };
 

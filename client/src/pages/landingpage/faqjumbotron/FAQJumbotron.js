@@ -45,21 +45,33 @@ const FAQJumbotron = React.memo(() => {
             <Accordion className="px-3 px-lg-0">
               {question({
                 key: 0,
-                question: "Lorem ipsum dolor sit amet?",
+                question: "¿Los cursos son exclusivos para estudiantes?",
                 answer:
-                  "Consectetur adipiscing elit. Fusce lacinia euismod ultrices. Sed fermentum malesuada metus sed molestie.",
+                  "No, el contenido de MeXmáticas está diseñado y dirigido a todo público independientemente de la edad o grado educativo. Cualquier persona que quiera desarrollar su habilidad numérica puede suscribirse a nuestra plataforma.",
               })}
               {question({
                 key: 1,
-                question: "Etiam condimentum nulla sapien?",
+                question: "¿Cuántas veces puedo hacer uso del contenido de cada curso?",
                 answer:
-                  "Non tempor libero ullamcorper eu. Proin tristique mollis arcu tincidunt vulputate. Pellentesque nec ursus eros, nec accumsan velit.",
+                  "Al suscribirte al curso de tu elección, podrás hacer uso de los PDFs, ejercicios y videos de manera ilimitada.",
               })}
               {question({
                 key: 2,
-                question: "Donec ut elementum elit in eget molestie nisi?",
+                question: "¿Puedo repetir un curso al terminarlo?",
                 answer:
-                  "Curabitur mi mi, dignissim accumsan ullamcorper commodo, molestie eget ligula. Nullam lorem tortor, cumsan nec porttitor sed, molestie vel augue.",
+                  "Sí. Todo el material que utilizaste durante el curso puede ser reusado cuantas veces quieras hasta que hayas comprendido por completo los temas incluso los exámenes serán diferentes cada vez que los tomes.",
+              })}
+              {question({
+                key: 3,
+                question: "¿Otorgan algún certificado o reconocimiento al concluir satisfactoriamente los cursos?",
+                answer:
+                  "Por el momento no, sin embargo todos nuestros cursos están basados en el plan de estudios de la SEP.",
+              })}
+              {question({
+                key: 4,
+                question: "¿Cómo puedo pagar un curso?",
+                answer:
+                  "Mediante una tarjeta de crédito o débito de cualquier banco, también es posible realizar una transferencia electrónica o a través de Pay Pal.",
               })}
               <Card className="fj_accordionItem border rounded">
                 <Accordion.Toggle
@@ -68,16 +80,16 @@ const FAQJumbotron = React.memo(() => {
                   className="fj_cardHeader"
                 >
                   <div className="d-flex fj_question">
-                    <strong>¿Cómo me pongo en contacto con ustedes?</strong>
+                    <strong>¿Cómo me pongo en contacto con ustedes en caso de presentarse dudas?</strong>
                     <i className="fas fa-plus ml-auto plusSymbol" />
                   </div>
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="contactForm">
                   <Card.Body className="fj_answer d-flex flex-column bg-light">
-                    <strong className="mb-2">
-                      Puedes comunicarte al siguiente número de Whatsapp
-                    </strong>
-                    <span>
+                    <span className="mb-2">
+                      Para cualquier aclaración ya sean preguntas relacionadas al curso, dudas o servicios extras, te invitamos a llenar el siguiente formulario para poder darte una pronta y eficaz atención:
+                    </span>
+                    {/* <span>
                       <i className="far fa-user mr-2" />
                       M.C. Luis Rodrigo López Utrera
                     </span>
@@ -87,7 +99,7 @@ const FAQJumbotron = React.memo(() => {
                     </span>
                     <strong className="mt-3 mb-3">
                       O puedes utilizar el siguiente formulario
-                    </strong>
+                    </strong> */}
                     <Row>
                       <Col md={{ offset: 2, span: 8 }}>
                         <ContactForm />

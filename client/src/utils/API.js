@@ -5,7 +5,15 @@ export default {
   // GUEST
   // ==============================================
 
+  fetchSchoolDropdownItems: () =>
+    axios.get("/api/guest/fetchSchoolDropdownItems"),
+
+  fetchLandingPageCourses: () => axios.get("/api/guest/fetchCourses"),
+
   postMessage: (data) => axios.post("/api/guest/postMessage", data),
+
+  fetchCoursesBySchool: (school) =>
+    axios.get("/api/guest/fetchCoursesBySchool/" + school),
 
   // ==============================================
   // STUDENTS
