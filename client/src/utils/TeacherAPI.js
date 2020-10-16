@@ -37,6 +37,11 @@ export default {
   t_fetchTopic: (courseId, topicId) =>
     axios.get("/teacherAPI/topics/" + courseId + "/" + topicId),
 
+  t_fetchAvailableDifficulties: (courseId, topicId) =>
+    axios.get("/teacherAPI/topics/difficulties/" + courseId + "/" + topicId),
+
+  // updating
+
   t_updateTopicName: (data) =>
     axios.put("/teacherAPI/topics/update/name", data),
 
@@ -48,6 +53,8 @@ export default {
 
   t_updateTopicFreestyleTimer: (data) =>
     axios.put("/teacherAPI/topics/update/timer", data),
+
+  // new
 
   t_newTopic: (topicData) => axios.put("/teacherAPI/topics/new", topicData),
 

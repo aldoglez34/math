@@ -92,6 +92,13 @@ const AdminExamDetail = React.memo((props) => {
             </h5>
           </Col>
         </Row>
+        {/* questions */}
+        <Row>
+          <Col>
+            <span className="text-muted">Preguntas</span>
+            
+          </Col>
+        </Row>
       </Container>
     </AdminLayout>
   ) : (

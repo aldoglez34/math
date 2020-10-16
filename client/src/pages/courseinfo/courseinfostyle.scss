@@ -1,3 +1,20 @@
+.backToHomeBttn {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: #48bf84 !important;
+  font-size: larger !important;
+  padding: 0px !important;
+  margin-bottom: 30px;
+
+  outline: none;
+  box-shadow: none !important;
+
+  &:hover {
+    color: #75ca9f !important;
+    transition: 0.2s;
+  }
+}
+
 .courseCounterBadge {
   background-color: #48bf84;
   color: white;

@@ -18,6 +18,27 @@ router.get("/:courseId/:topicId", function (req, res) {
     });
 });
 
+// t_fetchAvailableDifficulties()
+// matches with /teacherAPI/topics/difficulties/:courseId/:topicId
+router.get("/difficulties/:courseId/:topicId", function (req, res) {
+  const courseId = req.params.courseId;
+  const topicId = req.params.topicId;
+
+  model.Course.find({ _id: courseId, "topics._id": topicId })
+    // .select("topics")
+    .populate("topics.exams")
+    .then((data) =>
+      // res.json(data.topics.filter((t) => t._id.toString() === topicId)[0])
+      res.send(data)
+    )
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error.");
+    });
+});
+
+////////////////// EDITING FIELDS
+
 // t_updateTopicName
 // matches with /teacherAPI/topics/update/name
 router.put("/update/name", function (req, res) {
@@ -106,7 +127,7 @@ router.put("/update/timer", function (req, res) {
     });
 });
 
-////////////////// NEW (required uploading)
+////////////////// NEW (requires uploading)
 
 // t_newTopic()
 // matches with /teacherAPI/topics/new

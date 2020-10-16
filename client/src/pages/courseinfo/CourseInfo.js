@@ -40,9 +40,9 @@ const CourseInfo = React.memo((props) => {
         }}
       >
         {/* back button */}
-        <Button size="lg" variant="link" className="p-0 mb-3">
-          <i className="fas fa-long-arrow-alt-left mr-2 text-dark" />
-          <span className="text-dark">Regresar</span>
+        <Button className="backToHomeBttn" href="/">
+          <i className="fas fa-long-arrow-alt-left mr-2" />
+          <span>Regresar</span>
         </Button>
         {/* title */}
         <Row>

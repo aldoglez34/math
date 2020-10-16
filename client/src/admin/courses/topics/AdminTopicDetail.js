@@ -181,10 +181,10 @@ const AdminTopicDetail = React.memo((props) => {
           <Col>
             <span className="text-muted">Exámenes</span>
             {topic.exams.length ? (
-              <ul>
+              <ul className="mb-0">
                 {topic.exams.map((e) => (
                   <li key={e._id}>
-                    <h5>
+                    <h5 className="mb-1">
                       {`[${e.difficulty}] `}
                       {e.name}
                       <EditExamBttn

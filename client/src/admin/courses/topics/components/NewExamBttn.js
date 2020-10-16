@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, Col } from "react-bootstrap";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import PropTypes from "prop-types";
+import TeacherAPI from "../../../../utils/TeacherAPI";
 
 const NewExamBttn = ({ courseId, topicId }) => {
   const [show, setShow] = useState(false);
@@ -16,6 +17,17 @@ const NewExamBttn = ({ courseId, topicId }) => {
       .notOneOf(["Elige..."], "Requerido")
       .required("Requerido"),
   });
+
+  const [difficulties, setDifficulties] = useState();
+
+  useEffect(() => {
+    // TeacherAPI.t_fetchAvailableDifficulties(courseId, topicId)
+    //   .then((res) => setDifficulties(res.data))
+    //   .catch((err) => {
+    //     console.log(err);
+    //     alert("Ocurrió un error");
+    // });
+  }, []);
 
   return (
     <>
@@ -73,6 +85,9 @@ const NewExamBttn = ({ courseId, topicId }) => {
                         isInvalid={touched.difficulty && !!errors.difficulty}
                       >
                         <option disabled>Elige...</option>
+                        {/* {difficulties.map((d) => (
+                          <option value={d}>{d}</option>
+                        ))} */}
                         <option value="Basic">Básico</option>
                         <option value="Basic-Intermediate">
                           Básico-Intermedio
