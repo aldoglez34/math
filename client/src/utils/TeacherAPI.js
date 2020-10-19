@@ -110,4 +110,11 @@ export default {
   t_markSeen: (msgId) => axios.put("/teacherAPI/messages/markSeen/" + msgId),
 
   t_respondMsg: (data) => axios.put("/teacherAPI/messages/respond", data),
+
+  // ==============================================
+  // QUESTIONS
+  // ==============================================
+
+  t_newSimpleQuestion: (data) =>
+    axios.post("/teacherAPI/questions/simple/new", data),
 };

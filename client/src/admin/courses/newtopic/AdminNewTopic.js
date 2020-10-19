@@ -19,7 +19,7 @@ const AdminNewCrouse = React.memo((props) => {
     name: yup.string().min(3, "Nombre demasiado corto").required("Requerido"),
     subject: yup
       .string()
-      .min(3, "Nombre demasiado corto")
+      .notOneOf(["Elige..."], "Requerido")
       .required("Requerido"),
     description: yup.string().required("Requerido"),
     freestyleTimer: yup
@@ -134,16 +134,20 @@ const AdminNewCrouse = React.memo((props) => {
                         <strong className="text-danger">*</strong>
                       </Form.Label>
                       <Form.Control
-                        maxLength="50"
+                        as="select"
                         type="text"
-                        placeholder="Ej. Aritmética, Álgebra, Cálculo, etc."
                         name="subject"
-                        value={values.subject}
+                        defaultValue="Elige..."
                         onChange={handleChange}
                         onBlur={handleBlur}
                         isValid={touched.subject && !errors.subject}
                         isInvalid={touched.subject && !!errors.subject}
-                      />
+                      >
+                        <option disabled>Elige...</option>
+                        <option value="Secundaria">Álgebra</option>
+                        <option value="Primaria">Aritmética</option>
+                        <option value="Preparatoria">Cálculo</option>
+                      </Form.Control>
                       <ErrorMessage
                         className="text-danger"
                         name="subject"

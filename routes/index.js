@@ -39,4 +39,7 @@ router.use("/teacherAPI/students", tStudentRoutes);
 const tExamRoutes = require("./teacherAPI/tExamRoutes");
 router.use("/teacherAPI/exam", tExamRoutes);
 
+const tQuestionsRoutes = require("./teacherAPI/tQuestionsRoutes");
+router.use("/teacherAPI/questions", tQuestionsRoutes);
+
 module.exports = router;

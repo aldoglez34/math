@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../layout/AdminLayout";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Table } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import AdminSpinner from "../components/AdminSpinner";
 import AdminExamModal from "./components/AdminExamModal";
+import NewQuestionBttn from "./components/NewQuestionBttn";
 //
 import ExamNameForm from "./forms/ExamNameForm";
 import ExamDurationForm from "./forms/ExamDurationForm";
 import ExamDescriptionForm from "./forms/ExamDescriptionForm";
+//
+import SimpleQuestionForm from "./questionsForms/SimpleQuestionForm";
 
 const AdminExamDetail = React.memo((props) => {
   const [exam, setExam] = useState();
@@ -96,7 +99,39 @@ const AdminExamDetail = React.memo((props) => {
         <Row>
           <Col>
             <span className="text-muted">Preguntas</span>
-            
+            <div className="mt-2 d-flex flex-column">
+              {exam.questions.length ? (
+                <Table striped bordered hover>
+                  <thead>
+                    <tr>
+                      <th>Instrucción</th>
+                      <th>I. Técnica</th>
+                      <th>Respuesta</th>
+                      <th>Comentario</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {exam.questions.map((q) => {
+                      return (
+                        <tr key={q._id}>
+                          <td>{q.qInstruction}</td>
+                          <td>{q.qTechnicalInstruction.text}</td>
+                          <td>{q.qCorrectAnswers[0].answer}</td>
+                          <td>{q.qComment}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </Table>
+              ) : null}
+            </div>
+            <div className="mt-2">
+              <NewQuestionBttn
+                examId={exam._id}
+                Form={SimpleQuestionForm}
+                text="Pregunta sencilla"
+              />
+            </div>
           </Col>
         </Row>
       </Container>
