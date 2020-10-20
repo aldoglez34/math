@@ -27,7 +27,7 @@ const MedalTable = ({ rewards }) => {
         ) : (
           <Image
             key={r.topicName}
-            src="/rewards/empty.png"
+            src="/images/emptyMedal.png"
             width="80"
             height="120"
             className="my-1 mx-3 emptyMedalstyle"

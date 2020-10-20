@@ -16,8 +16,6 @@ router.post("/simple/new", function (req, res) {
     qComment: req.body.qComment,
   };
 
-  console.log("newQuestion", newQuestion);
-
   model.Exam.findOneAndUpdate(
     { _id: req.body.examId },
     {

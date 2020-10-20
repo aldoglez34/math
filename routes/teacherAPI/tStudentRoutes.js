@@ -21,7 +21,7 @@ router.get("/history/:studentId", function (req, res) {
 
   model.Student.findById(studentId)
     .select("attempts")
-    .lean() // necessary
+    .lean()
     .populate("attempts.exam", "name")
     .then((data) => res.json(data.attempts))
     .catch((err) => {

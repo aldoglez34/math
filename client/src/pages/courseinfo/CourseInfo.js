@@ -28,6 +28,8 @@ const CourseInfo = React.memo((props) => {
         return "Independientemente de la carrera por la cual se llegue a decidir, la Trigonometría, Álgebra y Estadística son de los retos que el estudiante en Preparatoria puede llegar a enfrentar, el curso ha sido pensado para acompañar, practicar y aprender estos temas que lo ayudarán a prepararse de tal forma que en su vida universitaria el alumno pueda llevar una vida equilibrada entre asignaciones.";
       case "Universidad":
         return "lorem ipsum";
+      default:
+        return null;
     }
   };
 
@@ -64,6 +66,7 @@ const CourseInfo = React.memo((props) => {
               courses.map((c) => (
                 <CourseInfoCard
                   key={c._id}
+                  courseId={c._id}
                   lessonCounter={c.topics.length}
                   title={c.name}
                   price={c.price}

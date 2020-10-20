@@ -1,7 +1,19 @@
-import React from "react";
-import { Image, Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Image, Button, Spinner } from "react-bootstrap";
+import API from "../../utils/API";
 
 const NoCourses = React.memo(() => {
+  const [courses, setCourses] = useState();
+
+  useEffect(() => {
+    API.fetchSchoolDropdownItems()
+      .then((res) => setCourses(res.data))
+      .catch((err) => {
+        console.log(err);
+        alert("Ocurrió un error, actualiza la página");
+      });
+  }, []);
+
   return (
     <div className="text-center mt-4">
       <Image src="/images/emptybox.png" className="emptyBox" />
@@ -9,27 +21,24 @@ const NoCourses = React.memo(() => {
         No tienes cursos en tu cuenta...
       </em>
       <div className="d-flex mt-4 justify-content-center">
-        <Button
-          variant="primary"
-          href="/courses/primaria"
-          className="shadow mr-2"
-        >
-          Primaria
-        </Button>
-        <Button
-          variant="primary"
-          href="/courses/secundaria"
-          className="shadow mr-2"
-        >
-          Secundaria
-        </Button>
-        <Button
-          variant="primary"
-          className="shadow"
-          href="/courses/preparatoria"
-        >
-          Preparatoria
-        </Button>
+        {courses ? (
+          courses.length ? (
+            courses.map((c) => (
+              <Button
+                key={c}
+                variant="primary"
+                href={"/courses/" + c}
+                className="shadow-sm mr-2"
+              >
+                {c}
+              </Button>
+            ))
+          ) : null
+        ) : (
+          <div>
+            <Spinner animation="border" role="status" />
+          </div>
+        )}
       </div>
     </div>
   );

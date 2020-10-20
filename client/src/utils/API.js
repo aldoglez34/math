@@ -19,6 +19,8 @@ export default {
   // STUDENTS
   // ==============================================
 
+  buyCourse: (data) => axios.put("/api/student/buyCourse", data),
+
   fetchStudentByUID: (uid) => axios.get("/api/student/fetchByUID/" + uid),
 
   registerNewStudent: (data) => axios.post("/api/student/new", data),

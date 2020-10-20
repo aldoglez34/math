@@ -1,6 +1,50 @@
 const router = require("express").Router();
 const model = require("../../models");
 
+// buyCourse()
+// matches with /api/student/buyCourse
+router.put("/buyCourse", function (req, res) {
+  // get all exams from the given course
+  model.Course.findById(req.body.courseId)
+    .select("topics.exams")
+    .lean()
+    .populate("topics.exams", "difficulty")
+    .then((data) => {
+      const courses = data.topics.reduce((acc, cv) => {
+        acc.push(...cv.exams);
+        return acc;
+      }, []);
+
+      const onlyBasics = courses.reduce((acc, cv) => {
+        if (cv.difficulty === "Basic") acc.push(cv._id);
+        return acc;
+      }, []);
+
+      return onlyBasics;
+    })
+    .then((onlyBasics) => {
+      // insert only basic exams into the student account
+      model.Student.findOneAndUpdate(
+        { _id: req.body.studentId },
+        {
+          $push: {
+            courses: req.body.courseId,
+            exams: onlyBasics,
+          },
+        }
+      )
+        .then((data) => res.json(data))
+        .catch((err) => {
+          console.log("@error", err);
+          res.status(422).send({ msg: "Ocurrió un error" });
+        });
+    })
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send({ msg: "Ocurrió un error" });
+    });
+});
+
 // fetchStudentByUID()
 // matches with /api/student/fetchByUID/:uid
 router.get("/fetchByUID/:uid", function (req, res) {

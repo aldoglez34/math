@@ -30,7 +30,6 @@ const CourseIntro = React.memo(({ name, topics, rewards }) => {
             <h3 style={{ color: "#828c90" }} className="mb-3">
               Medallero
             </h3>
-            {/* <br /> */}
             <MedalTable rewards={rewards} />
           </Col>
         </Row>

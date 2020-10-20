@@ -101,13 +101,13 @@ const AdminExamDetail = React.memo((props) => {
             <span className="text-muted">Preguntas</span>
             <div className="mt-2 d-flex flex-column">
               {exam.questions.length ? (
-                <Table striped bordered hover>
+                <Table bordered size="sm">
                   <thead>
                     <tr>
-                      <th>Instrucción</th>
-                      <th>I. Técnica</th>
-                      <th>Respuesta</th>
-                      <th>Comentario</th>
+                      <th style={{ color: "#0f5257" }}>Instrucción</th>
+                      <th style={{ color: "#0f5257" }}>I. Técnica</th>
+                      <th style={{ color: "#0f5257" }}>Respuesta</th>
+                      <th style={{ color: "#0f5257" }}>Comentario</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -115,7 +115,11 @@ const AdminExamDetail = React.memo((props) => {
                       return (
                         <tr key={q._id}>
                           <td>{q.qInstruction}</td>
-                          <td>{q.qTechnicalInstruction.text}</td>
+                          <td>
+                            {q.qTechnicalInstruction
+                              ? q.qTechnicalInstruction.text
+                              : null}
+                          </td>
                           <td>{q.qCorrectAnswers[0].answer}</td>
                           <td>{q.qComment}</td>
                         </tr>
