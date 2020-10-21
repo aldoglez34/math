@@ -153,7 +153,6 @@ const AdminNewCrouse = React.memo(() => {
                         Separados por coma
                       </Form.Text>
                       <Form.Control
-                        placeholder="Ej. Fracciones, Porcentajes, Ecuaciones, etc."
                         maxLength="250"
                         type="text"
                         name="summary"
