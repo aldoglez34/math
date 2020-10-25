@@ -13,6 +13,10 @@ const AdminNewExam = React.memo((props) => {
       .number()
       .positive("El número debe ser mayor a 1")
       .required("Requerido"),
+    qCounter: yup
+      .number()
+      .positive("El número debe ser mayor a 1")
+      .required("Requerido"),
   });
 
   return (
@@ -33,6 +37,7 @@ const AdminNewExam = React.memo((props) => {
                 name: "",
                 duration: "",
                 description: "",
+                qCounter: "",
               }}
               validationSchema={yupschema}
               onSubmit={(values, { setSubmitting }) => {
@@ -40,8 +45,6 @@ const AdminNewExam = React.memo((props) => {
                 values.courseId = props.routeProps.match.params.courseId;
                 values.topicId = props.routeProps.match.params.topicId;
                 values.difficulty = props.routeProps.match.params.difficulty;
-
-                console.log(values);
                 //
                 TeacherAPI.t_newExam(values)
                   .then((res) => {
@@ -68,10 +71,12 @@ const AdminNewExam = React.memo((props) => {
                 <Form noValidate onSubmit={handleSubmit}>
                   {/* name */}
                   <Form.Row>
-                    <Col md={8}>
+                    <Col>
                       <Form.Label>
                         Nombre
-                        <strong className="text-danger">*</strong>
+                        <strong className="text-danger" title="Requerido">
+                          *
+                        </strong>
                       </Form.Label>
                       <Form.Control
                         maxLength="50"
@@ -89,10 +94,37 @@ const AdminNewExam = React.memo((props) => {
                         component="div"
                       />
                     </Col>
-                    <Col md={4}>
+                  </Form.Row>
+                  <Form.Row className="mt-3">
+                    <Col md={6}>
+                      <Form.Label>
+                        Preguntas
+                        <strong className="text-danger" title="Requerido">
+                          *
+                        </strong>
+                      </Form.Label>
+                      <Form.Control
+                        maxLength="50"
+                        type="number"
+                        name="qCounter"
+                        value={values.qCounter}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        isValid={touched.qCounter && !errors.qCounter}
+                        isInvalid={touched.qCounter && !!errors.qCounter}
+                      />
+                      <ErrorMessage
+                        className="text-danger"
+                        name="qCounter"
+                        component="div"
+                      />
+                    </Col>
+                    <Col md={6}>
                       <Form.Label>
                         Duración
-                        <strong className="text-danger">*</strong>
+                        <strong className="text-danger" title="Requerido">
+                          *
+                        </strong>
                       </Form.Label>
                       <InputGroup>
                         <Form.Control
@@ -118,11 +150,13 @@ const AdminNewExam = React.memo((props) => {
                       />
                     </Col>
                   </Form.Row>
-                  {/* name */}
+                  {/* description */}
                   <Form.Group className="mt-3">
                     <Form.Label>
                       Descripción
-                      <strong className="text-danger">*</strong>
+                      <strong className="text-danger" title="Requerido">
+                        *
+                      </strong>
                     </Form.Label>
                     <Form.Control
                       as="textarea"

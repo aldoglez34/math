@@ -127,7 +127,9 @@ const AdminExamDetail = React.memo((props) => {
                     })}
                   </tbody>
                 </Table>
-              ) : null}
+              ) : (
+                <span>-</span>
+              )}
             </div>
             <div className="mt-2">
               <NewQuestionBttn

@@ -38,7 +38,7 @@ const FreestyleCard = React.memo(({ topicName, freestyle }) => {
           <LastVisited date={freestyle.lastVisit} />
           <br />
           {/* duration */}
-          <span style={{ fontSize: "14px", cursor: "help" }} title="Duración">
+          <span style={{ fontSize: "14px" }} title="Duración">
             <i className="fas fa-stopwatch mr-2" />
             {freestyle.timer + " mins."}
           </span>
@@ -49,7 +49,7 @@ const FreestyleCard = React.memo(({ topicName, freestyle }) => {
           <Row className="my-3">
             <Col className="text-center">
               <h1 className="mb-0 text-info">
-                <span style={{ cursor: "help" }} title="Puntuación más alta">
+                <span title="Puntuación más alta">
                   {freestyle.myHighestScore}
                 </span>
               </h1>
@@ -58,10 +58,8 @@ const FreestyleCard = React.memo(({ topicName, freestyle }) => {
               </h4>
             </Col>
             <Col className="text-center">
-              <h1 className="mb-0 text-info" style={{ cursor: "help" }}>
-                <span style={{ cursor: "help" }} title="Número de intentos">
-                  {freestyle.myTryouts}
-                </span>
+              <h1 className="mb-0 text-info">
+                <span title="Número de intentos">{freestyle.myTryouts}</span>
               </h1>
               <h4>
                 <small className="text-muted">Intentos</small>
@@ -78,7 +76,7 @@ const FreestyleCard = React.memo(({ topicName, freestyle }) => {
                 name: "Modo Rápido",
                 topicName: topicName,
               })
-                .then(() => (window.location.href = "/course/exam/freestyle"))
+                .then(() => (window.location.href = "/course/freestyle"))
                 .catch((err) => {
                   console.log("error", err);
                   alert("Ocurrió un error inesperado");

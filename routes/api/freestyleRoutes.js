@@ -2,8 +2,8 @@ const router = require("express").Router();
 const model = require("../../models");
 
 // fetchFreestyle()
-// matches with /api/freestyle/:topicName
-router.get("/:topicName", function (req, res) {
+// matches with /api/freestyle/:topicId
+router.get("/:topicId", function (req, res) {
   const difficulties = ["Intermediate", "Intermediate-Advanced", "Advanced"];
 
   model.Exam.find({
@@ -83,7 +83,7 @@ router.get("/:topicName", function (req, res) {
 // registerFreestyleAttempt()
 // matches with /api/freestyle/registerAttempt
 router.put("/registerAttempt", function (req, res) {
-  const { courseId, topicName } = req.body;
+  const { courseId, topicId } = req.body;
 
   const newAttempt = {
     studentId: req.body.studentId,
@@ -94,7 +94,7 @@ router.put("/registerAttempt", function (req, res) {
   model.Course.update(
     {
       _id: courseId,
-      "topics.name": topicName,
+      "topics._id": topicId,
     },
     {
       $push: {

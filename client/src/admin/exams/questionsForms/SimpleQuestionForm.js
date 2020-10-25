@@ -54,7 +54,7 @@ const SimpleQuestionForm = React.memo(({ examId }) => {
             <Form.Group as={Col}>
               <Form.Label>
                 Instrucción
-                <strong className="text-danger ml-1" title="Requerido">
+                <strong className="text-danger" title="Requerido">
                   *
                 </strong>
               </Form.Label>
@@ -110,7 +110,7 @@ const SimpleQuestionForm = React.memo(({ examId }) => {
             <Form.Group as={Col}>
               <Form.Label>
                 Respuesta
-                <strong className="text-danger ml-1" title="Requerido">
+                <strong className="text-danger" title="Requerido">
                   *
                 </strong>
               </Form.Label>

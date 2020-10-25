@@ -43,11 +43,7 @@ const FreestyleTimer = React.memo(({ score }) => {
   }, [secondsLeft]);
 
   return (
-    <div
-      className="text-secondary lead"
-      style={{ cursor: "help" }}
-      title="Tiempo restante"
-    >
+    <div className="text-secondary lead" title="Tiempo restante">
       <i className="fas fa-stopwatch mr-1" />
       <strong>
         {minutesLeft > 0 ? minutesLeft + " min." : secondsLeft + " seg."}

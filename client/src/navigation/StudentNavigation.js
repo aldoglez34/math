@@ -39,7 +39,7 @@ export default () => {
       <Route exact path="/course/exam/results" component={Results} />
 
       {/* freestyle */}
-      <Route exact path="/course/exam/freestyle" component={Freestyle} />
+      <Route exact path="/course/freestyle" component={Freestyle} />
 
       <Redirect from="/" to="/dashboard" />
 

@@ -51,7 +51,7 @@ const schema = new Schema({
   ],
   rewards: [
     {
-      topicName: { type: String, required: true },
+      topicId: { type: String, required: true },
       name: { type: String, required: true },
       link: { type: String, required: true },
     },

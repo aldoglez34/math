@@ -9,11 +9,11 @@ const MedalTable = ({ rewards }) => {
       {rewards.map((r) =>
         r.hasReward ? (
           <OverlayTrigger
-            key={r.topicName}
+            key={r.medalName}
             placement="top"
             overlay={
               <Tooltip>
-                Medalla del tema <strong>{r.topicName}</strong>.
+                <strong>{r.medalName}</strong>
               </Tooltip>
             }
           >
@@ -26,7 +26,7 @@ const MedalTable = ({ rewards }) => {
           </OverlayTrigger>
         ) : (
           <Image
-            key={r.topicName}
+            key={r.medalName}
             src="/images/emptyMedal.png"
             width="80"
             height="120"

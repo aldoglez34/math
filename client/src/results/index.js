@@ -59,7 +59,6 @@ const Results = React.memo(() => {
     if (exam.difficulty !== "Advanced" && calif / 10 >= 8) {
       API.unlockExam({
         studentId: student._id,
-        topicCode: exam.topicCode,
         difficulty: exam.difficulty,
       })
         .then((res) => {

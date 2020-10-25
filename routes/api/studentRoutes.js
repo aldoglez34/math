@@ -95,12 +95,12 @@ router.get("/fetchDashboard/:studentId", function (req, res) {
           acc.push({
             ...cv,
             rewards: myRewards.filter((mr) =>
-              cv.topics.filter((t) => t.name === mr.topicName)
+              cv.topics.filter((t) => t._id === mr.topicId)
             ),
             topics: cv.topics.reduce((acc, cv) => {
               acc.push({
                 ...cv,
-                hasReward: myRewards.filter((mr) => mr.topicName === cv.name)
+                hasReward: myRewards.filter((mr) => mr.topicId === cv._id)
                   .length
                   ? true
                   : false,

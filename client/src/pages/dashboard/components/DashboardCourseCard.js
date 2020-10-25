@@ -46,11 +46,7 @@ const DashboardCourseCard = React.memo(({ course }) => {
             </Button>
 
             {ct.hasReward ? (
-              <i
-                className="fas fa-medal text-warning ml-2"
-                title="Aprobado"
-                style={{ cursor: "help" }}
-              />
+              <i className="fas fa-medal text-warning ml-2" title="Aprobado" />
             ) : null}
           </ListGroupItem>
         ))}

@@ -11,21 +11,10 @@ import FreestyleCard from "./FreestyleCard";
 const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
   const dispatch = useDispatch();
 
-  const setExamInRedux = async (
-    _id,
-    examCode,
-    topicCode,
-    topicName,
-    name,
-    difficulty,
-    duration
-  ) => {
+  const setExamInRedux = async (_id, name, difficulty, duration) => {
     dispatch(
       examActions.setExam({
         _id,
-        examCode,
-        topicCode,
-        topicName,
         reward,
         name,
         difficulty,
@@ -49,7 +38,6 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
                   <i
                     className="fas fa-check-circle text-warning ml-2"
                     title="Aprobado"
-                    style={{ cursor: "help" }}
                   />
                 ) : null}
                 {/* crown for perfect grade */}
@@ -57,16 +45,11 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
                   <i
                     className="fas fa-crown text-warning ml-2"
                     title="Calificación perfecta"
-                    style={{ cursor: "help" }}
                   />
                 ) : null}
                 {/* locked exam */}
                 {ex.isAvailable ? null : (
-                  <i
-                    className="fas fa-lock ml-2"
-                    title="Bloqueado"
-                    style={{ cursor: "help" }}
-                  />
+                  <i className="fas fa-lock ml-2" title="Bloqueado" />
                 )}
               </Accordion.Toggle>
             </Card.Header>
@@ -77,28 +60,28 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
                 {/* stars */}
                 <DifficultyStars difficulty={ex.difficulty} />
                 {/* description */}
-                <p style={{ fontSize: "14px" }} className="mb-2 mt-2">
-                  {ex.description}
+                <p className="mb-2 mt-2">
+                  <strong style={{ fontSize: "14px" }}>{ex.description}</strong>
                 </p>
                 {/* latest attempt */}
                 <LastVisited date={ex.latestAttempt} />
                 <br />
                 {/* duration */}
-                <span
-                  style={{ fontSize: "14px", cursor: "help" }}
-                  title="Duración"
-                >
+                <span style={{ fontSize: "14px" }} title="Duración">
                   <i className="fas fa-stopwatch mr-2" />
-                  {ex.duration + " mins."}
+                  {ex.duration + " minutos"}
+                </span>
+                <br />
+                {/* question counter */}
+                <span style={{ fontSize: "14px" }} title="Preguntas">
+                  <i className="fas fa-question-circle mr-2" />
+                  {ex.qCounter + " preguntas"}
                 </span>
                 {/* columns */}
                 <Row className="my-3">
                   <Col className="text-center">
                     <h1 className="mb-0 text-info">
-                      <span
-                        style={{ cursor: "help" }}
-                        title="Calificación más alta"
-                      >
+                      <span title="Calificación más alta">
                         {ex.highestGrade}
                       </span>
                     </h1>
@@ -107,11 +90,8 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
                     </h4>
                   </Col>
                   <Col className="text-center">
-                    <h1 className="mb-0 text-info" style={{ cursor: "help" }}>
-                      <span
-                        style={{ cursor: "help" }}
-                        title="Número de intentos"
-                      >
+                    <h1 className="mb-0 text-info">
+                      <span title="Número de intentos">
                         {ex.attemptsCounter}
                       </span>
                     </h1>
@@ -126,9 +106,6 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
                     onClick={() =>
                       setExamInRedux(
                         ex._id,
-                        ex.examCode,
-                        ex.topicCode,
-                        ex.topicName,
                         ex.name,
                         ex.difficulty,
                         ex.duration
@@ -153,7 +130,7 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
           </Card>
           {/* only show freestyle if student has the reward AND it has to be the last card */}
           {exams.length === idx + 1 && freestyle.isAvailable ? (
-            <FreestyleCard topicName={ex.topicName} freestyle={freestyle} />
+            <FreestyleCard topicName={ex.name} freestyle={freestyle} />
           ) : null}
         </React.Fragment>
       ))}

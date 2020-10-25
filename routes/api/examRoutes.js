@@ -104,15 +104,15 @@ router.put("/registerPerfectGrade", function (req, res) {
 // registerReward()
 // matches with /api/exam/registerReward
 router.put("/registerReward", function (req, res) {
-  const { studentId, topicName, name, link } = req.body;
+  const { studentId, topicId, name, link } = req.body;
 
   // push the reward only if the topic isn't already there
   model.Student.findOneAndUpdate(
-    { _id: studentId, "rewards.topicName": { $ne: topicName } },
+    { _id: studentId, "rewards.topicId": { $ne: topicId } },
     {
       $addToSet: {
         rewards: {
-          topicName: topicName,
+          topicId,
           name: name,
           link: link,
         },
@@ -132,7 +132,7 @@ router.put("/registerReward", function (req, res) {
 // unlockExam()
 // matches with /api/exam/unlockExam
 router.put("/unlockExam", function (req, res) {
-  const { studentId, topicCode, difficulty } = req.body;
+  const { studentId, difficulty } = req.body;
 
   let unblockedDiff = null;
   switch (difficulty) {
@@ -151,7 +151,7 @@ router.put("/unlockExam", function (req, res) {
   }
 
   // find the exam's _id (the new one)
-  model.Exam.findOne({ topicCode: topicCode, difficulty: unblockedDiff })
+  model.Exam.findOne({ difficulty: unblockedDiff })
     .select("_id name difficulty")
     .then((newExam) => {
       const newExamId = newExam._id;

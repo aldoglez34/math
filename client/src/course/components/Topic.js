@@ -16,7 +16,7 @@ const Topic = React.memo(({ courseName, topic }) => {
               <i
                 className="fas fa-medal text-warning ml-2"
                 title="Aprobado"
-                style={{ fontSize: "35px", cursor: "help" }}
+                style={{ fontSize: "35px" }}
               />
             ) : null}
           </h1>

@@ -80,7 +80,7 @@ const DifficultyStars = React.memo(({ difficulty }) => {
   };
 
   return (
-    <span className="text-danger" title="Dificultad" style={{ cursor: "help" }}>
+    <span className="text-danger" title="Dificultad">
       {calculateDifficulty()}
     </span>
   );

@@ -9,13 +9,14 @@ router.post("/new", function (req, res) {
     name: req.body.name,
     description: req.body.description,
     duration: req.body.duration,
+    qCounter: req.body.qCounter,
   };
 
   model.Exam.create(examData)
     .then((newExam) => {
       const newExamId = newExam._id;
 
-      //now add that exam to the course
+      // now add that exam to the course
       model.Course.findOneAndUpdate(
         {
           _id: req.body.courseId,

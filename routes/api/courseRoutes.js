@@ -17,7 +17,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
     )
     .populate(
       "topics.exams",
-      "_id examCode topicCode topicName name description duration difficulty qCounter"
+      "_id name description duration difficulty qCounter"
     )
     .then((data) => {
       courseData = data;
@@ -32,12 +32,9 @@ router.get("/info/:courseId/:studentId", function (req, res) {
 
       courseData.rewards = courseData.topics.reduce((acc, cv) => {
         acc.push({
-          examCode: cv.examCode,
-          topicCode: cv.topicCode,
-          topicName: cv.name,
           medalName: cv.reward.name,
           link: cv.reward.link,
-          hasReward: studentData.rewards.filter((r) => r.topicName === cv.name)
+          hasReward: studentData.rewards.filter((r) => r.topicId === cv._id)
             .length
             ? true
             : false,
@@ -81,7 +78,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
                 .slice(0, 10),
             },
             hasReward: studentData.rewards.filter(
-              (r) => r.topicName === cv.name
+              (r) => r.topicId === cv._id
             ).length
               ? true
               : false,
