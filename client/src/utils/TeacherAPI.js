@@ -80,6 +80,9 @@ export default {
   t_updateExamDuration: (data) =>
     axios.put("/teacherAPI/exam/update/duration", data),
 
+  t_updateExamQCounter: (data) =>
+    axios.put("/teacherAPI/exam/update/qCounter", data),
+
   t_updateExamDescription: (data) =>
     axios.put("/teacherAPI/exam/update/description", data),
 

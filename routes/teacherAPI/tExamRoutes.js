@@ -95,6 +95,26 @@ router.put("/update/duration", function (req, res) {
     });
 });
 
+// t_updateExamQCounter
+// matches with /teacherAPI/exam/update/qCounter
+router.put("/update/qCounter", function (req, res) {
+  const { newQCounter, examId } = req.body;
+
+  model.Exam.findByIdAndUpdate(
+    {
+      _id: examId,
+    },
+    { qCounter: newQCounter }
+  )
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error.");
+    });
+});
+
 // t_updateExamDescription
 // matches with /teacherAPI/exam/update/description
 router.put("/update/description", function (req, res) {

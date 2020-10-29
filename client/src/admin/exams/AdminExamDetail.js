@@ -8,6 +8,7 @@ import NewQuestionBttn from "./components/NewQuestionBttn";
 //
 import ExamNameForm from "./forms/ExamNameForm";
 import ExamDurationForm from "./forms/ExamDurationForm";
+import ExamQCounterForm from "./forms/ExamQCounterForm";
 import ExamDescriptionForm from "./forms/ExamDescriptionForm";
 //
 import SimpleQuestionForm from "./questionsForms/SimpleQuestionForm";
@@ -73,6 +74,22 @@ const AdminExamDetail = React.memo((props) => {
                 modalTitle="Editar duración"
                 Form={ExamDurationForm}
                 formLabel="Duración"
+                formInitialText={exam.duration}
+                examId={props.routeProps.match.params.examId}
+              />
+            </h2>
+          </Col>
+        </Row>
+         {/* question counter */}
+         <Row>
+          <Col>
+            <span className="text-muted">Preguntas</span>
+            <h2>
+              {`${exam.qCounter} preguntas`}
+              <AdminExamModal
+                modalTitle="Editar preguntas"
+                Form={ExamQCounterForm}
+                formLabel="Preguntas"
                 formInitialText={exam.duration}
                 examId={props.routeProps.match.params.examId}
               />
