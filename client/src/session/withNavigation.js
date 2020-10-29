@@ -14,8 +14,6 @@ const withNavigation = (Component) => {
 
     componentDidMount() {
       firebase.auth().onAuthStateChanged((fbUser) => {
-        // console.log("@withnav", fbUser);
-
         fbUser
           ? this.setState({ navigation: fbUser.displayName })
           : this.props.user

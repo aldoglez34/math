@@ -121,7 +121,7 @@ const AddPDF = React.memo(({ courseId, topicId }) => {
                     file={values.file}
                   />
                   {/* buttons */}
-                  <Form.Group className="text-right mt-3">
+                  <Form.Group className="text-right mt-4">
                     <Button
                       variant="dark"
                       type="submit"

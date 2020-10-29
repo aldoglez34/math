@@ -45,7 +45,7 @@ const CoursesDropdown = React.memo(() => {
           ))
         ) : null
       ) : (
-        <div>
+        <div className="my-2 text-center">
           <Spinner animation="border" role="status" />
         </div>
       )}

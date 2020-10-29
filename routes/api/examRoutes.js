@@ -9,7 +9,7 @@ router.get("/info/:examId", function (req, res) {
   model.Exam.findById(examId)
     .select("name questions duration qCounter")
     .then((data) => {
-      const { qCounter } = data;
+      const qCounter = data.qCounter;
       const totalQuestions = data.questions.length;
 
       // generate random numbers
@@ -48,7 +48,7 @@ router.get("/info/:examId", function (req, res) {
                 ? cv.qMultipleChoice
                 : null,
             qCorrectAnswers: cv.qCorrectAnswers,
-            qComment: cv.qComment,
+            qComment: cv.qComment ? cv.qComment : null,
           });
           return acc;
         }, []),

@@ -95,10 +95,11 @@ const AdminNewExam = React.memo((props) => {
                       />
                     </Col>
                   </Form.Row>
+                  {/* question counter */}
                   <Form.Row className="mt-3">
                     <Col md={6}>
                       <Form.Label>
-                        Preguntas
+                        Cantidad de preguntas
                         <strong className="text-danger" title="Requerido">
                           *
                         </strong>

@@ -68,6 +68,7 @@ const Topic = React.memo(({ courseName, topic }) => {
           <ExamsAccordion
             exams={topic.exams}
             reward={topic.reward}
+            topicName={topic.name}
             freestyle={{
               ...topic.freestyle,
               isAvailable: topic.hasReward,

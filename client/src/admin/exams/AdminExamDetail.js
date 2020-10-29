@@ -80,17 +80,21 @@ const AdminExamDetail = React.memo((props) => {
             </h2>
           </Col>
         </Row>
-         {/* question counter */}
-         <Row>
+        {/* question counter */}
+        <Row>
           <Col>
-            <span className="text-muted">Preguntas</span>
-            <h2>
+            <span className="text-muted">Cantidad de preguntas</span>
+            <h2
+              className={
+                exam.qCounter > exam.questions.length ? "text-danger" : null
+              }
+            >
               {`${exam.qCounter} preguntas`}
               <AdminExamModal
-                modalTitle="Editar preguntas"
+                modalTitle="Editar cantidad de preguntas"
                 Form={ExamQCounterForm}
-                formLabel="Preguntas"
-                formInitialText={exam.duration}
+                formLabel="Cantidad de preguntas"
+                formInitialText={exam.qCounter}
                 examId={props.routeProps.match.params.examId}
               />
             </h2>

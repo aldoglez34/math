@@ -7,13 +7,13 @@ router.get("/info/:courseId/:studentId", function (req, res) {
   const courseId = req.params.courseId;
   const studentId = req.params.studentId;
 
-  var courseData = {};
+  let courseData = {};
 
   // 1. first get the course data
   model.Course.findById(courseId)
     .lean()
     .select(
-      "name topics._id topics.subject topics.name topics.description topics.toLearn topics.freestyle topics.material topics.exams topics.reward"
+      "name topics._id topics.subject topics.name topics.description topics.freestyle topics.material topics.exams topics.reward"
     )
     .populate(
       "topics.exams",
@@ -77,9 +77,8 @@ router.get("/info/:courseId/:studentId", function (req, res) {
                 .sort((a, b) => (a.score > b.score ? -1 : 1))
                 .slice(0, 10),
             },
-            hasReward: studentData.rewards.filter(
-              (r) => r.topicId === cv._id
-            ).length
+            hasReward: studentData.rewards.filter((r) => r.topicId === cv._id)
+              .length
               ? true
               : false,
             // exams reduce

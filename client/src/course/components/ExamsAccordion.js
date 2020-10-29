@@ -8,7 +8,7 @@ import * as examActions from "../../redux/actions/exam";
 import NotAvailableBttn from "./buttons/NotAvailableBttn";
 import FreestyleCard from "./FreestyleCard";
 
-const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
+const ExamsAccordion = React.memo(({ exams, reward, freestyle, topicName }) => {
   const dispatch = useDispatch();
 
   const setExamInRedux = async (_id, name, difficulty, duration) => {
@@ -19,6 +19,7 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
         name,
         difficulty,
         duration,
+        topicName
       })
     );
   };
@@ -80,7 +81,7 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
                 {/* columns */}
                 <Row className="my-3">
                   <Col className="text-center">
-                    <h1 className="mb-0 text-info">
+                    <h1 className="mb-0" style={{ color: "#48bf84" }}>
                       <span title="Calificación más alta">
                         {ex.highestGrade}
                       </span>
@@ -90,7 +91,7 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
                     </h4>
                   </Col>
                   <Col className="text-center">
-                    <h1 className="mb-0 text-info">
+                    <h1 className="mb-0" style={{ color: "#48bf84" }}>
                       <span title="Número de intentos">
                         {ex.attemptsCounter}
                       </span>
@@ -130,7 +131,7 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle }) => {
           </Card>
           {/* only show freestyle if student has the reward AND it has to be the last card */}
           {exams.length === idx + 1 && freestyle.isAvailable ? (
-            <FreestyleCard topicName={ex.name} freestyle={freestyle} />
+            <FreestyleCard topicName={topicName} freestyle={freestyle} />
           ) : null}
         </React.Fragment>
       ))}
