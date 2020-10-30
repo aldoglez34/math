@@ -104,4 +104,33 @@ router.put("/pdf/add", function (req, res) {
   });
 });
 
+// t_deleteMaterial
+// matches with /teacherAPI/material/delete
+router.put("/delete", function (req, res) {
+  const { courseId, topicId, materialId } = req.body;
+
+  console.log("entrando...");
+
+  model.Course.updateOne(
+    {
+      _id: courseId,
+      "topics._id": topicId,
+    },
+    {
+      $pullAll: {
+        "topics.$.material": {
+          _id: [materialId],
+        },
+      },
+    }
+  )
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error.");
+    });
+});
+
 module.exports = router;

@@ -67,6 +67,11 @@ export default {
 
   t_addPDFToMaterial: (data) => axios.put("/teacherAPI/material/pdf/add", data),
 
+  // delete material
+
+  t_deleteMaterial: (data) =>
+    axios.put("/teacherAPI/material/delete", data),
+
   // ==============================================
   // EXAM
   // ==============================================

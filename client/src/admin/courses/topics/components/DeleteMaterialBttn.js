@@ -2,14 +2,27 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
+import TeacherAPI from "../../../../utils/TeacherAPI";
 
 const DeleteMaterial = React.memo(({ topicId, materialId }) => {
   const course = useSelector((state) => state.course);
 
   const handleDelete = () => {
-    console.log("courseId: ", course._id);
-    console.log("topicId: ", topicId);
-    console.log("materialId: ", materialId);
+    const obj = {
+      courseId: course._id,
+      topicId,
+      materialId,
+    };
+    //
+    TeacherAPI.t_deleteMaterial(obj)
+      .then((res) => {
+        console.log(res.data);
+        alert("El artículo seleccionado ha sido eliminado con éxito.");
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
