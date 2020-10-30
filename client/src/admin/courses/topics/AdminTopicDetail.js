@@ -13,6 +13,7 @@ import TopicSubjectForm from "./forms/TopicSubjectForm";
 import TopicDescriptionForm from "./forms/TopicDescriptionForm";
 import TopicFreestyleTimerForm from "./forms/TopicFreestyleTimerForm";
 import NewExamBttn from "./components/NewExamBttn";
+import DeleteMaterial from "./components/DeleteMaterialBttn";
 
 const AdminTopicDetail = React.memo((props) => {
   const [topic, setTopic] = useState();
@@ -119,9 +120,7 @@ const AdminTopicDetail = React.memo((props) => {
                 className="ml-1"
                 title="Eliminar"
               >
-                <strong>
-                  <i className="fas fa-trash-alt" />
-                </strong>
+                <i className="fas fa-trash-alt" />
               </Button>
             </div>
             <Image
@@ -147,16 +146,7 @@ const AdminTopicDetail = React.memo((props) => {
                         <i className="fas fa-file-pdf mr-2" />
                       ) : null}
                       {m.name}
-                      <Button
-                        size="sm"
-                        variant="danger"
-                        className="ml-1"
-                        title="Eliminar"
-                      >
-                        <strong>
-                          <i className="fas fa-trash-alt" />
-                        </strong>
-                      </Button>
+                      <DeleteMaterial topicId={topic._id} materialId={m._id} />
                     </strong>
                   </li>
                 ))}
