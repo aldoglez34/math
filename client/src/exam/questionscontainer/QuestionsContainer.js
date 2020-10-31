@@ -9,6 +9,7 @@ import QTechnicalInstruction from "./components/QTechnicalInstruction";
 import QMultipleChoice from "./components/QMultipleChoice";
 import Progress from "./components/Progress";
 import ExitButton from "../../components/exitbutton/ExitButton";
+import HelpModalSM from "./components/HelpModalSM";
 
 const QuestionsContainer = React.memo(({ questions }) => {
   const dispatch = useDispatch();
@@ -197,6 +198,7 @@ const QuestionsContainer = React.memo(({ questions }) => {
         <Container>
           <div className="d-flex mt-3">
             <Timer />
+            <HelpModalSM />
             <ExitButton url={"/course/#" + exam.topicName} />
           </div>
         </Container>
