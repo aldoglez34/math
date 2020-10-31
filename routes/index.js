@@ -42,4 +42,10 @@ router.use("/teacherAPI/exam", tExamRoutes);
 const tQuestionsRoutes = require("./teacherAPI/tQuestionsRoutes");
 router.use("/teacherAPI/questions", tQuestionsRoutes);
 
+const tRewardsRoutes = require("./teacherAPI/tRewardsRoutes");
+router.use("/teacherAPI/rewards", tRewardsRoutes);
+
+const tDifficultiesRoutes = require("./teacherAPI/tDifficultiesRoutes");
+router.use("/teacherAPI/difficulties", tDifficultiesRoutes);
+
 module.exports = router;

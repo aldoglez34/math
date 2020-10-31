@@ -104,16 +104,23 @@ const AdminNewExam = React.memo((props) => {
                           *
                         </strong>
                       </Form.Label>
-                      <Form.Control
-                        maxLength="50"
-                        type="number"
-                        name="qCounter"
-                        value={values.qCounter}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        isValid={touched.qCounter && !errors.qCounter}
-                        isInvalid={touched.qCounter && !!errors.qCounter}
-                      />
+                      <InputGroup>
+                        <Form.Control
+                          maxLength="50"
+                          type="number"
+                          name="qCounter"
+                          value={values.qCounter}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          isValid={touched.qCounter && !errors.qCounter}
+                          isInvalid={touched.qCounter && !!errors.qCounter}
+                        />
+                        <InputGroup.Append>
+                          <InputGroup.Text id="basic-addon2">
+                            preguntas
+                          </InputGroup.Text>
+                        </InputGroup.Append>
+                      </InputGroup>
                       <ErrorMessage
                         className="text-danger"
                         name="qCounter"

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../../layout/AdminLayout";
-import { Container, Row, Col, Image, Button } from "react-bootstrap";
+import { Container, Row, Col, Image } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import AdminTopicModal from "./components/AdminTopicModal";
 import AdminSpinner from "../../components/AdminSpinner";
 import AddVideo from "./components/AddVideo";
+import AddReward from "./components/AddReward";
 import AddPDF from "./components/AddPDF";
 import EditExamBttn from "../../components/EditExamBttn";
 //
@@ -13,7 +14,8 @@ import TopicSubjectForm from "./forms/TopicSubjectForm";
 import TopicDescriptionForm from "./forms/TopicDescriptionForm";
 import TopicFreestyleTimerForm from "./forms/TopicFreestyleTimerForm";
 import NewExamBttn from "./components/NewExamBttn";
-import DeleteMaterial from "./components/DeleteMaterialBttn";
+import DeleteMaterialBttn from "./components/DeleteMaterialBttn";
+import DeleteRewardBttn from "./components/DeleteRewardBttn";
 
 const AdminTopicDetail = React.memo((props) => {
   const [topic, setTopic] = useState();
@@ -112,23 +114,32 @@ const AdminTopicDetail = React.memo((props) => {
         <Row>
           <Col>
             <span className="text-muted">Recompensa</span>
-            <div className="d-flex">
-              <h5>{topic.reward.name}</h5>
-              <Button
-                size="sm"
-                variant="danger"
-                className="ml-1"
-                title="Eliminar"
-              >
-                <i className="fas fa-trash-alt" />
-              </Button>
-            </div>
-            <Image
-              src={topic.reward.link}
-              width="70"
-              height="100"
-              className="mb-3"
-            />
+            {topic.reward ? (
+              <>
+                <div className="d-flex">
+                  <h5>{topic.reward.name}</h5>
+                  <DeleteRewardBttn
+                    filePath={topic.reward.link}
+                    courseId={props.routeProps.match.params.courseId}
+                    topicId={topic._id}
+                  />
+                </div>
+                <Image
+                  src={topic.reward.link}
+                  width="70"
+                  height="100"
+                  className="mb-3"
+                />
+              </>
+            ) : (
+              <div className="my-2">
+                <h5>-</h5>
+                <AddReward
+                  courseId={props.routeProps.match.params.courseId}
+                  topicId={topic._id}
+                />
+              </div>
+            )}
           </Col>
         </Row>
         {/* material */}
@@ -146,7 +157,12 @@ const AdminTopicDetail = React.memo((props) => {
                         <i className="fas fa-file-pdf mr-2" />
                       ) : null}
                       {m.name}
-                      <DeleteMaterial topicId={topic._id} materialId={m._id} />
+                      <DeleteMaterialBttn
+                        isPDF={m.type === "pdf" ? m.link : null}
+                        courseId={props.routeProps.match.params.courseId}
+                        topicId={topic._id}
+                        materialId={m._id}
+                      />
                     </strong>
                   </li>
                 ))}

@@ -32,8 +32,8 @@ const schema = new Schema({
       subject: { type: String, required: true }, // ej. Aritmética
       description: { type: String, required: true }, // ej. La suma es una de las cuatro operaciones básicas...
       reward: {
-        name: { type: String, required: true }, // ej. "Medalla de Suma"
-        link: { type: String, required: true }, // ej. "/images/medals/sumas1.png"
+        name: { type: String }, // ej. "Medalla de Suma"
+        link: { type: String }, // ej. "/images/medals/sumas1.png"
       },
       freestyle: {
         timer: { type: Number, required: true }, // ej. 10 (minutos)
@@ -53,9 +53,9 @@ const schema = new Schema({
       material: [
         // todo lo que tenga links: pdfs/videos/etc
         {
-          type: { type: String, required: true },
-          name: { type: String, required: true },
-          link: { type: String, required: true },
+          type: { type: String },
+          name: { type: String },
+          link: { type: String },
         },
       ],
       exams: [

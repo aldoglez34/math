@@ -59,6 +59,14 @@ export default {
   t_newTopic: (topicData) => axios.put("/teacherAPI/topics/new", topicData),
 
   // ==============================================
+  // REWARDS
+  // ==============================================
+
+  t_deleteReward: (data) => axios.put("/teacherAPI/rewards/delete", data),
+
+  t_addReward: (data) => axios.put("/teacherAPI/rewards/add", data),
+
+  // ==============================================
   // MATERIAL
   // ==============================================
 
@@ -69,8 +77,14 @@ export default {
 
   // delete material
 
-  t_deleteMaterial: (data) =>
-    axios.put("/teacherAPI/material/delete", data),
+  t_deleteMaterial: (data) => axios.put("/teacherAPI/material/delete", data),
+
+  // ==============================================
+  // DIFFICULTIES
+  // ==============================================
+
+  t_fetchDifficultiesAvailable: (courseId, topicId) =>
+    axios.get("/teacherAPI/difficulties/available/" + courseId + "/" + topicId),
 
   // ==============================================
   // EXAM

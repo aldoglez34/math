@@ -1,13 +1,12 @@
 const router = require("express").Router();
 const model = require("../../models");
-const mongoose = require("mongoose");
 const multer = require("multer");
 const fs = require("fs");
 
-// t_addVideoToMaterial
-// matches with /teacherAPI/material/video/add
-router.put("/video/add", function (req, res) {
-  const { courseId, topicId, name, link } = req.body;
+// t_deleteReward
+// matches with /teacherAPI/rewards/delete
+router.put("/delete", function (req, res) {
+  const { filePath, courseId, topicId } = req.body;
 
   model.Course.update(
     {
@@ -15,36 +14,34 @@ router.put("/video/add", function (req, res) {
       "topics._id": topicId,
     },
     {
-      $push: {
-        "topics.$.material": {
-          type: "video",
-          name,
-          link,
-        },
+      $set: {
+        "topics.$.reward": null,
       },
     }
   )
-    .then((data) => {
-      res.json(data);
+    .then(() => {
+      // delete file
+      fs.unlinkSync(`./client/public/${filePath}`);
+      console.log("File removed...");
     })
+    .then((data) => res.json(data))
     .catch((err) => {
       console.log("@error", err);
       res.status(422).send("Ocurrió un error.");
     });
 });
 
-// t_addPDFToMaterial
-// matches with /teacherAPI/material/pdf/add
+// t_addReward
+// matches with /teacherAPI/reward/add
 let fileName;
 
 const storage = multer.diskStorage({
-  // destination: "./client/public/files/" + req.body.courseId + "/reward",
   destination: "./client/public/_temp",
   filename: function (req, file, cb) {
     // cb(null, "IMAGE-" + Date.now() + path.extname(file.originalname));
     fileName = file.originalname;
     // set the name of the file
-    cb(null, req.body.pdf);
+    cb(null, req.body.image);
   },
 });
 
@@ -53,7 +50,7 @@ const upload = multer({
   limits: { fileSize: 4000000 },
 }).single("file");
 
-router.put("/pdf/add", function (req, res) {
+router.put("/add", function (req, res) {
   upload(req, res, function (err) {
     if (err instanceof multer.MulterError) {
       console.log("ERROR - A Multer error occurred when uploading.");
@@ -74,68 +71,32 @@ router.put("/pdf/add", function (req, res) {
         "topics._id": topicId,
       },
       {
-        $push: {
-          "topics.$.material": {
-            type: "pdf",
+        $set: {
+          "topics.$.reward": {
             name,
-            link: `./client/public/files/${courseId}/material/${fileName}`,
+            link: `/files/${courseId}/reward/${fileName}`,
           },
         },
       }
     )
       .then(() => {
-        // res.send("El pdf fue agregado con éxito.");
-
         // moving the file to the course folder
         const oldPath = `./client/public/_temp/${fileName}`;
-        const newPath = `./client/public/files/${courseId}/material/${fileName}`;
+        const newPath = `./client/public/files/${courseId}/reward/${fileName}`;
 
         fs.rename(oldPath, newPath, (err) => {
           if (err) throw err;
-          console.log("PDF file was renamed (moved) correctly");
-
-          res.send("El PDF fue agregado con éxito.");
+          console.log("Image file was renamed (moved) correctly");
         });
+      })
+      .then(() => {
+        res.send("La recompensa fue agregada con éxito.");
       })
       .catch((err) => {
         console.log("@error", err);
         res.status(422).send("Ocurrió un error.");
       });
   });
-});
-
-// t_deleteMaterial
-// matches with /teacherAPI/material/delete
-router.put("/delete", function (req, res) {
-  const { isPDF, courseId, topicId, materialId } = req.body;
-
-  model.Course.updateOne(
-    {
-      _id: mongoose.Types.ObjectId(courseId),
-      "topics._id": topicId,
-    },
-    {
-      $pull: {
-        "topics.$.material": {
-          _id: materialId,
-        },
-      },
-    }
-  )
-    .then((data) => {
-      // if the item is a pdf, delete the file
-      if (isPDF) {
-        fs.unlinkSync(isPDF);
-        console.log("File removed...");
-        res.json(data);
-      } else {
-        res.json(data);
-      }
-    })
-    .catch((err) => {
-      console.log("@error", err);
-      res.status(422).send("Ocurrió un error.");
-    });
 });
 
 module.exports = router;

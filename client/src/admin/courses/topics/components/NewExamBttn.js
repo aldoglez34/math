@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { Modal, Button, Form, Col } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Modal, Button, Form, Col, Spinner } from "react-bootstrap";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import PropTypes from "prop-types";
+import TeacherAPI from "../../../../utils/TeacherAPI";
 
 const NewExamBttn = ({ courseId, topicId }) => {
   const [show, setShow] = useState(false);
@@ -16,6 +17,19 @@ const NewExamBttn = ({ courseId, topicId }) => {
       .notOneOf(["Elige..."], "Requerido")
       .required("Requerido"),
   });
+
+  const [difficulties, setDifficulties] = useState();
+
+  useEffect(() => {
+    TeacherAPI.t_fetchDifficultiesAvailable(courseId, topicId)
+      .then((res) => {
+        setDifficulties(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Ocurrió un error, actualiza la página");
+      });
+  }, [courseId, topicId]);
 
   return (
     <>
@@ -58,48 +72,63 @@ const NewExamBttn = ({ courseId, topicId }) => {
                 isSubmitting,
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
-                  {/* name */}
-                  <Form.Row>
-                    <Form.Group as={Col}>
-                      <Form.Label>Dificultad</Form.Label>
-                      <Form.Control
-                        as="select"
-                        type="text"
-                        name="difficulty"
-                        defaultValue="Elige..."
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        isValid={touched.difficulty && !errors.difficulty}
-                        isInvalid={touched.difficulty && !!errors.difficulty}
-                      >
-                        <option disabled>Elige...</option>
-                        <option value="Basic">Básico</option>
-                        <option value="Basic-Intermediate">
-                          Básico-Intermedio
-                        </option>
-                        <option value="Intermediate">Intermedio</option>
-                        <option value="Intermediate-Advanced">
-                          Intermedio-Avanzado
-                        </option>
-                        <option value="Advanced">Avanzado</option>
-                      </Form.Control>
-                      <ErrorMessage
-                        className="text-danger"
-                        name="difficulty"
-                        component="div"
-                      />
-                    </Form.Group>
-                  </Form.Row>
-                  {/* buttons */}
-                  <Form.Group className="text-right">
-                    <Button
-                      variant="dark"
-                      type="submit"
-                      disabled={isSubmitting}
-                    >
-                      Crear
-                    </Button>
-                  </Form.Group>
+                  {difficulties ? (
+                    difficulties.length ? (
+                      <>
+                        {/* difficulty */}
+                        <Form.Row>
+                          <Form.Group as={Col}>
+                            <Form.Label>Dificultad</Form.Label>
+                            <Form.Control
+                              as="select"
+                              type="text"
+                              name="difficulty"
+                              defaultValue="Elige..."
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              isValid={touched.difficulty && !errors.difficulty}
+                              isInvalid={
+                                touched.difficulty && !!errors.difficulty
+                              }
+                            >
+                              <option disabled>Elige...</option>
+                              {difficulties.map((d) => {
+                                return (
+                                  <option key={d} value={d}>
+                                    {d}
+                                  </option>
+                                );
+                              })}
+                            </Form.Control>
+                            <ErrorMessage
+                              className="text-danger"
+                              name="difficulty"
+                              component="div"
+                            />
+                          </Form.Group>
+                        </Form.Row>
+                        {/* buttons */}
+                        <Form.Group className="text-right">
+                          <Button
+                            variant="dark"
+                            type="submit"
+                            disabled={isSubmitting}
+                          >
+                            Crear
+                          </Button>
+                        </Form.Group>
+                      </>
+                    ) : (
+                      <div className="my-3 text-center">
+                        No hay dificultades de examen disponibles para este
+                        tema.
+                      </div>
+                    )
+                  ) : (
+                    <div className="my-3 text-center">
+                      <Spinner />
+                    </div>
+                  )}
                 </Form>
               )}
             </Formik>

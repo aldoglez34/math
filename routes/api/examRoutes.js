@@ -12,6 +12,9 @@ router.get("/info/:examId", function (req, res) {
       const qCounter = data.qCounter;
       const totalQuestions = data.questions.length;
 
+      // if the question counter needs more questions than there are in the exam, return error
+      if (totalQuestions < qCounter) res.status(422).send("Ocurrió un error");
+
       // generate random numbers
       const uniqueNumbers = [];
       while (uniqueNumbers.length <= qCounter) {
