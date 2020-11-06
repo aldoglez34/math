@@ -119,7 +119,9 @@ const AdminExamDetail = React.memo((props) => {
         {/* questions */}
         <Row>
           <Col>
-            <span className="text-muted">Preguntas</span>
+            <span className="text-muted">
+              Total de preguntas{` (${exam.questions.length})`}
+            </span>
             <div className="mt-2 d-flex flex-column">
               {exam.questions.length ? (
                 <Table bordered size="sm">
