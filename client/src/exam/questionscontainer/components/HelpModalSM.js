@@ -6,7 +6,7 @@ import * as yup from "yup";
 import { useSelector } from "react-redux";
 import API from "../../../utils/API";
 
-const HelpModalSM = React.memo(({ courseName, topic }) => {
+const HelpModalSM = React.memo(({ subject }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -33,7 +33,7 @@ const HelpModalSM = React.memo(({ courseName, topic }) => {
         <Modal.Body className="bg-light rounded shadow">
           <div className="d-flex flex-column mb-3">
             <div className="d-flex">
-              <h3 className="text-dark mb-3">Hola, {student.name}</h3>
+              <h3 className="text-dark mb-3">¿Necesitas ayuda?</h3>
               <Button
                 className="ml-auto text-dark"
                 variant="link"
@@ -44,9 +44,11 @@ const HelpModalSM = React.memo(({ courseName, topic }) => {
                 <i className="fas fa-times" style={{ fontSize: "22px" }} />
               </Button>
             </div>
-            <span className="mb-2">¿Tienes duda sobre esta pregunta ?</span>
             <span className="mb-2">
-              Utiliza el siguiente recuadro para hacerle llegar tu comentario al
+              ¿Tienes duda sobre esta pregunta, {student.name}?
+            </span>
+            <span className="mb-2">
+              Utiliza el siguiente recuadro para hacerle llegar tu duda al
               maestro.
             </span>
             <span className="mb-2">
@@ -63,7 +65,7 @@ const HelpModalSM = React.memo(({ courseName, topic }) => {
             onSubmit={(values, { setSubmitting }) => {
               setSubmitting(true);
               values.email = student.email;
-              values.subject = courseName + " / " + topic;
+              values.subject = subject;
               values.type = "Student";
               values.username = student.username;
               values.name = student.name + " " + student.firstSurname;
@@ -133,8 +135,7 @@ const HelpModalSM = React.memo(({ courseName, topic }) => {
 });
 
 HelpModalSM.propTypes = {
-  courseName: PropTypes.string.isRequired,
-  topic: PropTypes.string.isRequired,
+  subject: PropTypes.string.isRequired,
 };
 
 export default HelpModalSM;

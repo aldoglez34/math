@@ -198,7 +198,7 @@ const QuestionsContainer = React.memo(({ questions }) => {
         <Container>
           <div className="d-flex mt-3">
             <Timer />
-            <HelpModalSM />
+            <HelpModalSM subject={question.id} />
             <ExitButton url={"/course/#" + exam.topicName} />
           </div>
         </Container>

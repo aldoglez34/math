@@ -34,7 +34,7 @@ const HelpModal = React.memo(({ courseName, topic }) => {
         <Modal.Body className="bg-light rounded shadow">
           <div className="d-flex flex-column mb-3">
             <div className="d-flex">
-              <h3 className="text-dark mb-3">Hola, {student.name}</h3>
+              <h3 className="text-dark mb-3">¿Necesitas ayuda?</h3>
               <Button
                 className="ml-auto text-dark"
                 variant="link"
@@ -46,11 +46,7 @@ const HelpModal = React.memo(({ courseName, topic }) => {
               </Button>
             </div>
             <span className="mb-2">
-              ¿Tienes duda sobre el curso{" "}
-              <strong>
-                <u>{topic}</u>
-              </strong>
-              ?
+              ¿Tienes duda sobre el curso {topic}, {student.name}?
             </span>
             <span className="mb-2">
               Utiliza el siguiente recuadro para hacerle llegar tu comentario al
