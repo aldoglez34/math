@@ -6,7 +6,7 @@ import * as yup from "yup";
 import { useSelector } from "react-redux";
 import API from "../../../utils/API";
 
-const HelpModalSM = React.memo(({ subject }) => {
+const HelpModalSM = React.memo(({ question }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -65,13 +65,19 @@ const HelpModalSM = React.memo(({ subject }) => {
             onSubmit={(values, { setSubmitting }) => {
               setSubmitting(true);
               values.email = student.email;
-              values.subject = subject;
+              const temp = question.qTechnicalInstruction
+                ? question.qTechnicalInstruction.type === "text"
+                  ? question.qTechnicalInstruction.text
+                  : question.qTechnicalInstruction.imageLink
+                : null;
+              values.subject = temp
+                ? question.qInstruction + " " + temp
+                : question.qInstruction;
               values.type = "Student";
               values.username = student.username;
               values.name = student.name + " " + student.firstSurname;
               API.postMessage(values)
                 .then(() => {
-                  // console.log(res);
                   alert(
                     "Tu mensaje ha sido enviado con éxito, la respuesta del maestro te será notificada en la esquina superior derecha, donde aparece tu correo."
                   );
@@ -135,7 +141,7 @@ const HelpModalSM = React.memo(({ subject }) => {
 });
 
 HelpModalSM.propTypes = {
-  subject: PropTypes.string.isRequired,
+  question: PropTypes.object.isRequired,
 };
 
 export default HelpModalSM;

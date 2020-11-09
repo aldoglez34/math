@@ -17,7 +17,10 @@ const AdminExamModal = React.memo(
           onClick={handleShow}
           title={modalTitle}
         >
-          <i className="fas fa-pen-alt " />
+          <i
+            className="fas fa-pen-alt"
+            style={{ fontSize: "5px !important" }}
+          />
         </Button>
 
         <Modal show={show} onHide={handleClose}>

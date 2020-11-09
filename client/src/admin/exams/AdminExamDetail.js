@@ -83,7 +83,7 @@ const AdminExamDetail = React.memo((props) => {
         {/* question counter */}
         <Row>
           <Col>
-            <span className="text-muted">Cantidad de preguntas</span>
+            <span className="text-muted">Preguntas por examen</span>
             <h2
               className={
                 exam.qCounter > exam.questions.length ? "text-danger" : null
@@ -91,13 +91,20 @@ const AdminExamDetail = React.memo((props) => {
             >
               {`${exam.qCounter} preguntas`}
               <AdminExamModal
-                modalTitle="Editar cantidad de preguntas"
+                modalTitle="Editar preguntas por examen"
                 Form={ExamQCounterForm}
-                formLabel="Cantidad de preguntas"
+                formLabel="Preguntas por examen"
                 formInitialText={exam.qCounter}
                 examId={props.routeProps.match.params.examId}
               />
             </h2>
+          </Col>
+        </Row>
+        {/* question counter 2 */}
+        <Row>
+          <Col>
+            <span className="text-muted">Total de preguntas</span>
+            <h3>{`${exam.questions.length} preguntas`}</h3>
           </Col>
         </Row>
         {/* description */}
@@ -116,21 +123,52 @@ const AdminExamDetail = React.memo((props) => {
             </h5>
           </Col>
         </Row>
+        {/* questions menu */}
+        <Row className="mb-3">
+          <Col className="d-flex flex-column">
+            <span className="text-muted mb-2">Nuevas preguntas</span>
+            <div>
+              <NewQuestionBttn
+                examId={exam._id}
+                Form={SimpleQuestionForm}
+                text="Pregunta sencilla"
+              />
+            </div>
+          </Col>
+        </Row>
         {/* questions */}
         <Row>
           <Col>
-            <span className="text-muted">
-              Preguntas{` (${exam.questions.length})`}
-            </span>
+            <span className="text-muted">Preguntas sencillas</span>
             <div className="mt-2 d-flex flex-column">
               {exam.questions.length ? (
-                <Table bordered size="sm">
+                <Table bordered striped size="sm">
                   <thead>
                     <tr>
-                      <th style={{ color: "#0f5257" }}>Instrucción</th>
-                      <th style={{ color: "#0f5257" }}>I. Técnica</th>
-                      <th style={{ color: "#0f5257" }}>Respuesta</th>
-                      <th style={{ color: "#0f5257" }}>Comentario</th>
+                      <th
+                        style={{ backgroundColor: "#48bf84" }}
+                        className="text-light text-center"
+                      >
+                        Instrucción
+                      </th>
+                      <th
+                        style={{ backgroundColor: "#48bf84" }}
+                        className="text-light text-center"
+                      >
+                        I. Técnica
+                      </th>
+                      <th
+                        style={{ backgroundColor: "#48bf84" }}
+                        className="text-light text-center"
+                      >
+                        Respuesta
+                      </th>
+                      <th
+                        style={{ backgroundColor: "#48bf84" }}
+                        className="text-light text-center"
+                      >
+                        Comentario
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -153,13 +191,6 @@ const AdminExamDetail = React.memo((props) => {
               ) : (
                 <span>-</span>
               )}
-            </div>
-            <div className="mt-2">
-              <NewQuestionBttn
-                examId={exam._id}
-                Form={SimpleQuestionForm}
-                text="Pregunta sencilla"
-              />
             </div>
           </Col>
         </Row>

@@ -16,7 +16,7 @@ const MyMessages = React.memo(({ messages }) => {
           {/* subject */}
           <div className="d-flex">
             <div className="d-flex flex-column">
-              <span className="text-muted">Curso / Tema</span>
+              <span className="text-muted">Curso/Tema/Pregunta</span>
               <h5>{m.subject}</h5>
             </div>
             <div className="ml-auto">

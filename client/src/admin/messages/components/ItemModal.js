@@ -45,7 +45,7 @@ const ItemModal = React.memo(({ message }) => {
           {message.email}
         </div>
         <div className="d-flex flex-column ml-3">
-          <strong>Asunto</strong>
+          <strong>Curso/Tema/Pregunta</strong>
           {message.subject}
         </div>
         {message.seen ? null : (
@@ -113,7 +113,7 @@ const ItemModal = React.memo(({ message }) => {
               </div>
             ) : null}
             <div className="d-flex flex-column mt-3">
-              <h5 className="text-dark">Asunto</h5>
+              <h5 className="text-dark">Curso/Tema/Pregunta</h5>
               {message.subject}
             </div>
             <div className="d-flex flex-column mt-3">

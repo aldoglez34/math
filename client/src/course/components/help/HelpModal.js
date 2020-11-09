@@ -66,7 +66,7 @@ const HelpModal = React.memo(({ courseName, topic }) => {
             onSubmit={(values, { setSubmitting }) => {
               setSubmitting(true);
               values.email = student.email;
-              values.subject = courseName + " / " + topic;
+              values.subject = `Curso: ${courseName} | Tema: ${topic}`;
               values.type = "Student";
               values.username = student.username;
               values.name = student.name + " " + student.firstSurname;
