@@ -127,12 +127,21 @@ const AdminExamDetail = React.memo((props) => {
         <Row className="mb-3">
           <Col className="d-flex flex-column">
             <span className="text-muted mb-2">Nuevas preguntas</span>
-            <div>
-              <NewQuestionBttn
-                examId={exam._id}
-                Form={SimpleQuestionForm}
-                text="Pregunta sencilla"
-              />
+            <div className="d-flex flex-row">
+              <div>
+                <NewQuestionBttn
+                  examId={exam._id}
+                  Form={SimpleQuestionForm}
+                  text="Pregunta sencilla"
+                />
+              </div>
+              <div className="ml-2">
+                <NewQuestionBttn
+                  examId={exam._id}
+                  Form={SimpleQuestionForm}
+                  text="Pregunta sencilla"
+                />
+              </div>
             </div>
           </Col>
         </Row>
