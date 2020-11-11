@@ -123,7 +123,7 @@ const AdminExamDetail = React.memo((props) => {
             </h5>
           </Col>
         </Row>
-        {/* questions menu */}
+        {/* new questions */}
         <Row className="mb-3">
           <Col className="d-flex flex-column">
             <span className="text-muted mb-2">Nuevas preguntas</span>
@@ -132,14 +132,14 @@ const AdminExamDetail = React.memo((props) => {
                 <NewQuestionBttn
                   examId={exam._id}
                   Form={SimpleQuestionForm}
-                  text="Pregunta sencilla"
+                  text="Sencilla"
                 />
               </div>
               <div className="ml-2">
                 <NewQuestionBttn
                   examId={exam._id}
                   Form={SimpleQuestionForm}
-                  text="Pregunta sencilla"
+                  text="Opción múltitple"
                 />
               </div>
             </div>
@@ -155,29 +155,33 @@ const AdminExamDetail = React.memo((props) => {
                   <thead>
                     <tr>
                       <th
-                        style={{ backgroundColor: "#48bf84" }}
+                        style={{ backgroundColor: "#0f5257" }}
                         className="text-light text-center"
                       >
                         Instrucción
                       </th>
                       <th
-                        style={{ backgroundColor: "#48bf84" }}
+                        style={{ backgroundColor: "#0f5257" }}
                         className="text-light text-center"
                       >
                         I. Técnica
                       </th>
                       <th
-                        style={{ backgroundColor: "#48bf84" }}
+                        style={{ backgroundColor: "#0f5257" }}
                         className="text-light text-center"
                       >
                         Respuesta
                       </th>
                       <th
-                        style={{ backgroundColor: "#48bf84" }}
+                        style={{ backgroundColor: "#0f5257" }}
                         className="text-light text-center"
                       >
                         Comentario
                       </th>
+                      <th
+                        style={{ backgroundColor: "#0f5257" }}
+                        className="text-light text-center"
+                      ></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -190,8 +194,27 @@ const AdminExamDetail = React.memo((props) => {
                               ? q.qTechnicalInstruction.text
                               : null}
                           </td>
-                          <td>{q.qCorrectAnswers[0].answer}</td>
+                          <td>
+                            {q.qCorrectAnswers[0].complement
+                              ? q.qCorrectAnswers[0].placement === "left"
+                                ? q.qCorrectAnswers[0].complement +
+                                  " " +
+                                  q.qCorrectAnswers[0].answer
+                                : q.qCorrectAnswers[0].answer +
+                                  " " +
+                                  q.qCorrectAnswers[0].complement
+                              : q.qCorrectAnswers[0].answer}
+                          </td>
                           <td>{q.qComment}</td>
+                          <td>
+                            {/* <AdminExamModal
+                              modalTitle="Editar descripción"
+                              Form={ExamDescriptionForm}
+                              formLabel="Descripción"
+                              formInitialText={exam.description}
+                              examId={props.routeProps.match.params.examId}
+                            /> */}
+                          </td>
                         </tr>
                       );
                     })}

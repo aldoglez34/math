@@ -10,6 +10,8 @@ const SimpleQuestionForm = React.memo(({ examId }) => {
     qInstruction: yup.string().required("Requerido"),
     qTechnicalInstruction: yup.string(),
     qCorrectAnswers: yup.string().required("Requerido"),
+    qCALeft: yup.string(),
+    qCARight: yup.string(),
     qComment: yup.string(),
   });
 
@@ -19,6 +21,8 @@ const SimpleQuestionForm = React.memo(({ examId }) => {
         qInstruction: "",
         qTechnicalInstruction: "",
         qCorrectAnswers: "",
+        qCALeft: "",
+        qCARight: "",
         qComment: "",
       }}
       validationSchema={yupschema}
@@ -105,9 +109,27 @@ const SimpleQuestionForm = React.memo(({ examId }) => {
               />
             </Form.Group>
           </Form.Row>
-          {/* qCorrectAnswers */}
+          {/* answers */}
           <Form.Row>
-            <Form.Group as={Col}>
+            <Col md={4}>
+              <Form.Label>Izq.</Form.Label>
+              <Form.Control
+                maxLength="25"
+                type="text"
+                name="qCALeft"
+                value={values.qCALeft}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isValid={touched.qCALeft && !errors.qCALeft}
+                isInvalid={touched.qCALeft && !!errors.qCALeft}
+              />
+              <ErrorMessage
+                className="text-danger"
+                name="qCALeft"
+                component="div"
+              />
+            </Col>
+            <Col md={4}>
               <Form.Label>
                 Respuesta
                 <strong className="text-danger" title="Requerido">
@@ -117,8 +139,6 @@ const SimpleQuestionForm = React.memo(({ examId }) => {
               <Form.Control
                 maxLength="250"
                 type="text"
-                as="textarea"
-                rows="1"
                 name="qCorrectAnswers"
                 value={values.qCorrectAnswers}
                 onChange={handleChange}
@@ -131,7 +151,25 @@ const SimpleQuestionForm = React.memo(({ examId }) => {
                 name="qCorrectAnswers"
                 component="div"
               />
-            </Form.Group>
+            </Col>
+            <Col md={4}>
+              <Form.Label>Der.</Form.Label>
+              <Form.Control
+                maxLength="25"
+                type="text"
+                name="qCARight"
+                value={values.qCARight}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isValid={touched.qCARight && !errors.qCARight}
+                isInvalid={touched.qCARight && !!errors.qCARight}
+              />
+              <ErrorMessage
+                className="text-danger"
+                name="qCARight"
+                component="div"
+              />
+            </Col>
           </Form.Row>
           {/* qComment */}
           <Form.Row>

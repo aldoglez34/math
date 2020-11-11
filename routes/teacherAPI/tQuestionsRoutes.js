@@ -12,7 +12,21 @@ router.post("/simple/new", function (req, res) {
           text: req.body.qTechnicalInstruction,
         }
       : null,
-    qCorrectAnswers: [{ answer: req.body.qCorrectAnswers }],
+    qCorrectAnswers: [
+      {
+        complement: req.body.qCALeft
+          ? req.body.qCALeft
+          : req.body.qCARight
+          ? req.body.qCARight
+          : null,
+        answer: req.body.qCorrectAnswers,
+        placement: req.body.qCALeft
+          ? "left"
+          : req.body.qCARight
+          ? "right"
+          : null,
+      },
+    ],
     qComment: req.body.qComment,
   };
 
