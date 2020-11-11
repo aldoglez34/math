@@ -207,13 +207,13 @@ const AdminExamDetail = React.memo((props) => {
                           </td>
                           <td>{q.qComment}</td>
                           <td>
-                            {/* <AdminExamModal
-                              modalTitle="Editar descripción"
+                            <AdminExamModal
+                              modalTitle="Editar pregunta"
                               Form={ExamDescriptionForm}
-                              formLabel="Descripción"
+                              formLabel="Editar pregunta"
                               formInitialText={exam.description}
                               examId={props.routeProps.match.params.examId}
-                            /> */}
+                            />
                           </td>
                         </tr>
                       );

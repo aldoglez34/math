@@ -2,16 +2,19 @@ import React from "react";
 import GuestNavigation from "./GuestNavigation";
 import StudentNavigation from "./StudentNavigation";
 import { AuthUserContext } from "../session";
+import TeacherNavigation from "./TeacherNavigation";
 
 const Navigation = React.memo(() => (
   <AuthUserContext.Consumer>
-    {(navigation) =>
-      navigation === "Guest" ? (
-        <GuestNavigation />
-      ) : navigation === "Student" ? (
+    {(navigation) => {
+      return navigation === "Student" ? (
         <StudentNavigation />
-      ) : null
-    }
+      ) : navigation === "Teacher" ? (
+        <TeacherNavigation />
+      ) : (
+        <GuestNavigation />
+      );
+    }}
   </AuthUserContext.Consumer>
 ));
 

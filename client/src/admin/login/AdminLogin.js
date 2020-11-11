@@ -33,14 +33,12 @@ const Login = () => {
                     .auth()
                     .signInWithEmailAndPassword(values.email, values.password)
                     .then((res) => {
-                      console.log(res);
+                      // console.log(res);
                       alert("Bienvenido, administrador.");
                     });
                 })
                 .catch((error) => {
-                  alert(
-                    "Ocurrió un error al iniciar sesión, vuelve a intentarlo."
-                  );
+                  alert("Usuario incorrecto");
                   console.log(error.code);
                   console.log(error.message);
                   setSubmitting(false);

@@ -1,8 +1,19 @@
 import React from "react";
 import { Nav, Button } from "react-bootstrap";
 import "./leftnav.scss";
+import firebase from "../../../firebase/firebase";
 
 const LeftNav = React.memo(({ leftBarActive }) => {
+  const logout = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        alert("Hasta pronto.");
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <Nav className="d-flex flex-column h-100" id="leftnavstyle">
       {/* logo */}
@@ -48,7 +59,7 @@ const LeftNav = React.memo(({ leftBarActive }) => {
         <Button
           variant="transparent"
           className="mb-3 text-danger text-left"
-          href="/admin"
+          onClick={logout}
         >
           <i
             className="fas fa-arrow-circle-left"
