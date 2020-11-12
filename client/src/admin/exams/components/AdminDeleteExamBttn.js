@@ -1,51 +1,37 @@
-import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import React from "react";
+import { Button } from "react-bootstrap";
 import PropTypes from "prop-types";
+import TeacherAPI from "../../../utils/TeacherAPI";
 
-const AdminDeleteExamBttn = React.memo(({ examId }) => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+const AdminDeleteExamBttn = React.memo(({ examId, questionId }) => {
+  const handleClick = () => {
+    TeacherAPI.t_deleteQuestion({ examId, questionId })
+      .then((res) => {
+        console.log(res.data);
+        alert("Pregunta borrada con éxito");
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Ocurrió un error");
+      });
+  };
 
   return (
-    <>
-      <Button
-        size="sm"
-        className="deleteButton ml-2"
-        onClick={handleShow}
-        title="Borrar"
-      >
-        <i className="fas fa-times" />
-      </Button>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Body className="bg-light rounded">
-          <div className="d-flex">
-            <h3 className="mb-0 text-dark">Editar</h3>
-            <Button
-              variant="link"
-              className="text-dark ml-auto"
-              onClick={handleClose}
-            >
-              <i className="fas fa-times" />
-            </Button>
-          </div>
-          <div className="my-3">
-            {/* <Form
-              formLabel={formLabel}
-              formInitialText={formInitialText}
-              examId={examId}
-            /> */}
-          </div>
-        </Modal.Body>
-      </Modal>
-    </>
+    <Button
+      size="sm"
+      className="deleteButton ml-2"
+      onClick={handleClick}
+      title="Borrar"
+    >
+      <i className="fas fa-times" />
+    </Button>
   );
 });
 
 AdminDeleteExamBttn.propTypes = {
   examId: PropTypes.string.isRequired,
+  questionId: PropTypes.string.isRequired,
 };
 
 export default AdminDeleteExamBttn;

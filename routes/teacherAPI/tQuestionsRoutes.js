@@ -47,4 +47,29 @@ router.post("/simple/new", function (req, res) {
     });
 });
 
+// t_deleteQuestion()
+// matches with /teacherAPI/questions/delete
+router.put("/delete", function (req, res) {
+  const { examId, questionId } = req.body;
+
+  model.Exam.updateOne(
+    {
+      _id: examId,
+    },
+    {
+      $pull: {
+        questions: {
+          _id: questionId,
+        },
+      },
+    }
+  )
+    .then(function (data) {
+      res.json(data);
+    })
+    .catch(function (err) {
+      res.send(err);
+    });
+});
+
 module.exports = router;

@@ -5,6 +5,7 @@ import TeacherAPI from "../../utils/TeacherAPI";
 import AdminSpinner from "../components/AdminSpinner";
 import AdminExamModal from "./components/AdminExamModal";
 import AdminDeleteExamBttn from "./components/AdminDeleteExamBttn";
+import AdminEditQuestionBttn from "./components/AdminEditQuestionBttn";
 import NewQuestionBttn from "./components/NewQuestionBttn";
 //
 import ExamNameForm from "./forms/ExamNameForm";
@@ -189,13 +190,13 @@ const AdminExamDetail = React.memo((props) => {
                     {exam.questions.map((q) => {
                       return (
                         <tr key={q._id}>
-                          <td>{q.qInstruction}</td>
-                          <td>
+                          <td className="align-middle">{q.qInstruction}</td>
+                          <td className="align-middle">
                             {q.qTechnicalInstruction
                               ? q.qTechnicalInstruction.text
                               : null}
                           </td>
-                          <td>
+                          <td className="align-middle">
                             {q.qCorrectAnswers[0].complement
                               ? q.qCorrectAnswers[0].placement === "left"
                                 ? q.qCorrectAnswers[0].complement +
@@ -206,9 +207,9 @@ const AdminExamDetail = React.memo((props) => {
                                   q.qCorrectAnswers[0].complement
                               : q.qCorrectAnswers[0].answer}
                           </td>
-                          <td>{q.qComment}</td>
-                          <td className="text-center">
-                            <AdminExamModal
+                          <td className="align-middle">{q.qComment}</td>
+                          <td className="text-center align-middle">
+                            <AdminEditQuestionBttn
                               modalTitle="Editar pregunta"
                               Form={ExamDescriptionForm}
                               formLabel="Editar pregunta"
@@ -217,6 +218,7 @@ const AdminExamDetail = React.memo((props) => {
                             />
                             <AdminDeleteExamBttn
                               examId={props.routeProps.match.params.examId}
+                              questionId={q._id}
                             />
                           </td>
                         </tr>

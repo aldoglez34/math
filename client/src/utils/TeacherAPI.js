@@ -139,4 +139,6 @@ export default {
 
   t_newSimpleQuestion: (data) =>
     axios.post("/teacherAPI/questions/simple/new", data),
+
+  t_deleteQuestion: (data) => axios.put("/teacherAPI/questions/delete", data),
 };
