@@ -16,3 +16,22 @@
     transition: 0.3s;
   }
 }
+
+.deleteButton {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: #db534b !important;
+
+  font-size: 22px !important;
+  padding: 1px 5px !important;
+
+  outline: none;
+  box-shadow: none !important;
+
+  &:hover {
+    background-color: #b64643 !important;
+    border-color: #b64643 !important;
+    color: white !important;
+    transition: 0.3s;
+  }
+}

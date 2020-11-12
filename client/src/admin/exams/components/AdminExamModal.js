@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
-import "./adminexammodal.scss";
 
 const AdminExamModal = React.memo(
   ({ modalTitle, Form, formLabel, formInitialText, examId }) => {
@@ -18,7 +17,7 @@ const AdminExamModal = React.memo(
           onClick={handleShow}
           title={modalTitle}
         >
-          <i className="fas fa-pen-alt editSymbol" />
+          <i className="fas fa-pen-alt" />
         </Button>
 
         <Modal show={show} onHide={handleClose}>
