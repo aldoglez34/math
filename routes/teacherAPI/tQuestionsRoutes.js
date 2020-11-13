@@ -72,4 +72,32 @@ router.put("/delete", function (req, res) {
     });
 });
 
+// t_updateQuestion()
+// matches with /teacherAPI/questions/update
+router.put("/update", function (req, res) {
+  const { examId, question } = req.body;
+
+  console.log(examId);
+  console.log(question);
+
+  // model.Exam.updateOne(
+  //   {
+  //     _id: examId,
+  //   },
+  //   {
+  //     $set: {
+  //       questions: {
+  //         _id: questionId,
+  //       },
+  //     },
+  //   }
+  // )
+  //   .then(function (data) {
+  //     res.json(data);
+  //   })
+  //   .catch(function (err) {
+  //     res.send(err);
+  //   });
+});
+
 module.exports = router;

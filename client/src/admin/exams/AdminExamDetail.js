@@ -210,10 +210,8 @@ const AdminExamDetail = React.memo((props) => {
                           <td className="align-middle">{q.qComment}</td>
                           <td className="text-center align-middle">
                             <AdminEditQuestionBttn
-                              modalTitle="Editar pregunta"
-                              Form={ExamDescriptionForm}
-                              formLabel="Editar pregunta"
-                              formInitialText={exam.description}
+                              question={q}
+                              questionId={q._id}
                               examId={props.routeProps.match.params.examId}
                             />
                             <AdminDeleteExamBttn
