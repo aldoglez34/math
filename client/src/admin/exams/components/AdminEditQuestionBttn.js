@@ -5,7 +5,7 @@ import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeacherAPI from "../../../utils/TeacherAPI";
 
-const AdminEditQuestionBttn = React.memo(({ question, examId }) => {
+const AdminEditQuestionBttn = React.memo(({ questionId, question, examId }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -67,11 +67,12 @@ const AdminEditQuestionBttn = React.memo(({ question, examId }) => {
                 //
                 TeacherAPI.t_updateQuestion({
                   examId,
+                  questionId,
                   question: values,
                 })
                   .then((res) => {
                     console.log(res.data);
-                    alert("La pregunta ha sido registrada con éxito.");
+                    alert("La pregunta ha sido cambiada con éxito.");
                     window.location.reload();
                   })
                   .catch((err) => {

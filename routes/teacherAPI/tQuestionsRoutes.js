@@ -75,29 +75,61 @@ router.put("/delete", function (req, res) {
 // t_updateQuestion()
 // matches with /teacherAPI/questions/update
 router.put("/update", function (req, res) {
-  const { examId, question } = req.body;
+  const { examId, questionId, question } = req.body;
 
-  console.log(examId);
-  console.log(question);
+  const newQuestion = {
+    qInstruction: question.qInstruction,
+    qTechnicalInstruction: question.qTechnicalInstruction
+      ? {
+          type: "text",
+          text: question.qTechnicalInstruction,
+        }
+      : null,
+    qCorrectAnswers: [
+      {
+        complement: question.qCALeft
+          ? question.qCALeft
+          : question.qCARight
+          ? question.qCARight
+          : null,
+        answer: question.qCorrectAnswers,
+        placement: question.qCALeft
+          ? "left"
+          : question.qCARight
+          ? "right"
+          : null,
+      },
+    ],
+    qComment: question.qComment,
+  };
 
-  // model.Exam.updateOne(
-  //   {
-  //     _id: examId,
-  //   },
-  //   {
-  //     $set: {
-  //       questions: {
-  //         _id: questionId,
-  //       },
-  //     },
-  //   }
-  // )
-  //   .then(function (data) {
-  //     res.json(data);
-  //   })
-  //   .catch(function (err) {
-  //     res.send(err);
-  //   });
+  model.Exam.updateOne(
+    {
+      _id: examId,
+      "questions._id": questionId,
+    },
+    {
+      $set: {
+        "questions.$.qInstruction": newQuestion.qInstruction,
+        "questions.$.qTechnicalInstruction": newQuestion.qTechnicalInstruction,
+
+        // "questions.$.qCorrectAnswers[0].complement":
+        //   newQuestion.qCorrectAnswers[0].complement,
+        // "questions.$.qCorrectAnswers[0].answer":
+        //   newQuestion.qCorrectAnswers[0].answer,
+        // "questions.$.qCorrectAnswers[0].placement":
+        //   newQuestion.qCorrectAnswers[0].placement,
+
+        "questions.$.qComment": newQuestion.qComment,
+      },
+    }
+  )
+    .then(function (data) {
+      res.json(data);
+    })
+    .catch(function (err) {
+      res.send(err);
+    });
 });
 
 module.exports = router;

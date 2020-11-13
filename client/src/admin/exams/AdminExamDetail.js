@@ -137,13 +137,13 @@ const AdminExamDetail = React.memo((props) => {
                   text="Sencilla"
                 />
               </div>
-              <div className="ml-2">
+              {/* <div className="ml-2">
                 <NewQuestionBttn
                   examId={exam._id}
                   Form={SimpleQuestionForm}
                   text="Opción múltitple"
                 />
-              </div>
+              </div> */}
             </div>
           </Col>
         </Row>
