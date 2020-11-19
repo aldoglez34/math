@@ -103,10 +103,6 @@ router.put("/update", function (req, res) {
     qComment: question.qComment,
   };
 
-  console.log("\n===============================");
-  console.log(newQuestion);
-  console.log("===============================\n");
-
   model.Exam.updateOne(
     {
       _id: examId,
@@ -116,19 +112,7 @@ router.put("/update", function (req, res) {
       $set: {
         "questions.$.qInstruction": newQuestion.qInstruction,
         "questions.$.qTechnicalInstruction": newQuestion.qTechnicalInstruction,
-
-        // "questions.$.qCorrectAnswers[0].complement":
-        //   newQuestion.qCorrectAnswers[0].complement,
-        // "questions.$.qCorrectAnswers[0].answer":
-        //   newQuestion.qCorrectAnswers[0].answer,
-        // "questions.$.qCorrectAnswers[0].placement":
-        //   newQuestion.qCorrectAnswers[0].placement,
-
         "questions.$.qComment": newQuestion.qComment,
-      },
-    },
-    {
-      $push: {
         "questions.$.qCorrectAnswers": newQuestion.qCorrectAnswers[0],
       },
     }
