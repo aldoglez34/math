@@ -78,10 +78,10 @@ router.get("/fetchCourses", function (req, res) {
 // postMessage()
 // matches with /api/guest/postMessage
 router.post("/postMessage", function (req, res) {
-  const { body, email, subject, type, name, username } = req.body;
+  const { body, email, subject, source, name, username } = req.body;
 
   model.Message.create({
-    type,
+    source,
     name,
     username,
     email,

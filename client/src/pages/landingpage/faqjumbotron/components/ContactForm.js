@@ -23,7 +23,7 @@ const ContactForm = () => {
       validationSchema={yupschema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
-        values.type = "Guest";
+        values.source = "Inicio";
         API.postMessage(values)
           .then((res) => {
             // console.log(res);

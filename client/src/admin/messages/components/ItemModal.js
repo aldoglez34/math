@@ -37,20 +37,20 @@ const ItemModal = React.memo(({ message }) => {
           {moment(message.sentAt).format("L")}
         </div>
         <div className="d-flex flex-column ml-3">
-          <strong>Tipo</strong>
-          {message.type === "Student" ? "Estudiante" : "Invitado"}
+          <strong>Origen</strong>
+          {message.source}
         </div>
         <div className="d-flex flex-column ml-3">
           <strong>Correo</strong>
           {message.email}
         </div>
         <div className="d-flex flex-column ml-3">
-          <strong>Curso/Tema/Pregunta</strong>
+          <strong>Descripción</strong>
           {message.subject}
         </div>
         {message.seen ? null : (
           <i
-            className="fas fa-certificate text-danger ml-auto"
+            className="fas fa-certificate text-warning ml-auto"
             style={{ fontSize: "22px" }}
             title="Nuevo"
           />
@@ -81,12 +81,10 @@ const ItemModal = React.memo(({ message }) => {
           </div>
           <Row>
             <Col>
-              {" "}
-              <h5 className="text-dark">Cuenta</h5>
-              {message.type === "Student" ? "Estudiante" : "Invitado"}
+              <h5 className="text-dark">Origen</h5>
+              {message.source}
             </Col>
             <Col>
-              {" "}
               {message.type === "Student" ? (
                 <div className="d-flex flex-column">
                   <h5 className="text-dark">Usuario</h5>
@@ -100,7 +98,6 @@ const ItemModal = React.memo(({ message }) => {
               )}
             </Col>
             <Col>
-              {" "}
               <h5 className="text-dark">Fecha</h5>
               {moment(message.sentAt).format("L")}
             </Col>
@@ -113,7 +110,7 @@ const ItemModal = React.memo(({ message }) => {
               </div>
             ) : null}
             <div className="d-flex flex-column mt-3">
-              <h5 className="text-dark">Curso/Tema/Pregunta</h5>
+              <h5 className="text-dark">Descripción</h5>
               {message.subject}
             </div>
             <div className="d-flex flex-column mt-3">
@@ -132,8 +129,7 @@ const ItemModal = React.memo(({ message }) => {
               </Form.Group>
             </Form>
             {/* response */}
-            {message.type === "Guest" ? null : message.type === "Student" &&
-              !message.answered ? (
+            {message.source === "Inicio" ? null : !message.answered ? (
               <ResponseForm msgId={message._id} email={message.email} />
             ) : (
               <>

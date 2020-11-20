@@ -66,8 +66,8 @@ const HelpModal = React.memo(({ courseName, topic }) => {
             onSubmit={(values, { setSubmitting }) => {
               setSubmitting(true);
               values.email = student.email;
-              values.subject = `Curso: ${courseName} | Tema: ${topic}`;
-              values.type = "Student";
+              values.subject = `${courseName} | ${topic}`;
+              values.source = "Tema";
               values.username = student.username;
               values.name = student.name + " " + student.firstSurname;
               API.postMessage(values)

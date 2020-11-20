@@ -21,7 +21,7 @@ const HelpModalSM = React.memo(({ question }) => {
   return student ? (
     <>
       <Button
-        variant="secondary"
+        variant="primary"
         size="sm"
         className="shadow-sm ml-auto mr-2"
         onClick={handleShow}
@@ -73,7 +73,7 @@ const HelpModalSM = React.memo(({ question }) => {
               values.subject = temp
                 ? question.qInstruction + " " + temp
                 : question.qInstruction;
-              values.type = "Student";
+              values.source = "Pregunta";
               values.username = student.username;
               values.name = student.name + " " + student.firstSurname;
               API.postMessage(values)

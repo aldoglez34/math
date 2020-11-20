@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-  type: {
+  source: {
     type: String,
     required: true,
-    enum: ["Guest", "Student"],
+    enum: ["Inicio", "Tema", "Pregunta"],
   },
   seen: {
     type: Boolean,

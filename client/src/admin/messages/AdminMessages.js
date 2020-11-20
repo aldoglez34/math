@@ -35,7 +35,7 @@ const AdminMessages = React.memo(() => {
         setFiltered(
           criteria === filter
             ? messages
-            : messages.filter((msg) => msg.type === criteria)
+            : messages.filter((msg) => msg.source === criteria)
         );
     }
   };
@@ -45,7 +45,7 @@ const AdminMessages = React.memo(() => {
       <Button
         disabled={messages ? false : true}
         active={filter === "New" ? true : false}
-        variant="outline-light"
+        variant="outline-warning"
         className="shadow-sm"
         onClick={() => filterProducts("New")}
       >
@@ -53,21 +53,30 @@ const AdminMessages = React.memo(() => {
       </Button>
       <Button
         disabled={messages ? false : true}
-        active={filter === "Guest" ? true : false}
+        active={filter === "Inicio" ? true : false}
         variant="outline-light"
         className="shadow-sm ml-2"
-        onClick={() => filterProducts("Guest")}
+        onClick={() => filterProducts("Inicio")}
       >
-        Visitante
+        Inicio
       </Button>
       <Button
         disabled={messages ? false : true}
-        active={filter === "Student" ? true : false}
+        active={filter === "Tema" ? true : false}
         variant="outline-light"
         className="shadow-sm ml-2"
-        onClick={() => filterProducts("Student")}
+        onClick={() => filterProducts("Tema")}
       >
-        Estudiante
+        Tema
+      </Button>
+      <Button
+        disabled={messages ? false : true}
+        active={filter === "Pregunta" ? true : false}
+        variant="outline-light"
+        className="shadow-sm ml-2"
+        onClick={() => filterProducts("Pregunta")}
+      >
+        Pregunta
       </Button>
     </div>
   );

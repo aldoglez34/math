@@ -172,9 +172,7 @@ const QuestionsContainer = React.memo(({ questions }) => {
 
                   {/* QUESTION COMMENT */}
                   {question.qComment ? (
-                    <small className="text-muted mb-3">
-                      {question.qComment}
-                    </small>
+                    <span className="text-muted mb-3">{question.qComment}</span>
                   ) : null}
 
                   {/* BUTTON */}
