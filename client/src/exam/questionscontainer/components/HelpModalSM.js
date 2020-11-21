@@ -65,14 +65,17 @@ const HelpModalSM = React.memo(({ question }) => {
             onSubmit={(values, { setSubmitting }) => {
               setSubmitting(true);
               values.email = student.email;
+              
               const temp = question.qTechnicalInstruction
                 ? question.qTechnicalInstruction.type === "text"
                   ? question.qTechnicalInstruction.text
                   : question.qTechnicalInstruction.imageLink
                 : null;
+
               values.subject = temp
                 ? question.qInstruction + " " + temp
                 : question.qInstruction;
+
               values.source = "Pregunta";
               values.username = student.username;
               values.name = student.name + " " + student.firstSurname;
