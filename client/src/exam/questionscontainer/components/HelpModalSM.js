@@ -13,6 +13,7 @@ const HelpModalSM = React.memo(({ question }) => {
   const handleShow = () => setShow(true);
 
   const student = useSelector((state) => state.student);
+  const { topicName, name } = useSelector((state) => state.exam);
 
   const yupschema = yup.object({
     body: yup.string().required("Requerido"),
@@ -65,16 +66,18 @@ const HelpModalSM = React.memo(({ question }) => {
             onSubmit={(values, { setSubmitting }) => {
               setSubmitting(true);
               values.email = student.email;
-              
-              const temp = question.qTechnicalInstruction
+
+              const techTemp = question.qTechnicalInstruction
                 ? question.qTechnicalInstruction.type === "text"
                   ? question.qTechnicalInstruction.text
                   : question.qTechnicalInstruction.imageLink
                 : null;
 
-              values.subject = temp
-                ? question.qInstruction + " " + temp
+              const techTemp2 = techTemp
+                ? question.qInstruction + " " + techTemp
                 : question.qInstruction;
+
+              values.subject = `${topicName} | ${name} | ${techTemp2}`;
 
               values.source = "Pregunta";
               values.username = student.username;

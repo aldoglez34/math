@@ -80,8 +80,6 @@ router.get("/fetchCourses", function (req, res) {
 router.post("/postMessage", function (req, res) {
   const { body, email, subject, source, name, username } = req.body;
 
-  console.log(req.body);
-
   model.Message.create({
     source,
     name,
