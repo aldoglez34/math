@@ -6,7 +6,7 @@ const SectionTitle = React.memo(({ title, text }) => {
   return (
     <div>
       <h1 className="text-left text-md-center sectionTitle mb-4">{title}</h1>
-      <p className="text-left text-md-center sectionText pb-3">{text}</p>asd
+      <p className="text-left text-md-center sectionText pb-3">{text}</p>
     </div>
   );
 });
