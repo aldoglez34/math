@@ -2,6 +2,7 @@ import React from "react";
 import { Jumbotron, Button, Container, Row, Col } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
 import "./welcomejumbotron.scss";
+import Overlay from "../overlay/Overlay";
 
 const MyJumbotron = React.memo(() => {
   return (
@@ -14,6 +15,7 @@ const MyJumbotron = React.memo(() => {
               <h2 className="text-left wj_title mb-0">MATEMÁTICAS</h2>
               <h2 className="text-left wj_title">SIMPLIFICADAS</h2>
               {/* list */}
+              <Overlay />
               <p className="mb-1 mt-3 mt-lg-0">
                 <i className="fas fa-plus-circle wj_plusIcon" />
                 <span className="wj_text">
