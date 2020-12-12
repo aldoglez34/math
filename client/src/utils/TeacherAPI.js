@@ -140,6 +140,9 @@ export default {
   t_newSimpleQuestion: (data) =>
     axios.post("/teacherAPI/questions/simple/new", data),
 
+  t_newMultipleOptionQuestion: (data) =>
+    axios.post("/teacherAPI/questions/multipleOption/new", data),
+
   t_deleteQuestion: (data) => axios.put("/teacherAPI/questions/delete", data),
 
   t_updateQuestion: (data) => axios.put("/teacherAPI/questions/update", data),

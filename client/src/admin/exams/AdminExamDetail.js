@@ -14,6 +14,7 @@ import ExamQCounterForm from "./forms/ExamQCounterForm";
 import ExamDescriptionForm from "./forms/ExamDescriptionForm";
 //
 import SimpleQuestionForm from "./questionsForms/SimpleQuestionForm";
+import MultipleOptionForm from "./questionsForms/MultipleOptionForm";
 
 const AdminExamDetail = React.memo((props) => {
   const [exam, setExam] = useState();
@@ -137,13 +138,13 @@ const AdminExamDetail = React.memo((props) => {
                   text="Sencilla"
                 />
               </div>
-              {/* <div className="ml-2">
+              <div className="ml-2">
                 <NewQuestionBttn
                   examId={exam._id}
-                  Form={SimpleQuestionForm}
+                  Form={MultipleOptionForm}
                   text="Opción múltitple"
                 />
-              </div> */}
+              </div>
             </div>
           </Col>
         </Row>

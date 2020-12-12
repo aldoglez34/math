@@ -22,6 +22,10 @@ const schema = new Schema({
   duration: { type: Number, required: true }, // ej. 30 (mins)
   questions: [
     {
+      qType: {
+        type: String,
+        enum: ["simple", "multipleOption"],
+      },
       qInstruction: { type: String, required: true },
       qTechnicalInstruction: {
         type: {
