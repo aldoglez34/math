@@ -110,7 +110,7 @@ const SimpleQuestionForm = React.memo(({ examId }) => {
             </Form.Group>
           </Form.Row>
           {/* answers */}
-          <Form.Row>
+          <Form.Row className="mb-3">
             <Col md={4}>
               <Form.Label>Complemento izquierda</Form.Label>
               <Form.Control

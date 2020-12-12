@@ -11,7 +11,7 @@ const TeacherLayout = React.memo(
         {/* vertical navbar */}
         <LeftNav leftBarActive={leftBarActive} />
         {/* main container */}
-        <div style={{ marginLeft: "18rem" }} className="h-100 w-100">
+        <div style={{ marginLeft: "15rem" }} className="h-100 w-100">
           {/* top nav */}
           <TopNav buttons={buttons} title={title} backBttn={backBttn} />
           {/* content */}

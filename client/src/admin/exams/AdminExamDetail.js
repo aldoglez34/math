@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../layout/AdminLayout";
-import { Container, Row, Col, Table } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import AdminSpinner from "../components/AdminSpinner";
 import AdminExamModal from "./components/AdminExamModal";
-import AdminDeleteExamBttn from "./components/AdminDeleteExamBttn";
-import AdminEditQuestionBttn from "./components/AdminEditQuestionBttn";
 import NewQuestionBttn from "./components/NewQuestionBttn";
 //
 import ExamNameForm from "./forms/ExamNameForm";
@@ -15,15 +13,32 @@ import ExamDescriptionForm from "./forms/ExamDescriptionForm";
 //
 import SimpleQuestionForm from "./questionsForms/SimpleQuestionForm";
 import MultipleOptionForm from "./questionsForms/MultipleOptionForm";
+//
+import {
+  SimpleQuestionTable,
+  MultipleOptionQuestionsTable,
+} from "./questionsTables";
 
 const AdminExamDetail = React.memo((props) => {
   const [exam, setExam] = useState();
+
+  const [simpleQuestions, setSimpleQuestions] = useState([]);
+  const [multipleOptionQuestions, setMultipleOptionQuestions] = useState([]);
 
   useEffect(() => {
     const examId = props.routeProps.match.params.examId;
 
     TeacherAPI.t_fetchExam(examId)
-      .then((res) => setExam(res.data))
+      .then((res) => {
+        setExam(res.data);
+        // set questions
+        setSimpleQuestions(
+          res.data.questions.filter(({ qType }) => qType === "simple")
+        );
+        setMultipleOptionQuestions(
+          res.data.questions.filter(({ qType }) => qType === "multipleOption")
+        );
+      })
       .catch((err) => {
         console.log(err);
         alert("Ocurrió un error");
@@ -148,89 +163,24 @@ const AdminExamDetail = React.memo((props) => {
             </div>
           </Col>
         </Row>
-        {/* questions */}
-        <Row>
-          <Col>
-            <span className="text-muted">Preguntas sencillas</span>
-            <div className="mt-2 d-flex flex-column">
-              {exam.questions.length ? (
-                <Table bordered striped size="sm">
-                  <thead>
-                    <tr>
-                      <th
-                        style={{ backgroundColor: "#0f5257" }}
-                        className="text-light text-center"
-                      >
-                        Instrucción
-                      </th>
-                      <th
-                        style={{ backgroundColor: "#0f5257" }}
-                        className="text-light text-center"
-                      >
-                        I. Técnica
-                      </th>
-                      <th
-                        style={{ backgroundColor: "#0f5257" }}
-                        className="text-light text-center"
-                      >
-                        Respuesta
-                      </th>
-                      <th
-                        style={{ backgroundColor: "#0f5257" }}
-                        className="text-light text-center"
-                      >
-                        Comentario
-                      </th>
-                      <th
-                        style={{ backgroundColor: "#0f5257" }}
-                        className="text-light text-center"
-                      ></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {exam.questions.map((q) => {
-                      return (
-                        <tr key={q._id}>
-                          <td className="align-middle">{q.qInstruction}</td>
-                          <td className="align-middle">
-                            {q.qTechnicalInstruction
-                              ? q.qTechnicalInstruction.text
-                              : null}
-                          </td>
-                          <td className="align-middle">
-                            {q.qCorrectAnswers[0].complement
-                              ? q.qCorrectAnswers[0].placement === "left"
-                                ? q.qCorrectAnswers[0].complement +
-                                  " " +
-                                  q.qCorrectAnswers[0].answer
-                                : q.qCorrectAnswers[0].answer +
-                                  " " +
-                                  q.qCorrectAnswers[0].complement
-                              : q.qCorrectAnswers[0].answer}
-                          </td>
-                          <td className="align-middle">{q.qComment}</td>
-                          <td className="text-center align-middle">
-                            <AdminEditQuestionBttn
-                              question={q}
-                              questionId={q._id}
-                              examId={props.routeProps.match.params.examId}
-                            />
-                            <AdminDeleteExamBttn
-                              examId={props.routeProps.match.params.examId}
-                              questionId={q._id}
-                            />
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </Table>
-              ) : (
-                <span>-</span>
-              )}
-            </div>
-          </Col>
-        </Row>
+        <hr />
+        {/* simple questions */}
+        {simpleQuestions.length ? (
+          <SimpleQuestionTable
+            questions={simpleQuestions}
+            examId={props.routeProps.match.params.examId}
+          />
+        ) : null}
+        {/* multiple options questions */}
+        {multipleOptionQuestions.length ? (
+          <MultipleOptionQuestionsTable
+            questions={multipleOptionQuestions}
+            examId={props.routeProps.match.params.examId}
+          />
+        ) : null}
+
+        <br />
+        <br />
       </Container>
     </AdminLayout>
   ) : (
