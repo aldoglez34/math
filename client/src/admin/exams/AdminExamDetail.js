@@ -10,9 +10,12 @@ import ExamNameForm from "./forms/ExamNameForm";
 import ExamDurationForm from "./forms/ExamDurationForm";
 import ExamQCounterForm from "./forms/ExamQCounterForm";
 import ExamDescriptionForm from "./forms/ExamDescriptionForm";
-//
-import SimpleQuestionForm from "./questionsForms/SimpleQuestionForm";
-import MultipleOptionForm from "./questionsForms/MultipleOptionForm";
+// new exams
+import {
+  SimpleQuestionForm,
+  MultipleOptionForm,
+  SimpleWithImageForm,
+} from "./questionsForms";
 //
 import {
   SimpleQuestionTable,
@@ -142,28 +145,30 @@ const AdminExamDetail = React.memo((props) => {
           </Col>
         </Row>
         {/* new questions */}
-        <Row className="mb-3">
-          <Col className="d-flex flex-column">
-            <span className="text-muted mb-2">Nuevas preguntas</span>
-            <div className="d-flex flex-row">
-              <div>
-                <NewQuestionBttn
-                  examId={exam._id}
-                  Form={SimpleQuestionForm}
-                  text="Sencilla"
-                />
-              </div>
-              <div className="ml-2">
-                <NewQuestionBttn
-                  examId={exam._id}
-                  Form={MultipleOptionForm}
-                  text="Opción múltitple"
-                />
-              </div>
-            </div>
-          </Col>
-        </Row>
-        <hr />
+        <hr className="pb-0 mb-4" />
+        <div className="d-flex flex-row justify-content-center mb-2">
+          <div>
+            <NewQuestionBttn
+              examId={exam._id}
+              Form={SimpleQuestionForm}
+              text="Sencilla"
+            />
+          </div>
+          <div className="ml-2">
+            <NewQuestionBttn
+              examId={exam._id}
+              Form={SimpleWithImageForm}
+              text="Sencilla con imagen"
+            />
+          </div>
+          <div className="ml-2">
+            <NewQuestionBttn
+              examId={exam._id}
+              Form={MultipleOptionForm}
+              text="Opción múltitple"
+            />
+          </div>
+        </div>
         {/* simple questions */}
         {simpleQuestions.length ? (
           <SimpleQuestionTable
@@ -178,7 +183,6 @@ const AdminExamDetail = React.memo((props) => {
             examId={props.routeProps.match.params.examId}
           />
         ) : null}
-
         <br />
         <br />
       </Container>

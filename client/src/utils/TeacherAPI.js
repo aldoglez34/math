@@ -137,13 +137,14 @@ export default {
   // QUESTIONS
   // ==============================================
 
+  t_deleteQuestion: (data) => axios.put("/teacherAPI/questions/delete/", data),
+
   t_newSimpleQuestion: (data) =>
-    axios.post("/teacherAPI/questions/simple/new", data),
+    axios.post("/teacherAPI/questions/simpleQuestion/new", data),
 
   t_newMultipleOptionQuestion: (data) =>
     axios.post("/teacherAPI/questions/multipleOption/new", data),
 
-  t_deleteQuestion: (data) => axios.put("/teacherAPI/questions/delete", data),
-
-  t_updateQuestion: (data) => axios.put("/teacherAPI/questions/update", data),
+  t_newSimpleWithImageQuestion: (data) =>
+    axios.post("/teacherAPI/questions/simpleWithImage/new", data),
 };

@@ -55,37 +55,54 @@ router.post("/new", function (req, res) {
       });
 
       // create reward folder
-      fs.mkdir("./client/public/files/" + newCourseId + "/reward", function (
-        err
-      ) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("Reward folder has been created succesfully.");
+      fs.mkdir(
+        "./client/public/files/" + newCourseId + "/reward",
+        function (err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("Reward folder has been created succesfully.");
+          }
         }
-      });
+      );
 
       // create exams folder
-      fs.mkdir("./client/public/files/" + newCourseId + "/exams", function (
-        err
-      ) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("Exams folder has been created succesfully.");
+      fs.mkdir(
+        "./client/public/files/" + newCourseId + "/exams",
+        function (err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("Exams folder has been created succesfully.");
+          }
         }
-      });
+      );
 
       // create material folder
-      fs.mkdir("./client/public/files/" + newCourseId + "/material", function (
-        err
-      ) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("Material folder has been created succesfully.");
+      fs.mkdir(
+        "./client/public/files/" + newCourseId + "/material",
+        function (err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("Material folder has been created succesfully.");
+          }
         }
-      });
+      );
+
+      // create question_pics folder
+      fs.mkdir(
+        "./client/public/files/" + newCourseId + "/question_pics",
+        function (err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(
+              "Question pictures folder has been created succesfully."
+            );
+          }
+        }
+      );
 
       // send response to the client
       res.json(data);

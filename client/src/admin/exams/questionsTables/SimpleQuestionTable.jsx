@@ -1,16 +1,16 @@
 import React from "react";
 import { Table, Row, Col } from "react-bootstrap";
 import AdminDeleteExamBttn from "../components/AdminDeleteExamBttn";
-import AdminEditQuestionBttn from "../components/AdminEditQuestionBttn";
+// import AdminEditQuestionBttn from "../components/AdminEditQuestionBttn";
 import PropTypes from "prop-types";
 
 export const SimpleQuestionTable = React.memo(({ questions, examId }) => {
   return (
     <Row>
       <Col>
-        <span className="text-muted">
+        <h5>
           Preguntas sencillas{` (${questions.length})`}
-        </span>
+        </h5>
         <div className="mt-2 d-flex flex-column">
           <Table bordered striped size="sm">
             <thead>
@@ -68,11 +68,11 @@ export const SimpleQuestionTable = React.memo(({ questions, examId }) => {
                     </td>
                     <td className="align-middle">{q.qComment}</td>
                     <td className="text-center align-middle">
-                      <AdminEditQuestionBttn
+                      {/* <AdminEditQuestionBttn
                         question={q}
                         questionId={q._id}
                         examId={examId}
-                      />
+                      /> */}
                       <AdminDeleteExamBttn examId={examId} questionId={q._id} />
                     </td>
                   </tr>

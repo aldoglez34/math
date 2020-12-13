@@ -5,15 +5,13 @@ import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeacherAPI from "../../../utils/TeacherAPI";
 
-export const MultipleOptionForm = React.memo(({ examId }) => {
+export const SimpleQuestionForm = React.memo(({ examId }) => {
   const yupschema = yup.object({
     qInstruction: yup.string().required("Requerido"),
     qTechnicalInstruction: yup.string(),
-    qOption1: yup.string().required("Requerido"),
-    qOption2: yup.string().required("Requerido"),
-    qOption3: yup.string().required("Requerido"),
-    qOption4: yup.string().required("Requerido"),
-    qCorrectAnswer: yup.string().required("Requerido"),
+    qCorrectAnswers: yup.string().required("Requerido"),
+    qCALeft: yup.string(),
+    qCARight: yup.string(),
     qComment: yup.string(),
   });
 
@@ -22,11 +20,9 @@ export const MultipleOptionForm = React.memo(({ examId }) => {
       initialValues={{
         qInstruction: "",
         qTechnicalInstruction: "",
-        qOption1: "",
-        qOption2: "",
-        qOption3: "",
-        qOption4: "",
-        qCorrectAnswer: "",
+        qCorrectAnswers: "",
+        qCALeft: "",
+        qCARight: "",
         qComment: "",
       }}
       validationSchema={yupschema}
@@ -34,7 +30,7 @@ export const MultipleOptionForm = React.memo(({ examId }) => {
         setSubmitting(true);
         values.examId = examId;
         //
-        TeacherAPI.t_newMultipleOptionQuestion(values)
+        TeacherAPI.t_newSimpleQuestion(values)
           .then((res) => {
             console.log(res.data);
             alert("La pregunta ha sido registrada con éxito.");
@@ -113,104 +109,27 @@ export const MultipleOptionForm = React.memo(({ examId }) => {
               />
             </Form.Group>
           </Form.Row>
-          {/* options 1 - 4 */}
-          <Form.Row>
-            <Form.Group as={Col}>
-              <Form.Label>
-                Opción 1
-                <strong className="text-danger" title="Requerido">
-                  *
-                </strong>
-              </Form.Label>
+          {/* answers */}
+          <Form.Row className="mb-3">
+            <Col md={4}>
+              <Form.Label>Complemento izquierda</Form.Label>
               <Form.Control
                 maxLength="25"
                 type="text"
-                name="qOption1"
-                value={values.qOption1}
+                name="qCALeft"
+                value={values.qCALeft}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                isValid={touched.qOption1 && !errors.qOption1}
-                isInvalid={touched.qOption1 && !!errors.qOption1}
+                isValid={touched.qCALeft && !errors.qCALeft}
+                isInvalid={touched.qCALeft && !!errors.qCALeft}
               />
               <ErrorMessage
                 className="text-danger"
-                name="qOption1"
+                name="qCALeft"
                 component="div"
               />
-            </Form.Group>
-            <Form.Group as={Col}>
-              <Form.Label>
-                Opción 2
-                <strong className="text-danger" title="Requerido">
-                  *
-                </strong>
-              </Form.Label>
-              <Form.Control
-                maxLength="25"
-                type="text"
-                name="qOption2"
-                value={values.qOption2}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                isValid={touched.qOption2 && !errors.qOption2}
-                isInvalid={touched.qOption2 && !!errors.qOption2}
-              />
-              <ErrorMessage
-                className="text-danger"
-                name="qOption2"
-                component="div"
-              />
-            </Form.Group>
-            <Form.Group as={Col}>
-              <Form.Label>
-                Opción 3
-                <strong className="text-danger" title="Requerido">
-                  *
-                </strong>
-              </Form.Label>
-              <Form.Control
-                maxLength="25"
-                type="text"
-                name="qOption3"
-                value={values.qOption3}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                isValid={touched.qOption3 && !errors.qOption3}
-                isInvalid={touched.qOption3 && !!errors.qOption3}
-              />
-              <ErrorMessage
-                className="text-danger"
-                name="qOption3"
-                component="div"
-              />
-            </Form.Group>
-            <Form.Group as={Col}>
-              <Form.Label>
-                Opción 4
-                <strong className="text-danger" title="Requerido">
-                  *
-                </strong>
-              </Form.Label>
-              <Form.Control
-                maxLength="25"
-                type="text"
-                name="qOption4"
-                value={values.qOption4}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                isValid={touched.qOption4 && !errors.qOption4}
-                isInvalid={touched.qOption4 && !!errors.qOption4}
-              />
-              <ErrorMessage
-                className="text-danger"
-                name="qOption4"
-                component="div"
-              />
-            </Form.Group>
-          </Form.Row>
-          {/* correct answer */}
-          <Form.Row>
-            <Form.Group as={Col}>
+            </Col>
+            <Col md={4}>
               <Form.Label>
                 Respuesta
                 <strong className="text-danger" title="Requerido">
@@ -218,21 +137,39 @@ export const MultipleOptionForm = React.memo(({ examId }) => {
                 </strong>
               </Form.Label>
               <Form.Control
-                maxLength="25"
+                maxLength="250"
                 type="text"
-                name="qCorrectAnswer"
-                value={values.qCorrectAnswer}
+                name="qCorrectAnswers"
+                value={values.qCorrectAnswers}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                isValid={touched.qCorrectAnswer && !errors.qCorrectAnswer}
-                isInvalid={touched.qCorrectAnswer && !!errors.qCorrectAnswer}
+                isValid={touched.qCorrectAnswers && !errors.qCorrectAnswers}
+                isInvalid={touched.qCorrectAnswers && !!errors.qCorrectAnswers}
               />
               <ErrorMessage
                 className="text-danger"
-                name="qCorrectAnswer"
+                name="qCorrectAnswers"
                 component="div"
               />
-            </Form.Group>
+            </Col>
+            <Col md={4}>
+              <Form.Label>Complemento derecha</Form.Label>
+              <Form.Control
+                maxLength="25"
+                type="text"
+                name="qCARight"
+                value={values.qCARight}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isValid={touched.qCARight && !errors.qCARight}
+                isInvalid={touched.qCARight && !!errors.qCARight}
+              />
+              <ErrorMessage
+                className="text-danger"
+                name="qCARight"
+                component="div"
+              />
+            </Col>
           </Form.Row>
           {/* qComment */}
           <Form.Row>
@@ -269,6 +206,6 @@ export const MultipleOptionForm = React.memo(({ examId }) => {
   );
 });
 
-MultipleOptionForm.propTypes = {
+SimpleQuestionForm.propTypes = {
   examId: PropTypes.string.isRequired,
 };

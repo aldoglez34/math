@@ -10,7 +10,7 @@ const NewQuestionBttn = React.memo(({ text, Form, examId }) => {
 
   return (
     <>
-      <Button onClick={handleShow} className="adminaddbttn" size="sm">
+      <Button onClick={handleShow} className="adminaddbttn">
         <i className="fas fa-plus-square mr-2" />
         <span>{text}</span>
       </Button>

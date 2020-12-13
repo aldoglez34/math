@@ -24,7 +24,7 @@ const schema = new Schema({
     {
       qType: {
         type: String,
-        enum: ["simple", "multipleOption"],
+        // enum: ["simple", "multipleOption", "simpleWithPic"],
       },
       qInstruction: { type: String, required: true },
       qTechnicalInstruction: {

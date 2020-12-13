@@ -20,7 +20,7 @@ const AdminDeleteExamBttn = React.memo(({ examId, questionId }) => {
   return (
     <Button
       size="sm"
-      className="deleteButton ml-2"
+      className="deleteButton"
       onClick={handleClick}
       title="Borrar"
     >

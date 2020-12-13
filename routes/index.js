@@ -39,13 +39,26 @@ router.use("/teacherAPI/students", tStudentRoutes);
 const tExamRoutes = require("./teacherAPI/tExamRoutes");
 router.use("/teacherAPI/exam", tExamRoutes);
 
-const tQuestionsRoutes = require("./teacherAPI/tQuestionsRoutes");
-router.use("/teacherAPI/questions", tQuestionsRoutes);
-
 const tRewardsRoutes = require("./teacherAPI/tRewardsRoutes");
 router.use("/teacherAPI/rewards", tRewardsRoutes);
 
 const tDifficultiesRoutes = require("./teacherAPI/tDifficultiesRoutes");
 router.use("/teacherAPI/difficulties", tDifficultiesRoutes);
+
+// ==============================================
+// QUESTIONS
+// ==============================================
+
+const deleteQuestionRoute = require("./teacherAPI/questions/deleteQuestionRoute");
+router.use("/teacherAPI/questions/delete", deleteQuestionRoute);
+
+const simpleQuestionRoute = require("./teacherAPI/questions/simpleQuestionRoute");
+router.use("/teacherAPI/questions/simpleQuestion", simpleQuestionRoute);
+
+const multipleOptionRoute = require("./teacherAPI/questions/multipleOptionRoute");
+router.use("/teacherAPI/questions/multipleOption", multipleOptionRoute);
+
+const simpleWithImageRoute = require("./teacherAPI/questions/simpleWithImageRoute");
+router.use("/teacherAPI/questions/simpleWithImage", simpleWithImageRoute);
 
 module.exports = router;

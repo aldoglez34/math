@@ -4,22 +4,46 @@ import PropTypes from "prop-types";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeacherAPI from "../../../utils/TeacherAPI";
+import { useSelector } from "react-redux";
 
-const SimpleQuestionForm = React.memo(({ examId }) => {
+export const SimpleWithImageForm = React.memo(({ examId }) => {
   const yupschema = yup.object({
     qInstruction: yup.string().required("Requerido"),
-    qTechnicalInstruction: yup.string(),
+    file: yup
+      .mixed()
+      .required("Requerido")
+      .test(
+        "fileSize",
+        "Imagen muy pesada",
+        (value) => value && value.size <= PHOTO_SIZE
+      )
+      .test(
+        "fileFormat",
+        "Formato no soportado",
+        (value) => value && SUPPORTED_FORMATS.includes(value.type)
+      ),
     qCorrectAnswers: yup.string().required("Requerido"),
     qCALeft: yup.string(),
     qCARight: yup.string(),
     qComment: yup.string(),
   });
 
+  const PHOTO_SIZE = 4000000;
+  const SUPPORTED_FORMATS = [
+    "image/jpg",
+    "image/jpeg",
+    "image/gif",
+    "image/png",
+  ];
+
+  const courseId = useSelector((state) => state.course._id);
+
   return (
     <Formik
       initialValues={{
         qInstruction: "",
-        qTechnicalInstruction: "",
+        photo: undefined,
+        file: undefined,
         qCorrectAnswers: "",
         qCALeft: "",
         qCARight: "",
@@ -29,8 +53,9 @@ const SimpleQuestionForm = React.memo(({ examId }) => {
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
         values.examId = examId;
+        values.courseId = courseId;
         //
-        TeacherAPI.t_newSimpleQuestion(values)
+        TeacherAPI.t_newSimpleWithImageQuestion(values)
           .then((res) => {
             console.log(res.data);
             alert("La pregunta ha sido registrada con éxito.");
@@ -51,6 +76,7 @@ const SimpleQuestionForm = React.memo(({ examId }) => {
         handleBlur,
         handleSubmit,
         isSubmitting,
+        setFieldValue,
       }) => (
         <Form noValidate onSubmit={handleSubmit}>
           {/* qInstruction */}
@@ -84,27 +110,36 @@ const SimpleQuestionForm = React.memo(({ examId }) => {
           {/* qTechnicalInstruction */}
           <Form.Row>
             <Form.Group as={Col}>
-              <Form.Label>Instrucción técnica</Form.Label>
-              <Form.Control
-                maxLength="250"
-                type="text"
-                as="textarea"
-                rows="1"
-                name="qTechnicalInstruction"
-                value={values.qTechnicalInstruction}
-                onChange={handleChange}
+              <Form.Label>
+                Imagen
+                <strong className="text-danger" title="Requerido">
+                  *
+                </strong>
+                <small className="ml-1">(.jpg, .jpeg, .gif y .png)</small>
+              </Form.Label>
+              <Form.File
+                encType="multipart/form-data"
+                accept="image/*"
+                label={values.photo ? values.photo : ""}
+                data-browse="Buscar"
+                id="file"
+                name="file"
+                type="file"
+                onChange={(event) => {
+                  setFieldValue("file", event.currentTarget.files[0]);
+                  setFieldValue(
+                    "photo",
+                    event.currentTarget.files[0]
+                      ? event.currentTarget.files[0].name
+                      : ""
+                  );
+                }}
                 onBlur={handleBlur}
-                isValid={
-                  touched.qTechnicalInstruction && !errors.qTechnicalInstruction
-                }
-                isInvalid={
-                  touched.qTechnicalInstruction &&
-                  !!errors.qTechnicalInstruction
-                }
+                custom
               />
               <ErrorMessage
                 className="text-danger"
-                name="qTechnicalInstruction"
+                name="file"
                 component="div"
               />
             </Form.Group>
@@ -206,8 +241,6 @@ const SimpleQuestionForm = React.memo(({ examId }) => {
   );
 });
 
-SimpleQuestionForm.propTypes = {
+SimpleWithImageForm.propTypes = {
   examId: PropTypes.string.isRequired,
 };
-
-export default SimpleQuestionForm;
