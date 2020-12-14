@@ -24,7 +24,7 @@ const schema = new Schema({
     {
       qType: {
         type: String,
-        // enum: ["simple", "multipleOption", "simpleWithPic"],
+        // enum: ["simple", "multipleOption", "simpleWithPic", "twoAnswers"],
       },
       qInstruction: { type: String, required: true },
       qTechnicalInstruction: {
@@ -46,8 +46,8 @@ const schema = new Schema({
       qCorrectAnswers: [
         {
           answer: { type: String, required: true },
-          complement: { type: String },
-          placement: { type: String },
+          complementLeft: { type: String },
+          complementRight: { type: String },
         },
       ],
       qComment: { type: String },

@@ -1,11 +1,11 @@
 const router = require("express").Router();
 const model = require("../../../models");
 
-// t_newSimpleQuestion()
-// matches with /teacherAPI/questions/simple/new
+// t_newSimpleWithTwoAnswersQuestion()
+// matches with /teacherAPI/questions/simpleWithTwoAnswers/new
 router.post("/new", function (req, res) {
   const newQuestion = {
-    qType: "simple",
+    qType: "twoAnswers",
     qInstruction: req.body.qInstruction,
     qTechnicalInstruction: req.body.qTechnicalInstruction
       ? {
@@ -15,9 +15,14 @@ router.post("/new", function (req, res) {
       : null,
     qCorrectAnswers: [
       {
-        answer: req.body.qCorrectAnswers,
-        complementLeft: req.body.qCALeft,
-        complementRight: req.body.qCARight,
+        answer: req.body.qCorrectAnswer1,
+        complementLeft: req.body.qCALeft1,
+        complementRight: req.body.qCARight1,
+      },
+      {
+        answer: req.body.qCorrectAnswer2,
+        complementLeft: req.body.qCALeft2,
+        complementRight: req.body.qCARight2,
       },
     ],
     qComment: req.body.qComment,

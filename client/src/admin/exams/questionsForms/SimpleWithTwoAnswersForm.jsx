@@ -5,55 +5,36 @@ import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeacherAPI from "../../../utils/TeacherAPI";
 
-export const SimpleWithImageForm = React.memo(({ examId, ...props }) => {
+export const SimpleWithTwoAnswersForm = React.memo(({ examId }) => {
   const yupschema = yup.object({
     qInstruction: yup.string().required("Requerido"),
-    file: yup
-      .mixed()
-      .required("Requerido")
-      .test(
-        "fileSize",
-        "Imagen muy pesada",
-        (value) => value && value.size <= PHOTO_SIZE
-      )
-      .test(
-        "fileFormat",
-        "Formato no soportado",
-        (value) => value && SUPPORTED_FORMATS.includes(value.type)
-      ),
-    qCorrectAnswers: yup.string().required("Requerido"),
+    qTechnicalInstruction: yup.string(),
+    qCorrectAnswer1: yup.string().required("Requerido"),
+    qCorrectAnswer2: yup.string().required("Requerido"),
     qCALeft: yup.string(),
     qCARight: yup.string(),
     qComment: yup.string(),
   });
 
-  const PHOTO_SIZE = 4000000;
-  const SUPPORTED_FORMATS = [
-    "image/jpg",
-    "image/jpeg",
-    "image/gif",
-    "image/png",
-  ];
-
   return (
     <Formik
       initialValues={{
         qInstruction: "",
-        photo: undefined,
-        file: undefined,
-        qCorrectAnswers: "",
-        qCALeft: "",
-        qCARight: "",
+        qTechnicalInstruction: "",
+        qCorrectAnswer1: "",
+        qCALeft1: "",
+        qCARight1: "",
+        qCorrectAnswer2: "",
+        qCALeft2: "",
+        qCARight2: "",
         qComment: "",
       }}
       validationSchema={yupschema}
       onSubmit={(values, { setSubmitting }) => {
-        console.log({ values });
         setSubmitting(true);
         values.examId = examId;
-        values.courseId = props.routeProps.match.params.courseId;
         //
-        TeacherAPI.t_newSimpleWithImageQuestion(values)
+        TeacherAPI.t_newSimpleWithTwoAnswersQuestion(values)
           .then((res) => {
             console.log(res.data);
             alert("La pregunta ha sido registrada con éxito.");
@@ -74,7 +55,6 @@ export const SimpleWithImageForm = React.memo(({ examId, ...props }) => {
         handleBlur,
         handleSubmit,
         isSubmitting,
-        setFieldValue,
       }) => (
         <Form noValidate onSubmit={handleSubmit}>
           {/* qInstruction */}
@@ -105,60 +85,52 @@ export const SimpleWithImageForm = React.memo(({ examId, ...props }) => {
               />
             </Form.Group>
           </Form.Row>
-          {/* qTechnicalInstruction (image) */}
+          {/* qTechnicalInstruction */}
           <Form.Row>
             <Form.Group as={Col}>
-              <Form.Label>
-                Imagen
-                <strong className="text-danger" title="Requerido">
-                  *
-                </strong>
-                <small className="ml-1">(.jpg, .jpeg, .gif y .png)</small>
-              </Form.Label>
-              <Form.File
-                encType="multipart/form-data"
-                accept="image/*"
-                label={values.photo ? values.photo : ""}
-                data-browse="Buscar"
-                id="file"
-                name="file"
-                type="file"
-                onChange={(event) => {
-                  setFieldValue("file", event.currentTarget.files[0]);
-                  setFieldValue(
-                    "photo",
-                    event.currentTarget.files[0]
-                      ? event.currentTarget.files[0].name
-                      : ""
-                  );
-                }}
+              <Form.Label>Instrucción técnica</Form.Label>
+              <Form.Control
+                maxLength="250"
+                type="text"
+                as="textarea"
+                rows="1"
+                name="qTechnicalInstruction"
+                value={values.qTechnicalInstruction}
+                onChange={handleChange}
                 onBlur={handleBlur}
-                custom
+                isValid={
+                  touched.qTechnicalInstruction && !errors.qTechnicalInstruction
+                }
+                isInvalid={
+                  touched.qTechnicalInstruction &&
+                  !!errors.qTechnicalInstruction
+                }
               />
               <ErrorMessage
                 className="text-danger"
-                name="file"
+                name="qTechnicalInstruction"
                 component="div"
               />
             </Form.Group>
           </Form.Row>
-          {/* answers */}
+          {/* answer 1 */}
+          <h5 className="text-dark">Respuesta 1</h5>
           <Form.Row className="mb-3">
             <Col md={4}>
               <Form.Label>Complemento izquierda</Form.Label>
               <Form.Control
                 maxLength="25"
                 type="text"
-                name="qCALeft"
-                value={values.qCALeft}
+                name="qCALeft1"
+                value={values.qCALeft1}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                isValid={touched.qCALeft && !errors.qCALeft}
-                isInvalid={touched.qCALeft && !!errors.qCALeft}
+                isValid={touched.qCALeft1 && !errors.qCALeft1}
+                isInvalid={touched.qCALeft1 && !!errors.qCALeft1}
               />
               <ErrorMessage
                 className="text-danger"
-                name="qCALeft"
+                name="qCALeft1"
                 component="div"
               />
             </Col>
@@ -172,16 +144,16 @@ export const SimpleWithImageForm = React.memo(({ examId, ...props }) => {
               <Form.Control
                 maxLength="250"
                 type="text"
-                name="qCorrectAnswers"
-                value={values.qCorrectAnswers}
+                name="qCorrectAnswer1"
+                value={values.qCorrectAnswer1}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                isValid={touched.qCorrectAnswers && !errors.qCorrectAnswers}
-                isInvalid={touched.qCorrectAnswers && !!errors.qCorrectAnswers}
+                isValid={touched.qCorrectAnswer1 && !errors.qCorrectAnswer1}
+                isInvalid={touched.qCorrectAnswer1 && !!errors.qCorrectAnswer1}
               />
               <ErrorMessage
                 className="text-danger"
-                name="qCorrectAnswers"
+                name="qCorrectAnswer1"
                 component="div"
               />
             </Col>
@@ -191,15 +163,78 @@ export const SimpleWithImageForm = React.memo(({ examId, ...props }) => {
                 maxLength="25"
                 type="text"
                 name="qCARight"
-                value={values.qCARight}
+                value={values.qCARight1}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                isValid={touched.qCARight && !errors.qCARight}
-                isInvalid={touched.qCARight && !!errors.qCARight}
+                isValid={touched.qCARight1 && !errors.qCARight1}
+                isInvalid={touched.qCARight1 && !!errors.qCARight1}
               />
               <ErrorMessage
                 className="text-danger"
+                name="qCARight1"
+                component="div"
+              />
+            </Col>
+          </Form.Row>
+          {/* answer 1 */}
+          <h5 className="text-dark">Respuesta 2</h5>
+          <Form.Row className="mb-3">
+            <Col md={4}>
+              <Form.Label>Complemento izquierda</Form.Label>
+              <Form.Control
+                maxLength="25"
+                type="text"
+                name="qCALeft2"
+                value={values.qCALeft2}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isValid={touched.qCALeft2 && !errors.qCALeft2}
+                isInvalid={touched.qCALeft2 && !!errors.qCALeft2}
+              />
+              <ErrorMessage
+                className="text-danger"
+                name="qCALeft2"
+                component="div"
+              />
+            </Col>
+            <Col md={4}>
+              <Form.Label>
+                Respuesta
+                <strong className="text-danger" title="Requerido">
+                  *
+                </strong>
+              </Form.Label>
+              <Form.Control
+                maxLength="250"
+                type="text"
+                name="qCorrectAnswer2"
+                value={values.qCorrectAnswer2}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isValid={touched.qCorrectAnswer2 && !errors.qCorrectAnswer2}
+                isInvalid={touched.qCorrectAnswer2 && !!errors.qCorrectAnswer2}
+              />
+              <ErrorMessage
+                className="text-danger"
+                name="qCorrectAnswer2"
+                component="div"
+              />
+            </Col>
+            <Col md={4}>
+              <Form.Label>Complemento derecha</Form.Label>
+              <Form.Control
+                maxLength="25"
+                type="text"
                 name="qCARight"
+                value={values.qCARight2}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isValid={touched.qCARight2 && !errors.qCARight2}
+                isInvalid={touched.qCARight2 && !!errors.qCARight2}
+              />
+              <ErrorMessage
+                className="text-danger"
+                name="qCARight2"
                 component="div"
               />
             </Col>
@@ -239,6 +274,6 @@ export const SimpleWithImageForm = React.memo(({ examId, ...props }) => {
   );
 });
 
-SimpleWithImageForm.propTypes = {
+SimpleWithTwoAnswersForm.propTypes = {
   examId: PropTypes.string.isRequired,
 };

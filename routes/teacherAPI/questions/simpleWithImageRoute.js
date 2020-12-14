@@ -23,6 +23,8 @@ const upload = multer({
 }).single("file");
 
 router.post("/new", function (req, res) {
+  console.log("\nentrando al post\n");
+
   upload(req, res, function (err) {
     if (err instanceof multer.MulterError) {
       console.log("ERROR - A Multer error occurred when uploading.");
@@ -35,28 +37,24 @@ router.post("/new", function (req, res) {
     // everything went fine
     // no errors
 
+    const courseId = req.body.courseId;
+
     const newQuestion = {
       qType: "simpleWithPic",
       qInstruction: req.body.qInstruction,
+      qTechnicalInstruction: {
+        type: "image",
+        imageLink: `/files/${courseId}/questions/foto.jpg`,
+      },
       qCorrectAnswers: [
         {
-          complement: req.body.qCALeft
-            ? req.body.qCALeft
-            : req.body.qCARight
-            ? req.body.qCARight
-            : null,
           answer: req.body.qCorrectAnswers,
-          placement: req.body.qCALeft
-            ? "left"
-            : req.body.qCARight
-            ? "right"
-            : null,
+          complementLeft: req.body.qCALeft,
+          complementRight: req.body.qCARight,
         },
       ],
       qComment: req.body.qComment,
     };
-
-    const courseId = req.body.courseId;
 
     model.Exam.findOneAndUpdate(
       { _id: req.body.examId },
@@ -66,13 +64,10 @@ router.post("/new", function (req, res) {
         },
       }
     )
-      .then((question) => {
-        console.log(question);
-        console.log("question!!!!!!!!!!!!!!!!!!!!!", question);
+      .then(() => {
         // moving the file to the course folder
         // const oldPath = `./client/public/_temp/${fileName}`;
         // const newPath = `./client/public/files/${courseId}/question_pics/${question._id}`;
-
         // fs.rename(oldPath, newPath, (err) => {
         //   if (err) throw err;
         //   console.log("Image file was renamed (moved) correctly");

@@ -146,9 +146,9 @@ const QuestionsContainer = React.memo(({ questions }) => {
                     question.qCorrectAnswers.map((ca, idx) => (
                       <div key={ca._id} className="d-flex flex-row mt-3 mb-2">
                         {/* LEFT question complement (if any) */}
-                        {ca.complement && ca.placement === "left" ? (
+                        {ca.complementLeft ? (
                           <h4 className="mr-2 mb-0">
-                            <small>{ca.complement}</small>
+                            <small>{ca.complementLeft}</small>
                           </h4>
                         ) : null}
                         {/* input */}
@@ -161,9 +161,9 @@ const QuestionsContainer = React.memo(({ questions }) => {
                           id={"answer" + idx}
                         />
                         {/* RIGHT question complement (if any) */}
-                        {ca.complement && ca.placement === "right" ? (
+                        {ca.complementRight ? (
                           <h4 className="ml-2 mb-0">
-                            <small>{ca.complement}</small>
+                            <small>{ca.complementRight}</small>
                           </h4>
                         ) : null}
                       </div>

@@ -10,23 +10,31 @@ import ExamNameForm from "./forms/ExamNameForm";
 import ExamDurationForm from "./forms/ExamDurationForm";
 import ExamQCounterForm from "./forms/ExamQCounterForm";
 import ExamDescriptionForm from "./forms/ExamDescriptionForm";
-// new exams
+// new exams (forms)
 import {
   SimpleQuestionForm,
   MultipleOptionForm,
   SimpleWithImageForm,
+  SimpleWithTwoAnswersForm,
 } from "./questionsForms";
-//
+// new exams (tables)
 import {
   SimpleQuestionTable,
   MultipleOptionQuestionsTable,
+  SimpleWithImageQuestionsTable,
+  SimpleWithTwoAnswersTable,
 } from "./questionsTables";
 
 const AdminExamDetail = React.memo((props) => {
   const [exam, setExam] = useState();
 
   const [simpleQuestions, setSimpleQuestions] = useState([]);
+  const [simpleWithImageQuestions, setSimpleWithImageQuestions] = useState([]);
   const [multipleOptionQuestions, setMultipleOptionQuestions] = useState([]);
+  const [
+    simpleWithTwoAnswersQuestions,
+    setSimpleWithTwoAnswersQuestions,
+  ] = useState([]);
 
   useEffect(() => {
     const examId = props.routeProps.match.params.examId;
@@ -38,8 +46,14 @@ const AdminExamDetail = React.memo((props) => {
         setSimpleQuestions(
           res.data.questions.filter(({ qType }) => qType === "simple")
         );
+        setSimpleWithImageQuestions(
+          res.data.questions.filter(({ qType }) => qType === "simpleWithPic")
+        );
         setMultipleOptionQuestions(
           res.data.questions.filter(({ qType }) => qType === "multipleOption")
+        );
+        setSimpleWithTwoAnswersQuestions(
+          res.data.questions.filter(({ qType }) => qType === "twoAnswers")
         );
       })
       .catch((err) => {
@@ -144,9 +158,9 @@ const AdminExamDetail = React.memo((props) => {
             </h5>
           </Col>
         </Row>
-        {/* new questions */}
+        {/* NEW QUESTIONS */}
         <hr className="pb-0 mb-4" />
-        <div className="d-flex flex-row justify-content-center mb-2">
+        <div className="d-flex flex-row justify-content-center mb-3">
           <div>
             <NewQuestionBttn
               examId={exam._id}
@@ -164,22 +178,40 @@ const AdminExamDetail = React.memo((props) => {
           <div className="ml-2">
             <NewQuestionBttn
               examId={exam._id}
+              Form={SimpleWithTwoAnswersForm}
+              text="Sencilla con 2 respuestas"
+            />
+          </div>
+          <div className="ml-2">
+            <NewQuestionBttn
+              examId={exam._id}
               Form={MultipleOptionForm}
               text="Opción múltitple"
             />
           </div>
         </div>
-        {/* simple questions */}
+        {/* TABLES */}
         {simpleQuestions.length ? (
           <SimpleQuestionTable
             questions={simpleQuestions}
             examId={props.routeProps.match.params.examId}
           />
         ) : null}
-        {/* multiple options questions */}
+        {simpleWithImageQuestions.length ? (
+          <SimpleQuestionTable
+            questions={simpleQuestions}
+            examId={props.routeProps.match.params.examId}
+          />
+        ) : null}
         {multipleOptionQuestions.length ? (
           <MultipleOptionQuestionsTable
             questions={multipleOptionQuestions}
+            examId={props.routeProps.match.params.examId}
+          />
+        ) : null}
+        {simpleWithTwoAnswersQuestions.length ? (
+          <SimpleWithTwoAnswersTable
+            questions={simpleWithTwoAnswersQuestions}
             examId={props.routeProps.match.params.examId}
           />
         ) : null}

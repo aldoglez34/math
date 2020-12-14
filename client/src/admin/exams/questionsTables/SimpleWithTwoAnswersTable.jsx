@@ -3,11 +3,13 @@ import { Table, Row, Col } from "react-bootstrap";
 import AdminDeleteExamBttn from "../components/AdminDeleteExamBttn";
 import PropTypes from "prop-types";
 
-export const SimpleQuestionTable = React.memo(({ questions, examId }) => {
+export const SimpleWithTwoAnswersTable = React.memo(({ questions, examId }) => {
   return (
     <Row>
       <Col>
-        <h5>Preguntas sencillas{` (${questions.length})`}</h5>
+        <h5>
+          Preguntas sencillas con dos respuestas{` (${questions.length})`}
+        </h5>
         <div className="mt-2 d-flex flex-column">
           <Table bordered striped size="sm">
             <thead>
@@ -28,7 +30,7 @@ export const SimpleQuestionTable = React.memo(({ questions, examId }) => {
                   style={{ backgroundColor: "#0f5257" }}
                   className="text-light text-center"
                 >
-                  Respuesta
+                  Respuestas
                 </th>
                 <th
                   style={{ backgroundColor: "#0f5257" }}
@@ -53,9 +55,20 @@ export const SimpleQuestionTable = React.memo(({ questions, examId }) => {
                         : null}
                     </td>
                     <td className="align-middle">
-                      {String(
-                        `${q.qCorrectAnswers[0].complementLeft} ${q.qCorrectAnswers[0].answer} ${q.qCorrectAnswers[0].complementRight}`
-                      ).trim()}
+                      {q.qCorrectAnswers.map((qa, idx) => {
+                        return (
+                          <React.Fragment key={qa._id}>
+                            <span>
+                              {String(
+                                `${qa.complementLeft} ${qa.answer} ${qa.complementRight}`
+                              ).trim()}
+                            </span>
+                            {q.qCorrectAnswers.length === idx + 1 ? null : (
+                              <hr className="my-0" />
+                            )}
+                          </React.Fragment>
+                        );
+                      })}
                     </td>
                     <td className="align-middle">{q.qComment}</td>
                     <td className="text-center align-middle">
@@ -72,7 +85,7 @@ export const SimpleQuestionTable = React.memo(({ questions, examId }) => {
   );
 });
 
-SimpleQuestionTable.propTypes = {
+SimpleWithTwoAnswersTable.propTypes = {
   questions: PropTypes.array.isRequired,
   examId: PropTypes.string.isRequired,
 };

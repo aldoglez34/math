@@ -90,16 +90,14 @@ router.post("/new", function (req, res) {
         }
       );
 
-      // create question_pics folder
+      // create questions folder
       fs.mkdir(
-        "./client/public/files/" + newCourseId + "/question_pics",
+        "./client/public/files/" + newCourseId + "/questions",
         function (err) {
           if (err) {
             console.log(err);
           } else {
-            console.log(
-              "Question pictures folder has been created succesfully."
-            );
+            console.log("Questions folder has been created succesfully.");
           }
         }
       );

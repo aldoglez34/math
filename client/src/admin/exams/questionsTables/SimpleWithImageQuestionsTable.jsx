@@ -3,12 +3,12 @@ import { Table, Row, Col } from "react-bootstrap";
 import AdminDeleteExamBttn from "../components/AdminDeleteExamBttn";
 import PropTypes from "prop-types";
 
-export const MultipleOptionQuestionsTable = React.memo(
+export const SimpleWithImageQuestionsTable = React.memo(
   ({ questions, examId }) => {
     return (
       <Row>
         <Col>
-          <h5>Preguntas opción múltiple{` (${questions.length})`}</h5>
+          <h5>Preguntas sencillas con imagen{` (${questions.length})`}</h5>
           <div className="mt-2 d-flex flex-column">
             <Table bordered striped size="sm">
               <thead>
@@ -23,13 +23,7 @@ export const MultipleOptionQuestionsTable = React.memo(
                     style={{ backgroundColor: "#0f5257" }}
                     className="text-light text-center"
                   >
-                    I. Técnica
-                  </th>
-                  <th
-                    style={{ backgroundColor: "#0f5257" }}
-                    className="text-light text-center"
-                  >
-                    Opciones
+                    Imagen
                   </th>
                   <th
                     style={{ backgroundColor: "#0f5257" }}
@@ -55,25 +49,13 @@ export const MultipleOptionQuestionsTable = React.memo(
                     <tr key={q._id}>
                       <td className="align-middle">{q.qInstruction}</td>
                       <td className="align-middle">
-                        {q.qTechnicalInstruction
+                        {/* {q.qTechnicalInstruction
                           ? q.qTechnicalInstruction.text
-                          : null}
+                          : null} */}
+                        aquí va la imagen
                       </td>
                       <td className="align-middle">
-                        {q.qMultipleChoice.textChoices.length
-                          ? q.qMultipleChoice.textChoices.map((c, idx) => (
-                              <React.Fragment key={idx}>
-                                <span className="mb-0">{`${c}`}</span>
-                                {q.qMultipleChoice.textChoices.length ===
-                                idx + 1 ? null : (
-                                  <hr className="my-0" />
-                                )}
-                              </React.Fragment>
-                            ))
-                          : null}
-                      </td>
-                      <td className="align-middle">
-                        {q.qCorrectAnswers[0].answer}
+                        {`${q.qCorrectAnswers[0].complementLeft}${q.qCorrectAnswers[0].answer}${q.qCorrectAnswers[0].complementRight}`}
                       </td>
                       <td className="align-middle">{q.qComment}</td>
                       <td className="text-center align-middle">
@@ -94,7 +76,7 @@ export const MultipleOptionQuestionsTable = React.memo(
   }
 );
 
-MultipleOptionQuestionsTable.propTypes = {
+SimpleWithImageQuestionsTable.propTypes = {
   questions: PropTypes.array.isRequired,
   examId: PropTypes.string.isRequired,
 };
