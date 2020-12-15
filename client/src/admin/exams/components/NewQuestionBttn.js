@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 
-const NewQuestionBttn = React.memo(({ text, Form, examId }) => {
+const NewQuestionBttn = React.memo(({ text, Form, examId, courseId }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -28,7 +28,7 @@ const NewQuestionBttn = React.memo(({ text, Form, examId }) => {
             </Button>
           </div>
           <div className="my-3">
-            <Form examId={examId} />
+            <Form examId={examId} courseId={courseId} />
           </div>
         </Modal.Body>
       </Modal>
@@ -39,6 +39,7 @@ const NewQuestionBttn = React.memo(({ text, Form, examId }) => {
 NewQuestionBttn.propTypes = {
   text: PropTypes.string.isRequired,
   examId: PropTypes.string.isRequired,
+  courseId: PropTypes.string,
 };
 
 export default NewQuestionBttn;

@@ -171,6 +171,7 @@ const AdminExamDetail = React.memo((props) => {
           <div className="ml-2">
             <NewQuestionBttn
               examId={exam._id}
+              courseId={props.routeProps.match.params.courseId}
               Form={SimpleWithImageForm}
               text="Sencilla con imagen"
             />
@@ -198,8 +199,8 @@ const AdminExamDetail = React.memo((props) => {
           />
         ) : null}
         {simpleWithImageQuestions.length ? (
-          <SimpleQuestionTable
-            questions={simpleQuestions}
+          <SimpleWithImageQuestionsTable
+            questions={simpleWithImageQuestions}
             examId={props.routeProps.match.params.examId}
           />
         ) : null}

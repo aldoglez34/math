@@ -5,7 +5,15 @@ import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeacherAPI from "../../../utils/TeacherAPI";
 
-export const SimpleWithImageForm = React.memo(({ examId, ...props }) => {
+export const SimpleWithImageForm = React.memo(({ examId, courseId }) => {
+  const PHOTO_SIZE = 4000000;
+  const SUPPORTED_FORMATS = [
+    "image/jpg",
+    "image/jpeg",
+    "image/gif",
+    "image/png",
+  ];
+
   const yupschema = yup.object({
     qInstruction: yup.string().required("Requerido"),
     file: yup
@@ -27,19 +35,11 @@ export const SimpleWithImageForm = React.memo(({ examId, ...props }) => {
     qComment: yup.string(),
   });
 
-  const PHOTO_SIZE = 4000000;
-  const SUPPORTED_FORMATS = [
-    "image/jpg",
-    "image/jpeg",
-    "image/gif",
-    "image/png",
-  ];
-
   return (
     <Formik
       initialValues={{
         qInstruction: "",
-        photo: undefined,
+        image: undefined,
         file: undefined,
         qCorrectAnswers: "",
         qCALeft: "",
@@ -48,12 +48,21 @@ export const SimpleWithImageForm = React.memo(({ examId, ...props }) => {
       }}
       validationSchema={yupschema}
       onSubmit={(values, { setSubmitting }) => {
-        console.log({ values });
         setSubmitting(true);
-        values.examId = examId;
-        values.courseId = props.routeProps.match.params.courseId;
-        //
-        TeacherAPI.t_newSimpleWithImageQuestion(values)
+
+        let questionData = new FormData();
+        questionData.append("qInstruction", values.qInstruction);
+        questionData.append("image", values.image);
+        questionData.append("file", values.file);
+        questionData.append("qCorrectAnswers", values.qCorrectAnswers);
+        questionData.append("qCALeft", values.qCALeft);
+        questionData.append("qCARight", values.qCARight);
+        questionData.append("qComment", values.qComment);
+
+        questionData.append("examId", examId);
+        questionData.append("courseId", courseId);
+
+        TeacherAPI.t_newSimpleWithImageQuestion(questionData)
           .then((res) => {
             console.log(res.data);
             alert("La pregunta ha sido registrada con éxito.");
@@ -106,41 +115,35 @@ export const SimpleWithImageForm = React.memo(({ examId, ...props }) => {
             </Form.Group>
           </Form.Row>
           {/* qTechnicalInstruction (image) */}
-          <Form.Row>
-            <Form.Group as={Col}>
-              <Form.Label>
-                Imagen
-                <strong className="text-danger" title="Requerido">
-                  *
-                </strong>
-                <small className="ml-1">(.jpg, .jpeg, .gif y .png)</small>
-              </Form.Label>
-              <Form.File
-                encType="multipart/form-data"
-                accept="image/*"
-                label={values.photo ? values.photo : ""}
-                data-browse="Buscar"
-                id="file"
-                name="file"
-                type="file"
-                onChange={(event) => {
-                  setFieldValue("file", event.currentTarget.files[0]);
-                  setFieldValue(
-                    "photo",
-                    event.currentTarget.files[0]
-                      ? event.currentTarget.files[0].name
-                      : ""
-                  );
-                }}
-                onBlur={handleBlur}
-                custom
-              />
-              <ErrorMessage
-                className="text-danger"
-                name="file"
-                component="div"
-              />
-            </Form.Group>
+          <Form.Row className="mb-3">
+            <Form.Label>
+              Imagen
+              <strong className="text-danger" title="Requerido">
+                *
+              </strong>
+              <small className="ml-1">(.jpg, .jpeg, .gif y .png)</small>
+            </Form.Label>
+            <Form.File
+              encType="multipart/form-data"
+              accept="image/*"
+              label={values.image ? values.image : ""}
+              data-browse="Buscar"
+              id="file"
+              name="file"
+              type="file"
+              onChange={(event) => {
+                setFieldValue("file", event.currentTarget.files[0]);
+                setFieldValue(
+                  "image",
+                  event.currentTarget.files[0]
+                    ? event.currentTarget.files[0].name
+                    : ""
+                );
+              }}
+              onBlur={handleBlur}
+              custom
+            />
+            <ErrorMessage className="text-danger" name="file" component="div" />
           </Form.Row>
           {/* answers */}
           <Form.Row className="mb-3">

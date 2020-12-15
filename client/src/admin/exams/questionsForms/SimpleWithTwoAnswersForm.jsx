@@ -11,8 +11,10 @@ export const SimpleWithTwoAnswersForm = React.memo(({ examId }) => {
     qTechnicalInstruction: yup.string(),
     qCorrectAnswer1: yup.string().required("Requerido"),
     qCorrectAnswer2: yup.string().required("Requerido"),
-    qCALeft: yup.string(),
-    qCARight: yup.string(),
+    qCALeft1: yup.string(),
+    qCALeft2: yup.string(),
+    qCARight1: yup.string(),
+    qCARight2: yup.string(),
     qComment: yup.string(),
   });
 
@@ -162,7 +164,7 @@ export const SimpleWithTwoAnswersForm = React.memo(({ examId }) => {
               <Form.Control
                 maxLength="25"
                 type="text"
-                name="qCARight"
+                name="qCARight1"
                 value={values.qCARight1}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -176,7 +178,7 @@ export const SimpleWithTwoAnswersForm = React.memo(({ examId }) => {
               />
             </Col>
           </Form.Row>
-          {/* answer 1 */}
+          {/* answer 2 */}
           <h5 className="text-dark">Respuesta 2</h5>
           <Form.Row className="mb-3">
             <Col md={4}>
@@ -225,7 +227,7 @@ export const SimpleWithTwoAnswersForm = React.memo(({ examId }) => {
               <Form.Control
                 maxLength="25"
                 type="text"
-                name="qCARight"
+                name="qCARight2"
                 value={values.qCARight2}
                 onChange={handleChange}
                 onBlur={handleBlur}

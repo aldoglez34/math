@@ -5,7 +5,6 @@ const fs = require("fs");
 
 // t_newSimpleWithImageQuestion()
 // matches with /teacherAPI/questions/simpleWithImage/new
-
 let fileName;
 
 const storage = multer.diskStorage({
@@ -13,7 +12,7 @@ const storage = multer.diskStorage({
   filename: function (req, file, cb) {
     fileName = file.originalname;
     // set the name of the file
-    cb(null, req.body.photo);
+    cb(null, req.body.image);
   },
 });
 
@@ -23,8 +22,6 @@ const upload = multer({
 }).single("file");
 
 router.post("/new", function (req, res) {
-  console.log("\nentrando al post\n");
-
   upload(req, res, function (err) {
     if (err instanceof multer.MulterError) {
       console.log("ERROR - A Multer error occurred when uploading.");
@@ -44,7 +41,7 @@ router.post("/new", function (req, res) {
       qInstruction: req.body.qInstruction,
       qTechnicalInstruction: {
         type: "image",
-        imageLink: `/files/${courseId}/questions/foto.jpg`,
+        imageLink: "temp",
       },
       qCorrectAnswers: [
         {
@@ -62,16 +59,46 @@ router.post("/new", function (req, res) {
         $push: {
           questions: newQuestion,
         },
-      }
+      },
+      { new: true } // return the updated object
     )
-      .then(() => {
+      .then((exam) => {
+        const newestQuestionId = exam.questions[exam.questions.length - 1]._id;
+
+        // create questionid folder
+        fs.mkdir(
+          `./client/public/files/${courseId}/questions/${newestQuestionId}`,
+          function (err) {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log("Question folder has been created succesfully.");
+            }
+          }
+        );
+
         // moving the file to the course folder
-        // const oldPath = `./client/public/_temp/${fileName}`;
-        // const newPath = `./client/public/files/${courseId}/question_pics/${question._id}`;
-        // fs.rename(oldPath, newPath, (err) => {
-        //   if (err) throw err;
-        //   console.log("Image file was renamed (moved) correctly");
-        // });
+        const oldPath = `./client/public/_temp/${fileName}`;
+        const newPath = `./client/public/files/${courseId}/questions/${newestQuestionId}/${fileName}`;
+        fs.rename(oldPath, newPath, (err) => {
+          if (err) throw err;
+          console.log("Image file was renamed (moved) correctly");
+        });
+
+        const imageLink = `/files/${courseId}/questions/${newestQuestionId}/${fileName}`;
+
+        // now rename the question link in mongo
+        return model.Exam.findOneAndUpdate(
+          {
+            _id: req.body.examId,
+            "questions._id": newestQuestionId,
+          },
+          {
+            $set: {
+              "questions.$.qTechnicalInstruction.imageLink": imageLink,
+            },
+          }
+        );
       })
       .then(() => {
         res.send("Se agregó la pregunta con éxito.");

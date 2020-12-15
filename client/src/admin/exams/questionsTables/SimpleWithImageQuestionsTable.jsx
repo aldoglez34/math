@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Row, Col } from "react-bootstrap";
+import { Table, Row, Col, Image } from "react-bootstrap";
 import AdminDeleteExamBttn from "../components/AdminDeleteExamBttn";
 import PropTypes from "prop-types";
 
@@ -49,13 +49,17 @@ export const SimpleWithImageQuestionsTable = React.memo(
                     <tr key={q._id}>
                       <td className="align-middle">{q.qInstruction}</td>
                       <td className="align-middle">
-                        {/* {q.qTechnicalInstruction
-                          ? q.qTechnicalInstruction.text
-                          : null} */}
-                        aquí va la imagen
+                        <Image
+                          src={q.qTechnicalInstruction.imageLink}
+                          width="85"
+                          height="85"
+                          className="my-1 mx-3"
+                        />
                       </td>
                       <td className="align-middle">
-                        {`${q.qCorrectAnswers[0].complementLeft}${q.qCorrectAnswers[0].answer}${q.qCorrectAnswers[0].complementRight}`}
+                        {String(
+                          `${q.qCorrectAnswers[0].complementLeft} ${q.qCorrectAnswers[0].answer} ${q.qCorrectAnswers[0].complementRight}`
+                        ).trim()}
                       </td>
                       <td className="align-middle">{q.qComment}</td>
                       <td className="text-center align-middle">
