@@ -26,12 +26,12 @@ const DeleteMaterial = React.memo(
     return (
       <Button
         size="sm"
-        variant="danger"
-        className="ml-1"
+        variant="transparent"
+        className="ml-1 mt-1 genericDeleteButton"
         title="Eliminar"
         onClick={handleDelete}
       >
-        <i className="fas fa-trash-alt" />
+        <i className="fas fa-trash" />
       </Button>
     );
   }

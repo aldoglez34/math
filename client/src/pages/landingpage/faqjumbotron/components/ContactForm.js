@@ -145,7 +145,7 @@ const ContactForm = () => {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="sendBttnContactForm"
+              className="genericButton"
             >
               Enviar
             </Button>

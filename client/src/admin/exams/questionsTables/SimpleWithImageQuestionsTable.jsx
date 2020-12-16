@@ -8,7 +8,9 @@ export const SimpleWithImageQuestionsTable = React.memo(
     return (
       <Row>
         <Col>
-          <h5>Preguntas sencillas con imagen{` (${questions.length})`}</h5>
+          <h4 className="my-3">
+            Preguntas sencillas con imagen{` (${questions.length})`}
+          </h4>
           <div className="mt-2 d-flex flex-column">
             <Table bordered striped size="sm">
               <thead>

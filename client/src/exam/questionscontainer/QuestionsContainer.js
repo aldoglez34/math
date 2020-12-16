@@ -178,10 +178,7 @@ const QuestionsContainer = React.memo(({ questions }) => {
                   {/* BUTTON */}
                   <div className="mt-3">
                     <Button
-                      variant={
-                        number === questions.length ? "primary" : "success"
-                      }
-                      className="shadow-sm"
+                      className="shadow-sm genericButton"
                       onClick={pushQuestion}
                     >
                       {number === questions.length ? "Finalizar" : "Siguiente"}

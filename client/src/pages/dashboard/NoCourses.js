@@ -26,9 +26,9 @@ const NoCourses = React.memo(() => {
             courses.map((c) => (
               <Button
                 key={c}
-                variant="primary"
                 href={"/courses/" + c}
-                className="shadow-sm mr-2"
+                size="lg"
+                className="shadow mr-3 genericButton"
               >
                 {c}
               </Button>

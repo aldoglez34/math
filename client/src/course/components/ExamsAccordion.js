@@ -118,8 +118,7 @@ const ExamsAccordion = React.memo(({ exams, reward, freestyle, topicName }) => {
                           window.location.href = "/course";
                         })
                     }
-                    variant="primary"
-                    className="shadow-sm"
+                    className="shadow-sm genericButton"
                   >
                     Iniciar
                   </Button>

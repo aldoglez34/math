@@ -22,7 +22,7 @@ const StudentNav = React.memo(() => {
             </span>
           </div>
           {/* for bigger displays */}
-          <div className="ml-auto d-none d-md-flex align-items-end">
+          {/* <div className="ml-auto d-none d-md-flex align-items-end">
             <Button
               variant="light"
               size="sm"
@@ -43,9 +43,9 @@ const StudentNav = React.memo(() => {
               <i className="fas fa-inbox mr-2" />
               Mensajes
             </Button>
-          </div>
+          </div> */}
           {/* smaller displays */}
-          <div className="ml-auto d-flex flex-column d-md-none align-items-end">
+          {/* <div className="ml-auto d-flex flex-column d-md-none align-items-end">
             <Button
               variant="light"
               size="sm"
@@ -64,7 +64,7 @@ const StudentNav = React.memo(() => {
             >
               <i className="fas fa-inbox" />
             </Button>
-          </div>
+          </div> */}
         </div>
       </Container>
     </div>

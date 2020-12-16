@@ -53,8 +53,7 @@ const DashboardCourseCard = React.memo(({ course }) => {
       </ListGroup>
       <Card.Body>
         <Button
-          variant="dark"
-          className="shadow-sm"
+          className="shadow-sm genericButton"
           onClick={() =>
             buttonClicked(course._id, course.name).then(
               () => (window.location.href = "/course")

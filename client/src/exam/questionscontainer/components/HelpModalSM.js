@@ -22,7 +22,7 @@ const HelpModalSM = React.memo(({ question }) => {
   return student ? (
     <>
       <Button
-        variant="primary"
+        variant="info"
         size="sm"
         className="shadow-sm ml-auto mr-2"
         onClick={handleShow}

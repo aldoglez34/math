@@ -51,7 +51,8 @@ const FAQJumbotron = React.memo(() => {
               })}
               {question({
                 key: 1,
-                question: "¿Cuántas veces puedo hacer uso del contenido de cada curso?",
+                question:
+                  "¿Cuántas veces puedo hacer uso del contenido de cada curso?",
                 answer:
                   "Al suscribirte al curso de tu elección, podrás hacer uso de los PDFs, ejercicios y videos de manera ilimitada.",
               })}
@@ -63,7 +64,8 @@ const FAQJumbotron = React.memo(() => {
               })}
               {question({
                 key: 3,
-                question: "¿Otorgan algún certificado o reconocimiento al concluir satisfactoriamente los cursos?",
+                question:
+                  "¿Otorgan algún certificado o reconocimiento al concluir satisfactoriamente los cursos?",
                 answer:
                   "Por el momento no, sin embargo todos nuestros cursos están basados en el plan de estudios de la SEP.",
               })}
@@ -80,26 +82,21 @@ const FAQJumbotron = React.memo(() => {
                   className="fj_cardHeader"
                 >
                   <div className="d-flex fj_question">
-                    <strong>¿Cómo me pongo en contacto con ustedes en caso de presentarse dudas?</strong>
+                    <strong>
+                      ¿Cómo me pongo en contacto con ustedes en caso de
+                      presentarse dudas?
+                    </strong>
                     <i className="fas fa-plus ml-auto plusSymbol" />
                   </div>
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="contactForm">
                   <Card.Body className="fj_answer d-flex flex-column bg-light">
                     <span className="mb-2">
-                      Para cualquier aclaración ya sean preguntas relacionadas al curso, dudas o servicios extras, te invitamos a llenar el siguiente formulario para poder darte una pronta y eficaz atención:
+                      Para cualquier aclaración ya sean preguntas relacionadas
+                      al curso, dudas o servicios extras, te invitamos a llenar
+                      el siguiente formulario para poder darte una pronta y
+                      eficaz atención:
                     </span>
-                    {/* <span>
-                      <i className="far fa-user mr-2" />
-                      M.C. Luis Rodrigo López Utrera
-                    </span>
-                    <span>
-                      <i className="fab fa-whatsapp mr-2" />
-                      229 909 1675
-                    </span>
-                    <strong className="mt-3 mb-3">
-                      O puedes utilizar el siguiente formulario
-                    </strong> */}
                     <Row>
                       <Col md={{ offset: 2, span: 8 }}>
                         <ContactForm />

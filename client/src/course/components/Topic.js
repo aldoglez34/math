@@ -37,15 +37,16 @@ const Topic = React.memo(({ courseName, topic }) => {
             <i className="fas fa-bullhorn mr-2 text-dark" />
             {topic.description}
           </p>
-          <p className="mb-2">
-            <i className="fas fa-hand-point-down mr-2 text-dark" />
-            Apuntes, teoría, videos y más
-          </p>
           <div className="mb-2">
             {topic.material.map((mat) => {
               return (
                 <p key={mat._id} className="mb-1">
-                  <a href={mat.link} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={mat.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-info"
+                  >
                     {mat.type === "video" ? (
                       <i className="fas fa-video mr-2" />
                     ) : mat.type === "pdf" ? (

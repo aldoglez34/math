@@ -120,8 +120,7 @@ const SignUpForm = React.memo(() => {
             </Form.Group>
           </Form.Row>
           <Button
-            className="shadow-sm mt-4"
-            variant="primary"
+            className="shadow-sm mt-4 genericButton"
             type="submit"
             disabled={isSubmitting}
           >

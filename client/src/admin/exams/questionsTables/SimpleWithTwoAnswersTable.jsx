@@ -7,9 +7,9 @@ export const SimpleWithTwoAnswersTable = React.memo(({ questions, examId }) => {
   return (
     <Row>
       <Col>
-        <h5>
+        <h4 className="my-3">
           Preguntas sencillas con dos respuestas{` (${questions.length})`}
-        </h5>
+        </h4>
         <div className="mt-2 d-flex flex-column">
           <Table bordered striped size="sm">
             <thead>

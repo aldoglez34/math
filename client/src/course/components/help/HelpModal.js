@@ -21,7 +21,7 @@ const HelpModal = React.memo(({ courseName, topic }) => {
   return student ? (
     <>
       <Button
-        variant="primary"
+        variant="info"
         size="sm"
         className="mb-3 mt-2 mb-lg-0 shadow-sm"
         onClick={handleShow}
@@ -118,9 +118,8 @@ const HelpModal = React.memo(({ courseName, topic }) => {
                 {/* buttons */}
                 <Form.Group>
                   <Button
-                    variant="primary"
                     type="submit"
-                    className="shadow-sm"
+                    className="shadow-sm genericButton"
                     disabled={isSubmitting}
                   >
                     Enviar

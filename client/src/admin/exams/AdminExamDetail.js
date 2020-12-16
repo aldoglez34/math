@@ -159,8 +159,9 @@ const AdminExamDetail = React.memo((props) => {
           </Col>
         </Row>
         {/* NEW QUESTIONS */}
-        <hr className="pb-0 mb-4" />
-        <div className="d-flex flex-row justify-content-center mb-3">
+        <hr />
+        <h3 className="text-center">Nuevas preguntas</h3>
+        <div className="d-flex flex-row justify-content-center mb-3 mt-3">
           <div>
             <NewQuestionBttn
               examId={exam._id}

@@ -9,3 +9,15 @@
     color: white !important;
   }
 }
+
+.genericDeleteButton {
+  color: #dc3545 !important;
+  font-size: 18px !important;
+
+  &:hover {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    color: white !important;
+    transition: 0.3s;
+  }
+}

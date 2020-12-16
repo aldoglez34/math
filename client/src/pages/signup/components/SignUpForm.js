@@ -14,7 +14,6 @@ const SignUpForm = React.memo(() => {
     email: yup
       .string()
       .email("Formato de email incorrecto")
-      // .notOneOf(emails.emails, "Este correo ya se encuentra dado de alta")
       .required("Requerido"),
     name: yup
       .string()
@@ -244,8 +243,7 @@ const SignUpForm = React.memo(() => {
             </Form.Group>
           </Form.Row>
           <Button
-            className="shadow-sm mt-3"
-            variant="primary"
+            className="shadow-sm mt-3 genericButton"
             type="submit"
             disabled={isSubmitting}
           >
