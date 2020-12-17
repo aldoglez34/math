@@ -46,6 +46,11 @@ const StudentDropdown = React.memo(() => {
       alignRight
       title={
         <span id="studentDropdownText">
+          {unseen > 0 ? (
+            <Badge variant="danger" className="mr-1" title="Nuevos mensajes">
+              {unseen}
+            </Badge>
+          ) : null}
           {student ? (
             zenMode ? (
               <s>{student.email}</s>
@@ -57,12 +62,6 @@ const StudentDropdown = React.memo(() => {
             className="fas fa-chevron-down ml-1"
             style={{ fontSize: "13px" }}
           />
-          {unseen > 0 ? (
-            <Badge variant="danger" className="ml-2" title="Nuevos mensajes">
-              <i className="fas fa-inbox" />
-              <span className="ml-1">{unseen}</span>
-            </Badge>
-          ) : null}
         </span>
       }
       disabled={zenMode ? true : false}
@@ -71,13 +70,12 @@ const StudentDropdown = React.memo(() => {
         Mis cursos
       </NavDropdown.Item>
       <NavDropdown.Item href="/messages" className="dropdownStyle">
-        Mis mensajes
         {unseen > 0 ? (
-          <Badge variant="danger" className="ml-1" title="Nuevos mensajes">
-            <i className="fas fa-inbox" />
-            <span className="ml-1">{unseen}</span>
+          <Badge variant="danger" className="mr-1" title="Nuevos mensajes">
+            {unseen}
           </Badge>
         ) : null}
+        Mis mensajes
       </NavDropdown.Item>
       <NavDropdown.Divider />
       <NavDropdown.Item onClick={logout} className="dropdownStyle">

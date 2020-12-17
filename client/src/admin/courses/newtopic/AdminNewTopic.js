@@ -144,9 +144,27 @@ const AdminNewCrouse = React.memo((props) => {
                         isInvalid={touched.subject && !!errors.subject}
                       >
                         <option disabled>Elige...</option>
-                        <option value="Secundaria">Álgebra</option>
-                        <option value="Primaria">Aritmética</option>
-                        <option value="Preparatoria">Cálculo</option>
+                        <option value="Álgebra">Álgebra</option>
+                        <option value="Aritmética">Aritmética</option>
+                        <option value="Cálculo Diferencial">
+                          Cálculo Diferencial
+                        </option>
+                        <option value="Cálculo Integral">
+                          Cálculo Integral
+                        </option>
+                        <option value="Funciones">Funciones</option>
+
+                        <option value="Geometría">Geometría</option>
+                        <option value="Geometría Analítica">
+                          Geometría Analítica
+                        </option>
+                        <option value="Misceláneos">Misceláneos</option>
+                        <option value="Pre-Cálculo">Pre-Cálculo</option>
+                        <option value="Probabilidad">Probabilidad</option>
+                        <option value="Sistema de Medición">
+                          Sistema de Medición
+                        </option>
+                        <option value="Trigonometría">Trigonometría</option>
                       </Form.Control>
                       <ErrorMessage
                         className="text-danger"

@@ -129,9 +129,8 @@ const HelpModalSM = React.memo(({ question }) => {
                 {/* buttons */}
                 <Form.Group>
                   <Button
-                    variant="primary"
                     type="submit"
-                    className="shadow-sm"
+                    className="shadow-sm genericButton"
                     disabled={isSubmitting}
                   >
                     Enviar

@@ -15,7 +15,7 @@ const NewQuestionBttn = React.memo(({ text, Form, examId, courseId }) => {
         <span>{text}</span>
       </Button>
 
-      <Modal show={show} onHide={handleClose} size="lg">
+      <Modal show={show} onHide={handleClose} size="lg" backdrop="static">
         <Modal.Body className="bg-light rounded">
           <div className="d-flex">
             <h3 className="mb-0 text-dark">{text}</h3>

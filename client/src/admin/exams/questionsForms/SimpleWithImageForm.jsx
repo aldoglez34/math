@@ -51,13 +51,13 @@ export const SimpleWithImageForm = React.memo(({ examId, courseId }) => {
         setSubmitting(true);
 
         let questionData = new FormData();
-        questionData.append("qInstruction", values.qInstruction);
+        questionData.append("qInstruction", values.qInstruction.trim());
         questionData.append("image", values.image);
         questionData.append("file", values.file);
-        questionData.append("qCorrectAnswers", values.qCorrectAnswers);
-        questionData.append("qCALeft", values.qCALeft);
-        questionData.append("qCARight", values.qCARight);
-        questionData.append("qComment", values.qComment);
+        questionData.append("qCorrectAnswers", values.qCorrectAnswers.trim());
+        questionData.append("qCALeft", values.qCALeft.trim());
+        questionData.append("qCARight", values.qCARight.trim());
+        questionData.append("qComment", values.qComment.trim());
 
         questionData.append("examId", examId);
         questionData.append("courseId", courseId);

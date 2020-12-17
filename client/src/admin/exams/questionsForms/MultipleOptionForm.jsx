@@ -32,6 +32,15 @@ export const MultipleOptionForm = React.memo(({ examId }) => {
       validationSchema={yupschema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
+        values.qInstruction = values.qInstruction.trim();
+        values.qTechnicalInstruction = values.qTechnicalInstruction.trim();
+        values.qOption1 = values.qOption1.trim();
+        values.qOption2 = values.qOption2.trim();
+        values.qOption3 = values.qOption3.trim();
+        values.qOption4 = values.qOption4.trim();
+        values.qCorrectAnswer = values.qCorrectAnswer.trim();
+        values.qInstructiqCommenton = values.qComment.trim();
+
         values.examId = examId;
         //
         TeacherAPI.t_newMultipleOptionQuestion(values)

@@ -34,6 +34,16 @@ export const SimpleWithTwoAnswersForm = React.memo(({ examId }) => {
       validationSchema={yupschema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
+        values.qInstruction = values.qInstruction.trim();
+        values.qTechnicalInstruction = values.qTechnicalInstruction.trim();
+        values.qCorrectAnswer1 = values.qCorrectAnswer1.trim();
+        values.qCARight1 = values.qCALeft1.trim();
+        values.qCARight1 = values.qCARight1.trim();
+        values.qCorrectAnswer2 = values.qCorrectAnswer2.trim();
+        values.qCALeft2 = values.qCALeft2.trim();
+        values.qCARight2 = values.qCARight2.trim();
+        values.qComment = values.qComment.trim();
+
         values.examId = examId;
         //
         TeacherAPI.t_newSimpleWithTwoAnswersQuestion(values)

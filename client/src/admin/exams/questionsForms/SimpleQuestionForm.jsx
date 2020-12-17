@@ -28,6 +28,12 @@ export const SimpleQuestionForm = React.memo(({ examId }) => {
       validationSchema={yupschema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
+        values.qInstruction = values.qInstruction.trim();
+        values.qTechnicalInstruction = values.qTechnicalInstruction.trim();
+        values.qCorrectAnswers = values.qCorrectAnswers.trim();
+        values.qCALeft = values.qCALeft.trim();
+        values.qCARight = values.qCARight.trim();
+        values.qComment = values.qComment.trim();
         values.examId = examId;
         //
         TeacherAPI.t_newSimpleQuestion(values)

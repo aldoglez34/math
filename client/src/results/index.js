@@ -102,9 +102,8 @@ const Results = React.memo(() => {
             {/* button */}
             <br />
             <Button
-              variant="dark"
               href={"/course/#" + exam.topicName}
-              className="shadow"
+              className="shadow genericButton"
             >
               <i className="fas fa-arrow-left mr-2" />
               Regresar
