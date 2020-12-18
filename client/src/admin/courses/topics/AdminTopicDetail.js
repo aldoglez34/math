@@ -188,19 +188,21 @@ const AdminTopicDetail = React.memo((props) => {
             <span className="text-muted">Exámenes</span>
             {topic.exams.length ? (
               <ul className="mb-0">
-                {topic.exams.map((e) => (
-                  <li key={e._id}>
-                    <h5 className="mb-1">
-                      {`[${e.difficulty}] `}
-                      {e.name}
-                      <EditExamBttn
-                        courseId={props.routeProps.match.params.courseId}
-                        topicId={props.routeProps.match.params.topicId}
-                        examId={e._id}
-                      />
-                    </h5>
-                  </li>
-                ))}
+                {topic.exams
+                  .sort((a, b) => a.examOrderNumber - b.examOrderNumber)
+                  .map((e) => (
+                    <li key={e._id}>
+                      <h5 className="mb-1">
+                        {`[${e.difficulty}] `}
+                        {e.name}
+                        <EditExamBttn
+                          courseId={props.routeProps.match.params.courseId}
+                          topicId={props.routeProps.match.params.topicId}
+                          examId={e._id}
+                        />
+                      </h5>
+                    </li>
+                  ))}
               </ul>
             ) : (
               <h5>-</h5>

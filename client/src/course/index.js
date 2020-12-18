@@ -89,7 +89,7 @@ export default React.memo((props) => {
             courseId={course._id}
           />
           {/* TOPICS */}
-          <div>
+          <div style={{ paddingBottom: "100px" }}>
             {course.topics.map((ct) => (
               <React.Fragment key={ct._id}>
                 <hr className="mexmaticasDivider" />

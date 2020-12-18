@@ -6,6 +6,7 @@ const model = require("../../models");
 router.post("/new", function (req, res) {
   const examData = {
     difficulty: req.body.difficulty,
+    examOrderNumber: req.body.examOrderNumber,
     name: req.body.name,
     description: req.body.description,
     duration: req.body.duration,

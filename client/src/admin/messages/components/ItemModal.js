@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Modal, ListGroup, Button, Form, Row, Col } from "react-bootstrap";
+import {
+  Modal,
+  ListGroup,
+  Button,
+  Form,
+  Row,
+  Col,
+  Image,
+} from "react-bootstrap";
 import moment from "moment";
 import "moment/locale/es";
 import PropTypes from "prop-types";
@@ -46,7 +54,24 @@ const ItemModal = React.memo(({ message }) => {
         </div>
         <div className="d-flex flex-column ml-3">
           <strong>Descripción</strong>
-          {message.subject}
+          {message.subject.indexOf(">") === -1 ? (
+            message.subject
+          ) : (
+            <div>
+              <span className="d-block">
+                {message.subject.substr(0, message.subject.indexOf(">"))}
+              </span>
+              <Image
+                src={message.subject.substr(
+                  message.subject.indexOf(">") + 1,
+                  999
+                )}
+                width="70"
+                height="100"
+                className="mt-3"
+              />
+            </div>
+          )}
         </div>
         {message.seen ? null : (
           <i
@@ -111,7 +136,24 @@ const ItemModal = React.memo(({ message }) => {
             ) : null}
             <div className="d-flex flex-column mt-3">
               <h5 className="text-dark">Descripción</h5>
-              {message.subject}
+              {message.subject.indexOf(">") === -1 ? (
+                message.subject
+              ) : (
+                <div>
+                  <span className="d-block">
+                    {message.subject.substr(0, message.subject.indexOf(">"))}
+                  </span>
+                  <Image
+                    src={message.subject.substr(
+                      message.subject.indexOf(">") + 1,
+                      999
+                    )}
+                    width="70"
+                    height="100"
+                    className="mt-3"
+                  />
+                </div>
+              )}
             </div>
             <div className="d-flex flex-column mt-3">
               <h5 className="text-dark">Correo</h5>

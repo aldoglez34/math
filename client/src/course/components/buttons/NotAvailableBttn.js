@@ -5,7 +5,7 @@ const NotAvailableeBttn = React.memo(() => {
   return (
     <>
       <OverlayTrigger
-        placement="right"
+        placement="top"
         overlay={
           <Tooltip id="tooltip-disabled">
             Para iniciar este examen es necesario aprobar el nivel previo con 8
@@ -15,8 +15,7 @@ const NotAvailableeBttn = React.memo(() => {
       >
         <span className="d-inline-block">
           <Button
-            variant="primary"
-            className="shadow-sm"
+            className="shadow-sm genericButton"
             style={{ pointerEvents: "none" }}
             disabled
           >

@@ -14,6 +14,10 @@ const schema = new Schema({
     ],
     required: true,
   },
+  examOrderNumber: {
+    type: Number,
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -24,7 +28,13 @@ const schema = new Schema({
     {
       qType: {
         type: String,
-        // enum: ["simple", "multipleOption", "simpleWithPic", "twoAnswers"],
+        enum: [
+          "simple",
+          "multipleOption",
+          "simpleWithPic",
+          "twoAnswers",
+          "multipleOptionWithPic",
+        ],
       },
       qInstruction: { type: String, required: true },
       qTechnicalInstruction: {

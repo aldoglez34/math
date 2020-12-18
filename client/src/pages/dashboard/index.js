@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Container, Spinner } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import { StudentLayout } from "../../components/Layout";
 import { useSelector } from "react-redux";
 import "./dashboard.scss";
@@ -49,6 +49,7 @@ const Dashboard = React.memo(() => {
     <StudentLayout>
       <Container className="pb-4">
         <h2 className="studentTitle">Bienvenido a tus cursos</h2>
+        <br />
         {myCourses ? (
           myCourses.length ? (
             <MyCourses courses={myCourses} />

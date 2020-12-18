@@ -67,17 +67,13 @@ const HelpModalSM = React.memo(({ question }) => {
               setSubmitting(true);
               values.email = student.email;
 
-              const techTemp = question.qTechnicalInstruction
+              const description = question.qTechnicalInstruction
                 ? question.qTechnicalInstruction.type === "text"
-                  ? question.qTechnicalInstruction.text
-                  : question.qTechnicalInstruction.imageLink
-                : null;
+                  ? `${question.qInstruction} ${question.qTechnicalInstruction.text}`.trim()
+                  : `${question.qInstruction} > ${question.qTechnicalInstruction.imageLink}`.trim()
+                : "";
 
-              const techTemp2 = techTemp
-                ? question.qInstruction + " " + techTemp
-                : question.qInstruction;
-
-              values.subject = `${topicName} | ${name} | ${techTemp2}`;
+              values.subject = `${topicName} | ${name} | ${description}`;
 
               values.source = "Pregunta";
               values.username = student.username;

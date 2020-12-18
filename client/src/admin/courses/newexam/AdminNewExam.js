@@ -45,6 +45,18 @@ const AdminNewExam = React.memo((props) => {
                 values.courseId = props.routeProps.match.params.courseId;
                 values.topicId = props.routeProps.match.params.topicId;
                 values.difficulty = props.routeProps.match.params.difficulty;
+                values.examOrderNumber =
+                  values.difficulty === "Basic"
+                    ? 1
+                    : values.difficulty === "Basic-Intermediate"
+                    ? 2
+                    : values.difficulty === "Intermediate"
+                    ? 3
+                    : values.difficulty === "Intermediate-Advanced"
+                    ? 4
+                    : values.difficulty === "Advanced"
+                    ? 5
+                    : 0;
                 //
                 TeacherAPI.t_newExam(values)
                   .then((res) => {
