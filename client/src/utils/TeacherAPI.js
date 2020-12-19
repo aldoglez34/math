@@ -148,6 +148,9 @@ export default {
   t_newSimpleWithImageQuestion: (data) =>
     axios.post("/teacherAPI/questions/simpleWithImage/new", data),
 
+  t_newMultipleOptionWithImage: (data) =>
+    axios.post("/teacherAPI/questions/multipleOptionWithImage/new", data),
+
   t_newSimpleWithTwoAnswersQuestion: (data) =>
     axios.post("/teacherAPI/questions/simpleWithTwoAnswers/new", data),
 };

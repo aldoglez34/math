@@ -16,6 +16,7 @@ import {
   MultipleOptionForm,
   SimpleWithImageForm,
   SimpleWithTwoAnswersForm,
+  MultipleOptionWithImage,
 } from "./questionsForms";
 // new exams (tables)
 import {
@@ -188,7 +189,14 @@ const AdminExamDetail = React.memo((props) => {
             <NewQuestionBttn
               examId={exam._id}
               Form={MultipleOptionForm}
-              text="Opción múltitple"
+              text="Opción múltiple"
+            />
+          </div>
+          <div className="ml-2">
+            <NewQuestionBttn
+              examId={exam._id}
+              Form={MultipleOptionWithImage}
+              text="Opción múltiple con imagen"
             />
           </div>
         </div>

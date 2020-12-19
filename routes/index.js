@@ -67,4 +67,10 @@ router.use(
   simpleWithTwoAnswersRoute
 );
 
+const multipleOptionWithImageRoute = require("./teacherAPI/questions/multipleOptionWithImageRoute");
+router.use(
+  "/teacherAPI/questions/multipleOptionWithImage",
+  multipleOptionWithImageRoute
+);
+
 module.exports = router;
