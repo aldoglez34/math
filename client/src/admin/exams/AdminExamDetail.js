@@ -24,6 +24,7 @@ import {
   MultipleOptionQuestionsTable,
   SimpleWithImageQuestionsTable,
   SimpleWithTwoAnswersTable,
+  MultipleOptionWithImageTable,
 } from "./questionsTables";
 
 const AdminExamDetail = React.memo((props) => {
@@ -35,6 +36,10 @@ const AdminExamDetail = React.memo((props) => {
   const [
     simpleWithTwoAnswersQuestions,
     setSimpleWithTwoAnswersQuestions,
+  ] = useState([]);
+  const [
+    multipleOptionWithImageQuestions,
+    setMultipleOptionWithImageQuestions,
   ] = useState([]);
 
   useEffect(() => {
@@ -55,6 +60,11 @@ const AdminExamDetail = React.memo((props) => {
         );
         setSimpleWithTwoAnswersQuestions(
           res.data.questions.filter(({ qType }) => qType === "twoAnswers")
+        );
+        setMultipleOptionWithImageQuestions(
+          res.data.questions.filter(
+            ({ qType }) => qType === "multipleOptionWithPic"
+          )
         );
       })
       .catch((err) => {
@@ -195,6 +205,7 @@ const AdminExamDetail = React.memo((props) => {
           <div className="ml-2">
             <NewQuestionBttn
               examId={exam._id}
+              courseId={props.routeProps.match.params.courseId}
               Form={MultipleOptionWithImage}
               text="Opción múltiple con imagen"
             />
@@ -222,6 +233,12 @@ const AdminExamDetail = React.memo((props) => {
         {simpleWithTwoAnswersQuestions.length ? (
           <SimpleWithTwoAnswersTable
             questions={simpleWithTwoAnswersQuestions}
+            examId={props.routeProps.match.params.examId}
+          />
+        ) : null}
+        {multipleOptionWithImageQuestions.length ? (
+          <MultipleOptionWithImageTable
+            questions={multipleOptionWithImageQuestions}
             examId={props.routeProps.match.params.examId}
           />
         ) : null}

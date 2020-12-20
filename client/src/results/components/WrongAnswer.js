@@ -13,7 +13,11 @@ const WrongAnswer = React.memo(
   ({ qInstruction, qTechnicalInstruction, userAnswers, qCorrectAnswers }) => {
     const popover = (
       <Popover>
-        <Popover.Title as="h3" className="bg-success text-light">
+        <Popover.Title
+          as="h3"
+          className="text-light"
+          style={{ backgroundColor: "#0d2129" }}
+        >
           Respuesta correcta
         </Popover.Title>
         <Popover.Content as="h3">
