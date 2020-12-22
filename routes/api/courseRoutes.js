@@ -78,8 +78,9 @@ router.get("/info/:courseId/:studentId", function (req, res) {
                 .sort((a, b) => (a.score > b.score ? -1 : 1))
                 .slice(0, 10),
             },
-            hasReward: studentData.rewards.filter((r) => r.topicId === cv._id)
-              .length
+            hasReward: studentData.rewards.filter(
+              (r) => String(r.topicId) === String(cv._id)
+            ).length
               ? true
               : false,
             // exams reduce

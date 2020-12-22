@@ -43,7 +43,7 @@ const Freestyle = React.memo(() => {
         <>
           {/* title */}
           <Container>
-            <h1 className="examNameStyle mt-4">Modo Rápido</h1>
+            <h1 className="examNameStyle mt-4">Modo rápido</h1>
           </Container>
           {/* questions */}
           <FreestyleQuestions questions={freestyle} />

@@ -123,15 +123,14 @@ const HelpModalSM = React.memo(({ question }) => {
                   </Form.Group>
                 </Form.Row>
                 {/* buttons */}
-                <Form.Group>
-                  <Button
-                    type="submit"
-                    className="shadow-sm genericButton"
-                    disabled={isSubmitting}
-                  >
-                    Enviar
-                  </Button>
-                </Form.Group>
+                <Button
+                  variant="info"
+                  type="submit"
+                  className="shadow-sm"
+                  disabled={isSubmitting}
+                >
+                  Enviar
+                </Button>
               </Form>
             )}
           </Formik>

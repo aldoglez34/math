@@ -18,7 +18,7 @@ const Leaderboards = React.memo(({ top10 }) => {
         variant="link"
         onClick={handleShow}
         style={{ fontSize: "14px" }}
-        className="p-0"
+        className="p-0 text-danger"
       >
         <i className="fas fa-trophy mr-2" />
         Leaderboards
@@ -65,17 +65,17 @@ const Leaderboards = React.memo(({ top10 }) => {
             </Table>
           ) : (
             <div className="my-4 text-center">
-              <em className="text-muted">Parece que hay nada aquí aún</em>
+              <em className="text-muted">No hay scores para mostrar.</em>
             </div>
           )}
 
           <div className="text-center mt-4 mb-2">
             <Button
-              variant="primary"
+              variant="danger"
               className="shadow-sm"
               onClick={handleClose}
             >
-              OK
+              Aceptar
             </Button>
           </div>
         </Modal.Body>

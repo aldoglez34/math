@@ -23,17 +23,16 @@ const FreestyleCard = React.memo(({ topicName, freestyle }) => {
           className="text-danger"
         >
           <i className="fas fa-bolt mr-2" />
-          <strong>Modo Rápido</strong>
+          <strong>Modo rápido</strong>
         </Accordion.Toggle>
       </Card.Header>
       <Accordion.Collapse eventKey="freestyle">
         <Card.Body>
           <h2 className="mb-3">Modo rápido</h2>
           {/* description */}
-          <p style={{ fontSize: "14px" }} className="mb-2 mt-2">
-            Integer eleifend nibh non sem tincidunt, at ultricies purus
-            vestibulum. Vivamus sed lobortis ligula, ut lacinia elit.
-          </p>
+          <strong style={{ fontSize: "14px" }} className="mb-2 mt-2 d-block">
+            En este modo rápido
+          </strong>
           {/* last visited */}
           <LastVisited date={freestyle.lastVisit} />
           <br />
@@ -48,7 +47,7 @@ const FreestyleCard = React.memo(({ topicName, freestyle }) => {
           {/* columns */}
           <Row className="my-3">
             <Col className="text-center">
-              <h1 className="mb-0 text-info">
+              <h1 className="mb-0 text-danger">
                 <span title="Puntuación más alta">
                   {freestyle.myHighestScore}
                 </span>
@@ -58,7 +57,7 @@ const FreestyleCard = React.memo(({ topicName, freestyle }) => {
               </h4>
             </Col>
             <Col className="text-center">
-              <h1 className="mb-0 text-info">
+              <h1 className="mb-0 text-danger">
                 <span title="Número de intentos">{freestyle.myTryouts}</span>
               </h1>
               <h4>
@@ -68,7 +67,7 @@ const FreestyleCard = React.memo(({ topicName, freestyle }) => {
           </Row>
           {/* button */}
           <Button
-            variant="primary"
+            variant="danger"
             className="shadow-sm"
             onClick={() =>
               setExamInRedux({

@@ -32,7 +32,7 @@ const HelpModal = React.memo(({ courseName, topic }) => {
 
       <Modal show={show} backdrop="static" keyboard={false}>
         <Modal.Body className="bg-light rounded shadow">
-          <div className="d-flex flex-column mb-3">
+          <div className="d-flex flex-column mb-2">
             <div className="d-flex">
               <h3 className="text-dark mb-3">¿Necesitas ayuda?</h3>
               <Button
@@ -116,15 +116,14 @@ const HelpModal = React.memo(({ courseName, topic }) => {
                   </Form.Group>
                 </Form.Row>
                 {/* buttons */}
-                <Form.Group>
-                  <Button
-                    type="submit"
-                    className="shadow-sm genericButton"
-                    disabled={isSubmitting}
-                  >
-                    Enviar
-                  </Button>
-                </Form.Group>
+                <Button
+                  variant="info"
+                  type="submit"
+                  className="shadow-sm"
+                  disabled={isSubmitting}
+                >
+                  Enviar
+                </Button>
               </Form>
             )}
           </Formik>
