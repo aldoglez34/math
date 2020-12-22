@@ -51,7 +51,7 @@ AdminModal.propTypes = {
   modalHeader: PropTypes.string,
   //   Form: PropTypes.element,
   formLabel: PropTypes.string,
-  formInitialText: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  // formInitialText: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   courseId: PropTypes.string,
 };
 

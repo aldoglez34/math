@@ -21,6 +21,9 @@ export default {
   t_updateCourseSchool: (data) =>
     axios.put("/teacherAPI/courses/update/school", data),
 
+  t_updateCourseStatus: (data) =>
+    axios.put("/teacherAPI/courses/update/status", data),
+
   t_updateCoursePrice: (data) =>
     axios.put("/teacherAPI/courses/update/price", data),
 

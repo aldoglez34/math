@@ -44,7 +44,9 @@ const MyNavbar = React.memo(() => {
           <Nav as={Col} className="d-none d-lg-block text-center pr-0">
             {zenMode ? (
               <Navbar.Brand>
-                <h2 className="mb-0 mainLogo zenLogo">MeXmáticas</h2>
+                <h2 className="mb-0 mainLogo zenLogo">
+                  <s>MeXmáticas</s>
+                </h2>
               </Navbar.Brand>
             ) : (
               <Navbar.Brand href="/">

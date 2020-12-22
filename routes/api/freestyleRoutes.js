@@ -83,12 +83,12 @@ router.get("/:topicId", function (req, res) {
 // registerFreestyleAttempt()
 // matches with /api/freestyle/registerAttempt
 router.put("/registerAttempt", function (req, res) {
-  const { courseId, topicId } = req.body;
+  const { courseId, topicId, studentId, username, score } = req.body;
 
   const newAttempt = {
-    studentId: req.body.studentId,
-    username: req.body.username,
-    score: req.body.score,
+    studentId,
+    username,
+    score,
   };
 
   model.Course.update(

@@ -1,9 +1,9 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
+import { Badge, ListGroup } from "react-bootstrap";
 import PropTypes from "prop-types";
 import "./courseitem.scss";
 
-const CourseItem = React.memo(({ name, school, _id }) => {
+const CourseItem = React.memo(({ name, school, _id, isActive }) => {
   return (
     <ListGroup.Item
       action
@@ -15,6 +15,13 @@ const CourseItem = React.memo(({ name, school, _id }) => {
         <i className="fas fa-graduation-cap mr-1" />
         {school}
       </span>
+      <div>
+        {isActive ? (
+          <Badge variant="success">Activo</Badge>
+        ) : (
+          <Badge variant="danger">No activo</Badge>
+        )}
+      </div>
     </ListGroup.Item>
   );
 });
@@ -23,6 +30,7 @@ CourseItem.propTypes = {
   name: PropTypes.string.isRequired,
   school: PropTypes.string.isRequired,
   _id: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
 };
 
 export default CourseItem;

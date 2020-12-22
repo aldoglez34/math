@@ -10,7 +10,36 @@ const TeacherCoursesMain = React.memo(() => {
 
   useEffect(() => {
     TeacherAPI.t_fetchCourses()
-      .then((res) => setCourses(res.data))
+      .then((res) => {
+        // ordering courses by school level
+        const rawCourses = res.data;
+
+        const sortedCourses = rawCourses
+          .reduce((acc, cv) => {
+            let orderNumber;
+            switch (cv.school) {
+              case "Primaria":
+                orderNumber = 1;
+                break;
+              case "Secundaria":
+                orderNumber = 2;
+                break;
+              case "Preparatoria":
+                orderNumber = 3;
+                break;
+              case "Universidad":
+                orderNumber = 4;
+                break;
+              default:
+                break;
+            }
+            acc.push({ ...cv, orderNumber });
+            return acc;
+          }, [])
+          .sort((a, b) => a.orderNumber - b.orderNumber);
+
+        setCourses(sortedCourses);
+      })
       .catch((err) => {
         console.log(err);
         alert("Ocurrió un error");
@@ -34,6 +63,7 @@ const TeacherCoursesMain = React.memo(() => {
                       name={c.name}
                       school={c.school}
                       _id={c._id}
+                      isActive={c.isActive}
                     />
                   ))}
                 </ListGroup>

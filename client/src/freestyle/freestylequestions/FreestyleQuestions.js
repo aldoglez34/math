@@ -11,6 +11,7 @@ import CorrectModal from "./components/modals/CorrectModal";
 import IncorrectModal from "./components/modals/IncorrectModal";
 import API from "../../utils/API";
 import ExitButton from "../../components/exitbutton/ExitButton";
+import HelpModalSM from "../../exam/questionscontainer/components/HelpModalSM";
 
 const FreestyleQuestions = React.memo(({ questions }) => {
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ const FreestyleQuestions = React.memo(({ questions }) => {
       // register attempt
       API.registerFreestyleAttempt({
         courseId: course._id,
-        topicName: exam.topicName,
+        topicId: exam.topicId,
         studentId: student._id,
         username: student.username,
         score: score,
@@ -218,10 +219,7 @@ const FreestyleQuestions = React.memo(({ questions }) => {
                   {/* BUTTON */}
                   <div className="mt-3">
                     <Button
-                      variant={
-                        number === questions.length ? "primary" : "success"
-                      }
-                      className="shadow-sm"
+                      className="shadow-sm genericButton"
                       onClick={pushQuestion}
                     >
                       {number === questions.length ? "Finalizar" : "Siguiente"}
@@ -237,7 +235,10 @@ const FreestyleQuestions = React.memo(({ questions }) => {
           <div className="d-flex mt-3">
             <FreestyleTimer score={score} />
             <FreestyleQPoints score={score} />
-            <ExitButton url={"/course/#" + exam.topicName} />
+            <div className="ml-auto">
+              <HelpModalSM question={question} />
+              <ExitButton url={"/course/#" + exam.topicName} />
+            </div>
           </div>
         </Container>
         {/* modals */}

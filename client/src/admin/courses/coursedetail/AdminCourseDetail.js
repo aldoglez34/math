@@ -14,6 +14,7 @@ import CourseDescriptionForm from "./forms/CourseDescriptionForm";
 import CourseSummaryForm from "./forms/CourseSummaryForm";
 import EditTopicsBttn from "../../components/EditTopicsBttn";
 import AdminButton from "../../components/AdminButton";
+import CourseActiveForm from "./forms/CourseActiveForm";
 
 const AdminCourseDetail = React.memo((props) => {
   const [course, setCourse] = useState();
@@ -30,11 +31,7 @@ const AdminCourseDetail = React.memo((props) => {
   }, [props.routeProps.match.params.courseId]);
 
   return course ? (
-    <AdminLayout
-      title="Curso"
-      leftBarActive="Cursos"
-      backBttn="/admin/courses"
-    >
+    <AdminLayout title="Curso" leftBarActive="Cursos" backBttn="/admin/courses">
       <Container fluid>
         {/* course name */}
         <Row>
@@ -79,6 +76,21 @@ const AdminCourseDetail = React.memo((props) => {
                 courseId={course._id}
               />
             </h2>
+          </Col>
+        </Row>
+        {/* status */}
+        <Row>
+          <Col>
+            <span className="text-muted">Estatus</span>
+            <h3>
+              {course.isActive ? "Activo" : "No activo"}
+              <AdminModal
+                Form={CourseActiveForm}
+                formLabel="Estatus"
+                formInitialText={course.isActive}
+                courseId={course._id}
+              />
+            </h3>
           </Col>
         </Row>
         {/* description */}

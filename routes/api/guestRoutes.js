@@ -39,7 +39,7 @@ router.get("/fetchCoursesBySchool/:school", function (req, res) {
 // fetchLandingPageCourses()
 // matches with /api/guest/fetchCourses
 router.get("/fetchCourses", function (req, res) {
-  model.Course.find({})
+  model.Course.find({ isActive: true })
     .select("school name topicsSummary")
     .then((data) => {
       const dataobj = data.reduce((acc, obj) => {

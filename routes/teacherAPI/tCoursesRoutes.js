@@ -7,7 +7,7 @@ const fs = require("fs");
 router.get("/all", function (req, res) {
   model.Course.find({})
     .sort({ name: 1 })
-    .select("name school")
+    .select("name school isActive")
     .then((data) => res.json(data))
     .catch((err) => {
       console.log("@error", err);
@@ -138,6 +138,22 @@ router.put("/update/school", function (req, res) {
   model.Course.findByIdAndUpdate(courseId, { school: newSchool })
     .then(() => {
       res.json("Nivel escolar del curso actualizado satisfactoriamente.");
+    })
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error.");
+    });
+});
+
+// t_updateCourseStatus
+// matches with /teacherAPI/courses/update/status
+router.put("/update/status", function (req, res) {
+  const newStatus = req.body.newStatus;
+  const courseId = req.body.courseId;
+
+  model.Course.findByIdAndUpdate(courseId, { isActive: newStatus })
+    .then(() => {
+      res.json("Estatus del curso actualizado satisfactoriamente.");
     })
     .catch((err) => {
       console.log("@error", err);
