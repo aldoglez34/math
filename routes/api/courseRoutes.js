@@ -34,8 +34,9 @@ router.get("/info/:courseId/:studentId", function (req, res) {
         acc.push({
           medalName: cv.reward.name,
           link: cv.reward.link,
-          hasReward: studentData.rewards.filter((r) => r.topicId === cv._id)
-            .length
+          hasReward: studentData.rewards.filter(
+            (r) => String(r.topicId) === String(cv._id)
+          ).length
             ? true
             : false,
         });

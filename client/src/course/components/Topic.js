@@ -70,6 +70,7 @@ const Topic = React.memo(({ courseName, topic }) => {
             exams={topic.exams}
             reward={topic.reward}
             topicName={topic.name}
+            topicId={topic._id}
             freestyle={{
               ...topic.freestyle,
               isAvailable: topic.hasReward,

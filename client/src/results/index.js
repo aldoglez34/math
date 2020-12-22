@@ -47,7 +47,7 @@ const Results = React.memo(() => {
     if (exam.difficulty === "Advanced" && calif / 10 >= 8) {
       API.registerReward({
         studentId: student._id,
-        topicName: exam.topicName,
+        topicId: exam.topicId,
         name: exam.reward.name,
         link: exam.reward.link,
       })
