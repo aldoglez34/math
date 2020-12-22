@@ -100,10 +100,9 @@ const Results = React.memo(() => {
             <hr />
             <MyResults results={exam.results} />
             {/* button */}
-            <br />
             <Button
               href={"/course/#" + exam.topicName}
-              className="shadow genericButton"
+              className="genericButton"
             >
               <i className="fas fa-arrow-left mr-2" />
               Regresar

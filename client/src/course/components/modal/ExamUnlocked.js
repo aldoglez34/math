@@ -42,8 +42,7 @@ const ExamUnlocked = React.memo(({ showUnlocked, setShowExamUnlocked_ }) => {
               </div>
               <div className="mb-1">
                 <Button
-                  variant="primary"
-                  className="shadow-sm"
+                  className="shadow-sm genericButton"
                   onClick={() => {
                     // close modal
                     setShowExamUnlocked_(false);
@@ -85,8 +84,7 @@ const ExamUnlocked = React.memo(({ showUnlocked, setShowExamUnlocked_ }) => {
               </span>
               <div className="text-center mt-3 mb-1">
                 <Button
-                  variant="dark"
-                  className="shadow-sm"
+                  className="shadow-sm genericButton"
                   onClick={() => {
                     // close modal
                     setShowExamUnlocked_(false);
