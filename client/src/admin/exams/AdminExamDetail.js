@@ -214,30 +214,35 @@ const AdminExamDetail = React.memo((props) => {
         {/* TABLES */}
         {simpleQuestions.length ? (
           <SimpleQuestionTable
+            courseId={props.routeProps.match.params.courseId}
             questions={simpleQuestions}
             examId={props.routeProps.match.params.examId}
           />
         ) : null}
         {simpleWithImageQuestions.length ? (
           <SimpleWithImageQuestionsTable
+            courseId={props.routeProps.match.params.courseId}
             questions={simpleWithImageQuestions}
             examId={props.routeProps.match.params.examId}
           />
         ) : null}
         {multipleOptionQuestions.length ? (
           <MultipleOptionQuestionsTable
+            courseId={props.routeProps.match.params.courseId}
             questions={multipleOptionQuestions}
             examId={props.routeProps.match.params.examId}
           />
         ) : null}
         {simpleWithTwoAnswersQuestions.length ? (
           <SimpleWithTwoAnswersTable
+            courseId={props.routeProps.match.params.courseId}
             questions={simpleWithTwoAnswersQuestions}
             examId={props.routeProps.match.params.examId}
           />
         ) : null}
         {multipleOptionWithImageQuestions.length ? (
           <MultipleOptionWithImageTable
+            courseId={props.routeProps.match.params.courseId}
             questions={multipleOptionWithImageQuestions}
             examId={props.routeProps.match.params.examId}
           />

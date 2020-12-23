@@ -1,11 +1,17 @@
 const router = require("express").Router();
 const model = require("../../../models");
+const fs = require("fs");
 
 // t_deleteQuestion()
 // matches with /teacherAPI/questions/delete
 router.put("/", function (req, res) {
-  const { examId, questionId } = req.body;
+  const { courseId, examId, questionId } = req.body;
 
+  const filePath = `./client/public/files/${courseId}/questions/${questionId}`;
+
+  console.log(filePath);
+
+  // first delete from database
   model.Exam.updateOne(
     {
       _id: examId,
@@ -18,10 +24,18 @@ router.put("/", function (req, res) {
       },
     }
   )
-    .then(function (data) {
-      res.json(data);
+    .then((data) => {
+      // delete directory recursively
+      fs.rmdir(filePath, { recursive: true }, (err) => {
+        if (err) {
+          throw err;
+        }
+
+        console.log(`${filePath} is deleted!`);
+        res.json(data);
+      });
     })
-    .catch(function (err) {
+    .catch((err) => {
       res.send(err);
     });
 });

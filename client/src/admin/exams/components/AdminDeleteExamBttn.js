@@ -3,9 +3,9 @@ import { Button, Modal } from "react-bootstrap";
 import PropTypes from "prop-types";
 import TeacherAPI from "../../../utils/TeacherAPI";
 
-const AdminDeleteExamBttn = React.memo(({ examId, questionId }) => {
+const AdminDeleteExamBttn = React.memo(({ courseId, examId, questionId }) => {
   const handleClick = () => {
-    TeacherAPI.t_deleteQuestion({ examId, questionId })
+    TeacherAPI.t_deleteQuestion({ courseId, examId, questionId })
       .then((res) => {
         console.log(res.data);
         // alert("Pregunta borrada con éxito");
@@ -45,10 +45,7 @@ const AdminDeleteExamBttn = React.memo(({ examId, questionId }) => {
             ¿Estás seguro que deseas borrar la pregunta seleccionada?
           </span>
           <div className="d-flex flex-row justify-content-center mt-4">
-            <Button
-              variant="danger"
-              onClick={handleClick}
-            >
+            <Button variant="danger" onClick={handleClick}>
               Borrar
             </Button>
             <Button variant="link" className="ml-2" onClick={handleClose}>
@@ -62,6 +59,7 @@ const AdminDeleteExamBttn = React.memo(({ examId, questionId }) => {
 });
 
 AdminDeleteExamBttn.propTypes = {
+  courseId: PropTypes.string.isRequired,
   examId: PropTypes.string.isRequired,
   questionId: PropTypes.string.isRequired,
 };

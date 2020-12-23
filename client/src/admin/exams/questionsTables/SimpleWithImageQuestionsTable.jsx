@@ -4,7 +4,7 @@ import AdminDeleteExamBttn from "../components/AdminDeleteExamBttn";
 import PropTypes from "prop-types";
 
 export const SimpleWithImageQuestionsTable = React.memo(
-  ({ questions, examId }) => {
+  ({ questions, examId, courseId }) => {
     return (
       <Row>
         <Col>
@@ -66,6 +66,7 @@ export const SimpleWithImageQuestionsTable = React.memo(
                       <td className="align-middle">{q.qComment}</td>
                       <td className="text-center align-middle">
                         <AdminDeleteExamBttn
+                          courseId={courseId}
                           examId={examId}
                           questionId={q._id}
                         />
@@ -85,4 +86,5 @@ export const SimpleWithImageQuestionsTable = React.memo(
 SimpleWithImageQuestionsTable.propTypes = {
   questions: PropTypes.array.isRequired,
   examId: PropTypes.string.isRequired,
+  courseId: PropTypes.string.isRequired,
 };
