@@ -34,10 +34,6 @@ app.get("*", (req, res) => {
 let MONGODB_URI =
   process.env.REACT_APP_MONGODB_ATLAS_KEY || "mongodb://localhost/mathDB";
 
-console.log("==========================");
-console.log({ MONGODB_URI });
-console.log("==========================");
-
 mongoose
   .connect(MONGODB_URI, {
     // autoIndex: false,
@@ -45,6 +41,7 @@ mongoose
     useUnifiedTopology: true,
     useFindAndModify: false,
   })
+  .then(() => console.log("Connection to database was successful"))
   .catch((error) => console.log(error));
 
 // start server
