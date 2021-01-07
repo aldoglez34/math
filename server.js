@@ -34,9 +34,9 @@ app.get("*", (req, res) => {
 let MONGODB_URI =
   process.env.REACT_APP_MONGODB_ATLAS_KEY || "mongodb://localhost/mathDB";
 
-console.log("====================================");
+console.log("==========================");
 console.log({ MONGODB_URI });
-console.log("====================================");
+console.log("==========================");
 
 mongoose
   .connect(MONGODB_URI, {
