@@ -73,7 +73,7 @@ router.post("/new", function (req, res) {
 
       // create exams folder
       fs.mkdir(
-        "mathprojectmex/app/client/public/projectfiles/" +
+        "mathprojectmex/client/public/projectfiles/" +
           newCourseId +
           "/exams",
         function (err) {
@@ -87,7 +87,7 @@ router.post("/new", function (req, res) {
 
       // create material folder
       fs.mkdir(
-        "mathprojectmex/app/client/public/projectfiles/" +
+        "/mathprojectmex/client/public/projectfiles/" +
           newCourseId +
           "/material",
         function (err) {
@@ -101,7 +101,7 @@ router.post("/new", function (req, res) {
 
       // create questions folder
       fs.mkdir(
-        "./mathprojectmex/app/client/public/projectfiles/" +
+        "./mathprojectmex/client/public/projectfiles/" +
           newCourseId +
           "/questions",
         function (err) {
