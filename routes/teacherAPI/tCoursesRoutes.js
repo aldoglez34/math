@@ -101,7 +101,7 @@ router.post("/new", function (req, res) {
 
       // create questions folder
       fs.mkdir(
-        "mathprojectmex/app/client/public/projectfiles/" +
+        "./mathprojectmex/app/client/public/projectfiles/" +
           newCourseId +
           "/questions",
         function (err) {
