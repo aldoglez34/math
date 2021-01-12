@@ -46,17 +46,20 @@ router.post("/new", function (req, res) {
       const newCourseId = data._id;
 
       // create main folder
-      fs.mkdir("app/client/public/projectfiles/" + newCourseId, function (err) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("The main folder has been created succesfully.");
+      fs.mkdir(
+        "./app/client/public/projectfiles/" + newCourseId,
+        function (err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("The main folder has been created succesfully.");
+          }
         }
-      });
+      );
 
       // create reward folder
       fs.mkdir(
-        "app/client/public/projectfiles/" + newCourseId + "/reward",
+        "./app/client/public/projectfiles/" + newCourseId + "/reward",
         function (err) {
           if (err) {
             console.log(err);
@@ -68,7 +71,7 @@ router.post("/new", function (req, res) {
 
       // create exams folder
       fs.mkdir(
-        "app/client/public/projectfiles/" + newCourseId + "/exams",
+        "./app/client/public/projectfiles/" + newCourseId + "/exams",
         function (err) {
           if (err) {
             console.log(err);
@@ -80,7 +83,7 @@ router.post("/new", function (req, res) {
 
       // create material folder
       fs.mkdir(
-        "app/client/public/projectfiles/" + newCourseId + "/material",
+        "./app/client/public/projectfiles/" + newCourseId + "/material",
         function (err) {
           if (err) {
             console.log(err);
@@ -92,7 +95,7 @@ router.post("/new", function (req, res) {
 
       // create questions folder
       fs.mkdir(
-        "app/client/public/projectfiles/" + newCourseId + "/questions",
+        "./app/client/public/projectfiles/" + newCourseId + "/questions",
         function (err) {
           if (err) {
             console.log(err);
