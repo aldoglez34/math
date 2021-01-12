@@ -46,22 +46,17 @@ router.post("/new", function (req, res) {
       const newCourseId = data._id;
 
       // create main folder
-      fs.mkdir(
-        "mathprojectmex/app/client/public/projectfiles/" + newCourseId,
-        function (err) {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log("The main folder has been created succesfully.");
-          }
+      fs.mkdir("./client/public/projectfiles/" + newCourseId, function (err) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("The main folder has been created succesfully.");
         }
-      );
+      });
 
       // create reward folder
       fs.mkdir(
-        "mathprojectmex/app/client/public/projectfiles/" +
-          newCourseId +
-          "/reward",
+        "./client/public/projectfiles/" + newCourseId + "/reward",
         function (err) {
           if (err) {
             console.log(err);
@@ -73,9 +68,7 @@ router.post("/new", function (req, res) {
 
       // create exams folder
       fs.mkdir(
-        "mathprojectmex/client/public/projectfiles/" +
-          newCourseId +
-          "/exams",
+        "./client/public/projectfiles/" + newCourseId + "/exams",
         function (err) {
           if (err) {
             console.log(err);
@@ -87,9 +80,7 @@ router.post("/new", function (req, res) {
 
       // create material folder
       fs.mkdir(
-        "/mathprojectmex/client/public/projectfiles/" +
-          newCourseId +
-          "/material",
+        "./client/public/projectfiles/" + newCourseId + "/material",
         function (err) {
           if (err) {
             console.log(err);
@@ -101,9 +92,7 @@ router.post("/new", function (req, res) {
 
       // create questions folder
       fs.mkdir(
-        "./mathprojectmex/client/public/projectfiles/" +
-          newCourseId +
-          "/questions",
+        "./client/public/projectfiles/" + newCourseId + "/questions",
         function (err) {
           if (err) {
             console.log(err);
