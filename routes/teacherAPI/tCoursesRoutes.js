@@ -46,17 +46,22 @@ router.post("/new", function (req, res) {
       const newCourseId = data._id;
 
       // create main folder
-      fs.mkdir("./client/public/projectfiles/" + newCourseId, function (err) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("The main folder has been created succesfully.");
+      fs.mkdir(
+        "mathprojectmex/app/client/public/projectfiles/" + newCourseId,
+        function (err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("The main folder has been created succesfully.");
+          }
         }
-      });
+      );
 
       // create reward folder
       fs.mkdir(
-        "./client/public/projectfiles/" + newCourseId + "/reward",
+        "mathprojectmex/app/client/public/projectfiles/" +
+          newCourseId +
+          "/reward",
         function (err) {
           if (err) {
             console.log(err);
@@ -68,7 +73,9 @@ router.post("/new", function (req, res) {
 
       // create exams folder
       fs.mkdir(
-        "./client/public/projectfiles/" + newCourseId + "/exams",
+        "mathprojectmex/app/client/public/projectfiles/" +
+          newCourseId +
+          "/exams",
         function (err) {
           if (err) {
             console.log(err);
@@ -80,7 +87,9 @@ router.post("/new", function (req, res) {
 
       // create material folder
       fs.mkdir(
-        "./client/public/projectfiles/" + newCourseId + "/material",
+        "mathprojectmex/app/client/public/projectfiles/" +
+          newCourseId +
+          "/material",
         function (err) {
           if (err) {
             console.log(err);
@@ -92,7 +101,9 @@ router.post("/new", function (req, res) {
 
       // create questions folder
       fs.mkdir(
-        "./client/public/projectfiles/" + newCourseId + "/questions",
+        "mathprojectmex/app/client/public/projectfiles/" +
+          newCourseId +
+          "/questions",
         function (err) {
           if (err) {
             console.log(err);
