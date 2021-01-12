@@ -188,6 +188,7 @@ router.put("/new", function (req, res) {
     )
       .then(() => {
         console.log("TERMINADOOOOOOOOOOOOO FASE 1");
+        res.send("TERMINADOOOOOOOOOOOOO FASE 1");
       })
       // .then(() => {
       //   // moving the file to the course folder
