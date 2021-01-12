@@ -7,7 +7,7 @@ const fs = require("fs");
 router.put("/", function (req, res) {
   const { courseId, examId, questionId } = req.body;
 
-  const filePath = `./client/public/files/${courseId}/questions/${questionId}`;
+  const filePath = `./client/public/projectfiles/${courseId}/questions/${questionId}`;
 
   console.log(filePath);
 

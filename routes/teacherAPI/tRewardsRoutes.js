@@ -74,7 +74,7 @@ router.put("/add", function (req, res) {
         $set: {
           "topics.$.reward": {
             name,
-            link: `/files/${courseId}/reward/${fileName}`,
+            link: `/projectfiles/${courseId}/reward/${fileName}`,
           },
         },
       }
@@ -82,7 +82,7 @@ router.put("/add", function (req, res) {
       .then(() => {
         // moving the file to the course folder
         const oldPath = `./client/public/_temp/${fileName}`;
-        const newPath = `./client/public/files/${courseId}/reward/${fileName}`;
+        const newPath = `./client/public/projectfiles/${courseId}/reward/${fileName}`;
 
         fs.rename(oldPath, newPath, (err) => {
           if (err) throw err;

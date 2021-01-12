@@ -137,7 +137,7 @@ const fs = require("fs");
 let fileName;
 
 const storage = multer.diskStorage({
-  // destination: "./client/public/files/" + req.body.courseId + "/reward",
+  // destination: "./client/public/projectfiles/" + req.body.courseId + "/reward",
   destination: "./client/public/_temp",
   filename: function (req, file, cb) {
     // cb(null, "IMAGE-" + Date.now() + path.extname(file.originalname));
@@ -171,7 +171,7 @@ router.put("/new", function (req, res) {
       description: req.body.description,
       reward: {
         name: req.body.rewardName,
-        link: `/files/${req.body.courseId}/reward/${fileName}`,
+        link: `/projectfiles/${req.body.courseId}/reward/${fileName}`,
       },
       freestyle: {
         timer: req.body.freestyleTimer,
@@ -191,7 +191,7 @@ router.put("/new", function (req, res) {
 
         // moving the file to the course folder
         const oldPath = `./client/public/_temp/${fileName}`;
-        const newPath = `./client/public/files/${req.body.courseId}/reward/${fileName}`;
+        const newPath = `./client/public/projectfiles/${req.body.courseId}/reward/${fileName}`;
 
         fs.rename(oldPath, newPath, (err) => {
           if (err) throw err;

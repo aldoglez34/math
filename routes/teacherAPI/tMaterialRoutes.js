@@ -38,7 +38,7 @@ router.put("/video/add", function (req, res) {
 let fileName;
 
 const storage = multer.diskStorage({
-  // destination: "./client/public/files/" + req.body.courseId + "/reward",
+  // destination: "./client/public/projectfiles/" + req.body.courseId + "/reward",
   destination: "./client/public/_temp",
   filename: function (req, file, cb) {
     // cb(null, "IMAGE-" + Date.now() + path.extname(file.originalname));
@@ -78,7 +78,7 @@ router.put("/pdf/add", function (req, res) {
           "topics.$.material": {
             type: "pdf",
             name,
-            link: `./client/public/files/${courseId}/material/${fileName}`,
+            link: `./client/public/projectfiles/${courseId}/material/${fileName}`,
           },
         },
       }
@@ -88,7 +88,7 @@ router.put("/pdf/add", function (req, res) {
 
         // moving the file to the course folder
         const oldPath = `./client/public/_temp/${fileName}`;
-        const newPath = `./client/public/files/${courseId}/material/${fileName}`;
+        const newPath = `./client/public/projectfiles/${courseId}/material/${fileName}`;
 
         fs.rename(oldPath, newPath, (err) => {
           if (err) throw err;

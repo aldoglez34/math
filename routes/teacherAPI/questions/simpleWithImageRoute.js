@@ -67,7 +67,7 @@ router.post("/new", function (req, res) {
 
         // create questionid folder
         fs.mkdir(
-          `./client/public/files/${courseId}/questions/${newestQuestionId}`,
+          `./client/public/projectfiles/${courseId}/questions/${newestQuestionId}`,
           function (err) {
             if (err) {
               console.log(err);
@@ -79,13 +79,13 @@ router.post("/new", function (req, res) {
 
         // moving the file to the course folder
         const oldPath = `./client/public/_temp/${fileName}`;
-        const newPath = `./client/public/files/${courseId}/questions/${newestQuestionId}/${fileName}`;
+        const newPath = `./client/public/projectfiles/${courseId}/questions/${newestQuestionId}/${fileName}`;
         fs.rename(oldPath, newPath, (err) => {
           if (err) throw err;
           console.log("Image file was renamed (moved) correctly");
         });
 
-        const imageLink = `/files/${courseId}/questions/${newestQuestionId}/${fileName}`;
+        const imageLink = `/projectfiles/${courseId}/questions/${newestQuestionId}/${fileName}`;
 
         // now rename the question link in mongo
         return model.Exam.findOneAndUpdate(
