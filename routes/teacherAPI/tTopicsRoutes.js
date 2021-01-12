@@ -187,19 +187,20 @@ router.put("/new", function (req, res) {
       }
     )
       .then(() => {
-        // res.send("El tema fue agregado con éxito.");
-
-        // moving the file to the course folder
-        const oldPath = `./client/public/_temp/${fileName}`;
-        const newPath = `./client/public/projectfiles/${req.body.courseId}/reward/${fileName}`;
-
-        fs.rename(oldPath, newPath, (err) => {
-          if (err) throw err;
-          console.log("Reward file was renamed (moved) correctly");
-
-          res.send("El tema fue agregado con éxito.");
-        });
+        console.log("TERMINADOOOOOOOOOOOOO FASE 1");
       })
+      // .then(() => {
+      //   // moving the file to the course folder
+      //   const oldPath = `./client/public/_temp/${fileName}`;
+      //   const newPath = `./client/public/projectfiles/${req.body.courseId}/reward/${fileName}`;
+
+      //   fs.rename(oldPath, newPath, (err) => {
+      //     if (err) throw err;
+      //     console.log("Reward file was renamed (moved) correctly");
+
+      //     res.send("El tema fue agregado con éxito.");
+      //   });
+      // })
       .catch((err) => {
         console.log("@error", err);
         res.status(422).send("Ocurrió un error");
