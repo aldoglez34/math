@@ -1,7 +1,7 @@
 import React from "react";
 import AuthUserContext from "./context";
 import { connect } from "react-redux";
-import firebase from "../firebase/firebase";
+import { firebaseAuth } from "../firebase/firebase";
 import { logoutStudent } from "../redux/actions/student";
 import AdminSpinner from "../admin/components/AdminSpinner";
 
@@ -13,7 +13,7 @@ const withNavigation = (Component) => {
     };
 
     componentDidMount() {
-      firebase.auth().onAuthStateChanged((fbUser) => {
+      firebaseAuth.onAuthStateChanged((fbUser) => {
         fbUser
           ? this.setState({ navigation: fbUser.displayName })
           : this.props.user

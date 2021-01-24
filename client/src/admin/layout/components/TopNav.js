@@ -1,8 +1,11 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
-const TopHelperNav = React.memo(({ buttons, backBttn, title }) => {
+const TopHelperNav = React.memo(({ buttons, backBttn }) => {
+  const title = useSelector((state) => state.admin.title);
+
   return (
     <div style={{ backgroundColor: "#0f5257" }}>
       <div style={{ padding: "0px 39px" }}>
@@ -45,7 +48,6 @@ const TopHelperNav = React.memo(({ buttons, backBttn, title }) => {
 
 TopHelperNav.propTypes = {
   buttons: PropTypes.node,
-  title: PropTypes.string.isRequired,
   backBttn: PropTypes.string,
 };
 

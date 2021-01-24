@@ -5,7 +5,7 @@ import TopNav from "./components/TopNav";
 import ScrollButton from "../../components/scrollbutton";
 
 const TeacherLayout = React.memo(
-  ({ leftBarActive, buttons, children, title, backBttn }) => {
+  ({ leftBarActive, buttons, children, backBttn }) => {
     return (
       <div className="d-flex h-100">
         {/* vertical navbar */}
@@ -13,7 +13,7 @@ const TeacherLayout = React.memo(
         {/* main container */}
         <div style={{ marginLeft: "15rem" }} className="h-100 w-100">
           {/* top nav */}
-          <TopNav buttons={buttons} title={title} backBttn={backBttn} />
+          <TopNav buttons={buttons} backBttn={backBttn} />
           {/* content */}
           <div
             style={{
@@ -33,7 +33,6 @@ TeacherLayout.propTypes = {
   leftBarActive: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   buttons: PropTypes.node,
-  title: PropTypes.string.isRequired,
   backBttn: PropTypes.string,
 };
 

@@ -1,12 +1,11 @@
 import React from "react";
 import { Nav, Button } from "react-bootstrap";
 import "./leftnav.scss";
-import firebase from "../../../firebase/firebase";
+import { firebaseAuth } from "../../../firebase/firebase";
 
 const LeftNav = React.memo(({ leftBarActive }) => {
   const logout = () => {
-    firebase
-      .auth()
+    firebaseAuth
       .signOut()
       .then(() => {
         alert("Hasta pronto.");

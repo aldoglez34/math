@@ -42,71 +42,8 @@ router.post("/new", function (req, res) {
     description: description,
     topicsSummary: summary.split(","),
   })
-    .then((data) => {
-      const newCourseId = data._id;
-
-      // create main folder
-      fs.mkdir(
-        "./client/public/projectfiles/" + newCourseId,
-        function (err) {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log("The main folder has been created succesfully.");
-          }
-        }
-      );
-
-      // create reward folder
-      fs.mkdir(
-        "./client/public/projectfiles/" + newCourseId + "/reward",
-        function (err) {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log("Reward folder has been created succesfully.");
-          }
-        }
-      );
-
-      // create exams folder
-      fs.mkdir(
-        "./client/public/projectfiles/" + newCourseId + "/exams",
-        function (err) {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log("Exams folder has been created succesfully.");
-          }
-        }
-      );
-
-      // create material folder
-      fs.mkdir(
-        "./client/public/projectfiles/" + newCourseId + "/material",
-        function (err) {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log("Material folder has been created succesfully.");
-          }
-        }
-      );
-
-      // create questions folder
-      fs.mkdir(
-        "./client/public/projectfiles/" + newCourseId + "/questions",
-        function (err) {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log("Questions folder has been created succesfully.");
-          }
-        }
-      );
-
-      // send response to the client
-      res.json(data);
+    .then((newCourse) => {
+      res.json({ courseId: newCourse._id });
     })
     .catch((err) => {
       console.log("@error", err);

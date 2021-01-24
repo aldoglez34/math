@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, ErrorMessage } from "formik";
 import { Form, Col, Button } from "react-bootstrap";
-import firebase from "../../../firebase/firebase";
+import { firebaseAuth } from "../../../firebase/firebase";
 import * as yup from "yup";
 import API from "../../../utils/API";
 import { useDispatch } from "react-redux";
@@ -55,8 +55,7 @@ const SignUpForm = React.memo(() => {
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
         //////// signup ////////
-        firebase
-          .auth()
+        firebaseAuth
           .createUserWithEmailAndPassword(values.email, values.password)
           .then((fbRes) => {
             console.log("1 - then del createUserWithEmailAndPassword");

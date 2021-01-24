@@ -4,11 +4,16 @@ import { Button, Container, Row, Col, ListGroup } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import CourseItem from "./components/CourseItem";
 import AdminSpinner from "../../components/AdminSpinner";
+import { useDispatch } from "react-redux";
+import { setTitle } from "../../../redux/actions/admin";
 
 const TeacherCoursesMain = React.memo(() => {
   const [courses, setCourses] = useState();
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(setTitle("Cursos"));
+
     TeacherAPI.t_fetchCourses()
       .then((res) => {
         // ordering courses by school level

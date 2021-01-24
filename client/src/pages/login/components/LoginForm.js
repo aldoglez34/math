@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, ErrorMessage } from "formik";
 import { Form, Col, Button } from "react-bootstrap";
-import firebase from "../../../firebase/firebase";
+import { firebaseAuth } from "../../../firebase/firebase";
 import fbApp from "firebase/app";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
@@ -29,12 +29,10 @@ const SignUpForm = React.memo(() => {
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
         //////// login ////////
-        firebase
-          .auth()
+        firebaseAuth
           .setPersistence(fbApp.auth.Auth.Persistence.LOCAL)
           .then(() => {
-            return firebase
-              .auth()
+            return firebaseAuth
               .signInWithEmailAndPassword(values.email, values.password)
               .then((res) => {
                 // if anything goes wrong from here, logout the user in firebase
@@ -46,7 +44,7 @@ const SignUpForm = React.memo(() => {
                       // window.location.href = "/dashboard";
                     } else {
                       alert("Ocurrió un error al iniciar sesión.");
-                      firebase.auth().signOut();
+                      firebaseAuth.signOut();
                     }
                   })
                   .catch((error) => {

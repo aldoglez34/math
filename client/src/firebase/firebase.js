@@ -1,5 +1,6 @@
 import fbApp from "firebase/app";
 import "firebase/auth";
+import "firebase/storage";
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -11,4 +12,7 @@ const config = {
   appId: process.env.REACT_APP_APP_ID,
 };
 
-export default fbApp.initializeApp(config);
+fbApp.initializeApp(config);
+
+export const firebaseStorage = fbApp.storage();
+export const firebaseAuth = fbApp.auth();

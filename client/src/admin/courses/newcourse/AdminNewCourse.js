@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AdminLayout from "../../layout/AdminLayout";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { Container, InputGroup, Row, Form, Button, Col } from "react-bootstrap";
 import TeacherAPI from "../../../utils/TeacherAPI";
+import { useDispatch } from "react-redux";
+import { setTitle } from "../../../redux/actions/admin";
 
 const AdminNewCrouse = React.memo(() => {
+  const dispatch = useDispatch();
+
   const yupschema = yup.object({
     name: yup.string().min(3, "Nombre demasiado corto").required("Requerido"),
     school: yup
@@ -20,12 +24,10 @@ const AdminNewCrouse = React.memo(() => {
       .required("Requerido"),
   });
 
+  useEffect(() => dispatch(setTitle("Nuevo Curso")), []);
+
   return (
-    <AdminLayout
-      title="Nuevo Curso"
-      leftBarActive="Cursos"
-      backBttn="/admin/courses"
-    >
+    <AdminLayout leftBarActive="Cursos" backBttn="/admin/courses">
       <Container>
         <Row>
           <Col md={{ offset: 2, span: 8 }}>
@@ -41,11 +43,13 @@ const AdminNewCrouse = React.memo(() => {
               validationSchema={yupschema}
               onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
+
                 TeacherAPI.t_newCourse(values)
                   .then((res) => {
-                    console.log(res.data);
+                    const { courseId } = res.data;
                     alert("Curso agregado con éxito");
-                    window.location.href = "/admin/courses";
+                    const newRoute = `/admin/courses/edit/${courseId}`;
+                    window.location.href = newRoute;
                   })
                   .catch((err) => {
                     console.log(err);

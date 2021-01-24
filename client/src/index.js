@@ -28,7 +28,6 @@ const store = createStore(
 const persistor = persistStore(store);
 
 // firebase
-//   .auth()
 //   .signOut()
 //   .then(() => {})
 //   .catch((error) => console.log(error));

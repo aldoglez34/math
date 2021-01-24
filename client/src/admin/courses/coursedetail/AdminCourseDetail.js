@@ -5,6 +5,8 @@ import TeacherAPI from "../../../utils/TeacherAPI";
 import moment from "moment";
 import "moment/locale/es";
 import AdminSpinner from "../../components/AdminSpinner";
+import { useDispatch } from "react-redux";
+import * as adminActions from "../../../redux/actions/admin";
 //
 import AdminModal from "../../components/AdminModal";
 import CourseNameForm from "./forms/CourseNameForm";
@@ -17,13 +19,24 @@ import AdminButton from "../../components/AdminButton";
 import CourseActiveForm from "./forms/CourseActiveForm";
 
 const AdminCourseDetail = React.memo((props) => {
+  const dispatch = useDispatch();
+
   const [course, setCourse] = useState();
 
   useEffect(() => {
     const courseId = props.routeProps.match.params.courseId;
 
     TeacherAPI.t_fetchOneCourse(courseId)
-      .then((res) => setCourse(res.data))
+      .then((res) => {
+        setCourse(res.data);
+        dispatch(adminActions.setTitle(res.data.name));
+        dispatch(
+          adminActions.setCourse({
+            courseName: res.data.name,
+            courseId: res.data._id,
+          })
+        );
+      })
       .catch((err) => {
         console.log(err);
         alert("Ocurrió un error");
@@ -117,7 +130,7 @@ const AdminCourseDetail = React.memo((props) => {
             <ul className="mb-1 mt-2">
               {course.topicsSummary.map((t, idx) => {
                 return (
-                  <li key={t}>
+                  <li key={idx}>
                     <h5>
                       {t}
                       {idx === course.topicsSummary.length - 1 ? (

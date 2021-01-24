@@ -3,7 +3,7 @@ import { NavDropdown, Badge } from "react-bootstrap";
 import "./studentdropdown.scss";
 import { useSelector, useDispatch } from "react-redux";
 import * as studentActions from "../../../redux/actions/student";
-import firebase from "../../../firebase/firebase";
+import { firebaseAuth } from "../../../firebase/firebase";
 import API from "../../../utils/API";
 
 const StudentDropdown = React.memo(() => {
@@ -14,8 +14,7 @@ const StudentDropdown = React.memo(() => {
   const zenMode = useSelector((state) => state.zenMode);
 
   const logout = () => {
-    firebase
-      .auth()
+    firebaseAuth
       .signOut()
       .then(() => {
         dispatch(studentActions.logoutStudent());

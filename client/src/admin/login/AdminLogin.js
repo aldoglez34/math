@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
-import firebase from "../../firebase/firebase";
+import { firebaseAuth } from "../../firebase/firebase";
 import fbApp from "firebase/app";
 import "./adminlogin.scss";
 
@@ -25,12 +25,10 @@ const Login = () => {
             onSubmit={(values, { setSubmitting }) => {
               setSubmitting(true);
               //////// login ////////
-              firebase
-                .auth()
+              firebaseAuth
                 .setPersistence(fbApp.auth.Auth.Persistence.SESSION)
                 .then(() => {
-                  return firebase
-                    .auth()
+                  return firebaseAuth
                     .signInWithEmailAndPassword(values.email, values.password)
                     .then((res) => {
                       // console.log(res);
