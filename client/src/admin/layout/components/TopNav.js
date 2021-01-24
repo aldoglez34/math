@@ -29,7 +29,9 @@ const TopHelperNav = React.memo(({ buttons, backBttn }) => {
           }}
         >
           {/* title */}
-          <h1 className="mb-0 text-light">{title}</h1>
+          <div>
+            <h2 className="mb-0 text-light">{title}</h2>
+          </div>
         </div>
         {buttons ? (
           <div

@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AdminLayout from "../../layout/AdminLayout";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { Container, Row, Form, Button, Col, InputGroup } from "react-bootstrap";
 import UploadImage from "./components/UploadImage";
 import TeacherAPI from "../../../utils/TeacherAPI";
+import { useDispatch, useSelector } from "react-redux";
+import * as adminActions from "../../../redux/actions/admin";
+import { firebaseStorage } from "../../../firebase/firebase";
 
 const AdminNewCrouse = React.memo((props) => {
+  const dispatch = useDispatch();
+
+  const courseName = useSelector((state) => state.admin.courseName);
+  const courseId = props.routeProps.match.params.courseId;
+
   const PHOTO_SIZE = 1000000;
   const SUPPORTED_FORMATS = [
     "image/jpg",
@@ -42,11 +50,14 @@ const AdminNewCrouse = React.memo((props) => {
       ),
   });
 
+  useEffect(() => {
+    dispatch(adminActions.setTitle(courseName));
+  }, []);
+
   return (
     <AdminLayout
-      title="Nuevo Tema"
       leftBarActive="Cursos"
-      backBttn={"/admin/courses/edit/" + props.routeProps.match.params.courseId}
+      backBttn={"/admin/courses/edit/" + courseId}
     >
       <Container>
         <Row>
@@ -65,27 +76,37 @@ const AdminNewCrouse = React.memo((props) => {
               validationSchema={yupschema}
               onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
+
                 // it's neccessary to create a FormData so multer can storage the image in the backend
-                let topicData = new FormData();
-                topicData.append("name", values.name);
-                topicData.append("subject", values.subject);
-                topicData.append("description", values.description);
-                topicData.append("freestyleTimer", values.freestyleTimer);
-                topicData.append("rewardName", values.rewardName);
-                topicData.append("photo", values.photo);
-                topicData.append("file", values.file);
-                topicData.append(
-                  "courseId",
-                  props.routeProps.match.params.courseId
-                );
-                //
-                TeacherAPI.t_newTopic(topicData)
+                // let topicData = new FormData();
+                // topicData.append("name", values.name);
+                // topicData.append("subject", values.subject);
+                // topicData.append("description", values.description);
+                // topicData.append("freestyleTimer", values.freestyleTimer);
+                // topicData.append("rewardName", values.rewardName);
+                // // topicData.append("photo", values.photo);
+                // topicData.append("file", values.file);
+                // topicData.append("courseId", courseId);
+
+                TeacherAPI.t_newTopic(values)
                   .then((res) => {
                     console.log(res.data);
+
+                    const fileName = "courseMedal";
+                    const directory = `${courseId}/`;
+                    const storage = firebase
+                      .storage()
+                      .ref(`images/${newDirectory}/${fileName}`);
+
+                    if (file !== undefined && file.type === "image/png") {
+                      storage
+                        .put(file)
+                        .then((d) => console.log("you did it"))
+                        .catch((d) => console.log("do something"));
+                    }
+
                     alert("Tema agregado con éxito");
-                    window.location.href =
-                      "/admin/courses/edit/" +
-                      props.routeProps.match.params.courseId;
+                    window.location.href = "/admin/courses/edit/" + courseId;
                   })
                   .catch((err) => {
                     console.log(err);
