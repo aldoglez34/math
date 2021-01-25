@@ -24,7 +24,9 @@ const AdminNewCrouse = React.memo(() => {
       .required("Requerido"),
   });
 
-  useEffect(() => dispatch(setTitle("Nuevo Curso")), []);
+  useEffect(() => {
+    dispatch(setTitle("Nuevo Curso"));
+  }, []);
 
   return (
     <AdminLayout leftBarActive="Cursos" backBttn="/admin/courses">
@@ -52,10 +54,11 @@ const AdminNewCrouse = React.memo(() => {
                     window.location.href = newRoute;
                   })
                   .catch((err) => {
-                    console.log(err);
-                    alert(
-                      "Un curso con el mismo nombre ya existe, por favor modifica los datos y vuelve a crearlo"
-                    );
+                    if (err.response && err.response.data) {
+                      alert(err.response.data);
+                    } else {
+                      alert("Ocurrió un error en el servidor");
+                    }
                     setSubmitting(false);
                   });
               }}

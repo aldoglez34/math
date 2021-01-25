@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const model = require("../../models");
-const fs = require("fs");
 
 // t_fetchCourses()
 // matches with /teacherAPI/courses/all
@@ -28,12 +27,19 @@ router.get("/:courseId", function (req, res) {
     });
 });
 
-////////////////// new
+////////////////// NEW
 
 // t_newCourse
 // matches with /teacherAPI/courses/new
 router.post("/new", function (req, res) {
   const { name, school, description, price, summary } = req.body;
+
+  model.Course.find()
+    .then((courses))
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error.");
+    });
 
   model.Course.create({
     name: name,
@@ -51,7 +57,7 @@ router.post("/new", function (req, res) {
     });
 });
 
-////////////////// updating
+////////////////// UPDATING
 
 // t_updateCourseName
 // matches with /teacherAPI/courses/update/name

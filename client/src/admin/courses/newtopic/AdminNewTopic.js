@@ -77,40 +77,33 @@ const AdminNewCrouse = React.memo((props) => {
               onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
 
-                // it's neccessary to create a FormData so multer can storage the image in the backend
-                // let topicData = new FormData();
-                // topicData.append("name", values.name);
-                // topicData.append("subject", values.subject);
-                // topicData.append("description", values.description);
-                // topicData.append("freestyleTimer", values.freestyleTimer);
-                // topicData.append("rewardName", values.rewardName);
-                // // topicData.append("photo", values.photo);
-                // topicData.append("file", values.file);
-                // topicData.append("courseId", courseId);
-
-                TeacherAPI.t_newTopic(values)
+                TeacherAPI.t_newTopic({ ...values, courseId })
                   .then((res) => {
-                    console.log(res.data);
+                    const { topicId, topicName } = res.data;
+                    console.log({ topicId, topicName });
 
-                    const fileName = "courseMedal";
-                    const directory = `${courseId}/`;
-                    const storage = firebase
-                      .storage()
-                      .ref(`images/${newDirectory}/${fileName}`);
+                    // const fileName = "courseMedal";
+                    // const directory = `${courseId}/`;
+                    // const storage = firebase
+                    //   .storage()
+                    //   .ref(`images/${newDirectory}/${fileName}`);
 
-                    if (file !== undefined && file.type === "image/png") {
-                      storage
-                        .put(file)
-                        .then((d) => console.log("you did it"))
-                        .catch((d) => console.log("do something"));
-                    }
+                    // if (file !== undefined && file.type === "image/png") {
+                    //   storage
+                    //     .put(file)
+                    //     .then((d) => console.log("you did it"))
+                    //     .catch((d) => console.log("do something"));
+                    // }
 
-                    alert("Tema agregado con éxito");
-                    window.location.href = "/admin/courses/edit/" + courseId;
+                    // alert("Tema agregado con éxito");
+                    // window.location.href = "/admin/courses/edit/" + courseId;
                   })
                   .catch((err) => {
-                    console.log(err);
-                    alert("Ocurrió un error.");
+                    if (err.response && err.response.data) {
+                      alert(err.response.data);
+                    } else {
+                      alert("Ocurrió un error en el servidor");
+                    }
                     setSubmitting(false);
                   });
               }}
