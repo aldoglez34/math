@@ -8,6 +8,8 @@ import AddVideo from "./components/AddVideo";
 import AddReward from "./components/AddReward";
 import AddPDF from "./components/AddPDF";
 import EditExamBttn from "../../components/EditExamBttn";
+import { useSelector, useDispatch } from "react-redux";
+import * as adminActions from "../../../redux/actions/admin";
 //
 import TopicNameForm from "./forms/TopicNameForm";
 import TopicSubjectForm from "./forms/TopicSubjectForm";
@@ -18,6 +20,9 @@ import DeleteMaterialBttn from "./components/DeleteMaterialBttn";
 import DeleteRewardBttn from "./components/DeleteRewardBttn";
 
 const AdminTopicDetail = React.memo((props) => {
+  const dispatch = useDispatch();
+  const courseName = useSelector((state) => state.admin.course.courseName);
+
   const [topic, setTopic] = useState();
 
   useEffect(() => {
@@ -25,7 +30,12 @@ const AdminTopicDetail = React.memo((props) => {
     const topicId = props.routeProps.match.params.topicId;
 
     TeacherAPI.t_fetchTopic(courseId, topicId)
-      .then((res) => setTopic(res.data))
+      .then((res) => {
+        setTopic(res.data);
+        const topicName = res.data.name;
+        dispatch(adminActions.setTopic({ topicId, topicName }));
+        dispatch(adminActions.setTitle(`${courseName} // ${topicName}`));
+      })
       .catch((err) => {
         console.log(err);
         alert("Ocurrió un error");

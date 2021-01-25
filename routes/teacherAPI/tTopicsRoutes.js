@@ -131,7 +131,6 @@ router.put("/update/timer", function (req, res) {
 
 // t_newTopic()
 // matches with /teacherAPI/topics/new
-
 router.put("/new", function (req, res) {
   const topicData = {
     subject: req.body.subject,
@@ -149,7 +148,7 @@ router.put("/new", function (req, res) {
   model.Course.findById(req.body.courseId)
     .select("topics")
     .then(({ topics }) => {
-      let doesNewTopicExist = topics.some(
+      const doesNewTopicExist = topics.some(
         (t) => String(t.name).trim() === String(topicData.name).trim()
       );
 
@@ -158,23 +157,18 @@ router.put("/new", function (req, res) {
       } else {
         model.Course.findOneAndUpdate(
           { _id: req.body.courseId },
-          {
-            $push: {
-              topics: topicData,
-            },
-          },
-          {
-            new: true,
-          }
+          { $push: { topics: topicData } },
+          { new: true }
         )
-          .then((thisCourse) => {
-            const newTopic = thisCourse.topics.sort(
-              (a, b) => a.createdAt + b.createdAt
+          .then(({ topics }) => {
+            const newlyCreatedTopic = topics.filter(
+              (t) => String(t.name).trim() === String(topicData.name).trim()
             )[0];
-            console.log("========================================");
-            console.log(newTopic);
 
-            res.json({ topicId: thisCourse._id, topicName: thisCourse.name });
+            res.json({
+              topicId: newlyCreatedTopic._id,
+              topicName: newlyCreatedTopic.name,
+            });
           })
           .catch((err) => {
             console.log("@error", err);

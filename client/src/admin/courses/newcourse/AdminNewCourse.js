@@ -49,7 +49,9 @@ const AdminNewCrouse = React.memo(() => {
                 TeacherAPI.t_newCourse(values)
                   .then((res) => {
                     const { courseId } = res.data;
+
                     alert("Curso agregado con éxito");
+
                     const newRoute = `/admin/courses/edit/${courseId}`;
                     window.location.href = newRoute;
                   })

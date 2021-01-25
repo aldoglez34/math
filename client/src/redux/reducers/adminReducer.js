@@ -3,13 +3,21 @@ const admin = (state = null, action) => {
     case "admin/setCourse":
       return {
         ...state,
-        courseId: action.data.courseId,
-        courseName: action.data.courseName,
+        course: {
+          courseId: action.data.courseId,
+          courseName: action.data.courseName,
+        },
       };
-
+    case "admin/setTopic":
+      return {
+        ...state,
+        topic: {
+          topicId: action.data.topicId,
+          topicName: action.data.topicName,
+        },
+      };
     case "admin/setTitle":
       return { ...state, title: action.data };
-
     default:
       return state;
   }

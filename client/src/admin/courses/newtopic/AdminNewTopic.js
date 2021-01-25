@@ -7,12 +7,12 @@ import UploadImage from "./components/UploadImage";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import { useDispatch, useSelector } from "react-redux";
 import * as adminActions from "../../../redux/actions/admin";
-import { firebaseStorage } from "../../../firebase/firebase";
+// import { firebaseStorage } from "../../../firebase/firebase";
 
 const AdminNewCrouse = React.memo((props) => {
   const dispatch = useDispatch();
 
-  const courseName = useSelector((state) => state.admin.courseName);
+  const courseName = useSelector((state) => state.admin.course.courseName);
   const courseId = props.routeProps.match.params.courseId;
 
   const PHOTO_SIZE = 1000000;
@@ -95,8 +95,10 @@ const AdminNewCrouse = React.memo((props) => {
                     //     .catch((d) => console.log("do something"));
                     // }
 
-                    // alert("Tema agregado con éxito");
-                    // window.location.href = "/admin/courses/edit/" + courseId;
+                    alert("Tema agregado con éxito");
+
+                    const route = `/admin/courses/edit/topics/${courseId}/${topicId}`;
+                    window.location.href = route;
                   })
                   .catch((err) => {
                     if (err.response && err.response.data) {

@@ -9,7 +9,6 @@ const schema = new Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
   }, // ej. Primaria 3ro y 4to
   school: {
     type: String,

@@ -34,22 +34,36 @@ router.get("/:courseId", function (req, res) {
 router.post("/new", function (req, res) {
   const { name, school, description, price, summary } = req.body;
 
-  model.Course.find()
-    .then((courses))
-    .catch((err) => {
-      console.log("@error", err);
-      res.status(422).send("Ocurrió un error.");
-    });
-
-  model.Course.create({
-    name: name,
-    school: school,
-    price: price,
-    description: description,
-    topicsSummary: summary.split(","),
+  model.Course.find({
+    school,
   })
-    .then((newCourse) => {
-      res.json({ courseId: newCourse._id });
+    .sort("name")
+    .select("name")
+    .then((courses) => {
+      const doesNewCourseExist = courses.some(
+        (c) => String(c.name).trim() === String(name).trim()
+      );
+
+      if (doesNewCourseExist) {
+        res
+          .status(500)
+          .send("Un curso con este nombre ya existe en este nivel educativo");
+      } else {
+        model.Course.create({
+          name: name,
+          school: school,
+          price: price,
+          description: description,
+          topicsSummary: summary.split(","),
+        })
+          .then((newCourse) => {
+            res.json({ courseId: newCourse._id });
+          })
+          .catch((err) => {
+            console.log("@error", err);
+            res.status(422).send("Ocurrió un error.");
+          });
+      }
     })
     .catch((err) => {
       console.log("@error", err);
