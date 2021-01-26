@@ -17,7 +17,7 @@ import TopicDescriptionForm from "./forms/TopicDescriptionForm";
 import TopicFreestyleTimerForm from "./forms/TopicFreestyleTimerForm";
 import NewExamBttn from "./components/NewExamBttn";
 import DeleteMaterialBttn from "./components/DeleteMaterialBttn";
-import DeleteRewardBttn from "./components/DeleteRewardBttn";
+// import DeleteRewardBttn from "./components/DeleteRewardBttn";
 
 const AdminTopicDetail = React.memo((props) => {
   const dispatch = useDispatch();
@@ -128,11 +128,12 @@ const AdminTopicDetail = React.memo((props) => {
               <>
                 <div className="d-flex">
                   <h5>{topic.reward.name}</h5>
-                  <DeleteRewardBttn
+                  {/* TODO do something about this delete button */}
+                  {/* <DeleteRewardBttn
                     filePath={topic.reward.link}
                     courseId={props.routeProps.match.params.courseId}
                     topicId={topic._id}
-                  />
+                  /> */}
                 </div>
                 <Image
                   src={topic.reward.link}

@@ -77,37 +77,43 @@ const AdminNewCrouse = React.memo((props) => {
               onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
 
-                TeacherAPI.t_newTopic({ ...values, courseId })
-                  .then((res) => {
-                    const { topicId, topicName } = res.data;
-                    console.log({ topicId, topicName });
+                console.log("photo", values.photo);
+                console.log("file", values.file);
 
-                    // const fileName = "courseMedal";
-                    // const directory = `${courseId}/`;
-                    // const storage = firebase
-                    //   .storage()
-                    //   .ref(`images/${newDirectory}/${fileName}`);
+                // TeacherAPI.t_newTopic({ ...values, courseId })
+                //   .then((res) => {
+                //     const { topicId } = res.data;
 
-                    // if (file !== undefined && file.type === "image/png") {
-                    //   storage
-                    //     .put(file)
-                    //     .then((d) => console.log("you did it"))
-                    //     .catch((d) => console.log("do something"));
-                    // }
+                //     const pathOnFirebaseStorage = `${courseId}/${topicId}/rewards`;
 
-                    alert("Tema agregado con éxito");
+                //     console.log({ pathOnFirebaseStorage });
 
-                    const route = `/admin/courses/edit/topics/${courseId}/${topicId}`;
-                    window.location.href = route;
-                  })
-                  .catch((err) => {
-                    if (err.response && err.response.data) {
-                      alert(err.response.data);
-                    } else {
-                      alert("Ocurrió un error en el servidor");
-                    }
-                    setSubmitting(false);
-                  });
+                //     // const fileName = "courseMedal";
+                //     // const directory = `${courseId}/`;
+                //     // const storage = firebase
+                //     //   .storage()
+                //     //   .ref(`images/${newDirectory}/${fileName}`);
+
+                //     // if (file !== undefined && file.type === "image/png") {
+                //     //   storage
+                //     //     .put(file)
+                //     //     .then((d) => console.log("you did it"))
+                //     //     .catch((d) => console.log("do something"));
+                //     // }
+
+                //     alert("Tema agregado con éxito");
+
+                //     const route = `/admin/courses/edit/topics/${courseId}/${topicId}`;
+                //     window.location.href = route;
+                //   })
+                //   .catch((err) => {
+                //     if (err.response && err.response.data) {
+                //       alert(err.response.data);
+                //     } else {
+                //       alert("Ocurrió un error en el servidor");
+                //     }
+                //     setSubmitting(false);
+                //   });
               }}
             >
               {({
