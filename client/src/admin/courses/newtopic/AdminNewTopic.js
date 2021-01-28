@@ -7,7 +7,7 @@ import UploadImage from "./components/UploadImage";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import { useDispatch, useSelector } from "react-redux";
 import * as adminActions from "../../../redux/actions/admin";
-// import { firebaseStorage } from "../../../firebase/firebase";
+import { firebaseStorage } from "../../../firebase/firebase";
 
 const AdminNewCrouse = React.memo((props) => {
   const dispatch = useDispatch();
@@ -79,6 +79,18 @@ const AdminNewCrouse = React.memo((props) => {
 
                 console.log("photo", values.photo);
                 console.log("file", values.file);
+
+                // var ref = firebaseStorage.ref();
+                // var storage = firebase.storage();
+                var pathReference = firebaseStorage.ref(
+                  `images/${vaues.photo}`
+                );
+
+                pathReference.getDownloadURL().then((url) => {
+                  ref.push().set({
+                    imgurl: url,
+                  });
+                });
 
                 // TeacherAPI.t_newTopic({ ...values, courseId })
                 //   .then((res) => {
