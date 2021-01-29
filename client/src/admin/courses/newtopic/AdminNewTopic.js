@@ -83,11 +83,11 @@ const AdminNewCrouse = React.memo((props) => {
                 // var ref = firebaseStorage.ref();
                 // var storage = firebase.storage();
                 var pathReference = firebaseStorage.ref(
-                  `images/${vaues.photo}`
+                  `images/${values.photo}`
                 );
 
                 pathReference.getDownloadURL().then((url) => {
-                  ref.push().set({
+                  pathReference.push().set({
                     imgurl: url,
                   });
                 });
