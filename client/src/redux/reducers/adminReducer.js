@@ -1,5 +1,7 @@
 const admin = (state = null, action) => {
   switch (action.type) {
+    case "admin/clear":
+      return null;
     case "admin/setCourse":
       return {
         ...state,

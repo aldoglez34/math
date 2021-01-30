@@ -17,7 +17,8 @@ import TopicDescriptionForm from "./forms/TopicDescriptionForm";
 import TopicFreestyleTimerForm from "./forms/TopicFreestyleTimerForm";
 import NewExamBttn from "./components/NewExamBttn";
 import DeleteMaterialBttn from "./components/DeleteMaterialBttn";
-// import DeleteRewardBttn from "./components/DeleteRewardBttn";
+import DeleteRewardBttn from "./components/DeleteRewardBttn";
+import { firebaseStorage } from "../../../firebase/firebase";
 
 const AdminTopicDetail = React.memo((props) => {
   const dispatch = useDispatch();
@@ -29,17 +30,35 @@ const AdminTopicDetail = React.memo((props) => {
     const courseId = props.routeProps.match.params.courseId;
     const topicId = props.routeProps.match.params.topicId;
 
-    TeacherAPI.t_fetchTopic(courseId, topicId)
-      .then((res) => {
-        setTopic(res.data);
-        const topicName = res.data.name;
-        dispatch(adminActions.setTopic({ topicId, topicName }));
-        dispatch(adminActions.setTitle(`${courseName} // ${topicName}`));
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("Ocurrió un error");
-      });
+    if (!topic)
+      TeacherAPI.t_fetchTopic(courseId, topicId)
+        .then((res) => {
+          const topicName = res.data.name;
+          const imagePath = res.data.reward.link;
+
+          dispatch(adminActions.setTopic({ topicId, topicName }));
+          dispatch(adminActions.setTitle(`${courseName} // ${topicName}`));
+
+          const storageRef = firebaseStorage.ref();
+          storageRef
+            .child(imagePath)
+            .getDownloadURL()
+            .then((url) => {
+              console.log(url);
+            })
+            .catch((err) => {
+              console.log(err);
+              alert(err);
+            });
+
+          console.log(imagePath);
+
+          setTopic(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Ocurrió un error");
+        });
   }, [
     props.routeProps.match.params.courseId,
     props.routeProps.match.params.topicId,
@@ -128,12 +147,11 @@ const AdminTopicDetail = React.memo((props) => {
               <>
                 <div className="d-flex">
                   <h5>{topic.reward.name}</h5>
-                  {/* TODO do something about this delete button */}
-                  {/* <DeleteRewardBttn
+                  <DeleteRewardBttn
                     filePath={topic.reward.link}
                     courseId={props.routeProps.match.params.courseId}
                     topicId={topic._id}
-                  /> */}
+                  />
                 </div>
                 <Image
                   src={topic.reward.link}

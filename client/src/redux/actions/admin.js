@@ -1,3 +1,9 @@
+export const clearAdminData = () => {
+  return {
+    type: "admin/clear",
+  };
+};
+
 export const setCourse = (data) => {
   return {
     type: "admin/setCourse",
