@@ -1,7 +1,7 @@
 import React from "react";
 import { Spinner } from "react-bootstrap";
 
-const AdminSpinner = React.memo(() => {
+export const AdminSpinner = () => {
   return (
     <div className="h-100 d-flex justify-content-center align-items-center">
       <Spinner variant="success" animation="border" role="status">
@@ -9,6 +9,4 @@ const AdminSpinner = React.memo(() => {
       </Spinner>
     </div>
   );
-});
-
-export default AdminSpinner;
+};

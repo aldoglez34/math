@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import AdminLayout from "../layout/AdminLayout";
 import { Container, Row, Col, ListGroup, Button } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
-import ItemModal from "./components/ItemModal";
+import { ItemModal } from "./components";
 import AdminSpinner from "../components/AdminSpinner";
 import { useDispatch } from "react-redux";
 import { setTitle } from "../../redux/actions/admin";
 
-const AdminMessages = React.memo(() => {
+export const AdminMessages = () => {
   const dispatch = useDispatch();
 
   const [messages, setMessages] = useState();
@@ -113,6 +113,4 @@ const AdminMessages = React.memo(() => {
   ) : (
     <AdminSpinner />
   );
-});
-
-export default AdminMessages;
+};

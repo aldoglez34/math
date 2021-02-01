@@ -1,9 +1,9 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import PropTypes from "prop-types";
+import { node, string } from "prop-types";
 import { useSelector } from "react-redux";
 
-const TopHelperNav = React.memo(({ buttons, backBttn }) => {
+export const TopHelperNav = React.memo(({ buttons, backBttn }) => {
   const title = useSelector((state) => state.admin.title);
 
   return (
@@ -30,9 +30,7 @@ const TopHelperNav = React.memo(({ buttons, backBttn }) => {
         >
           {/* title */}
           <div>
-            <h2 className="mb-0 text-light">
-              {title}
-            </h2>
+            <h2 className="mb-0 text-light">{title}</h2>
           </div>
         </div>
         {buttons ? (
@@ -51,8 +49,6 @@ const TopHelperNav = React.memo(({ buttons, backBttn }) => {
 });
 
 TopHelperNav.propTypes = {
-  buttons: PropTypes.node,
-  backBttn: PropTypes.string,
+  buttons: node,
+  backBttn: string,
 };
-
-export default TopHelperNav;

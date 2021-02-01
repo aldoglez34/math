@@ -10,11 +10,11 @@ import {
 } from "react-bootstrap";
 import moment from "moment";
 import "moment/locale/es";
-import PropTypes from "prop-types";
+import { object } from "prop-types";
 import TeacherAPI from "../../../utils/TeacherAPI";
-import ResponseForm from "./ResponseForm";
+import { ResponseForm } from "./";
 
-const ItemModal = React.memo(({ message }) => {
+export const ItemModal = React.memo(({ message }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => {
@@ -199,7 +199,5 @@ const ItemModal = React.memo(({ message }) => {
 });
 
 ItemModal.propTypes = {
-  message: PropTypes.object.isRequired,
+  message: object.isRequired,
 };
-
-export default ItemModal;

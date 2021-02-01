@@ -1,8 +1,8 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import PropTypes from "prop-types";
+import { string } from "prop-types";
 
-const EditTopicsBttn = React.memo(({ courseId, topicId }) => {
+export const EditTopicsBttn = React.memo(({ courseId, topicId }) => {
   return (
     <Button
       className="editButton ml-1"
@@ -16,8 +16,6 @@ const EditTopicsBttn = React.memo(({ courseId, topicId }) => {
 });
 
 EditTopicsBttn.propTypes = {
-  courseId: PropTypes.string.isRequired,
-  topicId: PropTypes.string.isRequired,
+  courseId: string.isRequired,
+  topicId: string.isRequired,
 };
-
-export default EditTopicsBttn;

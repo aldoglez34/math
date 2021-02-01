@@ -1,10 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
-import LeftNav from "./components/LeftNav";
-import TopNav from "./components/TopNav";
-import { ScrollButton } from "../../components";
+import { node, string } from "prop-types";
+import { LeftNav, TopNav } from "./components";
+import { ScrollButton } from "../components";
 
-const TeacherLayout = React.memo(
+export const AdminLayout = React.memo(
   ({ leftBarActive, buttons, children, backBttn }) => {
     return (
       <div className="d-flex h-100">
@@ -29,11 +28,9 @@ const TeacherLayout = React.memo(
   }
 );
 
-TeacherLayout.propTypes = {
-  leftBarActive: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  buttons: PropTypes.node,
-  backBttn: PropTypes.string,
+AdminLayout.propTypes = {
+  leftBarActive: string.isRequired,
+  children: node.isRequired,
+  buttons: node,
+  backBttn: string,
 };
-
-export default TeacherLayout;

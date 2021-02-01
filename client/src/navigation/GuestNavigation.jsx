@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import AdminLogin from "../admin/login/AdminLogin";
+import { AdminLoginPage } from "../adminpages";
 import {
   CourseInfoPage,
   LandingPage,
@@ -26,7 +26,7 @@ export default () => {
       <Redirect from="/course" to="/" />
 
       {/* ================= ADMIN ================= */}
-      <Route exact path="/admin" component={AdminLogin} />
+      <Route exact path="/admin" component={AdminLoginPage} />
 
       <Redirect from="/admin/*" to="/admin" />
 

@@ -1,9 +1,9 @@
 import React from "react";
 import { Nav, Button } from "react-bootstrap";
-import "./leftnav.scss";
 import { firebaseAuth } from "../../../firebase/firebase";
+import "./leftnav.scss";
 
-const LeftNav = React.memo(({ leftBarActive }) => {
+export const LeftNav = React.memo(({ leftBarActive }) => {
   const logout = () => {
     firebaseAuth
       .signOut()
@@ -70,5 +70,3 @@ const LeftNav = React.memo(({ leftBarActive }) => {
     </Nav>
   );
 });
-
-export default LeftNav;

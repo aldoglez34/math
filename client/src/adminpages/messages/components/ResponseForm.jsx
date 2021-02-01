@@ -3,9 +3,9 @@ import { Form, Button, Col } from "react-bootstrap";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeachAPI from "../../../utils/TeacherAPI";
-import PropTypes from "prop-types";
+import { string } from "prop-types";
 
-const ResponseForm = React.memo(({ msgId, email }) => {
+export const ResponseForm = React.memo(({ msgId, email }) => {
   const yupschema = yup.object({
     body: yup.string().required("Requerido"),
   });
@@ -85,8 +85,6 @@ const ResponseForm = React.memo(({ msgId, email }) => {
 });
 
 ResponseForm.propTypes = {
-  msgId: PropTypes.string.isRequired,
-  email: PropTypes.string,
+  msgId: string.isRequired,
+  email: string,
 };
-
-export default ResponseForm;

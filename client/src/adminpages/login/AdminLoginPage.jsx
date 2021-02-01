@@ -4,9 +4,9 @@ import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { firebaseAuth } from "../../firebase/firebase";
 import fbApp from "firebase/app";
-import "./adminlogin.scss";
+import "./adminloginpage.scss";
 
-const Login = () => {
+export const AdminLoginPage = () => {
   const loginSchema = yup.object({
     email: yup.string().email("Formato inválido").required("Requerido"),
     password: yup.string().min(6, "Longitud incorrecta").required("Requerido"),
@@ -118,5 +118,3 @@ const Login = () => {
     </Container>
   );
 };
-
-export default Login;

@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+
 import AdminCourses from "../admin/courses/courses/AdminCourses";
 import AdminCourseDetail from "../admin/courses/coursedetail/AdminCourseDetail";
 import AdminNewCourse from "../admin/courses/newcourse/AdminNewCourse";
