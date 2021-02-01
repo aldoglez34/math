@@ -8,3 +8,4 @@ export * from "./signup/SignUpPage";
 export * from "./dashboard/DashboardPage";
 export * from "./course/CoursePage";
 export * from "./freestyle/FreestylePage";
+export * from "./exam/ExamPage";

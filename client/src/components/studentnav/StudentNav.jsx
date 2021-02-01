@@ -1,9 +1,9 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import "./studentnav.scss";
 import { useSelector } from "react-redux";
+import "./studentnav.scss";
 
-const StudentNav = React.memo(() => {
+export const StudentNav = React.memo(() => {
   const student = useSelector((state) => state.student);
 
   return (
@@ -24,5 +24,3 @@ const StudentNav = React.memo(() => {
     </div>
   );
 });
-
-export default StudentNav;

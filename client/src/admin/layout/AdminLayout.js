@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import LeftNav from "./components/LeftNav";
 import TopNav from "./components/TopNav";
-import ScrollButton from "../../components/scrollbutton";
+import { ScrollButton } from "../../components";
 
 const TeacherLayout = React.memo(
   ({ leftBarActive, buttons, children, backBttn }) => {

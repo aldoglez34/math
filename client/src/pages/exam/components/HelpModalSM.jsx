@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { object } from "prop-types";
 import { Form, Button, Modal, Col } from "react-bootstrap";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { useSelector } from "react-redux";
 import API from "../../../utils/API";
 
-const HelpModalSM = React.memo(({ question }) => {
+export const HelpModalSM = React.memo(({ question }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -141,7 +141,5 @@ const HelpModalSM = React.memo(({ question }) => {
 });
 
 HelpModalSM.propTypes = {
-  question: PropTypes.object.isRequired,
+  question: object.isRequired,
 };
-
-export default HelpModalSM;

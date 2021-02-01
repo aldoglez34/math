@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Button, Spinner, Container } from "react-bootstrap";
-import PropTypes from "prop-types";
-import * as examActions from "../../redux/actions/exam";
-import Timer from "./components/Timer";
-import QInstruction from "./components/QInstruction";
-import QTechnicalInstruction from "./components/QTechnicalInstruction";
-import QMultipleChoice from "./components/QMultipleChoice";
-import Progress from "./components/Progress";
-import ExitButton from "../../components/exitbutton/ExitButton";
-import HelpModalSM from "./components/HelpModalSM";
+import { array } from "prop-types";
+import * as examActions from "../../../redux/actions/exam";
+import {
+  HelpModalSM,
+  Progress,
+  QInstruction,
+  QMultipleChoice,
+  QTechnicalInstruction,
+  Timer,
+} from "./";
+import { ExitButton } from "../../../components";
 
-const QuestionsContainer = React.memo(({ questions }) => {
+export const QuestionsContainer = React.memo(({ questions }) => {
   const dispatch = useDispatch();
 
   const exam = useSelector((state) => state.exam);
@@ -203,7 +205,5 @@ const QuestionsContainer = React.memo(({ questions }) => {
 });
 
 QuestionsContainer.propTypes = {
-  questions: PropTypes.array.isRequired,
+  questions: array.isRequired,
 };
-
-export default QuestionsContainer;

@@ -1,11 +1,10 @@
 import React from "react";
-import "./navbar.scss";
 import { Navbar, Nav, Col, Container } from "react-bootstrap";
-import CoursesDropdown from "./components/CoursesDropdown";
 import { useSelector } from "react-redux";
-import StudentDropdown from "./components/StudentDropdown";
+import { CoursesDropdown, StudentDropdown } from "./components";
+import "./navbar.scss";
 
-const MyNavbar = React.memo(() => {
+export const MyNavbar = React.memo(() => {
   const student = useSelector((state) => state.student);
 
   const zenMode = useSelector((state) => state.zenMode);
@@ -101,5 +100,3 @@ const MyNavbar = React.memo(() => {
     </Navbar>
   );
 });
-
-export default MyNavbar;

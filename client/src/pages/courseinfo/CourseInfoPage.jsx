@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Layout } from "../../components/Layout";
-import ScrollButton from "../../components/scrollbutton";
+import { ScrollButton } from "../../components/scrollbutton/ScrollButton";
 import { Row, Col, Container, Spinner } from "react-bootstrap";
 import { CourseInfoCard } from "./components";
 import API from "../../utils/API";

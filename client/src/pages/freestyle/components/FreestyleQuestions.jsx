@@ -2,18 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { array } from "prop-types";
-import QInstruction from "../../../exam/questionscontainer/components/QInstruction";
-import QTechnicalInstruction from "../../../exam/questionscontainer/components/QTechnicalInstruction";
-import QMultipleChoice from "../../../exam/questionscontainer/components/QMultipleChoice";
 import {
-  FreestyleTimer,
-  FreestyleQPoints,
   CorrectModal,
+  FreestyleQPoints,
+  FreestyleTimer,
   IncorrectModal,
 } from "./";
 import API from "../../../utils/API";
-import ExitButton from "../../../components/exitbutton/ExitButton";
-import HelpModalSM from "../../../exam/questionscontainer/components/HelpModalSM";
+import { ExitButton } from "../../../components";
+import {
+  HelpModalSM,
+  QInstruction,
+  QMultipleChoice,
+  QTechnicalInstruction,
+} from "../../exam/components";
 
 export const FreestyleQuestions = React.memo(({ questions }) => {
   const dispatch = useDispatch();

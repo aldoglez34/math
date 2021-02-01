@@ -1,9 +1,9 @@
 import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
-import "./scrollbutton.scss";
+import { number } from "prop-types";
 import Fade from "react-reveal/Fade";
+import "./scrollbutton.scss";
 
-class ScrollButton extends PureComponent {
+export class ScrollButton extends PureComponent {
   state = {
     intervalId: 0,
     is_visible: false,
@@ -61,8 +61,6 @@ class ScrollButton extends PureComponent {
 }
 
 ScrollButton.propTypes = {
-  scrollStepInPx: PropTypes.number.isRequired,
-  delayInMs: PropTypes.number.isRequired,
+  scrollStepInPx: number.isRequired,
+  delayInMs: number.isRequired,
 };
-
-export default ScrollButton;

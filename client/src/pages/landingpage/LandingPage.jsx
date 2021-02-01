@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Layout } from "../../components/Layout";
-import ScrollButton from "../../components/scrollbutton";
+import { ScrollButton } from "../../components";
 import { useSelector, useDispatch } from "react-redux";
 import { clearAdminData } from "../../redux/actions/admin";
 import {

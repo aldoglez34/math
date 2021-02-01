@@ -2,7 +2,7 @@ import React from "react";
 import { Image, Container, Row, Col } from "react-bootstrap";
 import "./footer.scss";
 
-const MyFooter = React.memo(() => {
+export const MyFooter = () => {
   return (
     <footer id="myfooter" className="mt-auto">
       <Container>
@@ -76,6 +76,4 @@ const MyFooter = React.memo(() => {
       <Image src="/images/footerback.png" className="w-100 footerImg" />
     </footer>
   );
-});
-
-export default MyFooter;
+};

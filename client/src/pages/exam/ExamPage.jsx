@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { StudentLayout } from "../components/Layout";
+import { StudentLayout } from "../../components/Layout";
 import { Container, Spinner } from "react-bootstrap";
-import API from "../utils/API";
-import * as breadcrumbActions from "../redux/actions/breadcrumb";
-import * as zenModeActions from "../redux/actions/zenMode";
-import QuestionsContainer from "./questionscontainer/QuestionsContainer";
-import "./examstyle.scss";
+import API from "../../utils/API";
+import * as breadcrumbActions from "../../redux/actions/breadcrumb";
+import * as zenModeActions from "../../redux/actions/zenMode";
+import { QuestionsContainer } from "./components";
+import "./exampage.scss";
 
-const Exam = React.memo(() => {
+export const ExamPage = () => {
   const dispatch = useDispatch();
 
   const [exam, setExam] = useState();
@@ -58,6 +58,4 @@ const Exam = React.memo(() => {
       )}
     </StudentLayout>
   );
-});
-
-export default Exam;
+};

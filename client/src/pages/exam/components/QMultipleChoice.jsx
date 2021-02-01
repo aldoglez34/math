@@ -1,8 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { array, func, string } from "prop-types";
 import { Button, Image } from "react-bootstrap";
 
-const MultipleChoice = React.memo(
+export const QMultipleChoice = React.memo(
   ({
     type,
     textChoices,
@@ -42,12 +42,10 @@ const MultipleChoice = React.memo(
   }
 );
 
-MultipleChoice.propTypes = {
-  type: PropTypes.string.isRequired,
-  textChoices: PropTypes.array,
-  imageChoices: PropTypes.array,
-  getValueFromMultipleChoice: PropTypes.func.isRequired,
-  choiceSelected: PropTypes.string,
+QMultipleChoice.propTypes = {
+  type: string.isRequired,
+  textChoices: array,
+  imageChoices: array,
+  getValueFromMultipleChoice: func.isRequired,
+  choiceSelected: string,
 };
-
-export default MultipleChoice;

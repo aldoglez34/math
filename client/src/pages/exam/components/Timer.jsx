@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import API from "../../../utils/API";
 import { useSelector } from "react-redux";
 
-const Timer = React.memo(() => {
+export const Timer = () => {
   const student = useSelector((state) => state.student);
   const exam = useSelector((state) => state.exam);
 
@@ -38,6 +38,4 @@ const Timer = React.memo(() => {
       </strong>
     </div>
   );
-});
-
-export default Timer;
+};

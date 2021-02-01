@@ -2,14 +2,14 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import {
   CourseInfoPage,
+  CoursePage,
   DashboardPage,
+  ExamPage,
+  FreestylePage,
   MessagesPage,
   NoMatchPage,
   ResultsPage,
-  CoursePage,
-  FreestylePage,
 } from "../pages";
-import Exam from "../exam";
 
 export default () => {
   return (
@@ -37,7 +37,7 @@ export default () => {
       />
 
       {/* exam */}
-      <Route exact path="/course/exam" component={Exam} />
+      <Route exact path="/course/exam" component={ExamPage} />
       <Route exact path="/course/exam/results" component={ResultsPage} />
 
       {/* freestyle */}

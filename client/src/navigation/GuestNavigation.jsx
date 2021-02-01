@@ -2,8 +2,8 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import AdminLogin from "../admin/login/AdminLogin";
 import {
-  LandingPage,
   CourseInfoPage,
+  LandingPage,
   LoginPage,
   NoMatchPage,
   SignUpPage,

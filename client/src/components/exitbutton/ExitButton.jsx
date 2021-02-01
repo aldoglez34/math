@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import PropTypes from "prop-types";
+import { string } from "prop-types";
 
-const ExitButton = React.memo(({ url }) => {
+export const ExitButton = React.memo(({ url }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -49,7 +49,5 @@ const ExitButton = React.memo(({ url }) => {
 });
 
 ExitButton.propTypes = {
-  url: PropTypes.string.isRequired,
+  url: string.isRequired,
 };
-
-export default ExitButton;

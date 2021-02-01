@@ -1,8 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { oneOf, string } from "prop-types";
 import { Image } from "react-bootstrap";
 
-const QTechnicalInstruction = React.memo(({ type, text, imageLink }) => {
+export const QTechnicalInstruction = React.memo(({ type, text, imageLink }) => {
   return type === "text" ? (
     <h4>
       <span className="text-break">{text}</span>
@@ -13,9 +13,7 @@ const QTechnicalInstruction = React.memo(({ type, text, imageLink }) => {
 });
 
 QTechnicalInstruction.propTypes = {
-  type: PropTypes.oneOf(["text", "image"]).isRequired,
-  text: PropTypes.string,
-  imageLink: PropTypes.string,
+  type: oneOf(["text", "image"]).isRequired,
+  text: string,
+  imageLink: string,
 };
-
-export default QTechnicalInstruction;

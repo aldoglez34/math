@@ -1,11 +1,7 @@
 import React from "react";
-import MyNavbar from "./navbar/MyNavbar";
-import MyFooter from "./footer";
-import PropTypes from "prop-types";
+import { array, node, string } from "prop-types";
+import { MyBreadcrumb, MyFooter, MyNavbar, ScrollButton, StudentNav } from "./";
 import "./layout.scss";
-import MyBreadCrumb from "../components/breadcrumb/MyBreadcrumb";
-import StudentNav from "./studentnav/StudentNav";
-import ScrollButton from "./scrollbutton";
 
 // for public routes
 export const Layout = React.memo(({ children, backgroundColor = "white" }) => {
@@ -24,8 +20,8 @@ export const Layout = React.memo(({ children, backgroundColor = "white" }) => {
 });
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-  backgroundColor: PropTypes.string,
+  children: node.isRequired,
+  backgroundColor: string,
 };
 
 // for protected routes
@@ -35,7 +31,7 @@ export const StudentLayout = React.memo(({ breadcrumb, children }) => {
       <MyNavbar />
       <div className="marginTop" />
       <StudentNav />
-      <MyBreadCrumb breadcrumb={breadcrumb} />
+      <MyBreadcrumb breadcrumb={breadcrumb} />
       {children}
       <ScrollButton scrollStepInPx={150} delayInMs={16.66} />
     </>
@@ -43,6 +39,6 @@ export const StudentLayout = React.memo(({ breadcrumb, children }) => {
 });
 
 StudentLayout.propTypes = {
-  breadcrumb: PropTypes.array,
-  children: PropTypes.node.isRequired,
+  breadcrumb: array,
+  children: node.isRequired,
 };

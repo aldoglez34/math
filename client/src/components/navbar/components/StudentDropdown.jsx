@@ -6,7 +6,7 @@ import * as studentActions from "../../../redux/actions/student";
 import { firebaseAuth } from "../../../firebase/firebase";
 import API from "../../../utils/API";
 
-const StudentDropdown = React.memo(() => {
+export const StudentDropdown = () => {
   const dispatch = useDispatch();
 
   const student = useSelector((state) => state.student);
@@ -82,6 +82,4 @@ const StudentDropdown = React.memo(() => {
       </NavDropdown.Item>
     </NavDropdown>
   );
-});
-
-export default StudentDropdown;
+};

@@ -1,8 +1,8 @@
 import React from "react";
 import { ProgressBar } from "react-bootstrap";
-import PropTypes from "prop-types";
+import { number } from "prop-types";
 
-const Progress = React.memo(({ current, total }) => {
+export const Progress = React.memo(({ current, total }) => {
   return (
     <ProgressBar
       animated
@@ -19,8 +19,6 @@ const Progress = React.memo(({ current, total }) => {
 });
 
 Progress.propTypes = {
-  current: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired,
+  current: number.isRequired,
+  total: number.isRequired,
 };
-
-export default Progress;

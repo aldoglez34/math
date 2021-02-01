@@ -4,7 +4,7 @@ import "./coursesdropdown.scss";
 import { useSelector } from "react-redux";
 import API from "../../../utils/API";
 
-const CoursesDropdown = React.memo(() => {
+export const CoursesDropdown = () => {
   const zenMode = useSelector((state) => state.zenMode);
 
   const [courses, setCourses] = useState();
@@ -51,6 +51,4 @@ const CoursesDropdown = React.memo(() => {
       )}
     </NavDropdown>
   );
-});
-
-export default CoursesDropdown;
+};

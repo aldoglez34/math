@@ -1,7 +1,7 @@
 import React from "react";
+import { AuthUserContext } from "../session";
 import GuestNavigation from "./GuestNavigation";
 import StudentNavigation from "./StudentNavigation";
-import { AuthUserContext } from "../session";
 import TeacherNavigation from "./TeacherNavigation";
 
 const Navigation = React.memo(() => (

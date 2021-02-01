@@ -1,9 +1,9 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import "./mybreadcrumb.scss";
 import { useSelector } from "react-redux";
+import "./mybreadcrumb.scss";
 
-const MyBreadcrumb = React.memo(() => {
+export const MyBreadcrumb = () => {
   const breadcrumb = useSelector((state) => state.breadcrumb);
 
   return breadcrumb ? (
@@ -24,6 +24,4 @@ const MyBreadcrumb = React.memo(() => {
       )}
     </Container>
   ) : null;
-});
-
-export default MyBreadcrumb;
+};
