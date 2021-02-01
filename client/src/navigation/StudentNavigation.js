@@ -1,50 +1,52 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import NoMatch from "../pages/nomatch/NoMatch";
-import Dashboard from "../pages/dashboard";
-import Course from "../course";
+import {
+  CourseInfoPage,
+  DashboardPage,
+  MessagesPage,
+  NoMatchPage,
+  ResultsPage,
+  CoursePage,
+  FreestylePage,
+} from "../pages";
 import Exam from "../exam";
-import Results from "../results";
-import Freestyle from "../freestyle";
-import Messages from "../pages/messages";
-import CourseInfo from "../pages/courseinfo/CourseInfo";
 
 export default () => {
   return (
     <Switch>
       {/* ================= PUBLIC ROUTES ================= */}
       {/* student dashboard */}
-      <Route exact path="/dashboard" component={Dashboard} />
+      <Route exact path="/dashboard" component={DashboardPage} />
 
       {/* courses info */}
       <Route
         exact
         path="/courses/:course"
-        render={(props) => <CourseInfo routeProps={props} />}
+        render={(props) => <CourseInfoPage routeProps={props} />}
       />
 
       {/* ================= STUDENT ROUTES ================= */}
       {/* messages */}
-      <Route exact path="/messages" component={Messages} />
+      <Route exact path="/messages" component={MessagesPage} />
 
       {/* courses main */}
       <Route
         exact
         path="/course"
-        render={(props) => <Course routeProps={props} />}
+        render={(props) => <CoursePage routeProps={props} />}
       />
 
       {/* exam */}
       <Route exact path="/course/exam" component={Exam} />
-      <Route exact path="/course/exam/results" component={Results} />
+      <Route exact path="/course/exam/results" component={ResultsPage} />
 
       {/* freestyle */}
-      <Route exact path="/course/freestyle" component={Freestyle} />
+      <Route exact path="/course/freestyle" component={FreestylePage} />
 
       <Redirect from="/" to="/dashboard" />
 
       {/* 404 not found */}
-      <Route component={NoMatch} />
+      <Route component={NoMatchPage} />
     </Switch>
   );
 };
