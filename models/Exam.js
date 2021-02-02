@@ -21,9 +21,9 @@ const schema = new Schema({
   name: {
     type: String,
     required: true,
-  }, // ej. Sumas 1 o Restas 3
-  description: { type: String, required: true }, // ej. "Este es un examen blah blah..."
-  duration: { type: Number, required: true }, // ej. 30 (mins)
+  },
+  description: { type: String, required: true },
+  duration: { type: Number, required: true },
   questions: [
     {
       qType: {

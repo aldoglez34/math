@@ -16,7 +16,6 @@ import {
   AddVideo,
   AdminTopicModal,
   DeleteMaterialBttn,
-  DeleteRewardBttn,
   NewExamBttn,
 } from "./components";
 import { useSelector, useDispatch } from "react-redux";
@@ -63,13 +62,15 @@ export const AdminTopicDetailPage = React.memo((props) => {
           alert("Ocurrió un error");
         });
   }, [
+    courseName,
+    dispatch,
+    topic,
     props.routeProps.match.params.courseId,
     props.routeProps.match.params.topicId,
   ]);
 
   return topic ? (
     <AdminLayout
-      title="Tema"
       leftBarActive="Cursos"
       backBttn={"/admin/courses/edit/" + props.routeProps.match.params.courseId}
     >
@@ -150,11 +151,11 @@ export const AdminTopicDetailPage = React.memo((props) => {
               <>
                 <div className="d-flex">
                   <h5>{topic.reward.name}</h5>
-                  <DeleteRewardBttn
+                  {/* <DeleteRewardBttn
                     filePath={topic.reward.link}
                     courseId={props.routeProps.match.params.courseId}
                     topicId={topic._id}
-                  />
+                  /> */}
                 </div>
                 <Image
                   src={topic.reward.link}

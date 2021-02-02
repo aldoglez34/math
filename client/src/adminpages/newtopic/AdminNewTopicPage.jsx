@@ -51,7 +51,7 @@ export const AdminNewTopicPage = React.memo((props) => {
 
   useEffect(() => {
     dispatch(adminActions.setTitle(courseName));
-  }, []);
+  }, [dispatch, courseName]);
 
   return (
     <AdminLayout

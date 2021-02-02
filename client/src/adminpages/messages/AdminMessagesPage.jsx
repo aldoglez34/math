@@ -25,7 +25,7 @@ export const AdminMessagesPage = () => {
         console.log(err);
         alert("Ocurrió un error");
       });
-  }, []);
+  }, [dispatch]);
 
   const filterProducts = (criteria) => {
     switch (criteria) {
@@ -50,7 +50,7 @@ export const AdminMessagesPage = () => {
       <Button
         disabled={messages ? false : true}
         active={filter === "New" ? true : false}
-        variant="outline-warning"
+        variant="outline-light"
         className="shadow-sm"
         onClick={() => filterProducts("New")}
       >

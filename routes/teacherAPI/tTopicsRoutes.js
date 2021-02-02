@@ -132,43 +132,62 @@ router.put("/update/timer", function (req, res) {
 // t_newTopic()
 // matches with /teacherAPI/topics/new
 router.put("/new", function (req, res) {
-  const topicData = {
-    subject: req.body.subject,
-    name: req.body.name,
-    description: req.body.description,
-    reward: {
-      name: req.body.rewardName,
-      link: `/projectfiles/${req.body.courseId}/reward/foto.jpg`,
-    },
-    freestyle: {
-      timer: req.body.freestyleTimer,
-    },
-  };
+  const courseId = req.body.courseId;
 
-  model.Course.findById(req.body.courseId)
+  model.Course.findById(courseId)
     .select("topics")
     .then(({ topics }) => {
       const doesNewTopicExist = topics.some(
-        (t) => String(t.name).trim() === String(topicData.name).trim()
+        (t) => String(t.name).trim() === String(req.body.name).trim()
       );
 
       if (doesNewTopicExist) {
         res.status(500).send("Un tema con este nombre ya existe en este curso");
       } else {
+        const newTopicData = {
+          subject: req.body.subject,
+          name: req.body.name,
+          description: req.body.description,
+          freestyle: {
+            timer: req.body.freestyleTimer,
+          },
+        };
+
         model.Course.findOneAndUpdate(
-          { _id: req.body.courseId },
-          { $push: { topics: topicData } },
+          { _id: courseId },
+          { $push: { topics: newTopicData } },
           { new: true }
         )
           .then(({ topics }) => {
             const newlyCreatedTopic = topics.filter(
-              (t) => String(t.name).trim() === String(topicData.name).trim()
+              (t) => String(t.name).trim() === String(newTopicData.name).trim()
             )[0];
 
-            res.json({
-              topicId: newlyCreatedTopic._id,
-              topicName: newlyCreatedTopic.name,
-            });
+            // insert reward
+            model.Course.findOneAndUpdate(
+              {
+                _id: courseId,
+                "topics._id": newlyCreatedTopic._id,
+              },
+              {
+                $set: {
+                  "topics.$.reward": {
+                    name: req.body.rewardName,
+                    link: `${courseId}/${newlyCreatedTopic._id}/rewards/${req.body.rewardName}`,
+                  },
+                },
+              }
+            )
+              .then(() => {
+                res.json({
+                  topicId: newlyCreatedTopic._id,
+                  topicName: newlyCreatedTopic.name,
+                });
+              })
+              .catch((err) => {
+                console.log("@error", err);
+                res.status(422).send("Ocurrió un error");
+              });
           })
           .catch((err) => {
             console.log("@error", err);

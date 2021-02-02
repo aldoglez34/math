@@ -26,7 +26,7 @@ export const AdminNewCoursePage = () => {
 
   useEffect(() => {
     dispatch(setTitle("Nuevo Curso"));
-  }, []);
+  }, [dispatch]);
 
   return (
     <AdminLayout leftBarActive="Cursos" backBttn="/admin/courses">

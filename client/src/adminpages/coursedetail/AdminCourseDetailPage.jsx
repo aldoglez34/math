@@ -42,7 +42,7 @@ export const AdminCourseDetailPage = React.memo((props) => {
         console.log(err);
         alert("Ocurrió un error");
       });
-  }, [props.routeProps.match.params.courseId]);
+  }, [props.routeProps.match.params.courseId, dispatch]);
 
   return course ? (
     <AdminLayout title="Curso" leftBarActive="Cursos" backBttn="/admin/courses">

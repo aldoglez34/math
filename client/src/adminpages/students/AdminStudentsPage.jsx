@@ -20,7 +20,7 @@ export const AdminStudentsPage = () => {
         console.log(err);
         alert("Ocurrió un error");
       });
-  }, []);
+  }, [dispatch]);
 
   return students ? (
     <AdminLayout leftBarActive="Alumnos">

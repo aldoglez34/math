@@ -47,7 +47,7 @@ export const AdminCoursesPage = () => {
         console.log(err);
         alert("Ocurrió un error");
       });
-  }, []);
+  }, [dispatch]);
 
   return courses ? (
     <AdminLayout title="Cursos" leftBarActive="Cursos">

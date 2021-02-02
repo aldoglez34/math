@@ -19,7 +19,7 @@ export const LandingPage = () => {
 
   useEffect(() => {
     if (adminData) dispatch(clearAdminData());
-  }, []);
+  }, [adminData, dispatch]);
 
   return (
     <Layout>

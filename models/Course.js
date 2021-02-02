@@ -9,7 +9,7 @@ const schema = new Schema({
   name: {
     type: String,
     required: true,
-  }, // ej. Primaria 3ro y 4to
+  },
   school: {
     type: String,
     required: true,
@@ -31,17 +31,16 @@ const schema = new Schema({
   },
   topics: [
     {
-      name: { type: String, required: true }, // ej. Suma/Resta/Multiplicación
-      subject: { type: String, required: true }, // ej. Aritmética
-      description: { type: String, required: true }, // ej. La suma es una de las cuatro operaciones básicas...
+      name: { type: String, required: true },
+      subject: { type: String, required: true },
+      description: { type: String, required: true },
       reward: {
-        name: { type: String }, // ej. "Medalla de Suma"
-        link: { type: String }, // ej. "/images/medals/sumas1.png"
+        name: { type: String },
+        link: { type: String },
       },
       freestyle: {
-        timer: { type: Number, required: true }, // ej. 10 (minutos)
+        timer: { type: Number, required: true },
         attempts: [
-          // el leaderboard va a salir de aquí
           {
             studentId: {
               type: Schema.Types.ObjectId,
@@ -54,7 +53,6 @@ const schema = new Schema({
         ],
       },
       material: [
-        // todo lo que tenga links: pdfs/videos/etc
         {
           type: { type: String },
           name: { type: String },
