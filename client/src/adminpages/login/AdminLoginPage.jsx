@@ -4,7 +4,9 @@ import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { firebaseAuth } from "../../firebase/firebase";
 import fbApp from "firebase/app";
-import "./adminloginpage.scss";
+import cn from "classnames";
+
+import styles from "./adminloginpage.module.scss";
 
 export const AdminLoginPage = () => {
   const loginSchema = yup.object({
@@ -13,10 +15,10 @@ export const AdminLoginPage = () => {
   });
 
   return (
-    <Container fluid className="h-100" id="tlcstyle">
+    <Container fluid className={cn("h-100", styles.container)}>
       <Row>
         <Col md={{ span: 4, offset: 4 }}>
-          <h1 className="text-center py-3 my-4" id="tllstyle">
+          <h1 className={cn("my-4", "py-3", "text-center", styles.logo)}>
             MexMáticas
           </h1>
           <Formik
@@ -103,8 +105,7 @@ export const AdminLoginPage = () => {
                   </Form.Group>
                 </Form.Row>
                 <Button
-                  id="tlbuttonstyle"
-                  className="mt-3 shadow-sm"
+                  className={cn("mt-3", "shadow-sm", styles.button)}
                   type="submit"
                   disabled={isSubmitting}
                 >

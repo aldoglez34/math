@@ -34,7 +34,12 @@ export const AddPDF = React.memo(({ courseId, topicId }) => {
 
   return (
     <>
-      <Button onClick={handleShow} className="adminaddbttn ml-2" size="sm">
+      <Button
+        variant="dark"
+        onClick={handleShow}
+        className="adminaddbttn ml-2"
+        size="sm"
+      >
         <i className="fas fa-file-pdf mr-2" />
         <span>Agregar PDF</span>
       </Button>

@@ -2,15 +2,14 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { string } from "prop-types";
 
-export const EditExamBttn = React.memo(({ courseId, topicId, examId }) => {
+export const EditExamBttn = React.memo(({ courseId, examId, topicId }) => {
   return (
     <Button
-      className="editButton ml-1"
+      className="ml-1"
+      variant="dark"
       title="Editar"
       size="sm"
-      href={
-        "/admin/courses/edit/exam/" + courseId + "/" + topicId + "/" + examId
-      }
+      href={`/admin/courses/edit/exam/${courseId}/${topicId}/${examId}`}
     >
       <i className="fas fa-pen-alt " />
     </Button>
@@ -19,6 +18,6 @@ export const EditExamBttn = React.memo(({ courseId, topicId, examId }) => {
 
 EditExamBttn.propTypes = {
   courseId: string.isRequired,
-  topicId: string.isRequired,
   examId: string.isRequired,
+  topicId: string.isRequired,
 };

@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
-import { AdminButton, AdminLayout, AdminSpinner } from "../components";
+import { AdminLayout, AdminSpinner } from "../components";
+import { useDispatch } from "react-redux";
+import { setTitle } from "../../redux/actions/admin";
 import moment from "moment";
 import "moment/locale/es";
 
 export const AdminStudentDetailPage = React.memo((props) => {
+  const dispatch = useDispatch();
+
   const [student, setStudent] = useState();
 
-  useEffect(() => {
-    const studentId = props.routeProps.match.params.studentId;
+  const studentId = props.routeProps.match.params.studentId;
 
+  useEffect(() => {
     TeacherAPI.t_fetchOneStudent(studentId)
       .then((res) => {
         setStudent(res.data);
+        const { name, firstSurname, secondSurname } = res.data;
+        dispatch(setTitle(`${name} ${firstSurname} ${secondSurname}`));
       })
       .catch((err) => {
         console.log(err);
@@ -47,11 +53,7 @@ export const AdminStudentDetailPage = React.memo((props) => {
           <Col>
             <span className="text-muted">Nombre completo</span>
             <h3>
-              {student.name +
-                " " +
-                student.firstSurname +
-                " " +
-                student.secondSurname}
+              {`${student.name} ${student.firstSurname} ${student.secondSurname}`}
             </h3>
           </Col>
         </Row>
@@ -82,18 +84,14 @@ export const AdminStudentDetailPage = React.memo((props) => {
             ) : (
               <h5>Ninguno</h5>
             )}
-            <AdminButton
-              content={
-                <>
-                  <i className="fas fa-shopping-cart mr-2" />
-                  <span>Asignar curso</span>
-                </>
-              }
-              link={
-                "/admin/students/unpurchased/" +
-                props.routeProps.match.params.studentId
-              }
-            />
+            <Button
+              variant="dark"
+              size="sm"
+              href={`/admin/students/unpurchased/${studentId}`}
+            >
+              <i className="fas fa-shopping-cart mr-2" />
+              <span>Asignar curso</span>
+            </Button>
           </Col>
         </Row>
         {/* attempts */}
@@ -107,18 +105,14 @@ export const AdminStudentDetailPage = React.memo((props) => {
                 " / " +
                 student.attempts.filter((a) => a.grade === 10).length}
             </h2>
-            <AdminButton
-              content={
-                <>
-                  <i className="fas fa-history mr-2" />
-                  <span>Ver historial</span>
-                </>
-              }
-              link={
-                "/admin/students/history/" +
-                props.routeProps.match.params.studentId
-              }
-            />
+            <Button
+              variant="dark"
+              size="sm"
+              href={`/admin/students/history/${studentId}`}
+            >
+              <i className="fas fa-history mr-2" />
+              <span>Ver historial</span>
+            </Button>
           </Col>
         </Row>
         {/* medallas */}

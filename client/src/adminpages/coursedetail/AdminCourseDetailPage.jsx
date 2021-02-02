@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import { useDispatch } from "react-redux";
 import * as adminActions from "../../redux/actions/admin";
 import {
-  AdminSpinner,
   AdminLayout,
   AdminModal,
-  CourseNameForm,
-  CourseSchoolForm,
-  CoursePriceForm,
+  AdminSpinner,
+  CourseActiveForm,
   CourseDescriptionForm,
+  CourseNameForm,
+  CoursePriceForm,
+  CourseSchoolForm,
   CourseSummaryForm,
   EditTopicsBttn,
-  AdminButton,
-  CourseActiveForm,
 } from "../components";
 import moment from "moment";
 import "moment/locale/es";
@@ -24,9 +23,9 @@ export const AdminCourseDetailPage = React.memo((props) => {
 
   const [course, setCourse] = useState();
 
-  useEffect(() => {
-    const courseId = props.routeProps.match.params.courseId;
+  const courseId = props.routeProps.match.params.courseId;
 
+  useEffect(() => {
     TeacherAPI.t_fetchOneCourse(courseId)
       .then((res) => {
         setCourse(res.data);
@@ -167,18 +166,14 @@ export const AdminCourseDetailPage = React.memo((props) => {
             ) : (
               <h5>-</h5>
             )}
-            <AdminButton
-              content={
-                <>
-                  <i className="fas fa-plus-square mr-2" />
-                  <span>Nuevo</span>
-                </>
-              }
-              link={
-                "/admin/courses/courses/newTopic/" +
-                props.routeProps.match.params.courseId
-              }
-            />
+            <Button
+              variant="dark"
+              size="sm"
+              href={`/admin/courses/courses/newTopic/${courseId}`}
+            >
+              <i className="fas fa-plus-square mr-2" />
+              <span>Nuevo</span>
+            </Button>
           </Col>
         </Row>
         {/* created at */}

@@ -27,7 +27,7 @@ export const DeleteMaterialBttn = React.memo(
       <Button
         size="sm"
         variant="transparent"
-        className="ml-1 mt-1 genericDeleteButton"
+        className="ml-1 mt-1 text-danger"
         title="Eliminar"
         onClick={handleDelete}
       >

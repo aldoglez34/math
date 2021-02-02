@@ -18,7 +18,12 @@ export const AddVideo = React.memo(({ courseId, topicId }) => {
 
   return (
     <>
-      <Button onClick={handleShow} className="adminaddbttn" size="sm">
+      <Button
+        variant="dark"
+        onClick={handleShow}
+        className="adminaddbttn"
+        size="sm"
+      >
         <i className="fas fa-video mr-2" />
         <span>Agregar video</span>
       </Button>

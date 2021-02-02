@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Col, Container, Image, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import {
   AdminLayout,
   AdminSpinner,
   EditExamBttn,
+  ImageFromFirebase,
   TopicDescriptionForm,
   TopicFreestyleTimerForm,
   TopicNameForm,
@@ -12,7 +13,6 @@ import {
 } from "../components";
 import {
   AddPDF,
-  AddReward,
   AddVideo,
   AdminTopicModal,
   DeleteMaterialBttn,
@@ -20,7 +20,6 @@ import {
 } from "./components";
 import { useSelector, useDispatch } from "react-redux";
 import * as adminActions from "../../redux/actions/admin";
-import { firebaseStorage } from "../../firebase/firebase";
 
 export const AdminTopicDetailPage = React.memo((props) => {
   const dispatch = useDispatch();
@@ -36,24 +35,9 @@ export const AdminTopicDetailPage = React.memo((props) => {
       TeacherAPI.t_fetchTopic(courseId, topicId)
         .then((res) => {
           const topicName = res.data.name;
-          const imagePath = res.data.reward.link;
 
           dispatch(adminActions.setTopic({ topicId, topicName }));
-          dispatch(adminActions.setTitle(`${courseName} // ${topicName}`));
-
-          const storageRef = firebaseStorage.ref();
-          storageRef
-            .child(imagePath)
-            .getDownloadURL()
-            .then((url) => {
-              console.log(url);
-            })
-            .catch((err) => {
-              console.log(err);
-              alert(err);
-            });
-
-          console.log(imagePath);
+          dispatch(adminActions.setTitle(`${courseName} | ${topicName}`));
 
           setTopic(res.data);
         })
@@ -147,32 +131,14 @@ export const AdminTopicDetailPage = React.memo((props) => {
         <Row>
           <Col>
             <span className="text-muted">Recompensa</span>
-            {topic.reward ? (
-              <>
-                <div className="d-flex">
-                  <h5>{topic.reward.name}</h5>
-                  {/* <DeleteRewardBttn
-                    filePath={topic.reward.link}
-                    courseId={props.routeProps.match.params.courseId}
-                    topicId={topic._id}
-                  /> */}
-                </div>
-                <Image
-                  src={topic.reward.link}
-                  width="70"
-                  height="100"
-                  className="mb-3"
-                />
-              </>
-            ) : (
-              <div className="my-2">
-                <h5>-</h5>
-                <AddReward
-                  courseId={props.routeProps.match.params.courseId}
-                  topicId={topic._id}
-                />
-              </div>
-            )}
+            <div className="d-flex">
+              <h5>{topic.reward.name}</h5>
+            </div>
+            <ImageFromFirebase
+              height="100"
+              path={topic.reward.link}
+              width="70"
+            />
           </Col>
         </Row>
         {/* material */}
