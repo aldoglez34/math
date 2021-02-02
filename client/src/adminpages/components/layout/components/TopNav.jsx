@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { node, string } from "prop-types";
 import { useSelector } from "react-redux";
 
-export const TopHelperNav = React.memo(({ buttons, backBttn }) => {
+export const TopNav = React.memo(({ buttons, backBttn }) => {
   const title = useSelector((state) => state.admin.title);
 
   return (
@@ -48,7 +48,7 @@ export const TopHelperNav = React.memo(({ buttons, backBttn }) => {
   );
 });
 
-TopHelperNav.propTypes = {
+TopNav.propTypes = {
   buttons: node,
   backBttn: string,
 };

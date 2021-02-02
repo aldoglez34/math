@@ -1,7 +1,7 @@
 import React from "react";
 import { node, string } from "prop-types";
 import { LeftNav, TopNav } from "./components";
-import { ScrollButton } from "../components";
+import { ScrollButton } from "../../../components";
 
 export const AdminLayout = React.memo(
   ({ leftBarActive, buttons, children, backBttn }) => {

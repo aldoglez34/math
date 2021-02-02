@@ -1,6 +1,6 @@
 import React from "react";
-import { Nav, Button } from "react-bootstrap";
-import { firebaseAuth } from "../../../firebase/firebase";
+import { Button, Nav } from "react-bootstrap";
+import { firebaseAuth } from "../../../../firebase/firebase";
 import "./leftnav.scss";
 
 export const LeftNav = React.memo(({ leftBarActive }) => {

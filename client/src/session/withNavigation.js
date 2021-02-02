@@ -3,7 +3,7 @@ import AuthUserContext from "./context";
 import { connect } from "react-redux";
 import { firebaseAuth } from "../firebase/firebase";
 import { logoutStudent } from "../redux/actions/student";
-import AdminSpinner from "../admin/components/AdminSpinner";
+import { AdminSpinner } from "../adminpages/components";
 
 // higher order component
 const withNavigation = (Component) => {
