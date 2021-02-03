@@ -1,33 +1,37 @@
 import React from "react";
-import { Button, Form, Col } from "react-bootstrap";
-import { string } from "prop-types";
+import { Button, Form, Col, InputGroup } from "react-bootstrap";
+import { number, string } from "prop-types";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
-import TeacherAPI from "../../../utils/TeacherAPI";
+import TeacherAPI from "../../../../utils/TeacherAPI";
+import { useSelector } from "react-redux";
 
-export const TopicDescriptionForm = React.memo(
-  ({ formLabel, formInitialText, courseId, topicId }) => {
+export const TopicFreestyleTimerForm = React.memo(
+  ({ formLabel, formInitialText }) => {
+    const courseId = useSelector((state) => state.admin.course.courseId);
+    const topicId = useSelector((state) => state.admin.topic.topicId);
+
     const yupschema = yup.object({
-      newDescription: yup
-        .string()
-        .min(3, "Demasiado corta")
+      newTimer: yup
+        .number()
+        .positive("El número debe ser mayor a 1")
         .required("Requerido"),
     });
 
     return (
       <Formik
         initialValues={{
-          newDescription: formInitialText,
+          newTimer: formInitialText,
         }}
         validationSchema={yupschema}
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(true);
           values.courseId = courseId;
           values.topicId = topicId;
-          TeacherAPI.t_updateTopicDescription(values)
+          TeacherAPI.t_updateTopicFreestyleTimer(values)
             .then((res) => {
               console.log(res.data);
-              alert("La descripción del tema fue actualizada con éxito.");
+              alert("El tiempo del modo rápido fue actualizado con éxito.");
               window.location.reload();
             })
             .catch((err) => {
@@ -51,21 +55,23 @@ export const TopicDescriptionForm = React.memo(
             <Form.Row>
               <Form.Group as={Col}>
                 <Form.Label>{formLabel}</Form.Label>
-                <Form.Control
-                  maxLength="250"
-                  as="textarea"
-                  rows="5"
-                  type="text"
-                  name="newDescription"
-                  value={values.newDescription}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  isValid={touched.newDescription && !errors.newDescription}
-                  isInvalid={touched.newDescription && !!errors.newDescription}
-                />
+                <InputGroup className="mb-3">
+                  <Form.Control
+                    type="number"
+                    name="newTimer"
+                    value={values.newTimer}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    isValid={touched.newTimer && !errors.newTimer}
+                    isInvalid={touched.newTimer && !!errors.newTimer}
+                  />
+                  <InputGroup.Append>
+                    <InputGroup.Text>minutos</InputGroup.Text>
+                  </InputGroup.Append>
+                </InputGroup>
                 <ErrorMessage
                   className="text-danger"
-                  name="newDescription"
+                  name="newTimer"
                   component="div"
                 />
               </Form.Group>
@@ -83,9 +89,7 @@ export const TopicDescriptionForm = React.memo(
   }
 );
 
-TopicDescriptionForm.propTypes = {
+TopicFreestyleTimerForm.propTypes = {
   formLabel: string,
-  formInitialText: string,
-  courseId: string,
-  topicId: string,
+  formInitialText: number,
 };

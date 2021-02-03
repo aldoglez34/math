@@ -3,24 +3,27 @@ import { Button, Form, Col } from "react-bootstrap";
 import { string } from "prop-types";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
-import TeacherAPI from "../../../utils/TeacherAPI";
+import TeacherAPI from "../../../../utils/TeacherAPI";
+import { useSelector } from "react-redux";
 
-export const CourseSchoolForm = React.memo(
-  ({ formLabel, formInitialText, courseId }) => {
+export const CourseSummaryForm = React.memo(
+  ({ formLabel, formInitialText }) => {
+    const courseId = useSelector((state) => state.admin.course.courseId);
+
     const yupschema = yup.object({
-      newSchool: yup.string().required("Requerido"),
+      newSummary: yup.string().required("Requerido"),
     });
 
     return (
       <Formik
         initialValues={{
-          newSchool: formInitialText,
+          newSummary: formInitialText,
         }}
         validationSchema={yupschema}
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(true);
           values.courseId = courseId;
-          TeacherAPI.t_updateCourseSchool(values)
+          TeacherAPI.t_updateCourseSummary(values)
             .then((res) => {
               console.log(res);
               alert(res.data);
@@ -47,24 +50,24 @@ export const CourseSchoolForm = React.memo(
             <Form.Row>
               <Form.Group as={Col}>
                 <Form.Label>{formLabel}</Form.Label>
+                <Form.Text className="text-muted mb-2">
+                  Separados por coma
+                </Form.Text>
                 <Form.Control
-                  as="select"
+                  maxLength="250"
+                  as="textarea"
+                  rows="5"
                   type="text"
-                  name="newSchool"
-                  value={values.newSchool}
+                  name="newSummary"
+                  value={values.newSummary}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  isValid={touched.newSchool && !errors.newSchool}
-                  isInvalid={touched.newSchool && !!errors.newSchool}
-                >
-                  <option value="Primaria">Primaria</option>
-                  <option value="Secundaria">Secundaria</option>
-                  <option value="Preparatoria">Preparatoria</option>
-                  <option value="Universidad">Universidad</option>
-                </Form.Control>
+                  isValid={touched.newSummary && !errors.newSummary}
+                  isInvalid={touched.newSummary && !!errors.newSummary}
+                />
                 <ErrorMessage
                   className="text-danger"
-                  name="newSchool"
+                  name="newSummary"
                   component="div"
                 />
               </Form.Group>
@@ -82,7 +85,7 @@ export const CourseSchoolForm = React.memo(
   }
 );
 
-CourseSchoolForm.propTypes = {
+CourseSummaryForm.propTypes = {
   formLabel: string,
   formInitialText: string,
 };

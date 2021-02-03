@@ -2,43 +2,43 @@ import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import {
+  AdminDangerButton,
   AdminLayout,
+  AdminModal,
   AdminSpinner,
   EditExamBttn,
   ImageFromFirebase,
-  TopicDescriptionForm,
-  TopicFreestyleTimerForm,
-  TopicNameForm,
-  TopicSubjectForm,
 } from "../components";
 import {
   AddPDF,
   AddVideo,
-  AdminTopicModal,
-  DeleteMaterialBttn,
   NewExamBttn,
+  TopicDescriptionForm,
+  TopicFreestyleTimerForm,
+  TopicNameForm,
+  TopicSubjectForm,
 } from "./components";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as adminActions from "../../redux/actions/admin";
+import { firebaseStorage } from "../../firebase/firebase";
 
 export const AdminTopicDetailPage = React.memo((props) => {
   const dispatch = useDispatch();
+
   const courseName = useSelector((state) => state.admin.course.courseName);
 
   const [topic, setTopic] = useState();
 
-  useEffect(() => {
-    const courseId = props.routeProps.match.params.courseId;
-    const topicId = props.routeProps.match.params.topicId;
+  const courseId = props.routeProps.match.params.courseId;
+  const topicId = props.routeProps.match.params.topicId;
 
+  useEffect(() => {
     if (!topic)
       TeacherAPI.t_fetchTopic(courseId, topicId)
         .then((res) => {
           const topicName = res.data.name;
-
           dispatch(adminActions.setTopic({ topicId, topicName }));
           dispatch(adminActions.setTitle(`${courseName} | ${topicName}`));
-
           setTopic(res.data);
         })
         .catch((err) => {
@@ -53,10 +53,44 @@ export const AdminTopicDetailPage = React.memo((props) => {
     props.routeProps.match.params.topicId,
   ]);
 
+  const handleDeleteMaterialItem = (materialType, materialId, materialLink) => {
+    TeacherAPI.t_deleteMaterial({
+      courseId,
+      materialId,
+      topicId,
+    })
+      .then(() => {
+        if (materialType === "video") {
+          alert("El artículo seleccionado ha sido eliminado con éxito.");
+          window.location.reload();
+        }
+
+        if (materialType === "pdf") {
+          const storageRef = firebaseStorage.ref();
+          const fileRef = storageRef.child(materialLink);
+
+          fileRef
+            .delete()
+            .then(() => {
+              alert("El artículo seleccionado ha sido eliminado con éxito.");
+              window.location.reload();
+            })
+            .catch((err) => {
+              console.log(err);
+              alert("Ocurrió un error, vuelve a intentarlo.");
+            });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Ocurrió un error, vuelve a intentarlo.");
+      });
+  };
+
   return topic ? (
     <AdminLayout
       leftBarActive="Cursos"
-      backBttn={"/admin/courses/edit/" + props.routeProps.match.params.courseId}
+      backBttn={`/admin/courses/edit/${courseId}`}
     >
       <Container fluid>
         {/* topic name */}
@@ -65,13 +99,11 @@ export const AdminTopicDetailPage = React.memo((props) => {
             <span className="text-muted">Nombre</span>
             <h1>
               {topic.name}
-              <AdminTopicModal
-                modalTitle="Editar nombre"
+              <AdminModal
                 Form={TopicNameForm}
-                formLabel="Nombre"
                 formInitialText={topic.name}
-                courseId={props.routeProps.match.params.courseId}
-                topicId={topic._id}
+                formLabel="Nombre"
+                icon={<i className="fas fa-pen-alt" />}
               />
             </h1>
           </Col>
@@ -82,13 +114,11 @@ export const AdminTopicDetailPage = React.memo((props) => {
             <span className="text-muted">Materia</span>
             <h2>
               {topic.subject}
-              <AdminTopicModal
-                modalTitle="Editar materia"
+              <AdminModal
                 Form={TopicSubjectForm}
-                formLabel="Materia"
                 formInitialText={topic.subject}
-                courseId={props.routeProps.match.params.courseId}
-                topicId={topic._id}
+                formLabel="Materia"
+                icon={<i className="fas fa-pen-alt" />}
               />
             </h2>
           </Col>
@@ -99,13 +129,11 @@ export const AdminTopicDetailPage = React.memo((props) => {
             <span className="text-muted">Descripción</span>
             <h5>
               {topic.description}
-              <AdminTopicModal
-                modalTitle="Editar descripción"
+              <AdminModal
                 Form={TopicDescriptionForm}
-                formLabel="Descripción"
                 formInitialText={topic.description}
-                courseId={props.routeProps.match.params.courseId}
-                topicId={topic._id}
+                formLabel="Descripción"
+                icon={<i className="fas fa-pen-alt" />}
               />
             </h5>
           </Col>
@@ -115,14 +143,12 @@ export const AdminTopicDetailPage = React.memo((props) => {
           <Col>
             <span className="text-muted">Modo rápido</span>
             <h5>
-              {topic.freestyle.timer + " minutos"}
-              <AdminTopicModal
-                modalTitle="Editar modo rápido"
+              {`${topic.freestyle.timer} minutos`}
+              <AdminModal
                 Form={TopicFreestyleTimerForm}
-                formLabel="Modo rápido"
                 formInitialText={topic.freestyle.timer}
-                courseId={props.routeProps.match.params.courseId}
-                topicId={topic._id}
+                formLabel="Modo rápido"
+                icon={<i className="fas fa-pen-alt" />}
               />
             </h5>
           </Col>
@@ -150,17 +176,18 @@ export const AdminTopicDetailPage = React.memo((props) => {
                 {topic.material.map((m) => (
                   <li key={m._id}>
                     <strong style={{ color: "#0f5257" }}>
-                      {m.type === "video" ? (
+                      {m.type === "video" && (
                         <i className="fas fa-video mr-2" />
-                      ) : m.type === "pdf" ? (
+                      )}
+                      {m.type === "pdf" && (
                         <i className="fas fa-file-pdf mr-2" />
-                      ) : null}
+                      )}
                       {m.name}
-                      <DeleteMaterialBttn
-                        isPDF={m.type === "pdf" ? m.link : null}
-                        courseId={props.routeProps.match.params.courseId}
-                        topicId={topic._id}
-                        materialId={m._id}
+                      <AdminDangerButton
+                        icon={<i className="fas fa-times" />}
+                        onClick={() =>
+                          handleDeleteMaterialItem(m.type, m._id, m.link)
+                        }
                       />
                     </strong>
                   </li>
@@ -170,14 +197,8 @@ export const AdminTopicDetailPage = React.memo((props) => {
               <h5>-</h5>
             )}
             <div className="mb-3">
-              <AddVideo
-                courseId={props.routeProps.match.params.courseId}
-                topicId={topic._id}
-              />
-              <AddPDF
-                courseId={props.routeProps.match.params.courseId}
-                topicId={topic._id}
-              />
+              <AddVideo courseId={courseId} topicId={topicId} />
+              <AddPDF courseId={courseId} topicId={topicId} />
             </div>
           </Col>
         </Row>
@@ -194,11 +215,11 @@ export const AdminTopicDetailPage = React.memo((props) => {
                       <h5 className="mb-1">
                         {`[${e.difficulty}] `}
                         {e.name}
-                        <EditExamBttn
+                        {/* <EditExamBttn
                           courseId={props.routeProps.match.params.courseId}
                           topicId={props.routeProps.match.params.topicId}
                           examId={e._id}
-                        />
+                        /> */}
                       </h5>
                     </li>
                   ))}
@@ -206,10 +227,7 @@ export const AdminTopicDetailPage = React.memo((props) => {
             ) : (
               <h5>-</h5>
             )}
-            <NewExamBttn
-              courseId={props.routeProps.match.params.courseId}
-              topicId={topic._id}
-            />
+            <NewExamBttn courseId={courseId} topicId={topicId} />
           </Col>
         </Row>
       </Container>

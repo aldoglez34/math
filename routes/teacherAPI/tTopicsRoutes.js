@@ -37,8 +37,6 @@ router.get("/difficulties/:courseId/:topicId", function (req, res) {
     });
 });
 
-////////////////// EDITING FIELDS
-
 // t_updateTopicName
 // matches with /teacherAPI/topics/update/name
 router.put("/update/name", function (req, res) {
@@ -126,8 +124,6 @@ router.put("/update/timer", function (req, res) {
       res.status(422).send("Ocurrió un error.");
     });
 });
-
-////////////////// NEW (requires uploading)
 
 // t_newTopic()
 // matches with /teacherAPI/topics/new

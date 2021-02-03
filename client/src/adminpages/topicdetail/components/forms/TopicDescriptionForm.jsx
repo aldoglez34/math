@@ -3,14 +3,18 @@ import { Button, Form, Col } from "react-bootstrap";
 import { string } from "prop-types";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
-import TeacherAPI from "../../../utils/TeacherAPI";
+import TeacherAPI from "../../../../utils/TeacherAPI";
+import { useSelector } from "react-redux";
 
-export const CourseDescriptionForm = React.memo(
-  ({ formLabel, formInitialText, courseId }) => {
+export const TopicDescriptionForm = React.memo(
+  ({ formLabel, formInitialText }) => {
+    const courseId = useSelector((state) => state.admin.course.courseId);
+    const topicId = useSelector((state) => state.admin.topic.topicId);
+
     const yupschema = yup.object({
       newDescription: yup
         .string()
-        .min(3, "Descripción demasiado corta")
+        .min(3, "Demasiado corta")
         .required("Requerido"),
     });
 
@@ -23,14 +27,15 @@ export const CourseDescriptionForm = React.memo(
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(true);
           values.courseId = courseId;
-          TeacherAPI.t_updateCourseDescription(values)
+          values.topicId = topicId;
+          TeacherAPI.t_updateTopicDescription(values)
             .then((res) => {
-              console.log(res);
-              alert(res.data);
+              console.log(res.data);
+              alert("La descripción del tema fue actualizada con éxito.");
               window.location.reload();
             })
             .catch((err) => {
-              alert("Ocurrió un error. Vuelve a intentarlo más tarde.");
+              alert("Ocurrió un error.");
               setSubmitting(false);
               console.log(err);
             });
@@ -54,6 +59,7 @@ export const CourseDescriptionForm = React.memo(
                   maxLength="250"
                   as="textarea"
                   rows="5"
+                  type="text"
                   name="newDescription"
                   value={values.newDescription}
                   onChange={handleChange}
@@ -81,7 +87,7 @@ export const CourseDescriptionForm = React.memo(
   }
 );
 
-CourseDescriptionForm.propTypes = {
+TopicDescriptionForm.propTypes = {
   formLabel: string,
   formInitialText: string,
 };

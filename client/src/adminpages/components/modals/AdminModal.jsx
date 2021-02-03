@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { string } from "prop-types";
-import "./adminmodal.scss";
+import { bool, node, number, oneOfType, string } from "prop-types";
+import cn from "classnames";
+
+import styles from "./adminmodal.module.scss";
 
 export const AdminModal = React.memo(
-  ({ Form, formLabel, formInitialText, courseId }) => {
+  ({ Form, formInitialText, formLabel, icon }) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -14,11 +16,10 @@ export const AdminModal = React.memo(
       <>
         <Button
           size="sm"
-          className="editButton ml-1"
+          className={cn("ml-1", styles.button)}
           onClick={handleShow}
-          title="Editar"
         >
-          <i className="fas fa-pen-alt " />
+          {icon}
         </Button>
 
         <Modal show={show} onHide={handleClose}>
@@ -34,11 +35,7 @@ export const AdminModal = React.memo(
               </Button>
             </div>
             <div className="my-3">
-              <Form
-                formLabel={formLabel}
-                formInitialText={formInitialText}
-                courseId={courseId}
-              />
+              <Form formLabel={formLabel} formInitialText={formInitialText} />
             </div>
           </Modal.Body>
         </Modal>
@@ -48,7 +45,7 @@ export const AdminModal = React.memo(
 );
 
 AdminModal.propTypes = {
-  modalHeader: string,
+  formInitialText: oneOfType([bool, number, string]),
   formLabel: string,
-  courseId: string,
+  icon: node,
 };

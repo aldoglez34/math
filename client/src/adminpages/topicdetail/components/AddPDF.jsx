@@ -3,7 +3,7 @@ import { Button, Col, Form, Modal } from "react-bootstrap";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { string } from "prop-types";
-import { UploadPDF } from "./";
+import { firebaseStorage } from "../../../firebase/firebase";
 import TeacherAPI from "../../../utils/TeacherAPI";
 
 export const AddPDF = React.memo(({ courseId, topicId }) => {
@@ -34,12 +34,7 @@ export const AddPDF = React.memo(({ courseId, topicId }) => {
 
   return (
     <>
-      <Button
-        variant="dark"
-        onClick={handleShow}
-        className="adminaddbttn ml-2"
-        size="sm"
-      >
+      <Button variant="dark" onClick={handleShow} className="ml-2" size="sm">
         <i className="fas fa-file-pdf mr-2" />
         <span>Agregar PDF</span>
       </Button>
@@ -66,22 +61,31 @@ export const AddPDF = React.memo(({ courseId, topicId }) => {
               validationSchema={yupschema}
               onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
-                let materialPDF = new FormData();
-                materialPDF.append("name", values.name);
-                materialPDF.append("pdf", values.pdf);
-                materialPDF.append("file", values.file);
-                materialPDF.append("courseId", courseId);
-                materialPDF.append("topicId", topicId);
-                //
-                TeacherAPI.t_addPDFToMaterial(materialPDF)
-                  .then((res) => {
-                    console.log(res.data);
-                    alert("El PDF fue agregado satisfactoriamente");
-                    window.location.reload();
+
+                const storageRef = firebaseStorage.ref();
+                const pathOnFirebaseStorage = `${courseId}/${topicId}/material/${values.name}`;
+                const fileRef = storageRef.child(pathOnFirebaseStorage);
+
+                fileRef
+                  .put(values.file)
+                  .then(() => {
+                    values.type = "pdf";
+                    values.courseId = courseId;
+                    values.topicId = topicId;
+                    TeacherAPI.t_addMaterial(values)
+                      .then((res) => {
+                        console.log(res.data);
+                        alert("El PDF fue agregado satisfactoriamente.");
+                        window.location.reload();
+                      })
+                      .catch((err) => {
+                        console.log(err);
+                        alert("Ocurrió un error, vuelve a intentarlo");
+                      });
                   })
                   .catch((err) => {
                     console.log(err);
-                    alert("Ocurrió un error, vuelve a intentarlo");
+                    alert(err);
                   });
               }}
             >
@@ -118,13 +122,34 @@ export const AddPDF = React.memo(({ courseId, topicId }) => {
                     </Form.Group>
                   </Form.Row>
                   {/* pdf */}
-                  <UploadPDF
-                    pdf={values.pdf}
-                    setFieldValue={setFieldValue}
-                    onBlur={handleBlur}
-                    file={values.file}
-                  />
-                  {/* buttons */}
+                  <Form.Row>
+                    <Form.Label>PDF</Form.Label>
+                    <Form.File
+                      encType="multipart/form-data"
+                      accept="application/pdf"
+                      label={values.pdf ? values.pdf : ""}
+                      data-browse="Buscar"
+                      id="file"
+                      name="file"
+                      type="file"
+                      onChange={(event) => {
+                        setFieldValue("file", event.currentTarget.files[0]);
+                        setFieldValue(
+                          "pdf",
+                          event.currentTarget.files[0]
+                            ? event.currentTarget.files[0].name
+                            : ""
+                        );
+                      }}
+                      onBlur={handleBlur}
+                      custom
+                    />
+                    <ErrorMessage
+                      className="text-danger"
+                      name="file"
+                      component="div"
+                    />
+                  </Form.Row>
                   <Form.Group className="text-right mt-4">
                     <Button
                       variant="dark"

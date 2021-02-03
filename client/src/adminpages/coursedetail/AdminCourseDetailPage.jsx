@@ -6,15 +6,17 @@ import * as adminActions from "../../redux/actions/admin";
 import {
   AdminLayout,
   AdminModal,
+  AdminPrimaryButton,
   AdminSpinner,
+} from "../components";
+import {
   CourseActiveForm,
   CourseDescriptionForm,
   CourseNameForm,
   CoursePriceForm,
   CourseSchoolForm,
   CourseSummaryForm,
-  EditTopicsBttn,
-} from "../components";
+} from "./components";
 import moment from "moment";
 import "moment/locale/es";
 
@@ -44,7 +46,7 @@ export const AdminCourseDetailPage = React.memo((props) => {
   }, [props.routeProps.match.params.courseId, dispatch]);
 
   return course ? (
-    <AdminLayout title="Curso" leftBarActive="Cursos" backBttn="/admin/courses">
+    <AdminLayout leftBarActive="Cursos" backBttn="/admin/courses">
       <Container fluid>
         {/* course name */}
         <Row>
@@ -54,9 +56,9 @@ export const AdminCourseDetailPage = React.memo((props) => {
               {course.name}
               <AdminModal
                 Form={CourseNameForm}
-                formLabel="Nombre"
                 formInitialText={course.name}
-                courseId={course._id}
+                formLabel="Nombre"
+                icon={<i className="fas fa-pen-alt" />}
               />
             </h1>
           </Col>
@@ -69,9 +71,9 @@ export const AdminCourseDetailPage = React.memo((props) => {
               {course.school}
               <AdminModal
                 Form={CourseSchoolForm}
-                formLabel="Nivel escolar"
                 formInitialText={course.school}
-                courseId={course._id}
+                formLabel="Nivel escolar"
+                icon={<i className="fas fa-pen-alt" />}
               />
             </h2>
           </Col>
@@ -84,9 +86,9 @@ export const AdminCourseDetailPage = React.memo((props) => {
               {"$" + course.price}
               <AdminModal
                 Form={CoursePriceForm}
-                formLabel="Precio"
                 formInitialText={course.price}
-                courseId={course._id}
+                formLabel="Precio"
+                icon={<i className="fas fa-pen-alt" />}
               />
             </h2>
           </Col>
@@ -99,9 +101,9 @@ export const AdminCourseDetailPage = React.memo((props) => {
               {course.isActive ? "Activo" : "No activo"}
               <AdminModal
                 Form={CourseActiveForm}
-                formLabel="Estatus"
                 formInitialText={course.isActive}
-                courseId={course._id}
+                formLabel="Estatus"
+                icon={<i className="fas fa-pen-alt" />}
               />
             </h3>
           </Col>
@@ -114,9 +116,9 @@ export const AdminCourseDetailPage = React.memo((props) => {
               {course.description}
               <AdminModal
                 Form={CourseDescriptionForm}
-                formLabel="Descripción"
                 formInitialText={course.description}
-                courseId={course._id}
+                formLabel="Descripción"
+                icon={<i className="fas fa-pen-alt" />}
               />
             </h5>
           </Col>
@@ -136,9 +138,9 @@ export const AdminCourseDetailPage = React.memo((props) => {
                       {idx === course.topicsSummary.length - 1 ? (
                         <AdminModal
                           Form={CourseSummaryForm}
-                          formLabel="Resumen"
                           formInitialText={course.topicsSummary.toString()}
-                          courseId={course._id}
+                          formLabel="Resumen"
+                          icon={<i className="fas fa-pen-alt" />}
                         />
                       ) : null}
                     </h5>
@@ -158,7 +160,10 @@ export const AdminCourseDetailPage = React.memo((props) => {
                   <li key={t._id}>
                     <h5 className="mb-0">
                       {t.name}
-                      <EditTopicsBttn courseId={course._id} topicId={t._id} />
+                      <AdminPrimaryButton
+                        href={`/admin/courses/edit/topics/${courseId}/${t._id}`}
+                        icon={<i className="fas fa-arrow-alt-circle-right" />}
+                      />
                     </h5>
                   </li>
                 ))}

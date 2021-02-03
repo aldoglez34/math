@@ -73,12 +73,7 @@ export default {
   // MATERIAL
   // ==============================================
 
-  t_addVideoToMaterial: (data) =>
-    axios.put("/teacherAPI/material/video/add", data),
-
-  t_addPDFToMaterial: (data) => axios.put("/teacherAPI/material/pdf/add", data),
-
-  // delete material
+  t_addMaterial: (data) => axios.put("/teacherAPI/material/add", data),
 
   t_deleteMaterial: (data) => axios.put("/teacherAPI/material/delete", data),
 

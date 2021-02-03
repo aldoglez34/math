@@ -1,29 +1,32 @@
 import React from "react";
-import { Button, Form, Col, InputGroup } from "react-bootstrap";
-import { number, string } from "prop-types";
+import { Button, Form, Col } from "react-bootstrap";
+import { string } from "prop-types";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
-import TeacherAPI from "../../../utils/TeacherAPI";
+import TeacherAPI from "../../../../utils/TeacherAPI";
+import { useSelector } from "react-redux";
 
-export const CoursePriceForm = React.memo(
-  ({ formLabel, formInitialText, courseId }) => {
+export const CourseDescriptionForm = React.memo(
+  ({ formLabel, formInitialText }) => {
+    const courseId = useSelector((state) => state.admin.course.courseId);
+
     const yupschema = yup.object({
-      newPrice: yup
-        .number()
-        .positive("¿Por qué negativo?")
+      newDescription: yup
+        .string()
+        .min(3, "Descripción demasiado corta")
         .required("Requerido"),
     });
 
     return (
       <Formik
         initialValues={{
-          newPrice: formInitialText,
+          newDescription: formInitialText,
         }}
         validationSchema={yupschema}
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(true);
           values.courseId = courseId;
-          TeacherAPI.t_updateCoursePrice(values)
+          TeacherAPI.t_updateCourseDescription(values)
             .then((res) => {
               console.log(res);
               alert(res.data);
@@ -50,23 +53,20 @@ export const CoursePriceForm = React.memo(
             <Form.Row>
               <Form.Group as={Col}>
                 <Form.Label>{formLabel}</Form.Label>
-                <InputGroup>
-                  <InputGroup.Prepend>
-                    <InputGroup.Text>$</InputGroup.Text>
-                  </InputGroup.Prepend>
-                  <Form.Control
-                    type="number"
-                    name="newPrice"
-                    value={values.newPrice}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.newPrice && !errors.newPrice}
-                    isInvalid={touched.newPrice && !!errors.newPrice}
-                  />
-                </InputGroup>
+                <Form.Control
+                  maxLength="250"
+                  as="textarea"
+                  rows="5"
+                  name="newDescription"
+                  value={values.newDescription}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  isValid={touched.newDescription && !errors.newDescription}
+                  isInvalid={touched.newDescription && !!errors.newDescription}
+                />
                 <ErrorMessage
                   className="text-danger"
-                  name="newPrice"
+                  name="newDescription"
                   component="div"
                 />
               </Form.Group>
@@ -84,7 +84,7 @@ export const CoursePriceForm = React.memo(
   }
 );
 
-CoursePriceForm.propTypes = {
+CourseDescriptionForm.propTypes = {
   formLabel: string,
-  formInitialText: number,
+  formInitialText: string,
 };

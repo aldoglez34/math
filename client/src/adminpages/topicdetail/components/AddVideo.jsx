@@ -49,12 +49,11 @@ export const AddVideo = React.memo(({ courseId, topicId }) => {
               validationSchema={yupschema}
               onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
+                values.type = "video";
                 values.courseId = courseId;
                 values.topicId = topicId;
-                //
-                TeacherAPI.t_addVideoToMaterial(values)
-                  .then((res) => {
-                    console.log(res.data);
+                TeacherAPI.t_addMaterial(values)
+                  .then(() => {
                     alert("El video fue agregado satisfactoriamente");
                     window.location.reload();
                   })
