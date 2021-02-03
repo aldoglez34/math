@@ -1,11 +1,13 @@
 import React from "react";
 import { Button, Form, Col } from "react-bootstrap";
-import PropTypes from "prop-types";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeacherAPI from "../../../../utils/TeacherAPI";
+import { useSelector } from "react-redux";
 
-export const SimpleWithTwoAnswersForm = React.memo(({ examId }) => {
+export const SimpleWithTwoAnswersForm = () => {
+  const examId = useSelector((state) => state.admin.exam.examId);
+
   const yupschema = yup.object({
     qInstruction: yup.string().required("Requerido"),
     qTechnicalInstruction: yup.string(),
@@ -34,6 +36,7 @@ export const SimpleWithTwoAnswersForm = React.memo(({ examId }) => {
       validationSchema={yupschema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
+
         values.qInstruction = values.qInstruction.trim();
         values.qTechnicalInstruction = values.qTechnicalInstruction.trim();
         values.qCorrectAnswer1 = values.qCorrectAnswer1.trim();
@@ -45,7 +48,7 @@ export const SimpleWithTwoAnswersForm = React.memo(({ examId }) => {
         values.qComment = values.qComment.trim();
 
         values.examId = examId;
-        //
+
         TeacherAPI.t_newSimpleWithTwoAnswersQuestion(values)
           .then((res) => {
             console.log(res.data);
@@ -284,8 +287,4 @@ export const SimpleWithTwoAnswersForm = React.memo(({ examId }) => {
       )}
     </Formik>
   );
-});
-
-SimpleWithTwoAnswersForm.propTypes = {
-  examId: PropTypes.string.isRequired,
 };

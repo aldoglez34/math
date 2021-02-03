@@ -1,11 +1,11 @@
 import React from "react";
-import { Button, Form, Col } from "react-bootstrap";
-import PropTypes from "prop-types";
+import { Button, Col, Form } from "react-bootstrap";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeacherAPI from "../../../../utils/TeacherAPI";
+import { useSelector } from "react-redux";
 
-export const SimpleQuestionForm = React.memo(({ examId }) => {
+export const SimpleQuestionForm = () => {
   const yupschema = yup.object({
     qInstruction: yup.string().required("Requerido"),
     qTechnicalInstruction: yup.string(),
@@ -14,6 +14,8 @@ export const SimpleQuestionForm = React.memo(({ examId }) => {
     qCARight: yup.string(),
     qComment: yup.string(),
   });
+
+  const examId = useSelector((state) => state.admin.exam.examId);
 
   return (
     <Formik
@@ -35,7 +37,7 @@ export const SimpleQuestionForm = React.memo(({ examId }) => {
         values.qCARight = values.qCARight.trim();
         values.qComment = values.qComment.trim();
         values.examId = examId;
-        //
+
         TeacherAPI.t_newSimpleQuestion(values)
           .then((res) => {
             console.log(res.data);
@@ -210,8 +212,4 @@ export const SimpleQuestionForm = React.memo(({ examId }) => {
       )}
     </Formik>
   );
-});
-
-SimpleQuestionForm.propTypes = {
-  examId: PropTypes.string.isRequired,
 };

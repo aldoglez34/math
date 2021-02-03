@@ -85,7 +85,7 @@ export const AddPDF = React.memo(({ courseId, topicId }) => {
                   })
                   .catch((err) => {
                     console.log(err);
-                    alert(err);
+                    alert("Ocurrió un error en el servidor, intenta más tarde");
                   });
               }}
             >

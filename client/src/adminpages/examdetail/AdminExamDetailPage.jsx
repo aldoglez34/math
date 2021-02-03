@@ -11,7 +11,7 @@ import {
   MultipleOptionQuestionsTable,
   MultipleOptionWithImage,
   MultipleOptionWithImageTable,
-  NewQuestionBttn,
+  NewQuestionModal,
   SimpleQuestionForm,
   SimpleQuestionTable,
   SimpleWithImageForm,
@@ -172,38 +172,28 @@ export const AdminExamDetailPage = React.memo((props) => {
         <h3 className="text-center">Nuevas preguntas</h3>
         <div className="d-flex flex-row justify-content-center mb-3 mt-3">
           <div>
-            <NewQuestionBttn
-              examId={exam._id}
-              Form={SimpleQuestionForm}
-              text="Sencilla"
-            />
+            <NewQuestionModal Form={SimpleQuestionForm} text="Sencilla" />
           </div>
           <div className="ml-2">
-            <NewQuestionBttn
-              examId={exam._id}
-              courseId={props.routeProps.match.params.courseId}
+            <NewQuestionModal
               Form={SimpleWithImageForm}
               text="Sencilla con imagen"
             />
           </div>
           <div className="ml-2">
-            <NewQuestionBttn
-              examId={exam._id}
+            <NewQuestionModal
               Form={SimpleWithTwoAnswersForm}
               text="Sencilla con 2 respuestas"
             />
           </div>
           <div className="ml-2">
-            <NewQuestionBttn
-              examId={exam._id}
+            <NewQuestionModal
               Form={MultipleOptionForm}
               text="Opción múltiple"
             />
           </div>
           <div className="ml-2">
-            <NewQuestionBttn
-              examId={exam._id}
-              courseId={props.routeProps.match.params.courseId}
+            <NewQuestionModal
               Form={MultipleOptionWithImage}
               text="Opción múltiple con imagen"
             />
@@ -211,11 +201,7 @@ export const AdminExamDetailPage = React.memo((props) => {
         </div>
         {/* TABLES */}
         {simpleQuestions.length ? (
-          <SimpleQuestionTable
-            courseId={props.routeProps.match.params.courseId}
-            questions={simpleQuestions}
-            examId={props.routeProps.match.params.examId}
-          />
+          <SimpleQuestionTable questions={simpleQuestions} />
         ) : null}
         {simpleWithImageQuestions.length ? (
           <SimpleWithImageQuestionsTable

@@ -1,11 +1,11 @@
 import React from "react";
 import { Button, Form, Col } from "react-bootstrap";
-import PropTypes from "prop-types";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeacherAPI from "../../../../utils/TeacherAPI";
+import { useSelector } from "react-redux";
 
-export const MultipleOptionForm = React.memo(({ examId }) => {
+export const MultipleOptionForm = () => {
   const yupschema = yup.object({
     qInstruction: yup.string().required("Requerido"),
     qTechnicalInstruction: yup.string(),
@@ -16,6 +16,8 @@ export const MultipleOptionForm = React.memo(({ examId }) => {
     qCorrectAnswer: yup.string().required("Requerido"),
     qComment: yup.string(),
   });
+
+  const examId = useSelector((state) => state.admin.exam.examId);
 
   return (
     <Formik
@@ -32,6 +34,7 @@ export const MultipleOptionForm = React.memo(({ examId }) => {
       validationSchema={yupschema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
+
         values.qInstruction = values.qInstruction.trim();
         values.qTechnicalInstruction = values.qTechnicalInstruction.trim();
         values.qOption1 = values.qOption1.trim();
@@ -42,7 +45,7 @@ export const MultipleOptionForm = React.memo(({ examId }) => {
         values.qInstructiqCommenton = values.qComment.trim();
 
         values.examId = examId;
-        //
+
         TeacherAPI.t_newMultipleOptionQuestion(values)
           .then((res) => {
             console.log(res.data);
@@ -276,8 +279,4 @@ export const MultipleOptionForm = React.memo(({ examId }) => {
       )}
     </Formik>
   );
-});
-
-MultipleOptionForm.propTypes = {
-  examId: PropTypes.string.isRequired,
 };

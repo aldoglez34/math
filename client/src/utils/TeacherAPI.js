@@ -9,11 +9,7 @@ export default {
 
   t_fetchOneCourse: (courseId) => axios.get("/teacherAPI/courses/" + courseId),
 
-  // new
-
   t_newCourse: (data) => axios.post("/teacherAPI/courses/new", data),
-
-  // updating
 
   t_updateCourseName: (data) =>
     axios.put("/teacherAPI/courses/update/name", data),
@@ -43,8 +39,6 @@ export default {
   t_fetchAvailableDifficulties: (courseId, topicId) =>
     axios.get("/teacherAPI/topics/difficulties/" + courseId + "/" + topicId),
 
-  // updating
-
   t_updateTopicName: (data) =>
     axios.put("/teacherAPI/topics/update/name", data),
 
@@ -56,8 +50,6 @@ export default {
 
   t_updateTopicFreestyleTimer: (data) =>
     axios.put("/teacherAPI/topics/update/timer", data),
-
-  // new
 
   t_newTopic: (topicData) => axios.put("/teacherAPI/topics/new", topicData),
 
@@ -135,20 +127,20 @@ export default {
   // QUESTIONS
   // ==============================================
 
-  t_deleteQuestion: (data) => axios.put("/teacherAPI/questions/delete/", data),
-
   t_newSimpleQuestion: (data) =>
     axios.post("/teacherAPI/questions/simpleQuestion/new", data),
-
-  t_newMultipleOptionQuestion: (data) =>
-    axios.post("/teacherAPI/questions/multipleOption/new", data),
 
   t_newSimpleWithImageQuestion: (data) =>
     axios.post("/teacherAPI/questions/simpleWithImage/new", data),
 
+  t_newSimpleWithTwoAnswersQuestion: (data) =>
+    axios.post("/teacherAPI/questions/simpleWithTwoAnswers/new", data),
+
+  t_newMultipleOptionQuestion: (data) =>
+    axios.post("/teacherAPI/questions/multipleOption/new", data),
+
   t_newMultipleOptionWithImage: (data) =>
     axios.post("/teacherAPI/questions/multipleOptionWithImage/new", data),
 
-  t_newSimpleWithTwoAnswersQuestion: (data) =>
-    axios.post("/teacherAPI/questions/simpleWithTwoAnswers/new", data),
+  t_deleteQuestion: (data) => axios.put("/teacherAPI/questions/delete", data),
 };

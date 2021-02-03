@@ -1,11 +1,12 @@
 import React from "react";
 import { Button, Form, Col } from "react-bootstrap";
-import PropTypes from "prop-types";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeacherAPI from "../../../../utils/TeacherAPI";
+import { useSelector } from "react-redux";
+import { firebaseStorage } from "../../../../firebase/firebase";
 
-export const MultipleOptionWithImage = React.memo(({ examId, courseId }) => {
+export const MultipleOptionWithImage = () => {
   const PHOTO_SIZE = 4000000;
   const SUPPORTED_FORMATS = [
     "image/jpg",
@@ -39,6 +40,10 @@ export const MultipleOptionWithImage = React.memo(({ examId, courseId }) => {
     qComment: yup.string(),
   });
 
+  const courseId = useSelector((state) => state.admin.course.courseId);
+  const topicId = useSelector((state) => state.admin.topic.topicId);
+  const examId = useSelector((state) => state.admin.exam.examId);
+
   return (
     <Formik
       initialValues={{
@@ -58,27 +63,37 @@ export const MultipleOptionWithImage = React.memo(({ examId, courseId }) => {
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
 
-        let questionData = new FormData();
-        questionData.append("qInstruction", values.qInstruction.trim());
-        questionData.append("image", values.image);
-        questionData.append("file", values.file);
-        questionData.append("qOption1", values.qOption1.trim());
-        questionData.append("qOption2", values.qOption2.trim());
-        questionData.append("qOption3", values.qOption3.trim());
-        questionData.append("qOption4", values.qOption4.trim());
-        questionData.append("qCorrectAnswers", values.qCorrectAnswers.trim());
-        questionData.append("qCALeft", values.qCALeft.trim());
-        questionData.append("qCARight", values.qCARight.trim());
-        questionData.append("qComment", values.qComment.trim());
+        values.qInstruction = values.qInstruction.trim();
+        values.qOption1 = values.qOption1.trim();
+        values.qOption2 = values.qOption2.trim();
+        values.qOption3 = values.qOption3.trim();
+        values.qOption4 = values.qOption4.trim();
+        values.qCALeft = values.qCALeft.trim();
+        values.qCARight = values.qCARight.trim();
+        values.qComment = values.qComment.trim();
 
-        questionData.append("examId", examId);
-        questionData.append("courseId", courseId);
+        values.courseId = courseId;
+        values.topicId = topicId;
+        values.examId = examId;
 
-        TeacherAPI.t_newMultipleOptionWithImage(questionData)
+        TeacherAPI.t_newMultipleOptionWithImage(values)
           .then((res) => {
-            console.log(res.data);
-            alert("La pregunta ha sido registrada con éxito.");
-            window.location.reload();
+            const questionId = res.data;
+
+            const storageRef = firebaseStorage.ref();
+            const pathOnFirebaseStorage = `${courseId}/${topicId}/exams/${examId}/${questionId}/imagen`;
+            const fileRef = storageRef.child(pathOnFirebaseStorage);
+
+            fileRef
+              .put(values.file)
+              .then(() => {
+                alert("La pregunta ha sido registrada con éxito.");
+                window.location.reload();
+              })
+              .catch((err) => {
+                console.log(err);
+                alert("Ocurrió un error en el servidor, intenta más tarde");
+              });
           })
           .catch((err) => {
             alert("Ocurrió un error. Vuelve a intentarlo.");
@@ -347,8 +362,4 @@ export const MultipleOptionWithImage = React.memo(({ examId, courseId }) => {
       )}
     </Formik>
   );
-});
-
-MultipleOptionWithImage.propTypes = {
-  examId: PropTypes.string.isRequired,
 };
