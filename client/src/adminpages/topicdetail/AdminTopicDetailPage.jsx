@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import {
+  AdminPrimaryButton,
   AdminDangerButton,
   AdminLayout,
   AdminModal,
   AdminSpinner,
-  EditExamBttn,
   ImageFromFirebase,
 } from "../components";
 import {
@@ -45,13 +45,7 @@ export const AdminTopicDetailPage = React.memo((props) => {
           console.log(err);
           alert("Ocurrió un error");
         });
-  }, [
-    courseName,
-    dispatch,
-    topic,
-    props.routeProps.match.params.courseId,
-    props.routeProps.match.params.topicId,
-  ]);
+  }, [courseId, courseName, dispatch, topic, topicId]);
 
   const handleDeleteMaterialItem = (materialType, materialId, materialLink) => {
     TeacherAPI.t_deleteMaterial({
@@ -207,20 +201,19 @@ export const AdminTopicDetailPage = React.memo((props) => {
           <Col>
             <span className="text-muted">Exámenes</span>
             {topic.exams.length ? (
-              <ul className="mb-0">
+              <ul>
                 {topic.exams
                   .sort((a, b) => a.examOrderNumber - b.examOrderNumber)
                   .map((e) => (
                     <li key={e._id}>
-                      <h5 className="mb-1">
+                      <strong style={{ color: "#0f5257" }}>
                         {`[${e.difficulty}] `}
                         {e.name}
-                        {/* <EditExamBttn
-                          courseId={props.routeProps.match.params.courseId}
-                          topicId={props.routeProps.match.params.topicId}
-                          examId={e._id}
-                        /> */}
-                      </h5>
+                        <AdminPrimaryButton
+                          href={`/admin/courses/edit/exam/${courseId}/${topicId}/${e._id}`}
+                          icon={<i className="fas fa-arrow-alt-circle-right" />}
+                        />
+                      </strong>
                     </li>
                   ))}
               </ul>

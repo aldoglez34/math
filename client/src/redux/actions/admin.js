@@ -4,6 +4,13 @@ export const clearAdminData = () => {
   };
 };
 
+export const setTitle = (data) => {
+  return {
+    type: "admin/setTitle",
+    data,
+  };
+};
+
 export const setCourse = (data) => {
   return {
     type: "admin/setCourse",
@@ -18,9 +25,9 @@ export const setTopic = (data) => {
   };
 };
 
-export const setTitle = (data) => {
+export const setExam = (data) => {
   return {
-    type: "admin/setTitle",
+    type: "admin/setExam",
     data,
   };
 };

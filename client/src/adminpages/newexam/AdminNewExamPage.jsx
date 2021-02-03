@@ -19,17 +19,21 @@ export const AdminNewExamPage = React.memo((props) => {
       .required("Requerido"),
   });
 
+  const topicId = props.routeProps.match.params.topicId;
+  const courseId = props.routeProps.match.params.courseId;
+  const difficulty = props.routeProps.match.params.difficulty;
+
   return (
     <AdminLayout
       title="Nuevo Examen"
       leftBarActive="Cursos"
-      backBttn={`/admin/courses/edit/topics/${props.routeProps.match.params.courseId}/${props.routeProps.match.params.topicId}`}
+      backBttn={`/admin/courses/edit/topics/${courseId}/${topicId}`}
     >
       <Container>
         <Row>
           <Col md={{ offset: 2, span: 8 }}>
             <h3 className="mb-1">Ingresa los datos del examen.</h3>
-            <strong>[{props.routeProps.match.params.difficulty}]</strong>
+            <strong>[{difficulty}]</strong>
             <br />
             <br />
             <Formik
@@ -42,9 +46,9 @@ export const AdminNewExamPage = React.memo((props) => {
               validationSchema={yupschema}
               onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
-                values.courseId = props.routeProps.match.params.courseId;
-                values.topicId = props.routeProps.match.params.topicId;
-                values.difficulty = props.routeProps.match.params.difficulty;
+                values.courseId = courseId;
+                values.topicId = topicId;
+                values.difficulty = difficulty;
                 values.examOrderNumber =
                   values.difficulty === "Basic"
                     ? 1
@@ -57,12 +61,12 @@ export const AdminNewExamPage = React.memo((props) => {
                     : values.difficulty === "Advanced"
                     ? 5
                     : 0;
-                //
+
                 TeacherAPI.t_newExam(values)
                   .then((res) => {
-                    console.log(res.data);
-                    alert("Examen agregado con éxito");
-                    window.location.href = `/admin/courses/edit/topics/${props.routeProps.match.params.courseId}/${props.routeProps.match.params.topicId}`;
+                    const newExamId = res.data;
+                    alert("Examen agregado con éxito.");
+                    window.location.href = `/admin/courses/edit/exam/${courseId}/${topicId}/${newExamId}`;
                   })
                   .catch((err) => {
                     console.log(err);

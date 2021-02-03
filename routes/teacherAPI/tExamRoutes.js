@@ -30,7 +30,7 @@ router.post("/new", function (req, res) {
         }
       )
         .then(() => {
-          res.send("El examen fue agregado con éxito.");
+          res.send(newExamId);
         })
         .catch((err) => {
           console.log("@error", err);

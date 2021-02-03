@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { AdminLayout, AdminSpinner } from "../components";
+import { AdminLayout, AdminModal, AdminSpinner } from "../components";
 import { Col, Container, Row } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import {
-  AdminExamModal,
   ExamDescriptionForm,
   ExamDurationForm,
   ExamNameForm,
@@ -20,9 +19,16 @@ import {
   SimpleWithTwoAnswersForm,
   SimpleWithTwoAnswersTable,
 } from "./components";
+import { useDispatch, useSelector } from "react-redux";
+import { setExam, setTitle } from "../../redux/actions/admin";
 
 export const AdminExamDetailPage = React.memo((props) => {
-  const [exam, setExam] = useState();
+  const dispatch = useDispatch();
+
+  const [exam, setExamOnState] = useState();
+
+  const courseName = useSelector((state) => state.admin.course.courseName);
+  const topicName = useSelector((state) => state.admin.topic.topicName);
 
   const [simpleQuestions, setSimpleQuestions] = useState([]);
   const [simpleWithImageQuestions, setSimpleWithImageQuestions] = useState([]);
@@ -36,12 +42,22 @@ export const AdminExamDetailPage = React.memo((props) => {
     setMultipleOptionWithImageQuestions,
   ] = useState([]);
 
-  useEffect(() => {
-    const examId = props.routeProps.match.params.examId;
+  const courseId = props.routeProps.match.params.courseId;
+  const topicId = props.routeProps.match.params.topicId;
+  const examId = props.routeProps.match.params.examId;
 
+  useEffect(() => {
     TeacherAPI.t_fetchExam(examId)
       .then((res) => {
-        setExam(res.data);
+        setExamOnState(res.data);
+
+        // set exam on redux
+        const { _id: examId, name: examName } = res.data;
+        dispatch(setExam({ examId, examName }));
+
+        // set title
+        dispatch(setTitle(`${courseName} | ${topicName} | ${examName}`));
+
         // set questions
         setSimpleQuestions(
           res.data.questions.filter(({ qType }) => qType === "simple")
@@ -65,20 +81,12 @@ export const AdminExamDetailPage = React.memo((props) => {
         console.log(err);
         alert("Ocurrió un error");
       });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [examId]);
 
   return exam ? (
     <AdminLayout
-      title="Examen"
       leftBarActive="Cursos"
-      backBttn={
-        "/admin/courses/edit/topics/" +
-        props.routeProps.match.params.courseId +
-        "/" +
-        props.routeProps.match.params.topicId
-      }
+      backBttn={`/admin/courses/edit/topics/${courseId}/${topicId}`}
     >
       <Container fluid>
         {/* name */}
@@ -87,12 +95,11 @@ export const AdminExamDetailPage = React.memo((props) => {
             <span className="text-muted">Nombre</span>
             <h1>
               {exam.name}
-              <AdminExamModal
-                modalTitle="Editar nombre"
+              <AdminModal
                 Form={ExamNameForm}
-                formLabel="Nombre"
                 formInitialText={exam.name}
-                examId={props.routeProps.match.params.examId}
+                formLabel="Nombre"
+                icon={<i className="fas fa-pen-alt" />}
               />
             </h1>
           </Col>
@@ -110,12 +117,11 @@ export const AdminExamDetailPage = React.memo((props) => {
             <span className="text-muted">Duración</span>
             <h2>
               {`${exam.duration} minutos`}
-              <AdminExamModal
-                modalTitle="Editar duración"
+              <AdminModal
                 Form={ExamDurationForm}
-                formLabel="Duración"
                 formInitialText={exam.duration}
-                examId={props.routeProps.match.params.examId}
+                formLabel="Duración"
+                icon={<i className="fas fa-pen-alt" />}
               />
             </h2>
           </Col>
@@ -130,17 +136,16 @@ export const AdminExamDetailPage = React.memo((props) => {
               }
             >
               {`${exam.qCounter} preguntas`}
-              <AdminExamModal
-                modalTitle="Editar preguntas por examen"
+              <AdminModal
                 Form={ExamQCounterForm}
-                formLabel="Preguntas por examen"
                 formInitialText={exam.qCounter}
-                examId={props.routeProps.match.params.examId}
+                formLabel="Preguntas por examen"
+                icon={<i className="fas fa-pen-alt" />}
               />
             </h2>
           </Col>
         </Row>
-        {/* question counter 2 */}
+        {/* actual number of questions on this exam */}
         <Row>
           <Col>
             <span className="text-muted">Total de preguntas</span>
@@ -153,12 +158,11 @@ export const AdminExamDetailPage = React.memo((props) => {
             <span className="text-muted">Descripción</span>
             <h5>
               {exam.description}
-              <AdminExamModal
-                modalTitle="Editar descripción"
+              <AdminModal
                 Form={ExamDescriptionForm}
-                formLabel="Descripción"
                 formInitialText={exam.description}
-                examId={props.routeProps.match.params.examId}
+                formLabel="Descripción"
+                icon={<i className="fas fa-pen-alt" />}
               />
             </h5>
           </Col>

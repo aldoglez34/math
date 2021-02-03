@@ -25,7 +25,7 @@ export const AdminStudentDetailPage = React.memo((props) => {
         console.log(err);
         alert("Ocurrió un error");
       });
-  }, [props.routeProps.match.params.studentId]);
+  }, [studentId, dispatch]);
 
   return student ? (
     <AdminLayout

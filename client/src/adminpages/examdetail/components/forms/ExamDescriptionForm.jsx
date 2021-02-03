@@ -4,9 +4,12 @@ import { string } from "prop-types";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeacherAPI from "../../../../utils/TeacherAPI";
+import { useSelector } from "react-redux";
 
 export const ExamDescriptionForm = React.memo(
-  ({ formLabel, formInitialText, examId }) => {
+  ({ formInitialText, formLabel }) => {
+    const examId = useSelector((state) => state.admin.exam.examId);
+
     const yupschema = yup.object({
       newDescription: yup.string().required("Requerido"),
     });
@@ -20,7 +23,6 @@ export const ExamDescriptionForm = React.memo(
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(true);
           values.examId = examId;
-          //
           TeacherAPI.t_updateExamDescription(values)
             .then((res) => {
               console.log(res.data);
@@ -81,8 +83,6 @@ export const ExamDescriptionForm = React.memo(
 );
 
 ExamDescriptionForm.propTypes = {
-  formLabel: string,
   formInitialText: string,
-  courseId: string,
-  topicId: string,
+  formLabel: string,
 };

@@ -5,7 +5,6 @@ export * from "./UploadImage";
 
 export * from "./buttons/AdminPrimaryButton";
 export * from "./buttons/AdminDangerButton";
-export * from "./buttons/EditExamBttn"; // delete
 
 export * from "./images/ImageFromFirebase";
 

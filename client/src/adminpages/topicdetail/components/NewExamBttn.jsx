@@ -33,7 +33,7 @@ export const NewExamBttn = ({ courseId, topicId }) => {
 
   return (
     <>
-      <Button variant="dark" onClick={handleShow} className="px-4" size="sm">
+      <Button variant="dark" onClick={handleShow} className="my-2" size="sm">
         <i className="far fa-file-alt mr-2" />
         <span>Agregar examen</span>
       </Button>

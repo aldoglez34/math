@@ -16,5 +16,4 @@ export * from "./questionsTables/SimpleWithImageQuestionsTable";
 export * from "./questionsTables/SimpleWithTwoAnswersTable";
 
 export * from "./AdminDeleteExamBttn";
-export * from "./AdminExamModal";
 export * from "./NewQuestionBttn";
