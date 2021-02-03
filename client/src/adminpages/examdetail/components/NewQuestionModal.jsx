@@ -42,5 +42,4 @@ export const NewQuestionModal = React.memo(({ text, Form }) => {
 
 NewQuestionModal.propTypes = {
   text: string.isRequired,
-  examId: string.isRequired,
 };

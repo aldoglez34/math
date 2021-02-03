@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Button, Col, Container, ListGroup, Row } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import { AdminSpinner, AdminLayout } from "../components";
-import "./adminstudentassignpage.scss";
 
 export const AdminStudentAssignPage = React.memo((props) => {
   const [unpurchased, setUnpurchased] = useState(false);
@@ -55,7 +54,8 @@ export const AdminStudentAssignPage = React.memo((props) => {
                     <h4 className="mb-0">{u.name}</h4>
                     <Button
                       size="sm"
-                      className="ml-auto assignBttn"
+                      variant="dark"
+                      className="ml-auto"
                       onClick={() => assignCourse(u._id)}
                     >
                       <i className="fas fa-shopping-cart mr-2" />

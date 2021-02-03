@@ -1,19 +1,31 @@
 import React from "react";
-import { Table, Row, Col, Image } from "react-bootstrap";
+import { Table, Row, Col } from "react-bootstrap";
 import { array } from "prop-types";
 import { useSelector } from "react-redux";
-import { AdminDangerButton } from "../../../components";
+import { AdminDangerButton, ImageFromFirebase } from "../../../components";
 import TeacherAPI from "../../../../utils/TeacherAPI";
+import { firebaseStorage } from "../../../../firebase/firebase";
 
 export const SimpleWithImageQuestionsTable = React.memo(({ questions }) => {
   const courseId = useSelector((state) => state.admin.course.courseId);
   const examId = useSelector((state) => state.admin.exam.examId);
 
-  const handleDeleteQuestion = (questionId) => {
+  const handleDeleteQuestion = (questionId, path) => {
     TeacherAPI.t_deleteQuestion({ courseId, examId, questionId })
       .then(() => {
-        alert("Pregunta borrada con éxito");
-        window.location.reload();
+        const storageRef = firebaseStorage.ref();
+        const fileRef = storageRef.child(path);
+
+        fileRef
+          .delete()
+          .then(() => {
+            alert("La pregunta ha sido registrada con éxito.");
+            window.location.reload();
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("Ocurrió un error al borrar la pregunta.");
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -67,11 +79,10 @@ export const SimpleWithImageQuestionsTable = React.memo(({ questions }) => {
                   <tr key={q._id}>
                     <td className="align-middle">{q.qInstruction}</td>
                     <td className="align-middle">
-                      <Image
-                        src={q.qTechnicalInstruction.imageLink}
-                        width="85"
+                      <ImageFromFirebase
                         height="85"
-                        className="my-1 mx-3"
+                        path={q.qTechnicalInstruction.imageLink}
+                        width="85"
                       />
                     </td>
                     <td className="align-middle">
@@ -83,7 +94,12 @@ export const SimpleWithImageQuestionsTable = React.memo(({ questions }) => {
                     <td className="text-center align-middle">
                       <AdminDangerButton
                         icon={<i className="fas fa-times" />}
-                        onClick={() => handleDeleteQuestion(q._id)}
+                        onClick={() =>
+                          handleDeleteQuestion(
+                            q._id,
+                            q.qTechnicalInstruction.imageLink
+                          )
+                        }
                       />
                     </td>
                   </tr>
