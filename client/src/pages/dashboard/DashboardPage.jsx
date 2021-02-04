@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { NoCourses, MyCourses } from "./components";
 import API from "../../utils/API";
 import { useDispatch } from "react-redux";
-import * as breadcrumbActions from "../../redux/actions/breadcrumb";
 import * as courseActions from "../../redux/actions/course";
 import * as examActions from "../../redux/actions/exam";
 import * as zenModeActions from "../../redux/actions/zenMode";
@@ -17,7 +16,6 @@ export const DashboardPage = () => {
   const student = useSelector((state) => state.student);
   const course = useSelector((state) => state.course);
   const exam = useSelector((state) => state.exam);
-  const breadcrumb = useSelector((state) => state.breadcrumb);
   const zenMode = useSelector((state) => state.zenMode);
 
   const [myCourses, setMyCourses] = useState();
@@ -26,7 +24,6 @@ export const DashboardPage = () => {
     // clear redux
     if (course) dispatch(courseActions.clearCourse());
     if (exam) dispatch(examActions.clearExam());
-    if (breadcrumb) dispatch(breadcrumbActions.clearBreadcrumb());
     if (zenMode) dispatch(zenModeActions.zenModeOff());
 
     // fetch student's courses

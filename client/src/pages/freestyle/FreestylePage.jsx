@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Container, Spinner } from "react-bootstrap";
 import { StudentLayout } from "../../components/Layout";
 import { useSelector, useDispatch } from "react-redux";
-import { clearBreadcrumb } from "../../redux/actions/breadcrumb";
 import * as zenModeActions from "../../redux/actions/zenMode";
 import API from "../../utils/API";
-
 import { FreestyleQuestions } from "./components";
 
 export const FreestylePage = React.memo(() => {
@@ -20,8 +18,6 @@ export const FreestylePage = React.memo(() => {
     if (course && reduxExam) {
       API.fetchFreestyle(reduxExam.topicName)
         .then((res) => {
-          // clear breadcrumb
-          dispatch(clearBreadcrumb());
           // zendmode on
           dispatch(zenModeActions.zenModeOn());
           // set exam

@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  Image,
-  Row,
-  Col,
-  OverlayTrigger,
-  Popover,
-  Alert,
-} from "react-bootstrap";
-import PropTypes from "prop-types";
+import { Row, Col, OverlayTrigger, Popover, Alert } from "react-bootstrap";
+import { object, string } from "prop-types";
+import { ImageFromFirebase } from "../../../adminpages/components";
 
 const WrongAnswer = React.memo(
   ({ qInstruction, qTechnicalInstruction, userAnswers, qCorrectAnswers }) => {
@@ -25,8 +19,8 @@ const WrongAnswer = React.memo(
             <span>{qCorrectAnswers.answer}</span>
           ) : (
             <div className="text-center">
-              <Image
-                src={qCorrectAnswers.answer}
+              <ImageFromFirebase
+                path={qCorrectAnswers.answer}
                 className="my-2"
                 width="50"
                 height="50"
@@ -63,8 +57,8 @@ const WrongAnswer = React.memo(
                 ) : (
                   <>
                     <br />
-                    <Image
-                      src={qTechnicalInstruction.imageLink}
+                    <ImageFromFirebase
+                      path={qTechnicalInstruction.imageLink}
                       className="my-2"
                       width="150"
                       height="150"
@@ -80,8 +74,8 @@ const WrongAnswer = React.memo(
               {userAnswers.type === "text" ? (
                 <span>{userAnswers.answer}</span>
               ) : (
-                <Image
-                  src={userAnswers.answer}
+                <ImageFromFirebase
+                  path={userAnswers.answer}
                   className="my-2"
                   width="50"
                   height="50"
@@ -97,10 +91,10 @@ const WrongAnswer = React.memo(
 );
 
 WrongAnswer.propTypes = {
-  qInstruction: PropTypes.string.isRequired,
-  qTechnicalInstruction: PropTypes.object,
-  userAnswers: PropTypes.object.isRequired,
-  qCorrectAnswers: PropTypes.object.isRequired,
+  qCorrectAnswers: object.isRequired,
+  qInstruction: string.isRequired,
+  qTechnicalInstruction: object,
+  userAnswers: object.isRequired,
 };
 
 export default WrongAnswer;

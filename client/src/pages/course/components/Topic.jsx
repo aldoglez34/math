@@ -1,8 +1,9 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
-import PropTypes from "prop-types";
+import { string, object } from "prop-types";
 import ExamsAccordion from "./ExamsAccordion";
 import HelpModal from "./help/HelpModal";
+import { PDFLInk } from "./PDFLink";
 
 const Topic = React.memo(({ courseName, topic }) => {
   return (
@@ -39,23 +40,26 @@ const Topic = React.memo(({ courseName, topic }) => {
           </p>
           <div className="mb-2">
             {topic.material.map((mat) => {
-              return (
-                <p key={mat._id} className="mb-1">
-                  <a
-                    href={mat.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-info"
-                  >
-                    {mat.type === "video" ? (
+              if (mat.type === "video") {
+                return (
+                  <p key={mat._id} className="mb-1">
+                    <a
+                      className="text-info"
+                      href={mat.link}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
                       <i className="fas fa-video mr-2" />
-                    ) : mat.type === "pdf" ? (
-                      <i className="fas fa-file-pdf mr-2" />
-                    ) : null}
-                    {mat.name}
-                  </a>
-                </p>
-              );
+                      {mat.name}
+                    </a>
+                  </p>
+                );
+              }
+              if (mat.type === "pdf") {
+                return (
+                  <PDFLInk key={mat._id} path={mat.link} name={mat.name} />
+                );
+              }
             })}
           </div>
           {/* help modal */}
@@ -84,8 +88,8 @@ const Topic = React.memo(({ courseName, topic }) => {
 });
 
 Topic.propTypes = {
-  courseName: PropTypes.string.isRequired,
-  topic: PropTypes.object.isRequired,
+  courseName: string.isRequired,
+  topic: object.isRequired,
 };
 
 export default Topic;

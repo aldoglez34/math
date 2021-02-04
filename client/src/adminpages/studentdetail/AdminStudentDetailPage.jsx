@@ -97,7 +97,7 @@ export const AdminStudentDetailPage = React.memo((props) => {
         {/* attempts */}
         <Row>
           <Col>
-            <span className="text-muted d-flex">
+            <span className="text-muted d-flex mt-2">
               Exámenes presentados / Calificaciones perfectas
             </span>
             <h2 className="mb-1">
@@ -118,7 +118,7 @@ export const AdminStudentDetailPage = React.memo((props) => {
         {/* medallas */}
         <Row>
           <Col>
-            <span className="text-muted">Medallas</span>
+            <span className="text-muted d-flex mt-2">Medallas</span>
             {student.rewards.length ? (
               <ul>
                 {student.rewards.map((r) => {

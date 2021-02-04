@@ -1,18 +1,11 @@
 import React, { useState } from "react";
-import {
-  Modal,
-  ListGroup,
-  Button,
-  Form,
-  Row,
-  Col,
-  Image,
-} from "react-bootstrap";
+import { Modal, ListGroup, Button, Form, Row, Col } from "react-bootstrap";
 import moment from "moment";
 import "moment/locale/es";
 import { object } from "prop-types";
 import TeacherAPI from "../../../utils/TeacherAPI";
 import { ResponseForm } from "./";
+import { ImageFromFirebase } from "../../components";
 
 export const ItemModal = React.memo(({ message }) => {
   const [show, setShow] = useState(false);
@@ -61,10 +54,14 @@ export const ItemModal = React.memo(({ message }) => {
               <span className="d-block">
                 {message.subject.substr(0, message.subject.indexOf(">"))}
               </span>
-              <Image
-                src={message.subject.substr(
-                  message.subject.indexOf(">") + 1,
-                  999
+              {console.log(
+                message.subject.substr(message.subject.indexOf(">") + 1, 999)
+              )}
+              <ImageFromFirebase
+                path={String(
+                  message.subject
+                    .substr(message.subject.indexOf(">") + 1, 9999)
+                    .trim(9)
                 )}
                 width="70"
                 height="100"
@@ -143,11 +140,13 @@ export const ItemModal = React.memo(({ message }) => {
                   <span className="d-block">
                     {message.subject.substr(0, message.subject.indexOf(">"))}
                   </span>
-                  <Image
-                    src={message.subject.substr(
-                      message.subject.indexOf(">") + 1,
-                      999
-                    )}
+                  <ImageFromFirebase
+                    path={String(
+                      message.subject.substr(
+                        message.subject.indexOf(">") + 1,
+                        9999
+                      )
+                    ).trim()}
                     width="70"
                     height="100"
                     className="mt-3"

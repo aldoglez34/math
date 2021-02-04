@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { StudentLayout } from "../../components/Layout";
 import { Container, Spinner } from "react-bootstrap";
 import API from "../../utils/API";
-import * as breadcrumbActions from "../../redux/actions/breadcrumb";
 import * as zenModeActions from "../../redux/actions/zenMode";
 import { QuestionsContainer } from "./components";
 import "./exampage.scss";
@@ -20,8 +19,6 @@ export const ExamPage = () => {
     if (course && reduxExam) {
       API.fetchExamInfo(reduxExam._id)
         .then((res) => {
-          // clear breadcrumb
-          dispatch(breadcrumbActions.clearBreadcrumb());
           // zendmode on
           dispatch(zenModeActions.zenModeOn());
           // set exam info in the state to init the exam

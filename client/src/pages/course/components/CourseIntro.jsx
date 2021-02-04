@@ -1,6 +1,6 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import PropTypes from "prop-types";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import { string, array } from "prop-types";
 import MyTopic from "./badge/MyTopic";
 import MedalTable from "./medaltable/MedalTable";
 import "./courseintro.scss";
@@ -9,6 +9,10 @@ const CourseIntro = React.memo(({ name, topics, rewards }) => {
   return (
     <div id="courseintrostyle">
       <Container>
+        <Button className="courseIntroBackToHomeBttn" href="/dashboard">
+          <i className="fas fa-long-arrow-alt-left mr-2" />
+          <span>Regresar a mis cursos</span>
+        </Button>
         {/* topic name */}
         <h1 className="display-1 topicNameIntro text-white">{name}</h1>
         <br />
@@ -39,9 +43,9 @@ const CourseIntro = React.memo(({ name, topics, rewards }) => {
 });
 
 CourseIntro.propTypes = {
-  name: PropTypes.string.isRequired,
-  topics: PropTypes.array.isRequired,
-  rewards: PropTypes.array.isRequired,
+  name: string.isRequired,
+  rewards: array.isRequired,
+  topics: array.isRequired,
 };
 
 export default CourseIntro;

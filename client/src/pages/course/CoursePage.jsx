@@ -5,7 +5,6 @@ import { StudentLayout } from "../../components/Layout";
 import CourseIntro from "./components/CourseIntro";
 import Topic from "./components/Topic";
 import { useSelector, useDispatch } from "react-redux";
-import * as breadcrumbActions from "../../redux/actions/breadcrumb";
 import * as examActions from "../../redux/actions/exam";
 import * as zenModeActions from "../../redux/actions/zenMode";
 import ExamUnlocked from "./components/modal/ExamUnlocked";
@@ -51,14 +50,6 @@ export const CoursePage = React.memo((props) => {
               element.scrollIntoView();
             }
           });
-
-          // setting bredcrumb
-          dispatch(
-            breadcrumbActions.setBreadcrumb([
-              { text: "Mis cursos", link: "/dashboard" },
-              { text: res.data.name },
-            ])
-          );
         })
         .catch((err) => {
           console.log(err);

@@ -1,5 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { array } from "prop-types";
+import { ImageFromFirebase } from "../../../../adminpages/components";
 import { Image, OverlayTrigger, Tooltip } from "react-bootstrap";
 import "./medaltable.scss";
 
@@ -17,8 +18,8 @@ const MedalTable = ({ rewards }) => {
               </Tooltip>
             }
           >
-            <Image
-              src={r.link}
+            <ImageFromFirebase
+              path={r.link}
               width="80"
               height="120"
               className="my-1 mx-3 medalstyle"
@@ -39,7 +40,7 @@ const MedalTable = ({ rewards }) => {
 };
 
 MedalTable.propTypes = {
-  rewards: PropTypes.array.isRequired,
+  rewards: array.isRequired,
 };
 
 export default MedalTable;

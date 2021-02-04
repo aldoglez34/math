@@ -2,7 +2,7 @@ import fbApp from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
 
-const config = {
+const configDev = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   databaseURL: process.env.REACT_APP_DATABASE_URL,
@@ -12,7 +12,20 @@ const config = {
   appId: process.env.REACT_APP_APP_ID,
 };
 
-fbApp.initializeApp(config);
+const firebaseProd = {
+  apiKey: process.env.REACT_APP_API_KEY_PROD,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN_PROD,
+  projectId: process.env.REACT_APP_PROJECT_ID_PROD,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET_PROD,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID_PROD,
+  appId: process.env.REACT_APP_APP_ID_PROD,
+};
+
+if (process.env.NODE_ENV === "production") {
+  fbApp.initializeApp(firebaseProd);
+} else {
+  fbApp.initializeApp(configDev);
+}
 
 export const firebaseStorage = fbApp.storage();
 export const firebaseAuth = fbApp.auth();

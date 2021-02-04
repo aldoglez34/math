@@ -1,7 +1,8 @@
 import React from "react";
 import { array } from "prop-types";
-import { Alert, Row, Col, Image } from "react-bootstrap";
+import { Alert, Row, Col } from "react-bootstrap";
 import WrongAnswer from "./WrongAnswer";
+import { ImageFromFirebase } from "../../../adminpages/components";
 
 export const MyResults = React.memo(({ results }) => {
   return (
@@ -23,8 +24,8 @@ export const MyResults = React.memo(({ results }) => {
                     q.qTechnicalInstruction.type === "text" ? (
                       <span>{q.qTechnicalInstruction.text}</span>
                     ) : (
-                      <Image
-                        src={q.qTechnicalInstruction.imageLink}
+                      <ImageFromFirebase
+                        path={q.qTechnicalInstruction.imageLink}
                         width="150"
                         height="150"
                         rounded
@@ -38,8 +39,8 @@ export const MyResults = React.memo(({ results }) => {
                   {q.userAnswers.type === "text" ? (
                     <span>{q.userAnswers.answer}</span>
                   ) : (
-                    <Image
-                      src={q.userAnswers.answer}
+                    <ImageFromFirebase
+                      path={q.userAnswers.answer}
                       className="my-2"
                       width="50"
                       height="50"

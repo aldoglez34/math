@@ -1,6 +1,6 @@
 import React from "react";
-import { array, node, string } from "prop-types";
-import { MyBreadcrumb, MyFooter, MyNavbar, ScrollButton, StudentNav } from "./";
+import { node, string } from "prop-types";
+import { MyFooter, MyNavbar, ScrollButton, StudentNav } from "./";
 import "./layout.scss";
 
 // for public routes
@@ -25,13 +25,12 @@ Layout.propTypes = {
 };
 
 // for protected routes
-export const StudentLayout = React.memo(({ breadcrumb, children }) => {
+export const StudentLayout = React.memo(({ children }) => {
   return (
     <>
       <MyNavbar />
       <div className="marginTop" />
       <StudentNav />
-      <MyBreadcrumb breadcrumb={breadcrumb} />
       {children}
       <ScrollButton scrollStepInPx={150} delayInMs={16.66} />
     </>
@@ -39,6 +38,5 @@ export const StudentLayout = React.memo(({ breadcrumb, children }) => {
 });
 
 StudentLayout.propTypes = {
-  breadcrumb: array,
   children: node.isRequired,
 };

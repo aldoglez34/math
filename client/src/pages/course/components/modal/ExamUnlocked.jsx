@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { clearUnlockedExam } from "../../../../redux/actions/unlocked";
 import DifficultyStarts from "../DifficultyStars";
+import { ImageFromFirebase } from "../../../../adminpages/components";
 
 const ExamUnlocked = React.memo(({ showUnlocked, setShowExamUnlocked_ }) => {
   const dispatch = useDispatch();
@@ -13,12 +14,9 @@ const ExamUnlocked = React.memo(({ showUnlocked, setShowExamUnlocked_ }) => {
   return unlocked ? (
     <>
       <Modal
-        // centered
         show={showUnlocked}
         onHide={() => {
-          // close modal
           setShowExamUnlocked_(false);
-          // clear unlocked on redux
           dispatch(clearUnlockedExam());
         }}
       >
@@ -44,9 +42,7 @@ const ExamUnlocked = React.memo(({ showUnlocked, setShowExamUnlocked_ }) => {
                 <Button
                   className="shadow-sm genericButton"
                   onClick={() => {
-                    // close modal
                     setShowExamUnlocked_(false);
-                    // clear unlocked on redux
                     dispatch(clearUnlockedExam());
                   }}
                 >
@@ -57,8 +53,8 @@ const ExamUnlocked = React.memo(({ showUnlocked, setShowExamUnlocked_ }) => {
           ) : (
             <div className="d-flex flex-column">
               <div className="my-2">
-                <Image
-                  src={unlocked.rewardLink}
+                <ImageFromFirebase
+                  path={unlocked.rewardLink}
                   width="100"
                   height="140"
                   title={unlocked.rewardName}
@@ -86,9 +82,7 @@ const ExamUnlocked = React.memo(({ showUnlocked, setShowExamUnlocked_ }) => {
                 <Button
                   className="shadow-sm genericButton"
                   onClick={() => {
-                    // close modal
                     setShowExamUnlocked_(false);
-                    // clear unlocked on redux
                     dispatch(clearUnlockedExam());
                   }}
                 >

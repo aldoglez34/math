@@ -4,7 +4,6 @@ import { StudentLayout } from "../../components/Layout";
 import API from "../../utils/API";
 import { useSelector, useDispatch } from "react-redux";
 import { MyMessages } from "./components";
-import * as breadcrumbActions from "../../redux/actions/breadcrumb";
 import * as zenModeActions from "../../redux/actions/zenMode";
 
 export const MessagesPage = () => {
@@ -13,12 +12,9 @@ export const MessagesPage = () => {
   const [messages, setMessages] = useState();
 
   const student = useSelector((state) => state.student);
-  const breadcrumb = useSelector((state) => state.breadcrumb);
   const zenMode = useSelector((state) => state.zenMode);
 
   useEffect(() => {
-    if (breadcrumb) dispatch(breadcrumbActions.clearBreadcrumb());
-
     if (zenMode) dispatch(zenModeActions.zenModeOff());
 
     API.fetchMessages(student.username)
