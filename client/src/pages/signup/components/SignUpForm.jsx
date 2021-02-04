@@ -61,7 +61,7 @@ export const SignUpForm = () => {
             console.log("1 - then del createUserWithEmailAndPassword");
             fbRes.user
               .updateProfile({
-                displayName: "Teacher",
+                displayName: "Student",
               })
               .then(() => {
                 console.log("2 - then del updateProfile");
