@@ -111,6 +111,11 @@ export const AdminLoginPage = () => {
                 >
                   Entrar
                 </Button>
+                <div className="text-center mt-4">
+                  <small>
+                    <em>v1.0</em>
+                  </small>
+                </div>
               </Form>
             )}
           </Formik>

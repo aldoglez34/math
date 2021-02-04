@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Image, Row, Table } from "react-bootstrap";
+import { Col, Row, Table } from "react-bootstrap";
 import { array } from "prop-types";
 import { useSelector } from "react-redux";
 import { AdminDangerButton, ImageFromFirebase } from "../../../components";
