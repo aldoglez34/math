@@ -113,7 +113,7 @@ export const AdminLoginPage = () => {
                 </Button>
                 <div className="text-center mt-4">
                   <small>
-                    <em>v1.0</em>
+                    <em>v1.1</em>
                   </small>
                 </div>
               </Form>

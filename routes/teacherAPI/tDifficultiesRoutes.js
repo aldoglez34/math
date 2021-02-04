@@ -18,8 +18,8 @@ router.get("/available/:courseId/:topicId", function (req, res) {
     {
       _id: courseId,
       "topics._id": topicId,
-    },
-    { "topics.$": topicId }
+    }
+    // { "topics.$": topicId }
   )
     .select("topics.id topics.exams")
     .populate("topics.exams", "difficulty")
