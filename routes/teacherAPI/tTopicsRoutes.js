@@ -37,8 +37,6 @@ router.get("/difficulties/:courseId/:topicId", function (req, res) {
     });
 });
 
-////////////////// EDITING FIELDS
-
 // t_updateTopicName
 // matches with /teacherAPI/topics/update/name
 router.put("/update/name", function (req, res) {
@@ -127,84 +125,76 @@ router.put("/update/timer", function (req, res) {
     });
 });
 
-////////////////// NEW (requires uploading)
-
 // t_newTopic()
 // matches with /teacherAPI/topics/new
-const multer = require("multer");
-const fs = require("fs");
-
-let fileName;
-
-const storage = multer.diskStorage({
-  // destination: "./client/public/projectfiles/" + req.body.courseId + "/reward",
-  destination: "./client/public/_temp",
-  filename: function (req, file, cb) {
-    // cb(null, "IMAGE-" + Date.now() + path.extname(file.originalname));
-    fileName = file.originalname;
-    // set the name of the file
-    cb(null, req.body.photo);
-  },
-});
-
-const upload = multer({
-  storage: storage,
-  limits: { fileSize: 4000000 },
-}).single("file");
-
 router.put("/new", function (req, res) {
-  upload(req, res, function (err) {
-    if (err instanceof multer.MulterError) {
-      console.log("ERROR - A Multer error occurred when uploading.");
-      res.status(422).send({ msg: "Ocurrió un error." });
-    } else if (err) {
-      console.log("ERROR - An unknown error occurred when uploading.");
-      res.status(422).send({ msg: "Ocurrió un error." });
-    }
+  const courseId = req.body.courseId;
 
-    // everything went fine
-    // no errors
+  model.Course.findById(courseId)
+    .select("topics")
+    .then(({ topics }) => {
+      const doesNewTopicExist = topics.some(
+        (t) => String(t.name).trim() === String(req.body.name).trim()
+      );
 
-    const topicData = {
-      subject: req.body.subject,
-      name: req.body.name,
-      description: req.body.description,
-      reward: {
-        name: req.body.rewardName,
-        link: `/projectfiles/${req.body.courseId}/reward/${fileName}`,
-      },
-      freestyle: {
-        timer: req.body.freestyleTimer,
-      },
-    };
+      if (doesNewTopicExist) {
+        res.status(500).send("Un tema con este nombre ya existe en este curso");
+      } else {
+        const newTopicData = {
+          subject: req.body.subject,
+          name: req.body.name,
+          description: req.body.description,
+          freestyle: {
+            timer: req.body.freestyleTimer,
+          },
+        };
 
-    model.Course.findOneAndUpdate(
-      { _id: req.body.courseId },
-      {
-        $push: {
-          topics: topicData,
-        },
+        model.Course.findOneAndUpdate(
+          { _id: courseId },
+          { $push: { topics: newTopicData } },
+          { new: true }
+        )
+          .then(({ topics }) => {
+            const newlyCreatedTopic = topics.filter(
+              (t) => String(t.name).trim() === String(newTopicData.name).trim()
+            )[0];
+
+            // insert reward
+            model.Course.findOneAndUpdate(
+              {
+                _id: courseId,
+                "topics._id": newlyCreatedTopic._id,
+              },
+              {
+                $set: {
+                  "topics.$.reward": {
+                    name: req.body.rewardName,
+                    link: `${courseId}/${newlyCreatedTopic._id}/rewards/${req.body.rewardName}`,
+                  },
+                },
+              }
+            )
+              .then(() => {
+                res.json({
+                  topicId: newlyCreatedTopic._id,
+                  topicName: newlyCreatedTopic.name,
+                });
+              })
+              .catch((err) => {
+                console.log("@error", err);
+                res.status(422).send("Ocurrió un error");
+              });
+          })
+          .catch((err) => {
+            console.log("@error", err);
+            res.status(422).send("Ocurrió un error");
+          });
       }
-    )
-      .then(() => {
-        // res.send("El tema fue agregado con éxito.");
-
-        // moving the file to the course folder
-        const oldPath = `./client/public/_temp/${fileName}`;
-        const newPath = `./client/public/projectfiles/${req.body.courseId}/reward/${fileName}`;
-
-        fs.rename(oldPath, newPath, (err) => {
-          if (err) throw err;
-          console.log("Reward file was renamed (moved) correctly");
-
-          res.send("El tema fue agregado con éxito.");
-        });
-      })
-      .catch((err) => {
-        console.log("@error", err);
-        res.status(422).send("Ocurrió un error");
-      });
-  });
+    })
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error.");
+    });
 });
 
 module.exports = router;
