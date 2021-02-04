@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { LoginForm } from "./components";
 import "./loginpage.scss";
 
-export const LoginPage = React.memo(() => {
+export const LoginPage = () => {
   return (
     <Layout>
       <Container id="log_container">
@@ -31,4 +31,4 @@ export const LoginPage = React.memo(() => {
       </Container>
     </Layout>
   );
-});
+};
