@@ -152,7 +152,7 @@ export const AdminTopicDetailPage = React.memo((props) => {
           <Col>
             <span className="text-muted">Recompensa</span>
             <div className="d-flex">
-              <h5>{topic.reward.name}</h5>
+              <h5>{`Medalla de ${topic.name}`}</h5>
             </div>
             <ImageFromFirebase
               height="100"

@@ -35,7 +35,6 @@ const schema = new Schema({
       subject: { type: String, required: true },
       description: { type: String, required: true },
       reward: {
-        name: { type: String },
         link: { type: String },
       },
       freestyle: {

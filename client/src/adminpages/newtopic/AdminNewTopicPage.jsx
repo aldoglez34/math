@@ -33,7 +33,6 @@ export const AdminNewTopicPage = React.memo((props) => {
       .number()
       .positive("El número debe ser mayor a 1")
       .required("Requerido"),
-    rewardName: yup.string().required("Requerido"),
     file: yup
       .mixed()
       .required("Requerido")
@@ -68,7 +67,6 @@ export const AdminNewTopicPage = React.memo((props) => {
                 subject: "",
                 description: "",
                 freestyleTimer: "",
-                rewardName: "",
                 photo: undefined,
                 file: undefined,
               }}
@@ -81,7 +79,7 @@ export const AdminNewTopicPage = React.memo((props) => {
                     const { topicId } = res.data;
 
                     const storageRef = firebaseStorage.ref();
-                    const pathOnFirebaseStorage = `${courseId}/${topicId}/rewards/${values.rewardName}`;
+                    const pathOnFirebaseStorage = `${courseId}/${topicId}/rewards/medal`;
                     const fileRef = storageRef.child(pathOnFirebaseStorage);
 
                     fileRef
@@ -212,28 +210,7 @@ export const AdminNewTopicPage = React.memo((props) => {
                   </Form.Row>
                   {/* reward */}
                   <Form.Row className="mt-3">
-                    <Col md={6}>
-                      <Form.Label>
-                        Nombre de medalla
-                        <strong className="text-danger">*</strong>
-                      </Form.Label>
-                      <Form.Control
-                        maxLength="150"
-                        type="text"
-                        name="rewardName"
-                        value={values.rewardName}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        isValid={touched.rewardName && !errors.rewardName}
-                        isInvalid={touched.rewardName && !!errors.rewardName}
-                      />
-                      <ErrorMessage
-                        className="text-danger"
-                        name="rewardName"
-                        component="div"
-                      />
-                    </Col>
-                    <Col md={6}>
+                    <Col>
                       <UploadImage
                         photo={values.photo}
                         setFieldValue={setFieldValue}

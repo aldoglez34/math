@@ -168,8 +168,7 @@ router.put("/new", function (req, res) {
               {
                 $set: {
                   "topics.$.reward": {
-                    name: req.body.rewardName,
-                    link: `${courseId}/${newlyCreatedTopic._id}/rewards/${req.body.rewardName}`,
+                    link: `${courseId}/${newlyCreatedTopic._id}/rewards/medal`,
                   },
                 },
               }
