@@ -108,13 +108,13 @@ export const NewExamBttn = ({ courseId, topicId }) => {
                           </Form.Group>
                         </Form.Row>
                         {/* buttons */}
-                        <Form.Group className="text-right">
+                        <Form.Group>
                           <Button
                             variant="dark"
                             type="submit"
                             disabled={isSubmitting}
                           >
-                            Crear
+                            Agregar
                           </Button>
                         </Form.Group>
                       </>

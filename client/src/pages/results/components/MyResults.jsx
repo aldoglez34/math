@@ -25,6 +25,7 @@ export const MyResults = React.memo(({ results }) => {
                       <span>{q.qTechnicalInstruction.text}</span>
                     ) : (
                       <ImageFromFirebase
+                        className="mb-3"
                         path={q.qTechnicalInstruction.imageLink}
                         width="150"
                         height="150"
@@ -41,7 +42,7 @@ export const MyResults = React.memo(({ results }) => {
                   ) : (
                     <ImageFromFirebase
                       path={q.userAnswers.answer}
-                      className="my-2"
+                      className="my-2 mb-3"
                       width="50"
                       height="50"
                       rounded

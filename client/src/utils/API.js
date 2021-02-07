@@ -33,8 +33,6 @@ export default {
   markAllMessagesSeen: (studentId) =>
     axios.put("/api/student/messages/markAllSeen/" + studentId),
 
-  // student panel
-
   fetchDashboard: (studentId) =>
     axios.get("/api/student/fetchDashboard/" + studentId),
 
@@ -52,8 +50,7 @@ export default {
   fetchExamInfo: (examId) => axios.get("/api/exam/info/" + examId),
 
   registerAttempt: (data) => axios.put("/api/exam/registerAttempt", data),
-  registerPerfectGrade: (data) =>
-    axios.put("/api/exam/registerPerfectGrade", data),
+
   registerReward: (data) => axios.put("/api/exam/registerReward", data),
 
   unlockExam: (data) => axios.put("/api/exam/unlockExam", data),

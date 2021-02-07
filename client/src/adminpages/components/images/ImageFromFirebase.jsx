@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Image } from "react-bootstrap";
 import { firebaseStorage } from "../../../firebase/firebase";
+import cn from "classnames";
 
 export const ImageFromFirebase = React.memo(
   ({ height, path, width, ...props }) => {
@@ -19,11 +20,13 @@ export const ImageFromFirebase = React.memo(
         });
     }, [path]);
 
+    const className = cn(props.className);
+
     return (
       firebaseUrl && (
         <Image
           {...props}
-          className="mb-3"
+          className={className}
           height={height}
           src={firebaseUrl}
           width={width}

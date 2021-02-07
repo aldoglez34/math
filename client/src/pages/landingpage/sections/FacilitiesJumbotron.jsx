@@ -2,15 +2,11 @@ import React from "react";
 import { Container, Carousel, Row, Col } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
 import { SectionTitle } from "./components";
-// images
-import salaespera from "./images/salaespera.png";
-import salonesamplios from "./images/salonesamplios.png";
-import audiovisual from "./images/audiovisual.png";
-import dosplantas from "./images/dosplantas.png";
+import { audiovisual, dosplantas, salaespera, salonesamplios } from "./images";
 
 import styles from "./facilitiesjumbotron.module.scss";
 
-export const FacilitiesJumbotron = React.memo(() => {
+export const FacilitiesJumbotron = () => {
   return (
     <Container className={styles.container}>
       <Fade>
@@ -69,4 +65,4 @@ export const FacilitiesJumbotron = React.memo(() => {
       </Row>
     </Container>
   );
-});
+};

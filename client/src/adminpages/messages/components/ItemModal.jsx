@@ -65,7 +65,7 @@ export const ItemModal = React.memo(({ message }) => {
                 )}
                 width="70"
                 height="100"
-                className="mt-3"
+                className="mt-3 mb-3"
               />
             </div>
           )}
@@ -149,7 +149,7 @@ export const ItemModal = React.memo(({ message }) => {
                     ).trim()}
                     width="70"
                     height="100"
-                    className="mt-3"
+                    className="mt-3 mb-3"
                   />
                 </div>
               )}

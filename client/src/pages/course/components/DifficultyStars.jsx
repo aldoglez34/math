@@ -1,7 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { string } from "prop-types";
 
-const DifficultyStars = React.memo(({ difficulty }) => {
+export const DifficultyStars = React.memo(({ difficulty }) => {
   const calculateDifficulty = () => {
     switch (difficulty) {
       case "Basic":
@@ -87,7 +87,5 @@ const DifficultyStars = React.memo(({ difficulty }) => {
 });
 
 DifficultyStars.propTypes = {
-  difficulty: PropTypes.string.isRequired,
+  difficulty: string.isRequired,
 };
-
-export default DifficultyStars;

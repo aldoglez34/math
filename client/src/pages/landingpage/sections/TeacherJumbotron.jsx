@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { Jumbotron, Container, Row, Col } from "react-bootstrap";
+import { Col, Container, Jumbotron, Row } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
 import YouTubePlayer from "youtube-player";
 import "./teacherjumbotron.scss";
 
-export const TeacherJumbotron = React.memo(() => {
+export const TeacherJumbotron = () => {
   useEffect(() => {
     // var player1, firstStateChange;
     var player1;
@@ -50,4 +50,4 @@ export const TeacherJumbotron = React.memo(() => {
       </Container>
     </Jumbotron>
   );
-});
+};

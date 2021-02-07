@@ -54,14 +54,6 @@ export default {
   t_newTopic: (topicData) => axios.put("/teacherAPI/topics/new", topicData),
 
   // ==============================================
-  // REWARDS
-  // ==============================================
-
-  t_deleteReward: (data) => axios.put("/teacherAPI/rewards/delete", data),
-
-  t_addReward: (data) => axios.put("/teacherAPI/rewards/add", data),
-
-  // ==============================================
   // MATERIAL
   // ==============================================
 

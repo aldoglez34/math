@@ -88,7 +88,7 @@ export const TopicSubjectForm = React.memo(({ formLabel, formInitialText }) => {
             </Form.Group>
           </Form.Row>
           {/* buttons */}
-          <Form.Group className="text-right">
+          <Form.Group>
             <Button variant="dark" type="submit" disabled={isSubmitting}>
               Guardar
             </Button>

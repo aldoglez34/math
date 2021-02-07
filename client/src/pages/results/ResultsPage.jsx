@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { Spinner, Row, Col, Button, Container } from "react-bootstrap";
+import { Spinner, Row, Col, Container } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { StudentLayout } from "../../components/Layout";
 import API from "../../utils/API";
-import { unlockExam } from "../../redux/actions/unlocked";
-import { Grade, MyResults, ResultMsg } from "./components";
+import { clearUnlockedExam, unlockExam } from "../../redux/actions/unlocked";
+import { GoBackBttn, Grade, MyResults, ResultMsg } from "./components";
 
 export const ResultsPage = () => {
   const dispatch = useDispatch();
@@ -24,8 +24,11 @@ export const ResultsPage = () => {
 
   const calif = Math.round((aciertos / exam.results.length) * 100);
 
+  const isExamApproved = calif / 10 >= 8;
+
   useEffect(() => {
     // register attempt regardless of grade
+    // also register perfect score only if grade is 10 (this is done in the backend)
     API.registerAttempt({
       studentId: student._id,
       examId: exam._id,
@@ -34,27 +37,8 @@ export const ResultsPage = () => {
       .then((res) => console.log(res.data))
       .catch((err) => console.log("error", err));
 
-    // register perfect score only if grade is 10
-    if (calif / 10 === 10) {
-      API.registerPerfectGrade({ studentId: student._id, examId: exam._id })
-        .then((res) => console.log(res.data))
-        .catch((err) => console.log("error", err));
-    }
-
-    // register reward (medal or trophy) only if its a final exam and the grade is greater than 8
-    if (exam.difficulty === "Advanced" && calif / 10 >= 8) {
-      API.registerReward({
-        studentId: student._id,
-        topicId: exam.topicId,
-        name: exam.reward.name,
-        link: exam.reward.link,
-      })
-        .then((res) => console.log(res.data))
-        .catch((err) => console.log("error", err));
-    }
-
-    // unblock an exam if difficulty is NOT "Final" and the grade is greater than 8
-    if (exam.difficulty !== "Advanced" && calif / 10 >= 8) {
+    // unblock an exam if difficulty is NOT "Advanced" and the grade is greater than 8
+    if (exam.difficulty !== "Advanced" && isExamApproved) {
       API.unlockExam({
         studentId: student._id,
         difficulty: exam.difficulty,
@@ -67,18 +51,33 @@ export const ResultsPage = () => {
         .catch((err) => console.log("error", err));
     }
 
-    // unlock freestyle if the difficulty is final and the grade is greater than 8
-    // this is only for the modal in the course main page
-    if (exam.difficulty === "Advanced" && calif / 10 >= 8) {
-      dispatch(
-        unlockExam({
-          name: "Examen Modo Rápido",
-          difficulty: "Freestyle",
-          topicName: exam.topicName,
-          rewardLink: exam.reward.link,
-          rewardName: exam.reward.name,
+    // register reward (medal or trophy) only if its a final exam and the grade is greater than 8
+    // also unlock freestyle if the difficulty is final and the grade is greater than 8
+    if (exam.difficulty === "Advanced" && isExamApproved) {
+      API.registerReward({
+        link: exam.reward.link,
+        name: exam.reward.name,
+        studentId: student._id,
+        topicId: exam.topicId,
+      })
+        .then((res) => {
+          const { isFreestyleUnlockable } = res.data;
+          // unlock only if it hasn't been unlocked previously
+          if (isFreestyleUnlockable) {
+            dispatch(
+              unlockExam({
+                name: "Examen Modo Rápido",
+                difficulty: "Freestyle",
+                topicName: exam.topicName,
+                rewardLink: exam.reward.link,
+                rewardName: exam.reward.name,
+              })
+            );
+          } else {
+            dispatch(clearUnlockedExam());
+          }
         })
-      );
+        .catch((err) => console.log("error", err));
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -89,22 +88,13 @@ export const ResultsPage = () => {
       <Container style={{ paddingBottom: "45px" }}>
         <Row>
           <Col md={{ offset: 3, span: 6 }}>
-            {/* grade */}
+            <GoBackBttn topicName={exam.topicName} className="mt-4" />
             <Grade grade={calif} aciertos={aciertos} errores={errores} />
-            {/* msg to the user */}
             <hr />
             <ResultMsg calif={calif} />
-            {/* questions */}
             <hr />
             <MyResults results={exam.results} />
-            {/* button */}
-            <Button
-              href={"/course/#" + exam.topicName}
-              className="genericButton"
-            >
-              <i className="fas fa-arrow-left mr-2" />
-              Regresar
-            </Button>
+            <GoBackBttn topicName={exam.topicName} className="mt-2" />
           </Col>
         </Row>
       </Container>

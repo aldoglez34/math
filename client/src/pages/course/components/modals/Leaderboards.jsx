@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Modal, Button, Image, Table } from "react-bootstrap";
-import PropTypes from "prop-types";
+import { Button, Image, Modal, Table } from "react-bootstrap";
+import { array } from "prop-types";
 import moment from "moment";
 import "moment/locale/es";
 
-const Leaderboards = React.memo(({ top10 }) => {
+export const Leaderboards = React.memo(({ top10 }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -85,7 +85,5 @@ const Leaderboards = React.memo(({ top10 }) => {
 });
 
 Leaderboards.propTypes = {
-  top10: PropTypes.array.isRequired,
+  top10: array.isRequired,
 };
-
-export default Leaderboards;

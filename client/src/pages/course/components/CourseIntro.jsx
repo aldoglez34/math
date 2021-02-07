@@ -1,20 +1,23 @@
 import React from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { string, array } from "prop-types";
-import MyTopic from "./badge/MyTopic";
-import MedalTable from "./medaltable/MedalTable";
-import "./courseintro.scss";
+import { MedalTable, TopicBadge } from "./";
+import cn from "classnames";
 
-const CourseIntro = React.memo(({ name, topics, rewards }) => {
+import styles from "./courseintro.module.scss";
+
+export const CourseIntro = React.memo(({ name, topics, rewards }) => {
   return (
-    <div id="courseintrostyle">
+    <div className={styles.container}>
       <Container>
-        <Button className="courseIntroBackToHomeBttn" href="/dashboard">
+        <Button className={styles.backButton} href="/dashboard">
           <i className="fas fa-long-arrow-alt-left mr-2" />
           <span>Regresar a mis cursos</span>
         </Button>
         {/* topic name */}
-        <h1 className="display-1 topicNameIntro text-white">{name}</h1>
+        <h1 className={cn("display-1", "text-white", styles.topicName)}>
+          {name}
+        </h1>
         <br />
         <Row>
           {/* temario */}
@@ -25,7 +28,7 @@ const CourseIntro = React.memo(({ name, topics, rewards }) => {
             {/* <br /> */}
             <div className="d-flex flex-column">
               {topics.map((t) => (
-                <MyTopic key={t.name} topicName={t.name} />
+                <TopicBadge key={t.name} topicName={t.name} />
               ))}
             </div>
           </Col>
@@ -47,5 +50,3 @@ CourseIntro.propTypes = {
   rewards: array.isRequired,
   topics: array.isRequired,
 };
-
-export default CourseIntro;

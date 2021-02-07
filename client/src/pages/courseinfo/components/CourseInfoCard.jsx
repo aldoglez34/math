@@ -15,7 +15,7 @@ export const CourseInfoCard = React.memo(
       API.buyCourse({ courseId, studentId: student._id })
         .then((res) => {
           console.log(res.data);
-          alert("Has comprado el curso satisfactoriamente");
+          alert("Has comprado el curso satisfactoriamente.");
           window.location.href = "/";
         })
         .catch((err) => {

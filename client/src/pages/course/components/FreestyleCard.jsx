@@ -1,12 +1,11 @@
 import React from "react";
 import { Card, Button, Accordion, Row, Col } from "react-bootstrap";
-import PropTypes from "prop-types";
-import LastVisited from "./LastVisited";
-import Leaderboards from "./modal/Leaderboards";
+import { object, string } from "prop-types";
+import { Leaderboards, LastVisited } from "./";
 import { useDispatch } from "react-redux";
 import * as examActions from "../../../redux/actions/exam";
 
-const FreestyleCard = React.memo(({ topicName, topicId, freestyle }) => {
+export const FreestyleCard = React.memo(({ topicName, topicId, freestyle }) => {
   const dispatch = useDispatch();
 
   const setExamInRedux = async (obj) => {
@@ -93,8 +92,6 @@ const FreestyleCard = React.memo(({ topicName, topicId, freestyle }) => {
 });
 
 FreestyleCard.propTypes = {
-  freestyle: PropTypes.object.isRequired,
-  topicName: PropTypes.string.isRequired,
+  freestyle: object.isRequired,
+  topicName: string.isRequired,
 };
-
-export default FreestyleCard;

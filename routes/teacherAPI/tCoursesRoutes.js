@@ -27,8 +27,6 @@ router.get("/:courseId", function (req, res) {
     });
 });
 
-////////////////// NEW
-
 // t_newCourse
 // matches with /teacherAPI/courses/new
 router.post("/new", function (req, res) {
@@ -70,8 +68,6 @@ router.post("/new", function (req, res) {
       res.status(422).send("Ocurrió un error.");
     });
 });
-
-////////////////// UPDATING
 
 // t_updateCourseName
 // matches with /teacherAPI/courses/update/name

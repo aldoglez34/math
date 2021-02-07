@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Col } from "react-bootstrap";
+import { Button, Col, Form } from "react-bootstrap";
 import { bool, oneOfType, string } from "prop-types";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
@@ -70,7 +70,7 @@ export const CourseActiveForm = React.memo(({ formLabel, formInitialText }) => {
             </Form.Group>
           </Form.Row>
           {/* buttons */}
-          <Form.Group className="text-right">
+          <Form.Group>
             <Button variant="dark" type="submit" disabled={isSubmitting}>
               Guardar
             </Button>

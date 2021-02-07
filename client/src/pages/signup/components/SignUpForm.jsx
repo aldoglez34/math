@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik, ErrorMessage } from "formik";
-import { Form, Col, Button } from "react-bootstrap";
+import { Button, Col, Form } from "react-bootstrap";
 import { firebaseAuth } from "../../../firebase/firebase";
 import * as yup from "yup";
 import API from "../../../utils/API";

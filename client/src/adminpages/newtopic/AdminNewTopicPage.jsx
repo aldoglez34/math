@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
-import { AdminLayout, UploadImage } from "../components";
+import { AdminLayout } from "../components";
 import TeacherAPI from "../../utils/TeacherAPI";
 import { useDispatch, useSelector } from "react-redux";
 import * as adminActions from "../../redux/actions/admin";
@@ -211,11 +211,38 @@ export const AdminNewTopicPage = React.memo((props) => {
                   {/* reward */}
                   <Form.Row className="mt-3">
                     <Col>
-                      <UploadImage
-                        photo={values.photo}
-                        setFieldValue={setFieldValue}
+                      <Form.Label>
+                        Medalla
+                        <strong className="text-danger">*</strong>
+                        <small className="ml-1">
+                          (.jpg, .jpeg, .gif y .png)
+                        </small>
+                      </Form.Label>
+                      {/* the following FORM.FILE only works on "react-bootstrap": "^1.0.0",  */}
+                      <Form.File
+                        encType="multipart/form-data"
+                        accept="image/*"
+                        label={values.photo ? values.photo : ""}
+                        data-browse="Buscar"
+                        id="file"
+                        name="file"
+                        type="file"
+                        onChange={(event) => {
+                          setFieldValue("file", event.currentTarget.files[0]);
+                          setFieldValue(
+                            "photo",
+                            event.currentTarget.files[0]
+                              ? event.currentTarget.files[0].name
+                              : ""
+                          );
+                        }}
                         onBlur={handleBlur}
-                        file={values.file}
+                        custom
+                      />
+                      <ErrorMessage
+                        className="text-danger"
+                        name="file"
+                        component="div"
                       />
                     </Col>
                   </Form.Row>

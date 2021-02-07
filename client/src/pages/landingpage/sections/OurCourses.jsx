@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Tab, ListGroup, Spinner } from "react-bootstrap";
+import { Col, Container, ListGroup, Row, Spinner, Tab } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
 import { SectionTitle, HomeCard } from "./components";
 import API from "../../../utils/API";
 import "./ourcourses.scss";
 
-export const OurCourses = React.memo(() => {
+export const OurCourses = () => {
   const [courses, setCourses] = useState();
 
   useEffect(() => {
@@ -86,4 +86,4 @@ export const OurCourses = React.memo(() => {
       </Fade>
     </Container>
   );
-});
+};

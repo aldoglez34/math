@@ -76,27 +76,25 @@ router.put("/registerAttempt", function (req, res) {
     { $push: { attempts: { exam: examId, grade: grade } } }
   )
     .then(() => {
-      // console.log(attempt);
-      res.json("Attempt registered successfully");
-    })
-    .catch((err) => {
-      console.log("@error", err);
-      res.status(422).send("Ocurrió un error");
-    });
-});
-
-// registerPerfectGrade()
-// matches with /api/exam/registerPerfectGrade
-router.put("/registerPerfectGrade", function (req, res) {
-  const { studentId, examId } = req.body;
-
-  model.Student.findOneAndUpdate(
-    { _id: studentId },
-    { $addToSet: { perfectGrades: examId } }
-  )
-    .then(() => {
-      // console.log(perfectGrade);
-      res.json("Perfect grade registered successfully");
+      // register perfect score only if grade is 10
+      if (grade === 10) {
+        model.Student.findOneAndUpdate(
+          { _id: studentId },
+          { $addToSet: { perfectGrades: examId } }
+        )
+          .then(() =>
+            res.json(
+              "Attempt registered successfully and perfect grade registered successfully."
+            )
+          )
+          .catch((err) => {
+            console.log("@error", err);
+            res.status(422).send("Ocurrió un error");
+          });
+      } else {
+        // if not return msg to the client
+        res.json("Attempt registered successfully.");
+      }
     })
     .catch((err) => {
       console.log("@error", err);
@@ -107,29 +105,42 @@ router.put("/registerPerfectGrade", function (req, res) {
 // registerReward()
 // matches with /api/exam/registerReward
 router.put("/registerReward", function (req, res) {
-  const { studentId, topicId, name, link } = req.body;
+  const { link, name, studentId, topicId } = req.body;
 
-  // push the reward only if the topic isn't already there
-  model.Student.findOneAndUpdate(
-    { _id: studentId, "rewards.topicId": { $ne: topicId } },
-    {
-      $addToSet: {
-        rewards: {
-          topicId,
-          name: name,
-          link: link,
-        },
-      },
-    }
-  )
-    .then(() => {
-      // console.log(perfectGrade);
-      res.json("Reward registered successfully");
+  // FIRST check if the student already has this topic
+  // this has to be done BEFORE adding the topicId to the rewards list of the student
+  model.Student.findById(studentId)
+    .then(({ rewards }) => {
+      const isFreestyleUnlockable =
+        rewards.filter((r) => String(r.topicId) === String(topicId)).length ===
+        0;
+
+      // ONLY AFTER try to push the topicId to the student's rewards
+      // "$ne" won't push it if it's there already
+      model.Student.findOneAndUpdate(
+        { _id: studentId, "rewards.topicId": { $ne: topicId } },
+        {
+          $addToSet: {
+            rewards: {
+              link: link,
+              name: name,
+              topicId,
+            },
+          },
+        }
+      )
+        .then(() => res.send({ isFreestyleUnlockable }))
+        .catch((err) => {
+          console.log("@error", err);
+          res.status(422).send("Ocurrió un error");
+        });
     })
     .catch((err) => {
       console.log("@error", err);
       res.status(422).send("Ocurrió un error");
     });
+
+  // push the reward only if the topic isn't already there
 });
 
 // unlockExam()

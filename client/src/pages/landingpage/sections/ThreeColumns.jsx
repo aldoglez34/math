@@ -1,10 +1,10 @@
 import React from "react";
 import { CardDeck, Container } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
-import { SectionTitle, OfferCard } from "./components/";
+import { OfferCard, SectionTitle } from "./components/";
 import "./threecolumns.scss";
 
-export const ThreeColumns = React.memo(() => {
+export const ThreeColumns = () => {
   return (
     <Container className="tc_container">
       <Fade>
@@ -36,4 +36,4 @@ export const ThreeColumns = React.memo(() => {
       </Fade>
     </Container>
   );
-});
+};

@@ -168,8 +168,7 @@ export const AdminExamDetailPage = React.memo((props) => {
           </Col>
         </Row>
         {/* NEW QUESTIONS */}
-        <hr />
-        <h3 className="text-center">Nuevas preguntas</h3>
+        <h3 className="text-center mt-4">Nuevas preguntas</h3>
         <div className="d-flex flex-row justify-content-center mb-3 mt-3">
           <div>
             <NewQuestionModal Form={SimpleQuestionForm} text="Sencilla" />

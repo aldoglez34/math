@@ -32,7 +32,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
 
       courseData.rewards = courseData.topics.reduce((acc, cv) => {
         acc.push({
-          medalName: cv.reward.name,
+          medalName: `Medalla de ${cv.name}`,
           link: cv.reward.link,
           hasReward: studentData.rewards.filter(
             (r) => String(r.topicId) === String(cv._id)

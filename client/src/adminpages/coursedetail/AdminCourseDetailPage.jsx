@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Badge, Button, Col, Container, Row } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import { useDispatch } from "react-redux";
 import * as adminActions from "../../redux/actions/admin";
@@ -97,15 +97,19 @@ export const AdminCourseDetailPage = React.memo((props) => {
         <Row>
           <Col>
             <span className="text-muted">Estatus</span>
-            <h3>
-              {course.isActive ? "Activo" : "No activo"}
+            <h4>
+              {course.isActive ? (
+                <Badge variant="success">Activo</Badge>
+              ) : (
+                <Badge variant="danger">No activo</Badge>
+              )}
               <AdminModal
                 Form={CourseActiveForm}
                 formInitialText={course.isActive}
                 formLabel="Estatus"
                 icon={<i className="fas fa-pen-alt" />}
               />
-            </h3>
+            </h4>
           </Col>
         </Row>
         {/* description */}

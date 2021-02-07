@@ -1,5 +1,6 @@
 import React from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { APP_VERSION } from "../../constants/constants";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { firebaseAuth } from "../../firebase/firebase";
@@ -113,7 +114,7 @@ export const AdminLoginPage = () => {
                 </Button>
                 <div className="text-center mt-4">
                   <small>
-                    <em>v1.1</em>
+                    <em>{`v${APP_VERSION}`}</em>
                   </small>
                 </div>
               </Form>

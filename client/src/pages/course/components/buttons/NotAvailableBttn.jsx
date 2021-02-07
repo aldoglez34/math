@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 
-const NotAvailableeBttn = React.memo(() => {
+export const NotAvailableBttn = () => {
   return (
     <>
       <OverlayTrigger
@@ -25,6 +25,4 @@ const NotAvailableeBttn = React.memo(() => {
       </OverlayTrigger>
     </>
   );
-});
-
-export default NotAvailableeBttn;
+};

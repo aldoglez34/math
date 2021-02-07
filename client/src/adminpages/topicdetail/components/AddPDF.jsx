@@ -123,34 +123,36 @@ export const AddPDF = React.memo(({ courseId, topicId }) => {
                   </Form.Row>
                   {/* pdf */}
                   <Form.Row>
-                    <Form.Label>PDF</Form.Label>
-                    <Form.File
-                      encType="multipart/form-data"
-                      accept="application/pdf"
-                      label={values.pdf ? values.pdf : ""}
-                      data-browse="Buscar"
-                      id="file"
-                      name="file"
-                      type="file"
-                      onChange={(event) => {
-                        setFieldValue("file", event.currentTarget.files[0]);
-                        setFieldValue(
-                          "pdf",
-                          event.currentTarget.files[0]
-                            ? event.currentTarget.files[0].name
-                            : ""
-                        );
-                      }}
-                      onBlur={handleBlur}
-                      custom
-                    />
-                    <ErrorMessage
-                      className="text-danger"
-                      name="file"
-                      component="div"
-                    />
+                    <Form.Group as={Col}>
+                      <Form.Label>PDF</Form.Label>
+                      <Form.File
+                        encType="multipart/form-data"
+                        accept="application/pdf"
+                        label={values.pdf ? values.pdf : ""}
+                        data-browse="Buscar"
+                        id="file"
+                        name="file"
+                        type="file"
+                        onChange={(event) => {
+                          setFieldValue("file", event.currentTarget.files[0]);
+                          setFieldValue(
+                            "pdf",
+                            event.currentTarget.files[0]
+                              ? event.currentTarget.files[0].name
+                              : ""
+                          );
+                        }}
+                        onBlur={handleBlur}
+                        custom
+                      />
+                      <ErrorMessage
+                        className="text-danger"
+                        name="file"
+                        component="div"
+                      />
+                    </Form.Group>
                   </Form.Row>
-                  <Form.Group className="text-right mt-4">
+                  <Form.Group>
                     <Button
                       variant="dark"
                       type="submit"

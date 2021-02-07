@@ -9,7 +9,7 @@ export const QTechnicalInstruction = React.memo(({ type, text, imageLink }) => {
     </h4>
   ) : type === "image" ? (
     <ImageFromFirebase
-      className="mt-2"
+      className="mt-2 mb-3"
       height="250"
       path={imageLink}
       rounded

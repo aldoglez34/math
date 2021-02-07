@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Spinner, Container } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import API from "../../utils/API";
 import { StudentLayout } from "../../components/Layout";
-import CourseIntro from "./components/CourseIntro";
-import Topic from "./components/Topic";
+import { CourseIntro, ExamUnlocked, Topic } from "./components";
 import { useSelector, useDispatch } from "react-redux";
 import * as examActions from "../../redux/actions/exam";
 import * as zenModeActions from "../../redux/actions/zenMode";
-import ExamUnlocked from "./components/modal/ExamUnlocked";
 import "./coursepage.scss";
 
 export const CoursePage = React.memo((props) => {

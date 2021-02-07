@@ -1,18 +1,18 @@
 import React from "react";
 import {
-  Jumbotron,
-  Container,
   Accordion,
   Card,
-  Image,
-  Row,
   Col,
+  Container,
+  Image,
+  Jumbotron,
+  Row,
 } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
 import { ContactForm } from "./components";
 import "./faqjumbotron.scss";
 
-export const FAQJumbotron = React.memo(() => {
+export const FAQJumbotron = () => {
   const question = ({ key, question, answer }) => {
     return (
       <Card className="fj_accordionItem border rounded">
@@ -111,4 +111,4 @@ export const FAQJumbotron = React.memo(() => {
       </Jumbotron>
     </>
   );
-});
+};

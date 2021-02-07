@@ -20,8 +20,8 @@ const WrongAnswer = React.memo(
           ) : (
             <div className="text-center">
               <ImageFromFirebase
-                path={qCorrectAnswers.answer}
                 className="my-2"
+                path={qCorrectAnswers.answer}
                 width="50"
                 height="50"
                 rounded
@@ -58,8 +58,8 @@ const WrongAnswer = React.memo(
                   <>
                     <br />
                     <ImageFromFirebase
-                      path={qTechnicalInstruction.imageLink}
                       className="my-2"
+                      path={qTechnicalInstruction.imageLink}
                       width="150"
                       height="150"
                       rounded

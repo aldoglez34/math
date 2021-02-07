@@ -1,9 +1,9 @@
 import React from "react";
-import { Jumbotron, Button, Container, Row, Col } from "react-bootstrap";
+import { Button, Col, Container, Jumbotron, Row } from "react-bootstrap";
 import Fade from "react-reveal/Fade";
 import "./welcomejumbotron.scss";
 
-export const WelcomeJumbotron = React.memo(() => {
+export const WelcomeJumbotron = () => {
   return (
     <Jumbotron fluid className="wj_jumboStyle">
       <Container>
@@ -48,4 +48,4 @@ export const WelcomeJumbotron = React.memo(() => {
       </Container>
     </Jumbotron>
   );
-});
+};

@@ -1,15 +1,17 @@
 import React from "react";
-import { Row, Col, Accordion, Button, Card } from "react-bootstrap";
-import PropTypes from "prop-types";
-import DifficultyStars from "./DifficultyStars";
-import LastVisited from "./LastVisited";
+import { Accordion, Button, Card, Col, Row } from "react-bootstrap";
+import { array, object } from "prop-types";
+import {
+  DifficultyStars,
+  FreestyleCard,
+  LastVisited,
+  NotAvailableBttn,
+} from "./";
 import { useDispatch } from "react-redux";
 import * as examActions from "../../../redux/actions/exam";
-import NotAvailableBttn from "./buttons/NotAvailableBttn";
-import FreestyleCard from "./FreestyleCard";
 
-const ExamsAccordion = React.memo(
-  ({ exams, reward, freestyle, topicName, topicId }) => {
+export const ExamsAccordion = React.memo(
+  ({ exams, freestyle, reward, topicId, topicName }) => {
     const dispatch = useDispatch();
 
     const setExamInRedux = async (_id, name, difficulty, duration) => {
@@ -40,7 +42,10 @@ const ExamsAccordion = React.memo(
                     variant="link"
                     eventKey={ex._id}
                   >
-                    <i className="fas fa-chevron-down mr-2" />
+                    <i
+                      className="fas fa-chevron-down mr-2"
+                      style={{ color: "#48bf84" }}
+                    />
                     <strong style={{ color: "#0f5257" }}>{ex.name}</strong>
                     {/* exam cheked (passed) */}
                     {ex.highestGrade >= 8 ? (
@@ -58,7 +63,10 @@ const ExamsAccordion = React.memo(
                     ) : null}
                     {/* locked exam */}
                     {ex.isAvailable ? null : (
-                      <i className="fas fa-lock ml-2" title="Bloqueado" />
+                      <i
+                        className="fas fa-lock ml-2 text-danger"
+                        title="Bloqueado"
+                      />
                     )}
                   </Accordion.Toggle>
                 </Card.Header>
@@ -154,9 +162,7 @@ const ExamsAccordion = React.memo(
 );
 
 ExamsAccordion.propTypes = {
-  exams: PropTypes.array.isRequired,
-  reward: PropTypes.object.isRequired,
-  freestyle: PropTypes.object.isRequired,
+  exams: array.isRequired,
+  freestyle: object.isRequired,
+  reward: object.isRequired,
 };
-
-export default ExamsAccordion;

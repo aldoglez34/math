@@ -1,16 +1,17 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { string } from "prop-types";
 import { HashLink as Link } from "react-router-hash-link";
-import "./mytopic.scss";
 
-const MyTopic = ({ topicName }) => {
+import styles from "./topicbadge.module.scss";
+
+export const TopicBadge = ({ topicName }) => {
   return (
     <div className="mb-1">
       <Link
+        className={styles.topic}
         smooth
-        to={"/course/#" + topicName}
         title={"Ir a " + topicName}
-        className="mytopicstyle"
+        to={"/course/#" + topicName}
       >
         <strong style={{ fontSize: "17px" }}>
           <i
@@ -24,8 +25,6 @@ const MyTopic = ({ topicName }) => {
   );
 };
 
-MyTopic.propTypes = {
-  topicName: PropTypes.string.isRequired,
+TopicBadge.propTypes = {
+  topicName: string.isRequired,
 };
-
-export default MyTopic;

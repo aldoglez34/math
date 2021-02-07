@@ -16,6 +16,7 @@ import {
   TopicDescriptionForm,
   TopicFreestyleTimerForm,
   TopicNameForm,
+  TopicRewardForm,
   TopicSubjectForm,
 } from "./components";
 import { useDispatch, useSelector } from "react-redux";
@@ -152,9 +153,17 @@ export const AdminTopicDetailPage = React.memo((props) => {
           <Col>
             <span className="text-muted">Recompensa</span>
             <div className="d-flex">
-              <h5>{`Medalla de ${topic.name}`}</h5>
+              <h5>
+                {`Medalla de ${topic.name}`}
+                <AdminModal
+                  Form={TopicRewardForm}
+                  formLabel="Medalla"
+                  icon={<i className="fas fa-pen-alt" />}
+                />
+              </h5>
             </div>
             <ImageFromFirebase
+              className="mb-3"
               height="100"
               path={topic.reward.link}
               width="70"
@@ -201,7 +210,7 @@ export const AdminTopicDetailPage = React.memo((props) => {
           <Col>
             <span className="text-muted">Exámenes</span>
             {topic.exams.length ? (
-              <ul>
+              <ul className="mb-1">
                 {topic.exams
                   .sort((a, b) => a.examOrderNumber - b.examOrderNumber)
                   .map((e) => (
