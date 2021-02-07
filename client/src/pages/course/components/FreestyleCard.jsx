@@ -20,6 +20,7 @@ export const FreestyleCard = React.memo(({ topicName, topicId, freestyle }) => {
           variant="link"
           eventKey="freestyle"
           className="text-danger"
+          style={{ boxShadow: "none", textDecoration: "none" }}
         >
           <i className="fas fa-bolt mr-2" />
           <strong>Modo rápido</strong>

@@ -16,6 +16,7 @@ export const TopNav = React.memo(({ buttons, backBttn }) => {
               variant="transparent"
               className="p-0 text-light"
               href={backBttn}
+              style={{ boxShadow: "none" }}
             >
               <i className="fas fa-chevron-left mr-1" />
               Atrás

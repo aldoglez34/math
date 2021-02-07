@@ -59,11 +59,12 @@ export const LeftNav = React.memo(({ leftBarActive }) => {
           variant="transparent"
           className="mb-3 text-danger text-left"
           onClick={logout}
+          style={{ boxShadow: "none" }}
         >
           <i
             className="fas fa-arrow-circle-left"
             style={{ width: "26px", textAlign: "center" }}
-          ></i>
+          />
           <strong className="ml-1">Salir</strong>
         </Button>
       </div>

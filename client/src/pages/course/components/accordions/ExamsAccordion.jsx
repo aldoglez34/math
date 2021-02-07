@@ -6,9 +6,9 @@ import {
   FreestyleCard,
   LastVisited,
   NotAvailableBttn,
-} from "./";
+} from "..";
 import { useDispatch } from "react-redux";
-import * as examActions from "../../../redux/actions/exam";
+import * as examActions from "../../../../redux/actions/exam";
 
 export const ExamsAccordion = React.memo(
   ({ exams, freestyle, reward, topicId, topicName }) => {
@@ -41,6 +41,7 @@ export const ExamsAccordion = React.memo(
                     as={Button}
                     variant="link"
                     eventKey={ex._id}
+                    style={{ boxShadow: "none", textDecoration: "none" }}
                   >
                     <i
                       className="fas fa-chevron-down mr-2"

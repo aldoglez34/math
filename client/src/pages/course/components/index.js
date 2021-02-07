@@ -1,3 +1,5 @@
+export * from "./accordions/ExamsAccordion";
+
 export * from "./badges/TopicBadge";
 export * from "./buttons/NotAvailableBttn";
 export * from "./modals/ExamUnlocked";
@@ -7,7 +9,6 @@ export * from "./modals/MedalObtained";
 
 export * from "./CourseIntro";
 export * from "./DifficultyStars";
-export * from "./ExamsAccordion";
 export * from "./FreestyleCard";
 export * from "./LastVisited";
 export * from "./MedalTable";
