@@ -31,6 +31,7 @@ const schema = new Schema({
   },
   topics: [
     {
+      topicOrderNumber: { type: Number, required: true, default: 1 },
       name: { type: String, required: true },
       subject: { type: String, required: true },
       description: { type: String, required: true },
@@ -53,6 +54,7 @@ const schema = new Schema({
       },
       material: [
         {
+          materialOrderNumber: { type: Number, required: true, default: 1 },
           type: { type: String },
           name: { type: String },
           link: { type: String },
