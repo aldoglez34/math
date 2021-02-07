@@ -4,7 +4,7 @@ const model = require("../../models");
 // fetchSchoolDropdownItems()
 // matches with /api/guest/fetchSchoolDropdownItems
 router.get("/fetchSchoolDropdownItems", function (req, res) {
-  model.Course.find({})
+  model.Course.find({ isActive: true })
     .select("school")
     .distinct("school")
     .then((data) => res.json(data))
@@ -23,7 +23,7 @@ router.get("/fetchSchoolDropdownItems", function (req, res) {
 router.get("/fetchCoursesBySchool/:school", function (req, res) {
   const school = req.params.school;
 
-  model.Course.find({ school })
+  model.Course.find({ school, isActive: true })
     // .select("school")
     .then((data) => res.json(data))
     .catch((err) => {
