@@ -6,7 +6,7 @@ const model = require("../../models");
 router.get("/available/:courseId/:topicId", function (req, res) {
   const { courseId, topicId } = req.params;
 
-  const allExams = [
+  const allDifficulties = [
     "Basic",
     "Basic-Intermediate",
     "Intermediate",
@@ -14,28 +14,27 @@ router.get("/available/:courseId/:topicId", function (req, res) {
     "Advanced",
   ];
 
-  model.Course.findOne(
-    {
-      _id: courseId,
-      "topics._id": topicId,
-    }
-    // { "topics.$": topicId }
-  )
-    .select("topics.id topics.exams")
+  model.Course.findOne({
+    _id: courseId,
+    "topics._id": topicId,
+  })
     .populate("topics.exams", "difficulty")
-    .then((data) => {
-      return data.topics[0].exams.reduce((acc, cv) => {
+    .then(({ topics }) => {
+      const examsOfThisTopic = topics.filter(
+        ({ _id }) => String(_id) === String(topicId)
+      )[0].exams;
+
+      const difficultiesOfThisTopic = examsOfThisTopic.reduce((acc, cv) => {
         acc.push(cv.difficulty);
         return acc;
       }, []);
-    })
-    .then((examsTaken) => {
-      res.json(
-        allExams.reduce((acc, cv) => {
-          if (!examsTaken.includes(cv)) acc.push(cv);
-          return acc;
-        }, [])
-      );
+
+      const difficultiesAvailable = allDifficulties.reduce((acc, cv) => {
+        if (!difficultiesOfThisTopic.includes(cv)) acc.push(cv);
+        return acc;
+      }, []);
+
+      res.send(difficultiesAvailable);
     })
     .catch((err) => {
       console.log("@error", err);

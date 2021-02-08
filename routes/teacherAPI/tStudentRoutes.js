@@ -69,21 +69,38 @@ router.put("/assignCourse", function (req, res) {
 
   // first get all the course's exams
   model.Course.findById(courseId)
-    .select("topics")
+    .select("topics.exams")
+    .lean()
+    .populate("topics.exams", "difficulty")
     .then((data) => {
-      // get only exams ids
-      const allExams = data.topics.reduce((acc, cv) => {
+      const courses = data.topics.reduce((acc, cv) => {
         acc.push(...cv.exams);
         return acc;
       }, []);
 
-      // insert data
-      return model.Student.findByIdAndUpdate(studentId, {
-        $push: { courses: courseId, exams: allExams },
-      });
+      const onlyBasics = courses.reduce((acc, cv) => {
+        if (cv.difficulty === "Basic") acc.push(cv._id);
+        return acc;
+      }, []);
+
+      return onlyBasics;
     })
-    .then((data) => {
-      res.send(data);
+    .then((onlyBasics) => {
+      // insert only basic exams into the student account
+      model.Student.findOneAndUpdate(
+        { _id: studentId },
+        {
+          $push: {
+            courses: courseId,
+            exams: onlyBasics,
+          },
+        }
+      )
+        .then((data) => res.json(data))
+        .catch((err) => {
+          console.log("@error", err);
+          res.status(422).send({ msg: "Ocurrió un error" });
+        });
     })
     .catch((err) => {
       console.log("@error", err);
