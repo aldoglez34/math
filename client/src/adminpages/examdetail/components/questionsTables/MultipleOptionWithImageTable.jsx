@@ -29,7 +29,7 @@ export const MultipleOptionWithImageTable = React.memo(({ questions }) => {
       })
       .catch((err) => {
         console.log(err);
-        alert("Ocurrió un error");
+        alert("Ocurrió un error, vuelve a intentarlo.");
       });
   };
 

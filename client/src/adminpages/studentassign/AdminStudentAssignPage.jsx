@@ -13,7 +13,7 @@ export const AdminStudentAssignPage = React.memo((props) => {
       .then((res) => setUnpurchased(res.data))
       .catch((err) => {
         console.log(err);
-        alert("Ocurrió un error");
+        alert("Ocurrió un error, vuelve a intentarlo.");
       });
   }, [props.routeProps.match.params.studentId]);
 
@@ -30,7 +30,7 @@ export const AdminStudentAssignPage = React.memo((props) => {
       })
       .catch((err) => {
         console.log(err);
-        alert("Ocurrió un error");
+        alert("Ocurrió un error, vuelve a intentarlo.");
       });
   };
 

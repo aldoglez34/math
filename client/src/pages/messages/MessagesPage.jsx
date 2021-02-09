@@ -24,7 +24,7 @@ export const MessagesPage = () => {
       })
       .catch((err) => {
         console.log(err);
-        alert("Ocurrió un error");
+        alert("Ocurrió un error, vuelve a intentarlo.");
       });
 
     API.markAllMessagesSeen(student._id)
@@ -34,7 +34,7 @@ export const MessagesPage = () => {
       })
       .catch((err) => {
         console.log(err);
-        alert("Ocurrió un error");
+        alert("Ocurrió un error, vuelve a intentarlo.");
       });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -45,7 +45,7 @@ export const AdminCoursesPage = () => {
       })
       .catch((err) => {
         console.log(err);
-        alert("Ocurrió un error");
+        alert("Ocurrió un error, vuelve a intentarlo.");
       });
   }, [dispatch]);
 

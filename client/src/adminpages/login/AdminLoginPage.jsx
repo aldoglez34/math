@@ -27,24 +27,19 @@ export const AdminLoginPage = () => {
             validationSchema={loginSchema}
             onSubmit={(values, { setSubmitting }) => {
               setSubmitting(true);
-              //////// login ////////
               firebaseAuth
                 .setPersistence(fbApp.auth.Auth.Persistence.SESSION)
                 .then(() => {
                   return firebaseAuth
                     .signInWithEmailAndPassword(values.email, values.password)
-                    .then((res) => {
-                      // console.log(res);
-                      alert("Bienvenido, administrador.");
-                    });
+                    .then(() => alert("Bienvenido, administrador."));
                 })
                 .catch((error) => {
-                  alert("Usuario incorrecto");
+                  alert("Usuario incorrecto.");
                   console.log(error.code);
                   console.log(error.message);
                   setSubmitting(false);
                 });
-              setSubmitting(false);
             }}
           >
             {({

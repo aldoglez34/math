@@ -41,7 +41,7 @@ export const AdminCourseDetailPage = React.memo((props) => {
       })
       .catch((err) => {
         console.log(err);
-        alert("Ocurrió un error");
+        alert("Ocurrió un error, vuelve a intentarlo.");
       });
   }, [courseId, dispatch]);
 
