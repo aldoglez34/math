@@ -3,12 +3,7 @@ import { Badge, Button, Col, Container, Row } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import { useDispatch } from "react-redux";
 import * as adminActions from "../../redux/actions/admin";
-import {
-  AdminLayout,
-  AdminModal,
-  AdminPrimaryButton,
-  AdminSpinner,
-} from "../components";
+import { AdminLayout, AdminModal, AdminSpinner } from "../components";
 import {
   CourseActiveForm,
   CourseDescriptionForm,
@@ -16,6 +11,7 @@ import {
   CoursePriceForm,
   CourseSchoolForm,
   CourseSummaryForm,
+  DraggableTopics,
 } from "./components";
 import moment from "moment";
 import "moment/locale/es";
@@ -158,23 +154,16 @@ export const AdminCourseDetailPage = React.memo((props) => {
         <Row>
           <Col>
             <span className="text-muted d-flex">Temas</span>
-            {course.topics.length ? (
-              <ul className="mb-1">
-                {course.topics.map((t) => (
-                  <li key={t._id}>
-                    <h5 className="mb-0">
-                      {t.name}
-                      <AdminPrimaryButton
-                        href={`/admin/courses/edit/topics/${courseId}/${t._id}`}
-                        icon={<i className="fas fa-arrow-alt-circle-right" />}
-                      />
-                    </h5>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <h5>-</h5>
-            )}
+            <DraggableTopics
+              courseId={courseId}
+              topics={course.topics
+                .sort((a, b) => a.topicOrderNumber - b.topicOrderNumber)
+                .map((t) => ({
+                  _id: t._id,
+                  id: t.topicOrderNumber,
+                  name: t.name,
+                }))}
+            />
             <Button
               variant="dark"
               size="sm"

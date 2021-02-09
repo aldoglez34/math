@@ -137,10 +137,19 @@ router.put("/new", function (req, res) {
         (t) => String(t.name).trim() === String(req.body.name).trim()
       );
 
+      const latestTopic = topics.sort(
+        (a, b) => b.topicOrderNumber - a.topicOrderNumber
+      )[0];
+
+      const highestTopicOrderNumber = latestTopic
+        ? latestTopic.topicOrderNumber
+        : 0;
+
       if (doesNewTopicExist) {
         res.status(500).send("Un tema con este nombre ya existe en este curso");
       } else {
         const newTopicData = {
+          topicOrderNumber: highestTopicOrderNumber + 1,
           subject: req.body.subject,
           name: req.body.name,
           description: req.body.description,
@@ -194,6 +203,38 @@ router.put("/new", function (req, res) {
       console.log("@error", err);
       res.status(422).send("Ocurrió un error.");
     });
+});
+
+// t_updateOrder()
+// matches with /teacherAPI/topics/update/order
+router.put("/update/order", function (req, res) {
+  const { courseId, newList } = req.body;
+
+  let updateAllTopics = new Promise((resolve, reject) => {
+    newList.forEach((value, index, array) => {
+      const { _id: topicId, newId } = value;
+
+      model.Course.update(
+        {
+          _id: courseId,
+          "topics._id": topicId,
+        },
+        { "topics.$.topicOrderNumber": newId }
+      )
+        .then(() => {
+          if (index === array.length - 1) resolve();
+        })
+        .catch((err) => {
+          console.log("@error", err);
+          res.status(422).send("Ocurrió un error.");
+          reject();
+        });
+    });
+  });
+
+  updateAllTopics
+    .then(() => res.send("Los temas fueron actualizados con éxito."))
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;
