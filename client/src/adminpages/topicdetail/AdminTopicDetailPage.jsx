@@ -56,7 +56,7 @@ export const AdminTopicDetailPage = React.memo((props) => {
     })
       .then(() => {
         if (materialType === "video") {
-          alert("El artículo seleccionado ha sido eliminado con éxito.");
+          alert("Borrado con éxito.");
           window.location.reload();
         }
 

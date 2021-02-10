@@ -19,6 +19,7 @@ export const DraggableMaterial = ({
   const [materialToDelete, setMaterialToDelete] = useState(false);
 
   const handleShowDeleteConfirm = (m) => {
+    console.log(m);
     setMaterialToDelete(m);
     setShowDeleteConfirm(true);
   };
@@ -46,15 +47,15 @@ export const DraggableMaterial = ({
   }, [courseId, state, topicId]);
 
   return (
-    <React.Fragment>
+    <>
       <Modal show={showDeleteConfirm} onHide={handleCloseDeleteConfirm}>
         <Modal.Body>
-          {`¿Estás seguro que quieres borrar este ${materialToDelete.type}?`}
-          <br />
-          <div className="text-center mt-4">
+          <span className="lead">
+            {`¿Estás seguro que quieres borrar este ${materialToDelete && materialToDelete.type}?`}
+          </span>
+          <div className="d-flex flex-row justify-content-center mt-4">
             <Button
               variant="danger"
-              className="mr-2"
               onClick={() =>
                 handleDeleteMaterialItem(
                   materialToDelete.type,
@@ -65,8 +66,8 @@ export const DraggableMaterial = ({
             >
               Borrar
             </Button>
-            <Button variant="dark" onClick={handleCloseDeleteConfirm}>
-              Borrar
+            <Button variant="dark" className="ml-2" onClick={handleCloseDeleteConfirm}>
+              Cancelar
             </Button>
           </div>
         </Modal.Body>
@@ -83,7 +84,7 @@ export const DraggableMaterial = ({
                   {m.name}
                   <AdminDangerButton
                     icon={<i className="fas fa-times" />}
-                    onClick={(m) => handleShowDeleteConfirm(m)}
+                    onClick={() => handleShowDeleteConfirm(m)}
                   />
                 </strong>
               </li>
@@ -93,7 +94,7 @@ export const DraggableMaterial = ({
       ) : (
         <h5>-</h5>
       )}
-    </React.Fragment>
+    </>
   );
 };
 
