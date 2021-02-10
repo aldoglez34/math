@@ -21,35 +21,40 @@ export const DashboardCourseCard = React.memo(({ course }) => {
         <Card.Text>{course.description}</Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
-        {course.topics.map((ct) => (
-          <ListGroupItem
-            key={ct._id}
-            className="d-flex flex-row align-items-center"
-          >
-            <Button
-              variant="link"
-              className="p-0 text-left dashboardCourseLink"
-              onClick={() =>
-                buttonClicked(course._id, course.name).then(
-                  () => (window.location.href = "/course/#" + ct.name)
-                )
-              }
-              title={"Ir a " + ct.name}
+        {course.topics
+          .sort((a, b) => a.topicOrderNumber - b.topicOrderNumber)
+          .map((ct) => (
+            <ListGroupItem
+              key={ct._id}
+              className="d-flex flex-row align-items-center"
             >
-              <strong>
-                <i
-                  className="fas fa-location-arrow mr-2"
-                  style={{ fontSize: "13px" }}
-                />
-                {ct.name}
-              </strong>
-            </Button>
+              <Button
+                variant="link"
+                className="p-0 text-left dashboardCourseLink"
+                onClick={() =>
+                  buttonClicked(course._id, course.name).then(
+                    () => (window.location.href = "/course/#" + ct.name)
+                  )
+                }
+                title={"Ir a " + ct.name}
+              >
+                <strong>
+                  <i
+                    className="fas fa-location-arrow mr-2"
+                    style={{ fontSize: "13px" }}
+                  />
+                  {ct.name}
+                </strong>
+              </Button>
 
-            {ct.hasReward ? (
-              <i className="fas fa-medal text-warning ml-2" title="Aprobado" />
-            ) : null}
-          </ListGroupItem>
-        ))}
+              {ct.hasReward ? (
+                <i
+                  className="fas fa-medal text-warning ml-2"
+                  title="Aprobado"
+                />
+              ) : null}
+            </ListGroupItem>
+          ))}
       </ListGroup>
       <Card.Body>
         <Button

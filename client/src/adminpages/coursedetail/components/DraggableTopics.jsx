@@ -18,7 +18,7 @@ export const DraggableTopics = ({ courseId, topics }) => {
     }, []);
 
     if (changes.length)
-      TeacherAPI.t_updateOrder({ courseId, newList: changes })
+      TeacherAPI.t_updateTopicOrder({ courseId, newList: changes })
         .then(() => {
           console.log("OK");
         })

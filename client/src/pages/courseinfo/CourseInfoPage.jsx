@@ -69,10 +69,12 @@ export const CourseInfoPage = React.memo((props) => {
                   lessonCounter={c.topics.length}
                   price={c.price}
                   title={c.name}
-                  topics={c.topics.reduce((acc, cv) => {
-                    acc.push(cv.name);
-                    return acc;
-                  }, [])}
+                  topics={c.topics
+                    .sort((a, b) => a.topicOrderNumber - b.topicOrderNumber)
+                    .reduce((acc, cv) => {
+                      acc.push(cv.name);
+                      return acc;
+                    }, [])}
                 />
               ))
             ) : (

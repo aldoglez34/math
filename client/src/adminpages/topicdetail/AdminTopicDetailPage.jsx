@@ -3,7 +3,6 @@ import { Col, Container, Row } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import {
   AdminPrimaryButton,
-  AdminDangerButton,
   AdminLayout,
   AdminModal,
   AdminSpinner,
@@ -12,6 +11,7 @@ import {
 import {
   AddPDF,
   AddVideo,
+  DraggableMaterial,
   NewExamBttn,
   TopicDescriptionForm,
   TopicFreestyleTimerForm,
@@ -174,34 +174,21 @@ export const AdminTopicDetailPage = React.memo((props) => {
         <Row>
           <Col>
             <span className="text-muted">Material</span>
-            {topic.material.length ? (
-              <ul>
-                {topic.material.map((m) => (
-                  <li key={m._id}>
-                    <strong style={{ color: "#0f5257" }}>
-                      {m.type === "video" && (
-                        <i className="fas fa-video mr-2" />
-                      )}
-                      {m.type === "pdf" && (
-                        <i className="fas fa-file-pdf mr-2" />
-                      )}
-                      {m.name}
-                      <AdminDangerButton
-                        icon={<i className="fas fa-times" />}
-                        onClick={() =>
-                          handleDeleteMaterialItem(m.type, m._id, m.link)
-                        }
-                      />
-                    </strong>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <h5>-</h5>
-            )}
+            <DraggableMaterial
+              {...{ courseId, handleDeleteMaterialItem, topicId }}
+              material={topic.material
+                .sort((a, b) => a.materialOrderNumber - b.materialOrderNumber)
+                .map((m) => ({
+                  _id: m._id,
+                  id: m.materialOrderNumber,
+                  link: m.link,
+                  name: m.name,
+                  type: m.type,
+                }))}
+            />
             <div className="mb-3">
-              <AddVideo courseId={courseId} topicId={topicId} />
-              <AddPDF courseId={courseId} topicId={topicId} />
+              <AddVideo {...{ courseId, topicId }} />
+              <AddPDF {...{ courseId, topicId }} />
             </div>
           </Col>
         </Row>

@@ -38,25 +38,27 @@ export const Topic = React.memo(({ courseName, topic }) => {
           </p>
           <div className="mb-2">
             {topic.material
-              .filter(({ type }) => type === "video")
-              .map((m) => (
-                <p key={m._id} className="mb-1">
-                  <a
-                    className="text-info"
-                    href={m.link}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    <i className="fas fa-video mr-2" />
-                    {m.name}
-                  </a>
-                </p>
-              ))}
-            {topic.material
-              .filter(({ type }) => type === "pdf")
-              .map((m) => (
-                <PDFLInk key={m._id} path={m.link} name={m.name} />
-              ))}
+              .sort((a, b) => a.materialOrderNumber - b.materialOrderNumber)
+              .map((m) => {
+                return (
+                  <div key={m._id} className="mb-1">
+                    {m.type === "video" && (
+                      <a
+                        className="text-info"
+                        href={m.link}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        <i className="fas fa-video mr-2" />
+                        {m.name}
+                      </a>
+                    )}
+                    {m.type === "pdf" && (
+                      <PDFLInk key={m._id} path={m.link} name={m.name} />
+                    )}
+                  </div>
+                );
+              })}
           </div>
           {/* help modal */}
           <HelpModal courseName={courseName} topic={topic.name} />

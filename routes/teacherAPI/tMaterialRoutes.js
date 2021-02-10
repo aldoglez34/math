@@ -12,22 +12,41 @@ router.put("/add", function (req, res) {
   if (type === "video") link = req.body.link;
   if (type === "pdf") link = `${courseId}/${topicId}/material/${name}`;
 
-  model.Course.update(
-    {
-      _id: courseId,
-      "topics._id": topicId,
-    },
-    {
-      $push: {
-        "topics.$.material": {
-          link,
-          name,
-          type,
+  model.Course.findById(courseId)
+    .select("topics")
+    .then(({ topics }) => {
+      const topic = topics.filter((t) => String(t._id) === String(topicId))[0];
+
+      const latestMaterial = topic.material.sort(
+        (a, b) => b.materialOrderNumber - a.materialOrderNumber
+      )[0];
+
+      const highestMaterialOrderNumber = latestMaterial
+        ? latestMaterial.materialOrderNumber
+        : 0;
+
+      model.Course.update(
+        {
+          _id: courseId,
+          "topics._id": topicId,
         },
-      },
-    }
-  )
-    .then(() => res.send("El elemento fue agregado con éxito."))
+        {
+          $push: {
+            "topics.$.material": {
+              materialOrderNumber: highestMaterialOrderNumber + 1,
+              link,
+              name,
+              type,
+            },
+          },
+        }
+      )
+        .then(() => res.send("El elemento fue agregado con éxito."))
+        .catch((err) => {
+          console.log("@error", err);
+          res.status(422).send("Ocurrió un error.");
+        });
+    })
     .catch((err) => {
       console.log("@error", err);
       res.status(422).send("Ocurrió un error.");
@@ -57,6 +76,41 @@ router.put("/delete", function (req, res) {
       console.log("@error", err);
       res.status(422).send("Ocurrió un error.");
     });
+});
+
+// t_updateMaterialOrder()
+// matches with /teacherAPI/material/update/order
+router.put("/update/order", function (req, res) {
+  const { courseId, newList, topicId } = req.body;
+
+  let updateAllMaterial = new Promise((resolve, reject) => {
+    newList.forEach((value, index, array) => {
+      const { _id: materialId, newId } = value;
+
+      model.Course.update(
+        {
+          _id: courseId,
+          "topics._id": topicId,
+          "topics.material._id": materialId,
+        },
+        {
+          $set: { "topics.material.$$.materialOrderNumber": newId },
+        }
+      )
+        .then(() => {
+          if (index === array.length - 1) resolve();
+        })
+        .catch((err) => {
+          console.log("@error", err);
+          res.status(422).send("Ocurrió un error.");
+          reject();
+        });
+    });
+  });
+
+  updateAllMaterial
+    .then(() => res.send("El material fue actualizado con éxito."))
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;

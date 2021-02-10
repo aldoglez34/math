@@ -84,7 +84,7 @@ router.get("/fetchDashboard/:studentId", function (req, res) {
     .lean()
     .populate(
       "courses",
-      "name description topics._id topics.subject topics.name"
+      "name description topics._id topics.topicOrderNumber topics.subject topics.name"
     )
     .then((data) => {
       const myRewards = data.rewards;

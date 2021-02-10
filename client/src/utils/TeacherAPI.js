@@ -53,7 +53,8 @@ export default {
 
   t_newTopic: (topicData) => axios.put("/teacherAPI/topics/new", topicData),
 
-  t_updateOrder: (data) => axios.put("/teacherAPI/topics/update/order", data),
+  t_updateTopicOrder: (data) =>
+    axios.put("/teacherAPI/topics/update/order", data),
 
   // ==============================================
   // MATERIAL
@@ -62,6 +63,9 @@ export default {
   t_addMaterial: (data) => axios.put("/teacherAPI/material/add", data),
 
   t_deleteMaterial: (data) => axios.put("/teacherAPI/material/delete", data),
+
+  t_updateMaterialOrder: (data) =>
+    axios.put("/teacherAPI/material/update/order", data),
 
   // ==============================================
   // DIFFICULTIES

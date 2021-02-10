@@ -205,7 +205,7 @@ router.put("/new", function (req, res) {
     });
 });
 
-// t_updateOrder()
+// t_updateTopicOrder()
 // matches with /teacherAPI/topics/update/order
 router.put("/update/order", function (req, res) {
   const { courseId, newList } = req.body;

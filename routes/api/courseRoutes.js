@@ -13,7 +13,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
   model.Course.findById(courseId)
     .lean()
     .select(
-      "name topics._id topics.subject topics.name topics.description topics.freestyle topics.material topics.exams topics.reward"
+      "name topics._id topics.subject topics.name topics.topicOrderNumber topics.description topics.freestyle topics.material topics.exams topics.reward"
     )
     .populate(
       "topics.exams",

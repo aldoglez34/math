@@ -73,22 +73,24 @@ export const CoursePage = React.memo((props) => {
             topics={course.topics.reduce((acc, cv) => {
               acc.push({ _id: cv._id, subject: cv.subject, name: cv.name });
               return acc;
-            }, [])} // only sending "_id", "subject" and "name"
+            }, [])}
             rewards={course.rewards}
             courseId={course._id}
           />
           {/* TOPICS */}
           <div style={{ paddingBottom: "100px" }}>
-            {course.topics.map((ct) => (
-              <React.Fragment key={ct._id}>
-                <hr className="mexmaticasDivider" />
-                <div className="topicSection">
-                  <Container>
-                    <Topic courseName={course.name} topic={ct} />
-                  </Container>
-                </div>
-              </React.Fragment>
-            ))}
+            {course.topics
+              .sort((a, b) => a.topicOrderNumber - b.topicOrderNumber)
+              .map((ct) => (
+                <React.Fragment key={ct._id}>
+                  <hr className="mexmaticasDivider" />
+                  <div className="topicSection">
+                    <Container>
+                      <Topic courseName={course.name} topic={ct} />
+                    </Container>
+                  </div>
+                </React.Fragment>
+              ))}
           </div>
         </>
       ) : (

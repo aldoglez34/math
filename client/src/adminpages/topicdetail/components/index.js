@@ -1,5 +1,6 @@
 export * from "./AddPDF";
 export * from "./AddVideo";
+export * from "./DraggableMaterial";
 export * from "./NewExamBttn";
 
 export * from "./forms/TopicDescriptionForm";
