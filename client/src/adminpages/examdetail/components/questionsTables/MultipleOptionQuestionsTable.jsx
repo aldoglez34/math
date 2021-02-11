@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row, Table } from "react-bootstrap";
 import { array } from "prop-types";
 import { useSelector } from "react-redux";
-import { AdminDangerButton } from "../../../components";
+import { AdminDangerModal } from "../../../components";
 import TeacherAPI from "../../../../utils/TeacherAPI";
 
 export const MultipleOptionQuestionsTable = React.memo(({ questions }) => {
@@ -95,9 +95,10 @@ export const MultipleOptionQuestionsTable = React.memo(({ questions }) => {
                     </td>
                     <td className="align-middle">{q.qComment}</td>
                     <td className="text-center align-middle">
-                      <AdminDangerButton
+                      <AdminDangerModal
+                        deleteFn={() => handleDeleteQuestion(q._id)}
                         icon={<i className="fas fa-times" />}
-                        onClick={() => handleDeleteQuestion(q._id)}
+                        modalText={`¿Estás seguro que deseas borrar esta pregunta?`}
                       />
                     </td>
                   </tr>

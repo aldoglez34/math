@@ -2,7 +2,7 @@ import React from "react";
 import { Table, Row, Col } from "react-bootstrap";
 import { array } from "prop-types";
 import { useSelector } from "react-redux";
-import { AdminDangerButton, ImageFromFirebase } from "../../../components";
+import { AdminDangerModal, ImageFromFirebase } from "../../../components";
 import TeacherAPI from "../../../../utils/TeacherAPI";
 import { firebaseStorage } from "../../../../firebase/firebase";
 
@@ -19,7 +19,7 @@ export const SimpleWithImageQuestionsTable = React.memo(({ questions }) => {
         fileRef
           .delete()
           .then(() => {
-            alert("La pregunta ha sido registrada con éxito.");
+            alert("La pregunta ha sido borrada con éxito.");
             window.location.reload();
           })
           .catch((error) => {
@@ -93,14 +93,15 @@ export const SimpleWithImageQuestionsTable = React.memo(({ questions }) => {
                     </td>
                     <td className="align-middle">{q.qComment}</td>
                     <td className="text-center align-middle">
-                      <AdminDangerButton
-                        icon={<i className="fas fa-times" />}
-                        onClick={() =>
+                      <AdminDangerModal
+                        deleteFn={() =>
                           handleDeleteQuestion(
                             q._id,
                             q.qTechnicalInstruction.imageLink
                           )
                         }
+                        icon={<i className="fas fa-times" />}
+                        modalText={`¿Estás seguro que deseas borrar esta pregunta?`}
                       />
                     </td>
                   </tr>

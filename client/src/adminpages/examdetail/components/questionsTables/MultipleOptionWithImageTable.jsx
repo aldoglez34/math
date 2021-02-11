@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row, Table } from "react-bootstrap";
 import { array } from "prop-types";
 import { useSelector } from "react-redux";
-import { AdminDangerButton, ImageFromFirebase } from "../../../components";
+import { AdminDangerModal, ImageFromFirebase } from "../../../components";
 import TeacherAPI from "../../../../utils/TeacherAPI";
 import { firebaseStorage } from "../../../../firebase/firebase";
 
@@ -110,14 +110,15 @@ export const MultipleOptionWithImageTable = React.memo(({ questions }) => {
                     </td>
                     <td className="align-middle">{q.qComment}</td>
                     <td className="text-center align-middle">
-                      <AdminDangerButton
+                      <AdminDangerModal
                         icon={<i className="fas fa-times" />}
-                        onClick={() =>
+                        deleteFn={() =>
                           handleDeleteQuestion(
                             q._id,
                             q.qTechnicalInstruction.imageLink
                           )
                         }
+                        modalText={`¿Estás seguro que deseas borrar esta pregunta?`}
                       />
                     </td>
                   </tr>
