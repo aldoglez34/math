@@ -93,10 +93,7 @@ router.put("/update/description", function (req, res) {
     },
     { "topics.$.description": newDescription }
   )
-    .then((data) => {
-      res.json(data);
-      // res.json("Nombre del curso actualizado satisfactoriamente.");
-    })
+    .then((data) => res.json(data))
     .catch((err) => {
       console.log("@error", err);
       res.status(422).send("Ocurrió un error.");

@@ -83,49 +83,53 @@ router.put("/delete", function (req, res) {
 router.put("/update/order", function (req, res) {
   const { courseId, newList, topicId } = req.body;
 
-  // console.log("\n\nUPDATING MATERIAL ORDER - CHANGES:\n");
-  // console.log(newList);
-  // console.log("\n\n");
-
-  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
-  model.Course.find({ _id: courseId, "topics._id": topicId })
+  model.Course.findById(courseId)
     .select("topics")
     .then(({ topics }) => {
-      console.log(topics);
+      const thisTopicMaterial = topics.filter(
+        ({ _id }) => String(_id) === String(topicId)
+      )[0].material;
+
+      const newMaterial = thisTopicMaterial.reduce((acc, cv) => {
+        let materialOrderNumber;
+        const _id = cv._id;
+        const link = cv.link;
+        const name = cv.name;
+        const type = cv.type;
+
+        const materialInNewList = newList.filter(
+          (m) => String(m._id) === String(_id)
+        )[0];
+
+        if (materialInNewList) {
+          materialOrderNumber = materialInNewList.newOrderNumber;
+        } else {
+          materialOrderNumber = cv.materialOrderNumber;
+        }
+
+        acc.push({ materialOrderNumber, _id, link, name, type });
+
+        return acc;
+      }, []);
+
+      model.Course.update(
+        {
+          _id: courseId,
+          "topics._id": topicId,
+        },
+        { "topics.$.material": newMaterial }
+      )
+        .then((data) => res.json(data))
+        .catch((err) => {
+          console.log("@error", err);
+          res.status(422).send("Ocurrió un error.");
+        });
     })
     .catch((err) => {
       console.log("@error", err);
       res.status(422).send("Ocurrió un error.");
       reject();
     });
-
-  // let updateAllMaterial = new Promise((resolve, reject) => {
-  //   newList.forEach((value, index, array) => {
-  //     const { _id: materialId, newOrderNumber } = value;
-
-  //     model.Course.update(
-  //       {
-  //         _id: courseId,
-  //         "topics._id": topicId,
-  //         "material._id": materialId,
-  //       },
-  //       { $set: { "material.$.materialOrderNumber": newOrderNumber } }
-  //     )
-  //       .then(() => {
-  //         if (index === array.length - 1) resolve();
-  //       })
-  //       .catch((err) => {
-  //         console.log("@error", err);
-  //         res.status(422).send("Ocurrió un error.");
-  //         reject();
-  //       });
-  //   });
-  // });
-
-  // updateAllMaterial
-  //   .then(() => res.send("El material fue actualizado con éxito."))
-  //   .catch((err) => console.log(err));
 });
 
 module.exports = router;
