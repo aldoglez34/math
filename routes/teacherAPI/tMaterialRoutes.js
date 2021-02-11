@@ -99,6 +99,33 @@ router.put("/update/order", function (req, res) {
       res.status(422).send("Ocurrió un error.");
       reject();
     });
+
+  // let updateAllMaterial = new Promise((resolve, reject) => {
+  //   newList.forEach((value, index, array) => {
+  //     const { _id: materialId, newOrderNumber } = value;
+
+  //     model.Course.update(
+  //       {
+  //         _id: courseId,
+  //         "topics._id": topicId,
+  //         "material._id": materialId,
+  //       },
+  //       { $set: { "material.$.materialOrderNumber": newOrderNumber } }
+  //     )
+  //       .then(() => {
+  //         if (index === array.length - 1) resolve();
+  //       })
+  //       .catch((err) => {
+  //         console.log("@error", err);
+  //         res.status(422).send("Ocurrió un error.");
+  //         reject();
+  //       });
+  //   });
+  // });
+
+  // updateAllMaterial
+  //   .then(() => res.send("El material fue actualizado con éxito."))
+  //   .catch((err) => console.log(err));
 });
 
 module.exports = router;
