@@ -10,7 +10,7 @@ import styles from "./courseinfocard.module.scss";
 export const CourseInfoCard = React.memo(
   ({
     courseId,
-    isButtonDisabled = false,
+    isCoursePurchased = false,
     lessonCounter,
     price,
     title,
@@ -20,8 +20,7 @@ export const CourseInfoCard = React.memo(
 
     const buyCourseSimulation = () => {
       API.buyCourse({ courseId, studentId: student._id })
-        .then((res) => {
-          console.log(res.data);
+        .then(() => {
           alert("Has comprado el curso satisfactoriamente.");
           window.location.href = "/";
         })
@@ -104,29 +103,46 @@ export const CourseInfoCard = React.memo(
             {/* button */}
             <Row>
               <Col md={{ span: 6, offset: 3 }}>
-                <Button
-                  block
-                  className={cn(
-                    "mb-3",
-                    "mt-2",
-                    "py-3",
-                    "shadow-sm",
-                    styles.buyButton
-                  )}
-                  disabled={isButtonDisabled}
-                  onClick={
-                    student
-                      ? () => buyCourseSimulation()
-                      : () =>
-                          alert(
-                            "Para comprar un curso es necesario estar registrado"
-                          )
-                  }
-                  size="lg"
-                >
-                  Comprar
-                  <i className="fas fa-cart-plus ml-2" />
-                </Button>
+                {isCoursePurchased ? (
+                  <Button
+                    disabled
+                    block
+                    className={cn(
+                      "mb-3",
+                      "mt-2",
+                      "py-3",
+                      "shadow-sm",
+                      styles.purchasedButton
+                    )}
+                    size="lg"
+                  >
+                    Comprado
+                    <i className="fas fa-check ml-2" />
+                  </Button>
+                ) : (
+                  <Button
+                    block
+                    className={cn(
+                      "mb-3",
+                      "mt-2",
+                      "py-3",
+                      "shadow-sm",
+                      styles.buyButton
+                    )}
+                    onClick={
+                      student
+                        ? () => buyCourseSimulation()
+                        : () =>
+                            alert(
+                              "Para comprar un curso es necesario estar registrado"
+                            )
+                    }
+                    size="lg"
+                  >
+                    Comprar
+                    <i className="fas fa-cart-plus ml-2" />
+                  </Button>
+                )}
               </Col>
             </Row>
           </Card.Body>
@@ -138,7 +154,7 @@ export const CourseInfoCard = React.memo(
 
 CourseInfoCard.propTypes = {
   courseId: string.isRequired,
-  isButtonDisabled: bool,
+  isCoursePurchased: bool,
   lessonCounter: number.isRequired,
   price: number.isRequired,
   title: string.isRequired,

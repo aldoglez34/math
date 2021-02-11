@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const model = require("../../models");
+const mongoose = require("mongoose");
 
 // fetchSchoolDropdownItems()
 // matches with /api/guest/fetchSchoolDropdownItems
@@ -19,20 +20,55 @@ router.get("/fetchSchoolDropdownItems", function (req, res) {
 });
 
 // fetchCoursesBySchool()
-// matches with /api/guest/fetchCoursesBySchool/:school
-router.get("/fetchCoursesBySchool/:school", function (req, res) {
-  const school = req.params.school;
+// matches with /api/guest/fetchCoursesBySchool/:school/:studentId
+router.get("/fetchCoursesBySchool/:school/:studentId", function (req, res) {
+  const { school, studentId } = req.params;
 
-  model.Course.find({ school, isActive: true })
-    .then((data) => res.json(data))
-    .catch((err) => {
-      console.log("@error", err);
-      res
-        .status(422)
-        .send(
-          "Ocurrió un error al enviar el mensaje, inténtalo de nuevo más tarde"
-        );
-    });
+  if (studentId !== "Guest") {
+    model.Student.findById(mongoose.Types.ObjectId(studentId))
+      .select("courses")
+      .then(({ courses: coursesPurchased }) => {
+        model.Course.find({ school, isActive: true })
+          .then((allCourses) => {
+            const coursesWithPurchaseField = allCourses.reduce((acc, cv) => {
+              acc.push({
+                ...cv._doc,
+                isCoursePurchased: coursesPurchased.includes(String(cv._id)),
+              });
+              return acc;
+            }, []);
+
+            res.json(coursesWithPurchaseField);
+          })
+          .catch((err) => {
+            console.log("@error", err);
+            res
+              .status(422)
+              .send(
+                "Ocurrió un error al enviar el mensaje, inténtalo de nuevo más tarde"
+              );
+          });
+      })
+      .catch((err) => {
+        console.log("@error", err);
+        res
+          .status(422)
+          .send(
+            "Ocurrió un error al enviar el mensaje, inténtalo de nuevo más tarde"
+          );
+      });
+  } else {
+    model.Course.find({ school, isActive: true })
+      .then((allCourses) => res.json(allCourses))
+      .catch((err) => {
+        console.log("@error", err);
+        res
+          .status(422)
+          .send(
+            "Ocurrió un error al enviar el mensaje, inténtalo de nuevo más tarde"
+          );
+      });
+  }
 });
 
 // fetchLandingPageCourses()

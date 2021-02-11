@@ -12,8 +12,8 @@ export default {
 
   postMessage: (data) => axios.post("/api/guest/postMessage", data),
 
-  fetchCoursesBySchool: (school) =>
-    axios.get("/api/guest/fetchCoursesBySchool/" + school),
+  fetchCoursesBySchool: (school, studentId) =>
+    axios.get(`/api/guest/fetchCoursesBySchool/${school}/${studentId}`),
 
   // ==============================================
   // STUDENTS

@@ -5,25 +5,29 @@ import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { CourseInfoCard } from "./components";
 import API from "../../utils/API";
 import { BackToHomeBttn } from "./components/BackToHomeButton";
+import { useSelector } from "react-redux";
 
 import styles from "./courseinfopage.module.scss";
 
 export const CourseInfoPage = React.memo((props) => {
   const [courses, setCourses] = useState();
 
-  const courseName = props.routeProps.match.params.course;
+  const school = props.routeProps.match.params.course;
+
+  const student = useSelector((state) => state.student);
+  const studentId = (student && student._id) || "Guest";
 
   useEffect(() => {
-    API.fetchCoursesBySchool(courseName)
+    API.fetchCoursesBySchool(school, studentId)
       .then((res) => setCourses(res.data))
       .catch((err) => {
         console.log(err);
         alert("Ocurrió un error, actualiza la página");
       });
-  }, [courseName]);
+  }, [school, studentId]);
 
   const setDescription = () => {
-    switch (courseName) {
+    switch (school) {
       case "Primaria":
         return "Compuesto por las bases de la Aritmética este curso es ideal para que los alumnos desde 3er grado hasta 6to desarrollen y practiquen sus habilidades lógico-matemáticas, así como para los estudiantes        que necesiten fortalecer sus bases en Aritmética puedan disponer del curso en cualquier momento del día.";
       case "Secundaria":
@@ -49,7 +53,7 @@ export const CourseInfoPage = React.memo((props) => {
         <Row>
           <Col md={{ span: 8, offset: 2 }}>
             <div className="text-center">
-              <h1 className={styles.courseinfoheader}>{courseName}</h1>
+              <h1 className={styles.courseinfoheader}>{school}</h1>
             </div>
             <p className="lead text-left text-md-center mt-3">
               {setDescription()}
@@ -57,13 +61,12 @@ export const CourseInfoPage = React.memo((props) => {
           </Col>
         </Row>
         <div className="d-flex flex-wrap justify-content-center my-3">
-          {console.log(courses)}
           {courses ? (
             courses.length ? (
               courses.map((c) => (
                 <CourseInfoCard
                   courseId={c._id}
-                  isButtonDisabled={true}
+                  isCoursePurchased={c.isCoursePurchased}
                   key={c._id}
                   lessonCounter={c.topics.length}
                   price={c.price}

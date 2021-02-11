@@ -68,6 +68,7 @@ export const MultipleOptionWithImage = () => {
         values.qOption2 = values.qOption2.trim();
         values.qOption3 = values.qOption3.trim();
         values.qOption4 = values.qOption4.trim();
+        values.qCorrectAnswers = values.qCorrectAnswers.trim();
         values.qCALeft = values.qCALeft.trim();
         values.qCARight = values.qCARight.trim();
         values.qComment = values.qComment.trim();
@@ -76,30 +77,42 @@ export const MultipleOptionWithImage = () => {
         values.topicId = topicId;
         values.examId = examId;
 
-        TeacherAPI.t_newMultipleOptionWithImage(values)
-          .then((res) => {
-            const questionId = res.data;
+        const isAnswerIncludedInOptions = [
+          String(values.qOption1),
+          String(values.qOption2),
+          String(values.qOption3),
+          String(values.qOption4),
+        ].includes(String(values.qCorrectAnswers));
 
-            const storageRef = firebaseStorage.ref();
-            const pathOnFirebaseStorage = `${courseId}/${topicId}/exams/${examId}/${questionId}/imagen`;
-            const fileRef = storageRef.child(pathOnFirebaseStorage);
+        if (!isAnswerIncludedInOptions) {
+          alert("La respuesta debe estar contenida en las opciones.");
+          setSubmitting(false);
+        } else {
+          TeacherAPI.t_newMultipleOptionWithImage(values)
+            .then((res) => {
+              const questionId = res.data;
 
-            fileRef
-              .put(values.file)
-              .then(() => {
-                alert("La pregunta ha sido registrada con éxito.");
-                window.location.reload();
-              })
-              .catch((err) => {
-                console.log(err);
-                alert("Ocurrió un error en el servidor, intenta más tarde");
-              });
-          })
-          .catch((err) => {
-            alert("Ocurrió un error. Vuelve a intentarlo.");
-            setSubmitting(false);
-            console.log(err);
-          });
+              const storageRef = firebaseStorage.ref();
+              const pathOnFirebaseStorage = `${courseId}/${topicId}/exams/${examId}/${questionId}/imagen`;
+              const fileRef = storageRef.child(pathOnFirebaseStorage);
+
+              fileRef
+                .put(values.file)
+                .then(() => {
+                  alert("La pregunta ha sido registrada con éxito.");
+                  window.location.reload();
+                })
+                .catch((err) => {
+                  console.log(err);
+                  alert("Ocurrió un error en el servidor, intenta más tarde");
+                });
+            })
+            .catch((err) => {
+              alert("Ocurrió un error. Vuelve a intentarlo.");
+              setSubmitting(false);
+              console.log(err);
+            });
+        }
       }}
     >
       {({

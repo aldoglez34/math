@@ -35,6 +35,14 @@
   }
 }
 
+.purchasedButton {
+  background-color: transparent !important;
+  border-color: #48bf84 !important;
+
+  color: #48bf84 !important;
+  font-weight: 700 !important;
+}
+
 @media only screen and (max-width: 481px) {
   .courseInfoCard {
     width: 100%;
