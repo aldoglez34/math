@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Col } from "react-bootstrap";
+import { Button, Col, Form } from "react-bootstrap";
 import { string } from "prop-types";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 
 export const CourseNameForm = React.memo(({ formLabel, formInitialText }) => {
   const courseId = useSelector((state) => state.admin.course.courseId);
+
+  const school = useSelector((state) => state.admin.course.courseSchool);
 
   const yupschema = yup.object({
     newName: yup
@@ -24,7 +26,10 @@ export const CourseNameForm = React.memo(({ formLabel, formInitialText }) => {
       validationSchema={yupschema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
+
         values.courseId = courseId;
+        values.school = school;
+
         TeacherAPI.t_updateCourseName(values)
           .then((res) => {
             console.log(res);

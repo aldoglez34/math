@@ -32,6 +32,7 @@ router.get("/:courseId", function (req, res) {
 router.post("/new", function (req, res) {
   const { name, school, description, price, summary } = req.body;
 
+  // find all courses from the same school first
   model.Course.find({
     school,
   })
@@ -45,7 +46,7 @@ router.post("/new", function (req, res) {
       if (doesNewCourseExist) {
         res
           .status(500)
-          .send("Un curso con este nombre ya existe en este nivel educativo");
+          .send("Un curso con este nombre ya existe en este nivel educativo.");
       } else {
         model.Course.create({
           name: name,
@@ -72,12 +73,33 @@ router.post("/new", function (req, res) {
 // t_updateCourseName
 // matches with /teacherAPI/courses/update/name
 router.put("/update/name", function (req, res) {
-  const newName = req.body.newName;
-  const courseId = req.body.courseId;
+  const { courseId, newName, school } = req.body;
 
-  model.Course.findByIdAndUpdate(courseId, { name: newName })
-    .then(() => {
-      res.json("Nombre del curso actualizado satisfactoriamente.");
+  // find all courses from the same school first
+  model.Course.find({
+    school,
+  })
+    .sort("name")
+    .select("name")
+    .then((courses) => {
+      const doesNewCourseExist = courses.some(
+        (c) => String(c.name).trim() === String(newName).trim()
+      );
+
+      if (doesNewCourseExist) {
+        res
+          .status(500)
+          .send("Un curso con este nombre ya existe en este nivel educativo.");
+      } else {
+        model.Course.findByIdAndUpdate(courseId, { name: newName })
+          .then(() => {
+            res.json("Nombre del curso actualizado satisfactoriamente.");
+          })
+          .catch((err) => {
+            console.log("@error", err);
+            res.status(422).send("Ocurrió un error.");
+          });
+      }
     })
     .catch((err) => {
       console.log("@error", err);
@@ -88,12 +110,33 @@ router.put("/update/name", function (req, res) {
 // t_updateCourseSchool
 // matches with /teacherAPI/courses/update/school
 router.put("/update/school", function (req, res) {
-  const newSchool = req.body.newSchool;
-  const courseId = req.body.courseId;
+  const { courseId, courseName, newSchool } = req.body;
 
-  model.Course.findByIdAndUpdate(courseId, { school: newSchool })
-    .then(() => {
-      res.json("Nivel escolar del curso actualizado satisfactoriamente.");
+  // find all courses from the new school first
+  model.Course.find({
+    school: newSchool,
+  })
+    .sort("name")
+    .select("name")
+    .then((courses) => {
+      const doesCourseExistInNewSchool = courses.some(
+        (c) => String(c.name).trim() === String(courseName).trim()
+      );
+
+      if (doesCourseExistInNewSchool) {
+        res
+          .status(500)
+          .send("Un curso con este nombre ya existe en este nivel educativo.");
+      } else {
+        model.Course.findByIdAndUpdate(courseId, { school: newSchool })
+          .then(() => {
+            res.json("Nivel escolar del curso actualizado satisfactoriamente.");
+          })
+          .catch((err) => {
+            console.log("@error", err);
+            res.status(422).send("Ocurrió un error.");
+          });
+      }
     })
     .catch((err) => {
       console.log("@error", err);

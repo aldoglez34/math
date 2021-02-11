@@ -10,6 +10,7 @@ const admin = (state = null, action) => {
         course: {
           courseId: action.data.courseId,
           courseName: action.data.courseName,
+          courseSchool: action.data.courseSchool,
         },
       };
     case "admin/setTopic":

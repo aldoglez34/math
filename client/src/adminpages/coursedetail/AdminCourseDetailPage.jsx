@@ -30,8 +30,9 @@ export const AdminCourseDetailPage = React.memo((props) => {
         dispatch(adminActions.setTitle(res.data.name));
         dispatch(
           adminActions.setCourse({
-            courseName: res.data.name,
             courseId: res.data._id,
+            courseName: res.data.name,
+            courseSchool: res.data.school,
           })
         );
       })

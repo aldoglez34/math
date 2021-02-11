@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 
 export const CourseSchoolForm = React.memo(({ formLabel, formInitialText }) => {
   const courseId = useSelector((state) => state.admin.course.courseId);
+  const courseName = useSelector((state) => state.admin.course.courseName);
 
   const yupschema = yup.object({
     newSchool: yup.string().required("Requerido"),
@@ -21,7 +22,10 @@ export const CourseSchoolForm = React.memo(({ formLabel, formInitialText }) => {
       validationSchema={yupschema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
+
         values.courseId = courseId;
+        values.courseName = courseName;
+
         TeacherAPI.t_updateCourseSchool(values)
           .then((res) => {
             console.log(res);
@@ -29,7 +33,9 @@ export const CourseSchoolForm = React.memo(({ formLabel, formInitialText }) => {
             window.location.reload();
           })
           .catch((err) => {
-            alert("Ocurrió un error. Vuelve a intentarlo más tarde.");
+            alert(
+              "Ocurrió un error. Asegúrate que no exista un curso con este nombre en este nuevo nivel educativo y vuelve a intentarlo."
+            );
             setSubmitting(false);
             console.log(err);
           });
