@@ -71,7 +71,12 @@ export const CoursePage = React.memo((props) => {
           <CourseIntro
             name={course.name}
             topics={course.topics.reduce((acc, cv) => {
-              acc.push({ _id: cv._id, subject: cv.subject, name: cv.name });
+              acc.push({
+                _id: cv._id,
+                name: cv.name,
+                subject: cv.subject,
+                topicOrderNumber: cv.topicOrderNumber,
+              });
               return acc;
             }, [])}
             rewards={course.rewards}

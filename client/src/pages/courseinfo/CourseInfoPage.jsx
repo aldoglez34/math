@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Layout } from "../../components/Layout";
 import { ScrollButton } from "../../components/scrollbutton/ScrollButton";
-import { Row, Col, Container, Spinner } from "react-bootstrap";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { CourseInfoCard } from "./components";
 import API from "../../utils/API";
 import { BackToHomeBttn } from "./components/BackToHomeButton";
@@ -11,17 +11,19 @@ import styles from "./courseinfopage.module.scss";
 export const CourseInfoPage = React.memo((props) => {
   const [courses, setCourses] = useState();
 
+  const courseName = props.routeProps.match.params.course;
+
   useEffect(() => {
-    API.fetchCoursesBySchool(props.routeProps.match.params.course)
+    API.fetchCoursesBySchool(courseName)
       .then((res) => setCourses(res.data))
       .catch((err) => {
         console.log(err);
         alert("Ocurrió un error, actualiza la página");
       });
-  }, [props.routeProps.match.params.course]);
+  }, [courseName]);
 
   const setDescription = () => {
-    switch (props.routeProps.match.params.course) {
+    switch (courseName) {
       case "Primaria":
         return "Compuesto por las bases de la Aritmética este curso es ideal para que los alumnos desde 3er grado hasta 6to desarrollen y practiquen sus habilidades lógico-matemáticas, así como para los estudiantes        que necesiten fortalecer sus bases en Aritmética puedan disponer del curso en cualquier momento del día.";
       case "Secundaria":
@@ -43,28 +45,25 @@ export const CourseInfoPage = React.memo((props) => {
           marginBottom: "80px",
         }}
       >
-        {/* back button */}
         <BackToHomeBttn />
-        {/* title */}
         <Row>
           <Col md={{ span: 8, offset: 2 }}>
             <div className="text-center">
-              <h1 className={styles.courseinfoheader}>
-                {props.routeProps.match.params.course}
-              </h1>
+              <h1 className={styles.courseinfoheader}>{courseName}</h1>
             </div>
             <p className="lead text-left text-md-center mt-3">
               {setDescription()}
             </p>
           </Col>
         </Row>
-        {/* courses */}
         <div className="d-flex flex-wrap justify-content-center my-3">
+          {console.log(courses)}
           {courses ? (
             courses.length ? (
               courses.map((c) => (
                 <CourseInfoCard
                   courseId={c._id}
+                  isButtonDisabled={true}
                   key={c._id}
                   lessonCounter={c.topics.length}
                   price={c.price}

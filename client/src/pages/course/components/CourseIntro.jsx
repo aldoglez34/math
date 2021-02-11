@@ -24,9 +24,11 @@ export const CourseIntro = React.memo(({ name, topics, rewards }) => {
               Temario
             </h3>
             <div className="d-flex flex-column">
-              {topics.map((t) => (
-                <TopicBadge key={t.name} topicName={t.name} />
-              ))}
+              {topics
+                .sort((a, b) => a.topicOrderNumber - b.topicOrderNumber)
+                .map((t) => (
+                  <TopicBadge key={t.name} topicName={t.name} />
+                ))}
             </div>
           </Col>
           <Col lg={6} className="mt-4 mt-lg-0">

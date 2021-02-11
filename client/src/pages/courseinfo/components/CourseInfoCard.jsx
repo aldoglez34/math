@@ -1,6 +1,6 @@
 import React from "react";
 import { Badge, Button, Card, Col, Row } from "react-bootstrap";
-import { array, number, string } from "prop-types";
+import { array, bool, number, string } from "prop-types";
 import { useSelector } from "react-redux";
 import API from "../../../utils/API";
 import cn from "classnames";
@@ -8,7 +8,14 @@ import cn from "classnames";
 import styles from "./courseinfocard.module.scss";
 
 export const CourseInfoCard = React.memo(
-  ({ courseId, title, price, topics, lessonCounter }) => {
+  ({
+    courseId,
+    isButtonDisabled = false,
+    lessonCounter,
+    price,
+    title,
+    topics,
+  }) => {
     const student = useSelector((state) => state.student);
 
     const buyCourseSimulation = () => {
@@ -106,6 +113,7 @@ export const CourseInfoCard = React.memo(
                     "shadow-sm",
                     styles.buyButton
                   )}
+                  disabled={isButtonDisabled}
                   onClick={
                     student
                       ? () => buyCourseSimulation()
@@ -130,8 +138,9 @@ export const CourseInfoCard = React.memo(
 
 CourseInfoCard.propTypes = {
   courseId: string.isRequired,
-  title: string.isRequired,
-  price: number.isRequired,
-  topics: array.isRequired,
+  isButtonDisabled: bool,
   lessonCounter: number.isRequired,
+  price: number.isRequired,
+  title: string.isRequired,
+  topics: array.isRequired,
 };
