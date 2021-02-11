@@ -212,14 +212,14 @@ router.put("/update/order", function (req, res) {
 
   let updateAllTopics = new Promise((resolve, reject) => {
     newList.forEach((value, index, array) => {
-      const { _id: topicId, newId } = value;
+      const { _id: topicId, newOrderNumber } = value;
 
       model.Course.update(
         {
           _id: courseId,
           "topics._id": topicId,
         },
-        { "topics.$.topicOrderNumber": newId }
+        { "topics.$.topicOrderNumber": newOrderNumber }
       )
         .then(() => {
           if (index === array.length - 1) resolve();

@@ -83,34 +83,22 @@ router.put("/delete", function (req, res) {
 router.put("/update/order", function (req, res) {
   const { courseId, newList, topicId } = req.body;
 
-  let updateAllMaterial = new Promise((resolve, reject) => {
-    newList.forEach((value, index, array) => {
-      const { _id: materialId, newId } = value;
+  // console.log("\n\nUPDATING MATERIAL ORDER - CHANGES:\n");
+  // console.log(newList);
+  // console.log("\n\n");
 
-      model.Course.update(
-        {
-          _id: courseId,
-          "topics._id": topicId,
-          "topics.material._id": materialId,
-        },
-        {
-          $set: { "topics.material.$$.materialOrderNumber": newId },
-        }
-      )
-        .then(() => {
-          if (index === array.length - 1) resolve();
-        })
-        .catch((err) => {
-          console.log("@error", err);
-          res.status(422).send("Ocurrió un error.");
-          reject();
-        });
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+  model.Course.find({ _id: courseId, "topics._id": topicId })
+    .select("topics")
+    .then(({ topics }) => {
+      console.log(topics);
+    })
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error.");
+      reject();
     });
-  });
-
-  updateAllMaterial
-    .then(() => res.send("El material fue actualizado con éxito."))
-    .catch((err) => console.log(err));
 });
 
 module.exports = router;

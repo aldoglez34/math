@@ -17,7 +17,12 @@ export const DraggableMaterial = ({
   useEffect(() => {
     const changes = state.reduce((acc, cv, idx) => {
       if (cv.id !== idx + 1)
-        acc.push({ _id: cv._id, name: cv.name, lastId: cv.id, newId: idx + 1 });
+        acc.push({
+          _id: cv._id,
+          name: cv.name,
+          lastId: cv.id,
+          newOrderNumber: idx + 1,
+        });
       return acc;
     }, []);
 
