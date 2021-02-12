@@ -29,9 +29,12 @@ export const AdminStudentsPage = () => {
           <Col md={{ offset: 2, span: 8 }}>
             {students.length ? (
               <>
-                <h3 className="mb-3" style={{ color: "#0f5257" }}>
+                <h3 className="mb-1" style={{ color: "#0f5257" }}>
                   Selecciona un alumno...
                 </h3>
+                <h5 className="mb-3" style={{ color: "#0f5257" }}>
+                  {`Total alumnos: ${students.length}`}
+                </h5>
                 <ListGroup>
                   {students.map((s) => (
                     <StudentItem
