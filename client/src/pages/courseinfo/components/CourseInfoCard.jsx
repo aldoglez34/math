@@ -134,7 +134,7 @@ export const CourseInfoCard = React.memo(
                         ? () => buyCourseSimulation()
                         : () =>
                             alert(
-                              "Para comprar un curso es necesario estar registrado"
+                              "Para comprar un curso es necesario estar registrado."
                             )
                     }
                     size="lg"
