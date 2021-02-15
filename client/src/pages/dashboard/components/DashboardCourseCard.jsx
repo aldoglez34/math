@@ -1,9 +1,11 @@
 import React from "react";
 import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
 import { object } from "prop-types";
-import "./dashboardcoursecard.scss";
 import { useDispatch } from "react-redux";
 import * as courseActions from "../../../redux/actions/course";
+import cn from "classnames";
+
+import styles from "./dashboardcoursecard.module.scss";
 
 export const DashboardCourseCard = React.memo(({ course }) => {
   const dispatch = useDispatch();
@@ -13,7 +15,7 @@ export const DashboardCourseCard = React.memo(({ course }) => {
   };
 
   return (
-    <Card className="dashboardCourseCard shadow-sm">
+    <Card className={cn("shadow-sm", styles.card)}>
       <Card.Body>
         <Card.Title className="d-flex flex-row">
           <h2 className="mb-0">{course.name}</h2>
@@ -30,7 +32,7 @@ export const DashboardCourseCard = React.memo(({ course }) => {
             >
               <Button
                 variant="link"
-                className="p-0 text-left dashboardCourseLink"
+                className={cn("p-0", "text-left", styles.link)}
                 onClick={() =>
                   buttonClicked(course._id, course.name).then(
                     () => (window.location.href = "/course/#" + ct.name)

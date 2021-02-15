@@ -157,10 +157,10 @@ export const QuestionsContainer = React.memo(({ questions }) => {
                         <input
                           type="text"
                           maxLength="20"
-                          // ref={inputRef}
+                          autoComplete="off"
                           onKeyDown={handleKeyDown}
                           className="border rounded px-2"
-                          id={"answer" + idx}
+                          id={`answer${idx}`}
                         />
                         {/* RIGHT question complement (if any) */}
                         {ca.complementRight ? (

@@ -1,22 +1,13 @@
-.dashboardCourseCard {
+.card {
   width: 24rem;
   background-color: #f4fbf8 !important;
   color: #50575e !important;
 }
 
-.openBttn {
-  background-color: #48bf84 !important;
-  border-color: #48bf84 !important;
-
-  &:hover {
-    background-color: #3ca872 !important;
-    border-color: #3ca872 !important;
-    transition: 0.5s;
-  }
-}
-
-.dashboardCourseLink {
+.link {
   color: #48bf84 !important;
+  box-shadow: none !important;
+  outline: none !important;
 
   &:hover {
     text-decoration: none !important;
@@ -26,7 +17,7 @@
 }
 
 @media only screen and (max-width: 991px) {
-  .dashboardCourseCard {
+  .card {
     width: 100%;
   }
 }
