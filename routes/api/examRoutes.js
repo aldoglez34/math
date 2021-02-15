@@ -146,7 +146,7 @@ router.put("/registerReward", function (req, res) {
 // unlockExam()
 // matches with /api/exam/unlockExam
 router.put("/unlockExam", function (req, res) {
-  const { studentId, difficulty } = req.body;
+  const { courseId, difficulty, studentId, topicId } = req.body;
 
   let unblockedDiff = null;
   switch (difficulty) {
@@ -165,19 +165,24 @@ router.put("/unlockExam", function (req, res) {
   }
 
   // find the exam's _id (the new one)
-  model.Exam.findOne({ difficulty: unblockedDiff })
-    .select("_id name difficulty")
-    .then((newExam) => {
-      const newExamId = newExam._id;
-      const newExamName = newExam.name;
-      const newExamDifficulty = newExam.difficulty;
+  model.Course.findOne({ _id: courseId })
+    .select("topics")
+    .populate("topics.exams", "_id name difficulty")
+    .then(({ topics }) => {
+      const thisTopic = topics.filter(
+        (t) => String(t._id) === String(topicId)
+      )[0];
+
+      const unlockedExam = thisTopic.exams.filter(
+        (e) => e.difficulty === unblockedDiff
+      )[0];
 
       // push if it doesn't exist
       model.Student.findOneAndUpdate(
-        { _id: studentId, exams: { $ne: newExamId } },
+        { _id: studentId, exams: { $ne: unlockedExam._id } },
         {
           $addToSet: {
-            exams: newExamId,
+            exams: unlockedExam._id,
           },
         }
       )
@@ -186,7 +191,10 @@ router.put("/unlockExam", function (req, res) {
           if (!data) {
             res.send(null);
           } else {
-            res.send({ name: newExamName, difficulty: newExamDifficulty });
+            res.send({
+              name: unlockedExam.name,
+              difficulty: unlockedExam.difficulty,
+            });
           }
         })
         .catch((err) => {

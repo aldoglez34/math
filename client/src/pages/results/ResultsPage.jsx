@@ -10,6 +10,7 @@ export const ResultsPage = () => {
   const dispatch = useDispatch();
 
   const exam = useSelector((state) => state.exam);
+  const course = useSelector((state) => state.course);
   const student = useSelector((state) => state.student);
 
   const aciertos = exam.results.reduce((acc, cv) => {
@@ -40,10 +41,13 @@ export const ResultsPage = () => {
     // unblock an exam if difficulty is NOT "Advanced" and the grade is greater than 8
     if (exam.difficulty !== "Advanced" && isExamApproved) {
       API.unlockExam({
-        studentId: student._id,
+        courseId: course._id,
         difficulty: exam.difficulty,
+        studentId: student._id,
+        topicId: exam.topicId,
       })
         .then((res) => {
+          console.log(res);
           // res should contain the data from the backend
           // if its empty it means nothing was unblocked
           if (res.data) dispatch(unlockExam(res.data));
