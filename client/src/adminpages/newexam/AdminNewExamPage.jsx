@@ -46,8 +46,7 @@ export const AdminNewExamPage = React.memo((props) => {
               validationSchema={yupschema}
               onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
-                values.courseId = courseId;
-                values.topicId = topicId;
+
                 values.difficulty = difficulty;
                 values.examOrderNumber =
                   values.difficulty === "Basic"
@@ -62,7 +61,12 @@ export const AdminNewExamPage = React.memo((props) => {
                     ? 5
                     : 0;
 
-                TeacherAPI.t_newExam(values)
+                TeacherAPI.t_newExam({
+                  courseId,
+                  difficulty,
+                  exam: { ...values },
+                  topicId,
+                })
                   .then((res) => {
                     const newExamId = res.data;
                     alert("Examen agregado con éxito.");

@@ -5,32 +5,75 @@ const model = require("../../models");
 // matches with /teacherAPI/exam/new
 router.post("/new", function (req, res) {
   const examData = {
-    difficulty: req.body.difficulty,
-    examOrderNumber: req.body.examOrderNumber,
-    name: req.body.name,
-    description: req.body.description,
-    duration: req.body.duration,
-    qCounter: req.body.qCounter,
+    difficulty: req.body.exam.difficulty,
+    examOrderNumber: req.body.exam.examOrderNumber,
+    name: req.body.exam.name,
+    description: req.body.exam.description,
+    duration: req.body.exam.duration,
+    qCounter: req.body.exam.qCounter,
   };
+  const { courseId, difficulty, topicId } = req.body;
 
+  // create the exam first
   model.Exam.create(examData)
     .then((newExam) => {
       const newExamId = newExam._id;
 
       // now add that exam to the course
       model.Course.findOneAndUpdate(
-        {
-          _id: req.body.courseId,
-          "topics._id": req.body.topicId,
-        },
-        {
-          $push: {
-            "topics.$.exams": newExamId,
-          },
-        }
+        { _id: courseId, "topics._id": topicId },
+        { $push: { "topics.$.exams": newExamId } }
       )
         .then(() => {
-          res.send(newExamId);
+          // if difficulty is basic, add this exam to all the students that have purchased this course
+          if (difficulty === "Basic") {
+            model.Student.find()
+              .select("courses exams")
+              .then((allStudents) => {
+                const studentsThatNeedThisExam = allStudents.reduce(
+                  (acc, cv) => {
+                    if (
+                      cv.courses.includes(courseId) &&
+                      !cv.exams.includes(newExamId)
+                    )
+                      acc.push(cv);
+                    return acc;
+                  },
+                  []
+                );
+
+                if (!studentsThatNeedThisExam.length) {
+                  res.send(newExamId);
+                } else {
+                  const addNewExamToStudents = new Promise(
+                    (resolve, reject) => {
+                      studentsThatNeedThisExam.forEach(
+                        (value, index, array) => {
+                          model.Student.findOneAndUpdate(
+                            { _id: value._id },
+                            { $push: { exams: newExamId } }
+                          )
+                            .then(() => {
+                              if (index === array.length - 1) resolve();
+                            })
+                            .catch((err) => console.log(err));
+                        }
+                      );
+                    }
+                  );
+
+                  addNewExamToStudents
+                    .then(() => res.send(newExamId))
+                    .catch((err) => console.log(err));
+                }
+              })
+              .catch((err) => {
+                console.log("@error", err);
+                res.status(422).send("Ocurrió un error");
+              });
+          } else {
+            res.send(newExamId);
+          }
         })
         .catch((err) => {
           console.log("@error", err);
