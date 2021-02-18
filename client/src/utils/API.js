@@ -59,7 +59,8 @@ export default {
   // FREESTYLE
   // ==============================================
 
-  fetchFreestyle: (topicName) => axios.get("/api/freestyle/" + topicName),
+  fetchFreestyle: (courseId, topicId) =>
+    axios.get(`/api/freestyle/${courseId}/${topicId}`),
 
   registerFreestyleAttempt: (data) =>
     axios.put("/api/freestyle/registerAttempt", data),

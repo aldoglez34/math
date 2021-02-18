@@ -14,16 +14,23 @@ export const ExamsAccordion = React.memo(
   ({ exams, freestyle, reward, topicId, topicName }) => {
     const dispatch = useDispatch();
 
-    const setExamInRedux = async (_id, name, difficulty, duration) => {
+    const setExamInRedux = async (
+      _id,
+      name,
+      difficulty,
+      duration,
+      qCounter
+    ) => {
       dispatch(
         examActions.setExam({
           _id,
-          reward,
-          name,
           difficulty,
           duration,
-          topicName,
+          name,
+          qCounter,
+          reward,
           topicId,
+          topicName,
         })
       );
     };
@@ -128,7 +135,8 @@ export const ExamsAccordion = React.memo(
                             ex._id,
                             ex.name,
                             ex.difficulty,
-                            ex.duration
+                            ex.duration,
+                            ex.qCounter
                           )
                             .then(() => (window.location.href = "/course/exam"))
                             .catch((err) => {

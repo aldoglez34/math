@@ -2,26 +2,31 @@ const router = require("express").Router();
 const model = require("../../models");
 
 // fetchFreestyle()
-// matches with /api/freestyle/:topicId
-router.get("/:topicId", function (req, res) {
+// matches with /api/freestyle/:courseId/:topicId
+router.get("/:courseId/:topicId", function (req, res) {
+  console.log("entrando a ftch freestyle");
+  const { courseId, topicId } = req.params;
   const difficulties = ["Intermediate", "Intermediate-Advanced", "Advanced"];
 
-  model.Exam.find({
-    topicName: req.params.topicName,
-    difficulty: { $in: difficulties },
-  })
-    .select("name questions difficulty")
-    .then((data) => {
+  model.Course.findById(courseId)
+    .select("topics._id topics.name topics.difficulty topics._exams")
+    .populate("topics.exams")
+    .then((course) => {
+      // get only this topics exams
+      const thisTopicsExams = course.topics
+        .filter((t) => String(t._id) === String(topicId))[0]
+        .exams.filter((e) => difficulties.includes(e.difficulty));
+
       // mix all the questions (and set the value for each Q)
-      const allQuestions = data.reduce((acc, cv) => {
+      const allQuestions = thisTopicsExams.reduce((acc, cv) => {
         const value =
-          cv.difficulty === "Intermediate"
+          cv.difficulty === difficulties[0]
             ? 1
-            : cv.difficulty === "Intermediate-Advanced"
+            : cv.difficulty === difficulties[1]
             ? 2
-            : cv.difficulty === "Advanced"
+            : cv.difficulty === difficulties[2]
             ? 3
-            : null;
+            : 0;
 
         const arr = cv.questions.reduce((acc, cv) => {
           acc.push({
@@ -47,7 +52,6 @@ router.get("/:topicId", function (req, res) {
       while (uniqueNumbers.length <= allQuestionsCounter) {
         let n = Math.floor(Math.random() * allQuestionsCounter);
         if (!uniqueNumbers.includes(n)) uniqueNumbers.push(n);
-        // ...
         if (uniqueNumbers.length === allQuestionsCounter) {
           break;
         }
@@ -73,7 +77,7 @@ router.get("/:topicId", function (req, res) {
         return acc;
       }, []);
     })
-    .then((data) => res.json(data))
+    .then((freestyleExam) => res.json(freestyleExam))
     .catch((err) => {
       console.log("@error", err);
       res.status(422).send("Ocurrió un error");

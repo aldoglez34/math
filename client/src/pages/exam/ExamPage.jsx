@@ -12,25 +12,30 @@ export const ExamPage = () => {
 
   const [exam, setExam] = useState();
 
-  const course = useSelector((state) => state.course);
-  const reduxExam = useSelector((state) => state.exam);
+  const examId = useSelector((state) => state.exam._id);
+  const examQuestionCounter = useSelector((state) => state.exam.qCounter);
 
   useEffect(() => {
-    if (course && reduxExam) {
-      API.fetchExamInfo(reduxExam._id)
-        .then((res) => {
-          // zendmode on
+    API.fetchExamInfo(examId)
+      .then((res) => {
+        const realQuestionsCounter = res.data.questions.length;
+        if (realQuestionsCounter < examQuestionCounter) {
+          alert(
+            "Ocurrió un error con este examen. Ponte en contacto con tu maestro."
+          );
+          window.location.href = "/course";
+        } else {
           dispatch(zenModeActions.zenModeOn());
-          // set exam info in the state to init the exam
           setExam(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-          alert("Ocurrió un error al cargar las preguntas de tu examen");
-        });
-    } else {
-      window.location.href = "/course";
-    }
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        alert(
+          "Ocurrió un error con este examen. Ponte en contacto con tu maestro."
+        );
+        window.location.href = "/course";
+      });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
