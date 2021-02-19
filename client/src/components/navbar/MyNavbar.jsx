@@ -19,7 +19,7 @@ export const MyNavbar = () => {
       </h2>
     ) : (
       <h2 className={cn("mb-0", styles.logo)}>
-        MeXmáticas<small className={styles.beta}>v1.2</small>
+        MeXmáticas<small className={styles.beta}>{APP_VERSION}</small>
       </h2>
     );
   };
