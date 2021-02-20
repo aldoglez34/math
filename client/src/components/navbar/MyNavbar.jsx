@@ -13,12 +13,18 @@ export const MyNavbar = () => {
 
   const Logo = () => {
     return zenMode ? (
-      <h2 className={cn("mb-0", styles.logo, styles.zen)}>
+      <h2
+        className={cn("mb-0", styles.logo, styles.zen)}
+        onClick={() => (window.location.href = "/")}
+      >
         <s>MeXmáticas</s>
         <small className={styles.beta}>{APP_VERSION}</small>
       </h2>
     ) : (
-      <h2 className={cn("mb-0", styles.logo)}>
+      <h2
+        className={cn("mb-0", styles.logo)}
+        onClick={() => (window.location.href = "/")}
+      >
         MeXmáticas<small className={styles.beta}>{APP_VERSION}</small>
       </h2>
     );

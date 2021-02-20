@@ -54,17 +54,18 @@ export const SignUpForm = () => {
       validationSchema={yupSchema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
-        //////// signup ////////
+
         firebaseAuth
           .createUserWithEmailAndPassword(values.email, values.password)
           .then((fbRes) => {
-            console.log("1 - then del createUserWithEmailAndPassword");
+            // console.log("1 - then del createUserWithEmailAndPassword");
             fbRes.user
               .updateProfile({
                 displayName: "Student",
               })
               .then(() => {
-                console.log("2 - then del updateProfile");
+                // console.log("2 - then del updateProfile");
+
                 // add new client to db
                 API.registerNewStudent({
                   firebaseUID: fbRes.user.uid,
@@ -74,31 +75,33 @@ export const SignUpForm = () => {
                   email: values.email,
                 })
                   .then((res) => {
-                    console.log("3 - then del registerNewStudent", res.data);
+                    // console.log("3 - then del registerNewStudent", res.data);
+
                     API.fetchStudentByUID(fbRes.user.uid)
                       .then((res) => {
-                        console.log("4 - then del fetchStudentByUID", res.data);
+                        // console.log("4 - then del fetchStudentByUID", res.data);
+
                         dispatch(studentActions.loginStudent(res.data));
                         alert(`Bienvenido, ${res.data.name}`);
+
                         window.location.href = "/dashboard";
                       })
                       .catch((error) => {
                         alert(
-                          "Ocurrió un error al iniciar sesión, vuelve a intentarlo."
+                          "Ocurrió un error, por favor vuelve a intentarlo."
                         );
                         console.log(error);
                         setSubmitting(false);
                       });
                   })
                   .catch((err) => {
-                    alert(
-                      "Ocurrió un error al editar usuario nuevo, por favor vuelve a intentarlo."
-                    );
+                    alert("Ocurrió un error, por favor vuelve a intentarlo.");
                     console.log(err);
                   });
               });
           })
           .catch((err) => {
+            alert("Ocurrió un error, por favor vuelve a intentarlo.");
             console.log(err.code);
             console.log(err.message);
           });

@@ -15,7 +15,7 @@ export const SignUpPage = () => {
               Aprende matemáticas con nosotros
             </h1>
             <p className="text-light mt-auto">
-              ¿Ya tienes cuenta? Accede
+              ¿Ya tienes cuenta? Entra
               <a href="/login" className="text-warning ml-1">
                 aquí
               </a>

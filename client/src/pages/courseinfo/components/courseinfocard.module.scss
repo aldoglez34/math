@@ -6,15 +6,21 @@
 
 .title {
   color: #0f5257;
+  font-weight: 700 !important;
 }
 
 .badge {
-  background-color: var(--color-lightGreen);
+  background-color: #48bf84;
   color: white;
 }
 
-.topic {
+.bullet {
   color: #48bf84;
+}
+
+.priceLabel {
+  color: #212529;
+  background-color: #c6d9d7;
 }
 
 .coursePrice {
