@@ -4,7 +4,7 @@ import { ScrollButton } from "../../components/scrollbutton/ScrollButton";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { CourseInfoCard } from "./components";
 import API from "../../utils/API";
-import { BackToHomeBttn } from "./components/BackToHomeButton";
+import { BackButton } from "../../components";
 import { useSelector } from "react-redux";
 
 import styles from "./courseinfopage.module.scss";
@@ -12,7 +12,7 @@ import styles from "./courseinfopage.module.scss";
 export const CourseInfoPage = React.memo((props) => {
   const [courses, setCourses] = useState();
 
-  const school = props.routeProps.match.params.course;
+  const school = props.routeProps.match.params.school;
 
   const student = useSelector((state) => state.student);
   const studentId = (student && student._id) || "Guest";
@@ -49,7 +49,7 @@ export const CourseInfoPage = React.memo((props) => {
           marginBottom: "80px",
         }}
       >
-        <BackToHomeBttn />
+        <BackButton to="/" />
         <Row>
           <Col md={{ span: 8, offset: 2 }}>
             <div className="text-center">
@@ -70,6 +70,7 @@ export const CourseInfoPage = React.memo((props) => {
                   key={c._id}
                   lessonCounter={c.topics.length}
                   price={c.price}
+                  school={school}
                   title={c.name}
                   topics={c.topics
                     .sort((a, b) => a.topicOrderNumber - b.topicOrderNumber)

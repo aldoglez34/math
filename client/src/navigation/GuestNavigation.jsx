@@ -6,6 +6,7 @@ import {
   LandingPage,
   LoginPage,
   NoMatchPage,
+  PaymentPage,
   SignUpPage,
 } from "../pages";
 
@@ -18,8 +19,14 @@ export default () => {
 
       <Route
         exact
-        path="/courses/:course"
+        path="/courses/:school"
         render={(props) => <CourseInfoPage routeProps={props} />}
+      />
+
+      <Route
+        exact
+        path="/payment/:school/:courseId"
+        render={(props) => <PaymentPage routeProps={props} />}
       />
 
       <Redirect from="/dashboard" to="/" />

@@ -1,8 +1,6 @@
 import React from "react";
 import { Badge, Button, Card, Col, Row } from "react-bootstrap";
 import { array, bool, number, string } from "prop-types";
-import { useSelector } from "react-redux";
-import API from "../../../utils/API";
 import cn from "classnames";
 
 import styles from "./courseinfocard.module.scss";
@@ -13,23 +11,10 @@ export const CourseInfoCard = React.memo(
     isCoursePurchased = false,
     lessonCounter,
     price,
+    school,
     title,
     topics,
   }) => {
-    const student = useSelector((state) => state.student);
-
-    const buyCourseSimulation = () => {
-      API.buyCourse({ courseId, studentId: student._id })
-        .then(() => {
-          alert("Has comprado el curso satisfactoriamente.");
-          window.location.href = "/";
-        })
-        .catch((err) => {
-          console.log(err);
-          alert("Ocurrió un error, vuelve a intentarlo.");
-        });
-    };
-
     return (
       <div className="mb-4">
         <Card
@@ -129,14 +114,7 @@ export const CourseInfoCard = React.memo(
                       "shadow-sm",
                       styles.buyButton
                     )}
-                    onClick={
-                      student
-                        ? () => buyCourseSimulation()
-                        : () =>
-                            alert(
-                              "Para comprar un curso es necesario estar registrado."
-                            )
-                    }
+                    href={`/payment/${school}/${courseId}`}
                     size="lg"
                   >
                     Comprar

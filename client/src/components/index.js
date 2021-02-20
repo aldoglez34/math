@@ -1,3 +1,4 @@
+export * from "./backbutton/BackButton";
 export * from "./exitbutton/ExitButton";
 export * from "./footer/Footer";
 export * from "./navbar/MyNavbar";

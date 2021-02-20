@@ -8,6 +8,7 @@ import {
   FreestylePage,
   MessagesPage,
   NoMatchPage,
+  PaymentPage,
   ResultsPage,
 } from "../pages";
 
@@ -21,8 +22,15 @@ export default () => {
       {/* courses info */}
       <Route
         exact
-        path="/courses/:course"
+        path="/courses/:school"
         render={(props) => <CourseInfoPage routeProps={props} />}
+      />
+
+      {/* payment */}
+      <Route
+        exact
+        path="/payment/:school/:courseId"
+        render={(props) => <PaymentPage routeProps={props} />}
       />
 
       {/* ================= STUDENT ROUTES ================= */}
