@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Layout } from "../../components/Layout";
 import { ScrollButton } from "../../components/scrollbutton/ScrollButton";
 import { Container } from "react-bootstrap";
 import API from "../../utils/API";
 import { BackButton } from "../../components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { clearPurchase } from "../../redux/actions/purchase";
 
 export const PaymentPage = React.memo((props) => {
+  const dispatch = useDispatch();
+  
   const { courseId, school } = props.routeProps.match.params;
 
   const student = useSelector((state) => state.student);
+  const purchase = useSelector((state) => state.purchase);
 
   const buyCourseSimulation = () => {
     API.buyCourse({ courseId, studentId: student._id })
@@ -22,6 +26,10 @@ export const PaymentPage = React.memo((props) => {
         alert("Ocurrió un error, vuelve a intentarlo.");
       });
   };
+
+  useEffect(() => {
+    if (purchase) dispatch(clearPurchase());
+  }, []);
 
   return (
     <Layout backgroundColor="white">

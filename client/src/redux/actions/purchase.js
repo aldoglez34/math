@@ -4,3 +4,9 @@ export const setPurchase = (data) => {
     data,
   };
 };
+
+export const clearPurchase = () => {
+  return {
+    type: "purchase/clear",
+  };
+};
