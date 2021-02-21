@@ -4,11 +4,13 @@ import { Button, Col, Form } from "react-bootstrap";
 import { firebaseAuth } from "../../../firebase/firebase";
 import * as yup from "yup";
 import API from "../../../utils/API";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as studentActions from "../../../redux/actions/student";
 
 export const SignUpForm = () => {
   const dispatch = useDispatch();
+
+  const purchase = useSelector((state) => state.purchase);
 
   const yupSchema = yup.object({
     email: yup
@@ -74,7 +76,7 @@ export const SignUpForm = () => {
                   secondSurname: values.secondSurname,
                   email: values.email,
                 })
-                  .then((res) => {
+                  .then(() => {
                     // console.log("3 - then del registerNewStudent", res.data);
 
                     API.fetchStudentByUID(fbRes.user.uid)
@@ -84,7 +86,11 @@ export const SignUpForm = () => {
                         dispatch(studentActions.loginStudent(res.data));
                         alert(`Bienvenido, ${res.data.name}`);
 
-                        window.location.href = "/dashboard";
+                        if (purchase) {
+                          window.location.href = `/payment/${purchase.school}/${purchase.courseId}`;
+                        } else {
+                          window.location.href = "/dashboard";
+                        }
                       })
                       .catch((error) => {
                         alert(

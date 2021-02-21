@@ -1,7 +1,8 @@
 import React from "react";
 import { Badge, Button, Card, Col, Row } from "react-bootstrap";
 import { array, bool, number, string } from "prop-types";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setPurchase } from "../../../redux/actions/purchase";
 import cn from "classnames";
 
 import styles from "./courseinfocard.module.scss";
@@ -16,12 +17,14 @@ export const CourseInfoCard = React.memo(
     title,
     topics,
   }) => {
+    const dispatch = useDispatch();
     const student = useSelector((state) => state.student);
 
     const handleBuyButton = () => {
       if (student) {
         window.location.href = `/payment/${school}/${courseId}`;
       } else {
+        dispatch(setPurchase({ courseId, school }));
         window.location.href = "/signup";
       }
     };
