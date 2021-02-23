@@ -4,12 +4,14 @@ import { Form, Col, Button } from "react-bootstrap";
 import { firebaseAuth } from "../../../firebase/firebase";
 import fbApp from "firebase/app";
 import * as yup from "yup";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { loginStudent } from "../../../redux/actions/student";
 import API from "../../../utils/API";
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+
+  const purchase = useSelector((state) => state.purchase);
 
   const yupSchema = yup.object({
     email: yup
@@ -28,7 +30,7 @@ export const LoginForm = () => {
       validationSchema={yupSchema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
-        //////// login ////////
+
         firebaseAuth
           .setPersistence(fbApp.auth.Auth.Persistence.LOCAL)
           .then(() => {
@@ -39,9 +41,13 @@ export const LoginForm = () => {
                 API.fetchStudentByUID(res.user.uid)
                   .then((res) => {
                     if (res.data) {
-                      dispatch(loginStudent(res.data));
-                      alert(`Iniciaste sesión con éxito, ${res.data.name}`);
-                      // window.location.href = "/dashboard";
+                      if (purchase) {
+                        window.location.href = `/payment/${purchase.school}/${purchase.courseId}`;
+                      } else {
+                        dispatch(loginStudent(res.data));
+                        alert(`Iniciaste sesión con éxito, ${res.data.name}`);
+                        window.location.href = "/dashboard";
+                      }
                     } else {
                       alert("Ocurrió un error al iniciar sesión.");
                       firebaseAuth.signOut();
