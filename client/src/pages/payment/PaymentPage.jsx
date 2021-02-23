@@ -25,18 +25,6 @@ export const PaymentPage = React.memo((props) => {
     number: yup.number().required("Requerido"),
   });
 
-  const buyCourseSimulation = () => {
-    API.buyCourse({ courseId, studentId: student._id })
-      .then(() => {
-        alert("Has comprado el curso satisfactoriamente.");
-        window.location.href = "/";
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("Ocurrió un error, vuelve a intentarlo.");
-      });
-  };
-
   useEffect(() => {
     if (purchase) dispatch(clearPurchase());
   }, []);
@@ -52,12 +40,16 @@ export const PaymentPage = React.memo((props) => {
         <BackButton to={`/courses/${school}`} />
         <Container>
           <Row>
-            <Col md={{ span: 6, offset: 4 }}>
+            <Col md={{ span: 6, offset: 3 }}>
               <h3>Estás comprando:</h3>
               <h5 className="mb-4">{courseId}</h5>
-              <div className="mb-2">
-                <Button variant="outline-dark" active>Tarjeta de crédito</Button>
-                <Button variant="outline-dark" className="ml-2">Paypal</Button>
+              <div className="mb-4">
+                <Button variant="outline-dark" active>
+                  Tarjeta de crédito
+                </Button>
+                <Button variant="outline-dark" className="ml-2">
+                  Paypal
+                </Button>
               </div>
               <div className="mb-2">
                 <i className={cn("fab", "fa-cc-visa", styles.cardIcon)} />
@@ -78,6 +70,16 @@ export const PaymentPage = React.memo((props) => {
                 validationSchema={yupschema}
                 onSubmit={(values, { setSubmitting }) => {
                   setSubmitting(true);
+
+                  API.buyCourse({ courseId, studentId: student._id })
+                    .then(() => {
+                      alert("Has comprado el curso satisfactoriamente.");
+                      window.location.href = "/";
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                      alert("Ocurrió un error, vuelve a intentarlo.");
+                    });
                 }}
               >
                 {({
@@ -135,11 +137,11 @@ export const PaymentPage = React.memo((props) => {
                     {/* buttons */}
                     <Form.Group>
                       <Button
-                        variant="dark"
+                        variant="danger"
                         type="submit"
                         disabled={isSubmitting}
                       >
-                        Guardar
+                        Pagar
                       </Button>
                     </Form.Group>
                   </Form>
