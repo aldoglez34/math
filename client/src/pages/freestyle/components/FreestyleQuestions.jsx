@@ -47,10 +47,10 @@ export const FreestyleQuestions = React.memo(({ questions }) => {
       // register attempt
       API.registerFreestyleAttempt({
         courseId: course._id,
-        topicId: exam.topicId,
-        studentId: student._id,
-        username: student.username,
         score: score,
+        studentId: student._id,
+        topicId: exam.topicId,
+        username: student.username,
       })
         .then((res) => {
           console.log(res.data);
@@ -123,6 +123,8 @@ export const FreestyleQuestions = React.memo(({ questions }) => {
       setScore(score + question.qValue);
     } else {
       setShowIncorrect(true);
+      if (score - question.qValue <= 0) setScore(0);
+      if (score - question.qValue > 0) setScore(score - question.qValue);
     }
 
     // push answer to state
