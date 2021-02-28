@@ -30,7 +30,7 @@ export const CourseInfoPage = React.memo((props) => {
         console.log(err);
         alert("Ocurrió un error, actualiza la página");
       });
-  }, [school, studentId]);
+  }, [dispatch, purchase, school, studentId]);
 
   const setDescription = () => {
     switch (school) {

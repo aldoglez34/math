@@ -22,7 +22,7 @@ export const LandingPage = () => {
   useEffect(() => {
     if (adminData) dispatch(clearAdminData());
     if (purchase) dispatch(clearPurchase());
-  }, [adminData, dispatch]);
+  }, [adminData, dispatch, purchase]);
 
   return (
     <Layout>
