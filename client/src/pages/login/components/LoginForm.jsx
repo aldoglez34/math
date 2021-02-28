@@ -45,6 +45,7 @@ export const LoginForm = () => {
                         window.location.href = `/payment/${purchase.school}/${purchase.courseId}`;
                       } else {
                         dispatch(loginStudent(res.data));
+
                         alert(`Iniciaste sesión con éxito, ${res.data.name}`);
                         window.location.href = "/dashboard";
                       }

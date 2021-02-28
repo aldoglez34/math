@@ -5,19 +5,25 @@ import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { CourseInfoCard } from "./components";
 import API from "../../utils/API";
 import { BackButton } from "../../components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clearPurchase } from "../../redux/actions/purchase";
 
 import styles from "./courseinfopage.module.scss";
 
 export const CourseInfoPage = React.memo((props) => {
+  const dispatch = useDispatch();
+
   const [courses, setCourses] = useState();
 
   const school = props.routeProps.match.params.school;
 
   const student = useSelector((state) => state.student);
+  const purchase = useSelector((state) => state.purchase);
   const studentId = (student && student._id) || "Guest";
 
   useEffect(() => {
+    if (purchase) dispatch(clearPurchase());
+
     API.fetchCoursesBySchool(school, studentId)
       .then((res) => setCourses(res.data))
       .catch((err) => {

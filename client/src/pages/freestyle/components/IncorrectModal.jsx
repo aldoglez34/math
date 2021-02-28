@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Modal } from "react-bootstrap";
-import { bool, func } from "prop-types";
+import { bool, func, number } from "prop-types";
 
 export const IncorrectModal = React.memo(
-  ({ showIncorrect, setShowIncorrect }) => {
+  ({ showIncorrect, setShowIncorrect, qValue }) => {
     useEffect(() => {
       // close modal after 2 seconds
       if (showIncorrect) setTimeout(() => setShowIncorrect(false), 800);
@@ -18,6 +18,10 @@ export const IncorrectModal = React.memo(
                 <i className="fas fa-times-circle" />
               </h1>
               <h1 className="text-light">Incorrecto</h1>
+              <h3 className="text-warning">
+                {`- ${qValue}`}
+                <span className="ml-2">{qValue > 1 ? "puntos" : "punto"}</span>
+              </h3>
             </div>
           </Modal.Body>
         </Modal>
@@ -27,6 +31,7 @@ export const IncorrectModal = React.memo(
 );
 
 IncorrectModal.propTypes = {
-  showIncorrect: bool.isRequired,
+  qValue: number.isRequired,
   setShowIncorrect: func.isRequired,
+  showIncorrect: bool.isRequired,
 };

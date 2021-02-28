@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Badge, Button, Card, Col, Row } from "react-bootstrap";
 import { array, bool, number, string } from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
@@ -19,15 +19,19 @@ export const CourseInfoCard = React.memo(
   }) => {
     const dispatch = useDispatch();
     const student = useSelector((state) => state.student);
+    const purchase = useSelector((state) => state.purchase);
 
     const handleBuyButton = () => {
       if (student) {
         window.location.href = `/payment/${school}/${courseId}`;
       } else {
         dispatch(setPurchase({ courseId, school }));
-        window.location.href = "/signup";
       }
     };
+
+    useEffect(() => {
+      if (purchase) window.location.href = "/signup";
+    }, [purchase]);
 
     return (
       <div className="mb-4">

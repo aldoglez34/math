@@ -256,6 +256,7 @@ export const FreestyleQuestions = React.memo(({ questions }) => {
         <IncorrectModal
           showIncorrect={showIncorrect}
           setShowIncorrect={setShowIncorrect}
+          qValue={question.qValue}
         />
       </>
     )

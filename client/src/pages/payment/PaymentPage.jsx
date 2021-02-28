@@ -20,14 +20,15 @@ export const PaymentPage = React.memo((props) => {
   const student = useSelector((state) => state.student);
   const purchase = useSelector((state) => state.purchase);
 
+  // TODO: add required to all fields
   const yupschema = yup.object({
-    name: yup.string().min(3, "Nombre demasiado corto").required("Requerido"),
-    number: yup.number().required("Requerido"),
+    name: yup.string().min(3, "Nombre demasiado corto"),
+    number: yup.number(),
   });
 
   useEffect(() => {
     if (purchase) dispatch(clearPurchase());
-  }, []);
+  }, [dispatch, purchase]);
 
   return (
     <Layout backgroundColor="white">
@@ -42,15 +43,7 @@ export const PaymentPage = React.memo((props) => {
           <Row>
             <Col md={{ span: 6, offset: 3 }}>
               <h3>Estás comprando:</h3>
-              <h5 className="mb-4">{courseId}</h5>
-              <div className="mb-4">
-                <Button variant="outline-dark" active>
-                  Tarjeta de crédito
-                </Button>
-                <Button variant="outline-dark" className="ml-2">
-                  Paypal
-                </Button>
-              </div>
+              <h5 className="mb-2">{courseId}</h5>
               <div className="mb-2">
                 <i className={cn("fab", "fa-cc-visa", styles.cardIcon)} />
                 <i
@@ -70,6 +63,7 @@ export const PaymentPage = React.memo((props) => {
                 validationSchema={yupschema}
                 onSubmit={(values, { setSubmitting }) => {
                   setSubmitting(true);
+                  console.log(values);
 
                   API.buyCourse({ courseId, studentId: student._id })
                     .then(() => {

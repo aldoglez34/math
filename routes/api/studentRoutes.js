@@ -4,12 +4,15 @@ const model = require("../../models");
 // buyCourse()
 // matches with /api/student/buyCourse
 router.put("/buyCourse", function (req, res) {
+  const { courseId, studentId } = req.body;
+
   // get all exams from the given course
-  model.Course.findById(req.body.courseId)
+  model.Course.findById(courseId)
     .select("topics.exams")
     .lean()
     .populate("topics.exams", "difficulty")
     .then((data) => {
+      console.log(data);
       const courses = data.topics.reduce((acc, cv) => {
         acc.push(...cv.exams);
         return acc;
@@ -25,10 +28,10 @@ router.put("/buyCourse", function (req, res) {
     .then((onlyBasics) => {
       // insert only basic exams into the student account
       model.Student.findOneAndUpdate(
-        { _id: req.body.studentId },
+        { _id: studentId },
         {
           $push: {
-            courses: req.body.courseId,
+            courses: courseId,
             exams: onlyBasics,
           },
         }
