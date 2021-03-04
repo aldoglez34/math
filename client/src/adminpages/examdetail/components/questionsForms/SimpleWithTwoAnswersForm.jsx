@@ -82,7 +82,7 @@ export const SimpleWithTwoAnswersForm = () => {
                 </strong>
               </Form.Label>
               <Form.Control
-                maxLength="250"
+                maxLength="500"
                 type="text"
                 as="textarea"
                 rows="1"
@@ -259,7 +259,7 @@ export const SimpleWithTwoAnswersForm = () => {
             <Form.Group as={Col}>
               <Form.Label>Comentario</Form.Label>
               <Form.Control
-                maxLength="250"
+                maxLength="500"
                 type="text"
                 as="textarea"
                 rows="1"

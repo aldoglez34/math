@@ -215,12 +215,18 @@ export const FreestyleQuestions = React.memo(({ questions }) => {
                     ))
                   )}
 
-                  {/* QUESTION COMMENT */}
-                  {question.qComment ? (
-                    <small className="text-muted mb-3">
-                      {question.qComment}
-                    </small>
-                  ) : null}
+                  {/* QUESTION COMMENTS */}
+                  <div className="mt-3 mb-2">
+                    {question.qComment
+                      ? question.qComment.split("\\n").map((c) => {
+                          return (
+                            <span key={c} className="d-block text-muted">
+                              {c}
+                            </span>
+                          );
+                        })
+                      : null}
+                  </div>
 
                   {/* BUTTON */}
                   <div className="mt-3">
