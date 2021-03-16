@@ -60,24 +60,34 @@ export const QuestionsContainer = React.memo(({ questions }) => {
         topicId: exam.topicId,
       })
         .then((res) => {
-          // get response
-          console.log(res.data);
+          const { unlockedExam, isFreestyleUnlocked } = res.data;
+
+          // save results in redux (so they can be read in the results page)
+          dispatch(
+            examActions.setResults({
+              answers,
+              corrects,
+              grade,
+              incorrects,
+              isFreestyleUnlocked,
+              unlockedExam,
+            })
+          );
         })
         .catch((err) => {
+          console.log("error", err);
           alert(
             "Ocurrió un error en el servidor, no se pudo registrar su calificación."
           );
-          console.log("error", err);
           window.location.href = "/";
         });
-
-      // save results in redux (so they can be read in the results page)
-      // dispatch(examActions.setResults(answers));
-
-      // go to results page
-      // window.location.href = "/course/exam/results";
     }
   }, [dispatch, number, answers, questions, choice]);
+
+  // redirect user when result changes are updated
+  useEffect(() => {
+    if (exam.results) window.location.href = "/course/exam/results";
+  }, [exam.results]);
 
   const pushQuestion = () => {
     // get correct answers
