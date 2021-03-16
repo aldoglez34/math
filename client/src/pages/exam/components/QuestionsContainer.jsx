@@ -12,11 +12,14 @@ import {
   Timer,
 } from "./";
 import { ExitButton } from "../../../components";
+import API from "../../../utils/API";
 
 export const QuestionsContainer = React.memo(({ questions }) => {
   const dispatch = useDispatch();
 
   const exam = useSelector((state) => state.exam);
+  const course = useSelector((state) => state.course);
+  const student = useSelector((state) => state.student);
 
   const [number, setNumber] = useState(1);
   const [question, setQuestion] = useState();
@@ -27,16 +30,52 @@ export const QuestionsContainer = React.memo(({ questions }) => {
   const getValueFromMultipleChoice = (value) => setChoice(value);
 
   useEffect(() => {
-    // only if number is less than the questions length
-    if (number <= questions.length)
+    const hasExamEnded = number > questions.length;
+
+    // set a new question only if number is less than the questions length
+    if (!hasExamEnded)
       setQuestion(questions.filter((q) => q.qNumber === number)[0]);
 
-    // check if last
-    if (number > questions.length) {
+    if (hasExamEnded) {
+      // get the correct answers, the incorrect answers and the grade
+      const corrects = answers.reduce((acc, cv) => {
+        if (cv.qCorrectAnswers.answer === cv.userAnswers.answer) acc++;
+        return acc;
+      }, 0);
+      const incorrects = answers.reduce((acc, cv) => {
+        if (cv.qCorrectAnswers.answer !== cv.userAnswers.answer) acc++;
+        return acc;
+      }, 0);
+      const grade = Math.round((corrects / answers.length) * 100) / 10;
+
+      // making API to register attempt, check the route in the backend for more info
+      API.registerAttempt({
+        courseId: course._id,
+        examDifficulty: exam.difficulty,
+        examId: exam._id,
+        examLink: exam.reward.link,
+        examName: exam.name,
+        grade,
+        studentId: student._id,
+        topicId: exam.topicId,
+      })
+        .then((res) => {
+          // get response
+          console.log(res.data);
+        })
+        .catch((err) => {
+          alert(
+            "Ocurrió un error en el servidor, no se pudo registrar su calificación."
+          );
+          console.log("error", err);
+          window.location.href = "/";
+        });
+
       // save results in redux (so they can be read in the results page)
-      dispatch(examActions.setResults(answers));
+      // dispatch(examActions.setResults(answers));
+
       // go to results page
-      window.location.href = "/course/exam/results";
+      // window.location.href = "/course/exam/results";
     }
   }, [dispatch, number, answers, questions, choice]);
 

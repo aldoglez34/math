@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const model = require("../../models");
+const { getNextDifficulty } = require("../utils/utils");
 
 // fetchExamInfo()
 // matches with /api/exam/info/:examId
@@ -66,79 +67,71 @@ router.get("/info/:examId", function (req, res) {
 
 // registerAttempt()
 // matches with /api/exam/registerAttempt
-router.put("/registerAttempt", function (req, res) {
-  const { studentId, examId, grade } = req.body;
+router.put("/registerAttempt", async (req, res) => {
+  const {
+    courseId,
+    examDifficulty,
+    examId,
+    examLink,
+    examName,
+    grade,
+    studentId,
+    topicId,
+  } = req.body;
 
-  model.Student.findOneAndUpdate(
-    { _id: studentId },
-    { $push: { attempts: { exam: examId, grade: grade } } }
-  )
-    .then(() => {
-      // register perfect score only if grade is 10
-      if (grade === 10) {
-        model.Student.findOneAndUpdate(
-          { _id: studentId },
-          { $addToSet: { perfectGrades: examId } }
-        )
-          .then(() =>
-            res.json(
-              "Attempt registered successfully and perfect grade registered successfully."
-            )
-          )
-          .catch((err) => {
-            console.log("@error", err);
-            res.status(422).send("Ocurrió un error");
-          });
-      } else {
-        // if not return msg to the client
-        res.json("Attempt registered successfully.");
-      }
-    })
-    .catch((err) => {
-      console.log("@error", err);
-      res.status(422).send("Ocurrió un error");
-    });
-});
+  const isExamApproved = grade >= 8;
+  const isPerfectGrade = grade === 10;
+  const isLastExam = examDifficulty === "Advanced";
 
-// registerReward()
-// matches with /api/exam/registerReward
-router.put("/registerReward", function (req, res) {
-  const { link, name, studentId, topicId } = req.body;
+  try {
+    // first register attempt regardless of grade
+    await model.Student.findOneAndUpdate(
+      { _id: studentId },
+      { $push: { attempts: { exam: examId, grade: grade } } }
+    );
 
-  // FIRST check if the student already has this topic
-  // this has to be done BEFORE adding the topicId to the rewards list of the student
-  model.Student.findById(studentId)
-    .then(({ rewards }) => {
-      const isFreestyleUnlockable =
-        rewards.filter((r) => String(r.topicId) === String(topicId)).length ===
-        0;
+    // register perfect score only if grade is perfect
+    if (isPerfectGrade) {
+      await model.Student.findOneAndUpdate(
+        { _id: studentId },
+        { $addToSet: { perfectGrades: examId } }
+      );
+    }
 
-      // ONLY AFTER try to push the topicId to the student's rewards
-      // "$ne" won't push it if it's there already
-      model.Student.findOneAndUpdate(
-        { _id: studentId, "rewards.topicId": { $ne: topicId } },
-        {
-          $addToSet: {
-            rewards: {
-              link: link,
-              name: name,
-              topicId,
-            },
-          },
-        }
-      )
-        .then(() => res.send({ isFreestyleUnlockable }))
-        .catch((err) => {
-          console.log("@error", err);
-          res.status(422).send("Ocurrió un error");
-        });
-    })
-    .catch((err) => {
-      console.log("@error", err);
-      res.status(422).send("Ocurrió un error");
-    });
+    // unblock an exam if difficulty is NOT "Advanced" and the grade is approved
+    if (!isLastExam && isExamApproved) {
+      // find the exam's _id (the new one)
+      const courseTopics = await model.Course.findOne({ _id: courseId })
+        .select("topics")
+        .populate("topics.exams", "_id name difficulty")
+        .then(({ topics }) => topics);
+      const thisTopic = courseTopics.filter(
+        (t) => String(t._id) === String(topicId)
+      )[0];
+      const unblockedDifficulty = getNextDifficulty(examDifficulty);
+      const unlockedExam = thisTopic.exams.filter(
+        (e) => e.difficulty === unblockedDifficulty
+      )[0];
 
-  // push the reward only if the topic isn't already there
+      // push if it doesn't exist
+      const tryToPushExam = await model.Student.findOneAndUpdate(
+        { _id: studentId, exams: { $ne: unlockedExam._id } },
+        { $addToSet: { exams: unlockedExam._id } }
+      );
+      const wasTheExamAdded = tryToPushExam ? true : false;
+
+      // get the unlocked exam's info
+      const unlockedExam = wasTheExamAdded && {
+        name: unlockedExam.name,
+        difficulty: unlockedExam.difficulty,
+      };
+    }
+
+    
+  } catch (err) {
+    console.log(err);
+    res.status(422).send("Ocurrió un error");
+  }
 });
 
 // unlockExam()
@@ -204,6 +197,47 @@ router.put("/unlockExam", function (req, res) {
       console.log("@error", err);
       res.status(422).send("Ocurrió un error");
     });
+});
+
+// registerReward()
+// matches with /api/exam/registerReward
+router.put("/registerReward", function (req, res) {
+  const { link, name, studentId, topicId } = req.body;
+
+  // FIRST check if the student already has this topic
+  // this has to be done BEFORE adding the topicId to the rewards list of the student
+  model.Student.findById(studentId)
+    .then(({ rewards }) => {
+      const isFreestyleUnlockable =
+        rewards.filter((r) => String(r.topicId) === String(topicId)).length ===
+        0;
+
+      // ONLY AFTER try to push the topicId to the student's rewards
+      // "$ne" won't push it if it's there already
+      model.Student.findOneAndUpdate(
+        { _id: studentId, "rewards.topicId": { $ne: topicId } },
+        {
+          $addToSet: {
+            rewards: {
+              link: link,
+              name: name,
+              topicId,
+            },
+          },
+        }
+      )
+        .then(() => res.send({ isFreestyleUnlockable }))
+        .catch((err) => {
+          console.log("@error", err);
+          res.status(422).send("Ocurrió un error");
+        });
+    })
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error");
+    });
+
+  // push the reward only if the topic isn't already there
 });
 
 module.exports = router;

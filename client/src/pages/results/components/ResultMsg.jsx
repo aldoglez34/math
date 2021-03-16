@@ -3,11 +3,11 @@ import { number } from "prop-types";
 import { Image } from "react-bootstrap";
 import "./resultsmsg.scss";
 
-export const ResultMsg = React.memo(({ calif }) => {
-  return calif >= 80 ? (
+export const ResultMsg = React.memo(({ grade }) => {
+  return grade >= 8 ? (
     // EXAM PASSED
     <div className="text-center mt-4">
-      {calif / 10 === 10 ? (
+      {grade === 10 ? (
         <div>
           <h2 className="mainMsg">¡Calificación perfecta!</h2>
           <span>Has recibido una corona por tu desempeño.</span>
@@ -20,7 +20,7 @@ export const ResultMsg = React.memo(({ calif }) => {
       )}
       {/* crown */}
       <div className="mt-4">
-        {calif / 10 === 10 ? (
+        {grade === 10 ? (
           <Image src="/images/crown.png" width="170" height="170" />
         ) : null}
       </div>
@@ -42,5 +42,5 @@ export const ResultMsg = React.memo(({ calif }) => {
 });
 
 ResultMsg.propTypes = {
-  calif: number.isRequired,
+  grade: number.isRequired,
 };
