@@ -85,21 +85,6 @@ router.put("/registerAttempt", async (req, res) => {
   const isFreestyleUnlocked = isLastExam && isExamApproved;
   let unlockedExam = false;
 
-  console.log("=======================");
-  // console.log({
-  //   courseId,
-  //   examDifficulty,
-  //   examId,
-  //   examLink,
-  //   examName,
-  //   grade,
-  //   studentId,
-  //   topicId,
-  //   isExamApproved,
-  //   isPerfectGrade,
-  //   isLastExam,
-  // });
-
   try {
     // REGISTER ATTEMPT
     await model.Student.findOneAndUpdate(
