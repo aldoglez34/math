@@ -12,10 +12,7 @@ export const CoursesDropdown = () => {
   useEffect(() => {
     API.fetchSchoolDropdownItems()
       .then((res) => setCourses(res.data))
-      .catch((err) => {
-        console.log(err);
-        alert("Ocurrió un error, actualiza la página");
-      });
+      .catch((err) => console.log(err));
   }, []);
 
   return (

@@ -20,9 +20,9 @@ import {
 export const FreestyleQuestions = React.memo(({ questions }) => {
   const dispatch = useDispatch();
 
-  const student = useSelector((state) => state.student);
-  const exam = useSelector((state) => state.exam);
   const course = useSelector((state) => state.course);
+  const exam = useSelector((state) => state.exam);
+  const student = useSelector((state) => state.student);
 
   const [number, setNumber] = useState(1);
   const [question, setQuestion] = useState();

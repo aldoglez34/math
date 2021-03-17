@@ -13,6 +13,8 @@ import {
 export const ResultsPage = () => {
   const exam = useSelector((state) => state.exam);
 
+  console.log(exam.results);
+
   return exam.results ? (
     <StudentLayout>
       <Container style={{ paddingBottom: "45px" }}>

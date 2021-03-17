@@ -13,18 +13,30 @@ import {
 } from "./";
 import { ExitButton } from "../../../components";
 import API from "../../../utils/API";
+import {
+  CorrectModal,
+  FreestyleQPoints,
+  IncorrectModal,
+} from "../../freestyle/components";
 
 export const QuestionsContainer = React.memo(
   ({ questions, isFreestyle = false }) => {
     const dispatch = useDispatch();
 
-    const exam = useSelector((state) => state.exam);
+    // data from redux
     const course = useSelector((state) => state.course);
+    const exam = useSelector((state) => state.exam);
     const student = useSelector((state) => state.student);
 
+    // questions data
     const [number, setNumber] = useState(1);
     const [question, setQuestion] = useState();
     const [answers, setAnswers] = useState([]);
+    const [score, setScore] = useState(0);
+
+    // timer
+    const [secondsLeft, setSecondsLeft] = useState(exam.duration * 60 + 59);
+    const [minutesLeft, setMinutesLeft] = useState(exam.duration);
 
     // modals for freestyle
     const [showCorrect, setShowCorrect] = useState(false);
@@ -37,6 +49,26 @@ export const QuestionsContainer = React.memo(
     const hasExamEnded = number > questions.length;
     const isLastQuestion = number === questions.length;
 
+    // handles timer
+    useEffect(() => {
+      // decrease minutes
+      if ((secondsLeft % 60) / 100 === 0)
+        setMinutesLeft((prevState) => prevState - 1);
+
+      // checks if no minutes left
+      if (secondsLeft === 0) {
+        alert("El tiempo ha finalizado, vuelve a intentarlo.");
+        window.location.href = "/course";
+      }
+
+      setTimeout(() => {
+        setSecondsLeft((prevState) => prevState - 1);
+      }, 1000);
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [secondsLeft]);
+
+    // checks wether exam has ended or not
     useEffect(() => {
       // if exam hasnt ended, set new question
       if (!hasExamEnded)
@@ -89,7 +121,6 @@ export const QuestionsContainer = React.memo(
         }
 
         if (isFreestyle) {
-          const score = 0;
           API.registerFreestyleAttempt({
             courseId: course._id,
             score: score,
@@ -120,63 +151,82 @@ export const QuestionsContainer = React.memo(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch, number, answers, questions, choice]);
 
-    // redirect user when result changes are updated (only for regular exams)
+    // redirects user when result changes are updated (only for regular exams)
     useEffect(() => {
       if (exam.results) window.location.href = "/course/exam/results";
     }, [exam.results]);
 
     const pushQuestion = () => {
       // get correct answers
-      const correctAnswers = question.qCorrectAnswers.reduce((acc, cv) => {
-        acc.push(cv.answer);
-        return acc;
-      }, []);
+      const correctAnswers = question.qCorrectAnswers.map((a) => a.answer);
 
-      // the behavior will be different depending wether its a multiple choice or regular inputs
+      // get answer fields
+      const _id = question._id;
+      const qNumber = question.qNumber;
+      const qInstruction = question.qInstruction;
+      const qTechnicalInstruction = question.qTechnicalInstruction;
+      const qMultipleChoice = question.qMultipleChoice;
+
       const isMultipleChoice = question.qMultipleChoice ? true : false;
 
-      // get answer
-      let obj;
+      let userAnswers;
+      let qCorrectAnswers;
+
       if (isMultipleChoice) {
-        // the option choosen by the student is stored in the "choice" state
-        // crate object
-        obj = {
-          _id: question._id,
-          qNumber: question.qNumber,
-          qInstruction: question.qInstruction,
-          qTechnicalInstruction: question.qTechnicalInstruction,
-          qMultipleChoice: question.qMultipleChoice,
-          userAnswers:
-            question.qMultipleChoice.type === "text"
-              ? { type: "text", answer: choice }
-              : { type: "image", answer: choice },
-          qCorrectAnswers:
-            question.qMultipleChoice.type === "text"
-              ? { type: "text", answer: correctAnswers.toString() }
-              : { type: "image", answer: correctAnswers.toString() },
-        };
-      } else {
-        // get the value from the answer inputs and push them
-        const numberOfAnswers = question.qCorrectAnswers.length;
-        const userAnswers = [];
-        for (var i = 0; i < numberOfAnswers; i++) {
+        userAnswers =
+          question.qMultipleChoice.type === "text"
+            ? { type: "text", answer: choice }
+            : { type: "image", answer: choice };
+
+        qCorrectAnswers =
+          question.qMultipleChoice.type === "text"
+            ? { type: "text", answer: String(correctAnswers) }
+            : { type: "image", answer: String(correctAnswers) };
+      }
+
+      if (!isMultipleChoice) {
+        console.log("correctAnswers", question.qCorrectAnswers);
+        const _userAnswers = [];
+        for (var i = 0; i < question.qCorrectAnswers.length; i++) {
           let a = document.getElementById("answer" + i).value;
-          userAnswers.push(a.trim());
+          _userAnswers.push(a.trim());
         }
-        // crate object
-        obj = {
-          _id: question._id,
-          qNumber: question.qNumber,
-          qInstruction: question.qInstruction,
-          qTechnicalInstruction: question.qTechnicalInstruction,
-          qMultipleChoice: question.qMultipleChoice,
-          userAnswers: { type: "text", answer: userAnswers.toString() },
-          qCorrectAnswers: { type: "text", answer: correctAnswers.toString() },
-        };
+
+        userAnswers = { type: "text", answer: String(userAnswers) };
+        qCorrectAnswers = { type: "text", answer: String(correctAnswers) };
+      }
+
+      const answer = {
+        _id,
+        qNumber,
+        qInstruction,
+        qTechnicalInstruction,
+        qMultipleChoice,
+        userAnswers,
+        qCorrectAnswers,
+      };
+
+      console.log("answer", answer);
+
+      // validate answer (only for freestyle)
+      if (isFreestyle) {
+        const isAnswerCorrect =
+          answer.userAnswers.answer === answer.qCorrectAnswers.answer;
+
+        if (isAnswerCorrect) {
+          setShowCorrect(true);
+          setScore((prevState) => prevState + question.qValue);
+        }
+
+        if (!isAnswerCorrect) {
+          setShowIncorrect(true);
+          if (score - question.qValue <= 0) setScore(0);
+          if (score - question.qValue > 0) setScore(score - question.qValue);
+        }
       }
 
       // push to state
-      setAnswers([...answers, obj]);
+      setAnswers([...answers, answer]);
 
       // clear choice and advance to next question
       setChoice();
@@ -189,13 +239,14 @@ export const QuestionsContainer = React.memo(
 
     return (
       question &&
-      (hasExamEnded ? (
-        <div className="text-center mt-4 pt-4">
-          <Spinner animation="border" variant="success" />
-        </div>
-      ) : (
+      (!hasExamEnded ? (
         <>
-          {/* question */}
+          {/* top container */}
+          <Container>
+            <Timer minutesLeft={minutesLeft} secondsLeft={secondsLeft} />
+            <FreestyleQPoints score={score} />
+          </Container>
+          {/* main container */}
           <Container className="mt-3">
             <div style={{ backgroundColor: "#e9ecef" }}>
               {!isFreestyle && (
@@ -291,26 +342,33 @@ export const QuestionsContainer = React.memo(
               </Container>
             </div>
           </Container>
-          {/* buttons, timer and others */}
+          {/* bottom container */}
           <Container className="d-flex mt-3">
-            <Timer />
             <div className="ml-auto">
               <HelpModalSM question={question} />
               <ExitButton url={"/course/#" + exam.topicName} />
             </div>
           </Container>
           {/* modals (for freestyle) */}
-          {/* <CorrectModal
-            showCorrect={showCorrect}
-            setShowCorrect={setShowCorrect}
-            qValue={question.qValue}
-          />
-          <IncorrectModal
-            showIncorrect={showIncorrect}
-            setShowIncorrect={setShowIncorrect}
-            qValue={question.qValue}
-          /> */}
+          {isFreestyle && (
+            <>
+              <CorrectModal
+                showCorrect={showCorrect}
+                setShowCorrect={setShowCorrect}
+                qValue={question.qValue}
+              />
+              <IncorrectModal
+                showIncorrect={showIncorrect}
+                setShowIncorrect={setShowIncorrect}
+                qValue={question.qValue}
+              />
+            </>
+          )}
         </>
+      ) : (
+        <div className="text-center mt-4 pt-4">
+          <Spinner animation="border" variant="success" />
+        </div>
       ))
     );
   }
