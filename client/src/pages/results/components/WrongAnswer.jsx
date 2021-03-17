@@ -43,7 +43,7 @@ const WrongAnswer = React.memo(
           <Row>
             <Col>
               <strong>
-                <i className="fas fa-times mr-2" />
+                <i className="fas fa-times mr-1" />
                 INCORRECTO
               </strong>
               <br />

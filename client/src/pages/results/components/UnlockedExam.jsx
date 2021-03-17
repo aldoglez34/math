@@ -1,29 +1,65 @@
 import React from "react";
-import { Button, Image } from "react-bootstrap";
-import { object } from "prop-types";
-import { DifficultyStars } from "../../course/components";
+import { Image } from "react-bootstrap";
+import { object, bool, oneOfType } from "prop-types";
+import { useSelector } from "react-redux";
+import { ImageFromFirebase } from "../../../adminpages/components";
 
-export const UnlockedExam = ({ unlockedExam }) => {
+export const UnlockedExam = ({ unlockedExam, isFreestyleUnlocked }) => {
+  const exam = useSelector((state) => state.exam);
+
   return (
     <div className="text-center d-flex flex-column">
-      <h3 className="mainMsg">¡Nuevo Examen!</h3>
-      <div className="my-3">
-        <Image src="/images/lock.png" width="120" height="120" />
-      </div>
-      <span className="mb-1 lead">
-        El examen{" "}
-        <span style={{ fontWeight: 600, color: "#3d5257" }}>
-          {unlockedExam.name}
-        </span>{" "}
-        ha sido desbloqueado.
-      </span>
-      <div className="mt-3 mb-1">
-        <DifficultyStars difficulty={unlockedExam.difficulty} />
-      </div>
+      {unlockedExam ? (
+        <>
+          <h3 className="mainMsg">¡Nuevo Examen!</h3>
+          <span className="mb-1 lead">
+            El examen{" "}
+            <span style={{ fontWeight: 600, color: "#3d5257" }}>
+              {unlockedExam.name}
+            </span>{" "}
+            ha sido desbloqueado.
+          </span>
+          <div className="my-3">
+            <Image src="/images/lock.png" width="120" height="120" />
+          </div>
+        </>
+      ) : null}
+      {isFreestyleUnlocked ? (
+        <>
+          <h3 className="mainMsg">¡Felicidades!</h3>
+          <span className="lead">
+            Has concluido el tema{" "}
+            <span style={{ fontWeight: 600, color: "#3d5257" }}>
+              {exam.topicName}
+            </span>
+            .
+          </span>
+          <div className="my-2">
+            <ImageFromFirebase
+              className="mb-3"
+              path={exam.reward.link}
+              width="140"
+              height="190"
+            />
+          </div>
+          <h3 className="mainMsg">¡Nuevo Examen!</h3>
+          <span className="mb-1 lead">
+            El examen{" "}
+            <span style={{ fontWeight: 600, color: "#3d5257" }}>
+              Modo Rápido
+            </span>{" "}
+            ha sido desbloqueado.
+          </span>
+          <div className="my-3">
+            <Image src="/images/freestyle.png" width="120" height="160" />
+          </div>
+        </>
+      ) : null}
     </div>
   );
 };
 
 UnlockedExam.propTypes = {
-  unlockedExam: object.isRequired,
+  unlockedExam: oneOfType([object, bool]),
+  isFreestyleUnlocked: bool,
 };

@@ -43,6 +43,9 @@ export default {
   fetchCourseInfo: (courseId, studentId) =>
     axios.get("/api/course/info/" + courseId + "/" + studentId),
 
+  fetchTop10: (courseId, studentId) =>
+    axios.get("/api/course/top10/" + courseId + "/" + studentId),
+
   // ==============================================
   // EXAMS
   // ==============================================

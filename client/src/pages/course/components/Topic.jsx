@@ -1,23 +1,17 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { string, object } from "prop-types";
-import { ExamsAccordion, HelpModal, PDFLInk } from "./";
+import { ExamsAccordion, HelpModal, PDFLInk, Leaderboards } from "./";
 
 export const Topic = React.memo(({ courseName, topic }) => {
   return (
     <>
+      {/* title */}
       <Row id={topic.name}>
         {/* title */}
         <Col>
           <h1 className="display-4 topicName mb-2" style={{ color: "#48bf84" }}>
             {topic.name}
-            {topic.hasReward ? (
-              <i
-                className="fas fa-medal text-warning ml-2"
-                title="Aprobado"
-                style={{ fontSize: "35px" }}
-              />
-            ) : null}
           </h1>
           <div className="d-flex mb-3">
             <h3
@@ -29,12 +23,15 @@ export const Topic = React.memo(({ courseName, topic }) => {
           </div>
         </Col>
       </Row>
+      {/* description, material and exams */}
       <Row>
-        {/* description and material */}
         <Col lg={6}>
           <p className="mb-2">
             <i className="fas fa-bullhorn mr-2 text-dark" />
             {topic.description}
+          </p>
+          <p className="my-3">
+            <Leaderboards topicId={topic._id} />
           </p>
           <div className="mb-2">
             {topic.material
@@ -60,10 +57,7 @@ export const Topic = React.memo(({ courseName, topic }) => {
                 );
               })}
           </div>
-          {/* help modal */}
-          <HelpModal courseName={courseName} topic={topic.name} />
         </Col>
-        {/* exams */}
         <Col lg={6} className="mt-2 mt-lg-0">
           <h4 className="mb-3" style={{ color: "#212529" }}>
             Exámenes
@@ -79,6 +73,9 @@ export const Topic = React.memo(({ courseName, topic }) => {
               topicId: topic._id,
             }}
           />
+          <div className="text-right mt-2">
+            <HelpModal courseName={courseName} topic={topic.name} />
+          </div>
         </Col>
       </Row>
     </>

@@ -96,11 +96,11 @@ router.put("/registerAttempt", async (req, res) => {
     if (isPerfectGrade) {
       await model.Student.findOneAndUpdate(
         { _id: studentId },
-        { $addToSet: { perfectGrades: examId } }
+        { $addToSet: { perfectGrades: examId } } // addToSet will push it only if only it doesn't exist
       );
     }
 
-    // REGISTER REWARD
+    // REGISTER REWARD (THIS WILL BE USED FOR THE FREESTYLE TOO)
     if (isExamApproved && isLastExam) {
       // check if the student already has the a reward for this topic
       const rewards = await model.Student.findById(studentId).then(
@@ -138,24 +138,46 @@ router.put("/registerAttempt", async (req, res) => {
       // get the next difficulty to unlock
       const nextDifficulty = getNextDifficulty(examDifficulty);
 
-      // get a object with the data of the new exam
+      // get an object with the data of the new exam
       const nextExam = thisTopic.exams.filter(
         (e) => e.difficulty === nextDifficulty
       )[0];
 
-      // push it if it doesn't exist
-      const tryToPushExam = await model.Student.findOneAndUpdate(
-        { _id: studentId, exams: { $ne: nextExam._id } },
-        { $addToSet: { exams: nextExam._id } }
-      );
+      // check if the user has unlocked this exam already
+      const studentUnlockedExams = await model.Student.findOne({
+        _id: studentId,
+      })
+        .select("exams")
+        .then(({ exams }) => exams);
 
-      const wasTheExamAdded = tryToPushExam ? true : false;
+      const hasStudentExam = studentUnlockedExams.filter(
+        (e) => String(e) === String(nextExam._id)
+      ).length;
 
-      // get the unlocked exam's info
-      unlockedExam = wasTheExamAdded && {
-        name: nextExam.name,
-        difficulty: nextExam.difficulty,
-      };
+      if (!hasStudentExam) {
+        const tryToPushExam = await model.Student.findOneAndUpdate(
+          { _id: studentId, exams: { $ne: nextExam._id } },
+          { $addToSet: { exams: nextExam._id } },
+          { new: true }
+        );
+
+        // double check if the new exam was added to the student's exams
+        const wasTheExamAdded = tryToPushExam.exams.filter(
+          (e) => String(e) === String(nextExam._id)
+        ).length;
+
+        // sending error
+        if (!wasTheExamAdded)
+          res
+            .status(422)
+            .send("Ocurrió un error, no se pudo desbloquear examen.");
+
+        // get the unlocked exam's info
+        unlockedExam = wasTheExamAdded && {
+          name: nextExam.name,
+          difficulty: nextExam.difficulty,
+        };
+      }
     }
 
     res.json({ unlockedExam, isFreestyleUnlocked });

@@ -14,18 +14,18 @@ export const MyResults = React.memo(({ results }) => {
             <Row>
               <Col>
                 <strong>
-                  <i className="fas fa-check mr-2" />
+                  <i className="fas fa-check mr-1" />
                   CORRECTO
                 </strong>
                 {/* TECHNICAL INSTRUCTION */}
                 <div className="d-flex flex-column my-2">
-                  <span className="text-break mb-2">{q.qInstruction}</span>
+                  <span className="text-break">{q.qInstruction}</span>
                   {q.qTechnicalInstruction ? (
                     q.qTechnicalInstruction.type === "text" ? (
                       <span>{q.qTechnicalInstruction.text}</span>
                     ) : (
                       <ImageFromFirebase
-                        className="mb-3"
+                        className="mb-2"
                         path={q.qTechnicalInstruction.imageLink}
                         width="150"
                         height="150"
@@ -36,7 +36,7 @@ export const MyResults = React.memo(({ results }) => {
                 </div>
                 {/* USER ANSWERS */}
                 <div className="d-flex flex-column">
-                  <strong className="my-2">Tu respuesta:</strong>
+                  <strong className="mb-2">Tu respuesta:</strong>
                   {q.userAnswers.type === "text" ? (
                     <span>{q.userAnswers.answer}</span>
                   ) : (

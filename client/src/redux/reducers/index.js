@@ -4,7 +4,6 @@ import course from "./courseReducers";
 import exam from "./examReducers";
 import purchase from "./purchaseReducer";
 import student from "./studentReducers";
-import unlocked from "./unlockedReducers";
 import zenMode from "./zenModeReducers";
 
 const rootReducer = combineReducers({
@@ -13,7 +12,6 @@ const rootReducer = combineReducers({
   exam,
   purchase,
   student,
-  unlocked,
   zenMode,
 });
 

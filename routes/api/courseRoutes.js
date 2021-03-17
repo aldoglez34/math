@@ -74,9 +74,6 @@ router.get("/info/:courseId/:studentId", function (req, res) {
               myTryouts: cv.freestyle.attempts.filter(
                 (a) => a.studentId.toString() === studentId.toString()
               ).length,
-              top10: cv.freestyle.attempts
-                .sort((a, b) => (a.score > b.score ? -1 : 1))
-                .slice(0, 10),
             },
             hasReward: studentData.rewards.filter(
               (r) => String(r.topicId) === String(cv._id)
@@ -119,6 +116,29 @@ router.get("/info/:courseId/:studentId", function (req, res) {
       console.log("@error", err);
       res.status(422).send("Ocurrió un error");
     });
+});
+
+// fetchTop10()
+// matches with /api/course/top10/:courseId/:topicId
+router.get("/top10/:courseId/:topicId", async (req, res) => {
+  const { courseId, topicId } = req.params;
+
+  try {
+    const topics = await model.Course.findById(courseId)
+      .select("topics")
+      .then(({ topics }) => topics);
+
+    const thisTopic = topics.filter((t) => String(t._id) == String(topicId))[0];
+
+    const top10 = thisTopic.freestyle.attempts
+      .sort((a, b) => (a.score > b.score ? -1 : 1))
+      .slice(0, 10);
+
+    res.json(top10);
+  } catch (err) {
+    console.log("@error", err);
+    res.status(422).send("Ocurrió un error");
+  }
 });
 
 module.exports = router;

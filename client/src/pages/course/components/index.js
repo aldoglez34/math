@@ -2,7 +2,6 @@ export * from "./accordions/ExamsAccordion";
 
 export * from "./badges/TopicBadge";
 export * from "./buttons/NotAvailableBttn";
-export * from "./modals/ExamUnlocked";
 export * from "./modals/HelpModal";
 export * from "./modals/Leaderboards";
 export * from "./modals/MedalObtained";

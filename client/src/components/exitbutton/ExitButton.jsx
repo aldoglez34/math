@@ -38,7 +38,11 @@ export const ExitButton = React.memo(({ url }) => {
             >
               Abandonar
             </Button>
-            <Button variant="link" className="ml-2" onClick={handleClose}>
+            <Button
+              variant="link"
+              className="ml-2 text-success"
+              onClick={handleClose}
+            >
               Continuar examen
             </Button>
           </div>

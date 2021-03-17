@@ -46,15 +46,11 @@ export const HelpModal = React.memo(({ courseName, topic }) => {
               </Button>
             </div>
             <span className="mb-2">
-              ¿Tienes duda sobre el curso {topic}, {student.name}?
+              ¿Tienes duda sobre el curso <strong>{topic}</strong>?
             </span>
             <span className="mb-2">
               Utiliza el siguiente recuadro para hacerle llegar tu comentario al
               maestro.
-            </span>
-            <span className="mb-2">
-              Recibirás una notificación en la esquina superior derecha (donde
-              sale tu correo) cuando tu mensaje sea contestado.
             </span>
           </div>
 
