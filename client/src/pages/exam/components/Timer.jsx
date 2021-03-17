@@ -31,7 +31,7 @@ export const Timer = () => {
   }, [secondsLeft]);
 
   return (
-    <div className="text-danger lead" title="Tiempo restante">
+    <div title="Tiempo restante" style={{ color: "#0f5257" }}>
       <i className="fas fa-stopwatch mr-1" />
       <strong>
         {minutesLeft > 0 ? minutesLeft + " min." : secondsLeft + " seg."}

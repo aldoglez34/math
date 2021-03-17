@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import * as zenModeActions from "../../redux/actions/zenMode";
 import API from "../../utils/API";
 import { FreestyleQuestions } from "./components";
+import { QuestionsContainer } from "../exam/components";
 
 export const FreestylePage = React.memo(() => {
   const dispatch = useDispatch();
@@ -24,7 +25,10 @@ export const FreestylePage = React.memo(() => {
       })
       .catch((err) => {
         console.log(err);
-        alert("Ocurrió un error al cargar las preguntas de tu examen");
+        alert(
+          "Ocurrió un error con este examen. Ponte en contacto con tu maestro."
+        );
+        window.location.href = "/course";
       });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,12 +38,11 @@ export const FreestylePage = React.memo(() => {
     <StudentLayout>
       {freestyle ? (
         <>
-          {/* title */}
           <Container>
             <h1 className="examNameStyle mt-4">Modo rápido</h1>
           </Container>
-          {/* questions */}
-          <FreestyleQuestions questions={freestyle} />
+          <QuestionsContainer questions={freestyle} isFreestyle={true} />
+          {/* <FreestyleQuestions questions={freestyle} /> */}
           <br />
           <br />
         </>

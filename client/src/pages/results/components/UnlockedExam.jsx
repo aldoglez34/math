@@ -51,7 +51,7 @@ export const UnlockedExam = ({ unlockedExam, isFreestyleUnlocked }) => {
             ha sido desbloqueado.
           </span>
           <div className="my-3">
-            <Image src="/images/freestyle.png" width="120" height="160" />
+            <Image src="/images/freestyle.png" width="110" height="150" />
           </div>
         </>
       ) : null}

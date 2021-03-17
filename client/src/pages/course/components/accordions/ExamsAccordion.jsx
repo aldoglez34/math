@@ -101,8 +101,11 @@ export const ExamsAccordion = React.memo(
                     </span>
                     <br />
                     {/* question counter */}
-                    <span style={{ fontSize: "14px" }} title="Preguntas">
-                      <i className="fas fa-question-circle mr-2" />
+                    <span
+                      style={{ fontSize: "14px" }}
+                      title="Número de preguntas"
+                    >
+                      <i className="fas fa-flag-checkered mr-2" />
                       {ex.qCounter + " preguntas"}
                     </span>
                     {/* columns */}

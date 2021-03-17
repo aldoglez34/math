@@ -77,7 +77,7 @@ export const Leaderboards = ({ topicId }) => {
               </>
             ) : (
               <div className="my-4 text-center">
-                <em className="text-muted">Parece que no hay nada aquí.</em>
+                <em className="text-muted">Vacío.</em>
               </div>
             )
           ) : (

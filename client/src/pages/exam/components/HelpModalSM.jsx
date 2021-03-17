@@ -24,7 +24,7 @@ export const HelpModalSM = React.memo(({ question }) => {
       <Button
         variant="info"
         size="sm"
-        className="shadow-sm ml-auto mr-2"
+        className="shadow-sm mr-2"
         onClick={handleShow}
       >
         <i className="fas fa-question-circle" />

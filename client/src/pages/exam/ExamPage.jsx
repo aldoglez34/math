@@ -44,11 +44,13 @@ export const ExamPage = () => {
     <StudentLayout>
       {exam ? (
         <>
-          {/* title */}
           <Container>
             <h1 className="examNameStyle mt-4">{exam.name}</h1>
+            <span title="Tiempo restante" style={{ color: "#0f5257" }}>
+              <i className="fas fa-stopwatch mr-1" />
+              <strong>10 minutos</strong>
+            </span>
           </Container>
-          {/* questions */}
           <QuestionsContainer questions={exam.questions} />
           <br />
           <br />

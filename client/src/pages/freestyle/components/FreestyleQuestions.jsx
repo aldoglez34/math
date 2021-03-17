@@ -254,16 +254,7 @@ export const FreestyleQuestions = React.memo(({ questions }) => {
           </div>
         </Container>
         {/* modals */}
-        <CorrectModal
-          showCorrect={showCorrect}
-          setShowCorrect={setShowCorrect}
-          qValue={question.qValue}
-        />
-        <IncorrectModal
-          showIncorrect={showIncorrect}
-          setShowIncorrect={setShowIncorrect}
-          qValue={question.qValue}
-        />
+        
       </>
     )
   ) : null;
