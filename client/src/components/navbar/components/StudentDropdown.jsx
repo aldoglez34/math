@@ -33,7 +33,6 @@ export const StudentDropdown = () => {
       })
       .catch((err) => {
         console.log(err);
-        alert("Ocurrió un error al cargar tus mensajes, actualiza la página");
       });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

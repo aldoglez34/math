@@ -48,6 +48,10 @@ export const AdminNewTopicPage = React.memo((props) => {
       ),
   });
 
+  const handleChangeNames = (e) => {
+    console.log(e.target.value);
+  };
+
   useEffect(() => {
     dispatch(adminActions.setTitle(courseName));
   }, [dispatch, courseName]);
@@ -69,40 +73,44 @@ export const AdminNewTopicPage = React.memo((props) => {
                 freestyleTimer: "",
                 photo: undefined,
                 file: undefined,
+                genericNames: false,
+                basicExam: "",
+                basicIntermediate: "",
               }}
               validationSchema={yupschema}
               onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
+                console.log(values);
 
-                TeacherAPI.t_newTopic({ ...values, courseId })
-                  .then((res) => {
-                    const { topicId } = res.data;
+                // TeacherAPI.t_newTopic({ ...values, courseId })
+                //   .then((res) => {
+                //     const { topicId } = res.data;
 
-                    const storageRef = firebaseStorage.ref();
-                    const pathOnFirebaseStorage = `${courseId}/${topicId}/rewards/medal`;
-                    const fileRef = storageRef.child(pathOnFirebaseStorage);
+                //     const storageRef = firebaseStorage.ref();
+                //     const pathOnFirebaseStorage = `${courseId}/${topicId}/rewards/medal`;
+                //     const fileRef = storageRef.child(pathOnFirebaseStorage);
 
-                    fileRef
-                      .put(values.file)
-                      .then((res) => {
-                        console.log(res);
-                        const route = `/admin/courses/edit/topics/${courseId}/${topicId}`;
-                        alert("Tema agregado con éxito");
-                        window.location.href = route;
-                      })
-                      .catch((err) => {
-                        console.log(err);
-                        alert(err);
-                      });
-                  })
-                  .catch((err) => {
-                    if (err.response && err.response.data) {
-                      alert(err.response.data);
-                    } else {
-                      alert("Ocurrió un error en el servidor");
-                    }
-                    setSubmitting(false);
-                  });
+                //     fileRef
+                //       .put(values.file)
+                //       .then((res) => {
+                //         console.log(res);
+                //         const route = `/admin/courses/edit/topics/${courseId}/${topicId}`;
+                //         alert("Tema agregado con éxito");
+                //         window.location.href = route;
+                //       })
+                //       .catch((err) => {
+                //         console.log(err);
+                //         alert(err);
+                //       });
+                //   })
+                //   .catch((err) => {
+                //     if (err.response && err.response.data) {
+                //       alert(err.response.data);
+                //     } else {
+                //       alert("Ocurrió un error en el servidor");
+                //     }
+                //     setSubmitting(false);
+                //   });
               }}
             >
               {({
@@ -116,9 +124,9 @@ export const AdminNewTopicPage = React.memo((props) => {
                 setFieldValue,
               }) => (
                 <Form noValidate onSubmit={handleSubmit}>
-                  {/* name */}
+                  {/* name and subject */}
                   <Form.Row>
-                    <Col md={6}>
+                    <Col md={8}>
                       <Form.Label>
                         Nombre
                         <strong className="text-danger">*</strong>
@@ -139,7 +147,7 @@ export const AdminNewTopicPage = React.memo((props) => {
                         component="div"
                       />
                     </Col>
-                    <Col md={6}>
+                    <Col md={4}>
                       <Form.Label>
                         Materia
                         <strong className="text-danger">*</strong>
@@ -208,9 +216,9 @@ export const AdminNewTopicPage = React.memo((props) => {
                       />
                     </Col>
                   </Form.Row>
-                  {/* reward */}
-                  <Form.Row className="mt-3">
-                    <Col>
+                  {/* reward and freestyle timer */}
+                  <Form.Row className="mt-3 mb-3">
+                    <Col md={8}>
                       <Form.Label>
                         Medalla
                         <strong className="text-danger">*</strong>
@@ -245,15 +253,12 @@ export const AdminNewTopicPage = React.memo((props) => {
                         component="div"
                       />
                     </Col>
-                  </Form.Row>
-                  {/* freestyle timer */}
-                  <Form.Row className="mt-3">
                     <Col md={4}>
                       <Form.Label>
-                        Duración modo rápido
+                        Modo rápido
                         <strong className="text-danger">*</strong>
                       </Form.Label>
-                      <InputGroup className="mb-3">
+                      <InputGroup>
                         <Form.Control
                           type="number"
                           name="freestyleTimer"
@@ -280,8 +285,80 @@ export const AdminNewTopicPage = React.memo((props) => {
                       />
                     </Col>
                   </Form.Row>
+                  {/* exams */}
+                  <h4>Exámenes</h4>
+                  <Form.Group className="mt-2" controlId="formBasicCheckbox">
+                    <div className="custom-control custom-switch">
+                      <input
+                        className="custom-control-input"
+                        id="genericNames"
+                        onChange={(e) => handleChangeNames(e)}
+                        type="checkbox"
+                      />
+                      <label
+                        className="custom-control-label"
+                        htmlFor="genericNames"
+                        style={{ cursor: "pointer" }}
+                      >
+                        Usar nombres temporales
+                      </label>
+                    </div>
+                  </Form.Group>
+                  {/* basic */}
+                  <Form.Row className="mt-3">
+                    <Col>
+                      <Form.Label>
+                        Básico
+                        <strong className="text-danger">*</strong>
+                      </Form.Label>
+                      <Form.Control
+                        maxLength="50"
+                        type="text"
+                        name="basic"
+                        value={values.basic}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        isValid={touched.basic && !errors.basic}
+                        isInvalid={touched.basic && !!errors.basic}
+                      />
+                      <ErrorMessage
+                        className="text-danger"
+                        name="basic"
+                        component="div"
+                      />
+                    </Col>
+                  </Form.Row>
+                  {/* basic-intermediate */}
+                  <Form.Row className="mt-3">
+                    <Col>
+                      <Form.Label>
+                        Básico Intermedio
+                        <strong className="text-danger">*</strong>
+                      </Form.Label>
+                      <Form.Control
+                        maxLength="50"
+                        type="text"
+                        name="basicIntermediate"
+                        value={values.basicIntermediate}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        isValid={
+                          touched.basicIntermediate && !errors.basicIntermediate
+                        }
+                        isInvalid={
+                          touched.basicIntermediate &&
+                          !!errors.basicIntermediate
+                        }
+                      />
+                      <ErrorMessage
+                        className="text-danger"
+                        name="basicIntermediate"
+                        component="div"
+                      />
+                    </Col>
+                  </Form.Row>
                   {/* buttons */}
-                  <Form.Group className="mt-2">
+                  <Form.Group className="mt-4">
                     <Button
                       variant="dark"
                       type="submit"
