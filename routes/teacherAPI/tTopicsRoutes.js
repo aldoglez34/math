@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const model = require("../../models");
+const utils = require("../utils/utils");
 
 // t_fetchTopic()
 // matches with /teacherAPI/topics/:courseId/:topicId
@@ -124,82 +125,71 @@ router.put("/update/timer", function (req, res) {
 
 // t_newTopic()
 // matches with /teacherAPI/topics/new
-router.put("/new", function (req, res) {
-  const courseId = req.body.courseId;
+router.put("/new", async (req, res) => {
+  const {
+    courseId,
+    name: topicName,
+    subject: topicSubject,
+    description: topicDescription,
+    freestyleTimer: topicFreestyleTimer,
+  } = req.body;
 
-  model.Course.findById(courseId)
-    .select("topics")
-    .then(({ topics }) => {
-      const doesNewTopicExist = topics.some(
-        (t) => String(t.name).trim() === String(req.body.name).trim()
-      );
+  try {
+    const topics = await model.Course.findById(courseId)
+      .select("topics")
+      .then(({ topics }) => topics);
 
-      const latestTopic = topics.sort(
-        (a, b) => b.topicOrderNumber - a.topicOrderNumber
+    const doesNewTopicExist = topics.some(
+      (t) => String(t.name).trim() === String(topicName).trim()
+    );
+
+    const nextTopicOrderNumber = utils.getNextTopicOrderNumber(topics);
+
+    if (doesNewTopicExist) {
+      res.status(500).send("Un tema con este nombre ya existe en este curso");
+    } else {
+      const defaultExams = utils.generateDefaultExams(topicName);
+
+      const newTopicData = {
+        topicOrderNumber: nextTopicOrderNumber,
+        name: topicName,
+        subject: topicSubject,
+        description: topicDescription,
+        freestyle: {
+          timer: topicFreestyleTimer,
+        },
+        exams: defaultExams,
+      };
+
+      const insertNewTopic = await model.Course.findOneAndUpdate(
+        { _id: courseId },
+        { $push: { topics: newTopicData } },
+        { new: true }
+      ).then(({ topics }) => topics);
+
+      const newlyCreatedTopic = insertNewTopic.filter(
+        (t) => String(t.name).trim() === String(newTopicData.name).trim()
       )[0];
 
-      const highestTopicOrderNumber = latestTopic
-        ? latestTopic.topicOrderNumber
-        : 0;
-
-      if (doesNewTopicExist) {
-        res.status(500).send("Un tema con este nombre ya existe en este curso");
-      } else {
-        const newTopicData = {
-          topicOrderNumber: highestTopicOrderNumber + 1,
-          subject: req.body.subject,
-          name: req.body.name,
-          description: req.body.description,
-          freestyle: {
-            timer: req.body.freestyleTimer,
+      // insert reward
+      await model.Course.findOneAndUpdate(
+        {
+          _id: courseId,
+          "topics._id": newlyCreatedTopic._id,
+        },
+        {
+          $set: {
+            "topics.$.reward": {
+              link: `${courseId}/${newlyCreatedTopic._id}/rewards/medal`,
+            },
           },
-        };
-
-        model.Course.findOneAndUpdate(
-          { _id: courseId },
-          { $push: { topics: newTopicData } },
-          { new: true }
-        )
-          .then(({ topics }) => {
-            const newlyCreatedTopic = topics.filter(
-              (t) => String(t.name).trim() === String(newTopicData.name).trim()
-            )[0];
-
-            // insert reward
-            model.Course.findOneAndUpdate(
-              {
-                _id: courseId,
-                "topics._id": newlyCreatedTopic._id,
-              },
-              {
-                $set: {
-                  "topics.$.reward": {
-                    link: `${courseId}/${newlyCreatedTopic._id}/rewards/medal`,
-                  },
-                },
-              }
-            )
-              .then(() => {
-                res.json({
-                  topicId: newlyCreatedTopic._id,
-                  topicName: newlyCreatedTopic.name,
-                });
-              })
-              .catch((err) => {
-                console.log("@error", err);
-                res.status(422).send("Ocurrió un error");
-              });
-          })
-          .catch((err) => {
-            console.log("@error", err);
-            res.status(422).send("Ocurrió un error");
-          });
-      }
-    })
-    .catch((err) => {
-      console.log("@error", err);
-      res.status(422).send("Ocurrió un error.");
-    });
+        }
+      );
+    }
+  } catch (err) {
+    console.log("@error", err);
+    res.status(422).send("Ocurrió un error");
+  }
 });
 
 // t_updateTopicOrder()
