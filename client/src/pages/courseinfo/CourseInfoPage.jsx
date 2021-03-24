@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Layout } from "../../components/Layout";
 import { ScrollButton } from "../../components/scrollbutton/ScrollButton";
-import { Col, Container, Row, Spinner, Button } from "react-bootstrap";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { CourseInfoCard } from "./components";
 import API from "../../utils/API";
 import { BackButton } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { clearPurchase } from "../../redux/actions/purchase";
-import { firebaseAuth } from "../../firebase/firebase";
 
 import styles from "./courseinfopage.module.scss";
 
@@ -58,17 +57,6 @@ export const CourseInfoPage = React.memo((props) => {
       >
         <BackButton to="/" />
         <Row>
-          <Button
-            onClick={() =>
-              firebaseAuth
-                .signOut()
-                .then(() => {})
-                .catch((error) => console.log(error))
-            }
-            variant="danger"
-          >
-            Temp
-          </Button>
           <Col md={{ span: 8, offset: 2 }}>
             <div className="text-center">
               <h1 className={styles.courseinfoheader}>{school}</h1>
