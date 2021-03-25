@@ -135,21 +135,41 @@ router.put("/new", async (req, res) => {
   } = req.body;
 
   try {
+    // get all the topics from that course
     const topics = await model.Course.findById(courseId)
       .select("topics")
       .then(({ topics }) => topics);
 
+    // check if this topic name exists
     const doesNewTopicExist = topics.some(
       (t) => String(t.name).trim() === String(topicName).trim()
     );
 
+    // get the next topic order number
     const nextTopicOrderNumber = utils.getNextTopicOrderNumber(topics);
 
+    // if a topic with the same name exists, send error to client
+    // if not, add the topic
     if (doesNewTopicExist) {
       res.status(500).send("Un tema con este nombre ya existe en este curso");
     } else {
+      // generate data for 5 exams, one for each difficulty for the new topic
       const defaultExams = utils.generateDefaultExams(topicName);
 
+      // insert those 5 exams and get their ids
+      const addDefaultExams = new Promise((resolve, reject) => {
+        const examIds = [];
+        defaultExams.forEach((value, index, array) => {
+          model.Exam.create(value).then(({ _id }) => {
+            examIds.push(_id);
+            if (index === array.length - 1) resolve(examIds);
+          });
+        });
+      });
+
+      const examIds = await addDefaultExams.then((res) => res);
+
+      // data for the new topic
       const newTopicData = {
         topicOrderNumber: nextTopicOrderNumber,
         name: topicName,
@@ -158,25 +178,26 @@ router.put("/new", async (req, res) => {
         freestyle: {
           timer: topicFreestyleTimer,
         },
-        exams: defaultExams,
+        exams: examIds,
       };
 
+      // push the topic
       const insertNewTopic = await model.Course.findOneAndUpdate(
         { _id: courseId },
         { $push: { topics: newTopicData } },
         { new: true }
       ).then(({ topics }) => topics);
 
+      // get the newly created topic data
       const newlyCreatedTopic = insertNewTopic.filter(
         (t) => String(t.name).trim() === String(newTopicData.name).trim()
       )[0];
 
-      // insert reward
+      // edit the topic to build the reward link
+      // this needs to be done after the topic is created+
+      // because it uses the _id of the newly created topic
       await model.Course.findOneAndUpdate(
-        {
-          _id: courseId,
-          "topics._id": newlyCreatedTopic._id,
-        },
+        { _id: courseId, "topics._id": newlyCreatedTopic._id },
         {
           $set: {
             "topics.$.reward": {
@@ -185,6 +206,12 @@ router.put("/new", async (req, res) => {
           },
         }
       );
+
+      // send back to the client
+      res.json({
+        topicId: newlyCreatedTopic._id,
+        topicName: newlyCreatedTopic.name,
+      });
     }
   } catch (err) {
     console.log("@error", err);

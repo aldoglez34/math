@@ -196,26 +196,21 @@ export const AdminTopicDetailPage = React.memo((props) => {
         <Row>
           <Col>
             <span className="text-muted">Exámenes</span>
-            {topic.exams.length ? (
-              <ul className="mb-1">
-                {topic.exams
-                  .sort((a, b) => a.examOrderNumber - b.examOrderNumber)
-                  .map((e) => (
-                    <li key={e._id}>
-                      <strong style={{ color: "#0f5257" }}>
-                        {`[${e.difficulty}] `}
-                        {e.name}
-                        <AdminPrimaryButton
-                          href={`/admin/courses/edit/exam/${courseId}/${topicId}/${e._id}`}
-                          icon={<i className="fas fa-arrow-alt-circle-right" />}
-                        />
-                      </strong>
-                    </li>
-                  ))}
-              </ul>
-            ) : (
-              <h5>-</h5>
-            )}
+            <ul className="mb-1">
+              {topic.exams
+                .sort((a, b) => a.examOrderNumber - b.examOrderNumber)
+                .map((e) => (
+                  <li key={e._id}>
+                    <strong style={{ color: "#0f5257" }}>
+                      {e.name}
+                      <AdminPrimaryButton
+                        href={`/admin/courses/edit/exam/${courseId}/${topicId}/${e._id}`}
+                        icon={<i className="fas fa-arrow-alt-circle-right" />}
+                      />
+                    </strong>
+                  </li>
+                ))}
+            </ul>
             <NewExamBttn courseId={courseId} topicId={topicId} />
           </Col>
         </Row>
