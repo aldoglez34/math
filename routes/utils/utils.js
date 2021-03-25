@@ -24,7 +24,7 @@ const utils = {
       const exam = {
         difficulty: examDifficulties[i],
         examOrderNumber: i + 1,
-        name: `${topicName} | ${examDifficulties[i]}`,
+        name: `${topicName} ${i + 1}`,
         description: "Descripción del examen",
         duration: 10,
         qCounter: 10,

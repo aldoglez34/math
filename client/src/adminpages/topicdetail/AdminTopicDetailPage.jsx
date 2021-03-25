@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Badge, Col, Container, Row } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import {
   AdminPrimaryButton,
@@ -12,7 +12,6 @@ import {
   AddPDF,
   AddVideo,
   DraggableMaterial,
-  NewExamBttn,
   TopicDescriptionForm,
   TopicFreestyleTimerForm,
   TopicNameForm,
@@ -199,19 +198,26 @@ export const AdminTopicDetailPage = React.memo((props) => {
             <ul className="mb-1">
               {topic.exams
                 .sort((a, b) => a.examOrderNumber - b.examOrderNumber)
-                .map((e) => (
-                  <li key={e._id}>
-                    <strong style={{ color: "#0f5257" }}>
-                      {e.name}
-                      <AdminPrimaryButton
-                        href={`/admin/courses/edit/exam/${courseId}/${topicId}/${e._id}`}
-                        icon={<i className="fas fa-arrow-alt-circle-right" />}
-                      />
-                    </strong>
-                  </li>
-                ))}
+                .map((e) => {
+                  const path = `/admin/courses/edit/exam/${courseId}/${topicId}/${e._id}`;
+                  const badgeText = `0/${e.qCounter}`;
+                  const variant = "danger";
+                  return (
+                    <li key={e._id}>
+                      <strong style={{ color: "#0f5257" }}>
+                        <Badge variant={variant} className="mr-1">
+                          {badgeText}
+                        </Badge>
+                        {e.name}
+                        <AdminPrimaryButton
+                          href={path}
+                          icon={<i className="fas fa-arrow-alt-circle-right" />}
+                        />
+                      </strong>
+                    </li>
+                  );
+                })}
             </ul>
-            <NewExamBttn courseId={courseId} topicId={topicId} />
           </Col>
         </Row>
       </Container>

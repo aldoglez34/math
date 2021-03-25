@@ -36,13 +36,13 @@ export const AddPDF = React.memo(({ courseId, topicId }) => {
     <>
       <Button variant="dark" onClick={handleShow} className="ml-2" size="sm">
         <i className="fas fa-file-pdf mr-2" />
-        <span>Agregar PDF</span>
+        <span>Nuevo PDF</span>
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Body className="bg-light rounded">
           <div className="d-flex">
-            <h3 className="mb-0 text-dark">Agregar PDF</h3>
+            <h3 className="mb-0 text-dark">Nuevo PDF</h3>
             <Button
               variant="link"
               className="text-dark ml-auto"
@@ -158,7 +158,7 @@ export const AddPDF = React.memo(({ courseId, topicId }) => {
                       type="submit"
                       disabled={isSubmitting}
                     >
-                      Agregar
+                      Crear
                     </Button>
                   </Form.Group>
                 </Form>

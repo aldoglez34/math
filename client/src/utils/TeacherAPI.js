@@ -68,13 +68,6 @@ export default {
     axios.put("/teacherAPI/material/update/order", data),
 
   // ==============================================
-  // DIFFICULTIES
-  // ==============================================
-
-  t_fetchDifficultiesAvailable: (courseId, topicId) =>
-    axios.get("/teacherAPI/difficulties/available/" + courseId + "/" + topicId),
-
-  // ==============================================
   // EXAM
   // ==============================================
 

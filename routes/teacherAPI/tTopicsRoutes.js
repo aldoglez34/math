@@ -9,10 +9,25 @@ router.get("/:courseId/:topicId", function (req, res) {
 
   model.Course.findById(courseId)
     .select("topics")
-    .populate("topics.exams")
-    .then((data) =>
-      res.json(data.topics.filter((t) => t._id.toString() === topicId)[0])
-    )
+    .lean()
+    .populate("topics.exams", "name qCounter questions")
+    .then(({ topics }) => {
+      const thisTopic = topics.filter((t) => t._id.toString() === topicId)[0];
+
+      console.log(thisTopic);
+
+      const thisTopicExams = thisTopic.exams.reduce((cv, acc) => {
+        acc.push({
+          _id: cv._id,
+          name: cv.name,
+          qCounter: cv.qCounter,
+          questions: cv.questions.length,
+        });
+        return acc;
+      }, []);
+
+      res.json({ ...thisTopic, exams: thisTopicExams });
+    })
     .catch((err) => {
       console.log("@error", err);
       res.status(422).send("Ocurrió un error.");

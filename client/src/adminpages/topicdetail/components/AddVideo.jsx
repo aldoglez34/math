@@ -25,13 +25,13 @@ export const AddVideo = React.memo(({ courseId, topicId }) => {
         size="sm"
       >
         <i className="fas fa-video mr-2" />
-        <span>Agregar video</span>
+        <span>Nuevo Video</span>
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Body className="bg-light rounded">
           <div className="d-flex">
-            <h3 className="mb-0 text-dark">Agregar video</h3>
+            <h3 className="mb-0 text-dark">Nuevo Video</h3>
             <Button
               variant="link"
               className="text-dark ml-auto"
@@ -121,7 +121,7 @@ export const AddVideo = React.memo(({ courseId, topicId }) => {
                       type="submit"
                       disabled={isSubmitting}
                     >
-                      Agregar
+                      Crear
                     </Button>
                   </Form.Group>
                 </Form>
