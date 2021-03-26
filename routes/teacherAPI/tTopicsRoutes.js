@@ -14,8 +14,6 @@ router.get("/:courseId/:topicId", function (req, res) {
     .then(({ topics }) => {
       const thisTopic = topics.filter((t) => t._id.toString() === topicId)[0];
 
-      console.log(thisTopic);
-
       const thisTopicExams = thisTopic.exams.reduce((acc, cv) => {
         acc.push({
           _id: cv._id,
