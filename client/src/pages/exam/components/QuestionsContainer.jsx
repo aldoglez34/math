@@ -160,51 +160,39 @@ export const QuestionsContainer = React.memo(
       // get correct answers
       const correctAnswers = question.qCorrectAnswers.map((a) => a.answer);
 
-      // get answer fields
-      const _id = question._id;
-      const qNumber = question.qNumber;
-      const qInstruction = question.qInstruction;
-      const qTechnicalInstruction = question.qTechnicalInstruction;
-      const qMultipleChoice = question.qMultipleChoice;
-
       const isMultipleChoice = question.qMultipleChoice ? true : false;
 
-      let userAnswers;
-      let qCorrectAnswers;
+      let answer = {
+        _id: question._id,
+        qNumber: question.qNumber,
+        qInstruction: question.qInstruction,
+        qTechnicalInstruction: question.qTechnicalInstruction,
+        qMultipleChoice: question.qMultipleChoice,
+      };
 
       if (isMultipleChoice) {
-        userAnswers =
+        answer.userAnswers =
           question.qMultipleChoice.type === "text"
             ? { type: "text", answer: choice }
             : { type: "image", answer: choice };
-
-        qCorrectAnswers =
+        answer.qCorrectAnswers =
           question.qMultipleChoice.type === "text"
             ? { type: "text", answer: String(correctAnswers) }
             : { type: "image", answer: String(correctAnswers) };
       }
 
       if (!isMultipleChoice) {
-        console.log("correctAnswers", question.qCorrectAnswers);
-        const _userAnswers = [];
+        const userAnswers = [];
         for (var i = 0; i < question.qCorrectAnswers.length; i++) {
           let a = document.getElementById("answer" + i).value;
-          _userAnswers.push(a.trim());
+          userAnswers.push(a.trim());
         }
-
-        userAnswers = { type: "text", answer: String(userAnswers) };
-        qCorrectAnswers = { type: "text", answer: String(correctAnswers) };
+        answer.userAnswers = { type: "text", answer: String(userAnswers) };
+        answer.qCorrectAnswers = {
+          type: "text",
+          answer: String(correctAnswers),
+        };
       }
-
-      const answer = {
-        _id,
-        qNumber,
-        qInstruction,
-        qTechnicalInstruction,
-        qMultipleChoice,
-        userAnswers,
-        qCorrectAnswers,
-      };
 
       console.log("answer", answer);
 
@@ -226,7 +214,7 @@ export const QuestionsContainer = React.memo(
       }
 
       // push to state
-      setAnswers([...answers, answer]);
+      setAnswers((prevState) => [...prevState, answer]);
 
       // clear choice and advance to next question
       setChoice();

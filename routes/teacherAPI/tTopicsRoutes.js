@@ -16,12 +16,12 @@ router.get("/:courseId/:topicId", function (req, res) {
 
       console.log(thisTopic);
 
-      const thisTopicExams = thisTopic.exams.reduce((cv, acc) => {
+      const thisTopicExams = thisTopic.exams.reduce((acc, cv) => {
         acc.push({
           _id: cv._id,
           name: cv.name,
           qCounter: cv.qCounter,
-          questions: cv.questions.length,
+          actualQCounter: cv.questions.length,
         });
         return acc;
       }, []);

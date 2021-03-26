@@ -154,7 +154,9 @@ export const AdminCourseDetailPage = React.memo((props) => {
         {/* topics */}
         <Row>
           <Col>
-            <span className="text-muted d-flex">Temas</span>
+            <span className="text-muted">
+              Temas <small>(lista reordenable)</small>
+            </span>
             <DraggableTopics
               courseId={courseId}
               topics={course.topics
@@ -171,7 +173,7 @@ export const AdminCourseDetailPage = React.memo((props) => {
               href={`/admin/courses/courses/newTopic/${courseId}`}
             >
               <i className="fas fa-plus-square mr-2" />
-              <span>Nuevo</span>
+              <span>Nuevo Tema</span>
             </Button>
           </Col>
         </Row>

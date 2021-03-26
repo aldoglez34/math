@@ -8,7 +8,6 @@ export const Topic = React.memo(({ courseName, topic }) => {
     <>
       {/* title */}
       <Row id={topic.name}>
-        {/* title */}
         <Col>
           <h1 className="display-4 topicName mb-2" style={{ color: "#48bf84" }}>
             {topic.name}

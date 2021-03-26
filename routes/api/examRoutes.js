@@ -96,7 +96,7 @@ router.put("/registerAttempt", async (req, res) => {
     if (isPerfectGrade) {
       await model.Student.findOneAndUpdate(
         { _id: studentId },
-        { $addToSet: { perfectGrades: examId } } // addToSet will push it only if only it doesn't exist
+        { $addToSet: { perfectGrades: examId } } // addToSet will push it only if it doesn't exist
       );
     }
 

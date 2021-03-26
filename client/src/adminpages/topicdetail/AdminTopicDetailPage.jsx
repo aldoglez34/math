@@ -172,7 +172,9 @@ export const AdminTopicDetailPage = React.memo((props) => {
         {/* material */}
         <Row>
           <Col>
-            <span className="text-muted">Material</span>
+            <span className="text-muted">
+              Material <small>(lista reordenable)</small>
+            </span>
             <DraggableMaterial
               {...{ courseId, handleDeleteMaterialItem, topicId }}
               material={topic.material
@@ -200,12 +202,13 @@ export const AdminTopicDetailPage = React.memo((props) => {
                 .sort((a, b) => a.examOrderNumber - b.examOrderNumber)
                 .map((e) => {
                   const path = `/admin/courses/edit/exam/${courseId}/${topicId}/${e._id}`;
-                  const badgeText = `0/${e.qCounter}`;
-                  const variant = "danger";
+                  const badgeText = `${e.actualQCounter}/${e.qCounter}`;
+                  const variant =
+                    e.actualQCounter >= e.qCounter ? "success" : "danger";
                   return (
                     <li key={e._id}>
                       <strong style={{ color: "#0f5257" }}>
-                        <Badge variant={variant} className="mr-1">
+                        <Badge pill variant={variant} className="mr-1">
                           {badgeText}
                         </Badge>
                         {e.name}

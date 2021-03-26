@@ -71,8 +71,6 @@ export default {
   // EXAM
   // ==============================================
 
-  t_newExam: (data) => axios.post("/teacherAPI/exam/new", data),
-
   t_fetchExam: (examId) => axios.get("/teacherAPI/exam/fetch/" + examId),
 
   t_updateExamName: (data) => axios.put("/teacherAPI/exam/update/name", data),

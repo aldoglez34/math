@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Accordion, Button, Card, Col, Row } from "react-bootstrap";
 import { array, object } from "prop-types";
 import {
@@ -7,20 +7,19 @@ import {
   LastVisited,
   NotAvailableBttn,
 } from "..";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as examActions from "../../../../redux/actions/exam";
+import cn from "classnames";
+
+import styles from "./examsaccordion.module.scss";
 
 export const ExamsAccordion = React.memo(
   ({ exams, freestyle, reward, topicId, topicName }) => {
     const dispatch = useDispatch();
 
-    const setExamInRedux = async (
-      _id,
-      name,
-      difficulty,
-      duration,
-      qCounter
-    ) => {
+    const exam = useSelector((state) => state.exam);
+
+    const handleBeginExam = (_id, name, difficulty, duration, qCounter) => {
       dispatch(
         examActions.setExam({
           _id,
@@ -35,6 +34,10 @@ export const ExamsAccordion = React.memo(
       );
     };
 
+    useEffect(() => {
+      if (exam) window.location.href = "/course/exam";
+    }, [exam]);
+
     return (
       <Accordion className="shadow-sm">
         {exams
@@ -42,7 +45,6 @@ export const ExamsAccordion = React.memo(
           .map((ex, idx) => (
             <React.Fragment key={idx}>
               <Card>
-                {/* TITLE */}
                 <Card.Header style={{ backgroundColor: "#e7edee" }}>
                   <Accordion.Toggle
                     as={Button}
@@ -80,81 +82,81 @@ export const ExamsAccordion = React.memo(
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey={ex._id}>
-                  <Card.Body>
-                    {/* TITLE 2 */}
-                    <h2 className="mb-2">{ex.name}</h2>
-                    {/* stars */}
-                    <DifficultyStars difficulty={ex.difficulty} />
-                    {/* description */}
-                    <p className="mb-2 mt-2">
-                      <strong style={{ fontSize: "14px" }}>
-                        {ex.description}
-                      </strong>
-                    </p>
-                    {/* latest attempt */}
-                    <LastVisited date={ex.latestAttempt} />
-                    <br />
-                    {/* duration */}
-                    <span style={{ fontSize: "14px" }} title="Duración">
-                      <i className="fas fa-stopwatch mr-2" />
-                      {ex.duration + " minutos"}
-                    </span>
-                    <br />
-                    {/* question counter */}
-                    <span
-                      style={{ fontSize: "14px" }}
-                      title="Número de preguntas"
-                    >
-                      <i className="fas fa-flag-checkered mr-2" />
-                      {ex.qCounter + " preguntas"}
-                    </span>
-                    {/* columns */}
-                    <Row className="my-3">
-                      <Col className="text-center">
-                        <h1 className="mb-0" style={{ color: "#48bf84" }}>
-                          <span title="Calificación más alta">
-                            {ex.highestGrade}
-                          </span>
-                        </h1>
-                        <h4>
-                          <small className="text-muted">Calificación</small>
-                        </h4>
-                      </Col>
-                      <Col className="text-center">
-                        <h1 className="mb-0" style={{ color: "#48bf84" }}>
-                          <span title="Número de intentos">
-                            {ex.attemptsCounter}
-                          </span>
-                        </h1>
-                        <h4>
-                          <small className="text-muted">Intentos</small>
-                        </h4>
-                      </Col>
-                    </Row>
-                    {/* go to exam - button */}
-                    {ex.isAvailable ? (
-                      <Button
-                        onClick={() =>
-                          setExamInRedux(
-                            ex._id,
-                            ex.name,
-                            ex.difficulty,
-                            ex.duration,
-                            ex.qCounter
-                          )
-                            .then(() => (window.location.href = "/course/exam"))
-                            .catch((err) => {
-                              console.log("error", err);
-                              alert("Ocurrió un error inesperado");
-                              window.location.href = "/course";
-                            })
-                        }
-                        className="shadow-sm genericButton"
-                      >
-                        Iniciar
-                      </Button>
+                  <Card.Body className="p-0">
+                    {Number(ex.qCounter) <= Number(ex.questions) ? (
+                      <div className="p-4">
+                        <h2 className="mb-2">{ex.name}</h2>
+                        <DifficultyStars difficulty={ex.difficulty} />
+                        <p className="mb-2 mt-2">
+                          <strong style={{ fontSize: "14px" }}>
+                            {ex.description}
+                          </strong>
+                        </p>
+                        <LastVisited date={ex.latestAttempt} />
+                        <br />
+                        <span style={{ fontSize: "14px" }} title="Duración">
+                          <i className="fas fa-stopwatch mr-2" />
+                          {ex.duration + " minutos"}
+                        </span>
+                        <br />
+                        <span
+                          style={{ fontSize: "14px" }}
+                          title="Número de preguntas"
+                        >
+                          <i className="fas fa-flag-checkered mr-2" />
+                          {ex.qCounter + " preguntas"}
+                        </span>
+                        <Row className="my-3">
+                          <Col className="text-center">
+                            <h1 className="mb-0" style={{ color: "#48bf84" }}>
+                              <span title="Calificación más alta">
+                                {ex.highestGrade}
+                              </span>
+                            </h1>
+                            <h4>
+                              <small className="text-muted">Calificación</small>
+                            </h4>
+                          </Col>
+                          <Col className="text-center">
+                            <h1 className="mb-0" style={{ color: "#48bf84" }}>
+                              <span title="Número de intentos">
+                                {ex.attemptsCounter}
+                              </span>
+                            </h1>
+                            <h4>
+                              <small className="text-muted">Intentos</small>
+                            </h4>
+                          </Col>
+                        </Row>
+                        {ex.isAvailable ? (
+                          <Button
+                            onClick={() =>
+                              handleBeginExam(
+                                ex._id,
+                                ex.name,
+                                ex.difficulty,
+                                ex.duration,
+                                ex.qCounter
+                              )
+                            }
+                            className="shadow-sm genericButton"
+                          >
+                            Iniciar
+                          </Button>
+                        ) : (
+                          <NotAvailableBttn />
+                        )}
+                      </div>
                     ) : (
-                      <NotAvailableBttn />
+                      <div
+                        className={cn("text-center", styles.underConstruction)}
+                      >
+                        <h4 className="mb-3">En construcción...</h4>
+                        <i
+                          className="fas fa-exclamation-triangle text-warning"
+                          style={{ fontSize: "80px" }}
+                        />
+                      </div>
                     )}
                   </Card.Body>
                 </Accordion.Collapse>

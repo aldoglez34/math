@@ -17,7 +17,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
     )
     .populate(
       "topics.exams",
-      "_id name description duration difficulty qCounter examOrderNumber"
+      "_id name description duration difficulty qCounter examOrderNumber questions"
     )
     .then((data) => {
       courseData = data;
@@ -84,6 +84,7 @@ router.get("/info/:courseId/:studentId", function (req, res) {
             exams: cv.exams.reduce((acc, cv) => {
               acc.push({
                 ...cv,
+                questions: cv.questions.length,
                 isAvailable: studentData.exams.includes(cv._id),
                 hasPerfectGrade: studentData.perfectGrades.includes(cv._id),
                 attemptsCounter: studentData.attempts.filter(

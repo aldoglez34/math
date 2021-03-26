@@ -4,7 +4,6 @@ export * from "./examdetail/AdminExamDetailPage";
 export * from "./login/AdminLoginPage";
 export * from "./messages/AdminMessagesPage";
 export * from "./newcourse/AdminNewCoursePage";
-export * from "./newexam/AdminNewExamPage";
 export * from "./newtopic/AdminNewTopicPage";
 export * from "./studentassign/AdminStudentAssignPage";
 export * from "./studentdetail/AdminStudentDetailPage";

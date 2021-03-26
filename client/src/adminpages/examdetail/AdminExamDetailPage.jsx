@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AdminLayout, AdminModal, AdminSpinner } from "../components";
-import { Col, Container, Row } from "react-bootstrap";
+import { Alert, Col, Container, Row } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import {
   ExamDescriptionForm,
@@ -89,6 +89,11 @@ export const AdminExamDetailPage = React.memo((props) => {
       backBttn={`/admin/courses/edit/topics/${courseId}/${topicId}`}
     >
       <Container fluid>
+        {exam.qCounter > exam.questions.length && (
+          <Alert variant="danger">
+            Este examen no satisface el número mínimo de preguntas.
+          </Alert>
+        )}
         {/* name */}
         <Row>
           <Col>

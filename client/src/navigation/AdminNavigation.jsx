@@ -6,7 +6,6 @@ import {
   AdminExamDetailPage,
   AdminMessagesPage,
   AdminNewCoursePage,
-  AdminNewExamPage,
   AdminNewTopicPage,
   AdminStudentAssignPage,
   AdminStudentDetailPage,
@@ -40,11 +39,6 @@ export default () => {
       />
 
       {/* ================= EXAM ================= */}
-      <Route
-        exact
-        path="/admin/courses/exam/new/:difficulty/:courseId/:topicId"
-        render={(props) => <AdminNewExamPage routeProps={props} />}
-      />
       <Route
         exact
         path="/admin/courses/edit/exam/:courseId/:topicId/:examId"
