@@ -30,7 +30,6 @@ export const TopicSubjectForm = React.memo(({ formLabel, formInitialText }) => {
         TeacherAPI.t_updateTopicSubject(values)
           .then((res) => {
             console.log(res.data);
-            alert("La materia del tema fue actualizada con éxito.");
             window.location.reload();
           })
           .catch((err) => {

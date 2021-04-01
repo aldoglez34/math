@@ -24,7 +24,6 @@ export const AdminStudentAssignPage = React.memo((props) => {
     })
       .then((res) => {
         console.log(res.data);
-        alert("El curso fue agregado con éxito");
         window.location.href =
           "/admin/students/" + props.routeProps.match.params.studentId;
       })

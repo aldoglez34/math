@@ -26,7 +26,6 @@ export const ExamDescriptionForm = React.memo(
           TeacherAPI.t_updateExamDescription(values)
             .then((res) => {
               console.log(res.data);
-              alert("La descripción del examen fue actualizada con éxito.");
               window.location.reload();
             })
             .catch((err) => {

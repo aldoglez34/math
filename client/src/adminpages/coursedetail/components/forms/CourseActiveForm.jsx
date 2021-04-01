@@ -25,7 +25,6 @@ export const CourseActiveForm = React.memo(({ formLabel, formInitialText }) => {
         TeacherAPI.t_updateCourseStatus(values)
           .then((res) => {
             console.log(res);
-            alert(res.data);
             window.location.reload();
           })
           .catch((err) => {

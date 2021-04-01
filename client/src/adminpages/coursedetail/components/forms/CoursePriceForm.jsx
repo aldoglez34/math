@@ -25,7 +25,6 @@ export const CoursePriceForm = React.memo(({ formLabel, formInitialText }) => {
         TeacherAPI.t_updateCoursePrice(values)
           .then((res) => {
             console.log(res);
-            alert(res.data);
             window.location.reload();
           })
           .catch((err) => {

@@ -25,7 +25,6 @@ export const ResponseForm = React.memo(({ msgId, email }) => {
           TeachAPI.t_respondMsg(values)
             .then((res) => {
               console.log(res.data);
-              alert("Mensaje respondido, el usuario será notificado");
               window.location.reload();
             })
             .catch((err) => {

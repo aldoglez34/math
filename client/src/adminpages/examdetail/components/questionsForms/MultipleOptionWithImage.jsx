@@ -99,7 +99,6 @@ export const MultipleOptionWithImage = () => {
               fileRef
                 .put(values.file)
                 .then(() => {
-                  alert("La pregunta ha sido registrada con éxito.");
                   window.location.reload();
                 })
                 .catch((err) => {

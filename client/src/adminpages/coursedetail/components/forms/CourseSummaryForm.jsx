@@ -26,7 +26,6 @@ export const CourseSummaryForm = React.memo(
           TeacherAPI.t_updateCourseSummary(values)
             .then((res) => {
               console.log(res);
-              alert(res.data);
               window.location.reload();
             })
             .catch((err) => {

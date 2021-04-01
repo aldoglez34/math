@@ -47,7 +47,9 @@ export const ContactForm = () => {
           {/* user */}
           <Form.Row>
             <Form.Group as={Col}>
-              <Form.Label>Nombre</Form.Label>
+              <Form.Label>
+                Nombre<strong className="text-danger">*</strong>
+              </Form.Label>
               <Form.Control
                 maxLength="150"
                 type="text"
@@ -68,7 +70,9 @@ export const ContactForm = () => {
           {/* email */}
           <Form.Row>
             <Form.Group as={Col}>
-              <Form.Label>Correo</Form.Label>
+              <Form.Label>
+                Correo<strong className="text-danger">*</strong>
+              </Form.Label>
               <Form.Control
                 maxLength="150"
                 type="text"
@@ -89,7 +93,9 @@ export const ContactForm = () => {
           {/* subject */}
           <Form.Row>
             <Form.Group as={Col}>
-              <Form.Label>Asunto</Form.Label>
+              <Form.Label>
+                Asunto<strong className="text-danger">*</strong>
+              </Form.Label>
               <Form.Control
                 as="select"
                 defaultValue="Elige..."
@@ -120,7 +126,9 @@ export const ContactForm = () => {
           {/* cuerpo */}
           <Form.Row>
             <Form.Group as={Col}>
-              <Form.Label>Mensaje</Form.Label>
+              <Form.Label>
+                Mensaje<strong className="text-danger">*</strong>
+              </Form.Label>
               <Form.Control
                 maxLength="250"
                 as="textarea"

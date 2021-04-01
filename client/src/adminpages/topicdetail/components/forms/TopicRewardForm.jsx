@@ -52,7 +52,6 @@ export const TopicRewardForm = React.memo(({ formLabel }) => {
           .put(values.file)
           .then((res) => {
             console.log(res);
-            alert("La medalla fue actualizada con éxito.");
             window.location.reload();
           })
           .catch((err) => {

@@ -28,7 +28,6 @@ export const ExamDurationForm = React.memo(({ formInitialText, formLabel }) => {
         TeacherAPI.t_updateExamDuration(values)
           .then((res) => {
             console.log(res.data);
-            alert("La duración del examen fue actualizada con éxito.");
             window.location.reload();
           })
           .catch((err) => {

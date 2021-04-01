@@ -25,7 +25,6 @@ export const ExamNameForm = React.memo(({ formInitialText, formLabel }) => {
         TeacherAPI.t_updateExamName(values)
           .then((res) => {
             console.log(res.data);
-            alert("El nombre del examen fue actualizado con éxito.");
             window.location.reload();
           })
           .catch((err) => {

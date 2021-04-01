@@ -87,7 +87,6 @@ export const AdminNewTopicPage = React.memo((props) => {
                       .then((res) => {
                         console.log(res);
                         const route = `/admin/courses/edit/topics/${courseId}/${topicId}`;
-                        alert("Tema agregado con éxito");
                         window.location.href = route;
                       })
                       .catch((err) => {

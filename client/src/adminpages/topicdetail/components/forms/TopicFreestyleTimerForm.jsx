@@ -31,7 +31,6 @@ export const TopicFreestyleTimerForm = React.memo(
           TeacherAPI.t_updateTopicFreestyleTimer(values)
             .then((res) => {
               console.log(res.data);
-              alert("El tiempo del modo rápido fue actualizado con éxito.");
               window.location.reload();
             })
             .catch((err) => {

@@ -29,7 +29,6 @@ export const CourseSchoolForm = React.memo(({ formLabel, formInitialText }) => {
         TeacherAPI.t_updateCourseSchool(values)
           .then((res) => {
             console.log(res);
-            alert(res.data);
             window.location.reload();
           })
           .catch((err) => {

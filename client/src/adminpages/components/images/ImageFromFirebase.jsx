@@ -16,7 +16,6 @@ export const ImageFromFirebase = React.memo(
         .then((url) => setFirebaseUrl(url))
         .catch((err) => {
           console.log(err);
-          alert("Ocurrió un error al cargar la imagen.");
         });
     }, [path]);
 

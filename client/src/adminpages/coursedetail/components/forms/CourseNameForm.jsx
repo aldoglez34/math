@@ -33,7 +33,6 @@ export const CourseNameForm = React.memo(({ formLabel, formInitialText }) => {
         TeacherAPI.t_updateCourseName(values)
           .then((res) => {
             console.log(res);
-            alert(res.data);
             window.location.reload();
           })
           .catch((err) => {

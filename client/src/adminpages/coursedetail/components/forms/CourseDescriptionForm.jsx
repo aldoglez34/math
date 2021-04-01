@@ -29,7 +29,6 @@ export const CourseDescriptionForm = React.memo(
           TeacherAPI.t_updateCourseDescription(values)
             .then((res) => {
               console.log(res);
-              alert(res.data);
               window.location.reload();
             })
             .catch((err) => {

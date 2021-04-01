@@ -28,7 +28,6 @@ export const ExamQCounterForm = React.memo(({ formInitialText, formLabel }) => {
         TeacherAPI.t_updateExamQCounter(values)
           .then((res) => {
             console.log(res.data);
-            alert("Las preguntas del examen fueron actualizadas con éxito.");
             window.location.reload();
           })
           .catch((err) => {

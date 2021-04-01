@@ -31,7 +31,6 @@ export const TopicDescriptionForm = React.memo(
           TeacherAPI.t_updateTopicDescription(values)
             .then((res) => {
               console.log(res.data);
-              alert("La descripción del tema fue actualizada con éxito.");
               window.location.reload();
             })
             .catch((err) => {
