@@ -170,17 +170,9 @@ router.put("/new", async (req, res) => {
       const defaultExams = utils.generateDefaultExams(topicName);
 
       // insert those 5 exams and get their ids
-      const addDefaultExams = new Promise((resolve, reject) => {
-        const examIds = [];
-        defaultExams.forEach((value, index, array) => {
-          model.Exam.create(value).then(({ _id }) => {
-            examIds.push(_id);
-            if (index === array.length - 1) resolve(examIds);
-          });
-        });
-      });
-
-      const examIds = await addDefaultExams.then((res) => res);
+      const examIds = await model.Exam.insertMany(defaultExams, {
+        ordered: true,
+      }).then((exams) => exams.map((e) => e._id));
 
       // data for the new topic
       const newTopicData = {

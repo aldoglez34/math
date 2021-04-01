@@ -1,3 +1,5 @@
+const models = require("../../models");
+
 const utils = {
   getNextDifficulty: (diff) => {
     switch (diff) {
@@ -40,6 +42,17 @@ const utils = {
 
     return latestTopic ? latestTopic.topicOrderNumber + 1 : 0;
   },
+  // addDefaultExams: (defaultExams) => {
+  //   return new Promise((resolve, reject) => {
+  //     const examIds = [];
+  //     defaultExams.forEach((value, index, array) => {
+  //       models.Exam.create(value).then(({ _id }) => {
+  //         examIds.push(_id);
+  //         if (index === array.length - 1) resolve(examIds);
+  //       });
+  //     });
+  //   });
+  // },
 };
 
 module.exports = utils;
