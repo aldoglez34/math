@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import * as zenModeActions from "../../redux/actions/zenMode";
 import API from "../../utils/API";
 import { FreestyleQuestions } from "./components";
-import { QuestionsContainer } from "../exam/components";
+import { QuestionsContainer } from "../../components";
 
 export const FreestylePage = React.memo(() => {
   const dispatch = useDispatch();

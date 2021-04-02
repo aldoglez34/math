@@ -4,7 +4,7 @@ import { StudentLayout } from "../../components/Layout";
 import { Container, Spinner } from "react-bootstrap";
 import API from "../../utils/API";
 import * as zenModeActions from "../../redux/actions/zenMode";
-import { QuestionsContainer } from "./components";
+import { QuestionsContainer } from "../../components";
 import "./exampage.scss";
 
 export const ExamPage = () => {
@@ -12,30 +12,34 @@ export const ExamPage = () => {
 
   const [exam, setExam] = useState();
 
-  const examId = useSelector((state) => state.exam._id);
-  const examQuestionCounter = useSelector((state) => state.exam.qCounter);
+  const reduxexam = useSelector((state) => state.exam);
 
   useEffect(() => {
-    API.fetchExamInfo(examId)
-      .then((res) => {
-        const realQuestionsCounter = res.data.questions.length;
-        if (realQuestionsCounter < examQuestionCounter) {
+    try {
+      API.fetchExamInfo(reduxexam._id)
+        .then((res) => {
+          const realQuestionsCounter = res.data.questions.length;
+          if (realQuestionsCounter < reduxexam.qCounter) {
+            alert(
+              "Ocurrió un error con este examen. Ponte en contacto con tu maestro."
+            );
+            window.location.href = "/course";
+          } else {
+            dispatch(zenModeActions.zenModeOn());
+            setExam(res.data);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
           alert(
             "Ocurrió un error con este examen. Ponte en contacto con tu maestro."
           );
           window.location.href = "/course";
-        } else {
-          dispatch(zenModeActions.zenModeOn());
-          setExam(res.data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        alert(
-          "Ocurrió un error con este examen. Ponte en contacto con tu maestro."
-        );
-        window.location.href = "/course";
-      });
+        });
+    } catch (err) {
+      console.log(err);
+      window.location.href = "/course";
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

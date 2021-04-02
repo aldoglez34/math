@@ -26,7 +26,7 @@ export const HelpModal = React.memo(({ courseName, topic }) => {
         className="mb-3 mt-2 mb-lg-0 shadow-sm"
         onClick={handleShow}
       >
-        ¿Necesitas ayuda?
+        Ayuda
       </Button>
 
       <Modal show={show} backdrop="static" keyboard={false}>
@@ -44,7 +44,7 @@ export const HelpModal = React.memo(({ courseName, topic }) => {
                 <i className="fas fa-times" style={{ fontSize: "22px" }} />
               </Button>
             </div>
-            <span className="mb-2">
+            <span className="mb-2 mt-3">
               ¿Tienes duda sobre el curso <strong>{topic}</strong>?
             </span>
             <span className="mb-2">

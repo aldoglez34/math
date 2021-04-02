@@ -91,7 +91,7 @@ export const Leaderboards = ({ topicId }) => {
               className="shadow-sm"
               onClick={handleClose}
             >
-              Aceptar
+              Salir
             </Button>
           </div>
         </Modal.Body>

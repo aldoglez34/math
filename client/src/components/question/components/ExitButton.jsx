@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Image, Modal } from "react-bootstrap";
 import { string } from "prop-types";
+
+import styles from "./exitbutton.module.scss";
 
 export const ExitButton = React.memo(({ url }) => {
   const [show, setShow] = useState(false);
@@ -19,18 +21,20 @@ export const ExitButton = React.memo(({ url }) => {
         Abandonar
       </Button>
 
-      <Modal show={show} onHide={handleClose} centered className="bg-light">
-        <Modal.Header closeButton>
-          <Modal.Title>
-            <i className="fas fa-exclamation-triangle mr-2" />
-            Advertencia
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="py-4 text-center">
-          <span className="lead">
+      <Modal
+        backdrop="static"
+        centered
+        className={styles.backgroundPhoto}
+        keyboard={false}
+        show={show}
+        centered
+      >
+        <Modal.Body className="bg-light rounded shadow text-center py-4">
+          <Image height="130" src="/images/warning.png" width="130" />
+          <h5 className="text-dark mb-3 mt-3">
             ¿Estás seguro que deseas abandonar el examen? Tu avance será borrado
             y tendrás que empezar de nuevo.
-          </span>
+          </h5>
           <div className="d-flex flex-row justify-content-center mt-4">
             <Button
               variant="danger"
@@ -43,7 +47,7 @@ export const ExitButton = React.memo(({ url }) => {
               className="ml-2 text-success"
               onClick={handleClose}
             >
-              Continuar examen
+              Continuar
             </Button>
           </div>
         </Modal.Body>

@@ -2,26 +2,30 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Button, Spinner, Container } from "react-bootstrap";
 import { array, bool } from "prop-types";
-import * as examActions from "../../../redux/actions/exam";
+import * as examActions from "../../redux/actions/exam";
 import {
   HelpModalSM,
   Progress,
   QInstruction,
   QMultipleChoice,
   QTechnicalInstruction,
+  TimeOutModal,
   Timer,
-} from "./";
-import { ExitButton } from "../../../components";
-import API from "../../../utils/API";
+} from "../";
+import { ExitButton } from "../";
+import API from "../../utils/API";
 import {
   CorrectModal,
   FreestyleQPoints,
   IncorrectModal,
-} from "../../freestyle/components";
+} from "../../pages/freestyle/components";
 
 export const QuestionsContainer = React.memo(
   ({ questions, isFreestyle = false }) => {
     const dispatch = useDispatch();
+
+    // timeout modal
+    const [showTimeOut, setShowTimeOut] = useState(false);
 
     // data from redux
     const course = useSelector((state) => state.course);
@@ -35,8 +39,7 @@ export const QuestionsContainer = React.memo(
     const [score, setScore] = useState(0);
 
     // timer
-    const [secondsLeft, setSecondsLeft] = useState(exam.duration * 60 + 59);
-    const [minutesLeft, setMinutesLeft] = useState(exam.duration);
+    const [secondsLeft, setSecondsLeft] = useState(exam.duration * 60 - 1);
 
     // modals for freestyle
     const [showCorrect, setShowCorrect] = useState(false);
@@ -51,19 +54,12 @@ export const QuestionsContainer = React.memo(
 
     // handles timer
     useEffect(() => {
-      // decrease minutes
-      if ((secondsLeft % 60) / 100 === 0)
-        setMinutesLeft((prevState) => prevState - 1);
+      // decrement seconds
+      if (secondsLeft >= 0)
+        setTimeout(() => setSecondsLeft((prevState) => prevState - 1), 1000);
 
       // checks if no minutes left
-      if (secondsLeft === 0) {
-        alert("El tiempo ha finalizado, vuelve a intentarlo.");
-        window.location.href = "/course";
-      }
-
-      setTimeout(() => {
-        setSecondsLeft((prevState) => prevState - 1);
-      }, 1000);
+      if (secondsLeft === 0) setShowTimeOut(true);
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [secondsLeft]);
@@ -231,7 +227,10 @@ export const QuestionsContainer = React.memo(
         <>
           {/* top container */}
           <Container>
-            <Timer minutesLeft={minutesLeft} secondsLeft={secondsLeft} />
+            <Timer
+              minutesLeft={Math.floor(secondsLeft / 60) + 1}
+              secondsLeft={secondsLeft}
+            />
             <FreestyleQPoints score={score} />
           </Container>
           {/* main container */}
@@ -337,7 +336,12 @@ export const QuestionsContainer = React.memo(
               <ExitButton url={"/course/#" + exam.topicName} />
             </div>
           </Container>
-          {/* modals (for freestyle) */}
+          {/* modals */}
+          <TimeOutModal
+            showTimeOut={showTimeOut}
+            url={"/course/#" + exam.topicName}
+          />
+          ;{/* modals for freestlye only */}
           {isFreestyle && (
             <>
               <CorrectModal

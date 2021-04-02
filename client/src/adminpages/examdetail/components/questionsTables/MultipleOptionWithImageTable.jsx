@@ -19,7 +19,6 @@ export const MultipleOptionWithImageTable = React.memo(({ questions }) => {
         fileRef
           .delete()
           .then(() => {
-            alert("La pregunta ha sido registrada con éxito.");
             window.location.reload();
           })
           .catch((error) => {

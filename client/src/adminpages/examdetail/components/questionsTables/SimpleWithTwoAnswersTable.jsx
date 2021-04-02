@@ -12,7 +12,6 @@ export const SimpleWithTwoAnswersTable = React.memo(({ questions }) => {
   const handleDeleteQuestion = (questionId) => {
     TeacherAPI.t_deleteQuestion({ courseId, examId, questionId })
       .then(() => {
-        alert("Pregunta borrada con éxito");
         window.location.reload();
       })
       .catch((err) => {

@@ -27,7 +27,7 @@ export const HelpModalSM = React.memo(({ question }) => {
         className="shadow-sm mr-2"
         onClick={handleShow}
       >
-        <i className="fas fa-question-circle" />
+        Ayuda
       </Button>
 
       <Modal show={show} backdrop="static" keyboard={false}>
@@ -45,16 +45,9 @@ export const HelpModalSM = React.memo(({ question }) => {
                 <i className="fas fa-times" style={{ fontSize: "22px" }} />
               </Button>
             </div>
-            <span className="mb-2">
-              ¿Tienes duda sobre esta pregunta, {student.name}?
-            </span>
-            <span className="mb-2">
+            <span className="mb-2 mt-3">
               Utiliza el siguiente recuadro para hacerle llegar tu duda al
               maestro.
-            </span>
-            <span className="mb-2">
-              Recibirás una notificación en la esquina superior derecha (donde
-              sale tu correo) cuando tu mensaje sea contestado.
             </span>
           </div>
 

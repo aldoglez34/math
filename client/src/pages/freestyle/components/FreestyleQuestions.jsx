@@ -15,7 +15,7 @@ import {
   QInstruction,
   QMultipleChoice,
   QTechnicalInstruction,
-} from "../../exam/components";
+} from "../../../components";
 
 export const FreestyleQuestions = React.memo(({ questions }) => {
   const dispatch = useDispatch();
@@ -254,7 +254,6 @@ export const FreestyleQuestions = React.memo(({ questions }) => {
           </div>
         </Container>
         {/* modals */}
-        
       </>
     )
   ) : null;
