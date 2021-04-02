@@ -17,7 +17,7 @@ export const TimeOutModal = React.memo(({ showTimeOut, url }) => {
         <Image height="130" src="/images/timeover.png" width="130" />
         <h3 className="text-dark mb-3 mt-3">Se ha acabado tu tiempo.</h3>
         <div className="mt-4">
-          <Button onClick={() => (window.location.href = url)} variant="dark">
+          <Button onClick={() => (window.location.href = url)} className="genericButton">
             Volver al curso
           </Button>
         </div>

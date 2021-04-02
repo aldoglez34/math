@@ -16,31 +16,25 @@ export const ExamPage = () => {
 
   useEffect(() => {
     try {
-      API.fetchExamInfo(reduxexam._id)
-        .then((res) => {
-          const realQuestionsCounter = res.data.questions.length;
-          if (realQuestionsCounter < reduxexam.qCounter) {
-            alert(
-              "Ocurrió un error con este examen. Ponte en contacto con tu maestro."
-            );
-            window.location.href = "/course";
-          } else {
-            dispatch(zenModeActions.zenModeOn());
-            setExam(res.data);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
+      API.fetchExamInfo(reduxexam._id).then((res) => {
+        const realQuestionsCounter = res.data.questions.length;
+        if (realQuestionsCounter < reduxexam.qCounter) {
           alert(
             "Ocurrió un error con este examen. Ponte en contacto con tu maestro."
           );
           window.location.href = "/course";
-        });
+        } else {
+          dispatch(zenModeActions.zenModeOn());
+          setExam(res.data);
+        }
+      });
     } catch (err) {
       console.log(err);
+      alert(
+        "Ocurrió un error con este examen. Ponte en contacto con tu maestro."
+      );
       window.location.href = "/course";
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

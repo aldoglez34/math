@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Row, Col, Button, Spinner, Container } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Col, Container, Row, Spinner } from "react-bootstrap";
 import { array, bool } from "prop-types";
 import * as examActions from "../../redux/actions/exam";
 import {
@@ -36,7 +36,6 @@ export const QuestionsContainer = React.memo(
     const [number, setNumber] = useState(1);
     const [question, setQuestion] = useState();
     const [answers, setAnswers] = useState([]);
-    const [score, setScore] = useState(0);
 
     // timer
     const [secondsLeft, setSecondsLeft] = useState(exam.duration * 60 - 1);
@@ -45,12 +44,100 @@ export const QuestionsContainer = React.memo(
     const [showCorrect, setShowCorrect] = useState(false);
     const [showIncorrect, setShowIncorrect] = useState(false);
 
+    // score for freestyle
+    const [score, setScore] = useState(0);
+
     // this is where the value from the multiple choice is stored
     const [choice, setChoice] = useState();
     const getValueFromMultipleChoice = (value) => setChoice(value);
 
-    const hasExamEnded = number > questions.length;
     const isLastQuestion = number === questions.length;
+    const hasExamEnded = number > questions.length;
+
+    const getGrade = () => {
+      const corrects = answers.reduce((acc, cv) => {
+        if (cv.qCorrectAnswers.answer === cv.userAnswers.answer) acc++;
+        return acc;
+      }, 0);
+      const incorrects = answers.reduce((acc, cv) => {
+        if (cv.qCorrectAnswers.answer !== cv.userAnswers.answer) acc++;
+        return acc;
+      }, 0);
+      const grade = Math.round((corrects / answers.length) * 100) / 10 || 0;
+      return { corrects, incorrects, grade };
+    };
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Enter") pushQuestion();
+    };
+
+    const validateAnswer = (answer) => {
+      const isAnswerCorrect =
+        answer.userAnswers.answer === answer.qCorrectAnswers.answer;
+
+      if (isAnswerCorrect) {
+        setShowCorrect(true);
+        setScore((prevState) => prevState + question.qValue);
+      }
+
+      if (!isAnswerCorrect) {
+        setShowIncorrect(true);
+        if (score - question.qValue <= 0) setScore(0);
+        if (score - question.qValue > 0) setScore(score - question.qValue);
+      }
+    };
+
+    const getAnswerObject = () => {
+      // first get correct answers from the question
+      const correctAnswers = question.qCorrectAnswers.map((a) => a.answer);
+
+      // then check if the type of question is multiple choice
+      const isMultipleChoice = question.qMultipleChoice ? true : false;
+
+      // if it's not multiple choice, get the values from the inputs
+      if (!isMultipleChoice) {
+        const userAnswers = [];
+        const answersCounter = question.qCorrectAnswers.length;
+        for (let i = 0; i < answersCounter; i++) {
+          let a = document.getElementById("answer" + i).value;
+          userAnswers.push(String(a).trim());
+        }
+        return {
+          ...question,
+          userAnswers: { type: "text", answer: String(userAnswers).trim() },
+          qCorrectAnswers: {
+            type: "text",
+            answer: String(correctAnswers).trim(),
+          },
+        };
+      }
+      // if it's multiple choice, get the choice selected from the state "choice"
+      if (isMultipleChoice) {
+        return {
+          ...question,
+          userAnswers: { type: question.qMultipleChoice.type, answer: choice },
+          qCorrectAnswers: {
+            type: question.qMultipleChoice.type,
+            answer: String(correctAnswers).trim(),
+          },
+        };
+      }
+    };
+
+    const pushQuestion = () => {
+      // build the answer object
+      const answer = getAnswerObject();
+
+      // freestyle only
+      if (isFreestyle) validateAnswer(answer);
+
+      // push to state
+      setAnswers((prevState) => [...prevState, answer]);
+
+      // clear choice and advance to next question
+      setChoice();
+      setNumber((prevState) => prevState + 1);
+    };
 
     // handles timer
     useEffect(() => {
@@ -58,7 +145,7 @@ export const QuestionsContainer = React.memo(
       if (secondsLeft >= 0)
         setTimeout(() => setSecondsLeft((prevState) => prevState - 1), 1000);
 
-      // checks if no minutes left
+      // if no minutes left, register attempt and show timeOutModal
       if (secondsLeft === 0) setShowTimeOut(true);
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -72,15 +159,7 @@ export const QuestionsContainer = React.memo(
 
       // get the correct answers, the incorrect answers and the grade (only for regular exams, not freestyle)
       if (hasExamEnded) {
-        const corrects = answers.reduce((acc, cv) => {
-          if (cv.qCorrectAnswers.answer === cv.userAnswers.answer) acc++;
-          return acc;
-        }, 0);
-        const incorrects = answers.reduce((acc, cv) => {
-          if (cv.qCorrectAnswers.answer !== cv.userAnswers.answer) acc++;
-          return acc;
-        }, 0);
-        const grade = Math.round((corrects / answers.length) * 100) / 10;
+        const { corrects, incorrects, grade } = getGrade();
 
         if (!isFreestyle) {
           API.registerAttempt({
@@ -131,8 +210,7 @@ export const QuestionsContainer = React.memo(
                 "Ya no hay más preguntas para mostrar.\nTu puntuación final fue de: " +
                   score
               );
-              // go back
-              window.location.href = "/course/#" + exam.topicName;
+              window.location.href = `/course/#${exam.topicName}`;
             })
             .catch((err) => {
               console.log("error", err);
@@ -152,75 +230,6 @@ export const QuestionsContainer = React.memo(
       if (exam.results) window.location.href = "/course/exam/results";
     }, [exam.results]);
 
-    const pushQuestion = () => {
-      // get correct answers
-      const correctAnswers = question.qCorrectAnswers.map((a) => a.answer);
-
-      const isMultipleChoice = question.qMultipleChoice ? true : false;
-
-      let answer = {
-        _id: question._id,
-        qNumber: question.qNumber,
-        qInstruction: question.qInstruction,
-        qTechnicalInstruction: question.qTechnicalInstruction,
-        qMultipleChoice: question.qMultipleChoice,
-      };
-
-      if (isMultipleChoice) {
-        answer.userAnswers =
-          question.qMultipleChoice.type === "text"
-            ? { type: "text", answer: choice }
-            : { type: "image", answer: choice };
-        answer.qCorrectAnswers =
-          question.qMultipleChoice.type === "text"
-            ? { type: "text", answer: String(correctAnswers) }
-            : { type: "image", answer: String(correctAnswers) };
-      }
-
-      if (!isMultipleChoice) {
-        const userAnswers = [];
-        for (var i = 0; i < question.qCorrectAnswers.length; i++) {
-          let a = document.getElementById("answer" + i).value;
-          userAnswers.push(a.trim());
-        }
-        answer.userAnswers = { type: "text", answer: String(userAnswers) };
-        answer.qCorrectAnswers = {
-          type: "text",
-          answer: String(correctAnswers),
-        };
-      }
-
-      console.log("answer", answer);
-
-      // validate answer (only for freestyle)
-      if (isFreestyle) {
-        const isAnswerCorrect =
-          answer.userAnswers.answer === answer.qCorrectAnswers.answer;
-
-        if (isAnswerCorrect) {
-          setShowCorrect(true);
-          setScore((prevState) => prevState + question.qValue);
-        }
-
-        if (!isAnswerCorrect) {
-          setShowIncorrect(true);
-          if (score - question.qValue <= 0) setScore(0);
-          if (score - question.qValue > 0) setScore(score - question.qValue);
-        }
-      }
-
-      // push to state
-      setAnswers((prevState) => [...prevState, answer]);
-
-      // clear choice and advance to next question
-      setChoice();
-      setNumber(number + 1);
-    };
-
-    const handleKeyDown = (e) => {
-      if (e.key === "Enter") pushQuestion();
-    };
-
     return (
       question &&
       (!hasExamEnded ? (
@@ -233,7 +242,7 @@ export const QuestionsContainer = React.memo(
             />
             <FreestyleQPoints score={score} />
           </Container>
-          {/* main container */}
+          {/* middle container */}
           <Container className="mt-3">
             <div style={{ backgroundColor: "#e9ecef" }}>
               {!isFreestyle && (
