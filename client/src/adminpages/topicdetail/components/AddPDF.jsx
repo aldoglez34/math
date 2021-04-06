@@ -75,7 +75,6 @@ export const AddPDF = React.memo(({ courseId, topicId }) => {
                     TeacherAPI.t_addMaterial(values)
                       .then((res) => {
                         console.log(res.data);
-                        alert("El PDF fue agregado satisfactoriamente.");
                         window.location.reload();
                       })
                       .catch((err) => {

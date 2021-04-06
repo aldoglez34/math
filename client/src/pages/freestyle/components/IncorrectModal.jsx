@@ -31,7 +31,7 @@ export const IncorrectModal = React.memo(
 );
 
 IncorrectModal.propTypes = {
-  qValue: number.isRequired,
+  qValue: number,
   setShowIncorrect: func.isRequired,
   showIncorrect: bool.isRequired,
 };

@@ -18,6 +18,7 @@ import {
   CorrectModal,
   FreestyleQPoints,
   IncorrectModal,
+  ScoreModal,
 } from "../../pages/freestyle/components";
 
 export const QuestionsContainer = React.memo(
@@ -25,7 +26,7 @@ export const QuestionsContainer = React.memo(
     const dispatch = useDispatch();
 
     // timeout modal
-    const [showTimeOut, setShowTimeOut] = useState(false);
+    const [showTimeOut, setShowTimeOut] = useState(true);
 
     // data from redux
     const course = useSelector((state) => state.course);
@@ -40,12 +41,12 @@ export const QuestionsContainer = React.memo(
     // timer
     const [secondsLeft, setSecondsLeft] = useState(exam.duration * 60 - 1);
 
-    // modals for freestyle
+    // question points, modals, score points and totalscoremodal for freestyle
+    const [questionValue, setQuestionValue] = useState();
     const [showCorrect, setShowCorrect] = useState(false);
     const [showIncorrect, setShowIncorrect] = useState(false);
-
-    // score for freestyle
     const [score, setScore] = useState(0);
+    const [showScoreModal, setShowScoreModal] = useState(false);
 
     // this is where the value from the multiple choice is stored
     const [choice, setChoice] = useState();
@@ -72,18 +73,24 @@ export const QuestionsContainer = React.memo(
     };
 
     const validateAnswer = (answer) => {
-      const isAnswerCorrect =
-        answer.userAnswers.answer === answer.qCorrectAnswers.answer;
+      const userAnswer = String(answer.userAnswers.answer).trim();
+      const correctAnswer = String(answer.qCorrectAnswers.answer).trim();
 
-      if (isAnswerCorrect) {
+      const isUserAnswerCorrect = userAnswer === correctAnswer;
+
+      if (isUserAnswerCorrect && question.qValue) {
+        // set qValue, show modal and increase points
+        setQuestionValue(question.qValue);
         setShowCorrect(true);
         setScore((prevState) => prevState + question.qValue);
       }
 
-      if (!isAnswerCorrect) {
+      if (!isUserAnswerCorrect && question.qValue) {
+        // set qVlaue, show modal and decrease points but stop at 0
+        setQuestionValue(question.qValue);
         setShowIncorrect(true);
-        if (score - question.qValue <= 0) setScore(0);
         if (score - question.qValue > 0) setScore(score - question.qValue);
+        if (score - question.qValue <= 0) setScore(0);
       }
     };
 
@@ -99,7 +106,7 @@ export const QuestionsContainer = React.memo(
         const userAnswers = [];
         const answersCounter = question.qCorrectAnswers.length;
         for (let i = 0; i < answersCounter; i++) {
-          let a = document.getElementById("answer" + i).value;
+          let a = document.getElementById(`answer${i}`).value;
           userAnswers.push(String(a).trim());
         }
         return {
@@ -203,15 +210,7 @@ export const QuestionsContainer = React.memo(
             topicId: exam.topicId,
             username: student.username,
           })
-            .then((res) => {
-              console.log(res.data);
-              // show modal with final score
-              alert(
-                "Ya no hay más preguntas para mostrar.\nTu puntuación final fue de: " +
-                  score
-              );
-              window.location.href = `/course/#${exam.topicName}`;
-            })
+            .then(() => setShowScoreModal(true))
             .catch((err) => {
               console.log("error", err);
               alert(
@@ -240,7 +239,7 @@ export const QuestionsContainer = React.memo(
               minutesLeft={Math.floor(secondsLeft / 60) + 1}
               secondsLeft={secondsLeft}
             />
-            <FreestyleQPoints score={score} />
+            {isFreestyle && <FreestyleQPoints score={score} />}
           </Container>
           {/* middle container */}
           <Container className="mt-3">
@@ -257,12 +256,14 @@ export const QuestionsContainer = React.memo(
                   >
                     {/* question value */}
                     {isFreestyle && (
-                      <strong className="text-muted">
-                        {question.qValue}
-                        <span className="ml-1">
-                          {question.qValue > 1 ? "puntos" : "punto"}
-                        </span>
-                      </strong>
+                      <div className="mt-4">
+                        <strong className="text-muted">
+                          {question.qValue}
+                          <span className="ml-1">
+                            {question.qValue > 1 ? "puntos" : "punto"}
+                          </span>
+                        </strong>
+                      </div>
                     )}
                     {/* instruction */}
                     <QInstruction
@@ -345,23 +346,31 @@ export const QuestionsContainer = React.memo(
               <ExitButton url={"/course/#" + exam.topicName} />
             </div>
           </Container>
-          {/* modals */}
-          <TimeOutModal
-            showTimeOut={showTimeOut}
-            url={"/course/#" + exam.topicName}
-          />
-          ;{/* modals for freestlye only */}
+          {/* modals for regular exams */}
+          {!isFreestyle && (
+            <TimeOutModal
+              showTimeOut={showTimeOut}
+              url={`/course/#${exam.topicName}`}
+            />
+          )}
+          {/* modals for freestlye only */}
           {isFreestyle && (
             <>
+              <ScoreModal
+                image={"/images/freestyle.png"}
+                score={score}
+                show={showScoreModal}
+                url={`/course/#${exam.topicName}`}
+              />
               <CorrectModal
                 showCorrect={showCorrect}
                 setShowCorrect={setShowCorrect}
-                qValue={question.qValue}
+                qValue={questionValue}
               />
               <IncorrectModal
                 showIncorrect={showIncorrect}
                 setShowIncorrect={setShowIncorrect}
-                qValue={question.qValue}
+                qValue={questionValue}
               />
             </>
           )}

@@ -42,7 +42,12 @@ export const FreestylePage = () => {
       {freestyle ? (
         <>
           <Container>
-            <h1 className="examNameStyle mt-4">Modo rápido</h1>
+            <h1 className="examNameStyle mt-4">
+              {exam.name}
+              <small className="ml-2">
+                <i className="fas fa-bolt" />
+              </small>
+            </h1>
           </Container>
           <QuestionsContainer questions={freestyle} isFreestyle={true} />
           <br />

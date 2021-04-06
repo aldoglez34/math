@@ -1,16 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Button, Accordion, Row, Col } from "react-bootstrap";
 import { object, string } from "prop-types";
 import { LastVisited } from "./";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as examActions from "../../../redux/actions/exam";
 
 export const FreestyleCard = React.memo(({ topicName, topicId, freestyle }) => {
   const dispatch = useDispatch();
 
-  const setExamInRedux = async (obj) => {
-    dispatch(examActions.setExam(obj));
+  const exam = useSelector((state) => state.exam);
+
+  const handleBeginExam = (duration, name, topicName, topicId) => {
+    dispatch(
+      examActions.setExam({
+        duration,
+        name,
+        topicName,
+        topicId,
+      })
+    );
   };
+
+  useEffect(() => {
+    if (exam && exam.name === "Modo Rápido")
+      window.location.href = "/course/freestyle";
+  }, [exam]);
 
   return (
     <Card>
@@ -72,18 +86,12 @@ export const FreestyleCard = React.memo(({ topicName, topicId, freestyle }) => {
             variant="danger"
             className="shadow-sm"
             onClick={() =>
-              setExamInRedux({
-                duration: freestyle.timer,
-                name: "Modo rápido",
-                topicName: topicName,
-                topicId: topicId,
-              })
-                .then(() => (window.location.href = "/course/freestyle"))
-                .catch((err) => {
-                  console.log("error", err);
-                  alert("Ocurrió un error inesperado");
-                  window.location.href = "/course";
-                })
+              handleBeginExam(
+                freestyle.timer,
+                "Modo Rápido",
+                topicName,
+                topicId
+              )
             }
           >
             Iniciar

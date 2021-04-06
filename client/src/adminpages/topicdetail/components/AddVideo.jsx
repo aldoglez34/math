@@ -18,11 +18,7 @@ export const AddVideo = React.memo(({ courseId, topicId }) => {
 
   return (
     <>
-      <Button
-        variant="dark"
-        onClick={handleShow}
-        size="sm"
-      >
+      <Button variant="dark" onClick={handleShow} size="sm">
         <i className="fas fa-video mr-2" />
         <span>Nuevo Video</span>
       </Button>
@@ -53,7 +49,6 @@ export const AddVideo = React.memo(({ courseId, topicId }) => {
                 values.topicId = topicId;
                 TeacherAPI.t_addMaterial(values)
                   .then(() => {
-                    alert("El video fue agregado satisfactoriamente");
                     window.location.reload();
                   })
                   .catch((err) => {

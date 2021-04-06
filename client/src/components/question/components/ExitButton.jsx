@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Button, Image, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { string } from "prop-types";
-
-import styles from "./exitbutton.module.scss";
+import { AlertModal } from "../../";
 
 export const ExitButton = React.memo(({ url }) => {
   const [show, setShow] = useState(false);
@@ -21,37 +20,24 @@ export const ExitButton = React.memo(({ url }) => {
         Abandonar
       </Button>
 
-      <Modal
-        backdrop="static"
-        centered
-        className={styles.backgroundPhoto}
-        keyboard={false}
-        show={show}
-        centered
-      >
-        <Modal.Body className="bg-light rounded shadow text-center py-4">
-          <Image height="130" src="/images/warning.png" width="130" />
-          <h5 className="text-dark mb-3 mt-3">
-            ¿Estás seguro que deseas abandonar el examen? Tu avance será borrado
-            y tendrás que empezar de nuevo.
-          </h5>
-          <div className="d-flex flex-row justify-content-center mt-4">
-            <Button
-              variant="danger"
-              onClick={() => (window.location.href = url)}
-            >
-              Abandonar
-            </Button>
-            <Button
-              variant="link"
-              className="ml-2 text-success"
-              onClick={handleClose}
-            >
-              Continuar
-            </Button>
-          </div>
-        </Modal.Body>
-      </Modal>
+      <AlertModal image="/images/warning.png" show={show}>
+        <h5 className="text-dark mb-3 mt-3">
+          ¿Estás seguro que deseas abandonar el examen? Tu avance será borrado y
+          tendrás que empezar de nuevo.
+        </h5>
+        <div className="d-flex flex-row justify-content-center mt-4">
+          <Button variant="dark shadow-sm" onClick={handleClose}>
+            Cancelar
+          </Button>
+          <Button
+            variant="danger shadow-sm ml-2"
+            onClick={() => (window.location.href = url)}
+          >
+            Abandonar
+            <i className="fas fa-door-open ml-1" />
+          </Button>
+        </div>
+      </AlertModal>
     </>
   );
 });

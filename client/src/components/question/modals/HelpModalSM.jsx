@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { object } from "prop-types";
-import { Form, Button, Modal, Col } from "react-bootstrap";
+import { Button, Col, Form } from "react-bootstrap";
 import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { useSelector } from "react-redux";
 import API from "../../../utils/API";
+import { AlertModal } from "../../";
 
 export const HelpModalSM = React.memo(({ question }) => {
   const [show, setShow] = useState(false);
@@ -30,27 +31,12 @@ export const HelpModalSM = React.memo(({ question }) => {
         Ayuda
       </Button>
 
-      <Modal show={show} backdrop="static" keyboard={false}>
-        <Modal.Body className="bg-light rounded shadow">
-          <div className="d-flex flex-column mb-3">
-            <div className="d-flex">
-              <h3 className="text-dark mb-3">¿Necesitas ayuda?</h3>
-              <Button
-                className="ml-auto text-dark"
-                variant="link"
-                size="sm"
-                title="Cerrar"
-                onClick={handleClose}
-              >
-                <i className="fas fa-times" style={{ fontSize: "22px" }} />
-              </Button>
-            </div>
-            <span className="mb-2 mt-3">
-              Utiliza el siguiente recuadro para hacerle llegar tu duda al
-              maestro.
-            </span>
-          </div>
-
+      <AlertModal image="/images/help.png" show={show}>
+        <h5 className="text-dark mb-3 mt-3">
+          ¿Necesitas ayuda? Utiliza el siguiente recuadro para hacerle llegar tu
+          duda al maestro.
+        </h5>
+        <div className="mt-4">
           <Formik
             initialValues={{
               body: "",
@@ -73,9 +59,7 @@ export const HelpModalSM = React.memo(({ question }) => {
               values.name = student.name + " " + student.firstSurname;
               API.postMessage(values)
                 .then(() => {
-                  alert(
-                    "Tu mensaje ha sido enviado con éxito, la respuesta del maestro te será notificada en la esquina superior derecha, donde aparece tu correo."
-                  );
+                  alert("Mensaje enviado.");
                   handleClose();
                 })
                 .catch((err) => {
@@ -116,19 +100,25 @@ export const HelpModalSM = React.memo(({ question }) => {
                   </Form.Group>
                 </Form.Row>
                 {/* buttons */}
-                <Button
-                  variant="info"
-                  type="submit"
-                  className="shadow-sm"
-                  disabled={isSubmitting}
-                >
-                  Enviar
-                </Button>
+                <div className="d-flex flex-row justify-content-center mt-2">
+                  <Button variant="dark shadow-sm" onClick={handleClose}>
+                    Cancelar
+                  </Button>
+                  <Button
+                    variant="info"
+                    type="submit"
+                    className="shadow-sm ml-2"
+                    disabled={isSubmitting}
+                  >
+                    Enviar
+                    <i className="fas fa-paper-plane ml-1" />
+                  </Button>
+                </div>
               </Form>
             )}
           </Formik>
-        </Modal.Body>
-      </Modal>
+        </div>
+      </AlertModal>
     </>
   ) : null;
 });

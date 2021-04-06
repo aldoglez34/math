@@ -37,7 +37,8 @@ export const ExamsAccordion = React.memo(
     };
 
     useEffect(() => {
-      if (exam) window.location.href = "/course/exam";
+      if (exam && exam.name !== "Modo Rápido")
+        window.location.href = "/course/exam";
     }, [exam]);
 
     return (

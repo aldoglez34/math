@@ -4,7 +4,7 @@ const model = require("../../models");
 // fetchFreestyle()
 // matches with /api/freestyle/:courseId/:topicId
 router.get("/:courseId/:topicId", function (req, res) {
-  console.log("entrando a ftch freestyle");
+  console.log("entrando a fetch freestyle");
   const { courseId, topicId } = req.params;
   const difficulties = ["Intermediate", "Intermediate-Advanced", "Advanced"];
 
