@@ -26,7 +26,7 @@ export const QuestionsContainer = React.memo(
     const dispatch = useDispatch();
 
     // timeout modal
-    const [showTimeOut, setShowTimeOut] = useState(true);
+    const [showTimeOut, setShowTimeOut] = useState(false);
 
     // data from redux
     const course = useSelector((state) => state.course);
@@ -53,6 +53,7 @@ export const QuestionsContainer = React.memo(
     const getValueFromMultipleChoice = (value) => setChoice(value);
 
     const isLastQuestion = number === questions.length;
+    const isTimeOver = secondsLeft === 0;
     const hasExamEnded = number > questions.length;
 
     const getGrade = () => {
@@ -152,8 +153,11 @@ export const QuestionsContainer = React.memo(
       if (secondsLeft >= 0)
         setTimeout(() => setSecondsLeft((prevState) => prevState - 1), 1000);
 
-      // if no minutes left, register attempt and show timeOutModal
-      if (secondsLeft === 0) setShowTimeOut(true);
+      // if it's a regular exam (not freestyle) and time over, show timeOutModal
+      if (isTimeOver && !isFreestyle) setShowTimeOut(true);
+
+      // if no minutes left, show score
+      if (isTimeOver && isFreestyle) setShowScoreModal(true);
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [secondsLeft]);

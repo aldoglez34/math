@@ -9,7 +9,7 @@ export const ScoreModal = React.memo(({ image, score, show, url }) => {
       <h5 className="text-dark mb-3 mt-3">
         Tu tiempo se ha terminado, tu puntuación final es:
       </h5>
-      <h1>{score}</h1>
+      <h1 className="display-1">{`[ ${score} ]`}</h1>
       <div className="mt-4">
         <Button
           onClick={() => (window.location.href = url)}
