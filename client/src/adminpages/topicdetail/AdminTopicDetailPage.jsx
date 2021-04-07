@@ -137,7 +137,8 @@ export const AdminTopicDetailPage = React.memo((props) => {
           <Col>
             <span className="text-muted">Modo rápido</span>
             <h5>
-              {`${topic.freestyle.timer} minutos`}
+              {topic.freestyle.timer}{" "}
+              {topic.freestyle.timer === 1 ? " minuto" : " minutos"}
               <AdminModal
                 Form={TopicFreestyleTimerForm}
                 formInitialText={topic.freestyle.timer}

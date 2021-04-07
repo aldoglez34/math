@@ -121,7 +121,7 @@ export const AdminExamDetailPage = React.memo((props) => {
           <Col>
             <span className="text-muted">Duración</span>
             <h2>
-              {`${exam.duration} minutos`}
+              {exam.duration} {exam.duration === 1 ? "minuto" : "minutos"}
               <AdminModal
                 Form={ExamDurationForm}
                 formInitialText={exam.duration}
