@@ -11,7 +11,7 @@ export const IncorrectModal = React.memo(
 
     return (
       <>
-        <Modal show={showIncorrect} centered size="sm">
+        <Modal show={showIncorrect} centered size="sm" onHide={() => undefined}>
           <Modal.Body className="p-1">
             <div className="text-center bg-danger rounded py-4">
               <h1 className="display-3 text-light">

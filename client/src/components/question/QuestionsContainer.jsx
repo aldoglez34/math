@@ -147,6 +147,27 @@ export const QuestionsContainer = React.memo(
       setNumber((prevState) => prevState + 1);
     };
 
+    const pushFreestyleAttempt = () => {
+      API.registerFreestyleAttempt({
+        courseId: course._id,
+        score: score,
+        studentId: student._id,
+        topicId: exam.topicId,
+        username: student.username,
+      })
+        .then((data) => {
+          console.log("freestyle:", data);
+          setShowScoreModal(true);
+        })
+        .catch((err) => {
+          console.log("error", err);
+          alert(
+            "Ocurrió un error en el servidor, no se pudo registrar su calificación."
+          );
+          window.location.href = "/";
+        });
+    };
+
     // handles timer
     useEffect(() => {
       // decrement seconds
@@ -157,73 +178,55 @@ export const QuestionsContainer = React.memo(
       if (isTimeOver && !isFreestyle) setShowTimeOut(true);
 
       // if no minutes left, show score
-      if (isTimeOver && isFreestyle) setShowScoreModal(true);
+      if (isTimeOver && isFreestyle) pushFreestyleAttempt();
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [secondsLeft]);
 
-    // checks wether exam has ended or not
+    // sets new question or ends exam
     useEffect(() => {
       // if exam hasnt ended, set new question
       if (!hasExamEnded)
         setQuestion(questions.filter((q) => q.qNumber === number)[0]);
 
+      const { corrects, incorrects, grade } = getGrade();
+
       // get the correct answers, the incorrect answers and the grade (only for regular exams, not freestyle)
-      if (hasExamEnded) {
-        const { corrects, incorrects, grade } = getGrade();
-
-        if (!isFreestyle) {
-          API.registerAttempt({
-            courseId: course._id,
-            examDifficulty: exam.difficulty,
-            examId: exam._id,
-            examLink: exam.reward.link,
-            examName: exam.name,
-            grade,
-            studentId: student._id,
-            topicId: exam.topicId,
+      if (hasExamEnded && !isFreestyle) {
+        API.registerAttempt({
+          courseId: course._id,
+          examDifficulty: exam.difficulty,
+          examId: exam._id,
+          examLink: exam.reward.link,
+          examName: exam.name,
+          grade,
+          studentId: student._id,
+          topicId: exam.topicId,
+        })
+          .then((res) => {
+            const { isFreestyleUnlocked, unlockedExam } = res.data;
+            // save results in redux (so they can be read in the results page)
+            dispatch(
+              examActions.setResults({
+                answers,
+                corrects,
+                grade,
+                incorrects,
+                isFreestyleUnlocked,
+                unlockedExam,
+              })
+            );
           })
-            .then((res) => {
-              const { isFreestyleUnlocked, unlockedExam } = res.data;
-              // save results in redux (so they can be read in the results page)
-              dispatch(
-                examActions.setResults({
-                  answers,
-                  corrects,
-                  grade,
-                  incorrects,
-                  isFreestyleUnlocked,
-                  unlockedExam,
-                })
-              );
-            })
-            .catch((err) => {
-              console.log("error", err);
-              alert(
-                "Ocurrió un error en el servidor, no se pudo registrar su calificación."
-              );
-              window.location.href = "/";
-            });
-        }
-
-        if (isFreestyle) {
-          API.registerFreestyleAttempt({
-            courseId: course._id,
-            score: score,
-            studentId: student._id,
-            topicId: exam.topicId,
-            username: student.username,
-          })
-            .then(() => setShowScoreModal(true))
-            .catch((err) => {
-              console.log("error", err);
-              alert(
-                "Ocurrió un error en el servidor, no se pudo registrar su calificación."
-              );
-              window.location.href = "/";
-            });
-        }
+          .catch((err) => {
+            console.log("error", err);
+            alert(
+              "Ocurrió un error en el servidor, no se pudo registrar su calificación."
+            );
+            window.location.href = "/";
+          });
       }
+
+      if (hasExamEnded && isFreestyle) pushFreestyleAttempt();
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch, number, answers, questions, choice]);

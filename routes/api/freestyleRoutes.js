@@ -96,19 +96,14 @@ router.put("/registerAttempt", function (req, res) {
   };
 
   model.Course.update(
-    {
-      _id: courseId,
-      "topics._id": topicId,
-    },
+    { _id: courseId, "topics._id": topicId },
     {
       $push: {
         "topics.$.freestyle.attempts": newAttempt,
       },
     }
   )
-    .then((data) => {
-      res.send(data);
-    })
+    .then((data) => res.send(data))
     .catch((err) => {
       console.log("@error", err);
       res.status(422).send("Ocurrió un error");
