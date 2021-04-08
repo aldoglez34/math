@@ -2,17 +2,29 @@ import React from "react";
 import { Table, Row, Col } from "react-bootstrap";
 import { array } from "prop-types";
 import { useSelector } from "react-redux";
-import { AdminDangerModal } from "../../../components";
+import { AdminDangerModal, ImageFromFirebase } from "../../../components";
 import TeacherAPI from "../../../../utils/TeacherAPI";
+import { firebaseStorage } from "../../../../firebase/firebase";
 
-export const SimpleWithTwoAnswersTable = React.memo(({ questions }) => {
+export const ImageWithTwoAnswersTable = React.memo(({ questions }) => {
   const courseId = useSelector((state) => state.admin.course.courseId);
   const examId = useSelector((state) => state.admin.exam.examId);
 
-  const handleDeleteQuestion = (questionId) => {
+  const handleDeleteQuestion = (questionId, path) => {
     TeacherAPI.t_deleteQuestion({ courseId, examId, questionId })
       .then(() => {
-        window.location.reload();
+        const storageRef = firebaseStorage.ref();
+        const fileRef = storageRef.child(path);
+
+        fileRef
+          .delete()
+          .then(() => {
+            window.location.reload();
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("Ocurrió un error al borrar la pregunta.");
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -24,7 +36,7 @@ export const SimpleWithTwoAnswersTable = React.memo(({ questions }) => {
     <Row>
       <Col>
         <h4 className="my-3">
-          Preguntas sencillas con 2 respuestas{` (${questions.length})`}
+          Imagen con 2 respuestas{` (${questions.length})`}
         </h4>
         <div className="mt-2 d-flex flex-column">
           <Table bordered striped size="sm">
@@ -40,7 +52,7 @@ export const SimpleWithTwoAnswersTable = React.memo(({ questions }) => {
                   style={{ backgroundColor: "#0f5257" }}
                   className="text-light text-center"
                 >
-                  I. Técnica
+                  Imagen
                 </th>
                 <th
                   style={{ backgroundColor: "#0f5257" }}
@@ -66,9 +78,12 @@ export const SimpleWithTwoAnswersTable = React.memo(({ questions }) => {
                   <tr key={q._id}>
                     <td className="align-middle">{q.qInstruction}</td>
                     <td className="align-middle">
-                      {q.qTechnicalInstruction
-                        ? q.qTechnicalInstruction.text
-                        : null}
+                      <ImageFromFirebase
+                        className="mb-3"
+                        height="85"
+                        path={q.qTechnicalInstruction.imageLink}
+                        width="85"
+                      />
                     </td>
                     <td className="align-middle">
                       {q.qCorrectAnswers.map((qa, idx) => {
@@ -89,7 +104,12 @@ export const SimpleWithTwoAnswersTable = React.memo(({ questions }) => {
                     <td className="align-middle">{q.qComment}</td>
                     <td className="text-center align-middle">
                       <AdminDangerModal
-                        deleteFn={() => handleDeleteQuestion(q._id)}
+                        deleteFn={() =>
+                          handleDeleteQuestion(
+                            q._id,
+                            q.qTechnicalInstruction.imageLink
+                          )
+                        }
                         icon={<i className="fas fa-times" />}
                         modalText={`¿Estás seguro que deseas borrar esta pregunta?`}
                       />
@@ -105,6 +125,6 @@ export const SimpleWithTwoAnswersTable = React.memo(({ questions }) => {
   );
 });
 
-SimpleWithTwoAnswersTable.propTypes = {
+ImageWithTwoAnswersTable.propTypes = {
   questions: array.isRequired,
 };

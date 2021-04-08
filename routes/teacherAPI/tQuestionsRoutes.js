@@ -91,6 +91,63 @@ router.post("/simpleWithImage/new", function (req, res) {
     });
 });
 
+// ==========================================================
+// t_newImageWithTwoAnswersQuestion()
+// matches with /teacherAPI/questions/imageWithTwoAnswers/new
+router.post("/imageWithTwoAnswers/new", function (req, res) {
+  const { courseId, examId, topicId } = req.body;
+
+  const newQuestion = {
+    qType: "imageWithTwoAnswers",
+    qInstruction: req.body.qInstruction,
+    qTechnicalInstruction: {
+      type: "image",
+    },
+    qCorrectAnswers: [
+      {
+        answer: req.body.qCorrectAnswer1,
+        complementLeft: req.body.qCALeft1,
+        complementRight: req.body.qCARight1,
+      },
+      {
+        answer: req.body.qCorrectAnswer2,
+        complementLeft: req.body.qCALeft2,
+        complementRight: req.body.qCARight2,
+      },
+    ],
+    qComment: req.body.qComment,
+  };
+
+  model.Exam.findOneAndUpdate(
+    { _id: examId },
+    { $push: { questions: newQuestion } },
+    { new: true } // return the updated object
+  )
+    .then((exam) => {
+      // get the newly created question id
+      const questionId = exam.questions[exam.questions.length - 1]._id;
+
+      const firebasePath = `${courseId}/${topicId}/exams/${examId}/${questionId}/imagen`;
+
+      // now rename the question link in mongo
+      model.Exam.findOneAndUpdate(
+        { _id: examId, "questions._id": questionId },
+        {
+          $set: { "questions.$.qTechnicalInstruction.imageLink": firebasePath },
+        }
+      )
+        .then(() => res.send(questionId))
+        .catch((err) => {
+          console.log("@error", err);
+          res.status(422).send("Ocurrió un error.");
+        });
+    })
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error.");
+    });
+});
+
 // t_newSimpleWithTwoAnswersQuestion()
 // matches with /teacherAPI/questions/simpleWithTwoAnswers/new
 router.post("/simpleWithTwoAnswers/new", function (req, res) {

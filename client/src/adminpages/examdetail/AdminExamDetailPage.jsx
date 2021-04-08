@@ -7,10 +7,11 @@ import {
   ExamDurationForm,
   ExamNameForm,
   ExamQCounterForm,
+  ImageWithTwoAnswersTable,
+  ImageWithTwoAnswers,
   MultipleOptionForm,
   MultipleOptionQuestionsTable,
   MultipleOptionWithImage,
-  MultipleOptionWithImageTable,
   NewQuestionModal,
   SimpleQuestionForm,
   SimpleQuestionTable,
@@ -18,6 +19,7 @@ import {
   SimpleWithImageQuestionsTable,
   SimpleWithTwoAnswersForm,
   SimpleWithTwoAnswersTable,
+  MultipleOptionWithImageTable,
 } from "./components";
 import { useDispatch, useSelector } from "react-redux";
 import { setExam, setTitle } from "../../redux/actions/admin";
@@ -32,6 +34,7 @@ export const AdminExamDetailPage = React.memo((props) => {
 
   const [simpleQuestions, setSimpleQuestions] = useState([]);
   const [simpleWithImageQuestions, setSimpleWithImageQuestions] = useState([]);
+  const [imageWithTwoAnswers, setImageWithTwoAnswers] = useState([]);
   const [multipleOptionQuestions, setMultipleOptionQuestions] = useState([]);
   const [
     simpleWithTwoAnswersQuestions,
@@ -64,6 +67,11 @@ export const AdminExamDetailPage = React.memo((props) => {
         );
         setSimpleWithImageQuestions(
           res.data.questions.filter(({ qType }) => qType === "simpleWithPic")
+        );
+        setImageWithTwoAnswers(
+          res.data.questions.filter(
+            ({ qType }) => qType === "imageWithTwoAnswers"
+          )
         );
         setMultipleOptionQuestions(
           res.data.questions.filter(({ qType }) => qType === "multipleOption")
@@ -192,7 +200,7 @@ export const AdminExamDetailPage = React.memo((props) => {
           </div>
           <div className="ml-2">
             <NewQuestionModal
-              Form={SimpleWithTwoAnswersForm}
+              Form={ImageWithTwoAnswers}
               text="Imagen con 2 respuestas"
             />
           </div>
@@ -215,6 +223,9 @@ export const AdminExamDetailPage = React.memo((props) => {
         ) : null}
         {simpleWithImageQuestions.length ? (
           <SimpleWithImageQuestionsTable questions={simpleWithImageQuestions} />
+        ) : null}
+        {imageWithTwoAnswers.length ? (
+          <ImageWithTwoAnswersTable questions={imageWithTwoAnswers} />
         ) : null}
         {multipleOptionQuestions.length ? (
           <MultipleOptionQuestionsTable questions={multipleOptionQuestions} />

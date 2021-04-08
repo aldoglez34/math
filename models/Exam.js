@@ -34,6 +34,7 @@ const schema = new Schema({
           "simpleWithPic",
           "twoAnswers",
           "multipleOptionWithPic",
+          "imageWithTwoAnswers",
         ],
       },
       qInstruction: { type: String, required: true },
