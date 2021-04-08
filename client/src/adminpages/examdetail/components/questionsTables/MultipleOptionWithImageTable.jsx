@@ -85,7 +85,6 @@ export const MultipleOptionWithImageTable = React.memo(({ questions }) => {
                     <td className="align-middle">{q.qInstruction}</td>
                     <td className="align-middle">
                       <ImageFromFirebase
-                        className="mb-3"
                         height="85"
                         path={q.qTechnicalInstruction.imageLink}
                         width="85"

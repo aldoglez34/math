@@ -224,16 +224,16 @@ export const AdminExamDetailPage = React.memo((props) => {
         {simpleWithImageQuestions.length ? (
           <SimpleWithImageQuestionsTable questions={simpleWithImageQuestions} />
         ) : null}
+        {simpleWithTwoAnswersQuestions.length ? (
+          <SimpleWithTwoAnswersTable
+            questions={simpleWithTwoAnswersQuestions}
+          />
+        ) : null}
         {imageWithTwoAnswers.length ? (
           <ImageWithTwoAnswersTable questions={imageWithTwoAnswers} />
         ) : null}
         {multipleOptionQuestions.length ? (
           <MultipleOptionQuestionsTable questions={multipleOptionQuestions} />
-        ) : null}
-        {simpleWithTwoAnswersQuestions.length ? (
-          <SimpleWithTwoAnswersTable
-            questions={simpleWithTwoAnswersQuestions}
-          />
         ) : null}
         {multipleOptionWithImageQuestions.length ? (
           <MultipleOptionWithImageTable

@@ -84,7 +84,7 @@ export const FAQJumbotron = () => {
                   selected === idx ? "fj_questionSelected" : "fj_question";
                 const isLastQuestion = idx === questions.length - 1;
                 return (
-                  <Card className="fj_accordionItem border rounded">
+                  <Card key={idx} className="fj_accordionItem border rounded">
                     <Accordion.Toggle
                       as={Card.Header}
                       eventKey={idx}

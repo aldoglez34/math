@@ -27,15 +27,10 @@ export const StudentDropdown = () => {
 
   useEffect(() => {
     API.fetchUnseeenMessages(student._id)
-      .then((res) => {
-        // console.log(res.data);
-        setUnseen(res.data);
-      })
+      .then((res) => setUnseen(res.data))
       .catch((err) => {
         console.log(err);
       });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

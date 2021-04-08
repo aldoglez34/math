@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, ErrorMessage } from "formik";
 import { Form, Col, Button } from "react-bootstrap";
 import { firebaseAuth } from "../../../firebase/firebase";
@@ -12,6 +12,11 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
 
   const purchase = useSelector((state) => state.purchase);
+  const student = useSelector((state) => state.student);
+
+  useEffect(() => {
+    if (student) window.location.href = "/dashboard";
+  }, [student]);
 
   const yupSchema = yup.object({
     email: yup
@@ -46,8 +51,8 @@ export const LoginForm = () => {
                       } else {
                         dispatch(loginStudent(res.data));
 
-                        alert(`Iniciaste sesión con éxito, ${res.data.name}`);
-                        window.location.href = "/dashboard";
+                        // alert(`Iniciaste sesión con éxito, ${res.data.name}`);
+                        // window.location.href = "/dashboard";
                       }
                     } else {
                       alert("Ocurrió un error al iniciar sesión.");

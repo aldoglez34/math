@@ -34,7 +34,7 @@ export const CoursesDropdown = () => {
           courses.map((c) => (
             <NavDropdown.Item
               key={c}
-              href={"/courses/" + c}
+              href={`/courses/${c}`}
               className="dropdownStyle"
             >
               {c}

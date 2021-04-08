@@ -5,12 +5,12 @@ import { firebaseAuth } from "../../../firebase/firebase";
 import * as yup from "yup";
 import API from "../../../utils/API";
 import { useSelector, useDispatch } from "react-redux";
-import * as studentActions from "../../../redux/actions/student";
+import { loginStudent } from "../../../redux/actions/student";
 
 export const SignUpForm = () => {
   const dispatch = useDispatch();
 
-  const purchase = useSelector((state) => state.purchase);
+  const student = useSelector((state) => state.student);
 
   const yupSchema = yup.object({
     email: yup
@@ -54,63 +54,49 @@ export const SignUpForm = () => {
         password: "",
       }}
       validationSchema={yupSchema}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(true);
+        try {
+          // create user in firebase
+          const fbRes = await firebaseAuth.createUserWithEmailAndPassword(
+            values.email,
+            values.password
+          );
 
-        firebaseAuth
-          .createUserWithEmailAndPassword(values.email, values.password)
-          .then((fbRes) => {
-            // console.log("1 - then del createUserWithEmailAndPassword");
-            fbRes.user
-              .updateProfile({
-                displayName: "Student",
-              })
-              .then(() => {
-                // console.log("2 - then del updateProfile");
+          // edit user display name to student
+          await fbRes.user.updateProfile({ displayName: "Student" });
 
-                // add new client to db
-                API.registerNewStudent({
-                  firebaseUID: fbRes.user.uid,
-                  name: values.name,
-                  firstSurname: values.firstSurname,
-                  secondSurname: values.secondSurname,
-                  email: values.email,
-                })
-                  .then(() => {
-                    // console.log("3 - then del registerNewStudent", res.data);
+          console.log("1");
 
-                    API.fetchStudentByUID(fbRes.user.uid)
-                      .then((res) => {
-                        // console.log("4 - then del fetchStudentByUID", res.data);
+          // push new user to database
+          const newUser = await API.registerNewStudent({
+            firebaseUID: fbRes.user.uid,
+            name: values.name,
+            firstSurname: values.firstSurname,
+            secondSurname: values.secondSurname,
+            email: values.email,
+          }).then((newUser) => newUser);
 
-                        dispatch(studentActions.loginStudent(res.data));
-                        alert(`Bienvenido, ${res.data.name}`);
+          // log user's data to redux
+          const {
+            _id,
+            email,
+            firstSurname,
+            name,
+            secondSurname,
+          } = newUser.data;
+          dispatch(
+            loginStudent({ _id, email, firstSurname, name, secondSurname })
+          );
 
-                        if (purchase) {
-                          window.location.href = `/payment/${purchase.school}/${purchase.courseId}`;
-                        } else {
-                          window.location.href = "/dashboard";
-                        }
-                      })
-                      .catch((error) => {
-                        alert(
-                          "Ocurrió un error, por favor vuelve a intentarlo."
-                        );
-                        console.log(error);
-                        setSubmitting(false);
-                      });
-                  })
-                  .catch((err) => {
-                    alert("Ocurrió un error, por favor vuelve a intentarlo.");
-                    console.log(err);
-                  });
-              });
-          })
-          .catch((err) => {
-            alert("Ocurrió un error, por favor vuelve a intentarlo.");
-            console.log(err.code);
-            console.log(err.message);
-          });
+          alert(`Bienvenido, ${student.name}`);
+
+          window.location.href = "/dashboard";
+        } catch (err) {
+          console.log("err", err);
+          alert("Ha ocurrido un error, por favor verifica tus datos.");
+          setSubmitting(false);
+        }
       }}
     >
       {({

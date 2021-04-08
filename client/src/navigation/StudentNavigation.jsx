@@ -51,6 +51,7 @@ export default () => {
       {/* freestyle */}
       <Route exact path="/course/freestyle" component={FreestylePage} />
 
+      {/* <Redirect from="/signup" to="/dashboard" /> */}
       <Redirect from="/" to="/dashboard" />
 
       {/* 404 not found */}
