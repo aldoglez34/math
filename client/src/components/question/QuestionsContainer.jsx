@@ -52,10 +52,6 @@ export const QuestionsContainer = React.memo(
     const [choice, setChoice] = useState();
     const getValueFromMultipleChoice = (value) => setChoice(value);
 
-    const isLastQuestion = number === questions.length;
-    const isTimeOver = secondsLeft === 0;
-    const hasExamEnded = number > questions.length;
-
     const getGrade = () => {
       const corrects = answers.reduce((acc, cv) => {
         if (cv.qCorrectAnswers.answer === cv.userAnswers.answer) acc++;
@@ -155,9 +151,40 @@ export const QuestionsContainer = React.memo(
         topicId: exam.topicId,
         username: student.username,
       })
-        .then((data) => {
-          console.log("freestyle:", data);
-          setShowScoreModal(true);
+        .then(() => setShowScoreModal(true))
+        .catch((err) => {
+          console.log("error", err);
+          alert(
+            "Ocurrió un error en el servidor, no se pudo registrar su calificación."
+          );
+          window.location.href = "/";
+        });
+    };
+
+    const pushRegularAttempt = (corrects, incorrects, grade) => {
+      API.registerAttempt({
+        courseId: course._id,
+        examDifficulty: exam.difficulty,
+        examId: exam._id,
+        examLink: exam.reward.link,
+        examName: exam.name,
+        grade,
+        studentId: student._id,
+        topicId: exam.topicId,
+      })
+        .then((res) => {
+          const { isFreestyleUnlocked, unlockedExam } = res.data;
+          // save results in redux (so they can be read in the results page)
+          dispatch(
+            examActions.setResults({
+              answers,
+              corrects,
+              grade,
+              incorrects,
+              isFreestyleUnlocked,
+              unlockedExam,
+            })
+          );
         })
         .catch((err) => {
           console.log("error", err);
@@ -167,6 +194,10 @@ export const QuestionsContainer = React.memo(
           window.location.href = "/";
         });
     };
+
+    const isLastQuestion = number === questions.length;
+    const isTimeOver = secondsLeft === 0;
+    const hasExamEnded = number > questions.length;
 
     // handles timer
     useEffect(() => {
@@ -189,47 +220,16 @@ export const QuestionsContainer = React.memo(
       if (!hasExamEnded)
         setQuestion(questions.filter((q) => q.qNumber === number)[0]);
 
+      // get the correct answers, the incorrect answers and the grade (only for regular exams, not freestyle)
       const { corrects, incorrects, grade } = getGrade();
 
-      // get the correct answers, the incorrect answers and the grade (only for regular exams, not freestyle)
-      if (hasExamEnded && !isFreestyle) {
-        API.registerAttempt({
-          courseId: course._id,
-          examDifficulty: exam.difficulty,
-          examId: exam._id,
-          examLink: exam.reward.link,
-          examName: exam.name,
-          grade,
-          studentId: student._id,
-          topicId: exam.topicId,
-        })
-          .then((res) => {
-            const { isFreestyleUnlocked, unlockedExam } = res.data;
-            // save results in redux (so they can be read in the results page)
-            dispatch(
-              examActions.setResults({
-                answers,
-                corrects,
-                grade,
-                incorrects,
-                isFreestyleUnlocked,
-                unlockedExam,
-              })
-            );
-          })
-          .catch((err) => {
-            console.log("error", err);
-            alert(
-              "Ocurrió un error en el servidor, no se pudo registrar su calificación."
-            );
-            window.location.href = "/";
-          });
-      }
+      if (hasExamEnded && !isFreestyle)
+        pushRegularAttempt(corrects, incorrects, grade);
 
       if (hasExamEnded && isFreestyle) pushFreestyleAttempt();
 
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dispatch, number, answers, questions, choice]);
+    }, [answers, choice, dispatch, number, questions]);
 
     // redirects user when result changes are updated (only for regular exams)
     useEffect(() => {
@@ -385,6 +385,12 @@ export const QuestionsContainer = React.memo(
       ) : (
         <div className="text-center mt-4 pt-4">
           <Spinner animation="border" variant="success" />
+          <ScoreModal
+            image={"/images/freestyle.png"}
+            score={score}
+            show={showScoreModal}
+            url={`/course/#${exam.topicName}`}
+          />
         </div>
       ))
     );

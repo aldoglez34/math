@@ -192,6 +192,12 @@ export const AdminExamDetailPage = React.memo((props) => {
           </div>
           <div className="ml-2">
             <NewQuestionModal
+              Form={SimpleWithTwoAnswersForm}
+              text="Imagen con 2 respuestas"
+            />
+          </div>
+          <div className="ml-2">
+            <NewQuestionModal
               Form={MultipleOptionForm}
               text="Opción múltiple"
             />
