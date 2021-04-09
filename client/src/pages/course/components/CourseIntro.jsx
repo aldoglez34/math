@@ -1,8 +1,9 @@
 import React from "react";
-import { Accordion, Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { string, array } from "prop-types";
 import { MedalTable, TopicBadge } from "./";
 import cn from "classnames";
+import { MedalsAccordion } from "./accordions/MedalsAccordion";
 
 import styles from "./courseintro.module.scss";
 
@@ -39,29 +40,7 @@ export const CourseIntro = React.memo(({ name, topics, rewards }) => {
               <MedalTable rewards={rewards} />
             </div>
             <div className="d-block d-md-none mb-0 pb-0">
-              <Accordion>
-                <Card className="bg-transparent border-0">
-                  <Card.Header className="bg-transparent p-0 border-0">
-                    <Accordion.Toggle
-                      as={Button}
-                      variant="link"
-                      eventKey="0"
-                      className="p-0"
-                      style={{ boxShadow: "none", textDecoration: "none" }}
-                    >
-                      <h3 style={{ color: "#828c90" }} className="mb-3">
-                        <i className="fas fa-chevron-down mr-2" />
-                        Medallero
-                      </h3>
-                    </Accordion.Toggle>
-                  </Card.Header>
-                  <Accordion.Collapse eventKey="0">
-                    <Card.Body className="p-0">
-                      <MedalTable rewards={rewards} />
-                    </Card.Body>
-                  </Accordion.Collapse>
-                </Card>
-              </Accordion>
+              <MedalsAccordion rewards={rewards} />
             </div>
           </Col>
         </Row>

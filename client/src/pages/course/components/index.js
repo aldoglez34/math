@@ -1,4 +1,5 @@
 export * from "./accordions/ExamsAccordion";
+export * from "./accordions/MedalsAccordion";
 
 export * from "./badges/TopicBadge";
 export * from "./buttons/NotAvailableBttn";
