@@ -298,7 +298,10 @@ export const ImageWithTwoAnswers = () => {
           {/* qComment */}
           <Form.Row>
             <Form.Group as={Col}>
-              <Form.Label>Comentario</Form.Label>
+              <Form.Label>
+                Comentario{" "}
+                <small>(Utiliza el símbolo /n para saltos de línea)</small>
+              </Form.Label>
               <Form.Control
                 maxLength="500"
                 type="text"

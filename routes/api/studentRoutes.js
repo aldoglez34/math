@@ -70,7 +70,10 @@ router.post("/new", function (req, res) {
     secondSurname: req.body.secondSurname,
     email: req.body.email,
   })
-    .then((newUser) => res.json(newUser))
+    .then((newUser) => {
+      console.log(newUser);
+      res.json(newUser);
+    })
     .catch((err) => {
       console.log("@error", err);
       res.status(422).send({ msg: "Ocurrió un error" });

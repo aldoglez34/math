@@ -10,7 +10,7 @@ import { loginStudent } from "../../../redux/actions/student";
 export const SignUpForm = () => {
   const dispatch = useDispatch();
 
-  const student = useSelector((state) => state.student);
+  const purchase = useSelector((state) => state.purchase);
 
   const yupSchema = yup.object({
     email: yup
@@ -66,8 +66,6 @@ export const SignUpForm = () => {
           // edit user display name to student
           await fbRes.user.updateProfile({ displayName: "Student" });
 
-          console.log("1");
-
           // push new user to database
           const newUser = await API.registerNewStudent({
             firebaseUID: fbRes.user.uid,
@@ -75,26 +73,28 @@ export const SignUpForm = () => {
             firstSurname: values.firstSurname,
             secondSurname: values.secondSurname,
             email: values.email,
-          }).then((newUser) => newUser);
+          }).then((res) => res.data);
 
           // log user's data to redux
-          const {
-            _id,
-            email,
-            firstSurname,
-            name,
-            secondSurname,
-          } = newUser.data;
-          dispatch(
-            loginStudent({ _id, email, firstSurname, name, secondSurname })
-          );
+          const newStudentObj = {
+            _id: newUser._id,
+            email: newUser.email,
+            firstSurname: newUser.firstSurname,
+            name: newUser.name,
+            secondSurname: newUser.secondSurname,
+          };
 
-          alert(`Bienvenido, ${student.name}`);
+          dispatch(loginStudent(newStudentObj));
 
-          window.location.href = "/dashboard";
+          // send the user to either the dashboard or the payment screen
+          // depending on wether user has a purchase pending
+          if (!purchase) window.location.href = "/dashboard";
+          if (purchase)
+            window.location.href = `/payment/${purchase.school}/${purchase.courseId}`;
         } catch (err) {
           console.log("err", err);
           alert("Ha ocurrido un error, por favor verifica tus datos.");
+          firebaseAuth.signOut();
           setSubmitting(false);
         }
       }}

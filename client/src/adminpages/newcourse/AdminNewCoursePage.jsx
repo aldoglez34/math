@@ -128,7 +128,7 @@ export const AdminNewCoursePage = () => {
                         Descripción<strong className="text-danger">*</strong>
                       </Form.Label>
                       <Form.Control
-                        maxLength="250"
+                        maxLength="1000"
                         as="textarea"
                         rows="4"
                         name="description"

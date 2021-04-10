@@ -33,48 +33,35 @@ export const LoginForm = () => {
         password: "",
       }}
       validationSchema={yupSchema}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(true);
+        try {
+          // set persistence in firebase
+          await firebaseAuth.setPersistence(fbApp.auth.Auth.Persistence.LOCAL);
 
-        firebaseAuth
-          .setPersistence(fbApp.auth.Auth.Persistence.LOCAL)
-          .then(() => {
-            return firebaseAuth
-              .signInWithEmailAndPassword(values.email, values.password)
-              .then((res) => {
-                // if anything goes wrong from here, logout the user in firebase
-                API.fetchStudentByUID(res.user.uid)
-                  .then((res) => {
-                    if (res.data) {
-                      if (purchase) {
-                        window.location.href = `/payment/${purchase.school}/${purchase.courseId}`;
-                      } else {
-                        dispatch(loginStudent(res.data));
+          // sign in user in firebase
+          const fbUser = await firebaseAuth.signInWithEmailAndPassword(
+            values.email,
+            values.password
+          );
 
-                        // alert(`Iniciaste sesión con éxito, ${res.data.name}`);
-                        // window.location.href = "/dashboard";
-                      }
-                    } else {
-                      alert("Ocurrió un error al iniciar sesión.");
-                      firebaseAuth.signOut();
-                    }
-                  })
-                  .catch((error) => {
-                    alert("Ocurrió un error al iniciar sesión.");
-                    console.log(error);
-                    setSubmitting(false);
-                  });
-              });
-          })
-          .catch((error) => {
-            alert(
-              "Tu correo y/o contraseña son incorrectos. Verifica tus datos y vuelve a intentarlo."
-            );
-            console.log(error.code);
-            console.log(error.message);
-            setSubmitting(false);
-          });
-        setSubmitting(false);
+          // fetch user info from database
+          const dbStudent = await API.fetchStudentByUID(fbUser.user.uid).then(
+            (res) => res.data
+          );
+
+          // if there's a purchase pending, redirect user to payment page
+          if (purchase)
+            window.location.href = `/payment/${purchase.school}/${purchase.courseId}`;
+
+          // if not then send user to dashboard
+          dispatch(loginStudent(dbStudent));
+        } catch (err) {
+          console.log("err", err);
+          alert("Ha ocurrido un error, por favor verifica tus datos.");
+          firebaseAuth.signOut();
+          setSubmitting(false);
+        }
       }}
     >
       {({
