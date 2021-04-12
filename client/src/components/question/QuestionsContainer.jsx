@@ -144,21 +144,26 @@ export const QuestionsContainer = React.memo(
     };
 
     const pushFreestyleAttempt = () => {
-      API.registerFreestyleAttempt({
-        courseId: course._id,
-        score: score,
-        studentId: student._id,
-        topicId: exam.topicId,
-        username: student.username,
-      })
-        .then(() => setShowScoreModal(true))
-        .catch((err) => {
-          console.log("error", err);
-          alert(
-            "Ocurrió un error en el servidor, no se pudo registrar su calificación."
-          );
-          window.location.href = "/";
-        });
+      // ignore the user test luis@test.com
+      const isStudentTest = student.email === "luis@test.com";
+      if (!isStudentTest) {
+        API.registerFreestyleAttempt({
+          courseId: course._id,
+          score: score,
+          studentId: student._id,
+          topicId: exam.topicId,
+          username: student.username,
+        })
+          .then(() => setShowScoreModal(true))
+          .catch((err) => {
+            console.log("error", err);
+            alert(
+              "Ocurrió un error en el servidor, no se pudo registrar su calificación."
+            );
+            window.location.href = "/";
+          });
+      }
+      if (isStudentTest) setShowScoreModal(true);
     };
 
     const pushRegularAttempt = (corrects, incorrects, grade) => {

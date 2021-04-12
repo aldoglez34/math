@@ -6,7 +6,6 @@ import { CourseInfoCard } from "./components";
 import API from "../../utils/API";
 import { BackButton } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { clearPurchase } from "../../redux/actions/purchase";
 
 import styles from "./courseinfopage.module.scss";
 
@@ -22,8 +21,6 @@ export const CourseInfoPage = React.memo((props) => {
   const studentId = (student && student._id) || "Guest";
 
   useEffect(() => {
-    if (purchase) dispatch(clearPurchase());
-
     API.fetchCoursesBySchool(school, studentId)
       .then((res) => setCourses(res.data))
       .catch((err) => {
