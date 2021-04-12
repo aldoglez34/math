@@ -68,7 +68,6 @@ export const DashboardCourseCard = React.memo(({ course }) => {
           }
         >
           <strong>Abrir</strong>
-          <i className="fas fa-sign-in-alt ml-2" />
         </Button>
       </Card.Body>
     </Card>

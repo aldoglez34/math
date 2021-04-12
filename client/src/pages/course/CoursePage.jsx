@@ -38,7 +38,6 @@ export const CoursePage = React.memo((props) => {
   // if there's an error with the redux data, send the user back to the dashboard
   useEffect(() => {
     if (!reduxCourse || !reduxStudent) {
-      alert("Ocurrió un error. Intenta nuevamente o vuelve a iniciar sesión.");
       window.location.href = "/dashboard";
     }
   }, [reduxCourse, reduxStudent]);

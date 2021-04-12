@@ -79,6 +79,7 @@ router.put("/registerAttempt", async (req, res) => {
     topicId,
   } = req.body;
 
+  // helpers
   const isExamApproved = grade >= 8;
   const isPerfectGrade = grade === 10;
   const isLastExam = examDifficulty === "Advanced";
