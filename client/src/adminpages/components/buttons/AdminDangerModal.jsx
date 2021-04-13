@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Image, Modal } from "react-bootstrap";
 import { func, node, string } from "prop-types";
 import cn from "classnames";
 
@@ -23,15 +23,22 @@ export const AdminDangerModal = React.memo(
           {icon}
         </Button>
 
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Body>
-            <div className="lead text-center mt-3">{modalText}</div>
+        <Modal show={show} onHide={handleClose} centered>
+          <Modal.Body className="bg-light rounded shadow text-center py-4">
+            <Image
+              className="mb-3"
+              height="130"
+              src="/images/trash.png"
+              width="130"
+            />
+            <div className="lead text-center mt-2">{modalText}</div>
             <div className="d-flex flex-row justify-content-center mt-4">
-              <Button variant="danger" onClick={deleteFn}>
-                Borrar
-              </Button>
-              <Button variant="dark" className="ml-2" onClick={handleClose}>
+              <Button variant="dark" onClick={handleClose}>
                 Cancelar
+              </Button>
+              <Button variant="danger" className="ml-2" onClick={deleteFn}>
+                Borrar
+                <i className="fas fa-trash-alt ml-2" />
               </Button>
             </div>
           </Modal.Body>

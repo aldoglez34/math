@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Badge, Col, Container, Row } from "react-bootstrap";
+import { Button, Badge, Col, Container, Row } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import {
-  AdminPrimaryButton,
+  AdminDangerModal,
   AdminLayout,
   AdminModal,
+  AdminPrimaryButton,
   AdminSpinner,
   ImageFromFirebase,
 } from "../components";
@@ -80,6 +81,8 @@ export const AdminTopicDetailPage = React.memo((props) => {
         alert("Ocurrió un error, vuelve a intentarlo.");
       });
   };
+
+  const handleDeleteTopic = () => undefined;
 
   return topic ? (
     <AdminLayout
@@ -222,6 +225,19 @@ export const AdminTopicDetailPage = React.memo((props) => {
                   );
                 })}
             </div>
+          </Col>
+        </Row>
+        {/* delete */}
+        <Row>
+          <Col className="d-flex">
+            <AdminDangerModal
+              deleteFn={handleDeleteTopic}
+              icon="Eliminar"
+              modalText={`¿Estás seguro que deseas borrar este tema?`}
+            />
+            {/* <Button className="mt-3" variant="danger">
+              Eliminar
+            </Button> */}
           </Col>
         </Row>
       </Container>
