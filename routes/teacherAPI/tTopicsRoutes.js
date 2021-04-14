@@ -256,4 +256,43 @@ router.put("/update/order", function (req, res) {
     .catch((err) => console.log(err));
 });
 
+// t_deleteTopic()
+// matches with /teacherAPI/topics/delete
+router.put("/delete", async (req, res) => {
+  const { courseId, topicId } = req.body;
+
+  try {
+    // first get the ids of the exams that belong to this topic
+    // const examsIds = await model.Course.findById(courseId)
+    //   .select("topics")
+    //   .then(
+    //     ({ topics }) =>
+    //       topics.filter((t) => String(t._id) === String(topicId))[0].exams
+    //   );
+
+    // // then remove all the exams from the Exam model
+    // await model.Exam.deleteMany({ _id: examsIds });
+
+    // // delete the topic from the course collection
+    // await model.Course.findOneAndUpdate(
+    //   { _id: courseId },
+    //   { $pull: { topics: { _id: topicId } } }
+    // );
+
+    // to delete all the remaining keys in the Student collection, first get a list of all the students in the db
+    const studentsIds = await model.Student.find({})
+      .select("_id")
+      .then((ids) => ids.map((i) => i._id));
+
+    // delete exams from student
+    // await model.Student.
+
+
+    // res.status(200).send("El tema fue borrado con éxito.");
+  } catch (err) {
+    console.log("@error", err);
+    res.status(422).send("Ocurrió un error");
+  }
+});
+
 module.exports = router;

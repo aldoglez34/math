@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Badge, Col, Container, Row } from "react-bootstrap";
+import { Badge, Col, Container, Row } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import {
   AdminDangerModal,
@@ -27,6 +27,7 @@ export const AdminTopicDetailPage = React.memo((props) => {
   const dispatch = useDispatch();
 
   const courseName = useSelector((state) => state.admin.course.courseName);
+  const reduxTopic = useSelector((state) => state.admin.topic);
 
   const [topic, setTopic] = useState();
 
@@ -82,9 +83,15 @@ export const AdminTopicDetailPage = React.memo((props) => {
       });
   };
 
-  const handleDeleteTopic = () => {
-    console.log("deleting topic");
-    console.log("deleting topic");
+  const handleDeleteTopic = async () => {
+    try {
+      const deleteRes = await TeacherAPI.t_deleteTopic({ courseId, topicId });
+      if (deleteRes.status === 200)
+        window.location.href = `/admin/courses/edit/${courseId}`;
+    } catch (err) {
+      console.log(err);
+      alert("Ocurrió un error al intentar borrar el tema.");
+    }
   };
 
   return topic ? (
@@ -236,7 +243,7 @@ export const AdminTopicDetailPage = React.memo((props) => {
             <AdminDangerModal
               deleteFn={handleDeleteTopic}
               icon="Eliminar"
-              modalText={`¿Estás seguro que deseas borrar este tema?`}
+              modalText={`¿Estás seguro que deseas borrar el tema: ${reduxTopic.topicName}?`}
               variant="filled"
             />
           </Col>

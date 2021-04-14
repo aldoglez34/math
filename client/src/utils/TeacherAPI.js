@@ -56,6 +56,8 @@ export default {
   t_updateTopicOrder: (data) =>
     axios.put("/teacherAPI/topics/update/order", data),
 
+  t_deleteTopic: (data) => axios.put("/teacherAPI/topics/delete", data),
+
   // ==============================================
   // MATERIAL
   // ==============================================
