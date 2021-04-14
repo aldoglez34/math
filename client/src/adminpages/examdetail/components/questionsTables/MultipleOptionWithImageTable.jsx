@@ -36,7 +36,7 @@ export const MultipleOptionWithImageTable = React.memo(({ questions }) => {
     <Row>
       <Col>
         <h4 className="my-3">
-          Preguntas opción múltiple{` (${questions.length})`}
+          Preguntas de opción múltiple con imagen{` (${questions.length})`}
         </h4>
         <div className="mt-2 d-flex flex-column">
           <Table bordered striped size="sm">
@@ -109,6 +109,7 @@ export const MultipleOptionWithImageTable = React.memo(({ questions }) => {
                     <td className="align-middle">{q.qComment}</td>
                     <td className="text-center align-middle">
                       <AdminDangerModal
+                        variant="transparent"
                         icon={<i className="fas fa-times" />}
                         deleteFn={() =>
                           handleDeleteQuestion(

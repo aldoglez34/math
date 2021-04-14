@@ -50,6 +50,7 @@ export const DraggableMaterial = ({
               {m.type === "pdf" && <i className="fas fa-file-pdf mr-2" />}
               {m.name}
               <AdminDangerModal
+                variant="transparent"
                 deleteFn={() => handleDeleteMaterialItem(m.type, m._id, m.link)}
                 icon={<i className="fas fa-times" />}
                 modalText={`¿Estás seguro que deseas borrar este ${m.type}?`}

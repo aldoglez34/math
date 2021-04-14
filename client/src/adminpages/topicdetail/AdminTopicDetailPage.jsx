@@ -82,7 +82,10 @@ export const AdminTopicDetailPage = React.memo((props) => {
       });
   };
 
-  const handleDeleteTopic = () => undefined;
+  const handleDeleteTopic = () => {
+    console.log("deleting topic");
+    console.log("deleting topic");
+  };
 
   return topic ? (
     <AdminLayout
@@ -208,7 +211,7 @@ export const AdminTopicDetailPage = React.memo((props) => {
                   const path = `/admin/courses/edit/exam/${courseId}/${topicId}/${e._id}`;
                   const badgeText = `${e.actualQCounter}/${e.qCounter}`;
                   const variant =
-                    e.actualQCounter >= e.qCounter ? "dark" : "danger";
+                    e.actualQCounter >= e.qCounter ? "success" : "warning";
                   return (
                     <span key={e._id}>
                       <strong style={{ color: "#0f5257" }}>
@@ -229,15 +232,13 @@ export const AdminTopicDetailPage = React.memo((props) => {
         </Row>
         {/* delete */}
         <Row>
-          <Col className="d-flex">
+          <Col className="d-flex mt-2">
             <AdminDangerModal
               deleteFn={handleDeleteTopic}
               icon="Eliminar"
               modalText={`¿Estás seguro que deseas borrar este tema?`}
+              variant="filled"
             />
-            {/* <Button className="mt-3" variant="danger">
-              Eliminar
-            </Button> */}
           </Col>
         </Row>
       </Container>

@@ -24,7 +24,7 @@ export const MultipleOptionQuestionsTable = React.memo(({ questions }) => {
     <Row>
       <Col>
         <h4 className="my-3">
-          Preguntas opción múltiple{` (${questions.length})`}
+          Preguntas de opción múltiple{` (${questions.length})`}
         </h4>
         <div className="mt-2 d-flex flex-column">
           <Table bordered striped size="sm">
@@ -95,6 +95,7 @@ export const MultipleOptionQuestionsTable = React.memo(({ questions }) => {
                     <td className="align-middle">{q.qComment}</td>
                     <td className="text-center align-middle">
                       <AdminDangerModal
+                        variant="transparent"
                         deleteFn={() => handleDeleteQuestion(q._id)}
                         icon={<i className="fas fa-times" />}
                         modalText={`¿Estás seguro que deseas borrar esta pregunta?`}

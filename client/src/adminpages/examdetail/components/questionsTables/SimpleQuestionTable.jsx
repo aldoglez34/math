@@ -79,6 +79,7 @@ export const SimpleQuestionTable = React.memo(({ questions }) => {
                         deleteFn={() => handleDeleteQuestion(q._id)}
                         icon={<i className="fas fa-times" />}
                         modalText={`¿Estás seguro que deseas borrar esta pregunta?`}
+                        variant="transparent"
                       />
                     </td>
                   </tr>

@@ -92,6 +92,7 @@ export const SimpleWithImageQuestionsTable = React.memo(({ questions }) => {
                     <td className="align-middle">{q.qComment}</td>
                     <td className="text-center align-middle">
                       <AdminDangerModal
+                        variant="transparent"
                         deleteFn={() =>
                           handleDeleteQuestion(
                             q._id,

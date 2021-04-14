@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Button, Image, Modal } from "react-bootstrap";
-import { func, node, string } from "prop-types";
+import { func, node, oneOf, string } from "prop-types";
 import cn from "classnames";
 
 import styles from "./admindangermodal.module.scss";
 
 export const AdminDangerModal = React.memo(
-  ({ deleteFn, icon, modalText, ...props }) => {
+  ({ deleteFn, icon, modalText, variant, ...props }) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -14,14 +14,22 @@ export const AdminDangerModal = React.memo(
 
     return (
       <>
-        <Button
-          {...props}
-          className={cn("ml-1", styles.button)}
-          onClick={handleShow}
-          size="sm"
-        >
-          {icon}
-        </Button>
+        {variant === "transparent" && (
+          <Button
+            {...props}
+            className={cn("ml-1", styles.transparent)}
+            onClick={handleShow}
+            size="sm"
+          >
+            {icon}
+          </Button>
+        )}
+        {variant === "filled" && (
+          <Button className="ml-1" variant="danger" onClick={handleShow}>
+            <i className="fas fa-trash-alt mr-2" />
+            Eliminar
+          </Button>
+        )}
 
         <Modal show={show} onHide={handleClose} centered>
           <Modal.Body className="bg-light rounded shadow text-center py-4">
@@ -52,4 +60,5 @@ AdminDangerModal.propTypes = {
   deleteFn: func,
   icon: node.isRequired,
   modalText: string.isRequired,
+  variant: oneOf(["transparent", "filled"]),
 };
