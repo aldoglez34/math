@@ -1,3 +1,5 @@
+const model = require("../../models");
+
 const utils = {
   getNextDifficulty: (diff) => {
     switch (diff) {
@@ -25,7 +27,7 @@ const utils = {
         difficulty: examDifficulties[i],
         examOrderNumber: i + 1,
         name: `${topicName} ${i + 1}`,
-        description: "Descripción del examen",
+        description: "Descripción del examen.",
         duration: 10,
         qCounter: 10,
       };

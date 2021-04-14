@@ -158,66 +158,97 @@ router.put("/new", async (req, res) => {
       (t) => String(t.name).trim() === String(topicName).trim()
     );
 
+    // if new topic exists, send response to the client and interupt the process
+    // syntax has to have a "return" so that it doesn't continue with the next lines
+    if (doesNewTopicExist) {
+      return res
+        .status(500)
+        .send("Un tema con este nombre ya existe en este curso.");
+    }
+
     // get the next topic order number
     const nextTopicOrderNumber = utils.getNextTopicOrderNumber(topics);
 
-    // if a topic with the same name exists, send error to client
-    // if not, add the topic
-    if (doesNewTopicExist) {
-      res.status(500).send("Un tema con este nombre ya existe en este curso");
-    } else {
-      // generate data for 5 exams, one for each difficulty for the new topic
-      const defaultExams = utils.generateDefaultExams(topicName);
+    // generate data for 5 exams, one for each difficulty for the new topic
+    const defaultExams = utils.generateDefaultExams(topicName);
 
-      // insert those 5 exams and get their ids
-      const examIds = await model.Exam.insertMany(defaultExams, {
-        ordered: true,
-      }).then((exams) => exams.map((e) => e._id));
+    // insert those 5 exams and get their ids
+    // also get the id of the basic exam alone
+    const { basicExamId, examIds } = await model.Exam.insertMany(defaultExams, {
+      ordered: true,
+    }).then((exams) => {
+      const examIds = exams.map((e) => e._id);
+      const basicExamId = exams.filter((e) => e.difficulty === "Basic")[0]._id;
+      return { basicExamId, examIds };
+    });
 
-      // data for the new topic
-      const newTopicData = {
-        topicOrderNumber: nextTopicOrderNumber,
-        name: topicName,
-        subject: topicSubject,
-        description: topicDescription,
-        freestyle: {
-          timer: topicFreestyleTimer,
-        },
-        exams: examIds,
-      };
-
-      // push the topic
-      const insertNewTopic = await model.Course.findOneAndUpdate(
-        { _id: courseId },
-        { $push: { topics: newTopicData } },
-        { new: true }
-      ).then(({ topics }) => topics);
-
-      // get the newly created topic data
-      const newlyCreatedTopic = insertNewTopic.filter(
-        (t) => String(t.name).trim() === String(newTopicData.name).trim()
-      )[0];
-
-      // edit the topic to build the reward link
-      // this needs to be done after the topic is created+
-      // because it uses the _id of the newly created topic
-      await model.Course.findOneAndUpdate(
-        { _id: courseId, "topics._id": newlyCreatedTopic._id },
-        {
-          $set: {
-            "topics.$.reward": {
-              link: `${courseId}/${newlyCreatedTopic._id}/rewards/medal`,
-            },
-          },
-        }
+    // get an array of students that need the basic exam of the new topic
+    // these would be students that have purchased the course but don't have the basic exam for this topic
+    const idsOfStudentsThatNeedThisExam = await model.Student.find({})
+      .select("courses exams")
+      .then((allStudents) =>
+        allStudents
+          .filter(
+            (s) =>
+              s.courses.includes(String(courseId)) &&
+              !s.exams.includes(String(basicExamId))
+          )
+          .map((s) => s._id)
       );
 
-      // send back to the client
-      res.json({
-        topicId: newlyCreatedTopic._id,
-        topicName: newlyCreatedTopic.name,
-      });
+    // if theres a student that needs the basic exam of this new topic, push it to the student's exams
+    if (idsOfStudentsThatNeedThisExam.length) {
+      for (const id of idsOfStudentsThatNeedThisExam) {
+        await model.Student.findOneAndUpdate(
+          { _id: String(id) },
+          { $push: { exams: basicExamId } }
+        );
+      }
     }
+
+    // data for the new topic
+    const newTopicData = {
+      topicOrderNumber: nextTopicOrderNumber,
+      name: topicName,
+      subject: topicSubject,
+      description: topicDescription,
+      freestyle: {
+        timer: topicFreestyleTimer,
+      },
+      exams: examIds,
+    };
+
+    // push the topic
+    const insertNewTopic = await model.Course.findOneAndUpdate(
+      { _id: courseId },
+      { $push: { topics: newTopicData } },
+      { new: true }
+    ).then(({ topics }) => topics);
+
+    // get the newly created topic data
+    const newlyCreatedTopic = insertNewTopic.filter(
+      (t) => String(t.name).trim() === String(newTopicData.name).trim()
+    )[0];
+
+    // edit the topic to build the reward link
+    // this needs to be done after the topic is created+
+    // because it uses the _id of the newly created topic
+    await model.Course.findOneAndUpdate(
+      { _id: courseId, "topics._id": newlyCreatedTopic._id },
+      {
+        $set: {
+          "topics.$.reward": {
+            link: `${courseId}/${newlyCreatedTopic._id}/rewards/medal`,
+          },
+        },
+      }
+    );
+
+    // send back to the client
+    res.json({
+      topicId: newlyCreatedTopic._id,
+      topicName: newlyCreatedTopic.name,
+    });
   } catch (err) {
     console.log("@error", err);
     res.status(422).send("Ocurrió un error");
@@ -263,30 +294,55 @@ router.put("/delete", async (req, res) => {
 
   try {
     // first get the ids of the exams that belong to this topic
-    // const examsIds = await model.Course.findById(courseId)
-    //   .select("topics")
-    //   .then(
-    //     ({ topics }) =>
-    //       topics.filter((t) => String(t._id) === String(topicId))[0].exams
-    //   );
+    const examsIds = await model.Course.findById(courseId)
+      .select("topics")
+      .then(
+        ({ topics }) =>
+          topics.filter((t) => String(t._id) === String(topicId))[0].exams
+      );
 
-    // // then remove all the exams from the Exam model
-    // await model.Exam.deleteMany({ _id: examsIds });
+    // then remove all the exams from the Exam model
+    await model.Exam.deleteMany({ _id: examsIds });
 
-    // // delete the topic from the course collection
-    // await model.Course.findOneAndUpdate(
-    //   { _id: courseId },
-    //   { $pull: { topics: { _id: topicId } } }
-    // );
+    // delete the topic from the course collection
+    await model.Course.findOneAndUpdate(
+      { _id: courseId },
+      { $pull: { topics: { _id: topicId } } }
+    );
 
-    // to delete all the remaining keys in the Student collection, first get a list of all the students in the db
-    const studentsIds = await model.Student.find({})
-      .select("_id")
-      .then((ids) => ids.map((i) => i._id));
+    // to delete all the remaining keys in the Student collection
+    // first get all the students ids that have purchased this course
+    const idsOfStudentsThatPurchasedThisCourse = await model.Student.find({})
+      .select("courses")
+      .then((allStudents) =>
+        allStudents
+          .filter((s) => s.courses.includes(String(courseId)))
+          .map((s) => s._id)
+      );
 
-    // delete exams from student
-    // await model.Student.
+    // if there are students that have this course
+    if (idsOfStudentsThatPurchasedThisCourse.length) {
+      for (const id of idsOfStudentsThatPurchasedThisCourse) {
+        // delete rewards (by topic)
+        // await model.Student.findOneAndUpdate(
+        //   { _id: String(id) },
+        //   { $pull: { exams: { _id: topicId } } }
+        // );
 
+        // delete exams (exam by exam)
+        // delete attempts (exam by exam)
+        // delete perfectGrades (exam by exam)
+      }
+    }
+
+    // async function printFiles() {
+    //   const files = await getFilePaths();
+
+    //   for (const file of files) {
+    //     const contents = await fs.readFile(file, "utf8");
+    //     console.log(contents);
+    //   }
+    // }
 
     // res.status(200).send("El tema fue borrado con éxito.");
   } catch (err) {
