@@ -324,10 +324,10 @@ router.put("/delete", async (req, res) => {
     if (idsOfStudentsThatPurchasedThisCourse.length) {
       for (const id of idsOfStudentsThatPurchasedThisCourse) {
         // delete rewards (by topic)
-        // await model.Student.findOneAndUpdate(
-        //   { _id: String(id) },
-        //   { $pull: { exams: { _id: topicId } } }
-        // );
+        await model.Student.findOneAndUpdate(
+          { _id: String(id) },
+          { $pull: { rewards: { topicId: topicId } } }
+        );
 
         // delete exams (exam by exam)
         // delete attempts (exam by exam)
