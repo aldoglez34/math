@@ -23,6 +23,7 @@ export const Leaderboards = ({ topicId }) => {
         .then((res) => setTop10(res.data))
         .catch((err) => console.log(err));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [show]);
 
   return (

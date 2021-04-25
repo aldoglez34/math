@@ -323,28 +323,22 @@ router.put("/delete", async (req, res) => {
     // if there are students that have this course
     if (idsOfStudentsThatPurchasedThisCourse.length) {
       for (const id of idsOfStudentsThatPurchasedThisCourse) {
-        // delete rewards (by topic)
+        // delete rewards, exams, attempts and perfect grades
         await model.Student.findOneAndUpdate(
           { _id: String(id) },
-          { $pull: { rewards: { topicId: topicId } } }
+          {
+            $pull: {
+              rewards: { topicId: topicId },
+              exams: { $in: examsIds },
+              attempts: { exam: { $in: examsIds } },
+              perfectGrades: { $in: examsIds },
+            },
+          }
         );
-
-        // delete exams (exam by exam)
-        // delete attempts (exam by exam)
-        // delete perfectGrades (exam by exam)
       }
     }
 
-    // async function printFiles() {
-    //   const files = await getFilePaths();
-
-    //   for (const file of files) {
-    //     const contents = await fs.readFile(file, "utf8");
-    //     console.log(contents);
-    //   }
-    // }
-
-    // res.status(200).send("El tema fue borrado con éxito.");
+    res.status(200).send("El tema fue borrado con éxito.");
   } catch (err) {
     console.log("@error", err);
     res.status(422).send("Ocurrió un error");

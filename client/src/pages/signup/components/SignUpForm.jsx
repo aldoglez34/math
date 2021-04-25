@@ -93,7 +93,9 @@ export const SignUpForm = () => {
             window.location.href = `/payment/${purchase.school}/${purchase.courseId}`;
         } catch (err) {
           console.log("err", err);
-          alert("Ha ocurrido un error, por favor verifica tus datos.");
+          alert(
+            "Ha ocurrido un error, por favor verifica tus datos.\nEs posible que tu cuenta de correo ya exista en MeXmáticas."
+          );
           firebaseAuth.signOut();
           setSubmitting(false);
         }

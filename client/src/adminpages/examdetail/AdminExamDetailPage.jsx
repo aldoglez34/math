@@ -7,11 +7,12 @@ import {
   ExamDurationForm,
   ExamNameForm,
   ExamQCounterForm,
-  ImageWithTwoAnswersTable,
   ImageWithTwoAnswers,
+  ImageWithTwoAnswersTable,
   MultipleOptionForm,
   MultipleOptionQuestionsTable,
   MultipleOptionWithImage,
+  MultipleOptionWithImageTable,
   NewQuestionModal,
   SimpleQuestionForm,
   SimpleQuestionTable,
@@ -19,10 +20,13 @@ import {
   SimpleWithImageQuestionsTable,
   SimpleWithTwoAnswersForm,
   SimpleWithTwoAnswersTable,
-  MultipleOptionWithImageTable,
 } from "./components";
 import { useDispatch, useSelector } from "react-redux";
 import { setExam, setTitle } from "../../redux/actions/admin";
+import { HashLink as Link } from "react-router-hash-link";
+import cn from "classnames";
+
+import styles from "./adminexamdetailpage.module.scss";
 
 export const AdminExamDetailPage = React.memo((props) => {
   const dispatch = useDispatch();
@@ -32,22 +36,76 @@ export const AdminExamDetailPage = React.memo((props) => {
   const courseName = useSelector((state) => state.admin.course.courseName);
   const topicName = useSelector((state) => state.admin.topic.topicName);
 
+  // questions
   const [simpleQuestions, setSimpleQuestions] = useState([]);
   const [simpleWithImageQuestions, setSimpleWithImageQuestions] = useState([]);
-  const [imageWithTwoAnswers, setImageWithTwoAnswers] = useState([]);
-  const [multipleOptionQuestions, setMultipleOptionQuestions] = useState([]);
   const [
     simpleWithTwoAnswersQuestions,
     setSimpleWithTwoAnswersQuestions,
   ] = useState([]);
+  const [imageWithTwoAnswers, setImageWithTwoAnswers] = useState([]);
+  const [multipleOptionQuestions, setMultipleOptionQuestions] = useState([]);
   const [
     multipleOptionWithImageQuestions,
     setMultipleOptionWithImageQuestions,
   ] = useState([]);
 
+  // url params
   const courseId = props.routeProps.match.params.courseId;
   const topicId = props.routeProps.match.params.topicId;
   const examId = props.routeProps.match.params.examId;
+
+  // exams list used to map in the jsx
+  const examsList = [
+    {
+      name: "Sencilla",
+      form: SimpleQuestionForm,
+      tableHeader: "Preguntas sencillas",
+      table: SimpleQuestionTable,
+      hasQuestions: simpleQuestions.length > 0,
+      data: simpleQuestions,
+    },
+    {
+      name: "Sencilla con imagen",
+      form: SimpleWithImageForm,
+      tableHeader: "Preguntas sencillas con imagen",
+      table: SimpleWithImageQuestionsTable,
+      hasQuestions: simpleWithImageQuestions.length > 0,
+      data: simpleWithImageQuestions,
+    },
+    {
+      name: "Sencilla con 2 respuestas",
+      form: SimpleWithTwoAnswersForm,
+      tableHeader: "Preguntas sencillas con 2 respuestas",
+      table: SimpleWithTwoAnswersTable,
+      hasQuestions: simpleWithTwoAnswersQuestions.length > 0,
+      data: simpleWithTwoAnswersQuestions,
+    },
+    {
+      name: "Imagen con 2 respuestas",
+      form: ImageWithTwoAnswers,
+      tableHeader: "Preguntas con imagen y con 2 respuestas",
+      table: ImageWithTwoAnswersTable,
+      hasQuestions: imageWithTwoAnswers.length > 0,
+      data: imageWithTwoAnswers,
+    },
+    {
+      name: "Opción múltiple",
+      form: MultipleOptionForm,
+      tableHeader: "Preguntas de opción múltiple",
+      table: MultipleOptionQuestionsTable,
+      hasQuestions: multipleOptionQuestions.length > 0,
+      data: multipleOptionQuestions,
+    },
+    {
+      name: "Opción múltiple con imagen",
+      form: MultipleOptionWithImage,
+      tableHeader: "Preguntas de opción múltiple con imagen",
+      table: MultipleOptionWithImageTable,
+      hasQuestions: multipleOptionWithImageQuestions.length > 0,
+      data: multipleOptionWithImageQuestions,
+    },
+  ];
 
   useEffect(() => {
     TeacherAPI.t_fetchExam(examId)
@@ -169,7 +227,7 @@ export const AdminExamDetailPage = React.memo((props) => {
         <Row>
           <Col>
             <span className="text-muted">Descripción</span>
-            <h5>
+            <h5 className="mb-0">
               {exam.description}
               <AdminModal
                 Form={ExamDescriptionForm}
@@ -180,66 +238,49 @@ export const AdminExamDetailPage = React.memo((props) => {
             </h5>
           </Col>
         </Row>
-        {/* NEW QUESTIONS */}
-        <h3 className="text-center mt-4">Nuevas preguntas</h3>
-        <div className="d-flex flex-row justify-content-center mb-3 mt-3">
-          <div>
-            <NewQuestionModal Form={SimpleQuestionForm} text="Sencilla" />
-          </div>
-          <div className="ml-2">
-            <NewQuestionModal
-              Form={SimpleWithImageForm}
-              text="Sencilla con imagen"
-            />
-          </div>
-          <div className="ml-2">
-            <NewQuestionModal
-              Form={SimpleWithTwoAnswersForm}
-              text="Sencilla con 2 respuestas"
-            />
-          </div>
-          <div className="ml-2">
-            <NewQuestionModal
-              Form={ImageWithTwoAnswers}
-              text="Imagen con 2 respuestas"
-            />
-          </div>
-          <div className="ml-2">
-            <NewQuestionModal
-              Form={MultipleOptionForm}
-              text="Opción múltiple"
-            />
-          </div>
-          <div className="ml-2">
-            <NewQuestionModal
-              Form={MultipleOptionWithImage}
-              text="Opción múltiple con imagen"
-            />
-          </div>
-        </div>
-        {/* TABLES */}
-        {simpleQuestions.length ? (
-          <SimpleQuestionTable questions={simpleQuestions} />
-        ) : null}
-        {simpleWithImageQuestions.length ? (
-          <SimpleWithImageQuestionsTable questions={simpleWithImageQuestions} />
-        ) : null}
-        {simpleWithTwoAnswersQuestions.length ? (
-          <SimpleWithTwoAnswersTable
-            questions={simpleWithTwoAnswersQuestions}
-          />
-        ) : null}
-        {imageWithTwoAnswers.length ? (
-          <ImageWithTwoAnswersTable questions={imageWithTwoAnswers} />
-        ) : null}
-        {multipleOptionQuestions.length ? (
-          <MultipleOptionQuestionsTable questions={multipleOptionQuestions} />
-        ) : null}
-        {multipleOptionWithImageQuestions.length ? (
-          <MultipleOptionWithImageTable
-            questions={multipleOptionWithImageQuestions}
-          />
-        ) : null}
+        {/* new questions menu */}
+        <Row>
+          <Col>
+            <span className="text-muted">Nuevas preguntas</span>
+            {examsList.map((e) => {
+              const path = `/admin/courses/edit/exam/${courseId}/${topicId}/${examId}/#${e.name}`;
+              return (
+                <h5 key={e.name} className="m-0">
+                  <Link
+                    className={cn(styles.sendIcon, "rounded", "mr-1")}
+                    smooth
+                    title={`Ir a: ${e.tableHeader}`}
+                    to={path}
+                  >
+                    <i className="fas fa-paper-plane" />
+                  </Link>
+                  {e.name}
+                  {` (${e.data.length})`}
+                  <NewQuestionModal Form={e.form} text={e.name} />
+                </h5>
+              );
+            })}
+          </Col>
+        </Row>
+        <hr />
+        {/* questions tables */}
+        {examsList.map((e) => {
+          return (
+            <Row key={e.name} id={e.name}>
+              <Col>
+                <span className="text-muted">
+                  {e.tableHeader}
+                  {` (${e.data.length})`}
+                </span>
+                {e.hasQuestions ? (
+                  React.createElement(e.table, { questions: e.data }, null)
+                ) : (
+                  <h5>-</h5>
+                )}
+              </Col>
+            </Row>
+          );
+        })}
         <br />
         <br />
       </Container>

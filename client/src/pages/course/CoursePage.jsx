@@ -50,6 +50,7 @@ export const CoursePage = React.memo((props) => {
       const element = document.getElementById(hash);
       if (element) element.scrollIntoView();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [course]);
 
   return (

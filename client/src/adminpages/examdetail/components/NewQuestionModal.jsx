@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { string } from "prop-types";
+import cn from "classnames";
 
-export const NewQuestionModal = React.memo(({ text, Form }) => {
+import styles from "./newquestionmodal.module.scss";
+
+export const NewQuestionModal = React.memo(({ Form, text }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -11,12 +14,11 @@ export const NewQuestionModal = React.memo(({ text, Form }) => {
   return (
     <>
       <Button
-        className="shadow-sm"
+        className={cn("ml-1", styles.button)}
         onClick={handleShow}
         size="sm"
-        variant="dark"
       >
-        <span>{text}</span>
+        <i className="fas fa-plus-circle" />
       </Button>
 
       <Modal show={show} onHide={handleClose} size="lg" backdrop="static">

@@ -58,7 +58,9 @@ export const LoginForm = () => {
           dispatch(loginStudent(dbStudent));
         } catch (err) {
           console.log("err", err);
-          alert("Ha ocurrido un error, por favor verifica tus datos.");
+          alert(
+            "Ha ocurrido un error, por favor verifica que tus datos sean correctos."
+          );
           firebaseAuth.signOut();
           setSubmitting(false);
         }

@@ -85,7 +85,9 @@ export const AdminTopicDetailPage = React.memo((props) => {
 
   const handleDeleteTopic = async () => {
     try {
+      // delete topic from database
       const deleteRes = await TeacherAPI.t_deleteTopic({ courseId, topicId });
+
       if (deleteRes.status === 200)
         window.location.href = `/admin/courses/edit/${courseId}`;
     } catch (err) {
@@ -102,17 +104,27 @@ export const AdminTopicDetailPage = React.memo((props) => {
       <Container fluid>
         {/* topic name */}
         <Row>
-          <Col>
-            <span className="text-muted">Nombre</span>
-            <h1>
-              {topic.name}
-              <AdminModal
-                Form={TopicNameForm}
-                formInitialText={topic.name}
-                formLabel="Nombre"
-                icon={<i className="fas fa-pen-alt" />}
+          <Col className="d-flex">
+            <div>
+              <span className="text-muted">Nombre</span>
+              <h1>
+                {topic.name}
+                <AdminModal
+                  Form={TopicNameForm}
+                  formInitialText={topic.name}
+                  formLabel="Nombre"
+                  icon={<i className="fas fa-pen-alt" />}
+                />
+              </h1>
+            </div>
+            <div className="ml-auto pt-4">
+              <AdminDangerModal
+                deleteFn={handleDeleteTopic}
+                icon="Eliminar"
+                modalText={`¿Estás seguro que deseas borrar el tema: ${reduxTopic.topicName}?`}
+                variant="filled"
               />
-            </h1>
+            </div>
           </Col>
         </Row>
         {/* subject */}
@@ -235,17 +247,6 @@ export const AdminTopicDetailPage = React.memo((props) => {
                   );
                 })}
             </div>
-          </Col>
-        </Row>
-        {/* delete */}
-        <Row>
-          <Col className="d-flex mt-2">
-            <AdminDangerModal
-              deleteFn={handleDeleteTopic}
-              icon="Eliminar"
-              modalText={`¿Estás seguro que deseas borrar el tema: ${reduxTopic.topicName}?`}
-              variant="filled"
-            />
           </Col>
         </Row>
       </Container>

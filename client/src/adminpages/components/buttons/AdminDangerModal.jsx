@@ -14,7 +14,7 @@ export const AdminDangerModal = React.memo(
     const handleShow = () => setShow(true);
 
     const handleDelete = () => {
-      // setIsDeleting(true);
+      setIsDeleting(true);
       deleteFn();
     };
 

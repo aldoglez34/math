@@ -12,7 +12,6 @@ export const AlertModal = React.memo(({ children, image, show }) => {
       className={styles.backgroundPhoto}
       keyboard={false}
       show={show}
-      centered
     >
       <Modal.Body className="bg-light rounded shadow text-center py-4">
         <Image height="130" src={image} width="130" className="mb-3" />

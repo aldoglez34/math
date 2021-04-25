@@ -10,8 +10,8 @@ export const TopicBadge = ({ topicName }) => {
       <Link
         className={styles.topic}
         smooth
-        title={"Ir a " + topicName}
-        to={"/course/#" + topicName}
+        title={`Ir a ${topicName}`}
+        to={`/course/#${topicName}`}
       >
         <strong style={{ fontSize: "17px" }}>
           <i

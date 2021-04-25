@@ -31,7 +31,7 @@ export const StudentDropdown = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [student._id]);
 
   return (
     <NavDropdown

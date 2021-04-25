@@ -31,7 +31,7 @@ export const LandingPage = () => {
     if (exam) dispatch(clearExam());
     if (course) dispatch(clearCourse());
     if (zenMode) dispatch(zenModeOff());
-  }, [adminData, dispatch, purchase]);
+  }, [adminData, course, dispatch, exam, purchase, zenMode]);
 
   return (
     <Layout>

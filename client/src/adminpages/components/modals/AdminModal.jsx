@@ -15,9 +15,9 @@ export const AdminModal = React.memo(
     return (
       <>
         <Button
-          size="sm"
           className={cn("ml-1", styles.button)}
           onClick={handleShow}
+          size="sm"
         >
           {icon}
         </Button>
