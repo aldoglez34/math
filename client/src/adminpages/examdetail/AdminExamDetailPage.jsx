@@ -3,6 +3,10 @@ import { AdminLayout, AdminModal, AdminSpinner } from "../components";
 import { Alert, Col, Container, Row } from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import {
+  DichotomousQuestion,
+  DichotomousQuestionTable,
+  DichotomousQuestionWithImage,
+  DichotomousQuestionWithImageTable,
   ExamDescriptionForm,
   ExamDurationForm,
   ExamNameForm,
@@ -48,6 +52,11 @@ export const AdminExamDetailPage = React.memo((props) => {
   const [
     multipleOptionWithImageQuestions,
     setMultipleOptionWithImageQuestions,
+  ] = useState([]);
+  const [dichotomousQuestions, setDichotomousQuestions] = useState([]);
+  const [
+    dichotomousQuestionsWithImage,
+    setDichotomousQuestionsWithImage,
   ] = useState([]);
 
   // url params
@@ -105,6 +114,22 @@ export const AdminExamDetailPage = React.memo((props) => {
       hasQuestions: multipleOptionWithImageQuestions.length > 0,
       data: multipleOptionWithImageQuestions,
     },
+    {
+      name: "Dicotómica",
+      form: DichotomousQuestion,
+      tableHeader: "Preguntas dicotómicas",
+      table: DichotomousQuestionTable,
+      hasQuestions: dichotomousQuestions.length > 0,
+      data: dichotomousQuestions,
+    },
+    {
+      name: "Dicotómica con imagen",
+      form: DichotomousQuestionWithImage,
+      tableHeader: "Preguntas dicotómicas con imagen",
+      table: DichotomousQuestionWithImageTable,
+      hasQuestions: dichotomousQuestionsWithImage.length > 0,
+      data: dichotomousQuestionsWithImage,
+    },
   ];
 
   useEffect(() => {
@@ -140,6 +165,14 @@ export const AdminExamDetailPage = React.memo((props) => {
         setMultipleOptionWithImageQuestions(
           res.data.questions.filter(
             ({ qType }) => qType === "multipleOptionWithPic"
+          )
+        );
+        setDichotomousQuestions(
+          res.data.questions.filter(({ qType }) => qType === "dichotomous")
+        );
+        setDichotomousQuestionsWithImage(
+          res.data.questions.filter(
+            ({ qType }) => qType === "dichotomousWithPic"
           )
         );
       })

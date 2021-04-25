@@ -5,14 +5,12 @@ import * as yup from "yup";
 import TeacherAPI from "../../../../utils/TeacherAPI";
 import { useSelector } from "react-redux";
 
-export const MultipleOptionForm = () => {
+export const DichotomousQuestion = () => {
   const yupschema = yup.object({
     qInstruction: yup.string().required("Requerido"),
     qTechnicalInstruction: yup.string(),
     qOption1: yup.string().required("Requerido"),
     qOption2: yup.string().required("Requerido"),
-    qOption3: yup.string().required("Requerido"),
-    qOption4: yup.string().required("Requerido"),
     qCorrectAnswers: yup.string().required("Requerido"),
     qComment: yup.string(),
   });
@@ -24,10 +22,8 @@ export const MultipleOptionForm = () => {
       initialValues={{
         qInstruction: "",
         qTechnicalInstruction: "",
-        qOption1: "",
-        qOption2: "",
-        qOption3: "",
-        qOption4: "",
+        qOption1: "Falso",
+        qOption2: "Verdadero",
         qCorrectAnswers: "",
         qComment: "",
       }}
@@ -37,11 +33,6 @@ export const MultipleOptionForm = () => {
 
         values.qInstruction = values.qInstruction.trim();
         values.qTechnicalInstruction = values.qTechnicalInstruction.trim();
-        values.qOption1 = values.qOption1.trim();
-        values.qOption2 = values.qOption2.trim();
-        values.qOption3 = values.qOption3.trim();
-        values.qOption4 = values.qOption4.trim();
-        values.qCorrectAnswers = values.qCorrectAnswers.trim();
         values.qInstructiqCommenton = values.qComment.trim();
 
         values.examId = examId;
@@ -49,15 +40,13 @@ export const MultipleOptionForm = () => {
         const isAnswerIncludedInOptions = [
           String(values.qOption1),
           String(values.qOption2),
-          String(values.qOption3),
-          String(values.qOption4),
         ].includes(String(values.qCorrectAnswers));
 
         if (!isAnswerIncludedInOptions) {
           alert("La respuesta debe estar contenida en las opciones.");
           setSubmitting(false);
         } else {
-          TeacherAPI.t_newMultipleOptionQuestion(values)
+          TeacherAPI.t_newDichotomousQuestion(values)
             .then((res) => {
               console.log(res.data);
               window.location.reload();
@@ -136,7 +125,7 @@ export const MultipleOptionForm = () => {
               />
             </Form.Group>
           </Form.Row>
-          {/* options 1 - 4 */}
+          {/* options 1 - 2 */}
           <Form.Row>
             <Form.Group as={Col}>
               <Form.Label>
@@ -146,6 +135,7 @@ export const MultipleOptionForm = () => {
                 </strong>
               </Form.Label>
               <Form.Control
+                disabled
                 maxLength="25"
                 type="text"
                 name="qOption1"
@@ -169,6 +159,7 @@ export const MultipleOptionForm = () => {
                 </strong>
               </Form.Label>
               <Form.Control
+                disabled
                 maxLength="25"
                 type="text"
                 name="qOption2"
@@ -184,52 +175,6 @@ export const MultipleOptionForm = () => {
                 component="div"
               />
             </Form.Group>
-            <Form.Group as={Col}>
-              <Form.Label>
-                Opción 3
-                <strong className="text-danger" title="Requerido">
-                  *
-                </strong>
-              </Form.Label>
-              <Form.Control
-                maxLength="25"
-                type="text"
-                name="qOption3"
-                value={values.qOption3}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                isValid={touched.qOption3 && !errors.qOption3}
-                isInvalid={touched.qOption3 && !!errors.qOption3}
-              />
-              <ErrorMessage
-                className="text-danger"
-                name="qOption3"
-                component="div"
-              />
-            </Form.Group>
-            <Form.Group as={Col}>
-              <Form.Label>
-                Opción 4
-                <strong className="text-danger" title="Requerido">
-                  *
-                </strong>
-              </Form.Label>
-              <Form.Control
-                maxLength="25"
-                type="text"
-                name="qOption4"
-                value={values.qOption4}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                isValid={touched.qOption4 && !errors.qOption4}
-                isInvalid={touched.qOption4 && !!errors.qOption4}
-              />
-              <ErrorMessage
-                className="text-danger"
-                name="qOption4"
-                component="div"
-              />
-            </Form.Group>
           </Form.Row>
           {/* correct answer */}
           <Form.Row>
@@ -241,15 +186,19 @@ export const MultipleOptionForm = () => {
                 </strong>
               </Form.Label>
               <Form.Control
-                maxLength="25"
+                as="select"
                 type="text"
                 name="qCorrectAnswers"
-                value={values.qCorrectAnswers}
+                defaultValue="Elige..."
                 onChange={handleChange}
                 onBlur={handleBlur}
                 isValid={touched.qCorrectAnswers && !errors.qCorrectAnswers}
                 isInvalid={touched.qCorrectAnswers && !!errors.qCorrectAnswers}
-              />
+              >
+                <option disabled>Elige...</option>
+                <option value="Falso">Falso</option>
+                <option value="Verdadero">Verdadero</option>
+              </Form.Control>
               <ErrorMessage
                 className="text-danger"
                 name="qCorrectAnswers"

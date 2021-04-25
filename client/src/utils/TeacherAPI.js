@@ -136,5 +136,11 @@ export default {
   t_newMultipleOptionWithImage: (data) =>
     axios.post("/teacherAPI/questions/multipleOptionWithImage/new", data),
 
+  t_newDichotomousQuestion: (data) =>
+    axios.post("/teacherAPI/questions/dichotomousQuestion/new", data),
+
+  t_newDichotomousQuestionWithImage: (data) =>
+    axios.post("/teacherAPI/questions/dichotomousQuestionWithImage/new", data),
+
   t_deleteQuestion: (data) => axios.put("/teacherAPI/questions/delete", data),
 };

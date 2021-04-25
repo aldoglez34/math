@@ -91,7 +91,6 @@ router.post("/simpleWithImage/new", function (req, res) {
     });
 });
 
-// ==========================================================
 // t_newImageWithTwoAnswersQuestion()
 // matches with /teacherAPI/questions/imageWithTwoAnswers/new
 router.post("/imageWithTwoAnswers/new", function (req, res) {
@@ -209,7 +208,7 @@ router.post("/multipleOption/new", function (req, res) {
     },
     qCorrectAnswers: [
       {
-        answer: req.body.qCorrectAnswer,
+        answer: req.body.qCorrectAnswers,
       },
     ],
     qComment: req.body.qComment,
@@ -252,6 +251,94 @@ router.post("/multipleOptionWithImage/new", function (req, res) {
         answer: req.body.qCorrectAnswers,
         complementLeft: req.body.qCALeft,
         complementRight: req.body.qCARight,
+      },
+    ],
+    qComment: req.body.qComment,
+  };
+
+  model.Exam.findOneAndUpdate(
+    { _id: req.body.examId },
+    { $push: { questions: newQuestion } },
+    { new: true } // return the updated object
+  )
+    .then((exam) => {
+      const questionId = exam.questions[exam.questions.length - 1]._id;
+
+      const firebasePath = `${courseId}/${topicId}/exams/${examId}/${questionId}/imagen`;
+
+      // now rename the question link in mongo
+      model.Exam.findOneAndUpdate(
+        { _id: req.body.examId, "questions._id": questionId },
+        {
+          $set: { "questions.$.qTechnicalInstruction.imageLink": firebasePath },
+        }
+      )
+        .then(() => res.send(questionId))
+        .catch((err) => {
+          console.log("@error", err);
+          res.status(422).send("Ocurrió un error.");
+        });
+    })
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error.");
+    });
+});
+
+// t_newDichotomousQuestion()
+// matches with /teacherAPI/questions/dichotomousQuestion/new
+router.post("/dichotomousQuestion/new", function (req, res) {
+  const newQuestion = {
+    qType: "dichotomous",
+    qInstruction: req.body.qInstruction,
+    qTechnicalInstruction: req.body.qTechnicalInstruction
+      ? {
+          type: "text",
+          text: req.body.qTechnicalInstruction,
+        }
+      : null,
+    qMultipleChoice: {
+      type: "text",
+      textChoices: [req.body.qOption1, req.body.qOption2],
+    },
+    qCorrectAnswers: [
+      {
+        answer: req.body.qCorrectAnswers,
+      },
+    ],
+    qComment: req.body.qComment,
+  };
+
+  model.Exam.findOneAndUpdate(
+    { _id: req.body.examId },
+    { $push: { questions: newQuestion } }
+  )
+    .then(() => res.send("La pregunta fue agregada con éxito."))
+    .catch((err) => {
+      console.log("@error", err);
+      res.status(422).send("Ocurrió un error");
+    });
+});
+
+// t_newDichotomousQuestionWithImage()
+// matches with /teacherAPI/questions/dichotomousQuestionWithImage/new
+router.post("/dichotomousQuestionWithImage/new", function (req, res) {
+  const { courseId, examId, topicId } = req.body;
+
+  const newQuestion = {
+    qType: "dichotomousWithPic",
+    qInstruction: req.body.qInstruction,
+    qTechnicalInstruction: {
+      type: "image",
+      imageLink: "temp",
+    },
+    qMultipleChoice: {
+      type: "text",
+      textChoices: [req.body.qOption1, req.body.qOption2],
+    },
+    qCorrectAnswers: [
+      {
+        answer: req.body.qCorrectAnswers,
       },
     ],
     qComment: req.body.qComment,
