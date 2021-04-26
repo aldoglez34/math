@@ -332,7 +332,7 @@ export const QuestionsContainer = React.memo(
                         question.qComment.split("\\n").map((c) => {
                           return (
                             <span key={c} className="d-block text-muted">
-                              {c}
+                              {String(c).trim()}
                             </span>
                           );
                         })}

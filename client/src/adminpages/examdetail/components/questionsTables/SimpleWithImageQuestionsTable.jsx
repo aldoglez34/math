@@ -86,7 +86,16 @@ export const SimpleWithImageQuestionsTable = React.memo(({ questions }) => {
                         `${q.qCorrectAnswers[0].complementLeft} ${q.qCorrectAnswers[0].answer} ${q.qCorrectAnswers[0].complementRight}`
                       ).trim()}
                     </td>
-                    <td className="align-middle">{q.qComment}</td>
+                    <td className="align-middle">
+                      {q.qComment &&
+                        q.qComment.split("\\n").map((c) => {
+                          return (
+                            <span key={c} className="d-block text-muted">
+                              {String(c).trim()}
+                            </span>
+                          );
+                        })}
+                    </td>
                     <td className="text-center align-middle">
                       <AdminDangerModal
                         variant="transparent"

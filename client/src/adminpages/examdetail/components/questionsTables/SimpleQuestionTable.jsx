@@ -4,6 +4,7 @@ import { array } from "prop-types";
 import { useSelector } from "react-redux";
 import { AdminDangerModal } from "../../../components";
 import TeacherAPI from "../../../../utils/TeacherAPI";
+import { EditQuestionModal, SimpleQuestionForm } from "../";
 
 export const SimpleQuestionTable = React.memo(({ questions }) => {
   const courseId = useSelector((state) => state.admin.course.courseId);
@@ -60,28 +61,43 @@ export const SimpleQuestionTable = React.memo(({ questions }) => {
             <tbody>
               {questions.map((q) => {
                 return (
-                  <tr key={q._id}>
-                    <td className="align-middle">{q.qInstruction}</td>
-                    <td className="align-middle">
-                      {q.qTechnicalInstruction
-                        ? q.qTechnicalInstruction.text
-                        : null}
-                    </td>
-                    <td className="align-middle">
-                      {String(
-                        `${q.qCorrectAnswers[0].complementLeft} ${q.qCorrectAnswers[0].answer} ${q.qCorrectAnswers[0].complementRight}`
-                      ).trim()}
-                    </td>
-                    <td className="align-middle">{q.qComment}</td>
-                    <td className="text-center align-middle">
-                      <AdminDangerModal
-                        deleteFn={() => handleDeleteQuestion(q._id)}
-                        icon={<i className="fas fa-times" />}
-                        modalText={`¿Estás seguro que deseas borrar esta pregunta?`}
-                        variant="transparent"
-                      />
-                    </td>
-                  </tr>
+                  <React.Fragment key={q._id}>
+                    <tr>
+                      <td className="align-middle">{q.qInstruction}</td>
+                      <td className="align-middle">
+                        {q.qTechnicalInstruction
+                          ? q.qTechnicalInstruction.text
+                          : null}
+                      </td>
+                      <td className="align-middle">
+                        {String(
+                          `${q.qCorrectAnswers[0].complementLeft} ${q.qCorrectAnswers[0].answer} ${q.qCorrectAnswers[0].complementRight}`
+                        ).trim()}
+                      </td>
+                      <td className="align-middle">
+                        {q.qComment &&
+                          q.qComment.split("\\n").map((c) => {
+                            return (
+                              <span key={c} className="d-block text-muted">
+                                {String(c).trim()}
+                              </span>
+                            );
+                          })}
+                      </td>
+                      <td className="text-center align-middle">
+                        <EditQuestionModal
+                          Form={SimpleQuestionForm}
+                          text="Editar pregunta"
+                        />
+                        <AdminDangerModal
+                          deleteFn={() => handleDeleteQuestion(q._id)}
+                          icon={<i className="fas fa-times" />}
+                          modalText={`¿Estás seguro que deseas borrar esta pregunta?`}
+                          variant="transparent"
+                        />
+                      </td>
+                    </tr>
+                  </React.Fragment>
                 );
               })}
             </tbody>

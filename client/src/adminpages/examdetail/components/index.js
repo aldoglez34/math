@@ -21,4 +21,5 @@ export * from "./questionsTables/SimpleQuestionTable";
 export * from "./questionsTables/SimpleWithImageQuestionsTable";
 export * from "./questionsTables/SimpleWithTwoAnswersTable";
 
-export * from "./NewQuestionModal";
+export * from "./modals/NewQuestionModal";
+export * from "./modals/EditQuestionModal";

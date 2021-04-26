@@ -300,7 +300,7 @@ export const ImageWithTwoAnswers = () => {
             <Form.Group as={Col}>
               <Form.Label>
                 Comentario{" "}
-                <small>(Utiliza el símbolo /n para saltos de línea)</small>
+                <small>(Utiliza el símbolo \n para saltos de línea)</small>
               </Form.Label>
               <Form.Control
                 maxLength="500"

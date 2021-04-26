@@ -89,7 +89,16 @@ export const DichotomousQuestionTable = React.memo(({ questions }) => {
                     <td className="align-middle">
                       {q.qCorrectAnswers[0].answer}
                     </td>
-                    <td className="align-middle">{q.qComment}</td>
+                    <td className="align-middle">
+                      {q.qComment &&
+                        q.qComment.split("\\n").map((c) => {
+                          return (
+                            <span key={c} className="d-block text-muted">
+                              {String(c).trim()}
+                            </span>
+                          );
+                        })}
+                    </td>
                     <td className="text-center align-middle">
                       <AdminDangerModal
                         variant="transparent"
