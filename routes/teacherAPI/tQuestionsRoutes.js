@@ -3,7 +3,9 @@ const model = require("../../models");
 
 // t_newSimpleQuestion()
 // matches with /teacherAPI/questions/simpleQuestion/new
-router.post("/simpleQuestion/new", function (req, res) {
+router.post("/simpleQuestion/new", async (req, res) => {
+  const { isEdition, questionId } = req.body;
+
   const newQuestion = {
     qType: "simple",
     qInstruction: req.body.qInstruction,
@@ -23,21 +25,36 @@ router.post("/simpleQuestion/new", function (req, res) {
     qComment: req.body.qComment,
   };
 
-  model.Exam.findOneAndUpdate(
-    { _id: req.body.examId },
-    {
-      $push: {
-        questions: newQuestion,
-      },
-    }
-  )
-    .then(() => {
+  try {
+    if (!isEdition) {
+      await model.Exam.findOneAndUpdate(
+        { _id: req.body.examId },
+        {
+          $push: {
+            questions: newQuestion,
+          },
+        }
+      );
+
       res.send("La pregunta fue agregada con éxito.");
-    })
-    .catch((err) => {
-      console.log("@error", err);
-      res.status(422).send("Ocurrió un error");
-    });
+    }
+
+    if (isEdition && questionId) {
+      await model.Exam.update(
+        { _id: req.body.examId, "questions._id": questionId },
+        {
+          $set: {
+            "questions.$": newQuestion,
+          },
+        }
+      );
+
+      res.send("La pregunta fue editada con éxito.");
+    }
+  } catch (err) {
+    console.log("@error", err);
+    res.status(422).send("Ocurrió un error");
+  }
 });
 
 // t_newSimpleWithImageQuestion()

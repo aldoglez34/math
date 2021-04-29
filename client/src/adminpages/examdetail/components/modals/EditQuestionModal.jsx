@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { string } from "prop-types";
+import { object, string } from "prop-types";
 import cn from "classnames";
 
 import styles from "./editquestionmodal.module.scss";
 
-export const EditQuestionModal = React.memo(({ Form, text }) => {
+export const EditQuestionModal = React.memo(({ Form, question, text }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -34,7 +34,7 @@ export const EditQuestionModal = React.memo(({ Form, text }) => {
             </Button>
           </div>
           <div className="my-3">
-            <Form />
+            <Form question={question} />
           </div>
         </Modal.Body>
       </Modal>
@@ -43,5 +43,6 @@ export const EditQuestionModal = React.memo(({ Form, text }) => {
 });
 
 EditQuestionModal.propTypes = {
+  question: object.isRequired,
   text: string.isRequired,
 };

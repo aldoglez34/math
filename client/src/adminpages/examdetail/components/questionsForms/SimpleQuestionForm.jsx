@@ -4,15 +4,16 @@ import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeacherAPI from "../../../../utils/TeacherAPI";
 import { useSelector } from "react-redux";
+import { object } from "prop-types";
 
-export const SimpleQuestionForm = () => {
+export const SimpleQuestionForm = ({ question }) => {
   const yupschema = yup.object({
-    qInstruction: yup.string().required("Requerido"),
-    qTechnicalInstruction: yup.string(),
-    qCorrectAnswers: yup.string().required("Requerido"),
     qCALeft: yup.string(),
     qCARight: yup.string(),
     qComment: yup.string(),
+    qCorrectAnswers: yup.string().required("Requerido"),
+    qInstruction: yup.string().required("Requerido"),
+    qTechnicalInstruction: yup.string(),
   });
 
   const examId = useSelector((state) => state.admin.exam.examId);
@@ -20,12 +21,12 @@ export const SimpleQuestionForm = () => {
   return (
     <Formik
       initialValues={{
-        qInstruction: "",
-        qTechnicalInstruction: "",
-        qCorrectAnswers: "",
-        qCALeft: "",
-        qCARight: "",
-        qComment: "",
+        qInstruction: question?.qInstruction || "",
+        qTechnicalInstruction: question?.qTechnicalInstruction?.text || "",
+        qCorrectAnswers: question?.qCorrectAnswers[0].answer || "",
+        qCALeft: question?.qCorrectAnswers[0].complementLeft || "",
+        qCARight: question?.qCorrectAnswers[0].complementRight || "",
+        qComment: question?.qComment || "",
       }}
       validationSchema={yupschema}
       onSubmit={(values, { setSubmitting }) => {
@@ -37,6 +38,9 @@ export const SimpleQuestionForm = () => {
         values.qCARight = values.qCARight.trim();
         values.qComment = values.qComment.trim();
         values.examId = examId;
+
+        values.isEdition = question ? true : false;
+        values.questionId = question?._id;
 
         TeacherAPI.t_newSimpleQuestion(values)
           .then((res) => {
@@ -214,4 +218,8 @@ export const SimpleQuestionForm = () => {
       )}
     </Formik>
   );
+};
+
+SimpleQuestionForm.propTypes = {
+  question: object,
 };

@@ -87,6 +87,7 @@ export const SimpleQuestionTable = React.memo(({ questions }) => {
                       <td className="text-center align-middle">
                         <EditQuestionModal
                           Form={SimpleQuestionForm}
+                          question={q}
                           text="Editar pregunta"
                         />
                         <AdminDangerModal
