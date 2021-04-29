@@ -4,6 +4,7 @@ import { array } from "prop-types";
 import { useSelector } from "react-redux";
 import { AdminDangerModal } from "../../../components";
 import TeacherAPI from "../../../../utils/TeacherAPI";
+import { DichotomousQuestion, EditQuestionModal } from "../";
 
 export const DichotomousQuestionTable = React.memo(({ questions }) => {
   const courseId = useSelector((state) => state.admin.course.courseId);
@@ -93,13 +94,18 @@ export const DichotomousQuestionTable = React.memo(({ questions }) => {
                       {q.qComment &&
                         q.qComment.split("\\n").map((c) => {
                           return (
-                            <span key={c} className="d-block text-muted">
+                            <span key={c} className="d-block">
                               {String(c).trim()}
                             </span>
                           );
                         })}
                     </td>
                     <td className="text-center align-middle">
+                      <EditQuestionModal
+                        Form={DichotomousQuestion}
+                        question={q}
+                        text="Editar pregunta"
+                      />
                       <AdminDangerModal
                         variant="transparent"
                         deleteFn={() => handleDeleteQuestion(q._id)}

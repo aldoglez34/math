@@ -166,7 +166,9 @@ router.post("/imageWithTwoAnswers/new", function (req, res) {
 
 // t_newSimpleWithTwoAnswersQuestion()
 // matches with /teacherAPI/questions/simpleWithTwoAnswers/new
-router.post("/simpleWithTwoAnswers/new", function (req, res) {
+router.post("/simpleWithTwoAnswers/new", async (req, res) => {
+  const { isEdition, questionId } = req.body;
+
   const newQuestion = {
     qType: "twoAnswers",
     qInstruction: req.body.qInstruction,
@@ -191,20 +193,39 @@ router.post("/simpleWithTwoAnswers/new", function (req, res) {
     qComment: req.body.qComment,
   };
 
-  model.Exam.findOneAndUpdate(
-    { _id: req.body.examId },
-    { $push: { questions: newQuestion } }
-  )
-    .then(() => res.send("La pregunta fue agregada con éxito."))
-    .catch((err) => {
-      console.log("@error", err);
-      res.status(422).send("Ocurrió un error");
-    });
+  try {
+    if (!isEdition) {
+      await model.Exam.findOneAndUpdate(
+        { _id: req.body.examId },
+        { $push: { questions: newQuestion } }
+      );
+
+      res.send("La pregunta fue agregada con éxito.");
+    }
+
+    if (isEdition && questionId) {
+      await model.Exam.update(
+        { _id: req.body.examId, "questions._id": questionId },
+        {
+          $set: {
+            "questions.$": newQuestion,
+          },
+        }
+      );
+
+      res.send("La pregunta fue editada con éxito.");
+    }
+  } catch (err) {
+    console.log("@error", err);
+    res.status(422).send("Ocurrió un error");
+  }
 });
 
 // t_newMultipleOptionQuestion()
 // matches with /teacherAPI/questions/multipleOption/new
-router.post("/multipleOption/new", function (req, res) {
+router.post("/multipleOption/new", async (req, res) => {
+  const { isEdition, questionId } = req.body;
+
   const newQuestion = {
     qType: "multipleOption",
     qInstruction: req.body.qInstruction,
@@ -231,15 +252,32 @@ router.post("/multipleOption/new", function (req, res) {
     qComment: req.body.qComment,
   };
 
-  model.Exam.findOneAndUpdate(
-    { _id: req.body.examId },
-    { $push: { questions: newQuestion } }
-  )
-    .then(() => res.send("La pregunta fue agregada con éxito."))
-    .catch((err) => {
-      console.log("@error", err);
-      res.status(422).send("Ocurrió un error");
-    });
+  try {
+    if (!isEdition) {
+      await model.Exam.findOneAndUpdate(
+        { _id: req.body.examId },
+        { $push: { questions: newQuestion } }
+      );
+
+      res.send("La pregunta fue agregada con éxito.");
+    }
+
+    if (isEdition && questionId) {
+      await model.Exam.update(
+        { _id: req.body.examId, "questions._id": questionId },
+        {
+          $set: {
+            "questions.$": newQuestion,
+          },
+        }
+      );
+
+      res.send("La pregunta fue editada con éxito.");
+    }
+  } catch (err) {
+    console.log("@error", err);
+    res.status(422).send("Ocurrió un error");
+  }
 });
 
 // t_newMultipleOptionWithImage()
@@ -304,7 +342,9 @@ router.post("/multipleOptionWithImage/new", function (req, res) {
 
 // t_newDichotomousQuestion()
 // matches with /teacherAPI/questions/dichotomousQuestion/new
-router.post("/dichotomousQuestion/new", function (req, res) {
+router.post("/dichotomousQuestion/new", async (req, res) => {
+  const { isEdition, questionId } = req.body;
+
   const newQuestion = {
     qType: "dichotomous",
     qInstruction: req.body.qInstruction,
@@ -326,15 +366,32 @@ router.post("/dichotomousQuestion/new", function (req, res) {
     qComment: req.body.qComment,
   };
 
-  model.Exam.findOneAndUpdate(
-    { _id: req.body.examId },
-    { $push: { questions: newQuestion } }
-  )
-    .then(() => res.send("La pregunta fue agregada con éxito."))
-    .catch((err) => {
-      console.log("@error", err);
-      res.status(422).send("Ocurrió un error");
-    });
+  try {
+    if (!isEdition) {
+      await model.Exam.findOneAndUpdate(
+        { _id: req.body.examId },
+        { $push: { questions: newQuestion } }
+      );
+
+      res.send("La pregunta fue agregada con éxito.");
+    }
+
+    if (isEdition && questionId) {
+      await model.Exam.update(
+        { _id: req.body.examId, "questions._id": questionId },
+        {
+          $set: {
+            "questions.$": newQuestion,
+          },
+        }
+      );
+
+      res.send("La pregunta fue editada con éxito.");
+    }
+  } catch (err) {
+    console.log("@error", err);
+    res.status(422).send("Ocurrió un error");
+  }
 });
 
 // t_newDichotomousQuestionWithImage()

@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import { object } from "prop-types";
 
 export const SimpleQuestionForm = ({ question }) => {
+  const examId = useSelector((state) => state.admin.exam.examId);
+
   const yupschema = yup.object({
     qCALeft: yup.string(),
     qCARight: yup.string(),
@@ -16,16 +18,14 @@ export const SimpleQuestionForm = ({ question }) => {
     qTechnicalInstruction: yup.string(),
   });
 
-  const examId = useSelector((state) => state.admin.exam.examId);
-
   return (
     <Formik
       initialValues={{
         qInstruction: question?.qInstruction || "",
         qTechnicalInstruction: question?.qTechnicalInstruction?.text || "",
-        qCorrectAnswers: question?.qCorrectAnswers[0].answer || "",
-        qCALeft: question?.qCorrectAnswers[0].complementLeft || "",
-        qCARight: question?.qCorrectAnswers[0].complementRight || "",
+        qCorrectAnswers: question?.qCorrectAnswers[0]?.answer || "",
+        qCALeft: question?.qCorrectAnswers[0]?.complementLeft || "",
+        qCARight: question?.qCorrectAnswers[0]?.complementRight || "",
         qComment: question?.qComment || "",
       }}
       validationSchema={yupschema}

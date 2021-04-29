@@ -4,15 +4,16 @@ import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeacherAPI from "../../../../utils/TeacherAPI";
 import { useSelector } from "react-redux";
+import { object } from "prop-types";
 
-export const DichotomousQuestion = () => {
+export const DichotomousQuestion = ({ question }) => {
   const yupschema = yup.object({
+    qComment: yup.string(),
+    qCorrectAnswers: yup.string().required("Requerido"),
     qInstruction: yup.string().required("Requerido"),
-    qTechnicalInstruction: yup.string(),
     qOption1: yup.string().required("Requerido"),
     qOption2: yup.string().required("Requerido"),
-    qCorrectAnswers: yup.string().required("Requerido"),
-    qComment: yup.string(),
+    qTechnicalInstruction: yup.string(),
   });
 
   const examId = useSelector((state) => state.admin.exam.examId);
@@ -20,12 +21,12 @@ export const DichotomousQuestion = () => {
   return (
     <Formik
       initialValues={{
-        qInstruction: "",
-        qTechnicalInstruction: "",
+        qComment: question?.qComment || "",
+        qCorrectAnswers: question?.qCorrectAnswers[0]?.answer || "",
+        qInstruction: question?.qInstruction || "",
         qOption1: "Falso",
         qOption2: "Verdadero",
-        qCorrectAnswers: "",
-        qComment: "",
+        qTechnicalInstruction: question?.qTechnicalInstruction?.text || "",
       }}
       validationSchema={yupschema}
       onSubmit={(values, { setSubmitting }) => {
@@ -34,6 +35,9 @@ export const DichotomousQuestion = () => {
         values.qInstruction = values.qInstruction.trim();
         values.qTechnicalInstruction = values.qTechnicalInstruction.trim();
         values.qInstructiqCommenton = values.qComment.trim();
+
+        values.isEdition = question ? true : false;
+        values.questionId = question?._id;
 
         values.examId = examId;
 
@@ -189,7 +193,9 @@ export const DichotomousQuestion = () => {
                 as="select"
                 type="text"
                 name="qCorrectAnswers"
-                defaultValue="Elige..."
+                defaultValue={
+                  question?.qCorrectAnswers[0]?.answer || "Elige..."
+                }
                 onChange={handleChange}
                 onBlur={handleBlur}
                 isValid={touched.qCorrectAnswers && !errors.qCorrectAnswers}
@@ -242,4 +248,8 @@ export const DichotomousQuestion = () => {
       )}
     </Formik>
   );
+};
+
+DichotomousQuestion.propTypes = {
+  question: object,
 };

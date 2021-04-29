@@ -4,34 +4,35 @@ import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeacherAPI from "../../../../utils/TeacherAPI";
 import { useSelector } from "react-redux";
+import { object } from "prop-types";
 
-export const SimpleWithTwoAnswersForm = () => {
+export const SimpleWithTwoAnswersForm = ({ question }) => {
   const examId = useSelector((state) => state.admin.exam.examId);
 
   const yupschema = yup.object({
-    qInstruction: yup.string().required("Requerido"),
-    qTechnicalInstruction: yup.string(),
-    qCorrectAnswer1: yup.string().required("Requerido"),
-    qCorrectAnswer2: yup.string().required("Requerido"),
     qCALeft1: yup.string(),
     qCALeft2: yup.string(),
     qCARight1: yup.string(),
     qCARight2: yup.string(),
     qComment: yup.string(),
+    qCorrectAnswer1: yup.string().required("Requerido"),
+    qCorrectAnswer2: yup.string().required("Requerido"),
+    qInstruction: yup.string().required("Requerido"),
+    qTechnicalInstruction: yup.string(),
   });
 
   return (
     <Formik
       initialValues={{
-        qInstruction: "",
-        qTechnicalInstruction: "",
-        qCorrectAnswer1: "",
-        qCALeft1: "",
-        qCARight1: "",
-        qCorrectAnswer2: "",
-        qCALeft2: "",
-        qCARight2: "",
-        qComment: "",
+        qCALeft1: question?.qCorrectAnswers[0]?.complementLeft || "",
+        qCALeft2: question?.qCorrectAnswers[1]?.complementLeft || "",
+        qCARight1: question?.qCorrectAnswers[0]?.complementRight || "",
+        qCARight2: question?.qCorrectAnswers[1]?.complementRight || "",
+        qComment: question?.qComment || "",
+        qCorrectAnswer1: question?.qCorrectAnswers[0]?.answer || "",
+        qCorrectAnswer2: question?.qCorrectAnswers[1]?.answer || "",
+        qInstruction: question?.qTechnicalInstruction?.text || "",
+        qTechnicalInstruction: question?.qInstruction || "",
       }}
       validationSchema={yupschema}
       onSubmit={(values, { setSubmitting }) => {
@@ -46,6 +47,9 @@ export const SimpleWithTwoAnswersForm = () => {
         values.qCALeft2 = values.qCALeft2.trim();
         values.qCARight2 = values.qCARight2.trim();
         values.qComment = values.qComment.trim();
+
+        values.isEdition = question ? true : false;
+        values.questionId = question?._id;
 
         values.examId = examId;
 
@@ -289,4 +293,8 @@ export const SimpleWithTwoAnswersForm = () => {
       )}
     </Formik>
   );
+};
+
+SimpleWithTwoAnswersForm.propTypes = {
+  question: object,
 };

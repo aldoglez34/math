@@ -107,7 +107,7 @@ export const DichotomousQuestionWithImageTable = React.memo(({ questions }) => {
                       {q.qComment &&
                         q.qComment.split("\\n").map((c) => {
                           return (
-                            <span key={c} className="d-block text-muted">
+                            <span key={c} className="d-block">
                               {String(c).trim()}
                             </span>
                           );

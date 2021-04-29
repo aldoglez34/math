@@ -4,17 +4,18 @@ import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import TeacherAPI from "../../../../utils/TeacherAPI";
 import { useSelector } from "react-redux";
+import { object } from "prop-types";
 
-export const MultipleOptionForm = () => {
+export const MultipleOptionForm = ({ question }) => {
   const yupschema = yup.object({
+    qComment: yup.string(),
+    qCorrectAnswers: yup.string().required("Requerido"),
     qInstruction: yup.string().required("Requerido"),
-    qTechnicalInstruction: yup.string(),
     qOption1: yup.string().required("Requerido"),
     qOption2: yup.string().required("Requerido"),
     qOption3: yup.string().required("Requerido"),
     qOption4: yup.string().required("Requerido"),
-    qCorrectAnswers: yup.string().required("Requerido"),
-    qComment: yup.string(),
+    qTechnicalInstruction: yup.string(),
   });
 
   const examId = useSelector((state) => state.admin.exam.examId);
@@ -22,14 +23,14 @@ export const MultipleOptionForm = () => {
   return (
     <Formik
       initialValues={{
-        qInstruction: "",
-        qTechnicalInstruction: "",
-        qOption1: "",
-        qOption2: "",
-        qOption3: "",
-        qOption4: "",
-        qCorrectAnswers: "",
-        qComment: "",
+        qComment: question?.qComment || "",
+        qCorrectAnswers: question?.qCorrectAnswers[0]?.answer || "",
+        qInstruction: question?.qInstruction || "",
+        qOption1: question?.qMultipleChoice?.textChoices[0] || "",
+        qOption2: question?.qMultipleChoice?.textChoices[1] || "",
+        qOption3: question?.qMultipleChoice?.textChoices[2] || "",
+        qOption4: question?.qMultipleChoice?.textChoices[3] || "",
+        qTechnicalInstruction: question?.qTechnicalInstruction?.text || "",
       }}
       validationSchema={yupschema}
       onSubmit={(values, { setSubmitting }) => {
@@ -43,6 +44,9 @@ export const MultipleOptionForm = () => {
         values.qOption4 = values.qOption4.trim();
         values.qCorrectAnswers = values.qCorrectAnswers.trim();
         values.qInstructiqCommenton = values.qComment.trim();
+
+        values.isEdition = question ? true : false;
+        values.questionId = question?._id;
 
         values.examId = examId;
 
@@ -293,4 +297,8 @@ export const MultipleOptionForm = () => {
       )}
     </Formik>
   );
+};
+
+MultipleOptionForm.propTypes = {
+  question: object,
 };
