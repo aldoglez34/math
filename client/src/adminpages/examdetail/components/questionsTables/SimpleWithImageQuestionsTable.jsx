@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { AdminDangerModal, ImageFromFirebase } from "../../../components";
 import TeacherAPI from "../../../../utils/TeacherAPI";
 import { firebaseStorage } from "../../../../firebase/firebase";
+import { EditQuestionModal, SimpleWithImageForm } from "../";
 
 export const SimpleWithImageQuestionsTable = React.memo(({ questions }) => {
   const courseId = useSelector((state) => state.admin.course.courseId);
@@ -97,6 +98,11 @@ export const SimpleWithImageQuestionsTable = React.memo(({ questions }) => {
                         })}
                     </td>
                     <td className="text-center align-middle">
+                      <EditQuestionModal
+                        Form={SimpleWithImageForm}
+                        question={q}
+                        text="Editar pregunta"
+                      />
                       <AdminDangerModal
                         variant="transparent"
                         deleteFn={() =>

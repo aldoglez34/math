@@ -5,8 +5,10 @@ import * as yup from "yup";
 import TeacherAPI from "../../../../utils/TeacherAPI";
 import { useSelector } from "react-redux";
 import { firebaseStorage } from "../../../../firebase/firebase";
+import { object } from "prop-types";
+import { ImageFromFirebase } from "../../../components";
 
-export const SimpleWithImageForm = () => {
+export const SimpleWithImageForm = ({ question }) => {
   const PHOTO_SIZE = 4000000;
   const SUPPORTED_FORMATS = [
     "image/jpg",
@@ -40,16 +42,18 @@ export const SimpleWithImageForm = () => {
   const topicId = useSelector((state) => state.admin.topic.topicId);
   const courseId = useSelector((state) => state.admin.course.courseId);
 
+  const imageUrl = question?.qTechnicalInstruction?.imageLink;
+
   return (
     <Formik
       initialValues={{
-        qInstruction: "",
-        image: undefined,
         file: undefined,
-        qCorrectAnswers: "",
-        qCALeft: "",
-        qCARight: "",
-        qComment: "",
+        image: undefined,
+        qCALeft: question?.qCorrectAnswers[0]?.complementLeft || "",
+        qCARight: question?.qCorrectAnswers[0]?.complementRight || "",
+        qComment: question?.qComment || "",
+        qCorrectAnswers: question?.qCorrectAnswers[0]?.answer || "",
+        qInstruction: question?.qInstruction || "",
       }}
       validationSchema={yupschema}
       onSubmit={(values, { setSubmitting }) => {
@@ -133,10 +137,23 @@ export const SimpleWithImageForm = () => {
           <Form.Row className="mb-3">
             <Form.Label>
               Imagen
-              <strong className="text-danger" title="Requerido">
-                *
-              </strong>
+              {!question && (
+                <strong className="text-danger" title="Requerido">
+                  *
+                </strong>
+              )}
               <small className="ml-1">(.jpg, .jpeg, .gif y .png)</small>
+              {imageUrl && !values.image && !values.file && (
+                <>
+                  <br />
+                  <ImageFromFirebase
+                    className="mt-2"
+                    height="85"
+                    path={imageUrl}
+                    width="85"
+                  />
+                </>
+              )}
             </Form.Label>
             <Form.File
               encType="multipart/form-data"
@@ -258,4 +275,8 @@ export const SimpleWithImageForm = () => {
       )}
     </Formik>
   );
+};
+
+SimpleWithImageForm.propTypes = {
+  question: object,
 };
