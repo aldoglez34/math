@@ -1,9 +1,12 @@
 import React from "react";
-import { Button } from "react-bootstrap";
-import { node, string } from "prop-types";
+import { Button, Dropdown } from "react-bootstrap";
+import { array, node, string } from "prop-types";
 import { useSelector } from "react-redux";
+import cn from "classnames";
 
-export const TopNav = React.memo(({ buttons, backBttn }) => {
+import styles from "./topnav.module.scss";
+
+export const TopNav = React.memo(({ backBttn, buttons, optionsDropdown }) => {
   const title = useSelector((state) => state.admin.title);
 
   return (
@@ -22,6 +25,34 @@ export const TopNav = React.memo(({ buttons, backBttn }) => {
               Atrás
             </Button>
           ) : null}
+          {/* options dropdown */}
+          {optionsDropdown && optionsDropdown.length && (
+            <Dropdown className={cn("ml-auto")}>
+              <Dropdown.Toggle
+                variant="transparent"
+                className={cn(
+                  styles.optionsDropdown,
+                  "bg-transparent",
+                  "p-0",
+                  "text-light",
+                  "border-0"
+                )}
+              >
+                <i className="fas fa-ellipsis-h text-light" />
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                {optionsDropdown.map((o) => (
+                  <Dropdown.Item
+                    key={o.text}
+                    className="dropdownStyle"
+                    onClick={() => o.fn}
+                  >
+                    {o.text}
+                  </Dropdown.Item>
+                ))}
+              </Dropdown.Menu>
+            </Dropdown>
+          )}
         </div>
         <div
           className="d-flex align-items-center"
@@ -50,6 +81,7 @@ export const TopNav = React.memo(({ buttons, backBttn }) => {
 });
 
 TopNav.propTypes = {
-  buttons: node,
   backBttn: string,
+  buttons: node,
+  optionsDropdown: array,
 };

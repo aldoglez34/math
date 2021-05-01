@@ -96,10 +96,13 @@ export const AdminTopicDetailPage = React.memo((props) => {
     }
   };
 
+  const optionsDropdown = [{ text: "Borrar tema", fn: undefined }];
+
   return topic ? (
     <AdminLayout
       leftBarActive="Cursos"
       backBttn={`/admin/courses/edit/${courseId}`}
+      optionsDropdown={optionsDropdown}
     >
       <Container fluid>
         {/* topic name */}
