@@ -32,6 +32,12 @@ export const SimpleWithTwoAnswersTable = React.memo(({ questions }) => {
                   style={{ backgroundColor: "#0f5257" }}
                   className="text-light text-center"
                 >
+                  #
+                </th>
+                <th
+                  style={{ backgroundColor: "#0f5257" }}
+                  className="text-light text-center"
+                >
                   Instrucción
                 </th>
                 <th
@@ -59,57 +65,60 @@ export const SimpleWithTwoAnswersTable = React.memo(({ questions }) => {
               </tr>
             </thead>
             <tbody>
-              {questions.map((q) => {
-                return (
-                  <tr key={q._id}>
-                    <td className="align-middle">{q.qInstruction}</td>
-                    <td className="align-middle">
-                      {q.qTechnicalInstruction
-                        ? q.qTechnicalInstruction.text
-                        : null}
-                    </td>
-                    <td className="align-middle">
-                      {q.qCorrectAnswers.map((qa, idx) => {
-                        return (
-                          <React.Fragment key={qa._id}>
-                            <span>
-                              {String(
-                                `${qa.complementLeft} ${qa.answer} ${qa.complementRight}`
-                              ).trim()}
-                            </span>
-                            {q.qCorrectAnswers.length === idx + 1 ? null : (
-                              <hr className="my-0" />
-                            )}
-                          </React.Fragment>
-                        );
-                      })}
-                    </td>
-                    <td className="align-middle">
-                      {q.qComment &&
-                        q.qComment.split("\\n").map((c) => {
+              {questions
+                .sort((a, b) => String(a._id) - String(b._id))
+                .map((q, idx) => {
+                  return (
+                    <tr key={q._id}>
+                      <td className="align-middle text-center">{idx + 1}</td>
+                      <td className="align-middle">{q.qInstruction}</td>
+                      <td className="align-middle">
+                        {q.qTechnicalInstruction
+                          ? q.qTechnicalInstruction.text
+                          : null}
+                      </td>
+                      <td className="align-middle">
+                        {q.qCorrectAnswers.map((qa, idx) => {
                           return (
-                            <span key={c} className="d-block">
-                              {String(c).trim()}
-                            </span>
+                            <React.Fragment key={qa._id}>
+                              <span>
+                                {String(
+                                  `${qa.complementLeft} ${qa.answer} ${qa.complementRight}`
+                                ).trim()}
+                              </span>
+                              {q.qCorrectAnswers.length === idx + 1 ? null : (
+                                <hr className="my-0" />
+                              )}
+                            </React.Fragment>
                           );
                         })}
-                    </td>
-                    <td className="text-center align-middle">
-                      <EditQuestionModal
-                        Form={SimpleWithTwoAnswersForm}
-                        question={q}
-                        text="Editar pregunta"
-                      />
-                      <AdminDangerModal
-                        variant="transparent"
-                        deleteFn={() => handleDeleteQuestion(q._id)}
-                        icon={<i className="fas fa-times" />}
-                        modalText={`¿Estás seguro que deseas borrar esta pregunta?`}
-                      />
-                    </td>
-                  </tr>
-                );
-              })}
+                      </td>
+                      <td className="align-middle">
+                        {q.qComment &&
+                          q.qComment.split("\\n").map((c) => {
+                            return (
+                              <span key={c} className="d-block">
+                                {String(c).trim()}
+                              </span>
+                            );
+                          })}
+                      </td>
+                      <td className="text-center align-middle">
+                        <EditQuestionModal
+                          Form={SimpleWithTwoAnswersForm}
+                          question={q}
+                          text="Editar pregunta"
+                        />
+                        <AdminDangerModal
+                          variant="transparent"
+                          deleteFn={() => handleDeleteQuestion(q._id)}
+                          icon={<i className="fas fa-times" />}
+                          modalText={`¿Estás seguro que deseas borrar esta pregunta?`}
+                        />
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </Table>
         </div>

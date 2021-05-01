@@ -288,8 +288,14 @@ export const MultipleOptionForm = ({ question }) => {
             </Form.Group>
           </Form.Row>
           {/* buttons */}
-          <Form.Group className="text-right">
-            <Button variant="dark" type="submit" disabled={isSubmitting}>
+          <Form.Group className="mt-1">
+            <Button
+              block
+              disabled={isSubmitting}
+              size="lg"
+              type="submit"
+              variant="dark"
+            >
               Guardar
             </Button>
           </Form.Group>

@@ -44,6 +44,12 @@ export const SimpleWithImageQuestionsTable = React.memo(({ questions }) => {
                   style={{ backgroundColor: "#0f5257" }}
                   className="text-light text-center"
                 >
+                  #
+                </th>
+                <th
+                  style={{ backgroundColor: "#0f5257" }}
+                  className="text-light text-center"
+                >
                   Instrucción
                 </th>
                 <th
@@ -71,53 +77,56 @@ export const SimpleWithImageQuestionsTable = React.memo(({ questions }) => {
               </tr>
             </thead>
             <tbody>
-              {questions.map((q) => {
-                return (
-                  <tr key={q._id}>
-                    <td className="align-middle">{q.qInstruction}</td>
-                    <td className="align-middle">
-                      <ImageFromFirebase
-                        height="85"
-                        path={q.qTechnicalInstruction.imageLink}
-                        width="85"
-                      />
-                    </td>
-                    <td className="align-middle">
-                      {String(
-                        `${q.qCorrectAnswers[0].complementLeft} ${q.qCorrectAnswers[0].answer} ${q.qCorrectAnswers[0].complementRight}`
-                      ).trim()}
-                    </td>
-                    <td className="align-middle">
-                      {q.qComment &&
-                        q.qComment.split("\\n").map((c) => {
-                          return (
-                            <span key={c} className="d-block">
-                              {String(c).trim()}
-                            </span>
-                          );
-                        })}
-                    </td>
-                    <td className="text-center align-middle">
-                      <EditQuestionModal
-                        Form={SimpleWithImageForm}
-                        question={q}
-                        text="Editar pregunta"
-                      />
-                      <AdminDangerModal
-                        variant="transparent"
-                        deleteFn={() =>
-                          handleDeleteQuestion(
-                            q._id,
-                            q.qTechnicalInstruction.imageLink
-                          )
-                        }
-                        icon={<i className="fas fa-times" />}
-                        modalText={`¿Estás seguro que deseas borrar esta pregunta?`}
-                      />
-                    </td>
-                  </tr>
-                );
-              })}
+              {questions
+                .sort((a, b) => String(a._id) - String(b._id))
+                .map((q, idx) => {
+                  return (
+                    <tr key={q._id}>
+                      <td className="align-middle text-center">{idx + 1}</td>
+                      <td className="align-middle">{q.qInstruction}</td>
+                      <td className="align-middle">
+                        <ImageFromFirebase
+                          height="85"
+                          path={q.qTechnicalInstruction.imageLink}
+                          width="85"
+                        />
+                      </td>
+                      <td className="align-middle">
+                        {String(
+                          `${q.qCorrectAnswers[0].complementLeft} ${q.qCorrectAnswers[0].answer} ${q.qCorrectAnswers[0].complementRight}`
+                        ).trim()}
+                      </td>
+                      <td className="align-middle">
+                        {q.qComment &&
+                          q.qComment.split("\\n").map((c) => {
+                            return (
+                              <span key={c} className="d-block">
+                                {String(c).trim()}
+                              </span>
+                            );
+                          })}
+                      </td>
+                      <td className="text-center align-middle">
+                        <EditQuestionModal
+                          Form={SimpleWithImageForm}
+                          question={q}
+                          text="Editar pregunta"
+                        />
+                        <AdminDangerModal
+                          variant="transparent"
+                          deleteFn={() =>
+                            handleDeleteQuestion(
+                              q._id,
+                              q.qTechnicalInstruction.imageLink
+                            )
+                          }
+                          icon={<i className="fas fa-times" />}
+                          modalText={`¿Estás seguro que deseas borrar esta pregunta?`}
+                        />
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </Table>
         </div>

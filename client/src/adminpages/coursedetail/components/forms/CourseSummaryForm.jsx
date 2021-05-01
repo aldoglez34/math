@@ -48,7 +48,7 @@ export const CourseSummaryForm = React.memo(
             {/* name */}
             <Form.Row>
               <Form.Group as={Col}>
-                <Form.Label>{formLabel}</Form.Label>
+                <Form.Label className="mb-0">{formLabel}</Form.Label>
                 <Form.Text className="text-muted mb-2">
                   Separados por coma
                 </Form.Text>
@@ -72,8 +72,14 @@ export const CourseSummaryForm = React.memo(
               </Form.Group>
             </Form.Row>
             {/* buttons */}
-            <Form.Group>
-              <Button variant="dark" type="submit" disabled={isSubmitting}>
+            <Form.Group className="mt-1">
+              <Button
+                block
+                disabled={isSubmitting}
+                size="lg"
+                type="submit"
+                variant="dark"
+              >
                 Guardar
               </Button>
             </Form.Group>

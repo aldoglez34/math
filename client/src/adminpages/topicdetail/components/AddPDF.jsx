@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { string } from "prop-types";
 import { firebaseStorage } from "../../../firebase/firebase";
 import TeacherAPI from "../../../utils/TeacherAPI";
+import { PDFS } from "../../../constants/constants";
 
 export const AddPDF = React.memo(({ courseId, topicId }) => {
   const [show, setShow] = useState(false);
@@ -20,17 +21,14 @@ export const AddPDF = React.memo(({ courseId, topicId }) => {
       .test(
         "fileSize",
         "PDF muy pesado",
-        (value) => value && value.size <= PDF_SIZE
+        (value) => value && value.size <= PDFS.SIZE
       )
       .test(
         "fileFormat",
         "Formato no soportado",
-        (value) => value && SUPPORTED_FORMATS.includes(value.type)
+        (value) => value && PDFS.SUPPORTED_FORMATS.includes(value.type)
       ),
   });
-
-  const PDF_SIZE = 4000000;
-  const SUPPORTED_FORMATS = ["application/pdf"];
 
   return (
     <>
@@ -151,13 +149,15 @@ export const AddPDF = React.memo(({ courseId, topicId }) => {
                       />
                     </Form.Group>
                   </Form.Row>
-                  <Form.Group>
+                  <Form.Group className="mt-1">
                     <Button
-                      variant="dark"
-                      type="submit"
+                      block
                       disabled={isSubmitting}
+                      size="lg"
+                      type="submit"
+                      variant="dark"
                     >
-                      Crear
+                      Guardar
                     </Button>
                   </Form.Group>
                 </Form>

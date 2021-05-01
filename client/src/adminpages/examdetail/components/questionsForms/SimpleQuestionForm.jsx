@@ -40,6 +40,7 @@ export const SimpleQuestionForm = ({ question }) => {
         values.examId = examId;
 
         values.isEdition = question ? true : false;
+        values.oldQuestionId = question?._id;
         values.questionId = question?._id;
 
         TeacherAPI.t_newSimpleQuestion(values)
@@ -209,8 +210,14 @@ export const SimpleQuestionForm = ({ question }) => {
             </Form.Group>
           </Form.Row>
           {/* buttons */}
-          <Form.Group className="text-right">
-            <Button variant="dark" type="submit" disabled={isSubmitting}>
+          <Form.Group className="mt-1">
+            <Button
+              block
+              disabled={isSubmitting}
+              size="lg"
+              type="submit"
+              variant="dark"
+            >
               Guardar
             </Button>
           </Form.Group>

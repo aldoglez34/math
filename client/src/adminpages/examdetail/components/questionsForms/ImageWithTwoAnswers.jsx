@@ -5,60 +5,61 @@ import * as yup from "yup";
 import TeacherAPI from "../../../../utils/TeacherAPI";
 import { useSelector } from "react-redux";
 import { firebaseStorage } from "../../../../firebase/firebase";
+import { IMAGES } from "../../../../constants/constants";
+import { object } from "prop-types";
+import { ImageFromFirebase } from "../../../components";
 
-export const ImageWithTwoAnswers = () => {
-  const examId = useSelector((state) => state.admin.exam.examId);
-  const topicId = useSelector((state) => state.admin.topic.topicId);
-  const courseId = useSelector((state) => state.admin.course.courseId);
-
-  const PHOTO_SIZE = 4000000;
-  const SUPPORTED_FORMATS = [
-    "image/jpg",
-    "image/jpeg",
-    "image/gif",
-    "image/png",
-  ];
-
+export const ImageWithTwoAnswers = ({ question }) => {
   const yupschema = yup.object({
-    qInstruction: yup.string().required("Requerido"),
-    file: yup
-      .mixed()
-      .required("Requerido")
-      .test(
-        "fileSize",
-        "Imagen muy pesada",
-        (value) => value && value.size <= PHOTO_SIZE
-      )
-      .test(
-        "fileFormat",
-        "Formato no soportado",
-        (value) => value && SUPPORTED_FORMATS.includes(value.type)
-      ),
-    qCorrectAnswer1: yup.string().required("Requerido"),
-    qCorrectAnswer2: yup.string().required("Requerido"),
     qCALeft1: yup.string(),
     qCALeft2: yup.string(),
     qCARight1: yup.string(),
     qCARight2: yup.string(),
     qComment: yup.string(),
+    qCorrectAnswer1: yup.string().required("Requerido"),
+    qCorrectAnswer2: yup.string().required("Requerido"),
+    qInstruction: yup.string().required("Requerido"),
+    ...(question
+      ? {}
+      : {
+          file: yup
+            .mixed()
+            .required("Requerido")
+            .test(
+              "fileSize",
+              "Imagen muy pesada",
+              (value) => value && value.size <= IMAGES.SIZE
+            )
+            .test(
+              "fileFormat",
+              "Formato no soportado",
+              (value) => value && IMAGES.SUPPORTED_FORMATS.includes(value.type)
+            ),
+        }),
   });
+
+  const examId = useSelector((state) => state.admin.exam.examId);
+  const topicId = useSelector((state) => state.admin.topic.topicId);
+  const courseId = useSelector((state) => state.admin.course.courseId);
+
+  const oldQuestionImageUrl = question?.qTechnicalInstruction?.imageLink;
 
   return (
     <Formik
       initialValues={{
-        qInstruction: "",
-        image: undefined,
         file: undefined,
-        qCorrectAnswer1: "",
-        qCALeft1: "",
-        qCARight1: "",
-        qCorrectAnswer2: "",
-        qCALeft2: "",
-        qCARight2: "",
-        qComment: "",
+        image: undefined,
+        qCALeft1: question?.qCorrectAnswers[0]?.complementLeft || "",
+        qCALeft2: question?.qCorrectAnswers[1]?.complementLeft || "",
+        qCARight1: question?.qCorrectAnswers[0]?.complementRight || "",
+        qCARight2: question?.qCorrectAnswers[1]?.complementRight || "",
+        qComment: question?.qComment || "",
+        qCorrectAnswer1: question?.qCorrectAnswers[0]?.answer || "",
+        qCorrectAnswer2: question?.qCorrectAnswers[1]?.answer || "",
+        qInstruction: question?.qInstruction || "",
       }}
       validationSchema={yupschema}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(true);
 
         values.qInstruction = values.qInstruction.trim();
@@ -74,29 +75,35 @@ export const ImageWithTwoAnswers = () => {
         values.topicId = topicId;
         values.examId = examId;
 
-        TeacherAPI.t_newImageWithTwoAnswersQuestion(values)
-          .then((res) => {
-            const questionId = res.data;
+        values.isEdition = question ? true : false;
+        values.oldQuestionId = question?._id;
+        values.firebasePath = `${courseId}/${topicId}/exams/${examId}/${question?._id}/imagen`;
 
+        const hasImageChanged =
+          question && values.file && values.image ? true : false;
+
+        try {
+          // post question to mongodb
+          const questionId = await TeacherAPI.t_newImageWithTwoAnswersQuestion(
+            values
+          ).then((res) => res.data);
+
+          // if this isn't an edition, upload image to firebase store
+          // or if this is an edition and the image changed, upload new image with the same path
+          if (!values.isEdition || (values.isEdition && hasImageChanged)) {
             const storageRef = firebaseStorage.ref();
             const pathOnFirebaseStorage = `${courseId}/${topicId}/exams/${examId}/${questionId}/imagen`;
             const fileRef = storageRef.child(pathOnFirebaseStorage);
 
-            fileRef
-              .put(values.file)
-              .then(() => {
-                window.location.reload();
-              })
-              .catch((err) => {
-                console.log(err);
-                alert("Ocurrió un error en el servidor, intenta más tarde");
-              });
-          })
-          .catch((err) => {
-            alert("Ocurrió un error. Vuelve a intentarlo.");
-            setSubmitting(false);
-            console.log(err);
-          });
+            await fileRef.put(values.file);
+          }
+
+          window.location.reload();
+        } catch (err) {
+          console.log(err);
+          setSubmitting(false);
+          alert("Ocurrió un error en el servidor, intenta más tarde");
+        }
       }}
     >
       {({
@@ -142,10 +149,25 @@ export const ImageWithTwoAnswers = () => {
           <Form.Row className="mb-3">
             <Form.Label>
               Imagen
-              <strong className="text-danger" title="Requerido">
-                *
-              </strong>
+              {!question || (values.image && values.file) ? (
+                <strong className="text-danger" title="Requerido">
+                  *
+                </strong>
+              ) : (
+                <small> (Opcional)</small>
+              )}
               <small className="ml-1">(.jpg, .jpeg, .gif y .png)</small>
+              {oldQuestionImageUrl && !values.image && !values.file && (
+                <>
+                  <br />
+                  <ImageFromFirebase
+                    className="mt-2"
+                    height="85"
+                    path={oldQuestionImageUrl}
+                    width="85"
+                  />
+                </>
+              )}
             </Form.Label>
             <Form.File
               encType="multipart/form-data"
@@ -322,8 +344,14 @@ export const ImageWithTwoAnswers = () => {
             </Form.Group>
           </Form.Row>
           {/* buttons */}
-          <Form.Group className="text-right">
-            <Button variant="dark" type="submit" disabled={isSubmitting}>
+          <Form.Group className="mt-1">
+            <Button
+              block
+              disabled={isSubmitting}
+              size="lg"
+              type="submit"
+              variant="dark"
+            >
               Guardar
             </Button>
           </Form.Group>
@@ -331,4 +359,8 @@ export const ImageWithTwoAnswers = () => {
       )}
     </Formik>
   );
+};
+
+ImageWithTwoAnswers.propTypes = {
+  question: object,
 };

@@ -7,20 +7,13 @@ import TeacherAPI from "../../utils/TeacherAPI";
 import { useDispatch, useSelector } from "react-redux";
 import * as adminActions from "../../redux/actions/admin";
 import { firebaseStorage } from "../../firebase/firebase";
+import { IMAGES } from "../../constants/constants";
 
 export const AdminNewTopicPage = React.memo((props) => {
   const dispatch = useDispatch();
 
   const courseName = useSelector((state) => state.admin.course.courseName);
   const courseId = props.routeProps.match.params.courseId;
-
-  const PHOTO_SIZE = 1000000;
-  const SUPPORTED_FORMATS = [
-    "image/jpg",
-    "image/jpeg",
-    "image/gif",
-    "image/png",
-  ];
 
   const yupschema = yup.object({
     name: yup.string().min(3, "Nombre demasiado corto").required("Requerido"),
@@ -39,12 +32,12 @@ export const AdminNewTopicPage = React.memo((props) => {
       .test(
         "fileSize",
         "Imagen muy pesada",
-        (value) => value && value.size <= PHOTO_SIZE
+        (value) => value && value.size <= IMAGES.SIZE
       )
       .test(
         "fileFormat",
         "Formato no soportado",
-        (value) => value && SUPPORTED_FORMATS.includes(value.type)
+        (value) => value && IMAGES.SUPPORTED_FORMATS.includes(value.type)
       ),
   });
 

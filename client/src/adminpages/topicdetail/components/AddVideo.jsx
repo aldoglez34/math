@@ -109,13 +109,15 @@ export const AddVideo = React.memo(({ courseId, topicId }) => {
                     </Form.Group>
                   </Form.Row>
                   {/* buttons */}
-                  <Form.Group>
+                  <Form.Group className="mt-1">
                     <Button
-                      variant="dark"
-                      type="submit"
+                      block
                       disabled={isSubmitting}
+                      size="lg"
+                      type="submit"
+                      variant="dark"
                     >
-                      Crear
+                      Guardar
                     </Button>
                   </Form.Group>
                 </Form>

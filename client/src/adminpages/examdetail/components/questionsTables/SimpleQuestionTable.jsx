@@ -32,6 +32,12 @@ export const SimpleQuestionTable = React.memo(({ questions }) => {
                   style={{ backgroundColor: "#0f5257" }}
                   className="text-light text-center"
                 >
+                  #
+                </th>
+                <th
+                  style={{ backgroundColor: "#0f5257" }}
+                  className="text-light text-center"
+                >
                   Instrucción
                 </th>
                 <th
@@ -59,48 +65,51 @@ export const SimpleQuestionTable = React.memo(({ questions }) => {
               </tr>
             </thead>
             <tbody>
-              {questions.map((q) => {
-                return (
-                  <React.Fragment key={q._id}>
-                    <tr>
-                      <td className="align-middle">{q.qInstruction}</td>
-                      <td className="align-middle">
-                        {q.qTechnicalInstruction
-                          ? q.qTechnicalInstruction.text
-                          : null}
-                      </td>
-                      <td className="align-middle">
-                        {String(
-                          `${q.qCorrectAnswers[0].complementLeft} ${q.qCorrectAnswers[0].answer} ${q.qCorrectAnswers[0].complementRight}`
-                        ).trim()}
-                      </td>
-                      <td className="align-middle">
-                        {q.qComment &&
-                          q.qComment.split("\\n").map((c) => {
-                            return (
-                              <span key={c} className="d-block">
-                                {String(c).trim()}
-                              </span>
-                            );
-                          })}
-                      </td>
-                      <td className="text-center align-middle">
-                        <EditQuestionModal
-                          Form={SimpleQuestionForm}
-                          question={q}
-                          text="Editar pregunta"
-                        />
-                        <AdminDangerModal
-                          deleteFn={() => handleDeleteQuestion(q._id)}
-                          icon={<i className="fas fa-times" />}
-                          modalText={`¿Estás seguro que deseas borrar esta pregunta?`}
-                          variant="transparent"
-                        />
-                      </td>
-                    </tr>
-                  </React.Fragment>
-                );
-              })}
+              {questions
+                .sort((a, b) => String(a._id) - String(b._id))
+                .map((q, idx) => {
+                  return (
+                    <React.Fragment key={q._id}>
+                      <tr>
+                        <td className="align-middle text-center">{idx + 1}</td>
+                        <td className="align-middle">{q.qInstruction}</td>
+                        <td className="align-middle">
+                          {q.qTechnicalInstruction
+                            ? q.qTechnicalInstruction.text
+                            : null}
+                        </td>
+                        <td className="align-middle">
+                          {String(
+                            `${q.qCorrectAnswers[0].complementLeft} ${q.qCorrectAnswers[0].answer} ${q.qCorrectAnswers[0].complementRight}`
+                          ).trim()}
+                        </td>
+                        <td className="align-middle">
+                          {q.qComment &&
+                            q.qComment.split("\\n").map((c) => {
+                              return (
+                                <span key={c} className="d-block">
+                                  {String(c).trim()}
+                                </span>
+                              );
+                            })}
+                        </td>
+                        <td className="text-center align-middle">
+                          <EditQuestionModal
+                            Form={SimpleQuestionForm}
+                            question={q}
+                            text="Editar pregunta"
+                          />
+                          <AdminDangerModal
+                            deleteFn={() => handleDeleteQuestion(q._id)}
+                            icon={<i className="fas fa-times" />}
+                            modalText={`¿Estás seguro que deseas borrar esta pregunta?`}
+                            variant="transparent"
+                          />
+                        </td>
+                      </tr>
+                    </React.Fragment>
+                  );
+                })}
             </tbody>
           </Table>
         </div>

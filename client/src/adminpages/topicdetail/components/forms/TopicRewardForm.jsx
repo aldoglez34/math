@@ -5,18 +5,11 @@ import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import { firebaseStorage } from "../../../../firebase/firebase";
 import { useSelector } from "react-redux";
+import { IMAGES } from "../../../../constants/constants";
 
 export const TopicRewardForm = React.memo(({ formLabel }) => {
   const courseId = useSelector((state) => state.admin.course.courseId);
   const topicId = useSelector((state) => state.admin.topic.topicId);
-
-  const PHOTO_SIZE = 1000000;
-  const SUPPORTED_FORMATS = [
-    "image/jpg",
-    "image/jpeg",
-    "image/gif",
-    "image/png",
-  ];
 
   const yupschema = yup.object({
     file: yup
@@ -25,12 +18,12 @@ export const TopicRewardForm = React.memo(({ formLabel }) => {
       .test(
         "fileSize",
         "Imagen muy pesada",
-        (value) => value && value.size <= PHOTO_SIZE
+        (value) => value && value.size <= IMAGES.PHOTO_SIZE
       )
       .test(
         "fileFormat",
         "Formato no soportado",
-        (value) => value && SUPPORTED_FORMATS.includes(value.type)
+        (value) => value && IMAGES.SUPPORTED_FORMATS.includes(value.type)
       ),
   });
 
@@ -107,8 +100,14 @@ export const TopicRewardForm = React.memo(({ formLabel }) => {
             </Form.Group>
           </Form.Row>
           {/* buttons */}
-          <Form.Group>
-            <Button variant="dark" type="submit" disabled={isSubmitting}>
+          <Form.Group className="mt-1">
+            <Button
+              block
+              disabled={isSubmitting}
+              size="lg"
+              type="submit"
+              variant="dark"
+            >
               Guardar
             </Button>
           </Form.Group>

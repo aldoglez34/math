@@ -43,6 +43,12 @@ export const DichotomousQuestionWithImageTable = React.memo(({ questions }) => {
                   style={{ backgroundColor: "#0f5257" }}
                   className="text-light text-center"
                 >
+                  #
+                </th>
+                <th
+                  style={{ backgroundColor: "#0f5257" }}
+                  className="text-light text-center"
+                >
                   Instrucción
                 </th>
                 <th
@@ -76,59 +82,62 @@ export const DichotomousQuestionWithImageTable = React.memo(({ questions }) => {
               </tr>
             </thead>
             <tbody>
-              {questions.map((q) => {
-                return (
-                  <tr key={q._id}>
-                    <td className="align-middle">{q.qInstruction}</td>
-                    <td className="align-middle">
-                      <ImageFromFirebase
-                        height="85"
-                        path={q.qTechnicalInstruction.imageLink}
-                        width="85"
-                      />
-                    </td>
-                    <td className="align-middle">
-                      {q.qMultipleChoice.textChoices.length
-                        ? q.qMultipleChoice.textChoices.map((c, idx) => (
-                            <React.Fragment key={idx}>
-                              <span className="mb-0">{`${c}`}</span>
-                              {q.qMultipleChoice.textChoices.length ===
-                              idx + 1 ? null : (
-                                <hr className="my-0" />
-                              )}
-                            </React.Fragment>
-                          ))
-                        : null}
-                    </td>
-                    <td className="align-middle">
-                      {q.qCorrectAnswers[0].answer}
-                    </td>
-                    <td className="align-middle">
-                      {q.qComment &&
-                        q.qComment.split("\\n").map((c) => {
-                          return (
-                            <span key={c} className="d-block">
-                              {String(c).trim()}
-                            </span>
-                          );
-                        })}
-                    </td>
-                    <td className="text-center align-middle">
-                      <AdminDangerModal
-                        variant="transparent"
-                        icon={<i className="fas fa-times" />}
-                        deleteFn={() =>
-                          handleDeleteQuestion(
-                            q._id,
-                            q.qTechnicalInstruction.imageLink
-                          )
-                        }
-                        modalText={`¿Estás seguro que deseas borrar esta pregunta?`}
-                      />
-                    </td>
-                  </tr>
-                );
-              })}
+              {questions
+                .sort((a, b) => String(a._id) - String(b._id))
+                .map((q, idx) => {
+                  return (
+                    <tr key={q._id}>
+                      <td className="align-middle text-center">{idx + 1}</td>
+                      <td className="align-middle">{q.qInstruction}</td>
+                      <td className="align-middle">
+                        <ImageFromFirebase
+                          height="85"
+                          path={q.qTechnicalInstruction.imageLink}
+                          width="85"
+                        />
+                      </td>
+                      <td className="align-middle">
+                        {q.qMultipleChoice.textChoices.length
+                          ? q.qMultipleChoice.textChoices.map((c, idx) => (
+                              <React.Fragment key={idx}>
+                                <span className="mb-0">{`${c}`}</span>
+                                {q.qMultipleChoice.textChoices.length ===
+                                idx + 1 ? null : (
+                                  <hr className="my-0" />
+                                )}
+                              </React.Fragment>
+                            ))
+                          : null}
+                      </td>
+                      <td className="align-middle">
+                        {q.qCorrectAnswers[0].answer}
+                      </td>
+                      <td className="align-middle">
+                        {q.qComment &&
+                          q.qComment.split("\\n").map((c) => {
+                            return (
+                              <span key={c} className="d-block">
+                                {String(c).trim()}
+                              </span>
+                            );
+                          })}
+                      </td>
+                      <td className="text-center align-middle">
+                        <AdminDangerModal
+                          variant="transparent"
+                          icon={<i className="fas fa-times" />}
+                          deleteFn={() =>
+                            handleDeleteQuestion(
+                              q._id,
+                              q.qTechnicalInstruction.imageLink
+                            )
+                          }
+                          modalText={`¿Estás seguro que deseas borrar esta pregunta?`}
+                        />
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </Table>
         </div>

@@ -54,7 +54,7 @@ export const TopicFreestyleTimerForm = React.memo(
             <Form.Row>
               <Form.Group as={Col}>
                 <Form.Label>{formLabel}</Form.Label>
-                <InputGroup className="mb-3">
+                <InputGroup>
                   <Form.Control
                     type="number"
                     name="newTimer"
@@ -76,8 +76,14 @@ export const TopicFreestyleTimerForm = React.memo(
               </Form.Group>
             </Form.Row>
             {/* buttons */}
-            <Form.Group>
-              <Button variant="dark" type="submit" disabled={isSubmitting}>
+            <Form.Group className="mt-1">
+              <Button
+                block
+                disabled={isSubmitting}
+                size="lg"
+                type="submit"
+                variant="dark"
+              >
                 Guardar
               </Button>
             </Form.Group>

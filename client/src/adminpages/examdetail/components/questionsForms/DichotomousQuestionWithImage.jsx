@@ -5,16 +5,9 @@ import * as yup from "yup";
 import TeacherAPI from "../../../../utils/TeacherAPI";
 import { useSelector } from "react-redux";
 import { firebaseStorage } from "../../../../firebase/firebase";
+import { IMAGES } from "../../../../constants/constants";
 
 export const DichotomousQuestionWithImage = () => {
-  const PHOTO_SIZE = 4000000;
-  const SUPPORTED_FORMATS = [
-    "image/jpg",
-    "image/jpeg",
-    "image/gif",
-    "image/png",
-  ];
-
   const yupschema = yup.object({
     qInstruction: yup.string().required("Requerido"),
     file: yup
@@ -23,12 +16,12 @@ export const DichotomousQuestionWithImage = () => {
       .test(
         "fileSize",
         "Imagen muy pesada",
-        (value) => value && value.size <= PHOTO_SIZE
+        (value) => value && value.size <= IMAGES.PHOTO_SIZE
       )
       .test(
         "fileFormat",
         "Formato no soportado",
-        (value) => value && SUPPORTED_FORMATS.includes(value.type)
+        (value) => value && IMAGES.SUPPORTED_FORMATS.includes(value.type)
       ),
     qOption1: yup.string().required("Requerido"),
     qOption2: yup.string().required("Requerido"),
@@ -276,8 +269,14 @@ export const DichotomousQuestionWithImage = () => {
             </Form.Group>
           </Form.Row>
           {/* buttons */}
-          <Form.Group className="text-right">
-            <Button variant="dark" type="submit" disabled={isSubmitting}>
+          <Form.Group className="mt-1">
+            <Button
+              block
+              disabled={isSubmitting}
+              size="lg"
+              type="submit"
+              variant="dark"
+            >
               Guardar
             </Button>
           </Form.Group>
