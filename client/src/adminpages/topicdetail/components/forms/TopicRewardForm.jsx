@@ -15,11 +15,11 @@ export const TopicRewardForm = React.memo(({ formLabel }) => {
     file: yup
       .mixed()
       .required("Requerido")
-      .test(
-        "fileSize",
-        "Imagen muy pesada",
-        (value) => value && value.size <= IMAGES.PHOTO_SIZE
-      )
+      // .test(
+      //   "fileSize",
+      //   "Imagen muy pesada",
+      //   (value) => value && value.size <= IMAGES.PHOTO_SIZE
+      // )
       .test(
         "fileFormat",
         "Formato no soportado",

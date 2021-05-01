@@ -6,54 +6,62 @@ import TeacherAPI from "../../../../utils/TeacherAPI";
 import { useSelector } from "react-redux";
 import { firebaseStorage } from "../../../../firebase/firebase";
 import { IMAGES } from "../../../../constants/constants";
+import { object } from "prop-types";
+import { ImageFromFirebase } from "../../../components";
 
-export const MultipleOptionWithImage = () => {
+export const MultipleOptionWithImage = ({ question }) => {
   const yupschema = yup.object({
+    qCALeft: yup.string(),
+    qCARight: yup.string(),
+    qComment: yup.string(),
+    qCorrectAnswers: yup.string().required("Requerido"),
     qInstruction: yup.string().required("Requerido"),
-    file: yup
-      .mixed()
-      .required("Requerido")
-      .test(
-        "fileSize",
-        "Imagen muy pesada",
-        (value) => value && value.size <= IMAGES.PHOTO_SIZE
-      )
-      .test(
-        "fileFormat",
-        "Formato no soportado",
-        (value) => value && IMAGES.SUPPORTED_FORMATS.includes(value.type)
-      ),
     qOption1: yup.string().required("Requerido"),
     qOption2: yup.string().required("Requerido"),
     qOption3: yup.string().required("Requerido"),
     qOption4: yup.string().required("Requerido"),
-    qCorrectAnswers: yup.string().required("Requerido"),
-    qCALeft: yup.string(),
-    qCARight: yup.string(),
-    qComment: yup.string(),
+    ...(question
+      ? {}
+      : {
+          file: yup
+            .mixed()
+            .required("Requerido")
+            // .test(
+            //   "fileSize",
+            //   "Imagen muy pesada",
+            //   (value) => value && value.size <= IMAGES.PHOTO_SIZE
+            // )
+            .test(
+              "fileFormat",
+              "Formato no soportado",
+              (value) => value && IMAGES.SUPPORTED_FORMATS.includes(value.type)
+            ),
+        }),
   });
 
   const courseId = useSelector((state) => state.admin.course.courseId);
   const topicId = useSelector((state) => state.admin.topic.topicId);
   const examId = useSelector((state) => state.admin.exam.examId);
 
+  const oldQuestionImageUrl = question?.qTechnicalInstruction?.imageLink;
+
   return (
     <Formik
       initialValues={{
-        qInstruction: "",
-        image: undefined,
         file: undefined,
-        qOption1: "",
-        qOption2: "",
-        qOption3: "",
-        qOption4: "",
-        qCorrectAnswers: "",
-        qCALeft: "",
-        qCARight: "",
-        qComment: "",
+        image: undefined,
+        qCALeft: question?.qCorrectAnswers[0]?.complementLeft || "",
+        qCARight: question?.qCorrectAnswers[0]?.complementRight || "",
+        qComment: question?.qComment || "",
+        qCorrectAnswers: question?.qCorrectAnswers[0]?.answer || "",
+        qInstruction: question?.qInstruction || "",
+        qOption1: question?.qMultipleChoice?.textChoices[0] || "",
+        qOption2: question?.qMultipleChoice?.textChoices[1] || "",
+        qOption3: question?.qMultipleChoice?.textChoices[2] || "",
+        qOption4: question?.qMultipleChoice?.textChoices[3] || "",
       }}
       validationSchema={yupschema}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(true);
 
         values.qInstruction = values.qInstruction.trim();
@@ -70,6 +78,13 @@ export const MultipleOptionWithImage = () => {
         values.topicId = topicId;
         values.examId = examId;
 
+        values.isEdition = question ? true : false;
+        values.oldQuestionId = question?._id;
+        values.firebasePath = `${courseId}/${topicId}/exams/${examId}/${question?._id}/imagen`;
+
+        const hasImageChanged =
+          question && values.file && values.image ? true : false;
+
         const isAnswerIncludedInOptions = [
           String(values.qOption1),
           String(values.qOption2),
@@ -77,33 +92,32 @@ export const MultipleOptionWithImage = () => {
           String(values.qOption4),
         ].includes(String(values.qCorrectAnswers));
 
-        if (!isAnswerIncludedInOptions) {
-          alert("La respuesta debe estar contenida en las opciones.");
+        try {
+          if (!isAnswerIncludedInOptions) {
+            setSubmitting(false);
+            return alert("La respuesta debe estar contenida en las opciones.");
+          }
+
+          // post question to mongodb
+          const questionId = await TeacherAPI.t_newMultipleOptionWithImage(
+            values
+          ).then((res) => res.data);
+
+          // if this isn't an edition, upload image to firebase store
+          // or if this is an edition and the image changed, upload new image with the same path
+          if (!values.isEdition || (values.isEdition && hasImageChanged)) {
+            const storageRef = firebaseStorage.ref();
+            const pathOnFirebaseStorage = `${courseId}/${topicId}/exams/${examId}/${questionId}/imagen`;
+            const fileRef = storageRef.child(pathOnFirebaseStorage);
+
+            await fileRef.put(values.file);
+          }
+
+          window.location.reload();
+        } catch (err) {
+          console.log(err);
           setSubmitting(false);
-        } else {
-          TeacherAPI.t_newMultipleOptionWithImage(values)
-            .then((res) => {
-              const questionId = res.data;
-
-              const storageRef = firebaseStorage.ref();
-              const pathOnFirebaseStorage = `${courseId}/${topicId}/exams/${examId}/${questionId}/imagen`;
-              const fileRef = storageRef.child(pathOnFirebaseStorage);
-
-              fileRef
-                .put(values.file)
-                .then(() => {
-                  window.location.reload();
-                })
-                .catch((err) => {
-                  console.log(err);
-                  alert("Ocurrió un error en el servidor, intenta más tarde");
-                });
-            })
-            .catch((err) => {
-              alert("Ocurrió un error. Vuelve a intentarlo.");
-              setSubmitting(false);
-              console.log(err);
-            });
+          alert("Ocurrió un error en el servidor, intenta más tarde");
         }
       }}
     >
@@ -150,10 +164,25 @@ export const MultipleOptionWithImage = () => {
           <Form.Row className="mb-3">
             <Form.Label>
               Imagen
-              <strong className="text-danger" title="Requerido">
-                *
-              </strong>
+              {!question || (values.image && values.file) ? (
+                <strong className="text-danger" title="Requerido">
+                  *
+                </strong>
+              ) : (
+                <small> (Opcional)</small>
+              )}
               <small className="ml-1">(.jpg, .jpeg, .gif y .png)</small>
+              {oldQuestionImageUrl && !values.image && !values.file && (
+                <>
+                  <br />
+                  <ImageFromFirebase
+                    className="mt-2"
+                    height="85"
+                    path={oldQuestionImageUrl}
+                    width="85"
+                  />
+                </>
+              )}
             </Form.Label>
             <Form.File
               encType="multipart/form-data"
@@ -376,4 +405,8 @@ export const MultipleOptionWithImage = () => {
       )}
     </Formik>
   );
+};
+
+MultipleOptionWithImage.propTypes = {
+  question: object,
 };

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { AdminDangerModal, ImageFromFirebase } from "../../../components";
 import TeacherAPI from "../../../../utils/TeacherAPI";
 import { firebaseStorage } from "../../../../firebase/firebase";
+import { EditQuestionModal, DichotomousQuestionWithImage } from "../";
 
 export const DichotomousQuestionWithImageTable = React.memo(({ questions }) => {
   const courseId = useSelector((state) => state.admin.course.courseId);
@@ -123,6 +124,11 @@ export const DichotomousQuestionWithImageTable = React.memo(({ questions }) => {
                           })}
                       </td>
                       <td className="text-center align-middle">
+                        <EditQuestionModal
+                          Form={DichotomousQuestionWithImage}
+                          question={q}
+                          text="Editar pregunta"
+                        />
                         <AdminDangerModal
                           variant="transparent"
                           icon={<i className="fas fa-times" />}

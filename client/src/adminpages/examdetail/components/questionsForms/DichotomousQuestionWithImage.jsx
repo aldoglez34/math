@@ -6,46 +6,56 @@ import TeacherAPI from "../../../../utils/TeacherAPI";
 import { useSelector } from "react-redux";
 import { firebaseStorage } from "../../../../firebase/firebase";
 import { IMAGES } from "../../../../constants/constants";
+import { ImageFromFirebase } from "../../../components";
+import { object } from "prop-types";
 
-export const DichotomousQuestionWithImage = () => {
+export const DichotomousQuestionWithImage = ({ question }) => {
   const yupschema = yup.object({
+    qComment: yup.string(),
+    qCorrectAnswers: yup.string().required("Requerido"),
     qInstruction: yup.string().required("Requerido"),
-    file: yup
-      .mixed()
-      .required("Requerido")
-      .test(
-        "fileSize",
-        "Imagen muy pesada",
-        (value) => value && value.size <= IMAGES.PHOTO_SIZE
-      )
-      .test(
-        "fileFormat",
-        "Formato no soportado",
-        (value) => value && IMAGES.SUPPORTED_FORMATS.includes(value.type)
-      ),
     qOption1: yup.string().required("Requerido"),
     qOption2: yup.string().required("Requerido"),
-    qCorrectAnswers: yup.string().required("Requerido"),
-    qComment: yup.string(),
+    ...(question
+      ? {}
+      : {
+          file: yup
+            .mixed()
+            .required("Requerido")
+            // .test(
+            //   "fileSize",
+            //   "Imagen muy pesada",
+            //   (value) => value && value.size <= IMAGES.PHOTO_SIZE
+            // )
+            .test(
+              "fileFormat",
+              "Formato no soportado",
+              (value) => value && IMAGES.SUPPORTED_FORMATS.includes(value.type)
+            ),
+        }),
   });
+
+  console.log(question);
 
   const examId = useSelector((state) => state.admin.exam.examId);
   const topicId = useSelector((state) => state.admin.topic.topicId);
   const courseId = useSelector((state) => state.admin.course.courseId);
 
+  const oldQuestionImageUrl = question?.qTechnicalInstruction?.imageLink;
+
   return (
     <Formik
       initialValues={{
-        qInstruction: "",
-        image: undefined,
         file: undefined,
+        image: undefined,
+        qComment: question?.qComment || "",
+        qCorrectAnswers: question?.qCorrectAnswers[0]?.answer || "",
+        qInstruction: question?.qInstruction || "",
         qOption1: "Falso",
         qOption2: "Verdadero",
-        qCorrectAnswers: "",
-        qComment: "",
       }}
       validationSchema={yupschema}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={async (values, { setSubmitting }) => {
         setSubmitting(true);
 
         values.qInstruction = values.qInstruction.trim();
@@ -56,38 +66,44 @@ export const DichotomousQuestionWithImage = () => {
         values.topicId = topicId;
         values.examId = examId;
 
+        values.isEdition = question ? true : false;
+        values.oldQuestionId = question?._id;
+        values.firebasePath = `${courseId}/${topicId}/exams/${examId}/${question?._id}/imagen`;
+
+        const hasImageChanged =
+          question && values.file && values.image ? true : false;
+
         const isAnswerIncludedInOptions = [
           String(values.qOption1),
           String(values.qOption2),
         ].includes(String(values.qCorrectAnswers));
 
-        if (!isAnswerIncludedInOptions) {
-          alert("La respuesta debe estar contenida en las opciones.");
+        try {
+          if (!isAnswerIncludedInOptions) {
+            setSubmitting(false);
+            return alert("La respuesta debe estar contenida en las opciones.");
+          }
+
+          // post question to mongodb
+          const questionId = await TeacherAPI.t_newDichotomousQuestionWithImage(
+            values
+          ).then((res) => res.data);
+
+          // if this isn't an edition, upload image to firebase store
+          // or if this is an edition and the image changed, upload new image with the same path
+          if (!values.isEdition || (values.isEdition && hasImageChanged)) {
+            const storageRef = firebaseStorage.ref();
+            const pathOnFirebaseStorage = `${courseId}/${topicId}/exams/${examId}/${questionId}/imagen`;
+            const fileRef = storageRef.child(pathOnFirebaseStorage);
+
+            await fileRef.put(values.file);
+          }
+
+          window.location.reload();
+        } catch (err) {
+          console.log(err);
           setSubmitting(false);
-        } else {
-          TeacherAPI.t_newDichotomousQuestionWithImage(values)
-            .then((res) => {
-              const questionId = res.data;
-
-              const storageRef = firebaseStorage.ref();
-              const pathOnFirebaseStorage = `${courseId}/${topicId}/exams/${examId}/${questionId}/imagen`;
-              const fileRef = storageRef.child(pathOnFirebaseStorage);
-
-              fileRef
-                .put(values.file)
-                .then(() => {
-                  window.location.reload();
-                })
-                .catch((err) => {
-                  console.log(err);
-                  alert("Ocurrió un error en el servidor, intenta más tarde");
-                });
-            })
-            .catch((err) => {
-              alert("Ocurrió un error. Vuelve a intentarlo.");
-              setSubmitting(false);
-              console.log(err);
-            });
+          alert("Ocurrió un error en el servidor, intenta más tarde");
         }
       }}
     >
@@ -134,10 +150,25 @@ export const DichotomousQuestionWithImage = () => {
           <Form.Row className="mb-3">
             <Form.Label>
               Imagen
-              <strong className="text-danger" title="Requerido">
-                *
-              </strong>
+              {!question || (values.image && values.file) ? (
+                <strong className="text-danger" title="Requerido">
+                  *
+                </strong>
+              ) : (
+                <small> (Opcional)</small>
+              )}
               <small className="ml-1">(.jpg, .jpeg, .gif y .png)</small>
+              {oldQuestionImageUrl && !values.image && !values.file && (
+                <>
+                  <br />
+                  <ImageFromFirebase
+                    className="mt-2"
+                    height="85"
+                    path={oldQuestionImageUrl}
+                    width="85"
+                  />
+                </>
+              )}
             </Form.Label>
             <Form.File
               encType="multipart/form-data"
@@ -225,7 +256,9 @@ export const DichotomousQuestionWithImage = () => {
                 as="select"
                 type="text"
                 name="qCorrectAnswers"
-                defaultValue="Elige..."
+                defaultValue={
+                  question ? question?.qCorrectAnswers[0]?.answer : "Elige..."
+                }
                 onChange={handleChange}
                 onBlur={handleBlur}
                 isValid={touched.qCorrectAnswers && !errors.qCorrectAnswers}
@@ -284,4 +317,8 @@ export const DichotomousQuestionWithImage = () => {
       )}
     </Formik>
   );
+};
+
+DichotomousQuestionWithImage.propTypes = {
+  question: object,
 };

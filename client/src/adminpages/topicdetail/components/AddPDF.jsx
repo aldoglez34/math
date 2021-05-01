@@ -18,11 +18,11 @@ export const AddPDF = React.memo(({ courseId, topicId }) => {
     file: yup
       .mixed()
       .required("Requerido")
-      .test(
-        "fileSize",
-        "PDF muy pesado",
-        (value) => value && value.size <= PDFS.SIZE
-      )
+      // .test(
+      //   "fileSize",
+      //   "PDF muy pesado",
+      //   (value) => value && value.size <= PDFS.SIZE
+      // )
       .test(
         "fileFormat",
         "Formato no soportado",

@@ -22,11 +22,11 @@ export const SimpleWithImageForm = ({ question }) => {
           file: yup
             .mixed()
             .required("Requerido")
-            .test(
-              "fileSize",
-              "Imagen muy pesada",
-              (value) => value && value.size <= IMAGES.SIZE
-            )
+            // .test(
+            //   "fileSize",
+            //   "Imagen muy pesada",
+            //   (value) => value && value.size <= IMAGES.SIZE
+            // )
             .test(
               "fileFormat",
               "Formato no soportado",

@@ -236,35 +236,6 @@ router.post("/imageWithTwoAnswers/new", async (req, res) => {
     console.log("@error", err);
     res.status(422).send("Ocurrió un error.");
   }
-
-  // model.Exam.findOneAndUpdate(
-  //   { _id: examId },
-  //   { $push: { questions: newQuestion } },
-  //   { new: true } // return the updated object
-  // )
-  //   .then((exam) => {
-  //     // get the newly created question id
-  //     const questionId = exam.questions[exam.questions.length - 1]._id;
-
-  //     const firebasePath = `${courseId}/${topicId}/exams/${examId}/${questionId}/imagen`;
-
-  //     // now rename the question link in mongo
-  //     model.Exam.findOneAndUpdate(
-  //       { _id: examId, "questions._id": questionId },
-  //       {
-  //         $set: { "questions.$.qTechnicalInstruction.imageLink": firebasePath },
-  //       }
-  //     )
-  //       .then(() => res.send(questionId))
-  //       .catch((err) => {
-  //         console.log("@error", err);
-  //         res.status(422).send("Ocurrió un error.");
-  //       });
-  //   })
-  //   .catch((err) => {
-  //     console.log("@error", err);
-  //     res.status(422).send("Ocurrió un error.");
-  //   });
 });
 
 // t_newMultipleOptionQuestion()
@@ -328,15 +299,15 @@ router.post("/multipleOption/new", async (req, res) => {
 
 // t_newMultipleOptionWithImage()
 // matches with /teacherAPI/questions/multipleOptionWithImage/new
-router.post("/multipleOptionWithImage/new", function (req, res) {
-  const { courseId, examId, topicId } = req.body;
+router.post("/multipleOptionWithImage/new", async (req, res) => {
+  const { courseId, examId, isEdition, oldQuestionId, topicId } = req.body;
 
   const newQuestion = {
     qType: "multipleOptionWithPic",
     qInstruction: req.body.qInstruction,
     qTechnicalInstruction: {
       type: "image",
-      imageLink: "temp",
+      ...(!isEdition ? {} : { imageLink: req.body.firebasePath }),
     },
     qMultipleChoice: {
       type: "text",
@@ -355,35 +326,42 @@ router.post("/multipleOptionWithImage/new", function (req, res) {
       },
     ],
     qComment: req.body.qComment,
+    ...(!isEdition ? {} : { _id: oldQuestionId }),
   };
+  try {
+    let newQuestionId = undefined;
 
-  model.Exam.findOneAndUpdate(
-    { _id: req.body.examId },
-    { $push: { questions: newQuestion } },
-    { new: true } // return the updated object
-  )
-    .then((exam) => {
-      const questionId = exam.questions[exam.questions.length - 1]._id;
+    if (!isEdition) {
+      // push the new question and get the latest question _id from the exam document
+      newQuestionId = await model.Exam.findOneAndUpdate(
+        { _id: examId },
+        { $push: { questions: newQuestion } },
+        { new: true } // returns the updated object
+      ).then(({ questions }) => questions[questions.length - 1]._id);
 
-      const firebasePath = `${courseId}/${topicId}/exams/${examId}/${questionId}/imagen`;
-
-      // now rename the question link in mongo
-      model.Exam.findOneAndUpdate(
-        { _id: req.body.examId, "questions._id": questionId },
+      // build the firebase path and then update the question with it
+      const firebasePath = `${courseId}/${topicId}/exams/${examId}/${newQuestionId}/imagen`;
+      await model.Exam.findOneAndUpdate(
+        { _id: examId, "questions._id": newQuestionId },
         {
           $set: { "questions.$.qTechnicalInstruction.imageLink": firebasePath },
         }
-      )
-        .then(() => res.send(questionId))
-        .catch((err) => {
-          console.log("@error", err);
-          res.status(422).send("Ocurrió un error.");
-        });
-    })
-    .catch((err) => {
-      console.log("@error", err);
-      res.status(422).send("Ocurrió un error.");
-    });
+      );
+    }
+
+    if (isEdition && oldQuestionId) {
+      await model.Exam.update(
+        { _id: req.body.examId, "questions._id": oldQuestionId },
+        { $set: { "questions.$": newQuestion } },
+        { new: true } // returns the updated object
+      );
+    }
+
+    res.send(newQuestionId || oldQuestionId);
+  } catch (err) {
+    console.log("@error", err);
+    res.status(422).send("Ocurrió un error.");
+  }
 });
 
 // t_newDichotomousQuestion()
@@ -442,55 +420,59 @@ router.post("/dichotomousQuestion/new", async (req, res) => {
 
 // t_newDichotomousQuestionWithImage()
 // matches with /teacherAPI/questions/dichotomousQuestionWithImage/new
-router.post("/dichotomousQuestionWithImage/new", function (req, res) {
-  const { courseId, examId, topicId } = req.body;
+router.post("/dichotomousQuestionWithImage/new", async (req, res) => {
+  const { courseId, examId, isEdition, oldQuestionId, topicId } = req.body;
 
   const newQuestion = {
     qType: "dichotomousWithPic",
     qInstruction: req.body.qInstruction,
     qTechnicalInstruction: {
       type: "image",
-      imageLink: "temp",
+      ...(!isEdition ? {} : { imageLink: req.body.firebasePath }),
     },
     qMultipleChoice: {
       type: "text",
       textChoices: [req.body.qOption1, req.body.qOption2],
     },
-    qCorrectAnswers: [
-      {
-        answer: req.body.qCorrectAnswers,
-      },
-    ],
+    qCorrectAnswers: [{ answer: req.body.qCorrectAnswers }],
     qComment: req.body.qComment,
+    ...(!isEdition ? {} : { _id: oldQuestionId }),
   };
 
-  model.Exam.findOneAndUpdate(
-    { _id: req.body.examId },
-    { $push: { questions: newQuestion } },
-    { new: true } // return the updated object
-  )
-    .then((exam) => {
-      const questionId = exam.questions[exam.questions.length - 1]._id;
+  try {
+    let newQuestionId = undefined;
 
-      const firebasePath = `${courseId}/${topicId}/exams/${examId}/${questionId}/imagen`;
+    if (!isEdition) {
+      // push the new question and get the latest question _id from the exam document
+      newQuestionId = await model.Exam.findOneAndUpdate(
+        { _id: examId },
+        { $push: { questions: newQuestion } },
+        { new: true } // returns the updated object
+      ).then(({ questions }) => questions[questions.length - 1]._id);
 
-      // now rename the question link in mongo
-      model.Exam.findOneAndUpdate(
-        { _id: req.body.examId, "questions._id": questionId },
+      // build the firebase path and then update the question with it
+      const firebasePath = `${courseId}/${topicId}/exams/${examId}/${newQuestionId}/imagen`;
+      await model.Exam.findOneAndUpdate(
+        { _id: examId, "questions._id": newQuestionId },
         {
           $set: { "questions.$.qTechnicalInstruction.imageLink": firebasePath },
         }
-      )
-        .then(() => res.send(questionId))
-        .catch((err) => {
-          console.log("@error", err);
-          res.status(422).send("Ocurrió un error.");
-        });
-    })
-    .catch((err) => {
-      console.log("@error", err);
-      res.status(422).send("Ocurrió un error.");
-    });
+      );
+    }
+
+    if (isEdition && oldQuestionId) {
+      await model.Exam.update(
+        { _id: req.body.examId, "questions._id": oldQuestionId },
+        { $set: { "questions.$": newQuestion } },
+        { new: true } // returns the updated object
+      );
+    }
+
+    res.send(newQuestionId || oldQuestionId);
+  } catch (err) {
+    console.log("@error", err);
+    res.status(422).send("Ocurrió un error.");
+  }
 });
 
 // t_deleteQuestion()
