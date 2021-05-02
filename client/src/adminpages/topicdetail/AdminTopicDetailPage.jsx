@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Badge, Col, Container, Row } from "react-bootstrap";
+import {
+  Badge,
+  Button,
+  Col,
+  Container,
+  Image,
+  Modal,
+  Row,
+  Spinner,
+} from "react-bootstrap";
 import TeacherAPI from "../../utils/TeacherAPI";
 import {
-  AdminDangerModal,
   AdminLayout,
   AdminModal,
   AdminPrimaryButton,
@@ -30,6 +38,8 @@ export const AdminTopicDetailPage = React.memo((props) => {
   const reduxTopic = useSelector((state) => state.admin.topic);
 
   const [topic, setTopic] = useState();
+  const [showModal, setShowModal] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const courseId = props.routeProps.match.params.courseId;
   const topicId = props.routeProps.match.params.topicId;
@@ -84,6 +94,7 @@ export const AdminTopicDetailPage = React.memo((props) => {
   };
 
   const handleDeleteTopic = async () => {
+    setIsDeleting(true);
     try {
       // delete topic from database
       const deleteRes = await TeacherAPI.t_deleteTopic({ courseId, topicId });
@@ -96,7 +107,10 @@ export const AdminTopicDetailPage = React.memo((props) => {
     }
   };
 
-  const optionsDropdown = [{ text: "Borrar tema", fn: undefined }];
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+
+  const optionsDropdown = [{ text: "Borrar tema", fn: handleShowModal }];
 
   return topic ? (
     <AdminLayout
@@ -107,27 +121,17 @@ export const AdminTopicDetailPage = React.memo((props) => {
       <Container fluid>
         {/* topic name */}
         <Row>
-          <Col className="d-flex">
-            <div>
-              <span className="text-muted">Nombre</span>
-              <h1>
-                {topic.name}
-                <AdminModal
-                  Form={TopicNameForm}
-                  formInitialText={topic.name}
-                  formLabel="Nombre"
-                  icon={<i className="fas fa-pen-alt" />}
-                />
-              </h1>
-            </div>
-            <div className="ml-auto pt-4">
-              <AdminDangerModal
-                deleteFn={handleDeleteTopic}
-                icon="Eliminar"
-                modalText={`¿Estás seguro que deseas borrar el tema: ${reduxTopic.topicName}?`}
-                variant="filled"
+          <Col>
+            <span className="text-muted">Nombre</span>
+            <h1>
+              {topic.name}
+              <AdminModal
+                Form={TopicNameForm}
+                formInitialText={topic.name}
+                formLabel="Nombre"
+                icon={<i className="fas fa-pen-alt" />}
               />
-            </div>
+            </h1>
           </Col>
         </Row>
         {/* subject */}
@@ -253,6 +257,44 @@ export const AdminTopicDetailPage = React.memo((props) => {
           </Col>
         </Row>
       </Container>
+      {/* delete topic modal */}
+      <Modal centered onHide={handleCloseModal} show={showModal}>
+        <Modal.Body className="bg-light rounded shadow text-center py-4">
+          {isDeleting ? (
+            <div className="py-4">
+              <strong className="mb-2">Borrando...</strong>
+              <br />
+              <br />
+              <Spinner variant="danger" animation="border" role="status">
+                <span className="sr-only">Borrando...</span>
+              </Spinner>
+            </div>
+          ) : (
+            <>
+              <Image
+                className="mb-3"
+                height="130"
+                src="/images/trash.png"
+                width="130"
+              />
+              <div className="lead text-center mt-2">{`¿Estás seguro que deseas borrar el tema: ${reduxTopic.topicName}?`}</div>
+              <div className="d-flex flex-row justify-content-center mt-4">
+                <Button variant="dark" onClick={handleCloseModal}>
+                  Cancelar
+                </Button>
+                <Button
+                  variant="danger"
+                  className="ml-2"
+                  onClick={handleDeleteTopic}
+                >
+                  Borrar
+                  <i className="fas fa-trash-alt ml-2" />
+                </Button>
+              </div>
+            </>
+          )}
+        </Modal.Body>
+      </Modal>
     </AdminLayout>
   ) : (
     <AdminSpinner />

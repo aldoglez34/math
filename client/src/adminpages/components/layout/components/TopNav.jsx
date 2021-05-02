@@ -45,7 +45,7 @@ export const TopNav = React.memo(({ backBttn, buttons, optionsDropdown }) => {
                   <Dropdown.Item
                     key={o.text}
                     className="dropdownStyle"
-                    onClick={() => o.fn}
+                    onClick={() => o.fn()}
                   >
                     {o.text}
                   </Dropdown.Item>
