@@ -13,8 +13,6 @@ import {
 export const ResultsPage = () => {
   const exam = useSelector((state) => state.exam);
 
-  console.log(exam.results);
-
   return exam.results ? (
     <StudentLayout>
       <Container style={{ paddingBottom: "45px" }}>
@@ -26,18 +24,24 @@ export const ResultsPage = () => {
               corrects={exam.results.corrects}
               incorrects={exam.results.incorrects}
             />
-            <hr />
-            <ResultMsg grade={exam.results.grade} />
-            <hr />
-            {exam.results.unlockedExam || exam.results.isFreestyleUnlocked ? (
+            {!exam.results.hasExamBeenApprovedBefore && (
               <>
-                <UnlockedExam
-                  unlockedExam={exam.results.unlockedExam}
-                  isFreestyleUnlocked={exam.results.isFreestyleUnlocked}
-                />
-                <hr />
+                <br />
+                <ResultMsg grade={exam.results.grade} />
+                <br />
               </>
-            ) : null}
+            )}
+            {!exam.results.hasExamBeenApprovedBefore &&
+              (exam.results.unlockedExam ||
+                exam.results.isFreestyleUnlocked) && (
+                <>
+                  <UnlockedExam
+                    unlockedExam={exam.results.unlockedExam}
+                    isFreestyleUnlocked={exam.results.isFreestyleUnlocked}
+                  />
+                  <br />
+                </>
+              )}
             <MyResults results={exam.results.answers} />
             <GoBackBttn topicName={exam.topicName} className="mt-2" />
           </Col>

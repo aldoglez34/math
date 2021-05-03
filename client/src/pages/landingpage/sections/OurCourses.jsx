@@ -29,14 +29,14 @@ export const OurCourses = () => {
         {/* content */}
         {courses ? (
           courses.length ? (
-            <Tab.Container defaultActiveKey={"#" + courses[0].school}>
+            <Tab.Container defaultActiveKey={`#${courses[0].school}`}>
               <Row>
                 <Col md={5}>
                   <ListGroup className="mb-3 mb-md-0">
-                    {courses.map((c) => {
+                    {courses.map((c, idx) => {
                       return (
                         <ListGroup.Item
-                          key={c.school}
+                          key={idx}
                           action
                           href={"#" + c.school}
                           className="courseMenuItem shadow-sm rounded border border-lignt"
@@ -55,9 +55,9 @@ export const OurCourses = () => {
                 </Col>
                 <Col md={7}>
                   <Tab.Content>
-                    {courses.map((c) => {
+                    {courses.map((c, idx) => {
                       return (
-                        <Tab.Pane key={c.school} eventKey={"#" + c.school}>
+                        <Tab.Pane key={idx} eventKey={`#${c.school}`}>
                           <HomeCard
                             courses={c.courses.map((cc) => {
                               return {
@@ -65,7 +65,7 @@ export const OurCourses = () => {
                                 list: [...cc.topicsSummary],
                               };
                             })}
-                            link={"/courses/" + c.school}
+                            link={`/courses/${c.school}`}
                           />
                         </Tab.Pane>
                       );

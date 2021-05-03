@@ -178,13 +178,18 @@ export const QuestionsContainer = React.memo(
         topicId: exam.topicId,
       })
         .then((res) => {
-          const { isFreestyleUnlocked, unlockedExam } = res.data;
+          const {
+            hasExamBeenApprovedBefore,
+            isFreestyleUnlocked,
+            unlockedExam,
+          } = res.data;
           // save results in redux (so they can be read in the results page)
           dispatch(
             examActions.setResults({
               answers,
               corrects,
               grade,
+              hasExamBeenApprovedBefore,
               incorrects,
               isFreestyleUnlocked,
               unlockedExam,

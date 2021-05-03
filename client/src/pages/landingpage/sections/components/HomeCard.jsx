@@ -10,9 +10,9 @@ export const HomeCard = React.memo(({ courses, link }) => {
     >
       <Card.Body>
         <Card.Text className="px-0" as={Col}>
-          {courses.map((l) => {
+          {courses.map((l, idx) => {
             return (
-              <div key={l.title}>
+              <div key={idx}>
                 <div className="lead">
                   <i
                     className="fas fa-check-circle mr-2"
@@ -21,8 +21,8 @@ export const HomeCard = React.memo(({ courses, link }) => {
                   <span style={{ fontWeight: 700 }}>{l.title}</span>
                 </div>
                 <ul>
-                  {l.list.map((ll) => {
-                    return <li key={ll}>{ll}</li>;
+                  {l.list.map((ll, idx) => {
+                    return <li key={idx}>{ll}</li>;
                   })}
                 </ul>
               </div>

@@ -65,9 +65,9 @@ export const CourseInfoCard = React.memo(
               exclusivos, asistencia personalizada y cientos de ejercicios sobre
               los siguientes temas:
             </p>
-            {topics.map((l) => {
+            {topics.map((l, idx) => {
               return (
-                <div key={l}>
+                <div key={idx}>
                   <i
                     className={cn(
                       "fa-check-circle",
